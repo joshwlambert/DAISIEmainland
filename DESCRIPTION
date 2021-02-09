@@ -1,11 +1,20 @@
 Package: DAISIEmainland
 Type: Package
-Title: What the Package Does (Title Case)
+Title: DAISIEmainland
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Joshua W. Lambert <ORCID = "0000-0001-5218-3046">
+Maintainer: Joshua W. Lambert <j.w.l.lambert@rug.nl>
+Description: Simulates data for the DAISIE model. The simulation includes
+    the mainland and island, and produces two data sets: 1) the ideal data set
+    includes all the information, and 2) the reality data set prunes the ideal
+    data to include what would be seen by an empiricist producing phylogenetic
+    data from extant species.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    DDD (>= 4.4)
+    testit
+Suggests: 
+    testthat
+RoxygenNote: 7.1.1
