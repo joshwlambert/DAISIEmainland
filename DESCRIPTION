@@ -13,7 +13,8 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    DDD (>= 4.4)
+    DAISIE,
+    DDD (>= 4.4),
     testit
 Suggests: 
     testthat
