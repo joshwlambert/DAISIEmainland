@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![R build status](https://github.com/joshwlambert/DAISIEmainland/workflows/R-CMD-check/badge.svg)](https://github.com/joshwlambert/DAISIEmainland/actions)
+[![codecov.io](https://codecov.io/github/joshwlambert/DAISIEmainland/coverage.svg?branch=main)](https://codecov.io/github/joshwlambert/DAISIEmainland/branch/main)
 <!-- badges: end -->
 
 The goal of DAISIEmainland is to ...
