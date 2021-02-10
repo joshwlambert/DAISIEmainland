@@ -14,6 +14,6 @@ test_that("calc_rates produces correct output", {
     mainland_n = 10)
   expect_equal(rates$immig_rate, 9)
   expect_equal(rates$ext_rate, 1)
-  expect_equal(rates$ana_rate1, 1)
+  expect_equal(rates$ana_rate, 1)
   expect_equal(rates$clado_rate, 0.9)
 })
