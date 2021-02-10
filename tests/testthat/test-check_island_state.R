@@ -13,6 +13,7 @@ test_that("check_island_state produces correct output with empty island", {
     totaltime = 1,
     island_spec = NULL,
     mainland = mainland)
+  expect_null(island_state)
 })
 
 test_that("check_island_state produces correct output with non-empty island", {
