@@ -79,7 +79,8 @@ create_island <- function(totaltime,
           length(unique(subset_island[, "Colonisation time (BP)"]))
         ### are there any branching events between the immig time and island
         ### age with extant descendants
-        other_extant_mainland <- any(mainland[, 4] != "E")
+        other_spec <- seq(from = 1, to = nrow(mainland), by = 1)[-mainland_spec]
+        other_extant_mainland <- any(mainland[other_spec, 4] != "E")
         if (number_colonisations == 1) {
           if (other_extant_mainland) {
             branching_time <- common_ancestor_time(
