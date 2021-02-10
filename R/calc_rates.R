@@ -15,8 +15,7 @@ calc_rates <- function(
   k,
   num_spec,
   num_immigrants,
-  mainland_n,
-  island_spec = NULL) {
+  mainland_n) {
   testit::assert(is.numeric(timeval))
   testit::assert(is.numeric(totaltime))
   testit::assert(is.numeric(gam))

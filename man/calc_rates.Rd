@@ -14,8 +14,7 @@ calc_rates(
   k,
   num_spec,
   num_immigrants,
-  mainland_n,
-  island_spec = NULL
+  mainland_n
 )
 }
 \arguments{
@@ -40,9 +39,6 @@ species.}
 
 \item{mainland_n}{Numeric stating the number of mainland species that
 can colonize the island.}
-
-\item{island_spec}{Matrix with current state of simulation containing number
-of species.}
 }
 \value{
 Named list with rates.
