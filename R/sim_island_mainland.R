@@ -78,10 +78,14 @@ sim_island_mainland <- function(
   testit::assert(m > 1)
   testit::assert(is.numeric(island_pars))
   testit::assert(length(island_pars) == 5)
-  testit::assert(is.numeric(mainland_ext))
-  testit::assert(length(mainland_ext) == 1)
-  testit::assert(is.numeric(replicates))
   testit::assert(island_pars[4] > 0)
+  testit::assert(is.numeric(mainland_ext))
+  testit::assert(mainland_ext >= 0)
+  testit::assert(is.numeric(mainland_sample_prob))
+  testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
+  testit::assert(is.numeric(replicates))
+  testit::assert(replicates >= 1)
+  testit::assert(is.logical(verbose))
 
   totaltime <- time
   island_replicates <- list()
