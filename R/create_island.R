@@ -44,7 +44,7 @@ create_island <- function(totaltime,
       mainland_sample_prob = mainland_sample_prob,
       island_spec = island_spec)
 
-    island_spec <- check_island_state(
+    island_spec <- update_island_endemics(
       timeval = totaltime,
       totaltime = totaltime,
       island_spec = island_spec,

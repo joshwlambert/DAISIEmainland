@@ -1,6 +1,4 @@
-context("check_island_state")
-
-test_that("check_island_state produces correct output with empty island", {
+test_that("update_island_endemics produces correct output with empty island", {
   # RJCB: I would love a 'create_test_mainland_1' function here!
   mainland <- rbind(
     c("1", "1", "0", "E", "A", NA, NA, "0", "0.292906805531114"),
@@ -9,7 +7,7 @@ test_that("check_island_state produces correct output with empty island", {
     c("16", "1", "0", "C", "AB", "0.292906805531114", NA, "0.292906805531114",
       "1"))
 
-  island_state <- check_island_state(
+  island_state <- update_island_endemics(
     timeval = 0.05858136,
     totaltime = 1,
     island_spec = NULL,
@@ -17,7 +15,7 @@ test_that("check_island_state produces correct output with empty island", {
   expect_null(island_state)
 })
 
-test_that("check_island_state produces correct output with non-empty island", {
+test_that("update_island_endemics produces correct output with non-empty island", {
   # RJCB: I would love a 'create_test_mainland_2' function here!
   mainland <- rbind(
     c("1", "1", "0", "E", "A", NA, NA, "0", "0.292906805531114"),
@@ -26,7 +24,7 @@ test_that("check_island_state produces correct output with non-empty island", {
     c("16", "1", "0", "C", "AB", "0.292906805531114", NA, "0.292906805531114",
       "1"))
 
-  island_state <- check_island_state(
+  island_state <- update_island_endemics(
     totaltime = 1,
     timeval = 0.6,
     island_spec = rbind(c("15", "15", "0.292906805531114", "I", NA, NA, NA)),
