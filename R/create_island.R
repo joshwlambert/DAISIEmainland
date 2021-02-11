@@ -13,7 +13,7 @@ create_island <- function(totaltime,
   ### if there are no species on the island branching_times = island_age,
   ### stac = 0, missing_species = 0
   if (length(island_spec[, 1]) == 0) {
-    ideal_island <- reality_island <-
+    ideal_island <- empirical_island <-
       list(branching_times = totaltime,
            stac = 0,
            missing_species = 0)
@@ -51,7 +51,7 @@ create_island <- function(totaltime,
       mainland = mainland)
 
     ideal_island_clades_info <- list()
-    reality_island_clades_info <- list()
+    empirical_island_clades_info <- list()
 
     for (i in 1:number_colonists_present) {
       subset_island <- island_spec[which(island_spec[, "Mainland Ancestor"] ==
@@ -72,7 +72,7 @@ create_island <- function(totaltime,
       extant_mainland <- any(mainland[descending_branches, 4] != "E")
 
       if (extant_mainland) {
-        reality_island_clades_info[[i]] <- ideal_island_clades_info[[i]]
+        empirical_island_clades_info[[i]] <- ideal_island_clades_info[[i]]
       } else {
         ### number of independent colonisations from the same mainland species
         number_colonisations <-
@@ -87,7 +87,7 @@ create_island <- function(totaltime,
               totaltime = totaltime,
               mainland_spec = mainland_spec,
               mainland = mainland)
-            reality_island_clades_info[[i]] <- list(
+            empirical_island_clades_info[[i]] <- list(
               branching_times = c(
                 totaltime,
                 branching_time,
@@ -99,14 +99,14 @@ create_island <- function(totaltime,
               missing_species = 0)
           } else {
             if (nrow(subset_island) == 1) {
-              reality_island_clades_info[[i]] <- list(
+              empirical_island_clades_info[[i]] <- list(
                 branching_times = c(
                   totaltime,
                   totaltime - 1e-5),
                 stac = 5,
                 missing_species = 0)
             } else {
-              reality_island_clades_info[[i]] <- list(
+              empirical_island_clades_info[[i]] <- list(
                 branching_times = c(
                   totaltime,
                   totaltime - 1e-5,
@@ -124,14 +124,14 @@ create_island <- function(totaltime,
               totaltime = totaltime,
               mainland_spec = mainland_spec,
               mainland = mainland)
-            reality_island_clades_info[[i]] <- list(
+            empirical_island_clades_info[[i]] <- list(
               branching_times = c(
                 totaltime,
                 branching_time),
               stac = 3,
               missing_species = 0)
           } else {
-            reality_island_clades_info[[i]] <- list(
+            empirical_island_clades_info[[i]] <- list(
               branching_times = c(
                 totaltime,
                 totaltime - 1e-5,
@@ -146,8 +146,8 @@ create_island <- function(totaltime,
       }
     }
     ideal_island <- ideal_island_clades_info
-    reality_island <- reality_island_clades_info
+    empirical_island <- empirical_island_clades_info
   }
   return(list(ideal_island = ideal_island,
-              reality_island = reality_island))
+              empirical_island = empirical_island))
 }
