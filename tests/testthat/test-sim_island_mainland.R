@@ -49,6 +49,73 @@ test_that("sim_island_mainland is silent and produces correct empty island", {
 # })
 
 test_that("sim_island_mainland fails with incorrect input", {
-  #TO DO
-  island <- sim_island_mainland()
+  expect_error(island <- sim_island_mainland(
+    time = "nonsense",
+    m = 10,
+    island_pars = c(1,1,10,1,1),
+    mainland_ext = 1,
+    mainland_sample_prob = 1,
+    replicates = 1,
+    verbose = TRUE)
+  )
+
+  expect_error(island <- sim_island_mainland(
+    time = 1,
+    m = "nonsense",
+    island_pars = c(1,1,10,1,1),
+    mainland_ext = 1,
+    mainland_sample_prob = 1,
+    replicates = 1,
+    verbose = TRUE)
+  )
+
+  expect_error(island <- sim_island_mainland(
+    time = 1,
+    m = 10,
+    island_pars = "nonsense",
+    mainland_ext = 1,
+    mainland_sample_prob = 1,
+    replicates = 1,
+    verbose = TRUE)
+  )
+
+  expect_error(island <- sim_island_mainland(
+    time = 1,
+    m = 10,
+    island_pars = c(1,1,10,1,1),
+    mainland_ext = "nonsense",
+    mainland_sample_prob = 1,
+    replicates = 1,
+    verbose = TRUE)
+  )
+
+  expect_error(island <- sim_island_mainland(
+    time = 1,
+    m = 10,
+    island_pars = c(1,1,10,1,1),
+    mainland_ext = 1,
+    mainland_sample_prob = "nonsense",
+    replicates = 1,
+    verbose = TRUE)
+  )
+
+  expect_error(island <- sim_island_mainland(
+    time = 1,
+    m = 10,
+    island_pars = c(1,1,10,1,1),
+    mainland_ext = 1,
+    mainland_sample_prob = 1,
+    replicates = "nonsense",
+    verbose = TRUE)
+  )
+
+  expect_error(island <- sim_island_mainland(
+    time = 1,
+    m = 10,
+    island_pars = c(1,1,10,1,1),
+    mainland_ext = 1,
+    mainland_sample_prob = 1,
+    replicates = 1,
+    verbose = "nonsense")
+  )
 })
