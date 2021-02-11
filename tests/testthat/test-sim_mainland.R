@@ -2,6 +2,7 @@ context("sim_mainland")
 
 test_that("sim_mainland produces correct output", {
   set.seed(1)
+  # RJCB: I would love a 'create_test_mainland_params_1' function here
   mainland <- sim_mainland(
     time = 1,
     m = 10,

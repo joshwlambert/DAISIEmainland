@@ -68,6 +68,8 @@ sim_island_mainland <- function(
   mainland_ext,
   mainland_sample_prob,
   replicates,
+  # RJCB: minor point: verbose should be FALSE by default,
+  # it is called 'The UNIX Golden Rule Of Silence'
   verbose = TRUE
 ) {
   testit::assert(is.numeric(time))
@@ -83,6 +85,18 @@ sim_island_mainland <- function(
 
   totaltime <- time
   island_replicates <- list()
+  # RJCB: I may misunderstand, yet I feel that, whatever the number
+  # of islands, there is always exactly one mainland.
+  # That was exactly that brilliant idea of you that I liked;
+  # to simulate the (one) mainland first
+  #
+  # Would you agree with me, I suggest to an architecture such as this:
+  # * sim_island_mainland: simulates 1 mainland and 1 or more islands.
+  #   will call 'sim_mainland' and (see below) 'sim_island_with_mainland'
+  # * sim_mainland: simulates the 1 mainland
+  # * NEW: sim_island_with_mainland: simulate the 1 or more islands
+  #   with the mainland already simulated. In that way, one can write
+  #   tests for some simple and known mainland histories
   mainland_replicates <- list()
   for (rep in 1:replicates) {
     island_replicates[[rep]] <- list()
@@ -102,10 +116,15 @@ sim_island_mainland <- function(
       )
     }
     island_replicates[[rep]] <- full_list
+    # RJCB: I would expect this output to be at the start of the replicated
     if (verbose == TRUE) {
+      # RJCB: Tip: use paste0(...) instead of 'paste(..., sep = "")'.
       print(paste("Island replicate ", rep, sep = ""))
     }
   }
+  # RJCB: I suggest to rename 'format_data' to something like
+  # 'to_daisie'/'to_classic_format'/'to_oldskool', etc.
+  # The name 'format_data' feels to uninformative to me.
   island_replicates <- format_data(
     island_replicates = island_replicates,
     time = totaltime,
