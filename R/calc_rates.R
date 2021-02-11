@@ -37,6 +37,19 @@ calc_rates <- function(
   testit::assert(ana_rate >= 0.0)
   testit::assert(clado_rate >= 0.0)
 
+  # RJCB: minor trick:
+  # one can simply write
+  # list(
+  #   immig_rate = immig_rate,
+  #   ext_rate = ext_rate,
+  #   ana_rate = ana_rate,
+  #   clado_rate = clado_rate
+  # )
+  # without the return.
+  # return is great for early returns, but
+  # -as far as I understand- adding it to the
+  # end of the function is unnecessary
+  # and makes the out be copied needlessly
   rates <- list(
     immig_rate = immig_rate,
     ext_rate = ext_rate,
