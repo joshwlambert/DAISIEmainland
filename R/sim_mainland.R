@@ -28,7 +28,15 @@ sim_mainland <- function(
   max_spec_id <- m
   mainland <- vector(mode = "list", length = m)
   for (i in 1:m) {
-    mainland[[i]] <- matrix(c(i, i, 0, "I", "A", NA, NA, 0, NA), nrow = 1)
+    mainland[[i]] <- data.frame(spec_id = i,
+                                main_anc_id = i,
+                                col_t = 0,
+                                spec_type = "I",
+                                branch_code = "A",
+                                branch_t = NA,
+                                ana_origin = NA,
+                                spec_origin_t = 0,
+                                spec_ex_t = 0)
   }
   if (mainland_ext == 0) {
     time <- totaltime
@@ -37,45 +45,46 @@ sim_mainland <- function(
   }
   while (time < totaltime) {
     #EXTINCTION
-    spec_id_num <- c()
-    spec_id_let <- c()
+    spec_id <- c()
+    spec_type <- c()
     for (i in seq_along(mainland)) {
-      spec_id_num <- as.numeric(c(spec_id_num, mainland[[i]][, 1]))
-      spec_id_let <- c(spec_id_let, mainland[[i]][, 4])
+      spec_id <- c(spec_id, mainland[[i]][, "spec_id"])
+      spec_type <- c(spec_type, mainland[[i]][, "spec_type"])
     }
-    if (any(spec_id_let == "E")) {
-      spec_id_num <- spec_id_num[-which(spec_id_let == "E")]
+    if (any(spec_type == "E")) {
+      spec_id <- spec_id[-which(spec_type == "E")]
     }
-    extinct_spec <- DDD::sample2(spec_id_num, 1)
+    extinct_spec <- DDD::sample2(spec_id, 1)
     lineage <- c()
     for (i in seq_along(mainland)) {
-      lineage[i] <- any(as.numeric(mainland[[i]][, 1]) == extinct_spec)
+      lineage[i] <- any(mainland[[i]][, "spec_id"] == extinct_spec)
     }
     lineage <- which(lineage)
-    extinct <- which(mainland[[lineage]][, 1] == extinct_spec)
-    typeofspecies <- mainland[[lineage]][extinct, 4]
-    if (typeofspecies == "I" || typeofspecies == "A") {
-      mainland[[lineage]][extinct, 4] <- "E"
-      mainland[[lineage]][extinct, 9] <- time
+    extinct <- which(mainland[[lineage]][, "spec_id"] == extinct_spec)
+    ex_spec_type <- mainland[[lineage]][extinct, "spec_type"]
+    if (ex_spec_type == "I" || ex_spec_type == "A") {
+      mainland[[lineage]][extinct, "spec_type"] <- "E"
+      mainland[[lineage]][extinct, "spec_ex_t"] <- time
     }
-    if (typeofspecies == "C") {
+    # FIND IF ANA_ORIGIN IS EVER CHANGED
+    if (ex_spec_type == "C") {
       #first find species with same ancestor AND arrival totaltime
-      sisters <- intersect(which(mainland[[lineage]][, 2] ==
-                                   mainland[[lineage]][extinct, 2]),
-                           which(mainland[[lineage]][, 3] ==
-                                   mainland[[lineage]][extinct, 3]))
+      sisters <- intersect(which(mainland[[lineage]][, "main_anc_id"] ==
+                                   mainland[[lineage]][extinct, "main_anc_id"]),
+                           which(mainland[[lineage]][, "col_t"] ==
+                                   mainland[[lineage]][extinct, "col_t"]))
       survivors <- sisters[which(sisters != extinct)]
       if (length(sisters) == 2) {
         #survivors status becomes anagenetic
-        mainland[[lineage]][survivors, 4] <- "A"
-        mainland[[lineage]][survivors, 7] <- "Clado_extinct"
-        mainland[[lineage]][extinct, 4] <- "E"
-        mainland[[lineage]][extinct, 9] <- time
+        mainland[[lineage]][survivors, "spec_type"] <- "A"
+        mainland[[lineage]][survivors, "ana_origin"] <- "Clado_extinct"
+        mainland[[lineage]][extinct, "spec_type"] <- "E"
+        mainland[[lineage]][extinct, "spec_ex_t"] <- time
       }
 
       if (length(sisters) >= 3) {
-        numberofsplits <- nchar(mainland[[lineage]][extinct, 5])
-        mostrecentspl <- substring(mainland[[lineage]][extinct, 5],
+        numberofsplits <- nchar(mainland[[lineage]][extinct, "branch_code"])
+        mostrecentspl <- substring(mainland[[lineage]][extinct, "branch_code"],
                                    numberofsplits)
 
         if (mostrecentspl == "B") {
@@ -85,13 +94,13 @@ sim_mainland <- function(
           sistermostrecentspl <- "B"
         }
         motiftofind <- paste(substring(
-          mainland[[lineage]][extinct, 5],
+          mainland[[lineage]][extinct, "branch_code"],
           1,
           numberofsplits - 1),
           sistermostrecentspl,
           sep = "")
         possiblesister <- survivors[which(substring(
-          mainland[[lineage]][survivors, 5],
+          mainland[[lineage]][survivors, "branch_code"],
           1,
           numberofsplits) == motiftofind)]
         #different rules depending on whether a B or A is removed.
@@ -103,61 +112,61 @@ sim_mainland <- function(
           # Bug fix here thanks to Nadiah Kristensen: max -> min
           tochange <-
             possiblesister[which(
-              mainland[[lineage]][possiblesister, 6] ==
-                min(as.numeric(mainland[[lineage]][possiblesister, 6])))]
-          mainland[[lineage]][tochange, 6] <-
-            mainland[[lineage]][extinct, 6]
+              mainland[[lineage]][possiblesister, "branch_t"] ==
+                min(as.numeric(mainland[[lineage]][possiblesister, "branch_t"])))]
+          mainland[[lineage]][tochange, "branch_t"] <-
+            mainland[[lineage]][extinct, "branch_t"]
         }
         #change the offending A/B from these species to E
-        mainland[[lineage]][extinct, 4] <- "E"
-        mainland[[lineage]][extinct, 9] <- time
+        mainland[[lineage]][extinct, "spec_type"] <- "E"
+        mainland[[lineage]][extinct, "spec_ex_t"] <- time
       }
     }
     # REPLACEMENT
-    spec_id_num <- c()
-    spec_id_let <- c()
+    spec_id <- c()
+    spec_type <- c()
     for (i in seq_along(mainland)) {
-      spec_id_num <- as.numeric(c(spec_id_num, mainland[[i]][, 1]))
-      spec_id_let <- c(spec_id_let, mainland[[i]][, 4])
+      spec_id <- c(spec_id, mainland[[i]][, "spec_id"])
+      spec_type <- c(spec_type, mainland[[i]][, "spec_type"])
     }
-    if (any(spec_id_let == "E")) {
-      spec_id_num <- spec_id_num[-which(spec_id_let == "E")]
+    if (any(spec_type == "E")) {
+      spec_id <- spec_id[-which(spec_type == "E")]
     }
-    branch_spec <- DDD::sample2(spec_id_num, 1)
+    branch_spec <- DDD::sample2(spec_id, 1)
     lineage <- c()
     for (i in seq_along(mainland)) {
-      lineage[i] <- any(as.numeric(mainland[[i]][, 1]) == branch_spec)
+      lineage[i] <- any(mainland[[i]][, "spec_id"] == branch_spec)
     }
     lineage <- which(lineage)
-    tosplit <- which(mainland[[lineage]][, 1] == branch_spec)
+    tosplit <- which(mainland[[lineage]][, "spec_id"] == branch_spec)
     #CLADOGENESIS - this splits species into two new species
     #for daughter A
-    oldstatus <- mainland[[lineage]][tosplit, 5]
-    mainland[[lineage]][tosplit, 4] <- "E"
-    mainland[[lineage]][tosplit, 9] <- time
+    oldstatus <- mainland[[lineage]][tosplit, "branch_code"]
+    mainland[[lineage]][tosplit, "spec_type"] <- "E"
+    mainland[[lineage]][tosplit, "spec_ex_t"] <- time
     mainland[[lineage]] <- rbind(
       mainland[[lineage]],
-      c(max_spec_id + 1,
-        mainland[[lineage]][tosplit, 2],
-        mainland[[lineage]][tosplit, 3],
-        "C",
-        paste(oldstatus, "A", sep = ""),
-        time,
-        NA,
-        NA,
-        NA))
+      data.frame(spec_id = max_spec_id + 1,
+                 main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
+                 col_t = mainland[[lineage]][tosplit, "col_t"],
+                 spec_type = "C",
+                 branch_code = paste0(oldstatus, "A"),
+                 branch_t = time,
+                 ana_origin = NA,
+                 spec_origin_t = time,
+                 spec_ex_t = NA))
     #for daughter B
     mainland[[lineage]] <- rbind(
       mainland[[lineage]],
-      c(max_spec_id + 2,
-        mainland[[lineage]][tosplit, 2],
-        mainland[[lineage]][tosplit, 3],
-        "C",
-        paste(oldstatus, "B", sep = ""),
-        time,
-        NA,
-        NA,
-        NA))
+      data.frame(spec_id = max_spec_id + 2,
+                 main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
+                 col_t = mainland[[lineage]][tosplit, "col_t"],
+                 spec_type = "C",
+                 branch_code = paste0(oldstatus, "B"),
+                 branch_t = time,
+                 ana_origin = NA,
+                 spec_origin_t = time,
+                 spec_ex_t = NA))
     max_spec_id <- max_spec_id + 2
     time <- time + stats::rexp(n = 1, rate = m * mainland_ext)
   }
@@ -165,11 +174,6 @@ sim_mainland <- function(
     for (j in seq_len(nrow(mainland[[i]]))) {
       if (is.na(mainland[[i]][j, 9])) {
         mainland[[i]][j, 9] <- totaltime
-      }
-      if (is.na(mainland[[i]][j, 6])) {
-        mainland[[i]][j, 8] <- mainland[[i]][j, 3]
-      } else {
-        mainland[[i]][j, 8] <- mainland[[i]][j, 6]
       }
     }
   }
