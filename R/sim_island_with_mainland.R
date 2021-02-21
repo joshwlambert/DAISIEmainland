@@ -50,7 +50,7 @@
 #' ## extinction rate of 1 (SpMy^-1). Pool size 100.
 #'
 #' set.seed(1)
-#' island <- sim_island_mainland(
+#' island <- sim_island_with_mainland(
 #'   time = 1,
 #'   m = 100,
 #'   island_pars = c(1, 1, 10, 0.1, 1),
@@ -60,17 +60,15 @@
 #'   verbose = FALSE
 #' )
 #'
-#' @export sim_island_mainland
-sim_island_mainland <- function(
+#' @export sim_island_with_mainland
+sim_island_with_mainland <- function(
   time,
   m,
   island_pars,
   mainland_ext,
   mainland_sample_prob,
   replicates,
-  # RJCB: minor point: verbose should be FALSE by default,
-  # it is called 'The UNIX Golden Rule Of Silence'
-  verbose = TRUE
+  verbose = FALSE
 ) {
   testit::assert(is.numeric(time))
   testit::assert(time > 0)
@@ -89,20 +87,12 @@ sim_island_mainland <- function(
 
   totaltime <- time
   island_replicates <- list()
-  # RJCB: I may misunderstand, yet I feel that, whatever the number
-  # of islands, there is always exactly one mainland.
-  # That was exactly that brilliant idea of you that I liked;
-  # to simulate the (one) mainland first
-  #
-  # Would you agree with me, I suggest to an architecture such as this:
-  # * sim_island_mainland: simulates 1 mainland and 1 or more islands.
-  #   will call 'sim_mainland' and (see below) 'sim_island_with_mainland'
-  # * sim_mainland: simulates the 1 mainland
-  # * NEW: sim_island_with_mainland: simulate the 1 or more islands
-  #   with the mainland already simulated. In that way, one can write
-  #   tests for some simple and known mainland histories
+
   mainland_replicates <- list()
   for (rep in 1:replicates) {
+    if (verbose) {
+      print(paste0("Island replicate ", rep))
+    }
     island_replicates[[rep]] <- list()
     mainland_replicates[[rep]] <- list()
     full_list <- list()
@@ -120,20 +110,10 @@ sim_island_mainland <- function(
       )
     }
     island_replicates[[rep]] <- full_list
-    # RJCB: I would expect this output to be at the start of the replicated
-    if (verbose == TRUE) {
-      # RJCB: Tip: use paste0(...) instead of 'paste(..., sep = "")'.
-      print(paste("Island replicate ", rep, sep = ""))
-    }
   }
-  # RJCB: I suggest to rename 'format_data' to something like
-  # 'to_daisie'/'to_classic_format'/'to_oldskool', etc.
-  # The name 'format_data' feels to uninformative to me.
-  island_replicates <- format_data(
+  island_replicates <- format_to_daisie_data(
     island_replicates = island_replicates,
     time = totaltime,
-    m = m,
-    verbose = verbose
-  )
+    m = m)
   return(island_replicates)
 }

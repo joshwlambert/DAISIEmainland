@@ -1,8 +1,11 @@
-context("sim_island_mainland")
-
-test_that("sim_island_mainland is silent and produces correct empty island", {
-  set.seed(1)
-  expect_silent(island <- sim_island_mainland(
+test_that("sim_island_with_mainland is silent and produces correct empty island", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  expect_silent(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
@@ -19,9 +22,14 @@ test_that("sim_island_mainland is silent and produces correct empty island", {
 })
 
 # test_that("sim_island_mainland is silent and produces correct non-empty island", {
-#   set.seed(2)
-#   expect_silent(
-#     island <- sim_island_mainland(
+#    set.seed(
+# 1,
+# kind = "Mersenne-Twister",
+# normal.kind = "Inversion",
+# sample.kind = "Rejection"
+# )
+#    expect_silent(
+#     island <- sim_island_with_mainland(
 #       time = 1,
 #       m = 100,
 #       island_pars = c(1, 1, 10, 1, 1),
@@ -49,7 +57,7 @@ test_that("sim_island_mainland is silent and produces correct empty island", {
 # })
 
 test_that("sim_island_mainland fails with incorrect input", {
-  expect_error(island <- sim_island_mainland(
+  expect_error(island <- sim_island_with_mainland(
     time = "nonsense",
     m = 10,
     island_pars = c(1,1,10,1,1),
@@ -59,7 +67,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = TRUE)
   )
 
-  expect_error(island <- sim_island_mainland(
+  expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = "nonsense",
     island_pars = c(1,1,10,1,1),
@@ -69,7 +77,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = TRUE)
   )
 
-  expect_error(island <- sim_island_mainland(
+  expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
     island_pars = "nonsense",
@@ -79,7 +87,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = TRUE)
   )
 
-  expect_error(island <- sim_island_mainland(
+  expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
@@ -89,7 +97,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = TRUE)
   )
 
-  expect_error(island <- sim_island_mainland(
+  expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
@@ -99,7 +107,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = TRUE)
   )
 
-  expect_error(island <- sim_island_mainland(
+  expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
@@ -109,7 +117,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = TRUE)
   )
 
-  expect_error(island <- sim_island_mainland(
+  expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
