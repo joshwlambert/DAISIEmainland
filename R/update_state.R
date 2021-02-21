@@ -28,12 +28,24 @@ update_state <- function(timeval,
       isitthere <- c()
     }
     if (length(isitthere) == 0) {
-      island_spec <- rbind(island_spec,
-                           c(colonist, colonist, timeval, "I", NA, NA, NA))
+      island_spec <- rbind(
+        island_spec,
+        data.frame(spec_id = colonist,
+                   main_anc_id = colonist,
+                   col_t = timeval,
+                   spec_type = "I",
+                   branch_code = NA,
+                   branch_t = NA,
+                   ana_origin = NA))
     }
     if (length(isitthere) != 0) {
-      island_spec[isitthere, ] <-
-        c(colonist, colonist, timeval, "I", NA, NA, NA)
+      island_spec[isitthere, ] <- data.frame(spec_id = colonist,
+                                             main_anc_id = colonist,
+                                             col_t = timeval,
+                                             spec_type = "I",
+                                             branch_code = NA,
+                                             branch_t = NA,
+                                             ana_origin = NA)
     }
   }
   ##########################################
@@ -53,7 +65,8 @@ update_state <- function(timeval,
     if (typeofspecies == "C") {
       #remove cladogenetic
       #first find species with same ancestor AND arrival totaltime
-      sisters <- intersect(which(island_spec[, 2] == island_spec[extinct, 2]), which(island_spec[, 3] == island_spec[extinct, 3]))
+      sisters <- intersect(which(island_spec[, 2] == island_spec[extinct, 2]),
+                           which(island_spec[, 3] == island_spec[extinct, 3]))
       survivors <- sisters[which(sisters != extinct)]
       if (length(sisters) == 2) {
         #survivors status becomes anagenetic
@@ -73,24 +86,29 @@ update_state <- function(timeval,
         if (mostrecentspl == "A") {
           sistermostrecentspl <- "B"
         }
-        motiftofind <- paste(substring(island_spec[extinct, 5], 1, numberofsplits - 1), sistermostrecentspl, sep = "")
-        possiblesister <- survivors[which(substring(island_spec[survivors, 5], 1, numberofsplits) == motiftofind)]
+        motiftofind <-
+          paste(substring(island_spec[extinct, 5], 1, numberofsplits - 1),
+                sistermostrecentspl,
+                sep = "")
+        possiblesister <-
+          survivors[which(substring(island_spec[survivors, 5], 1, numberofsplits) == motiftofind)]
         #different rules depending on whether a B or A is removed. B going extinct is simpler because it only
         #carries a record of the most recent speciation
         if (mostrecentspl == "A") {
           #change the splitting date of the sister species so that it inherits the early splitting that used to belong to A.
           # Bug fix here thanks to Nadiah Kristensen: max -> min
-          tochange <- possiblesister[which(island_spec[possiblesister, 6] == min(as.numeric(island_spec[possiblesister, 6])))]
+          tochange <-
+            possiblesister[which(island_spec[possiblesister, 6] == min(as.numeric(island_spec[possiblesister, 6])))]
           island_spec[tochange, 6] <- island_spec[extinct, 6]
         }
         #remove the offending A/B from these species
-        island_spec[possiblesister, 5] <- paste(substring(island_spec[possiblesister, 5], 1, numberofsplits - 1),
-                                                substring(island_spec[possiblesister, 5], numberofsplits + 1,
-                                                          nchar(island_spec[possiblesister, 5])), sep = "")
+        island_spec[possiblesister, 5] <-
+          paste(substring(island_spec[possiblesister, 5], 1, numberofsplits - 1),
+                substring(island_spec[possiblesister, 5], numberofsplits + 1,
+                          nchar(island_spec[possiblesister, 5])), sep = "")
         island_spec <- island_spec[-extinct, ]
       }
     }
-    island_spec <- rbind(island_spec)
   }
   ##########################################
   #ANAGENESIS
@@ -122,8 +140,15 @@ update_state <- function(timeval,
       #island_spec[tosplit,6] = timeval
       island_spec[tosplit, 7] <- NA
       #for daughter B
-      island_spec <- rbind(island_spec, c(max_spec_id + 2, island_spec[tosplit, 2], island_spec[tosplit, 3],
-                                          "C", paste(oldstatus, "B", sep = ""), timeval, NA))
+      island_spec <- rbind(
+        island_spec,
+        data.frame(spec_id = max_spec_id + 2,
+                   main_anc_id = island_spec[tosplit, 2],
+                   col_t = island_spec[tosplit, 3],
+                   spec_type = "C",
+                   branch_code =  paste(oldstatus, "B", sep = ""),
+                   branch_t = timeval,
+                   ana_origin = NA))
       max_spec_id <- max_spec_id + 2
     } else {
       #if the species that speciates is not cladogenetic
@@ -134,7 +159,15 @@ update_state <- function(timeval,
       island_spec[tosplit, 6] <- island_spec[tosplit, 3]
       island_spec[tosplit, 7] <- NA
       #for daughter B
-      island_spec <- rbind(island_spec, c(max_spec_id + 2, island_spec[tosplit, 2], island_spec[tosplit, 3], "C", "B", timeval, NA))
+      island_spec <- rbind(
+        island_spec,
+        data.frame(spec_id = max_spec_id + 2,
+                   main_anc_id = island_spec[tosplit, 2],
+                   col_t = island_spec[tosplit, 3],
+                   spec_type = "C",
+                   branch_code =  "B",
+                   branch_t = timeval,
+                   ana_origin = NA))
       max_spec_id <- max_spec_id + 2
     }
   }
