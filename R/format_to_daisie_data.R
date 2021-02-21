@@ -4,10 +4,10 @@
 #'
 #' @return List with DAISIE simulation output
 #' @keywords internal
-format_data <- function(island_replicates,
-                        time,
-                        m,
-                        verbose = TRUE) {
+format_to_daisie_data <- function(
+  island_replicates,
+  time,
+  m) {
 
   ideal_island_replicates <- list()
   empirical_island_replicates <- list()
@@ -22,17 +22,15 @@ format_data <- function(island_replicates,
     }
   }
 
-  ideal_islands <- format_data_core(
+  ideal_islands <- format_to_daisie_data_core(
     island_replicates = ideal_island_replicates,
     time = time,
-    m = m,
-    verbose = verbose)
+    m = m)
 
-  empirical_islands <- format_data_core(
+  empirical_islands <- format_to_daisie_data_core(
     island_replicates = empirical_island_replicates,
     time = time,
-    m = m,
-    verbose = verbose)
+    m = m)
 
   return(list(ideal_islands = ideal_islands,
               empirical_islands = empirical_islands))

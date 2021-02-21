@@ -4,10 +4,10 @@
 #'
 #' @return List with DAISIE simulation output
 #' @keywords internal
-format_data_core <- function(island_replicates,
-                             time,
-                             m,
-                             verbose = TRUE) {
+format_to_daisie_data_core <- function(
+  island_replicates,
+  time,
+  m) {
 
   totaltime <- time
   several_islands <- list()
@@ -38,6 +38,7 @@ format_data_core <- function(island_replicates,
                              not_present = number_not_present)
     if (number_present > 0) {
       for (i in 1:number_present) {
+        browser()
         island_list[[1 + i]] <- new_full_list[[present[i]]]
       }
     }
