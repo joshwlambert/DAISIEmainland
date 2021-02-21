@@ -16,7 +16,7 @@ sample_mainland <- function(
                                   size = 1,
                                   prob = mainland_sample_prob)
     extant_not_sampled <- extant_spec[which(sampled_spec == 0)]
-    mainland[extant_not_sampled, 4] <- "E"
+    mainland[extant_not_sampled, 4] <- "NS"
     mainland[extant_not_sampled, 9] <- totaltime - 1e-5
   }
   return(mainland)
