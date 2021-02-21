@@ -28,7 +28,8 @@ default_params_doc(
   mainland_ext,
   replicates,
   possible_event,
-  max_spec_id
+  max_spec_id,
+  mainland_scenario
 )
 }
 \arguments{
@@ -57,7 +58,8 @@ can colonize the island.}
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}
 
-\item{mainland}{Matrix with state of mainland.}
+\item{mainland}{Data frame with state of mainland. see
+\code{\link{create_test_mainland}}.}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 
@@ -96,6 +98,9 @@ simulated.}
 \item{possible_event}{Numeric defining what event will happen.}
 
 \item{max_spec_id}{Current species IDs.}
+
+\item{mainland_scenario}{Integer determining which mainland clade scenario
+is produced}
 }
 \value{
 Nothing

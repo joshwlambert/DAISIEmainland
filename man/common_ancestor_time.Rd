@@ -12,7 +12,8 @@ common_ancestor_time(totaltime, mainland_spec, mainland)
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 
-\item{mainland}{Matrix with state of mainland.}
+\item{mainland}{Data frame with state of mainland. see
+\code{\link{create_test_mainland}}.}
 }
 \value{
 Numeric

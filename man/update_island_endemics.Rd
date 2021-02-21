@@ -15,21 +15,8 @@ update_island_endemics(timeval, totaltime, island_spec, mainland)
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}
 
-\item{mainland}{Matrix with state of mainland.
-RJCB: I hope there will be a bit more elaboration on this.
-I see in the tests of \link{check_island_state} that a \code{mainland}
-is created. I suggest to add a function with an inspired name
-such as
-\code{create_example_mainland}/\code{create_test_mainland}, then
-link to that function from here.
-RJCB: I feel using a matrix is like fitting a round peg in a square
-hole, as the columns have different data types: column 1 has numbers,
-column 7 has strings. I suggest to use a tibble instead.
-Sure, I predict this has to do with the current DAISIE interface.
-Yet, AFAICS, there is no need to use it in this package: just create
-a function like \code{to_daisie_history}/\code{to_oldskool}
-(or the less expressive name \code{format_data})
-to convert that fancy tibble to an oldskool matrix}
+\item{mainland}{Data frame with state of mainland. see
+\code{\link{create_test_mainland}}.}
 }
 \value{
 Matrix or NULL

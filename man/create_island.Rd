@@ -12,7 +12,8 @@ create_island(totaltime, island_spec, mainland, mainland_sample_prob)
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}
 
-\item{mainland}{Matrix with state of mainland.}
+\item{mainland}{Data frame with state of mainland. see
+\code{\link{create_test_mainland}}.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}
