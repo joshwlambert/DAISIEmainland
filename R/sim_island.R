@@ -20,16 +20,26 @@ sim_island <- function(
     as.numeric(mainland[, 8]) <= timeval &
       as.numeric(mainland[, 9]) > timeval), 1])
   mainland_n <- length(mainland_spec)
-
   max_spec_id <- max(as.numeric(mainland[, 1]))
-  if (nrow(mainland) > 1) {
-    mainland_brts <- c(as.numeric(mainland[2:nrow(mainland), 8]), totaltime + 1)
-    mainland_brts <- mainland_brts[-which(duplicated(mainland_brts))]
-  } else {
-    mainland_brts <- totaltime + 1
-  }
 
-  island_spec <- c()
+  mainland_exts <- as.numeric(mainland[, 9])
+  mainland_brts <- as.numeric(mainland[, 8])
+  mainland_event_t <- c(mainland_exts, mainland_brts, totaltime + 1)
+  mainland_event_t <- unique(mainland_event_t)
+  mainland_event_t <- sort(mainland_event_t, decreasing = FALSE)
+  mainland_event_t <- mainland_event_t[mainland_event_t != 0]
+  mainland_event_t <- mainland_event_t[mainland_event_t != totaltime]
+
+  # CHECK MAINLAND_EVENT_T
+
+  island_spec <- data.frame(spec_id = numeric(),
+                            main_anc_id = numeric(),
+                            col_t = numeric(),
+                            spec_type = character(),
+                            branch_code = character(),
+                            branch_t = numeric(),
+                            ana_origin = character())
+
 
   lac <- island_pars[1]
   mu <- island_pars[2]
@@ -37,8 +47,8 @@ sim_island <- function(
   gam <- island_pars[4]
   laa <- island_pars[5]
 
-  num_spec <- length(island_spec[, 1])
-  num_immigrants <- length(which(island_spec[, 4] == "I"))
+  num_spec <- 0
+  num_immigrants <- 0
 
   #### Start Monte Carlo iterations ####
   while (timeval < totaltime) {
@@ -65,22 +75,24 @@ sim_island <- function(
     }
 
     # If a mainland speciation event has occurred since the last time step
-    if (timeval > mainland_brts[1]) {
-      timeval <- mainland_brts[1]
-      mainland_brts <- mainland_brts[-1]
-    } else {
-      mainland_spec <- as.numeric(mainland[which(
-        as.numeric(mainland[, 8]) <= timeval &
-          as.numeric(mainland[, 9]) > timeval), 1])
+    if (timeval > mainland_event_t[1]) {
+      timeval <- mainland_event_t[1]
+      mainland_event_t <- mainland_event_t[-1]
+      mainland_spec <- mainland[which(
+        (mainland[, "spec_origin_t"]) <= timeval &
+          mainland[, "spec_ex_t"] > timeval), 1]
       mainland_n <- length(mainland_spec)
 
+    } else {
+
       # Changes island species to endemic when a mainland species goes extinct
-      island_state <- check_island_state(timeval = timeval,
-                                         totaltime = totaltime,
-                                         island_spec = island_spec,
-                                         mainland = mainland)
-      num_spec <- length(island_spec[, 1])
-      num_immigrants <- length(which(island_spec[, 4] == "I"))
+      island_state <- update_island_endemics(
+        timeval = timeval,
+        totaltime = totaltime,
+        island_spec = island_spec,
+        mainland = mainland)
+      num_spec <- nrow(island_spec)
+      num_immigrants <- length(which(island_spec[, "spec_type"] == "I"))
 
       if (timeval <= totaltime) {
         rates <- calc_rates(
@@ -118,8 +130,8 @@ sim_island <- function(
 
           island_spec <- updated_state$island_spec
           max_spec_id <- updated_state$max_spec_id
-          num_spec <- length(island_spec[, 1])
-          num_immigrants <- length(which(island_spec[, 4] == "I"))
+          num_spec <- nrow(island_spec)
+          num_immigrants <- length(which(island_spec[, "spec_type"] == "I"))
         }
       }
     }
