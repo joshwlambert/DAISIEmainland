@@ -13,17 +13,15 @@ test_that("sim_mainland produces correct output", {
 
   expect_true(is.list(mainland))
   expect_length(mainland, 10)
-  expect_length(mainland[[1]][1, ], 9)
+  expect_equal(ncol(mainland[[1]]), 7)
   expect_equal(mainland[[1]],
                data.frame(
                  spec_id = c(1, 15, 16, 23, 24),
                  main_anc_id = c(1, 1, 1, 1, 1),
-                 col_t = c(0, 0, 0, 0, 0),
                  spec_type = c("E", "E", "C", "C", "E"),
                  branch_code = c("A", "AA", "AB", "AAA", "AAB"),
                  branch_t = c(NA, 0.292906805531114, 0.292906805531114,
                               0.541999222479509, 0.541999222479509),
-                 ana_origin = c(NA, NA, NA, NA, NA),
                  spec_origin_t = c(0, 0.292906805531114, 0.292906805531114,
                                    0.541999222479509, 0.541999222479509),
                  spec_ex_t = c(0.292906805531114, 0.541999222479509, 1, 1,
