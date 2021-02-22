@@ -7,7 +7,7 @@ test_that("sample_mainland runs silent and produces correct output complete
     mainland_clade = mainland_clade,
     mainland_sample_prob = 1)
   )
-  expect_equal(mainland[[1]], sampled_mainland)
+  expect_equal(mainland_clade, sampled_mainland)
 })
 
 test_that("sample_mainland runs silent and produces correct output incomplete
@@ -28,11 +28,9 @@ test_that("sample_mainland runs silent and produces correct output incomplete
   new_mainland <- data.frame(
     spec_id = c(2, 27, 28),
     main_anc_id = c(2, 2, 2),
-    col_t = c(0, 0, 0),
     spec_type = c("E", "NS", "NS"),
     branch_code = c("A", "AA", "AB"),
     branch_t = c(NA, 0.779042070209266, 0.779042070209266),
-    ana_origin = c(NA, NA, NA),
     spec_origin_t = c(0, 0.779042070209266, 0.779042070209266),
     spec_ex_t = c(0.779042070209266, 0.99999, 0.99999))
 
