@@ -4,13 +4,16 @@
 \alias{create_island}
 \title{Converts simulation output into island output}
 \usage{
-create_island(total_time, island_spec, mainland, mainland_sample_prob)
+create_island(total_time, island_spec, mainland_clade, mainland_sample_prob)
 }
 \arguments{
 \item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}
+
+\item{mainland_clade}{Data frame with state of mainland. see
+\code{\link{create_test_mainland_clade}}.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}

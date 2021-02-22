@@ -21,7 +21,7 @@
 sim_mainland <- function(
   time,
   m,
-  mainland_ext
+  mainland_ex
 ) {
   total_time <- time
   time <- 0
@@ -36,10 +36,10 @@ sim_mainland <- function(
                                 spec_origin_t = 0,
                                 spec_ex_t = 0)
   }
-  if (mainland_ext == 0) {
+  if (mainland_ex == 0) {
     time <- total_time
   } else {
-    time <- stats::rexp(n = 1, rate = m * mainland_ext)
+    time <- stats::rexp(n = 1, rate = m * mainland_ex)
   }
   while (time < total_time) {
     #EXTINCTION
@@ -105,7 +105,7 @@ sim_mainland <- function(
                  spec_origin_t = time,
                  spec_ex_t = NA))
     max_spec_id <- max_spec_id + 2
-    time <- time + stats::rexp(n = 1, rate = m * mainland_ext)
+    time <- time + stats::rexp(n = 1, rate = m * mainland_ex)
   }
   for (i in seq_along(mainland)) {
     for (j in seq_len(nrow(mainland[[i]]))) {

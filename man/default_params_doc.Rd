@@ -25,7 +25,7 @@ default_params_doc(
   verbose,
   rates,
   island_pars,
-  mainland_ext,
+  mainland_ex,
   replicates,
   possible_event,
   max_spec_id,
@@ -90,7 +90,7 @@ during the simulation.}
   \item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
   }}
 
-\item{mainland_ext}{Numeric parameter for mainland extinction rate.}
+\item{mainland_ex}{Numeric parameter for mainland extinction rate.}
 
 \item{replicates}{Integer specifying number of island replicates to be
 simulated.}

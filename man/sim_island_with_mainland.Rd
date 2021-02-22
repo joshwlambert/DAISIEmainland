@@ -9,7 +9,7 @@ sim_island_with_mainland(
   time,
   m,
   island_pars,
-  mainland_ext,
+  mainland_ex,
   mainland_sample_prob,
   replicates,
   verbose = FALSE
@@ -30,7 +30,7 @@ sim_island_with_mainland(
   \item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
   }}
 
-\item{mainland_ext}{Numeric parameter for mainland extinction rate.}
+\item{mainland_ex}{Numeric parameter for mainland extinction rate.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}
@@ -93,7 +93,7 @@ island <- sim_island_with_mainland(
   time = 1,
   m = 100,
   island_pars = c(1, 1, 10, 0.1, 1),
-  mainland_ext = 1,
+  mainland_ex = 1,
   mainland_sample_prob = 1,
   replicates = 2,
   verbose = FALSE

@@ -33,7 +33,7 @@ island <- sim_island_with_mainland(
   time = 5,
   m = 100,
   island_pars = c(1, 1, 10, 0.1, 1),
-  mainland_ext = 1,
+  mainland_ex = 1,
   mainland_sample_prob = 1,
   replicates = 1,
   verbose = FALSE

@@ -5,14 +5,14 @@
 \title{Simulates mainland extinction as a pure-death process with replacement
 via the speciation of an exisiting mainland species.}
 \usage{
-sim_mainland(time, m, mainland_ext)
+sim_mainland(time, m, mainland_ex)
 }
 \arguments{
 \item{time}{Numeric defining the length of the simulation in time units.}
 
 \item{m}{Numeric defining the size of mainland pool.}
 
-\item{mainland_ext}{Numeric parameter for mainland extinction rate.}
+\item{mainland_ex}{Numeric parameter for mainland extinction rate.}
 }
 \value{
 a list where each element is a mainland lineage, this could be a

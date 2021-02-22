@@ -37,7 +37,7 @@
 #'     \item{\code{island_pars[4]}: gamma (immigration rate)}
 #'     \item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
 #'     }
-#' @param mainland_ext Numeric parameter for mainland extinction rate.
+#' @param mainland_ex Numeric parameter for mainland extinction rate.
 #' @param replicates Integer specifying number of island replicates to be
 #' simulated.
 #' @param possible_event Numeric defining what event will happen.
@@ -67,7 +67,7 @@ default_params_doc <- function(
   verbose,
   rates,
   island_pars,
-  mainland_ext,
+  mainland_ex,
   replicates,
   possible_event,
   max_spec_id,

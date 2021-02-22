@@ -9,7 +9,7 @@ test_that("sim_mainland produces correct output", {
   mainland <- sim_mainland(
     time = 1,
     m = 10,
-    mainland_ext = 1)
+    mainland_ex = 1)
 
   expect_true(is.list(mainland))
   expect_length(mainland, 10)

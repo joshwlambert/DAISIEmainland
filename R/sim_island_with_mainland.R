@@ -53,7 +53,7 @@
 #'   time = 1,
 #'   m = 100,
 #'   island_pars = c(1, 1, 10, 0.1, 1),
-#'   mainland_ext = 1,
+#'   mainland_ex = 1,
 #'   mainland_sample_prob = 1,
 #'   replicates = 2,
 #'   verbose = FALSE
@@ -64,7 +64,7 @@ sim_island_with_mainland <- function(
   time,
   m,
   island_pars,
-  mainland_ext,
+  mainland_ex,
   mainland_sample_prob,
   replicates,
   verbose = FALSE
@@ -76,8 +76,8 @@ sim_island_with_mainland <- function(
   testit::assert(is.numeric(island_pars))
   testit::assert(length(island_pars) == 5)
   testit::assert(island_pars[4] > 0)
-  testit::assert(is.numeric(mainland_ext))
-  testit::assert(mainland_ext >= 0)
+  testit::assert(is.numeric(mainland_ex))
+  testit::assert(mainland_ex >= 0)
   testit::assert(is.numeric(mainland_sample_prob))
   testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
   testit::assert(is.numeric(replicates))
@@ -98,7 +98,7 @@ sim_island_with_mainland <- function(
     mainland_replicates[[rep]] <- sim_mainland(
       time = time,
       m = m,
-      mainland_ext = mainland_ext)
+      mainland_ex = mainland_ex)
     for (m_spec in seq_along(mainland_replicates[[rep]])) {
       full_list[[m_spec]] <- sim_island(
         time = total_time,

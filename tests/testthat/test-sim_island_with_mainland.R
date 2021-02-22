@@ -9,7 +9,7 @@ test_that("sim_island_with_mainland is silent and produces correct empty island"
     time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
-    mainland_ext = 1,
+    mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,
     verbose = FALSE)
@@ -33,7 +33,7 @@ test_that("sim_island_with_mainland is silent and produces correct empty island"
 #       time = 1,
 #       m = 100,
 #       island_pars = c(1, 1, 10, 1, 1),
-#       mainland_ext = 1,
+#       mainland_ex = 1,
 #       mainland_sample_prob = 1,
 #       replicates = 1,
 #       verbose = FALSE)
@@ -61,7 +61,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     time = "nonsense",
     m = 10,
     island_pars = c(1,1,10,1,1),
-    mainland_ext = 1,
+    mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,
     verbose = TRUE)
@@ -71,7 +71,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     time = 1,
     m = "nonsense",
     island_pars = c(1,1,10,1,1),
-    mainland_ext = 1,
+    mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,
     verbose = TRUE)
@@ -81,7 +81,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     time = 1,
     m = 10,
     island_pars = "nonsense",
-    mainland_ext = 1,
+    mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,
     verbose = TRUE)
@@ -91,7 +91,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
-    mainland_ext = "nonsense",
+    mainland_ex = "nonsense",
     mainland_sample_prob = 1,
     replicates = 1,
     verbose = TRUE)
@@ -101,7 +101,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
-    mainland_ext = 1,
+    mainland_ex = 1,
     mainland_sample_prob = "nonsense",
     replicates = 1,
     verbose = TRUE)
@@ -111,7 +111,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
-    mainland_ext = 1,
+    mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = "nonsense",
     verbose = TRUE)
@@ -121,7 +121,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     time = 1,
     m = 10,
     island_pars = c(1,1,10,1,1),
-    mainland_ext = 1,
+    mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,
     verbose = "nonsense")
