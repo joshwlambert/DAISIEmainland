@@ -3,10 +3,10 @@
 #' @inheritParams default_params_doc
 #'
 #' @return data frame
-create_test_mainland <- function(mainland_scenario) {
+create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 1) {
-    mainland <- data.frame(
+    mainland_clade <- data.frame(
       spec_id = 1,
       main_anc_id = 1,
       spec_type = "I",
@@ -18,7 +18,7 @@ create_test_mainland <- function(mainland_scenario) {
 
   if (mainland_scenario == 2) {
 
-    mainland <- data.frame(
+    mainland_clade <- data.frame(
       spec_id = c(1,15,16),
       main_anc_id = c(1,1,1),
       spec_type = c("E", "E", "C"),
@@ -30,7 +30,7 @@ create_test_mainland <- function(mainland_scenario) {
 
   if (mainland_scenario == 3) {
 
-    mainland <- data.frame(
+    mainland_clade <- data.frame(
       spec_id = c(2,27,28),
       main_anc_id = c(2,2,2),
       spec_type = c("E", "C", "C"),
@@ -42,7 +42,7 @@ create_test_mainland <- function(mainland_scenario) {
 
   if (mainland_scenario == 4) {
 
-    mainland <- data.frame(
+    mainland_clade <- data.frame(
       spec_id = c(37, 147, 148),
       main_anc_id = c(37, 37, 37),
       spec_type = c("E", "E", "E"),
@@ -51,7 +51,5 @@ create_test_mainland <- function(mainland_scenario) {
       spec_origin_t = c(0, 0.248564384071771, 0.248564384071771),
       spec_ex_t = c(0.248564384071771, 0.502788450052761, 0.502788450052761))
   }
-
-  mainland <- list(mainland)
-  return(mainland)
+  return(mainland_clade)
 }

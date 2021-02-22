@@ -11,9 +11,6 @@ common_ancestor_time(total_time, mainland_spec, mainland)
 \item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
-
-\item{mainland}{Data frame with state of mainland. see
-\code{\link{create_test_mainland}}.}
 }
 \value{
 Numeric

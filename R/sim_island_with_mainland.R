@@ -104,7 +104,7 @@ sim_island_with_mainland <- function(
         time = total_time,
         m = m,
         island_pars = island_pars,
-        mainland = mainland_replicates[[rep]][[m_spec]],
+        mainland_clade = mainland_replicates[[rep]][[m_spec]],
         mainland_sample_prob = mainland_sample_prob
       )
     }

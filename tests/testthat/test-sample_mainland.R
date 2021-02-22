@@ -1,10 +1,10 @@
 test_that("sample_mainland runs silent and produces correct output complete
           sampling", {
-  mainland <- create_test_mainland(mainland_scenario = 3)
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
 
   expect_silent(sampled_mainland <- sample_mainland(
     total_time = 1,
-    mainland = mainland[[1]],
+    mainland_clade = mainland_clade,
     mainland_sample_prob = 1)
   )
   expect_equal(mainland[[1]], sampled_mainland)
@@ -19,11 +19,10 @@ test_that("sample_mainland runs silent and produces correct output incomplete
     sample.kind = "Rejection"
   )
 
-  mainland <- create_test_mainland(mainland_scenario = 3)
-  mainland <- mainland[[1]]
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
   expect_silent(sampled_mainland <- sample_mainland(
     total_time = 1,
-    mainland = mainland,
+    mainland_clade = mainland_clade,
     mainland_sample_prob = 0.5)
   )
   new_mainland <- data.frame(

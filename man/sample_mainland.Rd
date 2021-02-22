@@ -9,9 +9,6 @@ sample_mainland(total_time, mainland, mainland_sample_prob, island_spec)
 \arguments{
 \item{total_time}{Numeric defining the length of the simulation in time units.}
 
-\item{mainland}{Data frame with state of mainland. see
-\code{\link{create_test_mainland}}.}
-
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}
 

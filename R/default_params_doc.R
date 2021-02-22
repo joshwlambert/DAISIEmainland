@@ -14,8 +14,8 @@
 #' can colonize the island.
 #' @param island_spec Matrix with current state of simulation containing number
 #' of species.
-#' @param mainland Data frame with state of mainland. see
-#' \code{\link{create_test_mainland}}.
+#' @param mainland_clade Data frame with state of mainland. see
+#' \code{\link{create_test_mainland_clade}}.
 #' @param mainland_spec Numeric focal species on the mainland
 #' @param mainland_sample_prob Numeric between zero and one determining the
 #' probability of an extant mainland species being sampled.
@@ -58,7 +58,7 @@ default_params_doc <- function(
   num_immigrants,
   mainland_n,
   island_spec,
-  mainland,
+  mainland_clade,
   mainland_spec,
   mainland_sample_prob,
   island_replicates,

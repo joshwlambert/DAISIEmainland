@@ -16,7 +16,7 @@ default_params_doc(
   num_immigrants,
   mainland_n,
   island_spec,
-  mainland,
+  mainland_clade,
   mainland_spec,
   mainland_sample_prob,
   island_replicates,
@@ -58,8 +58,8 @@ can colonize the island.}
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}
 
-\item{mainland}{Data frame with state of mainland. see
-\code{\link{create_test_mainland}}.}
+\item{mainland_clade}{Data frame with state of mainland. see
+\code{\link{create_test_mainland_clade}}.}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 

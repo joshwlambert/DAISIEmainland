@@ -5,7 +5,7 @@
 \title{Checks and updates if any changes on the mainland change the state of the
 island species.}
 \usage{
-update_island_endemics(timeval, total_time, island_spec, mainland)
+update_island_endemics(timeval, total_time, island_spec, mainland_clade)
 }
 \arguments{
 \item{timeval}{Numeric defining current time of simulation.}
@@ -15,8 +15,8 @@ update_island_endemics(timeval, total_time, island_spec, mainland)
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}
 
-\item{mainland}{Data frame with state of mainland. see
-\code{\link{create_test_mainland}}.}
+\item{mainland_clade}{Data frame with state of mainland. see
+\code{\link{create_test_mainland_clade}}.}
 }
 \value{
 Matrix or NULL

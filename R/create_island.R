@@ -8,7 +8,7 @@
 #' @keywords internal
 create_island <- function(total_time,
                           island_spec,
-                          mainland,
+                          mainland_clade,
                           mainland_sample_prob) {
   ### if there are no species on the island branching_times = island_age,
   ### stac = 0, missing_species = 0
@@ -38,9 +38,9 @@ create_island <- function(total_time,
     number_colonists_present <- length(colonists_present)
 
     ### adjust mainland object for sampling probability
-    mainland <- sample_mainland(
+    mainland_clade <- sample_mainland(
       total_time = total_time,
-      mainland = mainland,
+      mainland_clade = mainland_clade,
       mainland_sample_prob = mainland_sample_prob,
       island_spec = island_spec)
 

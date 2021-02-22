@@ -8,7 +8,7 @@ sim_island <- function(
   time,
   m,
   island_pars,
-  mainland,
+  mainland_clade,
   mainland_sample_prob
 ) {
 
@@ -16,14 +16,14 @@ sim_island <- function(
   timeval <- 0
   total_time <- time
 
-  mainland_spec <- as.numeric(mainland[which(
-    as.numeric(mainland[, 8]) <= timeval &
-      as.numeric(mainland[, 9]) > timeval), 1])
+  mainland_spec <- mainland_clade[which(
+    mainland_clade[, "spec_origin_t"] <= timeval &
+      mainland_clade[, "spec_ex_t"] > timeval), "spec_id"]
   mainland_n <- length(mainland_spec)
-  max_spec_id <- max(as.numeric(mainland[, 1]))
+  max_spec_id <- max(mainland_clade[, "spec_id"])
 
-  mainland_exts <- as.numeric(mainland[, 9])
-  mainland_brts <- as.numeric(mainland[, 8])
+  mainland_exts <- as.numeric(mainland_clade[, "spec_ex_t"])
+  mainland_brts <- as.numeric(mainland_clade[, "spec_origin_t"])
   mainland_event_t <- c(mainland_exts, mainland_brts, total_time + 1)
   mainland_event_t <- unique(mainland_event_t)
   mainland_event_t <- sort(mainland_event_t, decreasing = FALSE)
@@ -62,8 +62,7 @@ sim_island <- function(
       k = k,
       num_spec = num_spec,
       num_immigrants = num_immigrants,
-      mainland_n = mainland_n
-    )
+      mainland_n = mainland_n)
 
     totalrate <- rates$immig_rate + rates$ext_rate +
       rates$ana_rate + rates$clado_rate
@@ -78,9 +77,9 @@ sim_island <- function(
     if (timeval > mainland_event_t[1]) {
       timeval <- mainland_event_t[1]
       mainland_event_t <- mainland_event_t[-1]
-      mainland_spec <- mainland[which(
-        (mainland[, "spec_origin_t"]) <= timeval &
-          mainland[, "spec_ex_t"] > timeval), 1]
+      mainland_spec <- mainland_clade[which(
+        (mainland_clade[, "spec_origin_t"]) <= timeval &
+          mainland_clade[, "spec_ex_t"] > timeval), "spec_id"]
       mainland_n <- length(mainland_spec)
 
     } else {
@@ -90,7 +89,7 @@ sim_island <- function(
         timeval = timeval,
         total_time = total_time,
         island_spec = island_spec,
-        mainland = mainland)
+        mainland_clade = mainland_clade)
       num_spec <- nrow(island_spec)
       num_immigrants <- length(which(island_spec[, "spec_type"] == "I"))
 
@@ -105,8 +104,7 @@ sim_island <- function(
           k = k,
           num_spec = num_spec,
           num_immigrants = num_immigrants,
-          mainland_n = mainland_n
-        )
+          mainland_n = mainland_n)
 
         totalrate <- rates$immig_rate + rates$ext_rate +
           rates$ana_rate + rates$clado_rate
@@ -116,8 +114,7 @@ sim_island <- function(
         } else {
 
           possible_event <- sample_event(
-            rates = rates
-          )
+            rates = rates)
 
           updated_state <- update_state(
             timeval = timeval,
@@ -125,8 +122,7 @@ sim_island <- function(
             possible_event = possible_event,
             max_spec_id = max_spec_id,
             mainland_spec = mainland_spec,
-            island_spec = island_spec
-          )
+            island_spec = island_spec)
 
           island_spec <- updated_state$island_spec
           max_spec_id <- updated_state$max_spec_id
@@ -140,7 +136,7 @@ sim_island <- function(
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
-    mainland = mainland,
+    mainland_clade = mainland_clade,
     mainland_sample_prob = mainland_sample_prob)
   return(island)
 }

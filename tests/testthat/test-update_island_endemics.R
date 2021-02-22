@@ -1,6 +1,6 @@
 test_that("update_island_endemics produces correct output with empty island", {
 
-  mainland <- create_test_mainland(mainland_scenario = 1)
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
 
   island_state <- update_island_endemics(
     timeval = 0.05858136,
@@ -12,7 +12,7 @@ test_that("update_island_endemics produces correct output with empty island", {
 
 test_that("update_island_endemics produces correct output with non-empty island", {
 
-  mainland <- create_test_mainland(mainland_scenario = 2)
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
 
   island_state <- update_island_endemics(
     total_time = 1,
@@ -25,7 +25,7 @@ test_that("update_island_endemics produces correct output with non-empty island"
       branch_code = NA,
       branch_t = NA,
       ana_origin = "mainland_extinction"),
-    mainland = mainland[[1]])
+    mainland_clade = mainland_clade)
 
   expect_equal(island_state,
                data.frame(spec_id = c(15),
