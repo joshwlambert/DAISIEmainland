@@ -42,6 +42,7 @@ jobs:
       - name: Query dependencies
         run: |
           install.packages('remotes')
+          install.packages('covr')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
@@ -76,6 +77,11 @@ jobs:
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
+      - name: Install covr and test coverage
+        if: matrix.config.r == 'devel'
+        run: covr::codecov()
+        shell: Rscript {0}
+
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@main
@@ -83,9 +89,3 @@ jobs:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
 
-      - name: Install covr and test coverage
-        if: matrix.config.r == 'devel'
-        run: |
-          remotes::install_cran("covr")
-          covr::codecov()
-        shell: Rscript {0}
