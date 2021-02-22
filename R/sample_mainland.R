@@ -9,7 +9,7 @@ sample_mainland <- function(
   mainland_sample_prob,
   island_spec) {
   if (mainland_sample_prob == 1) {
-    return(mainland_claed)
+    return(mainland_clade)
   } else {
     extant_spec <- which(mainland_clade[, 4] != "E")
     sampled_spec <- stats::rbinom(n = length(extant_spec),
