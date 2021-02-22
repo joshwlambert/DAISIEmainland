@@ -67,7 +67,7 @@ create_island <- function(total_time,
 
       mainland_spec <- which(mainland[, 1] == colonists_present[i])
       ### is there any extant descendants of the immigrant on the mainland
-      branching_code <- paste("^", mainland[mainland_spec, 5], sep = "")
+      branching_code <- paste0("^", mainland[mainland_spec, 5])
       descending_branches <- grep(branching_code, mainland[, 5])
       extant_mainland <- any(mainland[descending_branches, 4] != "E")
 

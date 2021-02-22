@@ -17,13 +17,11 @@ update_state <- function(timeval,
                          mainland_spec,
                          island_spec) {
 
-
-  ##########################################
   #IMMIGRATION
   if (possible_event == 1) {
     colonist <- DDD::sample2(mainland_spec, 1)
-    if (length(island_spec[, 1]) != 0) {
-      isitthere <- which(island_spec[, 1] == colonist)
+    if (length(island_spec[, "spec_id"]) != 0) {
+      isitthere <- which(island_spec[, "spec_id"] == colonist)
     } else {
       isitthere <- c()
     }
@@ -48,12 +46,12 @@ update_state <- function(timeval,
                                              ana_origin = NA)
     }
   }
-  ##########################################
+
   #EXTINCTION
   if (possible_event == 2) {
-    extinct <- DDD::sample2(1:length(island_spec[, 1]), 1)
+    extinct <- DDD::sample2(1:length(island_spec[, "spec_id"]), 1)
     #this chooses the row of species data to remove
-    typeofspecies <- island_spec[extinct, 4]
+    typeofspecies <- island_spec[extinct, "spec_type"]
     if (typeofspecies == "I") {
       island_spec <- island_spec[-extinct, ]
     }
@@ -65,20 +63,24 @@ update_state <- function(timeval,
     if (typeofspecies == "C") {
       #remove cladogenetic
       #first find species with same ancestor AND arrival total_time
-      sisters <- intersect(which(island_spec[, 2] == island_spec[extinct, 2]),
-                           which(island_spec[, 3] == island_spec[extinct, 3]))
+      sisters <- intersect(which(island_spec[, "main_anc_id"] ==
+                                   island_spec[extinct, "main_anc_id"]),
+                           which(island_spec[, "col_t"] ==
+                                   island_spec[extinct, "col_t"]))
       survivors <- sisters[which(sisters != extinct)]
       if (length(sisters) == 2) {
         #survivors status becomes anagenetic
-        island_spec[survivors, 4] <- "A"
-        island_spec[survivors, c(5, 6)] <- c(NA, NA)
-        island_spec[survivors, 7] <- "Clado_extinct"
+        island_spec[survivors, "spec_type"] <- "A"
+        island_spec[survivors, "branch_code"] <- NA
+        island_spec[survivors, "branch_t"] <- NA
+        island_spec[survivors, "ana_origin"] <- "Clado_extinct"
         island_spec <- island_spec[-extinct, ]
       }
 
       if (length(sisters) >= 3) {
-        numberofsplits <- nchar(island_spec[extinct, 5])
-        mostrecentspl <- substring(island_spec[extinct, 5], numberofsplits)
+        numberofsplits <- nchar(island_spec[extinct, "branch_code"])
+        mostrecentspl <- substring(island_spec[extinct, "branch_code"],
+                                   numberofsplits)
 
         if (mostrecentspl == "B") {
           sistermostrecentspl <- "A"
@@ -87,33 +89,34 @@ update_state <- function(timeval,
           sistermostrecentspl <- "B"
         }
         motiftofind <-
-          paste(substring(island_spec[extinct, 5], 1, numberofsplits - 1),
-                sistermostrecentspl,
-                sep = "")
+          paste0(substring(island_spec[extinct, "branch_code"],
+                          1,
+                          numberofsplits - 1),
+                sistermostrecentspl)
         possiblesister <-
-          survivors[which(substring(island_spec[survivors, 5], 1, numberofsplits) == motiftofind)]
+          survivors[which(substring(island_spec[survivors, "branch_code"], 1, numberofsplits) == motiftofind)]
         #different rules depending on whether a B or A is removed. B going extinct is simpler because it only
         #carries a record of the most recent speciation
         if (mostrecentspl == "A") {
           #change the splitting date of the sister species so that it inherits the early splitting that used to belong to A.
           # Bug fix here thanks to Nadiah Kristensen: max -> min
           tochange <-
-            possiblesister[which(island_spec[possiblesister, 6] == min(as.numeric(island_spec[possiblesister, 6])))]
-          island_spec[tochange, 6] <- island_spec[extinct, 6]
+            possiblesister[which(island_spec[possiblesister, "branch_t"] == min(as.numeric(island_spec[possiblesister, "branch_t"])))]
+          island_spec[tochange, "branch_t"] <- island_spec[extinct, "branch_t"]
         }
         #remove the offending A/B from these species
-        island_spec[possiblesister, 5] <-
-          paste(substring(island_spec[possiblesister, 5], 1, numberofsplits - 1),
-                substring(island_spec[possiblesister, 5], numberofsplits + 1,
-                          nchar(island_spec[possiblesister, 5])), sep = "")
+        island_spec[possiblesister, "branch_code"] <-
+          paste0(substring(island_spec[possiblesister, "branch_code"], 1, numberofsplits - 1),
+                substring(island_spec[possiblesister, "branch_code"], numberofsplits + 1,
+                          nchar(island_spec[possiblesister, "branch_code"])))
         island_spec <- island_spec[-extinct, ]
       }
     }
   }
-  ##########################################
+
   #ANAGENESIS
   if (possible_event == 3) {
-    immi_specs <- which(island_spec[, 4] == "I")
+    immi_specs <- which(island_spec[, "spec_type"] == "I")
     #we only allow immigrants to undergo anagenesis
     if(length(immi_specs) == 1) {
       anagenesis <- immi_specs
@@ -122,48 +125,48 @@ update_state <- function(timeval,
       anagenesis <- DDD::sample2(immi_specs, 1)
     }
     max_spec_id <- max_spec_id + 1
-    island_spec[anagenesis, 4] <- "A"
-    island_spec[anagenesis, 1] <- max_spec_id
-    island_spec[anagenesis, 7] <- "Immig_parent"
+    island_spec[anagenesis, "spec_type"] <- "A"
+    island_spec[anagenesis, "spec_id"] <- max_spec_id
+    island_spec[anagenesis, "ana_origin"] <- "Immig_parent"
   }
-  ##########################################
+
   #CLADOGENESIS - this splits species into two new species - both of which receive
   if (possible_event == 4) {
-    tosplit <- DDD::sample2(1:length(island_spec[, 1]), 1)
+    tosplit <- DDD::sample2(1:length(island_spec[, "spec_id"]), 1)
     #if the species that speciates is cladogenetic
-    if (island_spec[tosplit, 4] == "C") {
+    if (island_spec[tosplit, "spec_type"] == "C") {
       #for daughter A
-      island_spec[tosplit, 4] <- "C"
-      island_spec[tosplit, 1] <- max_spec_id + 1
-      oldstatus <- island_spec[tosplit, 5]
-      island_spec[tosplit, 5] <- paste(oldstatus, "A", sep = "")
+      island_spec[tosplit, "spec_type"] <- "C"
+      island_spec[tosplit, "spec_id"] <- max_spec_id + 1
+      oldstatus <- island_spec[tosplit, "branch_code"]
+      island_spec[tosplit, "branch_code"] <- paste0(oldstatus, "A")
       #island_spec[tosplit,6] = timeval
-      island_spec[tosplit, 7] <- NA
+      island_spec[tosplit, "ana_origin"] <- NA
       #for daughter B
       island_spec <- rbind(
         island_spec,
         data.frame(spec_id = max_spec_id + 2,
-                   main_anc_id = island_spec[tosplit, 2],
-                   col_t = island_spec[tosplit, 3],
+                   main_anc_id = island_spec[tosplit, "main_anc_id"],
+                   col_t = island_spec[tosplit, "col_t"],
                    spec_type = "C",
-                   branch_code =  paste(oldstatus, "B", sep = ""),
+                   branch_code =  paste0(oldstatus, "B"),
                    branch_t = timeval,
                    ana_origin = NA))
       max_spec_id <- max_spec_id + 2
     } else {
       #if the species that speciates is not cladogenetic
       #for daughter A
-      island_spec[tosplit, 4] <- "C"
-      island_spec[tosplit, 1] <- max_spec_id + 1
-      island_spec[tosplit, 5] <- "A"
-      island_spec[tosplit, 6] <- island_spec[tosplit, 3]
-      island_spec[tosplit, 7] <- NA
+      island_spec[tosplit, "spec_type"] <- "C"
+      island_spec[tosplit, "spec_id"] <- max_spec_id + 1
+      island_spec[tosplit, "branch_code"] <- "A"
+      island_spec[tosplit, "branch_t"] <- island_spec[tosplit, 3]
+      island_spec[tosplit, "ana_origin"] <- NA
       #for daughter B
       island_spec <- rbind(
         island_spec,
         data.frame(spec_id = max_spec_id + 2,
-                   main_anc_id = island_spec[tosplit, 2],
-                   col_t = island_spec[tosplit, 3],
+                   main_anc_id = island_spec[tosplit, "main_anc_id"],
+                   col_t = island_spec[tosplit, "col_t"],
                    spec_type = "C",
                    branch_code =  "B",
                    branch_t = timeval,
