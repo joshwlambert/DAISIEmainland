@@ -38,7 +38,6 @@ format_to_daisie_data_core <- function(
                              not_present = number_not_present)
     if (number_present > 0) {
       for (i in 1:number_present) {
-        #browser()
         island_list[[1 + i]] <- new_full_list[[present[i]]]
       }
     }
