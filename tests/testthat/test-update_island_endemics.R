@@ -6,7 +6,7 @@ test_that("update_island_endemics produces correct output with empty island", {
     timeval = 0.05858136,
     total_time = 1,
     island_spec = NULL,
-    mainland = mainland[[1]])
+    mainland_clade = mainland_clade)
   expect_null(island_state)
 })
 
