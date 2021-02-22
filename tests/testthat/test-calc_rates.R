@@ -1,7 +1,7 @@
 test_that("calc_rates produces correct output", {
   rates <- calc_rates(
     timeval = 0.5,
-    totaltime = 1.0,
+    total_time = 1.0,
     gam = 1.0,
     laa = 1.0,
     lac = 1.0,

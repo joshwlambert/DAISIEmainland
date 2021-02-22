@@ -4,7 +4,7 @@ test_that("update_island_endemics produces correct output with empty island", {
 
   island_state <- update_island_endemics(
     timeval = 0.05858136,
-    totaltime = 1,
+    total_time = 1,
     island_spec = NULL,
     mainland = mainland[[1]])
   expect_null(island_state)
@@ -15,7 +15,7 @@ test_that("update_island_endemics produces correct output with non-empty island"
   mainland <- create_test_mainland(mainland_scenario = 2)
 
   island_state <- update_island_endemics(
-    totaltime = 1,
+    total_time = 1,
     timeval = 0.6,
     island_spec = data.frame(
       spec_id = 15,

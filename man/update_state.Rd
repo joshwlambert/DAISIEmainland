@@ -6,7 +6,7 @@
 \usage{
 update_state(
   timeval,
-  totaltime,
+  total_time,
   possible_event,
   max_spec_id,
   mainland_spec,
@@ -16,7 +16,7 @@ update_state(
 \arguments{
 \item{timeval}{Numeric defining current time of simulation.}
 
-\item{totaltime}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{possible_event}{Numeric defining what event will happen.}
 

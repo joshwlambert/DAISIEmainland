@@ -4,7 +4,7 @@
 #'
 #' @return Matrix
 sample_mainland <- function(
-  totaltime,
+  total_time,
   mainland,
   mainland_sample_prob,
   island_spec) {
@@ -17,7 +17,7 @@ sample_mainland <- function(
                                   prob = mainland_sample_prob)
     extant_not_sampled <- extant_spec[which(sampled_spec == 0)]
     mainland[extant_not_sampled, 4] <- "NS"
-    mainland[extant_not_sampled, 9] <- totaltime - 1e-5
+    mainland[extant_not_sampled, 9] <- total_time - 1e-5
   }
   return(mainland)
 }

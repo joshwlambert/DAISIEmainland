@@ -6,7 +6,7 @@
 \usage{
 calc_rates(
   timeval,
-  totaltime,
+  total_time,
   gam,
   laa,
   lac,
@@ -20,7 +20,7 @@ calc_rates(
 \arguments{
 \item{timeval}{Numeric defining current time of simulation.}
 
-\item{totaltime}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{gam}{Numeric with the per capita immigration rate.}
 

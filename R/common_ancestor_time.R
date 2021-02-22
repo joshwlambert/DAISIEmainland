@@ -5,7 +5,7 @@
 #'
 #' @return Numeric
 #' @keywords internal
-common_ancestor_time <- function(totaltime,
+common_ancestor_time <- function(total_time,
                                  mainland_spec,
                                  mainland) {
   focal_spec <- mainland[mainland_spec, 5]
@@ -29,6 +29,6 @@ common_ancestor_time <- function(totaltime,
   }
   common_ancestor_brts <- min(unlist(common_ancestor_brts))
   # set common ancestor branching time to time before the present
-  common_ancestor_brts <- totaltime - as.numeric(common_ancestor_brts)
+  common_ancestor_brts <- total_time - as.numeric(common_ancestor_brts)
   return(common_ancestor_brts)
 }

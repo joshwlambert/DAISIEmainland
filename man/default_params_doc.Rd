@@ -6,7 +6,7 @@
 \usage{
 default_params_doc(
   timeval,
-  totaltime,
+  total_time,
   gam,
   laa,
   lac,
@@ -35,7 +35,7 @@ default_params_doc(
 \arguments{
 \item{timeval}{Numeric defining current time of simulation.}
 
-\item{totaltime}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{gam}{Numeric with the per capita immigration rate.}
 

@@ -5,12 +5,12 @@
 \title{Checks and updates if any changes on the mainland change the state of the
 island species.}
 \usage{
-update_island_endemics(timeval, totaltime, island_spec, mainland)
+update_island_endemics(timeval, total_time, island_spec, mainland)
 }
 \arguments{
 \item{timeval}{Numeric defining current time of simulation.}
 
-\item{totaltime}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}

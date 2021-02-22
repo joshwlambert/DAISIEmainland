@@ -4,10 +4,10 @@
 \alias{sample_mainland}
 \title{Samples the mainland clade with the mainland sampling probability}
 \usage{
-sample_mainland(totaltime, mainland, mainland_sample_prob, island_spec)
+sample_mainland(total_time, mainland, mainland_sample_prob, island_spec)
 }
 \arguments{
-\item{totaltime}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{mainland}{Data frame with state of mainland. see
 \code{\link{create_test_mainland}}.}

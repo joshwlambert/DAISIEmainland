@@ -23,7 +23,7 @@ sim_mainland <- function(
   m,
   mainland_ext
 ) {
-  totaltime <- time
+  total_time <- time
   time <- 0
   max_spec_id <- m
   mainland <- vector(mode = "list", length = m)
@@ -39,11 +39,11 @@ sim_mainland <- function(
                                 spec_ex_t = 0)
   }
   if (mainland_ext == 0) {
-    time <- totaltime
+    time <- total_time
   } else {
     time <- stats::rexp(n = 1, rate = m * mainland_ext)
   }
-  while (time < totaltime) {
+  while (time < total_time) {
     #EXTINCTION
     spec_id <- c()
     spec_type <- c()
@@ -68,7 +68,7 @@ sim_mainland <- function(
     }
     # FIND IF ANA_ORIGIN IS EVER CHANGED
     if (ex_spec_type == "C") {
-      #first find species with same ancestor AND arrival totaltime
+      #first find species with same ancestor AND arrival total_time
       sisters <- intersect(which(mainland[[lineage]][, "main_anc_id"] ==
                                    mainland[[lineage]][extinct, "main_anc_id"]),
                            which(mainland[[lineage]][, "col_t"] ==
@@ -173,7 +173,7 @@ sim_mainland <- function(
   for (i in seq_along(mainland)) {
     for (j in seq_len(nrow(mainland[[i]]))) {
       if (is.na(mainland[[i]][j, 9])) {
-        mainland[[i]][j, 9] <- totaltime
+        mainland[[i]][j, 9] <- total_time
       }
     }
   }

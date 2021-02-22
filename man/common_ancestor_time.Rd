@@ -5,10 +5,10 @@
 \title{Calculates the branching time of the common ancestor of two species on the
 mainland.}
 \usage{
-common_ancestor_time(totaltime, mainland_spec, mainland)
+common_ancestor_time(total_time, mainland_spec, mainland)
 }
 \arguments{
-\item{totaltime}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 

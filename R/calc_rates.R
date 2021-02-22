@@ -7,7 +7,7 @@
 #' @return Named list with rates.
 calc_rates <- function(
   timeval,
-  totaltime,
+  total_time,
   gam,
   laa,
   lac,
@@ -17,7 +17,7 @@ calc_rates <- function(
   num_immigrants,
   mainland_n) {
   testit::assert(is.numeric(timeval))
-  testit::assert(is.numeric(totaltime))
+  testit::assert(is.numeric(total_time))
   testit::assert(is.numeric(gam))
   testit::assert(is.numeric(laa))
   testit::assert(is.numeric(lac))

@@ -4,10 +4,10 @@
 \alias{create_island}
 \title{Converts simulation output into island output}
 \usage{
-create_island(totaltime, island_spec, mainland, mainland_sample_prob)
+create_island(total_time, island_spec, mainland, mainland_sample_prob)
 }
 \arguments{
-\item{totaltime}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}

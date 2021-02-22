@@ -14,7 +14,7 @@ sim_island <- function(
 
   #### Initialization ####
   timeval <- 0
-  totaltime <- time
+  total_time <- time
 
   mainland_spec <- as.numeric(mainland[which(
     as.numeric(mainland[, 8]) <= timeval &
@@ -24,11 +24,11 @@ sim_island <- function(
 
   mainland_exts <- as.numeric(mainland[, 9])
   mainland_brts <- as.numeric(mainland[, 8])
-  mainland_event_t <- c(mainland_exts, mainland_brts, totaltime + 1)
+  mainland_event_t <- c(mainland_exts, mainland_brts, total_time + 1)
   mainland_event_t <- unique(mainland_event_t)
   mainland_event_t <- sort(mainland_event_t, decreasing = FALSE)
   mainland_event_t <- mainland_event_t[mainland_event_t != 0]
-  mainland_event_t <- mainland_event_t[mainland_event_t != totaltime]
+  mainland_event_t <- mainland_event_t[mainland_event_t != total_time]
 
   # CHECK MAINLAND_EVENT_T
 
@@ -51,10 +51,10 @@ sim_island <- function(
   num_immigrants <- 0
 
   #### Start Monte Carlo iterations ####
-  while (timeval < totaltime) {
+  while (timeval < total_time) {
     rates <- calc_rates(
       timeval = timeval,
-      totaltime = totaltime,
+      total_time = total_time,
       gam = gam,
       laa = laa,
       lac = lac,
@@ -71,7 +71,7 @@ sim_island <- function(
       dt <- stats::rexp(1, totalrate)
       timeval <- timeval + dt
     } else {
-      timeval <- totaltime + 1
+      timeval <- total_time + 1
     }
 
     # If a mainland speciation event has occurred since the last time step
@@ -88,16 +88,16 @@ sim_island <- function(
       # Changes island species to endemic when a mainland species goes extinct
       island_state <- update_island_endemics(
         timeval = timeval,
-        totaltime = totaltime,
+        total_time = total_time,
         island_spec = island_spec,
         mainland = mainland)
       num_spec <- nrow(island_spec)
       num_immigrants <- length(which(island_spec[, "spec_type"] == "I"))
 
-      if (timeval <= totaltime) {
+      if (timeval <= total_time) {
         rates <- calc_rates(
           timeval = timeval,
-          totaltime = totaltime,
+          total_time = total_time,
           gam = gam,
           laa = laa,
           lac = lac,
@@ -111,7 +111,7 @@ sim_island <- function(
         totalrate <- rates$immig_rate + rates$ext_rate +
           rates$ana_rate + rates$clado_rate
         if (totalrate == 0) {
-          timeval <- totaltime + 1
+          timeval <- total_time + 1
 
         } else {
 
@@ -121,7 +121,7 @@ sim_island <- function(
 
           updated_state <- update_state(
             timeval = timeval,
-            totaltime = totaltime,
+            total_time = total_time,
             possible_event = possible_event,
             max_spec_id = max_spec_id,
             mainland_spec = mainland_spec,
@@ -138,7 +138,7 @@ sim_island <- function(
   }
 
   island <- create_island(
-    totaltime = totaltime,
+    total_time = total_time,
     island_spec = island_spec,
     mainland = mainland,
     mainland_sample_prob = mainland_sample_prob)

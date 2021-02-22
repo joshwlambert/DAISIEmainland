@@ -11,7 +11,7 @@
 #'
 #' @keywords internal
 update_state <- function(timeval,
-                         totaltime,
+                         total_time,
                          possible_event,
                          max_spec_id,
                          mainland_spec,
@@ -64,7 +64,7 @@ update_state <- function(timeval,
     #remove anagenetic
     if (typeofspecies == "C") {
       #remove cladogenetic
-      #first find species with same ancestor AND arrival totaltime
+      #first find species with same ancestor AND arrival total_time
       sisters <- intersect(which(island_spec[, 2] == island_spec[extinct, 2]),
                            which(island_spec[, 3] == island_spec[extinct, 3]))
       survivors <- sisters[which(sisters != extinct)]

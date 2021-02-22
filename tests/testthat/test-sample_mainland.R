@@ -3,7 +3,7 @@ test_that("sample_mainland runs silent and produces correct output complete
   mainland <- create_test_mainland(mainland_scenario = 3)
 
   expect_silent(sampled_mainland <- sample_mainland(
-    totaltime = 1,
+    total_time = 1,
     mainland = mainland[[1]],
     mainland_sample_prob = 1)
   )
@@ -22,7 +22,7 @@ test_that("sample_mainland runs silent and produces correct output incomplete
   mainland <- create_test_mainland(mainland_scenario = 3)
   mainland <- mainland[[1]]
   expect_silent(sampled_mainland <- sample_mainland(
-    totaltime = 1,
+    total_time = 1,
     mainland = mainland,
     mainland_sample_prob = 0.5)
   )

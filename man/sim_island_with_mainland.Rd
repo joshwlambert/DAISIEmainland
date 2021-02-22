@@ -42,17 +42,16 @@ simulated.}
 during the simulation.}
 }
 \value{
-A list. The highest level of the least corresponds to each individual
-replicate. The first element of each replicate is composed of island
-information containing:
+A list. The highest level of the list has two elements called
+\code{ideal_islands} and \code{empirical_islands} which corresponds to
+the ideal and empirical data sets produce in each simulation. Within each
+\code{ideal_islands} and \code{empirical_islands} each element is an
+individual replicate. The first element of each replicate is composed of
+island information containing:
 \itemize{
   \item{\code{$island_age}: A numeric with the island age.}
   \item{\code{$not_present}: the number of mainland lineages that are not
     present on the island.}
-  \item{\code{$stt_all}: STT table for all species on the island
-    (nI - number of non-endemic species; nA - number of anagenetic species,
-    nC - number of cladogenetic species, present - number of independent
-    colonisations present)}
 }
 The subsequent elements of the list pertaining to each replcate contain
 information on a single colonist lineage on the island and have 4 components:
@@ -64,13 +63,15 @@ information on a single colonist lineage on the island and have 4 components:
     For cladogenetic species these should
     be island age and branching times of the radiation including the
     stem age of the radiation.}
-  \item{\code{$stac}: An integer ranging from 1 to 4
+  \item{\code{$stac}: An integer ranging from 1 to 6
   indicating the status of the colonist:}
   \enumerate{
     \item Non_endemic_MaxAge
     \item Endemic
     \item Endemic&Non_Endemic
     \item Non_endemic_MaxAge
+    \item Endemic_singleton_MaxAge
+    \item Endemic_clade_MaxAge
 }
 \item{\code{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)}
@@ -79,9 +80,9 @@ not sampled for particular clade (only applicable for endemic clades)}
 }
 \description{
 This function simulates islands with given cladogenesis,
-extinction, Kprime, immigration and anagenesis parameters, and simulates
-the mainland given an extinction rate parameter, all of which are modelled as
-time-constant parameters.
+extinction, carrying capacity, immigration and anagenesis parameters, and
+simulates the mainland given an extinction rate parameter, all of which are
+modelled as time-constant parameters.
 }
 \examples{
 ## Simulate 2 islands (replicates) for 1 million years, with a mainland

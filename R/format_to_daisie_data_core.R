@@ -9,7 +9,7 @@ format_to_daisie_data_core <- function(
   time,
   m) {
 
-  totaltime <- time
+  total_time <- time
   several_islands <- list()
   for (rep in seq_along(island_replicates)) {
     full_list <- island_replicates[[rep]]
@@ -34,11 +34,11 @@ format_to_daisie_data_core <- function(
     number_present <- length(present)
 
     island_list <- list()
-    island_list[[1]] <- list(island_age = totaltime,
+    island_list[[1]] <- list(island_age = total_time,
                              not_present = number_not_present)
     if (number_present > 0) {
       for (i in 1:number_present) {
-        browser()
+        #browser()
         island_list[[1 + i]] <- new_full_list[[present[i]]]
       }
     }
