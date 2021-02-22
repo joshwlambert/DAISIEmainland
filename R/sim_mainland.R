@@ -30,11 +30,9 @@ sim_mainland <- function(
   for (i in 1:m) {
     mainland[[i]] <- data.frame(spec_id = i,
                                 main_anc_id = i,
-                                col_t = 0,
                                 spec_type = "I",
                                 branch_code = "A",
                                 branch_t = NA,
-                                ana_origin = NA,
                                 spec_origin_t = 0,
                                 spec_ex_t = 0)
   }
@@ -61,67 +59,10 @@ sim_mainland <- function(
     }
     lineage <- which(lineage)
     extinct <- which(mainland[[lineage]][, "spec_id"] == extinct_spec)
-    ex_spec_type <- mainland[[lineage]][extinct, "spec_type"]
-    if (ex_spec_type == "I" || ex_spec_type == "A") {
-      mainland[[lineage]][extinct, "spec_type"] <- "E"
-      mainland[[lineage]][extinct, "spec_ex_t"] <- time
-    }
-    # FIND IF ANA_ORIGIN IS EVER CHANGED
-    if (ex_spec_type == "C") {
-      #first find species with same ancestor AND arrival total_time
-      sisters <- intersect(which(mainland[[lineage]][, "main_anc_id"] ==
-                                   mainland[[lineage]][extinct, "main_anc_id"]),
-                           which(mainland[[lineage]][, "col_t"] ==
-                                   mainland[[lineage]][extinct, "col_t"]))
-      survivors <- sisters[which(sisters != extinct)]
-      if (length(sisters) == 2) {
-        #survivors status becomes anagenetic
-        mainland[[lineage]][survivors, "spec_type"] <- "A"
-        mainland[[lineage]][survivors, "ana_origin"] <- "Clado_extinct"
-        mainland[[lineage]][extinct, "spec_type"] <- "E"
-        mainland[[lineage]][extinct, "spec_ex_t"] <- time
-      }
 
-      if (length(sisters) >= 3) {
-        numberofsplits <- nchar(mainland[[lineage]][extinct, "branch_code"])
-        mostrecentspl <- substring(mainland[[lineage]][extinct, "branch_code"],
-                                   numberofsplits)
+    mainland[[lineage]][extinct, "spec_type"] <- "E"
+    mainland[[lineage]][extinct, "spec_ex_t"] <- time
 
-        if (mostrecentspl == "B") {
-          sistermostrecentspl <- "A"
-        }
-        if (mostrecentspl == "A") {
-          sistermostrecentspl <- "B"
-        }
-        motiftofind <- paste(substring(
-          mainland[[lineage]][extinct, "branch_code"],
-          1,
-          numberofsplits - 1),
-          sistermostrecentspl,
-          sep = "")
-        possiblesister <- survivors[which(substring(
-          mainland[[lineage]][survivors, "branch_code"],
-          1,
-          numberofsplits) == motiftofind)]
-        #different rules depending on whether a B or A is removed.
-        #B going extinct is simpler because it only
-        #carries a record of the most recent speciation
-        if (mostrecentspl == "A") {
-          #change the splitting date of the sister species so that it inherits
-          #the early splitting that used to belong to A.
-          # Bug fix here thanks to Nadiah Kristensen: max -> min
-          tochange <-
-            possiblesister[which(
-              mainland[[lineage]][possiblesister, "branch_t"] ==
-                min(as.numeric(mainland[[lineage]][possiblesister, "branch_t"])))]
-          mainland[[lineage]][tochange, "branch_t"] <-
-            mainland[[lineage]][extinct, "branch_t"]
-        }
-        #change the offending A/B from these species to E
-        mainland[[lineage]][extinct, "spec_type"] <- "E"
-        mainland[[lineage]][extinct, "spec_ex_t"] <- time
-      }
-    }
     # REPLACEMENT
     spec_id <- c()
     spec_type <- c()
@@ -148,11 +89,9 @@ sim_mainland <- function(
       mainland[[lineage]],
       data.frame(spec_id = max_spec_id + 1,
                  main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
-                 col_t = mainland[[lineage]][tosplit, "col_t"],
                  spec_type = "C",
                  branch_code = paste0(oldstatus, "A"),
                  branch_t = time,
-                 ana_origin = NA,
                  spec_origin_t = time,
                  spec_ex_t = NA))
     #for daughter B
@@ -160,11 +99,9 @@ sim_mainland <- function(
       mainland[[lineage]],
       data.frame(spec_id = max_spec_id + 2,
                  main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
-                 col_t = mainland[[lineage]][tosplit, "col_t"],
                  spec_type = "C",
                  branch_code = paste0(oldstatus, "B"),
                  branch_t = time,
-                 ana_origin = NA,
                  spec_origin_t = time,
                  spec_ex_t = NA))
     max_spec_id <- max_spec_id + 2
