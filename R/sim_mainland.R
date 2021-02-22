@@ -109,8 +109,8 @@ sim_mainland <- function(
   }
   for (i in seq_along(mainland)) {
     for (j in seq_len(nrow(mainland[[i]]))) {
-      if (is.na(mainland[[i]][j, 9])) {
-        mainland[[i]][j, 9] <- total_time
+      if (is.na(mainland[[i]][j, "spec_ex_t"])) {
+        mainland[[i]][j, "spec_ex_t"] <- total_time
       }
     }
   }
