@@ -44,6 +44,10 @@
 #' @param max_spec_id Current species IDs.
 #' @param mainland_scenario Integer determining which mainland clade scenario
 #' is produced
+#' @param anc_branch_t_bp Numeric ancestral branching time before the present
+#' of the immigrant species ancestor and its extant relative on the mainland
+#' @param subset_island Data frame of island species that originated from a
+#' single colonisation event
 #'
 #' @return Nothing
 default_params_doc <- function(
@@ -71,7 +75,9 @@ default_params_doc <- function(
   replicates,
   possible_event,
   max_spec_id,
-  mainland_scenario
+  mainland_scenario,
+  anc_branch_t_bp,
+  subset_island
 ) {
   #Nothing
 }
