@@ -39,7 +39,7 @@ create_island_core <- function(time,
                                island_spec) {
   ### number of independent colonisations
   uniquecolonisation <- as.numeric(unique(
-    island_spec[, "col_t (BP)"]))
+    island_spec[, "col_t_bp"]))
   number_colonisations <- length(uniquecolonisation)
   ### if there is only one independent colonisation - anagenetic and
   ### cladogenetic species are classed as stac=2; immigrant classed as stac=4:
@@ -47,7 +47,7 @@ create_island_core <- function(time,
     if (island_spec[1, "spec_type"] == "I") {
       descendants <- list(branching_times = c(
                             time,
-                            as.numeric(island_spec[1, "col_t (BP)"])
+                            as.numeric(island_spec[1, "col_t_bp"])
                           ),
                           stac = 4,
                           missing_species = 0)
@@ -55,7 +55,7 @@ create_island_core <- function(time,
     if (island_spec[1, "spec_type"] == "A") {
       descendants <- list(branching_times = c(
                             time,
-                            as.numeric(island_spec[1, "col_t (BP)"])
+                            as.numeric(island_spec[1, "col_t_bp"])
                           ),
                           stac = 2,
                           missing_species = 0)
@@ -64,7 +64,7 @@ create_island_core <- function(time,
       descendants <- list(branching_times = c(
                             time,
                             sort(
-                              as.numeric(island_spec[, "branch_t (BP)"]),
+                              as.numeric(island_spec[, "branch_t_bp"]),
                               decreasing = TRUE
                             )
                           ),
@@ -83,10 +83,10 @@ create_island_core <- function(time,
 
     # Get branching and colonisation times
     btimes_all_clado_desc <- rev(
-      sort(as.numeric(island_spec[, "branch_t (BP)"]))
+      sort(as.numeric(island_spec[, "branch_t_bp"]))
     )
     col_times <- sort(
-      unique(as.numeric(island_spec[, "col_t (BP)"])),
+      unique(as.numeric(island_spec[, "col_t_bp"])),
       decreasing = TRUE
     )
 
@@ -124,7 +124,7 @@ create_island_core <- function(time,
 
     # all_colonisations section
     uniquecol <- sort(as.numeric(
-      unique(island_spec[, "col_t (BP)"])), decreasing = TRUE
+      unique(island_spec[, "col_t_bp"])), decreasing = TRUE
     )
     for (i in seq_along(uniquecol)) {
       descendants$all_colonisations[[i]] <- list(
@@ -133,19 +133,19 @@ create_island_core <- function(time,
       )
 
       samecolonisation <- which(as.numeric(
-        island_spec[, "col_t (BP)"]) == uniquecol[i]
+        island_spec[, "col_t_bp"]) == uniquecol[i]
       )
 
       if (island_spec[samecolonisation[1], "spec_type"] == "I") {
         descendants$all_colonisations[[i]]$event_times <- as.numeric(
-          c(time, island_spec[samecolonisation, "col_t (BP)"])
+          c(time, island_spec[samecolonisation, "col_t_bp"])
         )
         descendants$all_colonisations[[i]]$species_type <- "I"
       }
 
       if (island_spec[samecolonisation[1], "spec_type"] == "A") {
         descendants$all_colonisations[[i]]$event_times <- as.numeric(
-          c(time, island_spec[samecolonisation, "col_t (BP)"])
+          c(time, island_spec[samecolonisation, "col_t_bp"])
         )
         descendants$all_colonisations[[i]]$species_type <- "A"
       }
@@ -153,7 +153,7 @@ create_island_core <- function(time,
       if (island_spec[samecolonisation[1], "spec_type"] == "C") {
         descendants$all_colonisations[[i]]$event_times <-
           sort(c(time, as.numeric(
-            island_spec[samecolonisation, "branch_t (BP)"]
+            island_spec[samecolonisation, "branch_t_bp"]
           )), decreasing = TRUE)
         descendants$all_colonisations[[i]]$species_type <- "C"
       }
