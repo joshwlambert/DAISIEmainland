@@ -14,12 +14,12 @@ test_that("sim_island is silent and produces correct empty island", {
       mainland_clade = mainland_clade,
       mainland_sample_prob = 1)
   )
-  expect_equal(island$ideal_island$branching_times, 1)
-  expect_equal(island$ideal_island$stac, 0)
-  expect_equal(island$ideal_island$missing_species, 0)
-  expect_equal(island$empirical_island$branching_times, 1)
-  expect_equal(island$empirical_island$stac, 0)
-  expect_equal(island$empirical_island$missing_species, 0)
+  expect_equal(island$ideal_island[[1]]$branching_times, 1)
+  expect_equal(island$ideal_island[[1]]$stac, 0)
+  expect_equal(island$ideal_island[[1]]$missing_species, 0)
+  expect_equal(island$empirical_island[[1]]$branching_times, 1)
+  expect_equal(island$empirical_island[[1]]$stac, 0)
+  expect_equal(island$empirical_island[[1]]$missing_species, 0)
 })
 
 test_that("sim_island is silent and produces correct non-empty island", {
