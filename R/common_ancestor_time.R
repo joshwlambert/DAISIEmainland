@@ -25,10 +25,10 @@ common_ancestor_time <- function(total_time,
     }
     common_ancestor[[i]] <- paste0(common_ancestor_split[[i]], collapse = "")
     common_ancestor_brts[[i]] <-
-      mainland_clade[which(mainland_clade[, 5] == common_ancestor[[i]]), 9]
+      mainland_clade[which(mainland_clade[, "branch_code"] == common_ancestor[[i]]), "spec_ex_t"]
   }
   common_ancestor_brts <- min(unlist(common_ancestor_brts))
   # set common ancestor branching time to time before the present
-  common_ancestor_brts <- total_time - as.numeric(common_ancestor_brts)
+  common_ancestor_brts <- total_time - common_ancestor_brts
   return(common_ancestor_brts)
 }
