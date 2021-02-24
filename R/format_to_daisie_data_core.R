@@ -16,16 +16,7 @@ format_to_daisie_data_core <- function(
     ### separate taxon_list lists from empty island lists
     new_full_list <- list()
     for (i in seq_along(full_list)) {
-      if (is.null(full_list[[i]]$taxon_list)) {
-        temp_list <- full_list[i]
-        new_full_list <- append(new_full_list, temp_list)
-      } else {
-        temp_list <- list()
-        for (j in seq_along(full_list[[i]]$taxon_list)) {
-          temp_list[[j]] <- full_list[[i]]$taxon_list[[j]]
-        }
-        new_full_list <- append(new_full_list, temp_list)
-      }
+      new_full_list <- append(new_full_list, full_list[[i]])
     }
     stac_vec <-
       unlist(new_full_list)[which(names(unlist(new_full_list)) == "stac")]
