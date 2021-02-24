@@ -29,31 +29,40 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(DAISIEmainland)
 
+replicates <- 1000
+
 island <- sim_island_with_mainland(
   time = 5,
   m = 100,
   island_pars = c(1, 1, 10, 0.1, 1),
   mainland_ex = 1,
   mainland_sample_prob = 1,
-  replicates = 1,
+  replicates = replicates,
   verbose = FALSE
 )
 
-ideal_ml <- DAISIE::DAISIE_ML_CS(
-  datalist = island$ideal_islands,
-  initparsopt = c(1, 1, 10, 1, 1),
-  idparsopt = 1:5,
-  parsfix = NULL,
-  idparsfix = NULL,
-  ddmodel = 11)
+ideal_ml <- vector("list", replicates)
+empirical_ml <- vector("list", replicates)
 
-empirical_ml <- DAISIE::DAISIE_ML_CS(
-  datalist = island$reality_islands,
-  initparsopt = c(1, 1, 10, 1, 1),
-  idparsopt = 1:5,
-  parsfix = NULL,
-  idparsfix = NULL,
-  ddmodel = 11)
+for (i in seq_len(replicates)) {
+  ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+    datalist = island$ideal_islands[[i]],
+    initparsopt = c(1, 1, 10, 1, 1),
+    idparsopt = 1:5,
+    parsfix = NULL,
+    idparsfix = NULL,
+    ddmodel = 11,
+    jitter = 1e-5)
+  
+  empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+    datalist = island$reality_islands[[i]],
+    initparsopt = c(1, 1, 10, 1, 1),
+    idparsopt = 1:5,
+    parsfix = NULL,
+    idparsfix = NULL,
+    ddmodel = 11,
+    jitter = 1e-5)
+}
 ```
 
 ## Cite this package
