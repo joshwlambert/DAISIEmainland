@@ -11,11 +11,12 @@ create_island <- function(total_time,
                           mainland_clade,
                           mainland_sample_prob) {
   # empty island
-  if (length(island_spec[, 1]) == 0) {
+  if (nrow(island_spec) == 0) {
     ideal_island <- empirical_island <-
-      list(branching_times = total_time,
-           stac = 0,
-           missing_species = 0)
+      list(list(
+        branching_times = total_time,
+        stac = 0,
+        missing_species = 0))
   } else {
     names(island_spec)[3] <- "col_t (BP)"
     names(island_spec)[6] <- "branch_t (BP)"
@@ -65,20 +66,19 @@ create_island <- function(total_time,
           length(unique(subset_island[, "col_t (BP)"]))
         ### are there any branching events between the immig time and island
         ### age with extant descendants
-        other_spec <- seq(from = 1, to = nrow(mainland_clade), by = 1)[-mainland_spec]
-        other_extant_mainland <- any(mainland_clade[other_spec, 4] != "E")
+        other_extant_mainland <- any(mainland_clade[, "spec_type"] != "E")
         if (number_colonisations == 1) {
           if (other_extant_mainland) {
-            branching_time <- common_ancestor_time(
+            anc_branch_t_bp <- common_ancestor_time(
               total_time = total_time,
               mainland_spec = mainland_spec,
               mainland_clade = mainland_clade)
             empirical_island_clades_info[[i]] <- list(
               branching_times = c(
                 total_time,
-                branching_time,
+                anc_branch_t_bp,
                 sort(
-                  as.numeric(subset_island[, "branching time (BP)"]),
+                  as.numeric(subset_island[, "branch_t (BP)"]),
                   decreasing = TRUE)
               ),
               stac = 2,
@@ -106,14 +106,14 @@ create_island <- function(total_time,
           }
         } else {
           if (other_extant_mainland) {
-            branching_time <- common_ancestor_time(
+            anc_branch_t_bp <- common_ancestor_time(
               total_time = total_time,
               mainland_spec = mainland_spec,
               mainland_clade = mainland_clade)
             empirical_island_clades_info[[i]] <- list(
               branching_times = c(
                 total_time,
-                branching_time),
+                anc_branch_t_bp),
               stac = 3,
               missing_species = 0)
           } else {
@@ -122,7 +122,7 @@ create_island <- function(total_time,
                 total_time,
                 total_time - 1e-5,
                 sort(
-                  as.numeric(subset_island[, "branching time (BP)"]),
+                  as.numeric(subset_island[, "branch_t (BP)"]),
                   decreasing = TRUE)
               ),
               stac = 6,
