@@ -18,11 +18,11 @@ create_island <- function(total_time,
         stac = 0,
         missing_species = 0))
   } else {
-    names(island_spec)[3] <- "col_t (BP)"
-    names(island_spec)[6] <- "branch_t (BP)"
+    names(island_spec)[3] <- "col_t_bp"
+    names(island_spec)[6] <- "branch_t_bp"
     ### set ages as counting backwards from present
-    island_spec[, "branch_t (BP)"] <- total_time - island_spec[, "branch_t (BP)"]
-    island_spec[, "col_t (BP)"] <- total_time - island_spec[, "col_t (BP)"]
+    island_spec[, "branch_t_bp"] <- total_time - island_spec[, "branch_t_bp"]
+    island_spec[, "col_t_bp"] <- total_time - island_spec[, "col_t_bp"]
 
     ### number of independent colonisations from different mainland species
     colonists_present <- sort(unique(island_spec[, "main_anc_id"]))
@@ -63,7 +63,7 @@ create_island <- function(total_time,
       } else {
         ### number of independent colonisations from the same mainland species
         number_colonisations <-
-          length(unique(subset_island[, "col_t (BP)"]))
+          length(unique(subset_island[, "col_t_bp"]))
         ### are there any branching events between the immig time and island
         ### age with extant descendants
         other_extant_mainland <- any(mainland_clade[, "spec_type"] != "E")
@@ -78,7 +78,7 @@ create_island <- function(total_time,
                 total_time,
                 anc_branch_t_bp,
                 sort(
-                  as.numeric(subset_island[, "branch_t (BP)"]),
+                  subset_island[, "branch_t_bp"],
                   decreasing = TRUE)
               ),
               stac = 2,
@@ -97,24 +97,26 @@ create_island <- function(total_time,
                   total_time,
                   total_time - 1e-5,
                   sort(
-                    as.numeric(subset_island[, "branch_t (BP)"]),
+                    subset_island[, "branch_t_bp"],
                     decreasing = TRUE)
                 ),
                 stac = 6,
                 missing_species = 0)
             }
           }
-        } else {
+        } else if (number_colonisations > 1) {
           if (other_extant_mainland) {
             anc_branch_t_bp <- common_ancestor_time(
               total_time = total_time,
               mainland_spec = mainland_spec,
               mainland_clade = mainland_clade)
+            false_clade_brts <- create_false_clade_brts(
+              total_time = total_time,
+              anc_branch_t_bp = anc_branch_t_bp,
+              subset_island = subset_island)
             empirical_island_clades_info[[i]] <- list(
-              branching_times = c(
-                total_time,
-                anc_branch_t_bp),
-              stac = 3,
+              branching_times = false_clade_brts,
+              stac = 2,
               missing_species = 0)
           } else {
             empirical_island_clades_info[[i]] <- list(
@@ -122,7 +124,7 @@ create_island <- function(total_time,
                 total_time,
                 total_time - 1e-5,
                 sort(
-                  as.numeric(subset_island[, "branch_t (BP)"]),
+                  as.numeric(subset_island[, "branch_t_bp"]),
                   decreasing = TRUE)
               ),
               stac = 6,
