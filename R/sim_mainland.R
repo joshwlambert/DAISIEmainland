@@ -50,9 +50,13 @@ sim_mainland <- function(
     spec_id <- c()
     spec_type <- c()
     for (i in seq_along(mainland)) {
+      # RJCB: these usages of the 'c' function result in exponentially
+      # increasing runtime (well, O(0.5 n ^ 2) to be precise)
+      # Prefer to use an architecture to prevent this
       spec_id <- c(spec_id, mainland[[i]][, "spec_id"])
       spec_type <- c(spec_type, mainland[[i]][, "spec_type"])
     }
+    testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on my computer
     if (any(spec_type == "E")) {
       spec_id <- spec_id[-which(spec_type == "E")]
     }
@@ -74,6 +78,7 @@ sim_mainland <- function(
       spec_id <- c(spec_id, mainland[[i]][, "spec_id"])
       spec_type <- c(spec_type, mainland[[i]][, "spec_type"])
     }
+    testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on my computer
     if (any(spec_type == "E")) {
       spec_id <- spec_id[-which(spec_type == "E")]
     }

@@ -1,4 +1,5 @@
 test_that("common_ancestor_time produces correct output for mainland_clade 5", {
+  # RJCB: Awesome!
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
 
   branching_t <- common_ancestor_time(
