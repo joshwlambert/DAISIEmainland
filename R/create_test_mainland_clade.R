@@ -3,6 +3,8 @@
 #' @inheritParams default_params_doc
 #'
 #' @return data frame
+#' RJCB: added export to be able to run the tests
+#' @export
 create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 1) {
