@@ -16,6 +16,10 @@ update_state <- function(timeval,
                          max_spec_id,
                          mainland_spec,
                          island_spec) {
+  # RJCB: Simplify: cyclomatic complexity is above 15
+  #
+  # Thanks to
+  # cyclocomp::cyclocomp_package_dir()
 
   #IMMIGRATION
   if (possible_event == 1) {
@@ -49,6 +53,18 @@ update_state <- function(timeval,
 
   #EXTINCTION
   if (possible_event == 2) {
+    # RJCB: instead of
+    #
+    #   1:length(island_spec[, "spec_id"])
+    #
+    # use
+    #
+    #   seq_len(length(island_spec[, "spec_id"]))
+    #
+    # as this is less error prone. Just do 'seq_len(0)' and '1:0' to
+    # see for yourself why.
+    #
+    # Thanks to lintr::lint_package()
     extinct <- DDD::sample2(1:length(island_spec[, "spec_id"]), 1)
     #this chooses the row of species data to remove
     typeofspecies <- island_spec[extinct, "spec_type"]
@@ -132,6 +148,18 @@ update_state <- function(timeval,
 
   #CLADOGENESIS - this splits species into two new species - both of which receive
   if (possible_event == 4) {
+    # RJCB: instead of
+    #
+    #   1:length(island_spec[, "spec_id"])
+    #
+    # use
+    #
+    #   seq_len(length(island_spec[, "spec_id"]))
+    #
+    # as this is less error prone. Just do 'seq_len(0)' and '1:0' to
+    # see for yourself why.
+    #
+    # Thanks to lintr::lint_package()
     tosplit <- DDD::sample2(1:length(island_spec[, "spec_id"]), 1)
     #if the species that speciates is cladogenetic
     if (island_spec[tosplit, "spec_type"] == "C") {

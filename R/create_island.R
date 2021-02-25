@@ -10,6 +10,11 @@ create_island <- function(total_time,
                           island_spec,
                           mainland_clade,
                           mainland_sample_prob) {
+  # RJCB: Simplify: cyclomatic complexity is above 15
+  #
+  # Thanks to
+  # cyclocomp::cyclocomp_package_dir()
+
   # empty island
   if (nrow(island_spec) == 0) {
     ideal_island <- empirical_island <-

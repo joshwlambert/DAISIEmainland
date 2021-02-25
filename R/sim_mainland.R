@@ -23,6 +23,10 @@ sim_mainland <- function(
   m,
   mainland_ex
 ) {
+  # RJCB: Simplify: cyclomatic complexity is above 15
+  #
+  # Thanks to
+  # cyclocomp::cyclocomp_package_dir()
   total_time <- time
   time <- 0
   max_spec_id <- m

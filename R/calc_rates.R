@@ -23,7 +23,9 @@ calc_rates <- function(
   testit::assert(is.numeric(lac))
   testit::assert(is.numeric(mu))
   testit::assert(is.numeric(k))
+  # RJCB: I think the '|| is.null' is (probably: 'has become') incorrect
   testit::assert(is.numeric(num_spec) || is.null(num_spec))
+  # RJCB: I think the '|| is.null' is (probably: 'has become') incorrect
   testit::assert(is.numeric(num_immigrants) || is.null(num_immigrants))
   testit::assert(is.numeric(mainland_n))
 
