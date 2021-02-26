@@ -6,8 +6,6 @@
 #' @keywords internal
 #' @return Named list with rates.
 calc_rates <- function(
-  timeval,
-  total_time,
   gam,
   laa,
   lac,
@@ -16,17 +14,13 @@ calc_rates <- function(
   num_spec,
   num_immigrants,
   mainland_n) {
-  testit::assert(is.numeric(timeval))
-  testit::assert(is.numeric(total_time))
   testit::assert(is.numeric(gam))
   testit::assert(is.numeric(laa))
   testit::assert(is.numeric(lac))
   testit::assert(is.numeric(mu))
   testit::assert(is.numeric(k))
-  # RJCB: I think the '|| is.null' is (probably: 'has become') incorrect
-  testit::assert(is.numeric(num_spec) || is.null(num_spec))
-  # RJCB: I think the '|| is.null' is (probably: 'has become') incorrect
-  testit::assert(is.numeric(num_immigrants) || is.null(num_immigrants))
+  testit::assert(is.numeric(num_spec))
+  testit::assert(is.numeric(num_immigrants))
   testit::assert(is.numeric(mainland_n))
 
   immig_rate <- max(0, mainland_n * gam * (1 - (num_spec / k)))
