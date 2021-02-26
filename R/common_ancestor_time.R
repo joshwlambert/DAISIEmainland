@@ -11,7 +11,8 @@ common_ancestor_time <- function(total_time,
                                  mainland_spec,
                                  mainland_clade) {
   focal_spec <- mainland_clade[mainland_spec, "branch_code"]
-  sister_spec <- mainland_clade[which(mainland_clade[, "spec_type"] != "E"), "branch_code"]
+  sister_spec <- mainland_clade[which(mainland_clade[, "spec_type"] != "E"),
+                                "branch_code"]
   focal_spec_split <- strsplit(focal_spec, "")[[1]]
   sister_spec_split <- strsplit(sister_spec, "")
   common_ancestor_split <- vector("list", length(sister_spec_split))
@@ -27,7 +28,8 @@ common_ancestor_time <- function(total_time,
     }
     common_ancestor[[i]] <- paste0(common_ancestor_split[[i]], collapse = "")
     common_ancestor_brts[[i]] <-
-      mainland_clade[which(mainland_clade[, "branch_code"] == common_ancestor[[i]]), "spec_ex_t"]
+      mainland_clade[which(
+        mainland_clade[, "branch_code"] == common_ancestor[[i]]), "spec_ex_t"]
   }
   common_ancestor_brts <- max(unlist(common_ancestor_brts))
   # set common ancestor branching time to time before the present
