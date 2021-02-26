@@ -57,11 +57,15 @@ create_island <- function(total_time,
         time = total_time,
         island_spec = subset_island)
 
-      mainland_spec <- which(mainland_clade[, "spec_id"] == colonists_present[i])
+      mainland_spec <-
+        which(mainland_clade[, "spec_id"] == colonists_present[i])
       ### is there any extant descendants of the immigrant on the mainland
-      branching_code <- paste0("^", mainland_clade[mainland_spec, "branch_code"])
-      descending_branches <- grep(branching_code, mainland_clade[, "branch_code"])
-      extant_mainland <- any(mainland_clade[descending_branches, "spec_type"] != "E")
+      branching_code <-
+        paste0("^", mainland_clade[mainland_spec, "branch_code"])
+      descending_branches <-
+        grep(branching_code, mainland_clade[, "branch_code"])
+      extant_mainland <-
+        any(mainland_clade[descending_branches, "spec_type"] != "E")
 
       if (extant_mainland) {
         empirical_island_clades_info[[i]] <- ideal_island_clades_info[[i]]
