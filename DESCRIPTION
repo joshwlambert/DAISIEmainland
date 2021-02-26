@@ -1,6 +1,7 @@
 Package: DAISIEmainland
 Type: Package
-Title: DAISIEmainland
+Title: Simulates data for phylogenetic data on islands for DAISIE with the 
+    addition of mainland dynamics
 Version: 0.1.0
 Author: Joshua W. Lambert <ORCID = "0000-0001-5218-3046">
 Maintainer: Joshua W. Lambert <j.w.l.lambert@rug.nl>
@@ -20,5 +21,8 @@ Imports:
     testit
 Suggests: 
     lintr,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr
