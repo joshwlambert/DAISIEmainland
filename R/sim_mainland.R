@@ -23,6 +23,10 @@ sim_mainland <- function(
   m,
   mainland_ex
 ) {
+  # RJCB: Simplify: cyclomatic complexity is above 15
+  #
+  # Thanks to
+  # cyclocomp::cyclocomp_package_dir()
   total_time <- time
   time <- 0
   max_spec_id <- m
@@ -46,9 +50,13 @@ sim_mainland <- function(
     spec_id <- c()
     spec_type <- c()
     for (i in seq_along(mainland)) {
+      # RJCB: these usages of the 'c' function result in exponentially
+      # increasing runtime (well, O(0.5 n ^ 2) to be precise)
+      # Prefer to use an architecture to prevent this
       spec_id <- c(spec_id, mainland[[i]][, "spec_id"])
       spec_type <- c(spec_type, mainland[[i]][, "spec_type"])
     }
+    testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on R 3.6.3
     if (any(spec_type == "E")) {
       spec_id <- spec_id[-which(spec_type == "E")]
     }
@@ -70,6 +78,7 @@ sim_mainland <- function(
       spec_id <- c(spec_id, mainland[[i]][, "spec_id"])
       spec_type <- c(spec_type, mainland[[i]][, "spec_type"])
     }
+    testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on R 3.6.3
     if (any(spec_type == "E")) {
       spec_id <- spec_id[-which(spec_type == "E")]
     }

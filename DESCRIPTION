@@ -17,5 +17,6 @@ Imports:
     DDD (>= 4.4),
     testit
 Suggests: 
+    lintr,
     testthat
 RoxygenNote: 7.1.1

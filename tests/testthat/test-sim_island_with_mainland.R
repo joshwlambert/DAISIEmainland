@@ -1,4 +1,8 @@
 test_that("sim_island_with_mainland produces correct empty island", {
+  # RJCB: I see no advantage over `set.seed(1)` here,
+  # unless one compares RNG generators
+  # Goal of setting the seed is only to have reproducible results.
+  # Still, now I would keep it as it is.
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -7,14 +11,13 @@ test_that("sim_island_with_mainland produces correct empty island", {
   )
 
   island <- sim_island_with_mainland(
-    time = 1,
-    m = 10,
-    island_pars = c(1, 1, 10, 0.1, 1),
-    mainland_ex = 1,
-    mainland_sample_prob = 1,
-    replicates = 1,
-    verbose = FALSE)
-
+      time = 1,
+      m = 10,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      replicates = 1,
+      verbose = FALSE)
   expect_equal(island$ideal_islands[[1]][[1]]$island_age, 1)
   expect_equal(island$ideal_islands[[1]][[1]]$not_present, 10)
   expect_equal(island$empirical_islands[[1]][[1]]$island_age, 1)
@@ -77,6 +80,25 @@ test_that("sim_island_with_mainland produces output with verbose = TRUE", {
 
 
 test_that("sim_island_mainland fails with incorrect input", {
+  # RJCB: well, if you really want use a function with 7 arguments,
+  # (spoiler: one shouldn't)
+  # one get these lengthy tests as the ones below. The technical term
+  # is that the 7-argument approach 'does not scale'
+  #
+  # The superior way would be:
+  #
+  #  expect_silent(
+  #    sim_island_with_mainland(create_test_somethings()) # All parameters have default value
+  #  )
+  #
+  #  expect_error(
+  #    sim_island_with_mainland(create_test_somethings(time = "nonsense")), # Misdefine only the desired parameter # nolint indeed a long line, but there was where it fit best
+  #    "time must be a positive non-zero number"
+  #  )
+
+
+  # RJCB: no need to do 'island <-' if there will not be
+  # output
   expect_error(island <- sim_island_with_mainland(
     time = "nonsense",
     m = 10,
@@ -106,6 +128,60 @@ test_that("sim_island_mainland fails with incorrect input", {
     replicates = 1,
     verbose = TRUE)
   )
+
+  # RJCB: a user would enjoy a better error message here
+ if (1 == 2) {
+    expect_error(sim_island_with_mainland(
+      time = 1,
+      m = 10,
+      island_pars = c("nonsense", 1, 10, 1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      replicates = 1,
+      verbose = TRUE),
+      "error with whatever that first island param is"
+    )
+    expect_error(sim_island_with_mainland(
+      time = 1,
+      m = 10,
+      island_pars = c(1, "nonsense", 10, 1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      replicates = 1,
+      verbose = TRUE),
+      "error with whatever that second island param is"
+    )
+    expect_error(sim_island_with_mainland(
+      time = 1,
+      m = 10,
+      island_pars = c(1, 1, "nonsense", 1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      replicates = 1,
+      verbose = TRUE),
+      "error with whatever that third island param is"
+    )
+    expect_error(sim_island_with_mainland(
+      time = 1,
+      m = 10,
+      island_pars = c(1, 1, 10, "nonsense", 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      replicates = 1,
+      verbose = TRUE),
+      "error with whatever that fourth island param is"
+    )
+    expect_error(sim_island_with_mainland(
+      time = 1,
+      m = 10,
+      island_pars = c(1, 1, 10, 1, "nonsense"),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      replicates = 1,
+      verbose = TRUE),
+      "error with whatever that fifth island param is"
+    )
+  }
 
   expect_error(island <- sim_island_with_mainland(
     time = 1,
