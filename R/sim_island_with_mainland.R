@@ -90,8 +90,7 @@ sim_island_with_mainland <- function(
   mainland_replicates <- list()
   for (rep in 1:replicates) {
     if (verbose) {
-      # RJCB: Prefer using 'message' over 'print': CRAN will prefer it
-      print(paste0("Island replicate ", rep))
+      message(paste0("Island replicate ", rep))
     }
     island_replicates[[rep]] <- list()
     mainland_replicates[[rep]] <- list()
