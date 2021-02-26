@@ -63,7 +63,7 @@ test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
 })
 
 test_that("sim_island_with_mainland produces output with verbose = TRUE", {
-  expect_output(island <- sim_island_with_mainland(
+  expect_message(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
