@@ -4,24 +4,9 @@
 \alias{calc_rates}
 \title{Calculate rates for island processes}
 \usage{
-calc_rates(
-  timeval,
-  total_time,
-  gam,
-  laa,
-  lac,
-  mu,
-  k,
-  num_spec,
-  num_immigrants,
-  mainland_n
-)
+calc_rates(gam, laa, lac, mu, k, num_spec, num_immigrants, mainland_n)
 }
 \arguments{
-\item{timeval}{Numeric defining current time of simulation.}
-
-\item{total_time}{Numeric defining the length of the simulation in time units.}
-
 \item{gam}{Numeric with the per capita immigration rate.}
 
 \item{laa}{Numeric with the per capita anagenesis rate.}

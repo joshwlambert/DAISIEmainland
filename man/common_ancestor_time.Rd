@@ -8,7 +8,8 @@ mainland.}
 common_ancestor_time(total_time, mainland_spec, mainland_clade)
 }
 \arguments{
-\item{total_time}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 

@@ -8,7 +8,8 @@ the ideal data is multiple colonisations}
 create_false_clade_brts(total_time, anc_branch_t_bp, subset_island)
 }
 \arguments{
-\item{total_time}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
 
 \item{anc_branch_t_bp}{Numeric ancestral branching time before the present
 of the immigrant species ancestor and its extant relative on the mainland}

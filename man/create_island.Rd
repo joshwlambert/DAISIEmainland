@@ -7,7 +7,8 @@
 create_island(total_time, island_spec, mainland_clade, mainland_sample_prob)
 }
 \arguments{
-\item{total_time}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}

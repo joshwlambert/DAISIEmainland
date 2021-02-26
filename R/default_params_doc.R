@@ -1,7 +1,8 @@
 #' Documentation for function arguments in the DAISIEmainland package
 #'
 #' @param timeval Numeric defining current time of simulation.
-#' @param total_time Numeric defining the length of the simulation in time units.
+#' @param total_time Numeric defining the length of the simulation in time
+#' units.
 #' @param gam Numeric with the per capita immigration rate.
 #' @param laa Numeric with the per capita anagenesis rate.
 #' @param lac Numeric with the per capita cladogenesis rate.
