@@ -53,8 +53,6 @@ sim_island <- function(
   #### Start Monte Carlo iterations ####
   while (timeval < total_time) {
     rates <- calc_rates(
-      timeval = timeval,
-      total_time = total_time,
       gam = gam,
       laa = laa,
       lac = lac,
@@ -95,8 +93,6 @@ sim_island <- function(
 
       if (timeval <= total_time) {
         rates <- calc_rates(
-          timeval = timeval,
-          total_time = total_time,
           gam = gam,
           laa = laa,
           lac = lac,
