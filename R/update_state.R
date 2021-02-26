@@ -122,7 +122,7 @@ update_state <- function(timeval,
   if (possible_event == 3) {
     immi_specs <- which(island_spec[, "spec_type"] == "I")
     #we only allow immigrants to undergo anagenesis
-    if(length(immi_specs) == 1) {
+    if (length(immi_specs) == 1) {
       anagenesis <- immi_specs
     }
     if (length(immi_specs) > 1) {
