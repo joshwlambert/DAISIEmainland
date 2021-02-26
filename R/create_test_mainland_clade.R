@@ -21,8 +21,8 @@ create_test_mainland_clade <- function(mainland_scenario) {
   if (mainland_scenario == 2) {
 
     mainland_clade <- data.frame(
-      spec_id = c(1,15,16),
-      main_anc_id = c(1,1,1),
+      spec_id = c(1, 15, 16),
+      main_anc_id = c(1, 1, 1),
       spec_type = c("E", "E", "C"),
       branch_code = c("A", "AA", "AB"),
       branch_t = c(NA, 0.292906805531114, 0.292906805531114),
@@ -33,8 +33,8 @@ create_test_mainland_clade <- function(mainland_scenario) {
   if (mainland_scenario == 3) {
 
     mainland_clade <- data.frame(
-      spec_id = c(2,27,28),
-      main_anc_id = c(2,2,2),
+      spec_id = c(2, 27, 28),
+      main_anc_id = c(2, 2, 2),
       spec_type = c("E", "C", "C"),
       branch_code = c("A", "AA", "AB"),
       branch_t = c(NA, 0.779042070209266, 0.779042070209266),
