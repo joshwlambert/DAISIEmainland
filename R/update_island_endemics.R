@@ -10,8 +10,11 @@ update_island_endemics <- function(
   island_spec,
   mainland_clade) {
   if (any(island_spec[, "spec_type"] == "I")) {
-    immig_spec <- island_spec[which(island_spec[, "spec_type"] == "I"), "spec_id"]
-    mainland_ex_time <- mainland_clade[which(mainland_clade[, "spec_id"] %in% immig_spec), "spec_ex_t"]
+    immig_spec <-
+      island_spec[which(island_spec[, "spec_type"] == "I"), "spec_id"]
+    mainland_ex_time <-
+      mainland_clade[which(mainland_clade[, "spec_id"] %in% immig_spec),
+                     "spec_ex_t"]
     for (i in seq_along(mainland_ex_time)) {
       if (timeval > mainland_ex_time[i] && total_time > mainland_ex_time[i]) {
         island_spec[which(island_spec[, "spec_id"] == immig_spec[i]), "spec_type"] <- "A"
