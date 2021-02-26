@@ -1,8 +1,4 @@
 test_that("sim_island_with_mainland produces correct empty island", {
-  # RJCB: I see no advantage over `set.seed(1)` here,
-  # unless one compares RNG generators
-  # Goal of setting the seed is only to have reproducible results.
-  # Still, now I would keep it as it is.
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -102,7 +98,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   expect_error(island <- sim_island_with_mainland(
     time = "nonsense",
     m = 10,
-    island_pars = c(1,1,10,1,1),
+    island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,
@@ -112,7 +108,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = "nonsense",
-    island_pars = c(1,1,10,1,1),
+    island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,
@@ -186,7 +182,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
-    island_pars = c(1,1,10,1,1),
+    island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = "nonsense",
     mainland_sample_prob = 1,
     replicates = 1,
@@ -196,7 +192,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
-    island_pars = c(1,1,10,1,1),
+    island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = "nonsense",
     replicates = 1,
@@ -206,7 +202,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
-    island_pars = c(1,1,10,1,1),
+    island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = "nonsense",
@@ -216,7 +212,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   expect_error(island <- sim_island_with_mainland(
     time = 1,
     m = 10,
-    island_pars = c(1,1,10,1,1),
+    island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
     replicates = 1,

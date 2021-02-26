@@ -10,7 +10,8 @@ test_that("update_island_endemics produces correct output with empty island", {
   expect_null(island_state)
 })
 
-test_that("update_island_endemics produces correct output with non-empty island", {
+test_that("update_island_endemics produces correct output with non-empty
+          island", {
 
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
 
