@@ -6,8 +6,8 @@
 #' @inheritParams default_params_doc
 #'
 #' @return The updated state of the system, which is a list with the
-#' \code{island_spec} matrix and an integer \code{max_spec_id} with the most recent
-#' ID of species.
+#' \code{island_spec} matrix and an integer \code{max_spec_id} with the most
+#' recent ID of species.
 #'
 #' @keywords internal
 update_state <- function(timeval,
@@ -16,11 +16,6 @@ update_state <- function(timeval,
                          max_spec_id,
                          mainland_spec,
                          island_spec) {
-  # RJCB: Simplify: cyclomatic complexity is above 15
-  #
-  # Thanks to
-  # cyclocomp::cyclocomp_package_dir()
-
   #IMMIGRATION
   if (possible_event == 1) {
     colonist <- DDD::sample2(mainland_spec, 1)
@@ -98,20 +93,29 @@ update_state <- function(timeval,
                           numberofsplits - 1),
                 sistermostrecentspl)
         possiblesister <-
-          survivors[which(substring(island_spec[survivors, "branch_code"], 1, numberofsplits) == motiftofind)]
-        #different rules depending on whether a B or A is removed. B going extinct is simpler because it only
-        #carries a record of the most recent speciation
+          survivors[which(substring(island_spec[survivors, "branch_code"],
+                                    1,
+                                    numberofsplits) == motiftofind)]
+        #different rules depending on whether a B or A is removed. B going
+        #extinct is simpler because it only carries a record of the most
+        #recent speciation
         if (mostrecentspl == "A") {
-          #change the splitting date of the sister species so that it inherits the early splitting that used to belong to A.
-          # Bug fix here thanks to Nadiah Kristensen: max -> min
+          #change the splitting date of the sister species so that it inherits
+          #the early splitting that used to belong to A.
+          #Bug fix here thanks to Nadiah Kristensen: max -> min
           tochange <-
-            possiblesister[which(island_spec[possiblesister, "branch_t"] == min(as.numeric(island_spec[possiblesister, "branch_t"])))]
+            possiblesister[which(
+              island_spec[possiblesister, "branch_t"] ==
+                min(island_spec[possiblesister, "branch_t"]))]
           island_spec[tochange, "branch_t"] <- island_spec[extinct, "branch_t"]
         }
         #remove the offending A/B from these species
         island_spec[possiblesister, "branch_code"] <-
-          paste0(substring(island_spec[possiblesister, "branch_code"], 1, numberofsplits - 1),
-                substring(island_spec[possiblesister, "branch_code"], numberofsplits + 1,
+          paste0(substring(island_spec[possiblesister, "branch_code"],
+                           1,
+                           numberofsplits - 1),
+                substring(island_spec[possiblesister, "branch_code"],
+                          numberofsplits + 1,
                           nchar(island_spec[possiblesister, "branch_code"])))
         island_spec <- island_spec[-extinct, ]
       }
@@ -134,7 +138,7 @@ update_state <- function(timeval,
     island_spec[anagenesis, "ana_origin"] <- "Immig_parent"
   }
 
-  #CLADOGENESIS - this splits species into two new species - both of which receive
+  #CLADOGENESIS - this splits species into two new specie
   if (possible_event == 4) {
     tosplit <- DDD::sample2(seq_len(length(island_spec[, "spec_id"])), 1)
     #if the species that speciates is cladogenetic
@@ -178,7 +182,6 @@ update_state <- function(timeval,
       max_spec_id <- max_spec_id + 2
     }
   }
-
   updated_state <- list(island_spec = island_spec,
                         max_spec_id = max_spec_id)
   return(updated_state)

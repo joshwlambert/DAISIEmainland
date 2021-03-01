@@ -17,8 +17,9 @@ update_island_endemics <- function(
                      "spec_ex_t"]
     for (i in seq_along(mainland_ex_time)) {
       if (timeval > mainland_ex_time[i] && total_time > mainland_ex_time[i]) {
-        island_spec[which(island_spec[, "spec_id"] == immig_spec[i]), "spec_type"] <- "A"
-        island_spec[which(island_spec[, "spec_id"] == immig_spec[i]), "ana_origin"] <-
+        island_spec[island_spec[, "spec_id"] == immig_spec[i], "spec_type"] <-
+          "A"
+        island_spec[island_spec[, "spec_id"] == immig_spec[i], "ana_origin"] <-
           "mainland_extinction"
       }
     }
