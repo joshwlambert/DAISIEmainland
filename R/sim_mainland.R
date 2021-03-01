@@ -23,10 +23,6 @@ sim_mainland <- function(
   m,
   mainland_ex
 ) {
-  # RJCB: Simplify: cyclomatic complexity is above 15
-  #
-  # Thanks to
-  # cyclocomp::cyclocomp_package_dir()
   total_time <- time
   time <- 0
   max_spec_id <- m
@@ -51,9 +47,7 @@ sim_mainland <- function(
     spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
 
     testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on R 3.6.3
-    if (any(spec_type == "E")) {
-      spec_id <- spec_id[-which(spec_type == "E")]
-    }
+    spec_id <- spec_id[which(spec_type != "E")]
     extinct_spec <- DDD::sample2(spec_id, 1)
     lineage <- c()
     for (i in seq_along(mainland)) {
@@ -70,9 +64,7 @@ sim_mainland <- function(
     spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
 
     testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on R 3.6.3
-    if (any(spec_type == "E")) {
-      spec_id <- spec_id[-which(spec_type == "E")]
-    }
+    spec_id <- spec_id[which(spec_type != "E")]
     branch_spec <- DDD::sample2(spec_id, 1)
     lineage <- c()
     for (i in seq_along(mainland)) {
@@ -107,12 +99,9 @@ sim_mainland <- function(
     max_spec_id <- max_spec_id + 2
     time <- time + stats::rexp(n = 1, rate = m * mainland_ex)
   }
-  for (i in seq_along(mainland)) {
-    for (j in seq_len(nrow(mainland[[i]]))) {
-      if (is.na(mainland[[i]][j, "spec_ex_t"])) {
-        mainland[[i]][j, "spec_ex_t"] <- total_time
-      }
-    }
-  }
+  mainland <- lapply(mainland, function(x) {
+    x[, "spec_ex_t"][is.na(x[, "spec_ex_t"])] <- total_time
+    return(x)
+  })
   return(mainland)
 }
