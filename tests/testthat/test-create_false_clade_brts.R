@@ -6,7 +6,7 @@ test_that("create_false_clade_brts produces correct output", {
     spec_type = c("A", "A", "A"),
     branch_code = c(NA, NA, NA),
     branch_t_bp = c(NA, NA, NA),
-    ana_origin = c("Clado_extinct", "Clado_extinct", "Clado_extinct")
+    ana_origin = c("clado_extinct", "clado_extinct", "clado_extinct")
   )
 
   false_clade_brts <- create_false_clade_brts(
