@@ -12,8 +12,8 @@ is produced}
 }
 \value{
 data frame
-RJCB: added export to be able to run the tests
 }
 \description{
 Creates a clade on the mainland for testing purposes
 }
+\keyword{internal}

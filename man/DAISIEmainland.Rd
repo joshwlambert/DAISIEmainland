@@ -17,7 +17,7 @@ in the presence of mainland dynamics.
 # simulate data for 1000 islands
 replicates <- 1000
 island <- sim_island_with_mainland(
-time = 5,
+time = 1,
 m = 100,
 island_pars = c(1, 1, 10, 0.1, 1),
 mainland_ex = 1,
@@ -25,33 +25,7 @@ mainland_sample_prob = 1,
 replicates = replicates,
 verbose = FALSE
 )
-
-# create storage for results
-ideal_ml <- vector("list", replicates)
-empirical_ml <- vector("list", replicates)
-
-# run a maximum likelihood DAISIE model for
-# each island on both the ideal and empirical
-# data sets
-
-for (i in seq_len(replicates)) {
-  ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-    datalist = island$ideal_islands[[i]],
-    initparsopt = c(1, 1, 10, 1, 1),
-    idparsopt = 1:5,
-    parsfix = NULL,
-    idparsfix = NULL,
-    ddmodel = 11,
-    jitter = 1e-5)
-  empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-    datalist = island$reality_islands[[i]],
-    initparsopt = c(1, 1, 10, 1, 1),
-    idparsopt = 1:5,
-    parsfix = NULL,
-    idparsfix = NULL,
-    ddmodel = 11,
-    jitter = 1e-5)
-}}
+}
 
 }
 \seealso{

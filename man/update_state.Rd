@@ -30,8 +30,8 @@ of species.}
 }
 \value{
 The updated state of the system, which is a list with the
-\code{island_spec} matrix and an integer \code{max_spec_id} with the most recent
-ID of species.
+\code{island_spec} matrix and an integer \code{max_spec_id} with the most
+recent ID of species.
 }
 \description{
 Makes the event happen by updating island species matrix and species IDs.
