@@ -10,11 +10,6 @@ create_island <- function(total_time,
                           island_spec,
                           mainland_clade,
                           mainland_sample_prob) {
-  # RJCB: Simplify: cyclomatic complexity is above 15
-  #
-  # Thanks to
-  # cyclocomp::cyclocomp_package_dir()
-
   # empty island
   if (nrow(island_spec) == 0) {
     ideal_island <- empirical_island <-
@@ -53,9 +48,10 @@ create_island <- function(total_time,
       subset_island <- island_spec[which(island_spec[, "main_anc_id"] ==
                                            colonists_present[i]), ]
 
-      ideal_island_clades_info[[i]] <- create_island_core(
-        time = total_time,
-        island_spec = subset_island)
+      ideal_island_clades_info[[i]] <- empirical_island_clades_info[[i]] <-
+        create_island_core(
+          time = total_time,
+          island_spec = subset_island)
 
       mainland_spec <-
         which(mainland_clade[, "spec_id"] == colonists_present[i])
@@ -67,9 +63,7 @@ create_island <- function(total_time,
       extant_mainland <-
         any(mainland_clade[descending_branches, "spec_type"] != "E")
 
-      if (extant_mainland) {
-        empirical_island_clades_info[[i]] <- ideal_island_clades_info[[i]]
-      } else {
+      if (extant_mainland == FALSE) {
         ### number of independent colonisations from the same mainland species
         number_colonisations <-
           length(unique(subset_island[, "col_t_bp"]))
