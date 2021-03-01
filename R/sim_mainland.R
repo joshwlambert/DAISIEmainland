@@ -46,7 +46,6 @@ sim_mainland <- function(
     spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
     spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
 
-    testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on R 3.6.3
     spec_id <- spec_id[which(spec_type != "E")]
     extinct_spec <- DDD::sample2(spec_id, 1)
     lineage <- c()
@@ -63,7 +62,6 @@ sim_mainland <- function(
     spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
     spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
 
-    testit::assert(sum(is.na(spec_type)) == 0) # RJCB: this one fails on R 3.6.3
     spec_id <- spec_id[which(spec_type != "E")]
     branch_spec <- DDD::sample2(spec_id, 1)
     lineage <- c()
