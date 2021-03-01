@@ -5,8 +5,6 @@
 #'
 #' @return Numeric
 #' @keywords internal
-#' RJCB: added export
-#' @export
 common_ancestor_time <- function(total_time,
                                  mainland_spec,
                                  mainland_clade) {
