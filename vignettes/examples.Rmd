@@ -14,11 +14,20 @@ knitr::opts_chunk$set(
 )
 ```
 
+Load the DAISIEmainland package. This will also load the DAISIE package
+which is required.
+
 ```{r setup}
 library(DAISIEmainland)
 ```
 
+First, we simulate 1,000 islands. This will produce phylogenetic data for each
+island. We simulate 1,000 island (or 1,000 replicates of the same island) to 
+account for the stochasticity in the simulation.
+
 ```{r eval=FALSE}
+set.seed(1)
+
 replicates <- 1000
 
 island <- sim_island_with_mainland(
@@ -30,7 +39,16 @@ island <- sim_island_with_mainland(
   replicates = replicates,
   verbose = FALSE
 )
+```
 
+Now we have the data (stored in the island object), which is a list object.
+At the highest level of the list there are two lists (`island$ideal_islands` and
+`island$empirical_islands`). The first (`island$ideal_islands`) contains 1,000
+elements, whereby each element of the list is one replicate. Therefore, to
+run a maximum likelihood DAISIE model on each replicate we create objects to
+store the data in (`ideal_ml` and `empirical_ml`) and then loop over each replicate.
+
+```{r eval=FALSE}
 ideal_ml <- vector("list", replicates)
 empirical_ml <- vector("list", replicates)
 
