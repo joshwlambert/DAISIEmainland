@@ -72,7 +72,7 @@ update_state <- function(timeval,
         island_spec[survivors, "spec_type"] <- "A"
         island_spec[survivors, "branch_code"] <- NA
         island_spec[survivors, "branch_t"] <- NA
-        island_spec[survivors, "ana_origin"] <- "Clado_extinct"
+        island_spec[survivors, "ana_origin"] <- "clado_extinct"
         island_spec <- island_spec[-extinct, ]
       }
 
@@ -135,10 +135,10 @@ update_state <- function(timeval,
     max_spec_id <- max_spec_id + 1
     island_spec[anagenesis, "spec_type"] <- "A"
     island_spec[anagenesis, "spec_id"] <- max_spec_id
-    island_spec[anagenesis, "ana_origin"] <- "Immig_parent"
+    island_spec[anagenesis, "ana_origin"] <- "immig_parent"
   }
 
-  #CLADOGENESIS - this splits species into two new specie
+  #CLADOGENESIS
   if (possible_event == 4) {
     tosplit <- DDD::sample2(seq_len(length(island_spec[, "spec_id"])), 1)
     #if the species that speciates is cladogenetic
