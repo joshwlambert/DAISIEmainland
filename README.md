@@ -9,7 +9,7 @@
 The goal of DAISIEmainland is to simulate data to test whether the DAISIE model
 (Dynamic Assembly of Island biota through Speciation Immigration and Extinction)
 initially developed in Valente et al. (2015) and used in Valente et al. (2017a,
-2017b, 2019, 2020) and Hauffe et al. 2020 can reliably estimate
+2017b, 2019, 2020) and Hauffe et al. (2020) can reliably estimate
 macroevolutionary parameters (cladogenesis, extinction, carrying capacity,
 immigration and anagenesis) when the assumption of a static mainland pool of
 species is violated, as is the case in nature. 
