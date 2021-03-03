@@ -4,10 +4,11 @@
 \alias{create_ideal_island}
 \title{Convert intermediate output to final simulation output.}
 \usage{
-create_ideal_island(time, island_spec)
+create_ideal_island(total_time, island_spec)
 }
 \arguments{
-\item{time}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}

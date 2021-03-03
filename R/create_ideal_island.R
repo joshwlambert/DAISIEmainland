@@ -36,7 +36,7 @@
 #' }
 #' @keywords internal
 create_ideal_island <- function(
-  time,
+  total_time,
   island_spec) {
   ### number of independent colonisations
   uniquecolonisation <- as.numeric(unique(
@@ -47,7 +47,7 @@ create_ideal_island <- function(
   if (number_colonisations == 1) {
     if (island_spec[1, "spec_type"] == "I") {
       descendants <- list(branching_times = c(
-                            time,
+                            total_time,
                             as.numeric(island_spec[1, "col_t_bp"])
                           ),
                           stac = 4,
@@ -55,7 +55,7 @@ create_ideal_island <- function(
     }
     if (island_spec[1, "spec_type"] == "A") {
       descendants <- list(branching_times = c(
-                            time,
+                            total_time,
                             as.numeric(island_spec[1, "col_t_bp"])
                           ),
                           stac = 2,
@@ -63,7 +63,7 @@ create_ideal_island <- function(
     }
     if (island_spec[1, "spec_type"] == "C") {
       descendants <- list(branching_times = c(
-                            time,
+                            total_time,
                             sort(
                               as.numeric(island_spec[, "branch_t_bp"]),
                               decreasing = TRUE
@@ -110,7 +110,7 @@ create_ideal_island <- function(
       testit::assert(youngest_col_time %in% btimes_all_clado_desc)
       btimes_all_clado_desc <- btimes_all_clado_desc[-i_youngest_col_btimes]
 
-      descendants$branching_times <- c(time, btimes_all_clado_desc)
+      descendants$branching_times <- c(total_time, btimes_all_clado_desc)
       testit::assert(!(youngest_col_time %in% btimes_all_clado_desc))
 
       # If no cladogenetic species is present, remove the youngest col time
@@ -119,7 +119,7 @@ create_ideal_island <- function(
       i_youngest_col_time <- which(col_times == youngest_col_time)
       col_times <- col_times[-i_youngest_col_time]
 
-      descendants$branching_times <- c(time, col_times)
+      descendants$branching_times <- c(total_time, col_times)
     }
 
 
@@ -139,21 +139,21 @@ create_ideal_island <- function(
 
       if (island_spec[samecolonisation[1], "spec_type"] == "I") {
         descendants$all_colonisations[[i]]$event_times <- as.numeric(
-          c(time, island_spec[samecolonisation, "col_t_bp"])
+          c(total_time, island_spec[samecolonisation, "col_t_bp"])
         )
         descendants$all_colonisations[[i]]$species_type <- "I"
       }
 
       if (island_spec[samecolonisation[1], "spec_type"] == "A") {
         descendants$all_colonisations[[i]]$event_times <- as.numeric(
-          c(time, island_spec[samecolonisation, "col_t_bp"])
+          c(total_time, island_spec[samecolonisation, "col_t_bp"])
         )
         descendants$all_colonisations[[i]]$species_type <- "A"
       }
 
       if (island_spec[samecolonisation[1], "spec_type"] == "C") {
         descendants$all_colonisations[[i]]$event_times <-
-          sort(c(time, as.numeric(
+          sort(c(total_time, as.numeric(
             island_spec[samecolonisation, "branch_t_bp"]
           )), decreasing = TRUE)
         descendants$all_colonisations[[i]]$species_type <- "C"
