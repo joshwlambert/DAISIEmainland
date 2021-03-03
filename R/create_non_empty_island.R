@@ -43,7 +43,7 @@ create_non_empty_island <- function(
 
     ideal_island[[i]] <- empirical_island[[i]] <-
       create_ideal_island(
-        time = total_time,
+        total_time = total_time,
         island_spec = subset_island)
 
     mainland_spec <-
