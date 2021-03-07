@@ -12,7 +12,7 @@
 #' # simulate data for 1000 islands
 #' replicates <- 1000
 #' island <- sim_island_with_mainland(
-#' time = 1,
+#' total_time = 1,
 #' m = 100,
 #' island_pars = c(1, 1, 10, 0.1, 1),
 #' mainland_ex = 1,

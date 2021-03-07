@@ -1,4 +1,4 @@
-"time","m","island_clado","island_ex","island_k","island_immig","island_ana","mainland_ex","mainland_sample_prob","replicates"
+"total_time","m","island_clado","island_ex","island_k","island_immig","island_ana","mainland_ex","mainland_sample_prob","replicates"
 5,100,0.5,0.5,0.5,0.01,10,0,0.7,1000
 5,500,0.5,0.5,0.5,0.01,10,0,0.7,1000
 5,1000,0.5,0.5,0.5,0.01,10,0,0.7,1000

@@ -6,7 +6,7 @@
 #' @keywords internal
 format_to_daisie_data <- function(
   island_replicates,
-  time,
+  total_time,
   m) {
 
   ideal_island_replicates <- list()
@@ -24,12 +24,12 @@ format_to_daisie_data <- function(
 
   ideal_islands <- format_to_daisie_data_core(
     island_replicates = ideal_island_replicates,
-    time = time,
+    total_time = total_time,
     m = m)
 
   empirical_islands <- format_to_daisie_data_core(
     island_replicates = empirical_island_replicates,
-    time = time,
+    total_time = total_time,
     m = m)
 
   return(list(ideal_islands = ideal_islands,

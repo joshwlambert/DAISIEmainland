@@ -6,7 +6,7 @@
 parameters under time-constant rates.}
 \usage{
 sim_island_with_mainland(
-  time,
+  total_time,
   m,
   island_pars,
   mainland_ex,
@@ -16,7 +16,8 @@ sim_island_with_mainland(
 )
 }
 \arguments{
-\item{time}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
 
 \item{m}{Numeric defining the size of mainland pool.}
 
@@ -90,7 +91,7 @@ modelled as time-constant parameters.
 
 set.seed(1)
 island <- sim_island_with_mainland(
-  time = 1,
+  total_time = 1,
   m = 100,
   island_pars = c(1, 1, 10, 0.1, 1),
   mainland_ex = 1,

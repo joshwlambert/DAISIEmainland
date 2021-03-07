@@ -20,7 +20,6 @@ default_params_doc(
   mainland_spec,
   mainland_sample_prob,
   island_replicates,
-  time,
   m,
   verbose,
   rates,
@@ -72,8 +71,6 @@ probability of an extant mainland species being sampled.}
 \item{island_replicates}{List that has as many elements as replicates. Each
 element must be a list with the elements \code{island_age} and
 \code{not_present}. ##### LOOK INTO THIS}
-
-\item{time}{Numeric defining the length of the simulation in time units.}
 
 \item{m}{Numeric defining the size of mainland pool.}
 

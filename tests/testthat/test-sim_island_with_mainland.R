@@ -7,7 +7,7 @@ test_that("sim_island_with_mainland produces correct empty island", {
   )
 
   island <- sim_island_with_mainland(
-      time = 1,
+      total_time = 1,
       m = 10,
       island_pars = c(1, 1, 10, 0.1, 1),
       mainland_ex = 1,
@@ -28,7 +28,7 @@ test_that("sim_island_mainland produces correct non-empty island", {
     sample.kind = "Rejection"
   )
   island <- sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
@@ -52,7 +52,7 @@ test_that("sim_island_mainland produces correct non-empty island", {
 
 test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
   expect_silent(island <- sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
     mainland_ex = 1,
@@ -64,7 +64,7 @@ test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
 
 test_that("sim_island_with_mainland produces output with verbose = TRUE", {
   expect_message(island <- sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
     mainland_ex = 1,
@@ -77,7 +77,7 @@ test_that("sim_island_with_mainland produces output with verbose = TRUE", {
 
 test_that("sim_island_mainland fails with incorrect input", {
   expect_error(sim_island_with_mainland(
-    time = "nonsense",
+    total_time = "nonsense",
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
@@ -87,7 +87,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = "nonsense",
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
@@ -97,7 +97,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = "nonsense",
     mainland_ex = 1,
@@ -107,7 +107,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c("nonsense", 1, 10, 1, 1),
     mainland_ex = 1,
@@ -117,7 +117,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, "nonsense", 10, 1, 1),
     mainland_ex = 1,
@@ -127,7 +127,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, "nonsense", 1, 1),
     mainland_ex = 1,
@@ -137,7 +137,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, "nonsense", 1),
     mainland_ex = 1,
@@ -147,7 +147,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, "nonsense"),
     mainland_ex = 1,
@@ -157,7 +157,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = "nonsense",
@@ -167,7 +167,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
@@ -177,7 +177,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
@@ -187,7 +187,7 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 
   expect_error(sim_island_with_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,

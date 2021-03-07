@@ -5,7 +5,7 @@
 #' @return List
 #' @keywords internal
 sim_island <- function(
-  time,
+  total_time,
   m,
   island_pars,
   mainland_clade,
@@ -14,7 +14,6 @@ sim_island <- function(
 
   #### Initialization ####
   timeval <- 0
-  total_time <- time
 
   mainland_spec <- mainland_clade[which(
     mainland_clade[, "spec_origin_t"] <= timeval &
@@ -70,8 +69,6 @@ sim_island <- function(
       dt <- stats::rexp(1, totalrate)
       timeval <- timeval + dt
     } else {
-      # PN: Annotate in a comment: This line happens when the mainland lineage
-      # has gone extinct by then, correct?
       timeval <- total_time + 1
     }
 
