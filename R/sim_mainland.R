@@ -27,6 +27,9 @@ sim_mainland <- function(
   time <- 0
   max_spec_id <- m
   mainland <- vector(mode = "list", length = m)
+  # PN: Consider replacing the argument name time to something else, as
+  # stats::time() is already a base function
+  # PN: Replace 1:m with seq_len(m)
   for (i in 1:m) {
     mainland[[i]] <- data.frame(spec_id = i,
                                 main_anc_id = i,

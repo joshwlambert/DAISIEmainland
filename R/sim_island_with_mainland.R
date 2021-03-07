@@ -69,6 +69,8 @@ sim_island_with_mainland <- function(
   replicates,
   verbose = FALSE
 ) {
+  # PN: Consider replacing the argument name time to something else, as
+  # stats::time() is already a base function
   testit::assert(is.numeric(time))
   testit::assert(time > 0)
   testit::assert(is.numeric(m))
@@ -88,8 +90,11 @@ sim_island_with_mainland <- function(
   island_replicates <- list()
 
   mainland_replicates <- list()
+  # PN: replace 1:replicates by seq_len(replicates)
   for (rep in 1:replicates) {
     if (verbose) {
+      # PN: message does pastes automatically. Consider replacing by
+      # message("Island replicate ", rep)
       message(paste0("Island replicate ", rep))
     }
     island_replicates[[rep]] <- list()
