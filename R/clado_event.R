@@ -15,8 +15,7 @@ clado_event <- function(
     island_spec[tosplit, "spec_id"] <- max_spec_id + 1
     oldstatus <- island_spec[tosplit, "branch_code"]
     island_spec[tosplit, "branch_code"] <- paste0(oldstatus, "A")
-    #island_spec[tosplit,6] = timeval
-    island_spec[tosplit, "ana_origin"] <- NA
+    island_spec[tosplit, "ana_origin"] <- as.character(NA)
     #for daughter B
     island_spec <- rbind(
       island_spec,
@@ -26,7 +25,7 @@ clado_event <- function(
                  spec_type = "C",
                  branch_code =  paste0(oldstatus, "B"),
                  branch_t = timeval,
-                 ana_origin = NA))
+                 ana_origin = as.character(NA)))
     max_spec_id <- max_spec_id + 2
   } else {
     #if the species that speciates is not cladogenetic
@@ -35,7 +34,7 @@ clado_event <- function(
     island_spec[tosplit, "spec_id"] <- max_spec_id + 1
     island_spec[tosplit, "branch_code"] <- "A"
     island_spec[tosplit, "branch_t"] <- island_spec[tosplit, 3]
-    island_spec[tosplit, "ana_origin"] <- NA
+    island_spec[tosplit, "ana_origin"] <- as.character(NA)
     #for daughter B
     island_spec <- rbind(
       island_spec,
@@ -45,7 +44,7 @@ clado_event <- function(
                  spec_type = "C",
                  branch_code =  "B",
                  branch_t = timeval,
-                 ana_origin = NA))
+                 ana_origin = as.character(NA)))
     max_spec_id <- max_spec_id + 2
   }
   return(list(island_spec = island_spec,

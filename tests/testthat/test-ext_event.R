@@ -1,13 +1,12 @@
 test_that("ext_event produces correct output for single species", {
-  skip("WIP")
   set.seed(1)
   island_spec <- data.frame(spec_id = 1,
                             main_anc_id = 1,
                             col_t = 0.5,
                             spec_type = "I",
-                            branch_code = NA,
-                            branch_t = NA,
-                            ana_origin = NA)
+                            branch_code = as.character(NA),
+                            branch_t = NaN,
+                            ana_origin = as.character(NA))
   island_spec <- ext_event(
     island_spec = island_spec)
 
@@ -23,7 +22,6 @@ test_that("ext_event produces correct output for single species", {
 })
 
 test_that("ext_event produces correct output for more than one species", {
-  skip("WIP")
   set.seed(1)
   island_spec <- data.frame(spec_id = c(1, 2),
                             main_anc_id = c(1, 1),
@@ -40,8 +38,10 @@ test_that("ext_event produces correct output for more than one species", {
                                      main_anc_id = 1,
                                      col_t = 0.5,
                                      spec_type = "A",
-                                     branch_code = NA,
-                                     branch_t = NA,
+                                     branch_code = as.character(NA),
+                                     branch_t = NaN,
                                      ana_origin = "clado_extinct")
+  row.names(island_spec) <- NULL
+  row.names(expected_island_spec) <- NULL
   expect_equal(island_spec, expected_island_spec)
 })

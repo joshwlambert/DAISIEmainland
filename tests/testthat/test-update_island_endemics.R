@@ -23,17 +23,17 @@ test_that("update_island_endemics produces correct output with non-empty
       main_anc_id = 15,
       col_t = 0.292906805531114,
       spec_type = "I",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "mainland_extinction"),
     mainland_clade = mainland_clade)
 
   expect_equal(island_state,
-               data.frame(spec_id = c(15),
-                          main_anc_id = c(15),
-                          col_t = c(0.292906805531114),
-                          spec_type = c("A"),
-                          branch_code = c(NA),
-                          branch_t = c(NA),
-                          ana_origin = c("mainland_extinction")))
+               data.frame(spec_id = 15,
+                          main_anc_id = 15,
+                          col_t = 0.292906805531114,
+                          spec_type = "A",
+                          branch_code = as.character(NA),
+                          branch_t = NaN,
+                          ana_origin = "mainland_extinction"))
 })

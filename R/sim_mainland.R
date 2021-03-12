@@ -31,7 +31,7 @@ sim_mainland <- function(
                                 main_anc_id = i,
                                 spec_type = "I",
                                 branch_code = "A",
-                                branch_t = NA,
+                                branch_t = NaN,
                                 spec_origin_t = 0,
                                 spec_ex_t = 0)
   }
@@ -82,7 +82,7 @@ sim_mainland <- function(
                  branch_code = paste0(oldstatus, "A"),
                  branch_t = timeval,
                  spec_origin_t = timeval,
-                 spec_ex_t = NA))
+                 spec_ex_t = NaN))
     #for daughter B
     mainland[[lineage]] <- rbind(
       mainland[[lineage]],
@@ -92,7 +92,7 @@ sim_mainland <- function(
                  branch_code = paste0(oldstatus, "B"),
                  branch_t = timeval,
                  spec_origin_t = timeval,
-                 spec_ex_t = NA))
+                 spec_ex_t = NaN))
     max_spec_id <- max_spec_id + 2
     timeval <- timeval + stats::rexp(n = 1, rate = m * mainland_ex)
   }

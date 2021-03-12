@@ -12,7 +12,7 @@ create_test_mainland_clade <- function(mainland_scenario) {
       main_anc_id = 1,
       spec_type = "I",
       branch_code = "A",
-      branch_t = NA,
+      branch_t = NaN,
       spec_origin_t = 0,
       spec_ex_t = 1.0)
   }

@@ -6,13 +6,11 @@
 ext_event <- function(
   island_spec) {
   extinct <- DDD::sample2(seq_len(length(island_spec[, "spec_id"])), 1)
-  #this chooses the row of species data to remove
   typeofspecies <- island_spec[extinct, "spec_type"]
   if (typeofspecies == "I" || typeofspecies == "A") {
     island_spec <- island_spec[-extinct, ]
   }
   if (typeofspecies == "C") {
-    #remove cladogenetic
     #first find species with same ancestor AND arrival total_time
     sisters <- intersect(which(island_spec[, "main_anc_id"] ==
                                  island_spec[extinct, "main_anc_id"]),
@@ -22,8 +20,8 @@ ext_event <- function(
     if (length(sisters) == 2) {
       #survivors status becomes anagenetic
       island_spec[survivors, "spec_type"] <- "A"
-      island_spec[survivors, "branch_code"] <- NA
-      island_spec[survivors, "branch_t"] <- NA
+      island_spec[survivors, "branch_code"] <- as.character(NA)
+      island_spec[survivors, "branch_t"] <- NaN
       island_spec[survivors, "ana_origin"] <- "clado_extinct"
       island_spec <- island_spec[-extinct, ]
     }
