@@ -56,5 +56,5 @@ create_test_island_spec <- function(island_scenario) {
     )
   }
 
-  return(island_scenario)
+  return(island_spec)
 }
