@@ -33,7 +33,7 @@ sim_mainland <- function(
                                 branch_code = "A",
                                 branch_t = NaN,
                                 spec_origin_t = 0,
-                                spec_ex_t = 0)
+                                spec_ex_t = NA)
   }
   if (mainland_ex == 0) {
     timeval <- total_time
