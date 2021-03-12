@@ -196,3 +196,19 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = "nonsense")
   )
 })
+
+test_that("No ext in mainland works",{
+  set.seed(1)
+  # Potential bug when mainland_ex = 0
+  island_with_species <- sim_island_with_mainland(
+    time = 10,
+    m = 100,
+    island_pars = c(1, 0.1, 20, 20, 1),
+    mainland_ex = 0,
+    mainland_sample_prob = 1,
+    replicates = 1,
+    FALSE
+  )
+
+  expect_gt(length(island_with_species$ideal_islands[[1]]), 2)
+})
