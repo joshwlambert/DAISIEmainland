@@ -77,7 +77,7 @@ create_ideal_island <- function(
   ### if there are two or more independent colonisations, all species are
   ### classed as stac=3 and put within same list item:
   if (number_colonisations > 1) {
-    descendants <- list(branching_times = NA,
+    descendants <- list(branching_times = NaN,
                         stac = 3,
                         missing_species = 0,
                         all_colonisations = list())
@@ -129,8 +129,8 @@ create_ideal_island <- function(
     )
     for (i in seq_along(uniquecol)) {
       descendants$all_colonisations[[i]] <- list(
-        event_times = NA,
-        species_type = NA
+        event_times = NaN,
+        species_type = as.character(NA)
       )
 
       samecolonisation <- which(as.numeric(

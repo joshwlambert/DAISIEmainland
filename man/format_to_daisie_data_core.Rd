@@ -4,14 +4,15 @@
 \alias{format_to_daisie_data_core}
 \title{Formats simulation output into standard DAISIE list output.}
 \usage{
-format_to_daisie_data_core(island_replicates, time, m)
+format_to_daisie_data_core(island_replicates, total_time, m)
 }
 \arguments{
 \item{island_replicates}{List that has as many elements as replicates. Each
 element must be a list with the elements \code{island_age} and
 \code{not_present}. ##### LOOK INTO THIS}
 
-\item{time}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
 
 \item{m}{Numeric defining the size of mainland pool.}
 }

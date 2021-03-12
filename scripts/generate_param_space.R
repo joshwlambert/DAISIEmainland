@@ -1,4 +1,4 @@
-param_space <- expand.grid(time = c(5),
+param_space <- expand.grid(total_time = c(5),
                            m = c(100, 500, 1000),
                            island_clado = c(0.5, 1),
                            island_ex = c(0.5, 1),

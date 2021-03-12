@@ -5,9 +5,9 @@ test_that("clado_event produces correct output on non-cladogenesis species", {
                             main_anc_id = 1,
                             col_t = 0.5,
                             spec_type = "I",
-                            branch_code = NA,
-                            branch_t = NA,
-                            ana_origin = NA)
+                            branch_code = as.character(NA),
+                            branch_t = NaN,
+                            ana_origin = as.character(NA))
   max_spec_id <- 1
   updated_state <- clado_event(
     timeval = timeval,
@@ -21,7 +21,8 @@ test_that("clado_event produces correct output on non-cladogenesis species", {
                                      spec_type = c("C", "C"),
                                      branch_code = c("A", "B"),
                                      branch_t = c(0.5, 0.6),
-                                     ana_origin = c(NA, NA))
+                                     ana_origin = c(as.character(NA),
+                                                    as.character(NA)))
   expect_equal(updated_state$island_spec, expected_island_spec)
   expect_equal(updated_state$max_spec_id, 3)
 })
@@ -49,7 +50,9 @@ test_that("clado_event produces correct output on cladogenesis species", {
                                      spec_type = c("C", "C", "C"),
                                      branch_code = c("AA", "B", "AB"),
                                      branch_t = c(0.5, 0.7, 0.9),
-                                     ana_origin = c(NA, NA, NA))
+                                     ana_origin = c(as.character(NA),
+                                                    as.character(NA),
+                                                    as.character(NA)))
   expect_equal(updated_state$island_spec, expected_island_spec)
   expect_equal(updated_state$max_spec_id, 5)
 })

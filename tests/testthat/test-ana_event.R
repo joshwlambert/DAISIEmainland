@@ -4,9 +4,9 @@ test_that("ana_event produces correct output", {
                             main_anc_id = 1,
                             col_t = 0.5,
                             spec_type = "I",
-                            branch_code = NA,
-                            branch_t = NA,
-                            ana_origin = NA)
+                            branch_code = as.character(NA),
+                            branch_t = NaN,
+                            ana_origin = as.character(NA))
   max_spec_id <- 1
 
   updated_state <- ana_event(
@@ -18,8 +18,8 @@ test_that("ana_event produces correct output", {
                                      main_anc_id = 1,
                                      col_t = 0.5,
                                      spec_type = "A",
-                                     branch_code = NA,
-                                     branch_t = NA,
+                                     branch_code = as.character(NA),
+                                     branch_t = NaN,
                                      ana_origin = "immig_parent")
   expect_equal(updated_state$island_spec, expected_island_spec)
   expect_equal(updated_state$max_spec_id, 2)

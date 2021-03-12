@@ -6,10 +6,9 @@
 #' @keywords internal
 format_to_daisie_data_core <- function(
   island_replicates,
-  time,
+  total_time,
   m) {
 
-  total_time <- time
   several_islands <- list()
   for (rep in seq_along(island_replicates)) {
     full_list <- island_replicates[[rep]]

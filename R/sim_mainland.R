@@ -19,32 +19,28 @@
 #' }
 #' @keywords internal
 sim_mainland <- function(
-  time,
+  total_time,
   m,
   mainland_ex
 ) {
-  total_time <- time
-  time <- 0
+  timeval <- 0
   max_spec_id <- m
   mainland <- vector(mode = "list", length = m)
-  # PN: Consider replacing the argument name time to something else, as
-  # stats::time() is already a base function
-  # PN: Replace 1:m with seq_len(m)
-  for (i in 1:m) {
+  for (i in seq_len(m)) {
     mainland[[i]] <- data.frame(spec_id = i,
                                 main_anc_id = i,
                                 spec_type = "I",
                                 branch_code = "A",
-                                branch_t = NA,
+                                branch_t = NaN,
                                 spec_origin_t = 0,
                                 spec_ex_t = 0)
   }
   if (mainland_ex == 0) {
-    time <- total_time
+    timeval <- total_time
   } else {
-    time <- stats::rexp(n = 1, rate = m * mainland_ex)
+    timeval <- stats::rexp(n = 1, rate = m * mainland_ex)
   }
-  while (time < total_time) {
+  while (timeval < total_time) {
     #EXTINCTION
     spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
     spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
@@ -59,7 +55,7 @@ sim_mainland <- function(
     extinct <- which(mainland[[lineage]][, "spec_id"] == extinct_spec)
 
     mainland[[lineage]][extinct, "spec_type"] <- "E"
-    mainland[[lineage]][extinct, "spec_ex_t"] <- time
+    mainland[[lineage]][extinct, "spec_ex_t"] <- timeval
 
     # REPLACEMENT
     spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
@@ -77,16 +73,16 @@ sim_mainland <- function(
     #for daughter A
     oldstatus <- mainland[[lineage]][tosplit, "branch_code"]
     mainland[[lineage]][tosplit, "spec_type"] <- "E"
-    mainland[[lineage]][tosplit, "spec_ex_t"] <- time
+    mainland[[lineage]][tosplit, "spec_ex_t"] <- timeval
     mainland[[lineage]] <- rbind(
       mainland[[lineage]],
       data.frame(spec_id = max_spec_id + 1,
                  main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
                  spec_type = "C",
                  branch_code = paste0(oldstatus, "A"),
-                 branch_t = time,
-                 spec_origin_t = time,
-                 spec_ex_t = NA))
+                 branch_t = timeval,
+                 spec_origin_t = timeval,
+                 spec_ex_t = NaN))
     #for daughter B
     mainland[[lineage]] <- rbind(
       mainland[[lineage]],
@@ -94,11 +90,11 @@ sim_mainland <- function(
                  main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
                  spec_type = "C",
                  branch_code = paste0(oldstatus, "B"),
-                 branch_t = time,
-                 spec_origin_t = time,
-                 spec_ex_t = NA))
+                 branch_t = timeval,
+                 spec_origin_t = timeval,
+                 spec_ex_t = NaN))
     max_spec_id <- max_spec_id + 2
-    time <- time + stats::rexp(n = 1, rate = m * mainland_ex)
+    timeval <- timeval + stats::rexp(n = 1, rate = m * mainland_ex)
   }
   mainland <- lapply(mainland, function(x) {
     x[, "spec_ex_t"][is.na(x[, "spec_ex_t"])] <- total_time

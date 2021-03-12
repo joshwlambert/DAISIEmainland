@@ -23,7 +23,6 @@
 #' @param island_replicates List that has as many elements as replicates. Each
 #' element must be a list with the elements \code{island_age} and
 #' \code{not_present}. ##### LOOK INTO THIS
-#' @param time Numeric defining the length of the simulation in time units.
 #' @param m Numeric defining the size of mainland pool.
 #' @param verbose Logical, determining if progress output should be printed
 #' during the simulation.
@@ -67,7 +66,6 @@ default_params_doc <- function(
   mainland_spec,
   mainland_sample_prob,
   island_replicates,
-  time,
   m,
   verbose,
   rates,

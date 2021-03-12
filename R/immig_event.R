@@ -20,18 +20,18 @@ immig_event <- function(
                  main_anc_id = colonist,
                  col_t = timeval,
                  spec_type = "I",
-                 branch_code = NA,
-                 branch_t = NA,
-                 ana_origin = NA))
+                 branch_code = as.character(NA),
+                 branch_t = NaN,
+                 ana_origin = as.character(NA)))
   }
   if (length(isitthere) != 0) {
     island_spec[isitthere, ] <- data.frame(spec_id = colonist,
                                            main_anc_id = colonist,
                                            col_t = timeval,
                                            spec_type = "I",
-                                           branch_code = NA,
-                                           branch_t = NA,
-                                           ana_origin = NA)
+                                           branch_code = as.character(NA),
+                                           branch_t = NaN,
+                                           ana_origin = as.character(NA))
   }
   return(island_spec)
 }

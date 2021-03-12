@@ -8,7 +8,7 @@ test_that("sim_island is silent and produces correct empty island", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
   expect_silent(
     island <- sim_island(
-      time = 1,
+      total_time = 1,
       m = 10,
       island_pars = c(1, 1, 10, 1, 1),
       mainland_clade = mainland_clade,
@@ -32,7 +32,7 @@ test_that("sim_island is silent and produces correct non-empty island", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   expect_silent(
     island <- sim_island(
-      time = 1,
+      total_time = 1,
       m = 100,
       island_pars = c(1, 1, 10, 1, 1),
       mainland = mainland_clade,

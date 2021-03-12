@@ -4,10 +4,11 @@
 \alias{sim_island}
 \title{Simulates the island.}
 \usage{
-sim_island(time, m, island_pars, mainland_clade, mainland_sample_prob)
+sim_island(total_time, m, island_pars, mainland_clade, mainland_sample_prob)
 }
 \arguments{
-\item{time}{Numeric defining the length of the simulation in time units.}
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
 
 \item{m}{Numeric defining the size of mainland pool.}
 

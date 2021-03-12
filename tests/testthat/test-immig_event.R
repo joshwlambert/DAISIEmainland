@@ -18,8 +18,8 @@ test_that("immig_event produces correct output", {
                                      main_anc_id = 1,
                                      col_t = 0.1,
                                      spec_type = "I",
-                                     branch_code = NA,
-                                     branch_t = NA,
-                                     ana_origin = NA)
+                                     branch_code = as.character(NA),
+                                     branch_t = NaN,
+                                     ana_origin = as.character(NA))
   expect_equal(island_spec, expected_island_spec)
 })

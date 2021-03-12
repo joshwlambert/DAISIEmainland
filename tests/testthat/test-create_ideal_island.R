@@ -3,8 +3,8 @@ test_that("create_ideal_island is correct for singleton endemic (stac 2)", {
                             main_anc_id = 1,
                             col_t_bp = 0.5,
                             spec_type = "A",
-                            branch_code = NA,
-                            branch_t_bp = NA,
+                            branch_code = as.character(NA),
+                            branch_t_bp = NaN,
                             ana_origin = "immig_parent")
   ideal_island <- create_ideal_island(
     total_time = 1,
@@ -37,8 +37,8 @@ test_that("create_ideal_island is correct for one recolonisation (stac 3)", {
                             main_anc_id = c(1, 2),
                             col_t_bp = c(0.5, 0.3),
                             spec_type = c("A", "I"),
-                            branch_code = NA,
-                            branch_t_bp = NA,
+                            branch_code = as.character(NA),
+                            branch_t_bp = NaN,
                             ana_origin = "immig_parent")
   ideal_island <- create_ideal_island(
     total_time = 1,
@@ -60,9 +60,9 @@ test_that("create_ideal_island is correct for singletone nonendemic (stac 4)", {
                             main_anc_id = 1,
                             col_t_bp = 0.5,
                             spec_type = "I",
-                            branch_code = NA,
-                            branch_t_bp = NA,
-                            ana_origin = NA)
+                            branch_code = as.character(NA),
+                            branch_t_bp = NaN,
+                            ana_origin = as.character(NA))
   ideal_island <- create_ideal_island(
     total_time = 1,
     island_spec = island_spec)

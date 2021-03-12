@@ -7,7 +7,7 @@ test_that("sim_mainland produces correct output", {
   )
 
   mainland <- sim_mainland(
-    time = 1,
+    total_time = 1,
     m = 10,
     mainland_ex = 1)
 

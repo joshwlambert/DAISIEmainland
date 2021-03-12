@@ -5,7 +5,7 @@
 #' @return List
 #' @keywords internal
 sim_island <- function(
-  time,
+  total_time,
   m,
   island_pars,
   mainland_clade,
@@ -14,7 +14,6 @@ sim_island <- function(
 
   #### Initialization ####
   timeval <- 0
-  total_time <- time
 
   mainland_spec <- mainland_clade[which(
     mainland_clade[, "spec_origin_t"] <= timeval &
@@ -28,8 +27,6 @@ sim_island <- function(
   mainland_event_t <- unique(mainland_event_t)
   mainland_event_t <- sort(mainland_event_t, decreasing = FALSE)
   mainland_event_t <- mainland_event_t[mainland_event_t != 0]
-  # PN: Could events have been recorded in the mainland after total time
-  # that would be missed in line 33?
   mainland_event_t <- mainland_event_t[mainland_event_t != total_time]
 
   # CHECK MAINLAND_EVENT_T
@@ -70,15 +67,11 @@ sim_island <- function(
       dt <- stats::rexp(1, totalrate)
       timeval <- timeval + dt
     } else {
-      # PN: Annotate in a comment: This line happens when the mainland lineage
-      # has gone extinct by then, correct?
       timeval <- total_time + 1
     }
 
     # If a mainland speciation event has occurred since the last time step
     if (timeval > mainland_event_t[1]) {
-      # PN: Won't this always be triggered if totalrate == 0 and
-      # mainland_event_t[1] < totaltime?
       timeval <- mainland_event_t[1]
       mainland_event_t <- mainland_event_t[-1]
       mainland_spec <- mainland_clade[which(
@@ -94,10 +87,6 @@ sim_island <- function(
         total_time = total_time,
         island_spec = island_spec,
         mainland_clade = mainland_clade)
-      # PN: Why update num_spec here, after maybe changing endemicity? Does
-      # num_spec change if a mainland species goes extinct and the island
-      # island pop becomes anagenetic?
-      num_spec <- nrow(island_spec)
       num_immigrants <- length(which(island_spec[, "spec_type"] == "I"))
 
       if (timeval <= total_time) {

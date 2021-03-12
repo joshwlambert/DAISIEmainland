@@ -50,7 +50,7 @@
 #'
 #' set.seed(1)
 #' island <- sim_island_with_mainland(
-#'   time = 1,
+#'   total_time = 1,
 #'   m = 100,
 #'   island_pars = c(1, 1, 10, 0.1, 1),
 #'   mainland_ex = 1,
@@ -61,7 +61,7 @@
 #'
 #' @export sim_island_with_mainland
 sim_island_with_mainland <- function(
-  time,
+  total_time,
   m,
   island_pars,
   mainland_ex,
@@ -69,10 +69,8 @@ sim_island_with_mainland <- function(
   replicates,
   verbose = FALSE
 ) {
-  # PN: Consider replacing the argument name time to something else, as
-  # stats::time() is already a base function
-  testit::assert(is.numeric(time))
-  testit::assert(time > 0)
+  testit::assert(is.numeric(total_time))
+  testit::assert(total_time > 0)
   testit::assert(is.numeric(m))
   testit::assert(m > 1)
   testit::assert(is.numeric(island_pars))
@@ -86,27 +84,23 @@ sim_island_with_mainland <- function(
   testit::assert(replicates >= 1)
   testit::assert(is.logical(verbose))
 
-  total_time <- time
   island_replicates <- list()
 
   mainland_replicates <- list()
-  # PN: replace 1:replicates by seq_len(replicates)
-  for (rep in 1:replicates) {
+  for (rep in seq_len(replicates)) {
     if (verbose) {
-      # PN: message does pastes automatically. Consider replacing by
-      # message("Island replicate ", rep)
-      message(paste0("Island replicate ", rep))
+      message("Island replicate ", rep)
     }
     island_replicates[[rep]] <- list()
     mainland_replicates[[rep]] <- list()
     full_list <- list()
     mainland_replicates[[rep]] <- sim_mainland(
-      time = time,
+      total_time = total_time,
       m = m,
       mainland_ex = mainland_ex)
     for (m_spec in seq_along(mainland_replicates[[rep]])) {
       full_list[[m_spec]] <- sim_island(
-        time = total_time,
+        total_time = total_time,
         m = m,
         island_pars = island_pars,
         mainland_clade = mainland_replicates[[rep]][[m_spec]],
@@ -117,7 +111,7 @@ sim_island_with_mainland <- function(
   }
   island_replicates <- format_to_daisie_data(
     island_replicates = island_replicates,
-    time = total_time,
+    total_time = total_time,
     m = m)
   return(island_replicates)
 }
