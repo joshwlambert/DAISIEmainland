@@ -87,12 +87,9 @@ sim_island_with_mainland <- function(
   island_replicates <- list()
 
   mainland_replicates <- list()
-  # PN: replace 1:replicates by seq_len(replicates)
-  for (rep in 1:replicates) {
+  for (rep in seq_len(replicates)) {
     if (verbose) {
-      # PN: message does pastes automatically. Consider replacing by
-      # message("Island replicate ", rep)
-      message(paste0("Island replicate ", rep))
+      message("Island replicate ", rep)
     }
     island_replicates[[rep]] <- list()
     mainland_replicates[[rep]] <- list()
