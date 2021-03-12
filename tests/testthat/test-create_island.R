@@ -2,13 +2,7 @@ test_that("empty island is same as ideal", {
   set.seed(1)
   total_time <- 1
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
-  island_spec <- data.frame(spec_id = numeric(),
-                            main_anc_id = numeric(),
-                            col_t = numeric(),
-                            spec_type = character(),
-                            branch_code = character(),
-                            branch_t = numeric(),
-                            ana_origin = character())
+  island_spec <- create_test_island_spec(island_scenario = 1)
   mainland_sample_prob <- 1
 
   island <- create_island(
@@ -28,7 +22,7 @@ test_that("mainland ancestor is extant; empirical = ideal", {
   total_time <- 3
 
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
-  island_spec <- create_test_island_spec(1)
+  island_spec <- create_test_island_spec(island_scenario = 2)
   mainland_sample_prob <- 1
   island <- create_island(
     total_time = total_time,
@@ -47,7 +41,7 @@ test_that("mainland ancestor is extinct; multiple colonists same species;
   total_time <- 3
 
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
-  island_spec <- create_test_island_spec(island_scenario = 2)
+  island_spec <- create_test_island_spec(island_scenario = 3)
   mainland_sample_prob <- 1
 
   island <- create_island(
@@ -95,7 +89,7 @@ test_that("mainland ancestor is extinct; multiple colonists same species;
   total_time <- 3
 
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
-  island_spec <- create_test_island_spec(island_scenario = 3)
+  island_spec <- create_test_island_spec(island_scenario = 4)
   mainland_sample_prob <- 1
 
   island <- create_island(
@@ -144,7 +138,7 @@ test_that("mainland ancestor is extinct; only one colonists same species;
   total_time <- 3
 
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
-  island_spec <- create_test_island_spec(island_scenario = 4)
+  island_spec <- create_test_island_spec(island_scenario = 5)
   mainland_sample_prob <- 1
 
   # sim_island(

@@ -10,6 +10,19 @@
 create_test_island_spec <- function(island_scenario) {
   if (island_scenario == 1) {
     island_spec <- data.frame(
+      spec_id = numeric(),
+      main_anc_id = numeric(),
+      col_t = numeric(),
+      spec_type = character(),
+      branch_code = character(),
+      branch_t = numeric(),
+      ana_origin = character()
+    )
+  }
+
+  if (island_scenario == 2) {
+
+    island_spec <- data.frame(
       spec_id = 1,
       main_anc_id = 1,
       col_t = 2.413543,
@@ -20,7 +33,7 @@ create_test_island_spec <- function(island_scenario) {
     )
   }
 
-  if (island_scenario == 2) {
+  if (island_scenario == 3) {
     island_spec <- data.frame(
       spec_id = c(149, 151, 150, 152),
       main_anc_id = c(37, 37, 147, 147),
@@ -32,7 +45,7 @@ create_test_island_spec <- function(island_scenario) {
     )
   }
 
-  if (island_scenario == 3) {
+  if (island_scenario == 4) {
     island_spec <- data.frame(
       spec_id = c(149, 151, 148, 152),
       main_anc_id = c(148, 148, 148, 148),
@@ -44,7 +57,7 @@ create_test_island_spec <- function(island_scenario) {
     )
   }
 
-  if (island_scenario == 4) {
+  if (island_scenario == 5) {
     island_spec <- data.frame(
       spec_id = c(37, 149, 150),
       main_anc_id = c(37, 147, 147),
