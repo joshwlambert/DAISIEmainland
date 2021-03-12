@@ -201,7 +201,7 @@ test_that("No ext in mainland with full sampling works",{
   set.seed(1)
   # Potential bug when mainland_ex = 0
   island_with_species <- sim_island_with_mainland(
-    time = 10,
+    total_time = 10,
     m = 100,
     island_pars = c(1, 0.1, 20, 20, 1),
     mainland_ex = 0,
@@ -217,7 +217,7 @@ test_that("No ext in mainland with incomplete sampling works",{
   set.seed(1)
   # Potential bug when mainland_ex = 0
   island_with_species <- sim_island_with_mainland(
-    time = 10,
+    total_time = 10,
     m = 100,
     island_pars = c(1, 0.1, 20, 20, 1),
     mainland_ex = 0,
