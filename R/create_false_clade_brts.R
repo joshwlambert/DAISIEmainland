@@ -13,14 +13,15 @@ create_false_clade_brts <- function(total_time,
     false_brts <- false_brts[-length(false_brts)]
   } else {
     false_brts <- subset_island[, "col_t_bp"]
+    false_brts <- false_brts[-length(false_brts)]
     # PN: in line 20: Concatenate false_brts and subset_island like so:
     # false_brts <- sort(
     #   c(false_brts, subset_island[, "branch_t_bp"]),
     #   decreasing = TRUE)
-    false_brts <- sort(false_brts,
-                       subset_island[, "branch_t_bp"],
-                       decreasing = TRUE
-    )
+    false_brts <- sort(
+      false_brts,
+      subset_island[, "branch_t_bp"],
+      decreasing = TRUE)
   }
   false_clade_brts <- c(total_time, anc_branch_t_bp, false_brts)
   return(false_clade_brts)
