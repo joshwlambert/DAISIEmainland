@@ -5,7 +5,7 @@
 #' @return data frame
 #' @keywords internal
 create_test_mainland_clade <- function(mainland_scenario) {
-
+# PN: Improve documentation of mainland_scenario.
   if (mainland_scenario == 1) {
     mainland_clade <- data.frame(
       spec_id = 1,
