@@ -63,7 +63,7 @@ for (i in seq_len(replicates)) {
     jitter = 1e-5)
   
   empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-    datalist = island$reality_islands[[i]],
+    datalist = island$empirical_islands[[i]],
     initparsopt = c(1, 1, 10, 1, 1),
     idparsopt = 1:5,
     parsfix = NULL,
