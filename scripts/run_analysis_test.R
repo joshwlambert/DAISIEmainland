@@ -2,7 +2,7 @@ args <- commandArgs(TRUE)
 print(args)
 data <- read.csv(file = "data/param_space.csv")
 print(nrow(data))
-island <- sim_island_with_mainland(
+island <- DAISIEmainland::sim_island_with_mainland(
   total_time = data$total_time[args],
   m = data$m[args],
   island_pars = c(data$island_clado[args],
