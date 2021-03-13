@@ -11,7 +11,7 @@ create_test_mainland_clade(mainland_scenario)
 is produced}
 }
 \value{
-data frame
+data frame with mainland clade information
 }
 \description{
 Creates a clade on the mainland for testing purposes

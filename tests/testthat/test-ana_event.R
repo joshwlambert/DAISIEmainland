@@ -1,5 +1,9 @@
 test_that("ana_event produces correct output", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = 1,
                             main_anc_id = 1,
                             col_t = 0.5,

@@ -2,11 +2,12 @@
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return data frame
+#' @return data frame with mainland clade information
 #' @keywords internal
 create_test_mainland_clade <- function(mainland_scenario) {
-# PN: Improve documentation of mainland_scenario.
+
   if (mainland_scenario == 1) {
+
     mainland_clade <- data.frame(
       spec_id = 1,
       main_anc_id = 1,
@@ -66,6 +67,7 @@ create_test_mainland_clade <- function(mainland_scenario) {
   }
 
   if (mainland_scenario == 6) {
+
     mainland_clade <- data.frame(
       spec_id = c(1, 2, 3, 4, 5, 6, 7),
       main_anc_id = c(1, 1, 1, 1, 1, 1, 1),
@@ -77,6 +79,7 @@ create_test_mainland_clade <- function(mainland_scenario) {
   }
 
   if (mainland_scenario == 7) {
+
     mainland_clade <- data.frame(
       spec_id = c(1, 2, 3, 4, 5, 6, 7),
       main_anc_id = c(1, 1, 1, 1, 1, 1, 1),

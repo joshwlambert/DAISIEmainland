@@ -50,6 +50,32 @@ test_that("sim_island_mainland produces correct non-empty island", {
   expect_equal(island$empirical_island[[1]][[2]]$missing_species, 0)
 })
 
+test_that("sim_island_with_mainland with 0 mainland_ex produces correct output",{
+  set.seed(1)
+  island <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 1, 1),
+    mainland_ex = 0,
+    mainland_sample_prob = 1,
+    replicates = 1)
+  expect_gt(length(island$ideal_islands[[1]]), 2)
+})
+
+test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
+          produces correct output",{
+  set.seed(1)
+  island <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 1, 1),
+    mainland_ex = 0,
+    mainland_sample_prob = 0.5,
+    replicates = 1)
+  expect_gt(length(island$ideal_islands[[1]]), 2)
+})
+
+
 test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
   expect_silent(island <- sim_island_with_mainland(
     total_time = 1,
@@ -196,36 +222,3 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = "nonsense")
   )
 })
-
-# PN: Exposed now fixed mainland_ex = 0 bug
-# test_that("No ext in mainland with full sampling works",{
-#   set.seed(1)
-#   # Potential bug when mainland_ex = 0
-#   island_with_species <- sim_island_with_mainland(
-#     total_time = 10,
-#     m = 100,
-#     island_pars = c(1, 0.1, 20, 20, 1),
-#     mainland_ex = 0,
-#     mainland_sample_prob = 1,
-#     replicates = 2,
-#     FALSE
-#   )
-#
-#   expect_gt(length(island_with_species$ideal_islands[[1]]), 2)
-# })
-#
-# test_that("No ext in mainland with incomplete sampling works",{
-#   set.seed(1)
-#   # Potential bug when mainland_ex = 0
-#   island_with_species <- sim_island_with_mainland(
-#     total_time = 10,
-#     m = 100,
-#     island_pars = c(1, 0.1, 20, 20, 1),
-#     mainland_ex = 0,
-#     mainland_sample_prob = 0.3,
-#     replicates = 2,
-#     FALSE
-#   )
-#
-#   expect_gt(length(island_with_species$ideal_islands[[1]]), 2)
-# })

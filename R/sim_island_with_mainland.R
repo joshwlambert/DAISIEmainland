@@ -48,7 +48,11 @@
 #' ## Simulate 2 islands (replicates) for 1 million years, with a mainland
 #' ## extinction rate of 1 (SpMy^-1). Pool size 100.
 #'
-#' set.seed(1)
+#'   set.seed(
+#'   1,
+#'   kind = "Mersenne-Twister",
+#'   normal.kind = "Inversion",
+#'   sample.kind = "Rejection")
 #' island <- sim_island_with_mainland(
 #'   total_time = 1,
 #'   m = 100,
