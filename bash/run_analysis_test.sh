@@ -8,4 +8,5 @@
 #SBATCH --array=1-10
 #SBATCH --mem=1GB
 
+ml R
 Rscript /data/p287218/DAISIEmainland/scripts/run_analysis_test.R ${SLURM_ARRAY_TASK_ID}

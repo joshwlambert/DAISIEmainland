@@ -15,10 +15,10 @@ island <- sim_island_with_mainland(
   replicates = data$replicates[args],
   verbose = FALSE)
 
-ideal_ml <- vector("list", replicates)
-empirical_ml <- vector("list", replicates)
+ideal_ml <- vector("list", data$replicates[args])
+empirical_ml <- vector("list", data$replicates[args])
 
-for (i in seq_len(replicates)) {
+for (i in seq_len(data$replicates[args])) {
   ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
     datalist = island$ideal_islands[[i]],
     initparsopt = c(data$island_clado[args],
