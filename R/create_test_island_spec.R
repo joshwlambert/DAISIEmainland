@@ -87,10 +87,10 @@ create_test_island_spec <- function(island_scenario) {
     island_spec <- data.frame(
       spec_id = c(4, 5, 2),
       main_anc_id = c(2, 2, 2),
-      col_t = c(0.3529460, 0.3529460, 0.2757032),
+      col_t = c(0.55, 0.55, 0.70),
       spec_type = c("C", "C", "I"),
       branch_code = c("A", "B", as.character(NA)),
-      branch_t = c(0.3529460, 0.3034136, NaN),
+      branch_t = c(0.55, 0.60, NaN),
       ana_origin = as.character(c(NA, NA, NA)))
   }
   return(island_spec)
