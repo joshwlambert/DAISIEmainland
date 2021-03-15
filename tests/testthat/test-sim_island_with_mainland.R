@@ -50,7 +50,8 @@ test_that("sim_island_mainland produces correct non-empty island", {
   expect_equal(island$empirical_island[[1]][[2]]$missing_species, 0)
 })
 
-test_that("sim_island_with_mainland with 0 mainland_ex produces correct output",{
+test_that("sim_island_with_mainland with 0 mainland_ex produces correct
+          output", {
   set.seed(1)
   island <- sim_island_with_mainland(
     total_time = 1,
@@ -63,7 +64,7 @@ test_that("sim_island_with_mainland with 0 mainland_ex produces correct output",
 })
 
 test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
-          produces correct output",{
+          produces correct output", {
   set.seed(1)
   island <- sim_island_with_mainland(
     total_time = 1,
