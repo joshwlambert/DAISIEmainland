@@ -53,10 +53,9 @@ ext_event <- function(
         #change the splitting date of the sister species so that it inherits
         #the early splitting that used to belong to A.
         #Bug fix here thanks to Nadiah Kristensen: max -> min
-        tochange <-
-          possiblesister[which(
-            island_spec[possiblesister, "branch_t"] ==
-              min(island_spec[possiblesister, "branch_t"]))]
+        tochange <- possiblesister[which(
+          island_spec[possiblesister, "branch_t"] ==
+            min(island_spec[possiblesister, "branch_t"]))]
         island_spec[tochange, "branch_t"] <- island_spec[extinct, "branch_t"]
       }
       #remove the offending A/B from these species

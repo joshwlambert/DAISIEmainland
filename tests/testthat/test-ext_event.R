@@ -45,3 +45,28 @@ test_that("ext_event produces correct output for more than one species", {
   row.names(expected_island_spec) <- NULL
   expect_equal(island_spec, expected_island_spec)
 })
+
+test_that("ext_event produces correct output for more than two species", {
+  set.seed(1)
+  island_spec <- data.frame(spec_id = c(1, 2, 3, 4),
+                            main_anc_id = c(1, 1, 1, 1),
+                            col_t = c(0.5, 0.5, 0.5, 0.5),
+                            spec_type = c("C", "C", "C", "C"),
+                            branch_code = c("AAA", "B", "AB", "AAB"),
+                            branch_t = c(0.5, 0.6, 0.7, 0.8),
+                            ana_origin = c(NA, NA, NA, NA))
+  island_spec <- ext_event(
+    island_spec = island_spec)
+
+  expect_true(is.data.frame(island_spec))
+  expected_island_spec <- data.frame(spec_id = c(2, 3, 4),
+                                     main_anc_id = c(1, 1, 1),
+                                     col_t = c(0.5, 0.5, 0.5),
+                                     spec_type = c("C", "C", "C"),
+                                     branch_code = c("B", "AB", "AA"),
+                                     branch_t = c(0.6, 0.7, 0.5),
+                                     ana_origin = c(NA, NA, NA))
+  row.names(island_spec) <- NULL
+  row.names(expected_island_spec) <- NULL
+  expect_equal(island_spec, expected_island_spec)
+})
