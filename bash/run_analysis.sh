@@ -9,4 +9,4 @@
 #SBATCH --mem=1GB
 
 ml R
-Rscript /data/p287218/DAISIEmainland/scripts/run_analysis.R ${SLURM_ARRAY_TASK_ID}
+Rscript /data/p287218/DAISIEmainland/scripts/analysis/run_analysis.R ${SLURM_ARRAY_TASK_ID}
