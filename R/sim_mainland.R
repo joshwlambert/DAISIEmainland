@@ -35,6 +35,8 @@ sim_mainland <- function(
                                 spec_origin_t = 0,
                                 spec_ex_t = NA)
   }
+  spec_id <- 1:m
+  spec_type <- rep("I", m)
   if (mainland_ex == 0) {
     timeval <- total_time
   } else {
@@ -42,11 +44,17 @@ sim_mainland <- function(
   }
   while (timeval < total_time) {
     #EXTINCTION
-    spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
-    spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
+    # spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
+    # spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
 
-    spec_id <- spec_id[which(spec_type != "E")]
-    extinct_spec <- DDD::sample2(spec_id, 1)
+    spec_id_sample <- spec_id[which(spec_type != "E")]
+    # browser()
+    print(paste0("spec_id ", length(spec_id)))
+    print(paste0("spec_id_sample ", length(spec_id_sample)))
+    if( length(spec_id) == 1026) browser()
+    testit::assert(fact = "spec_id_sample should be m here",
+                   length(spec_id_sample) == m)
+    extinct_spec <- DDD::sample2(spec_id_sample, 1)
     lineage <- c()
     for (i in seq_along(mainland)) {
       lineage[i] <- any(mainland[[i]][, "spec_id"] == extinct_spec)
@@ -57,12 +65,15 @@ sim_mainland <- function(
     mainland[[lineage]][extinct, "spec_type"] <- "E"
     mainland[[lineage]][extinct, "spec_ex_t"] <- timeval
 
-    # REPLACEMENT
-    spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
-    spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
+    spec_type[extinct_spec] <- "E"
+    spec_id_sample <- spec_id[which(spec_type != "E")]
 
-    spec_id <- spec_id[which(spec_type != "E")]
-    branch_spec <- DDD::sample2(spec_id, 1)
+    # REPLACEMENT
+    # spec_id_apply <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
+    # spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
+
+    # spec_id <- spec_id[which(spec_type != "E")]
+    branch_spec <- DDD::sample2(spec_id_sample, 1)
     lineage <- c()
     for (i in seq_along(mainland)) {
       lineage[i] <- any(mainland[[i]][, "spec_id"] == branch_spec)
@@ -93,8 +104,18 @@ sim_mainland <- function(
                  branch_t = timeval,
                  spec_origin_t = timeval,
                  spec_ex_t = NaN))
+
+    spec_type[branch_spec] <- "E"
+    spec_type <- append(spec_type, rep("C", 2), branch_spec)
+    spec_id <- append(
+      spec_id,
+      c(max_spec_id + 1, max_spec_id + 2),
+      branch_spec - 1
+    )
     max_spec_id <- max_spec_id + 2
     timeval <- timeval + stats::rexp(n = 1, rate = m * mainland_ex)
+    testit::assert("spec_id should be same lenght spec_type",
+                   length(spec_id) == length(spec_type))
   }
   mainland <- lapply(mainland, function(x) {
     x[, "spec_ex_t"][is.na(x[, "spec_ex_t"])] <- total_time
