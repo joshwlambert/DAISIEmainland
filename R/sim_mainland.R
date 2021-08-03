@@ -47,7 +47,7 @@ sim_mainland <- function(
     for (i in seq_along(mainland)) {
       if (any(mainland[[i]][, "spec_id"] == extinct_spec)) {
         clade <- i
-        break()
+        break
       }
     }
 
@@ -66,7 +66,7 @@ sim_mainland <- function(
     for (i in seq_along(mainland)) {
       if (any(mainland[[i]][, "spec_id"] == branch_spec)) {
         clade <- i
-        break()
+        break
       }
     }
 
