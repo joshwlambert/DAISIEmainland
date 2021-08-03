@@ -44,11 +44,13 @@ sim_mainland <- function(
   while (timeval < total_time) {
     #EXTINCTION
     extinct_spec <- DDD::sample2(spec_id_sample, 1)
-    clade <- c()
     for (i in seq_along(mainland)) {
-      clade[i] <- any(mainland[[i]][, "spec_id"] == extinct_spec)
+      if (any(mainland[[i]][, "spec_id"] == extinct_spec)) {
+        clade <- i
+        break()
+      }
     }
-    clade <- which(clade)
+
     spec_to_die <- which(mainland[[clade]][, "spec_id"] == extinct_spec)
 
     mainland[[clade]][spec_to_die, "spec_type"] <- "E"
@@ -61,11 +63,13 @@ sim_mainland <- function(
 
     # REPLACEMENT
     branch_spec <- DDD::sample2(spec_id_sample, 1)
-    clade <- c()
     for (i in seq_along(mainland)) {
-      clade[i] <- any(mainland[[i]][, "spec_id"] == branch_spec)
+      if (any(mainland[[i]][, "spec_id"] == branch_spec)) {
+        clade <- i
+        break()
+      }
     }
-    clade <- which(clade)
+
     spec_to_split <- which(mainland[[clade]][, "spec_id"] == branch_spec)
     #CLADOGENESIS - this splits species into two new species
     #for daughter A
