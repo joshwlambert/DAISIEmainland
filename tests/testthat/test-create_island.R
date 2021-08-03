@@ -174,14 +174,13 @@ test_that("mainland ancestor sister is extinct, sister species on the mainland
 
 test_that("mainland ancestor is extinct; only one colonists same species; clade
           and singleton cases", {
-   skip("WIP")
-   # PN: This test stil fails, probably because I didn't understand it
+   # TODO: check tomorrow
 
    set.seed(1)
    total_time <- 3
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
-   island_spec <- create_test_island_spec(island_scenario = 5)
+   island_spec <- create_test_island_spec(island_scenario = 6)
    mainland_sample_prob <- 1
 
    island <- create_island(
@@ -199,22 +198,23 @@ test_that("mainland ancestor is extinct; only one colonists same species; clade
    testthat::expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
    testthat::expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
    # Singleton
-   testthat::expect_identical(island$empirical_island[[1]]$stac, 5)
-   # Clade
-   # Currently 6, should be 2? Current output is that of "no branching event
-   # between immigration and island age with extant descendants, and clade)
-   # FAILS
-   testthat::expect_identical(island$empirical_island[[2]]$stac, 2)
-   testthat::expect_identical(island$ideal_island[[1]]$stac, 3) # should be 2?
-   testthat::expect_identical(island$ideal_island[[2]]$stac, 3) # should be 2?
+   testthat::expect_identical(island$empirical_island[[1]]$stac, 6)
+
+   # Singleton is grafted onto clade on empirical, so only one clade
+   testthat::expect_length(island$empirical_island, 1)
+   testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+
+   # Re-colonisations are in object within same level, not as separate clade
+   testthat::expect_length(island$ideal_island, 1)
+
+   # Re-colonists take more elements in ideal island
+   testthat::expect_lt(
+      length(island$empirical_island[[1]]), length(island$ideal_island[[1]])
+   )
+
    testthat::expect_equal(
       island$empirical_island[[1]]$branching_times[1],
       island$empirical_island[[1]]$branching_times[2],
-      tolerance = 1e-5
-   )
-   testthat::expect_equal(
-      island$empirical_island[[2]]$branching_times[1],
-      island$empirical_island[[2]]$branching_times[2],
       tolerance = 1e-5
    )
    testthat::expect_gt(
@@ -222,8 +222,4 @@ test_that("mainland ancestor is extinct; only one colonists same species; clade
       island$ideal_island[[1]]$branching_times[2]
    )
 
-   testthat::expect_gt(
-      island$ideal_island[[2]]$branching_times[1],
-      island$ideal_island[[2]]$branching_times[2]
-   )
 })
