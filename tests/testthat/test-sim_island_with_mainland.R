@@ -1,6 +1,6 @@
 test_that("sim_island_with_mainland produces correct empty island", {
   set.seed(
-    1,
+    2,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
@@ -37,15 +37,15 @@ test_that("sim_island_mainland produces correct non-empty island", {
     verbose = FALSE)
 
   expect_equal(island$ideal_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$ideal_island[[1]][[1]]$not_present, 8)
+  expect_equal(island$ideal_island[[1]][[1]]$not_present, 6)
   expect_equal(island$ideal_island[[1]][[2]]$branching_times,
-               c(1.000000000000, 0.380518542182))
+               c(1.000000000000, 0.396066439852455))
   expect_equal(island$ideal_island[[1]][[2]]$stac, 2)
   expect_equal(island$ideal_island[[1]][[2]]$missing_species, 0)
   expect_equal(island$empirical_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$empirical_island[[1]][[1]]$not_present, 8)
+  expect_equal(island$empirical_island[[1]][[1]]$not_present, 6)
   expect_equal(island$empirical_island[[1]][[2]]$branching_times,
-               c(1.000000000000, 0.380518542182))
+               c(1.000000000000, 0.396066439852455))
   expect_equal(island$empirical_island[[1]][[2]]$stac, 2)
   expect_equal(island$empirical_island[[1]][[2]]$missing_species, 0)
 })
