@@ -1,6 +1,6 @@
 #' Creates an island community for testing purposes
 #'
-#' @param defaultParamsdoc
+#' @inheritParams default_params_doc
 #'
 #' @return data frame with island community information
 #' @keywords internal

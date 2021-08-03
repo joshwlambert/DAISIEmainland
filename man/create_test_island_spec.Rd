@@ -6,9 +6,6 @@
 \usage{
 create_test_island_spec(island_scenario)
 }
-\arguments{
-\item{defaultParamsdoc}{}
-}
 \value{
 data frame with island community information
 }
