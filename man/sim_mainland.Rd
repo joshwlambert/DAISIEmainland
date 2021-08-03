@@ -16,8 +16,8 @@ units.}
 \item{mainland_ex}{Numeric parameter for mainland extinction rate.}
 }
 \value{
-a list where each element is a mainland lineage, this could be a
-single or multiple lineages. Each element of the list is a matrix with nine
+a list where each element is a mainland clade, this could be a
+single or multiple clades. Each element of the list is a matrix with nine
 columns. The columns contain
 \enumerate{
     \item Species identity

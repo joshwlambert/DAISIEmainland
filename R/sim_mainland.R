@@ -3,8 +3,8 @@
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return a list where each element is a mainland lineage, this could be a
-#' single or multiple lineages. Each element of the list is a matrix with nine
+#' @return a list where each element is a mainland clade, this could be a
+#' single or multiple clades. Each element of the list is a matrix with nine
 #' columns. The columns contain
 #' \enumerate{
 #'     \item Species identity
@@ -35,8 +35,7 @@ sim_mainland <- function(
                                 spec_origin_t = 0,
                                 spec_ex_t = NA)
   }
-  spec_id <- 1:m
-  spec_type <- rep("I", m)
+  spec_id_sample <- 1:m
   if (mainland_ex == 0) {
     timeval <- total_time
   } else {
@@ -44,78 +43,65 @@ sim_mainland <- function(
   }
   while (timeval < total_time) {
     #EXTINCTION
-    # spec_id <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
-    # spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
-
-    spec_id_sample <- spec_id[which(spec_type != "E")]
-    # browser()
-    print(paste0("spec_id ", length(spec_id)))
-    print(paste0("spec_id_sample ", length(spec_id_sample)))
-    if( length(spec_id) == 1026) browser()
-    testit::assert(fact = "spec_id_sample should be m here",
-                   length(spec_id_sample) == m)
     extinct_spec <- DDD::sample2(spec_id_sample, 1)
-    lineage <- c()
+    clade <- c()
     for (i in seq_along(mainland)) {
-      lineage[i] <- any(mainland[[i]][, "spec_id"] == extinct_spec)
+      clade[i] <- any(mainland[[i]][, "spec_id"] == extinct_spec)
     }
-    lineage <- which(lineage)
-    extinct <- which(mainland[[lineage]][, "spec_id"] == extinct_spec)
+    clade <- which(clade)
+    spec_to_die <- which(mainland[[clade]][, "spec_id"] == extinct_spec)
 
-    mainland[[lineage]][extinct, "spec_type"] <- "E"
-    mainland[[lineage]][extinct, "spec_ex_t"] <- timeval
+    mainland[[clade]][spec_to_die, "spec_type"] <- "E"
+    mainland[[clade]][spec_to_die, "spec_ex_t"] <- timeval
 
-    spec_type[extinct_spec] <- "E"
-    spec_id_sample <- spec_id[which(spec_type != "E")]
+    index_to_remove <- which(spec_id_sample == extinct_spec)
+    testit::assert(length(index_to_remove) == 1)
+    spec_id_sample <- spec_id_sample[-index_to_remove]
+    testit::assert(length(spec_id_sample) == m - 1)
 
     # REPLACEMENT
-    # spec_id_apply <- unlist(lapply(mainland, function(x) x[, "spec_id"]))
-    # spec_type <- unlist(lapply(mainland, function(x) x[, "spec_type"]))
-
-    # spec_id <- spec_id[which(spec_type != "E")]
     branch_spec <- DDD::sample2(spec_id_sample, 1)
-    lineage <- c()
+    clade <- c()
     for (i in seq_along(mainland)) {
-      lineage[i] <- any(mainland[[i]][, "spec_id"] == branch_spec)
+      clade[i] <- any(mainland[[i]][, "spec_id"] == branch_spec)
     }
-    lineage <- which(lineage)
-    tosplit <- which(mainland[[lineage]][, "spec_id"] == branch_spec)
+    clade <- which(clade)
+    spec_to_split <- which(mainland[[clade]][, "spec_id"] == branch_spec)
     #CLADOGENESIS - this splits species into two new species
     #for daughter A
-    oldstatus <- mainland[[lineage]][tosplit, "branch_code"]
-    mainland[[lineage]][tosplit, "spec_type"] <- "E"
-    mainland[[lineage]][tosplit, "spec_ex_t"] <- timeval
-    mainland[[lineage]] <- rbind(
-      mainland[[lineage]],
+    oldstatus <- mainland[[clade]][spec_to_split, "branch_code"]
+    mainland[[clade]][spec_to_split, "spec_type"] <- "E"
+    mainland[[clade]][spec_to_split, "spec_ex_t"] <- timeval
+    mainland[[clade]] <- rbind(
+      mainland[[clade]],
       data.frame(spec_id = max_spec_id + 1,
-                 main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
+                 main_anc_id = mainland[[clade]][spec_to_split, "main_anc_id"],
                  spec_type = "C",
                  branch_code = paste0(oldstatus, "A"),
                  branch_t = timeval,
                  spec_origin_t = timeval,
                  spec_ex_t = NaN))
     #for daughter B
-    mainland[[lineage]] <- rbind(
-      mainland[[lineage]],
+    mainland[[clade]] <- rbind(
+      mainland[[clade]],
       data.frame(spec_id = max_spec_id + 2,
-                 main_anc_id = mainland[[lineage]][tosplit, "main_anc_id"],
+                 main_anc_id = mainland[[clade]][spec_to_split, "main_anc_id"],
                  spec_type = "C",
                  branch_code = paste0(oldstatus, "B"),
                  branch_t = timeval,
                  spec_origin_t = timeval,
                  spec_ex_t = NaN))
 
-    spec_type[branch_spec] <- "E"
-    spec_type <- append(spec_type, rep("C", 2), branch_spec)
-    spec_id <- append(
-      spec_id,
-      c(max_spec_id + 1, max_spec_id + 2),
-      branch_spec - 1
-    )
+    index_to_remove <- which(spec_id_sample == branch_spec)
+    testit::assert(length(index_to_remove) == 1)
+    spec_id_sample <- spec_id_sample[-index_to_remove]
+    testit::assert(length(spec_id_sample) == m - 2)
+    spec_id_sample <- c(spec_id_sample, max_spec_id + 1, max_spec_id + 2)
+    testit::assert(length(spec_id_sample) == m)
+
     max_spec_id <- max_spec_id + 2
+
     timeval <- timeval + stats::rexp(n = 1, rate = m * mainland_ex)
-    testit::assert("spec_id should be same lenght spec_type",
-                   length(spec_id) == length(spec_type))
   }
   mainland <- lapply(mainland, function(x) {
     x[, "spec_ex_t"][is.na(x[, "spec_ex_t"])] <- total_time
