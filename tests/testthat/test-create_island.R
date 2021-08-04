@@ -249,3 +249,31 @@ test_that("mainland ancestor is extant; two colonists same species: one clade
    testthat::expect_length(island$empirical_island, 1)
    testthat::expect_length(island$ideal_island, 1)
 })
+
+test_that("mainland ancestor is extant; two colonists same species: one clade
+          and one singleton. ancestor speciates after colonisations, then one
+          tip goes extinct", {
+   set.seed(1)
+   total_time <- 1
+
+   mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
+   island_spec <- create_test_island_spec(island_scenario = 8)
+   mainland_sample_prob <- 1
+
+   island <- create_island(
+      total_time = total_time,
+      island_spec = island_spec,
+      mainland_clade = mainland_clade,
+      mainland_sample_prob = mainland_sample_prob
+   )
+   testthat::expect_identical(
+      island$ideal_island,
+      island$empirical_island
+   )
+
+   testthat::expect_identical(island$empirical_island[[1]]$stac, 3)
+   testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+
+   testthat::expect_length(island$empirical_island, 1)
+   testthat::expect_length(island$ideal_island, 1)
+})
