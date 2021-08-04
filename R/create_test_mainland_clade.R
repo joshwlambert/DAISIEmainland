@@ -7,6 +7,7 @@
 create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 1) {
+    # Single species (regular DAISIE)
 
     mainland_clade <- data.frame(
       spec_id = 1,
@@ -19,6 +20,7 @@ create_test_mainland_clade <- function(mainland_scenario) {
   }
 
   if (mainland_scenario == 2) {
+    # Singleton after speciation followed by extinction
 
     mainland_clade <- data.frame(
       spec_id = c(1, 15, 16),
@@ -31,6 +33,7 @@ create_test_mainland_clade <- function(mainland_scenario) {
   }
 
   if (mainland_scenario == 3) {
+    # Single clade in mainland
 
     mainland_clade <- data.frame(
       spec_id = c(2, 27, 28),
@@ -55,6 +58,7 @@ create_test_mainland_clade <- function(mainland_scenario) {
   }
 
   if (mainland_scenario == 5) {
+    # Clade in mainland, one species goes extinct, one extant
 
     mainland_clade <- data.frame(
       spec_id = c(1, 2, 3),
