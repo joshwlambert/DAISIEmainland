@@ -174,7 +174,7 @@ test_that("mainland ancestor sister is extinct, sister species on the mainland
 
 test_that("mainland ancestor is extinct; only one colonists same species; clade
           and singleton cases", {
-   # TODO: check tomorrow
+   # TODO: check tomorrow; also check: should be "A" in mainland_spec$spec_type?
 
    set.seed(1)
    total_time <- 3
@@ -221,5 +221,31 @@ test_that("mainland ancestor is extinct; only one colonists same species; clade
       island$ideal_island[[1]]$branching_times[1],
       island$ideal_island[[1]]$branching_times[2]
    )
+})
 
+test_that("mainland ancestor is extant; two colonists same species: one clade
+          and one singleton. ancestor speciates after colonisations", {
+   set.seed(1)
+   total_time <- 3
+
+   mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
+   island_spec <- create_test_island_spec(island_scenario = 8)
+   mainland_sample_prob <- 1
+
+   island <- create_island(
+      total_time = total_time,
+      island_spec = island_spec,
+      mainland_clade = mainland_clade,
+      mainland_sample_prob = mainland_sample_prob
+   )
+   testthat::expect_identical(
+      island$ideal_island,
+      island$empirical_island
+   )
+
+   testthat::expect_identical(island$empirical_island[[1]]$stac, 3)
+   testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+
+   testthat::expect_length(island$empirical_island, 1)
+   testthat::expect_length(island$ideal_island, 1)
 })
