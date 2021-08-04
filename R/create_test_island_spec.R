@@ -93,5 +93,21 @@ create_test_island_spec <- function(island_scenario) {
       branch_t = c(0.55, 0.60, NaN),
       ana_origin = as.character(c(NA, NA, NA)))
   }
+
+  if (island_scenario == 8) {
+
+    island_spec <- data.frame(
+      spec_id = c(149, 151, 150),
+      main_anc_id = c(37, 37, 37),
+      col_t = c(0.07551, 0.07551, 0.1226),
+      spec_type = c("C", "C", "A"),
+      branch_code = as.character(c("A", "B", NA)),
+      branch_t = c(0.07551, 0.1, NaN),
+      ana_origin = c(
+        NA,
+        NA,
+        "immig_parent"))
+  }
+
   return(island_spec)
 }
