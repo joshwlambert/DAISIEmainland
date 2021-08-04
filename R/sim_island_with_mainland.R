@@ -89,8 +89,8 @@ sim_island_with_mainland <- function(
   testit::assert(is.logical(verbose))
 
   island_replicates <- list()
-
   mainland_replicates <- list()
+
   for (rep in seq_len(replicates)) {
     if (verbose) {
       message("Island replicate ", rep)
