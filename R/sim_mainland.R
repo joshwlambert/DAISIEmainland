@@ -23,17 +23,27 @@ sim_mainland <- function(
   m,
   mainland_ex
 ) {
+
+  testit::assert(is.numeric(total_time))
+  testit::assert(total_time > 0)
+  testit::assert(is.numeric(m))
+  testit::assert(m > 1)
+  testit::assert(is.numeric(mainland_ex))
+  testit::assert(mainland_ex >= 0)
+
   timeval <- 0
   max_spec_id <- m
   mainland <- vector(mode = "list", length = m)
   for (i in seq_len(m)) {
-    mainland[[i]] <- data.frame(spec_id = i,
-                                main_anc_id = i,
-                                spec_type = "I",
-                                branch_code = "A",
-                                branch_t = NaN,
-                                spec_origin_t = 0,
-                                spec_ex_t = NA)
+    mainland[[i]] <- data.frame(
+      spec_id = i,
+      main_anc_id = i,
+      spec_type = "I",
+      branch_code = "A",
+      branch_t = NaN,
+      spec_origin_t = 0,
+      spec_ex_t = NA
+    )
   }
   spec_id_sample <- 1:m
   if (mainland_ex == 0) {
@@ -50,12 +60,9 @@ sim_mainland <- function(
         break
       }
     }
-
     spec_to_die <- which(mainland[[clade]][, "spec_id"] == extinct_spec)
-
     mainland[[clade]][spec_to_die, "spec_type"] <- "E"
     mainland[[clade]][spec_to_die, "spec_ex_t"] <- timeval
-
     index_to_remove <- which(spec_id_sample == extinct_spec)
     testit::assert(length(index_to_remove) == 1)
     spec_id_sample <- spec_id_sample[-index_to_remove]
@@ -69,7 +76,6 @@ sim_mainland <- function(
         break
       }
     }
-
     spec_to_split <- which(mainland[[clade]][, "spec_id"] == branch_spec)
     #CLADOGENESIS - this splits species into two new species
     #for daughter A
@@ -104,7 +110,6 @@ sim_mainland <- function(
     testit::assert(length(spec_id_sample) == m)
 
     max_spec_id <- max_spec_id + 2
-
     timeval <- timeval + stats::rexp(n = 1, rate = m * mainland_ex)
   }
   mainland <- lapply(mainland, function(x) {
