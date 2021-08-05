@@ -8,7 +8,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 1) {
     # Single species (regular DAISIE)
-
     mainland_clade <- data.frame(
       spec_id = 1,
       main_anc_id = 1,
@@ -22,7 +21,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 2) {
     # 1 speciation no extinction
-
     mainland_clade <- data.frame(
       spec_id = 1:3,
       main_anc_id = rep(1, 3),
@@ -36,7 +34,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 3) {
     # Extinct, no speciation
-
     mainland_clade <- data.frame(
       spec_id = 1,
       main_anc_id = 1,
@@ -49,7 +46,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 4) {
     # 1 speciation, 1 extinction
-
     mainland_clade <- data.frame(
       spec_id = 1:3,
       main_anc_id = rep(1, 3),
@@ -63,7 +59,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 5) {
     # 1 speciation, 2 extinctions
-
     mainland_clade <- data.frame(
       spec_id = 1:3,
       main_anc_id = rep(1, 3),
@@ -77,7 +72,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 6) {
     # 1 speciation, 1 extinction (other branch)
-
     mainland_clade <- data.frame(
       spec_id = 1:3,
       main_anc_id = rep(1, 3),
@@ -91,7 +85,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 7) {
     # 2 speciations no extinction
-
     mainland_clade <- data.frame(
       spec_id = 1:5,
       main_anc_id = rep(1, 5),
@@ -105,7 +98,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 8) {
     # 2 speciations 1 extinction (other branch)
-
     mainland_clade <- data.frame(
       spec_id = 1:5,
       main_anc_id = rep(1, 5),
@@ -119,7 +111,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 9) {
     # 2 speciations 1 extinction
-
     mainland_clade <- data.frame(
       spec_id = 1:5,
       main_anc_id = rep(1, 5),
@@ -133,7 +124,6 @@ create_test_mainland_clade <- function(mainland_scenario) {
 
   if (mainland_scenario == 10) {
     # 2 speciations 2 extinction
-
     mainland_clade <- data.frame(
       spec_id = 1:5,
       main_anc_id = rep(1, 5),
