@@ -102,12 +102,11 @@ sim_island_with_mainland <- function(
       total_time = total_time,
       m = m,
       mainland_ex = mainland_ex)
-    for (m_spec in seq_along(mainland_replicates[[rep]])) {
-      full_list[[m_spec]] <- sim_island(
+    for (mainland_clade in seq_along(mainland_replicates[[rep]])) {
+      full_list[[mainland_clade]] <- sim_island(
         total_time = total_time,
-        m = m,
         island_pars = island_pars,
-        mainland_clade = mainland_replicates[[rep]][[m_spec]],
+        mainland_clade = mainland_replicates[[rep]][[mainland_clade]],
         mainland_sample_prob = mainland_sample_prob
       )
     }
