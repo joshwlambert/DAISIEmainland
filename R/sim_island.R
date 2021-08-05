@@ -82,7 +82,7 @@ sim_island <- function(
     } else {
 
       # Changes island species to endemic when a mainland species goes extinct
-      island_state <- update_island_endemics(
+      island_spec <- update_island_endemics(
         timeval = timeval,
         total_time = total_time,
         island_spec = island_spec,
