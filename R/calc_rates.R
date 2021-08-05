@@ -14,6 +14,7 @@ calc_rates <- function(
   num_spec,
   num_immigrants,
   mainland_n) {
+
   testit::assert(is.numeric(gam))
   testit::assert(is.numeric(laa))
   testit::assert(is.numeric(lac))
