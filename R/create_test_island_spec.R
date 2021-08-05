@@ -259,14 +259,14 @@ create_test_island_spec <- function(island_scenario) {
   }
 
   if (island_scenario == 21) {
-    # 2 species clade (early col)
+    # 2 species clade (early col & early speciation)
     island_spec <- data.frame(
       spec_id = c(2, 3),
       main_anc_id = c(1, 1),
       col_t = c(0.2, 0.2),
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
-      branch_t = c(0.2, 0.55),
+      branch_t = c(0.2, 0.45),
       ana_origin = c(NA, NA))
   }
 
