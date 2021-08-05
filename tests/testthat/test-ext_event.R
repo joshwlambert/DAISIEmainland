@@ -1,5 +1,9 @@
 test_that("ext_event produces correct output for single species", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = 1,
                             main_anc_id = 1,
                             col_t = 0.5,
@@ -22,7 +26,11 @@ test_that("ext_event produces correct output for single species", {
 })
 
 test_that("ext_event produces correct output for more than one species", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = c(1, 2),
                             main_anc_id = c(1, 1),
                             col_t = c(0.5, 0.5),
@@ -47,7 +55,11 @@ test_that("ext_event produces correct output for more than one species", {
 })
 
 test_that("ext_event produces correct output for more than two species", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = c(1, 2, 3, 4),
                             main_anc_id = c(1, 1, 1, 1),
                             col_t = c(0.5, 0.5, 0.5, 0.5),

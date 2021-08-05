@@ -32,7 +32,11 @@ test_that("clado_event produces correct output on non-cladogenesis species", {
 })
 
 test_that("clado_event produces correct output on cladogenesis species", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   timeval <- 0.9
   island_spec <- data.frame(spec_id = c(2, 3),
                             main_anc_id = c(1, 1),

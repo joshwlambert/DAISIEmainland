@@ -52,7 +52,11 @@ test_that("sim_island_mainland produces correct non-empty island", {
 
 test_that("sim_island_with_mainland with 0 mainland_ex produces correct
           output", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island <- sim_island_with_mainland(
     total_time = 1,
     m = 10,
@@ -65,7 +69,11 @@ test_that("sim_island_with_mainland with 0 mainland_ex produces correct
 
 test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
           produces correct output", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island <- sim_island_with_mainland(
     total_time = 1,
     m = 10,

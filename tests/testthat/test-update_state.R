@@ -1,5 +1,9 @@
 test_that("update_state produces correct output for immigration", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = numeric(),
                             main_anc_id = numeric(),
                             col_t = numeric(),
@@ -29,7 +33,11 @@ test_that("update_state produces correct output for immigration", {
 })
 
 test_that("update_state produces correct output for extinction", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = c(2, 3),
                             main_anc_id = c(1, 1),
                             col_t = c(0.5, 0.5),
@@ -61,7 +69,11 @@ test_that("update_state produces correct output for extinction", {
 })
 
 test_that("update_state produces correct output for anagenesis", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = 1,
                             main_anc_id = 1,
                             col_t = 0.5,
@@ -91,7 +103,11 @@ test_that("update_state produces correct output for anagenesis", {
 })
 
 test_that("update_state produces correct output for cladogenesis", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   island_spec <- data.frame(spec_id = 1,
                             main_anc_id = 1,
                             col_t = 0.5,

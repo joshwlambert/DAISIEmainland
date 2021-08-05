@@ -220,7 +220,11 @@ test_that("mainland species undergoes speciation and then one of the descendant 
 
 test_that("mainland ancestor is extinct; multiple colonists same species; no
           clado", {
-   set.seed(1)
+   set.seed(
+      1,
+      kind = "Mersenne-Twister",
+      normal.kind = "Inversion",
+      sample.kind = "Rejection")
    total_time <- 1
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
@@ -265,7 +269,11 @@ test_that("mainland ancestor is extinct; multiple colonists same species; no
 
 test_that("full mainland species are extinct; multiple colonists same species;
           clado event", {
-   set.seed(1)
+   set.seed(
+      1,
+      kind = "Mersenne-Twister",
+      normal.kind = "Inversion",
+      sample.kind = "Rejection")
    total_time <- 1
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
@@ -305,10 +313,13 @@ test_that("full mainland species are extinct; multiple colonists same species;
    )
 })
 
-
 test_that("mainland ancestor sister is extinct, sister species on the mainland
           is extant, multiple colonists same species; clado event", {
-   set.seed(1)
+   set.seed(
+      1,
+      kind = "Mersenne-Twister",
+      normal.kind = "Inversion",
+      sample.kind = "Rejection")
    total_time <- 1
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
@@ -351,7 +362,11 @@ test_that("mainland ancestor is extinct; only one colonists same species; clade
           and singleton cases", {
    # TODO: check tomorrow; also check: should be "A" in mainland_spec$spec_type?
 
-   set.seed(1)
+   set.seed(
+      1,
+      kind = "Mersenne-Twister",
+      normal.kind = "Inversion",
+      sample.kind = "Rejection")
    total_time <- 1
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
@@ -400,7 +415,11 @@ test_that("mainland ancestor is extinct; only one colonists same species; clade
 
 test_that("mainland ancestor is extant; two colonists same species: one clade
           and one singleton. ancestor speciates after colonisations", {
-   set.seed(1)
+   set.seed(
+      1,
+      kind = "Mersenne-Twister",
+      normal.kind = "Inversion",
+      sample.kind = "Rejection")
    total_time <- 1
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
@@ -428,7 +447,11 @@ test_that("mainland ancestor is extant; two colonists same species: one clade
 test_that("mainland ancestor is extant; two colonists same species: one clade
           and one singleton. ancestor speciates after colonisations, then one
           tip goes extinct", {
-   set.seed(1)
+   set.seed(
+      1,
+      kind = "Mersenne-Twister",
+      normal.kind = "Inversion",
+      sample.kind = "Rejection")
    total_time <- 1
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
@@ -453,30 +476,34 @@ test_that("mainland ancestor is extant; two colonists same species: one clade
    testthat::expect_length(island$ideal_island, 1)
 })
 
-test_that("mainland ancestor is extant; two colonists same species: one clade
-          and one singleton. ancestor speciates after colonisations, then all
-          tips goes extinct", {
-             set.seed(1)
-             total_time <- 1
+test_that("mainland ancestor is extant; two colonists same species: one
+          clade and one singleton. ancestor speciates after colonisations,
+          then all tips goes extinct", {
+   set.seed(
+      1,
+      kind = "Mersenne-Twister",
+      normal.kind = "Inversion",
+      sample.kind = "Rejection")
+   total_time <- 1
 
-             mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
-             island_spec <- create_test_island_spec(island_scenario = 8)
-             mainland_sample_prob <- 1
+   mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
+   island_spec <- create_test_island_spec(island_scenario = 8)
+   mainland_sample_prob <- 1
 
-             island <- create_island(
-                total_time = total_time,
-                island_spec = island_spec,
-                mainland_clade = mainland_clade,
-                mainland_sample_prob = mainland_sample_prob
-             )
-             testthat::expect_identical(
-                island$ideal_island,
-                island$empirical_island
-             )
+   island <- create_island(
+      total_time = total_time,
+      island_spec = island_spec,
+      mainland_clade = mainland_clade,
+      mainland_sample_prob = mainland_sample_prob
+   )
+   testthat::expect_identical(
+      island$ideal_island,
+      island$empirical_island
+   )
 
-             testthat::expect_identical(island$empirical_island[[1]]$stac, 3)
-             testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+   testthat::expect_identical(island$empirical_island[[1]]$stac, 3)
+   testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
 
-             testthat::expect_length(island$empirical_island, 1)
-             testthat::expect_length(island$ideal_island, 1)
+   testthat::expect_length(island$empirical_island, 1)
+   testthat::expect_length(island$ideal_island, 1)
 })

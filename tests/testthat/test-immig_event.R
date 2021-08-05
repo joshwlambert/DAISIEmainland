@@ -1,5 +1,9 @@
 test_that("immig_event produces correct output", {
-  set.seed(1)
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
   timeval <- 0.1
   island_spec <- data.frame(spec_id = numeric(),
                             main_anc_id = numeric(),
