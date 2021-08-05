@@ -6,6 +6,8 @@
 #' @keywords internal
 create_test_island_spec <- function(island_scenario) {
 
+  testit::assert(island_scenario >= 0 && island_scenario <= 43)
+
   if (island_scenario == 0) {
     # Empty island
     island_spec <- data.frame(

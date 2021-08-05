@@ -6,6 +6,8 @@
 #' @keywords internal
 create_test_mainland_clade <- function(mainland_scenario) {
 
+  testit::assert(mainland_scenario >= 1 && mainland_scenario <= 14)
+
   if (mainland_scenario == 1) {
     # Single species (regular DAISIE)
     mainland_clade <- data.frame(

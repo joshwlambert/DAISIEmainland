@@ -95,3 +95,8 @@ test_that("create_test_mainland_clade produces correct output for scenario 14", 
   expect_true(ncol(mainland_clade) == 7)
   expect_true(nrow(mainland_clade) == 3)
 })
+
+test_that("create_test_mainland_clade fails correctly", {
+  expect_error(create_test_mainland_clade(mainland_scenario = 0))
+  expect_error(create_test_mainland_clade(mainland_scenario = 15))
+})

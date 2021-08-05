@@ -305,3 +305,8 @@ test_that("create_test_island_spec produces correct output for scenario 43", {
   expect_true(ncol(island_spec) == 7)
   expect_true(nrow(island_spec) == 2)
 })
+
+test_that("create_test_island_spec fails correctly", {
+  expect_error(create_test_mainland_clade(mainland_scenario = -1))
+  expect_error(create_test_mainland_clade(mainland_scenario = 44))
+})
