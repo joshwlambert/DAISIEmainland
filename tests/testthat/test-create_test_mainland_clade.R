@@ -67,3 +67,31 @@ test_that("create_test_mainland_clade produces correct output for scenario 10", 
   expect_true(ncol(mainland_clade) == 7)
   expect_true(nrow(mainland_clade) == 5)
 })
+
+test_that("create_test_mainland_clade produces correct output for scenario 11", {
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 11)
+  expect_true(is.data.frame(mainland_clade))
+  expect_true(ncol(mainland_clade) == 7)
+  expect_true(nrow(mainland_clade) == 3)
+})
+
+test_that("create_test_mainland_clade produces correct output for scenario 12", {
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 12)
+  expect_true(is.data.frame(mainland_clade))
+  expect_true(ncol(mainland_clade) == 7)
+  expect_true(nrow(mainland_clade) == 3)
+})
+
+test_that("create_test_mainland_clade produces correct output for scenario 13", {
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 13)
+  expect_true(is.data.frame(mainland_clade))
+  expect_true(ncol(mainland_clade) == 7)
+  expect_true(nrow(mainland_clade) == 3)
+})
+
+test_that("create_test_mainland_clade produces correct output for scenario 14", {
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 14)
+  expect_true(is.data.frame(mainland_clade))
+  expect_true(ncol(mainland_clade) == 7)
+  expect_true(nrow(mainland_clade) == 3)
+})
