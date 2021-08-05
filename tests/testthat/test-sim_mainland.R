@@ -29,3 +29,23 @@ test_that("sim_mainland produces correct output", {
                  spec_ex_t = c(0.292906805531114, 0.518408027733462, 1,
                                0.541999222479509, 0.734671684538218, 1, 1)))
 })
+
+test_that("sim_mainland fails with incorrect input", {
+  expect_error(sim_mainland(
+    total_time = "nonsense",
+    m = 100,
+    mainland_ex = 1)
+  )
+
+  expect_error(sim_mainland(
+    total_time = 1,
+    m = "nonsense",
+    mainland_ex = 1)
+  )
+
+  expect_error(sim_mainland(
+    total_time = 1,
+    m = 10,
+    mainland_ex = "nonsense")
+  )
+})
