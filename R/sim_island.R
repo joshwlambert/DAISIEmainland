@@ -6,11 +6,19 @@
 #' @keywords internal
 sim_island <- function(
   total_time,
-  m,
   island_pars,
   mainland_clade,
   mainland_sample_prob
 ) {
+
+  testit::assert(is.numeric(total_time))
+  testit::assert(total_time > 0)
+  testit::assert(is.numeric(island_pars))
+  testit::assert(length(island_pars) == 5)
+  testit::assert(island_pars[4] > 0)
+  testit::assert(is.data.frame(mainland_clade))
+  testit::assert(is.numeric(mainland_sample_prob))
+  testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
 
   #### Initialization ####
   timeval <- 0
@@ -21,24 +29,23 @@ sim_island <- function(
   mainland_n <- length(mainland_spec)
   max_spec_id <- max(mainland_clade[, "spec_id"])
 
-  mainland_exts <- as.numeric(mainland_clade[, "spec_ex_t"])
-  mainland_brts <- as.numeric(mainland_clade[, "spec_origin_t"])
+  mainland_exts <- mainland_clade[, "spec_ex_t"]
+  mainland_brts <- mainland_clade[, "spec_origin_t"]
   mainland_event_t <- c(mainland_exts, mainland_brts, total_time + 1)
   mainland_event_t <- unique(mainland_event_t)
   mainland_event_t <- sort(mainland_event_t, decreasing = FALSE)
   mainland_event_t <- mainland_event_t[mainland_event_t != 0]
   mainland_event_t <- mainland_event_t[mainland_event_t != total_time]
 
-  # CHECK MAINLAND_EVENT_T
-
-  island_spec <- data.frame(spec_id = numeric(),
-                            main_anc_id = numeric(),
-                            col_t = numeric(),
-                            spec_type = character(),
-                            branch_code = character(),
-                            branch_t = numeric(),
-                            ana_origin = character())
-
+  island_spec <- data.frame(
+    spec_id = numeric(),
+    main_anc_id = numeric(),
+    col_t = numeric(),
+    spec_type = character(),
+    branch_code = character(),
+    branch_t = numeric(),
+    ana_origin = character()
+  )
 
   lac <- island_pars[1]
   mu <- island_pars[2]
