@@ -6,7 +6,7 @@ test_that("empty island is same as ideal", {
       sample.kind = "Rejection")
    total_time <- 1
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
-   island_spec <- create_test_island_spec(island_scenario = 1)
+   island_spec <- create_test_island_spec(island_scenario = 0)
    mainland_sample_prob <- 1
 
    island <- create_island(
@@ -32,7 +32,7 @@ test_that("mainland species immigrates and does not go extinct or speciate,
    total_time <- 1
 
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
-   island_spec <- create_test_island_spec(island_scenario = 2)
+   island_spec <- create_test_island_spec(island_scenario = 1)
    mainland_sample_prob <- 1
    island <- create_island(
       total_time = total_time,
@@ -42,7 +42,7 @@ test_that("mainland species immigrates and does not go extinct or speciate,
    )
    testthat::expect_identical(island$ideal_island, island$empirical_island)
    testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-   testthat::expect_identical(island$ideal_island[[1]]$stac, 2)
+   testthat::expect_identical(island$ideal_island[[1]]$stac, 4)
    testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
 })
 
@@ -56,8 +56,8 @@ test_that("mainland species immigrates to the island then undergoes speciation
       sample.kind = "Rejection")
    total_time <- 1
 
-   mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
-   island_spec <- create_test_island_spec(island_scenario = 9)
+   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
+   island_spec <- create_test_island_spec(island_scenario = 2)
    mainland_sample_prob <- 1
    island <- create_island(
       total_time = total_time,
@@ -81,8 +81,8 @@ test_that("mainland species undergoes speciation and then one of the descendent
       sample.kind = "Rejection")
    total_time <- 1
 
-   mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
-   island_spec <- create_test_island_spec(island_scenario = 10)
+   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
+   island_spec <- create_test_island_spec(island_scenario = 3)
    mainland_sample_prob <- 1
    island <- create_island(
       total_time = total_time,

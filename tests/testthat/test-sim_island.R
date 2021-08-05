@@ -24,7 +24,7 @@ test_that("sim_island is silent and produces correct empty island", {
 
 test_that("sim_island is silent and produces correct non-empty island", {
   set.seed(
-    1,
+    2,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
@@ -39,11 +39,11 @@ test_that("sim_island is silent and produces correct non-empty island", {
       mainland_sample_prob = 1)
   )
   expect_equal(island$ideal_island[[1]]$branching_times,
-               c(1.000000000000, 0.312294050817, 0.191759806927))
-  expect_equal(island$ideal_island[[1]]$stac, 2)
+               c(1.0000000000, 0.2593533245))
+  expect_equal(island$ideal_island[[1]]$stac, 4)
   expect_equal(island$ideal_island[[1]]$missing_species, 0)
   expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.000000000000, 0.312294050817, 0.191759806927))
-  expect_equal(island$empirical_island[[1]]$stac, 2)
+               c(1.0000000000, 0.2593533245))
+  expect_equal(island$empirical_island[[1]]$stac, 4)
   expect_equal(island$empirical_island[[1]]$missing_species, 0)
 })

@@ -23,49 +23,49 @@ test_that("create_test_island_spec produces correct output for scenario 3", {
   island_spec <- create_test_island_spec(island_scenario = 3)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 4)
+  expect_true(nrow(island_spec) == 1)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 4", {
   island_spec <- create_test_island_spec(island_scenario = 4)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 4)
+  expect_true(nrow(island_spec) == 1)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 5", {
   island_spec <- create_test_island_spec(island_scenario = 5)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 3)
+  expect_true(nrow(island_spec) == 1)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 6", {
   island_spec <- create_test_island_spec(island_scenario = 6)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 4)
+  expect_true(nrow(island_spec) == 1)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 7", {
   island_spec <- create_test_island_spec(island_scenario = 7)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 3)
+  expect_true(nrow(island_spec) == 1)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 8", {
   island_spec <- create_test_island_spec(island_scenario = 8)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 3)
+  expect_true(nrow(island_spec) == 1)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 9", {
   island_spec <- create_test_island_spec(island_scenario = 9)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 3)
+  expect_true(nrow(island_spec) == 1)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 10", {
@@ -268,7 +268,7 @@ test_that("create_test_island_spec produces correct output for scenario 38", {
   island_spec <- create_test_island_spec(island_scenario = 38)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 3)
+  expect_true(nrow(island_spec) == 2)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 39", {
@@ -296,7 +296,7 @@ test_that("create_test_island_spec produces correct output for scenario 42", {
   island_spec <- create_test_island_spec(island_scenario = 42)
   expect_true(is.data.frame(island_spec))
   expect_true(ncol(island_spec) == 7)
-  expect_true(nrow(island_spec) == 3)
+  expect_true(nrow(island_spec) == 2)
 })
 
 test_that("create_test_island_spec produces correct output for scenario 43", {
@@ -310,3 +310,4 @@ test_that("create_test_island_spec fails correctly", {
   expect_error(create_test_mainland_clade(mainland_scenario = -1))
   expect_error(create_test_mainland_clade(mainland_scenario = 44))
 })
+
