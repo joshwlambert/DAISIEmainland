@@ -9,7 +9,6 @@ test_that("sim_island is silent and produces correct empty island", {
   expect_silent(
     island <- sim_island(
       total_time = 1,
-      m = 10,
       island_pars = c(1, 1, 10, 1, 1),
       mainland_clade = mainland_clade,
       mainland_sample_prob = 1)
@@ -33,7 +32,6 @@ test_that("sim_island is silent and produces correct non-empty island", {
   expect_silent(
     island <- sim_island(
       total_time = 1,
-      m = 100,
       island_pars = c(1, 1, 10, 1, 1),
       mainland = mainland_clade,
       mainland_sample_prob = 1)
@@ -47,3 +45,69 @@ test_that("sim_island is silent and produces correct non-empty island", {
   expect_equal(island$empirical_island[[1]]$stac, 4)
   expect_equal(island$empirical_island[[1]]$missing_species, 0)
 })
+
+test_that("sim_island fails with incorrect input", {
+  expect_error(sim_island(
+    total_time = "nonsense",
+    island_pars = c(1, 1, 10, 1, 1),
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = "nonsense",
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = c("nonsense", 1, 10, 1, 1),
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = c(1, "nonsense", 10, 1, 1),
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, "nonsense", 1, 1),
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, 10, "nonsense", 1),
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, 10, 1, "nonsense"),
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, 10, 1, 1),
+    mainland_clade = "nonsense",
+    mainland_sample_prob = 1)
+  )
+
+  expect_error(sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, 10, 1, 1),
+    mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
+    mainland_sample_prob = "nonsense")
+  )
+})
+
