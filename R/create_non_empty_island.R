@@ -53,7 +53,6 @@ create_non_empty_island <- function(
       paste0("^", mainland_clade[mainland_spec, "branch_code"])
     descending_branches <-
       grep(branching_code, mainland_clade[, "branch_code"])
-    browser()
     extant_mainland <-
       any(mainland_clade[descending_branches, "spec_type"] != "E" &
             mainland_clade[descending_branches, "spec_type"] != "NS")
