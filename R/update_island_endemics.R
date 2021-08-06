@@ -3,12 +3,20 @@
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return Matrix or NULL
+#' @return Data frame of island species
 update_island_endemics <- function(
   timeval,
   total_time,
   island_spec,
   mainland_clade) {
+
+  testit::assert(is.numeric(timeval))
+  testit::assert(is.numeric(total_time))
+  testit::assert(is.data.frame(island_spec))
+  testit::assert(ncol(island_spec) == 7)
+  testit::assert(is.data.frame(mainland_clade))
+  testit::assert(ncol(mainland_clade) == 7)
+
   if (any(island_spec[, "spec_type"] == "I")) {
     immig_spec <-
       island_spec[which(island_spec[, "spec_type"] == "I"), "spec_id"]
