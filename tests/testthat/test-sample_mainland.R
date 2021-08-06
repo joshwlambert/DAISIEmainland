@@ -19,20 +19,20 @@ test_that("sample_mainland runs silent and produces correct output incomplete
     sample.kind = "Rejection"
   )
 
-  mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
   expect_silent(sampled_mainland <- sample_mainland(
     total_time = 1,
     mainland_clade = mainland_clade,
     mainland_sample_prob = 0.5)
   )
   new_mainland <- data.frame(
-    spec_id = c(2, 27, 28),
-    main_anc_id = c(2, 2, 2),
-    spec_type = c("E", "NS", "NS"),
-    branch_code = c("A", "AA", "AB"),
-    branch_t = c(NA, 0.779042070209266, 0.779042070209266),
-    spec_origin_t = c(0, 0.779042070209266, 0.779042070209266),
-    spec_ex_t = c(0.779042070209266, 0.99999, 0.99999))
+    spec_id = 1,
+    main_anc_id = 1,
+    spec_type = "NS",
+    branch_code = "A",
+    branch_t = NaN,
+    spec_origin_t = 0,
+    spec_ex_t = 0.99999)
 
   expect_equal(new_mainland, sampled_mainland)
 })

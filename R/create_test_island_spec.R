@@ -233,7 +233,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = "A",
       branch_code = NA,
       branch_t = NA,
-      ana_origin = "immig_parent") #should this be "immig_parent" or "mainland_extinction"?
+      ana_origin = "immig_parent")
+    #should this be "immig_parent" or "mainland_extinction"?
   }
 
   if (island_scenario == 19) {

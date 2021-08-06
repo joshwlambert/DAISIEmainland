@@ -20,7 +20,7 @@ of species.}
 \code{\link{create_test_mainland_clade}}.}
 }
 \value{
-Matrix or NULL
+Data frame of island species
 }
 \description{
 Checks and updates if any changes on the mainland change the state of the

@@ -131,4 +131,3 @@ test_that("update_island_endemics fails with incorrect input", {
     mainland_clade = "nonsense")
   )
 })
-

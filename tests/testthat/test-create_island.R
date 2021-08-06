@@ -49,6 +49,7 @@ test_that("mainland species immigrates and does not go extinct or speciate,
 test_that("mainland species immigrates to the island then undergoes speciation
           and the descendent species do not go extinct and no events happen on
           the island", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -98,6 +99,7 @@ test_that("mainland species undergoes speciation and then one of the descendent
 
 test_that("mainland species colonises the island and then goes extinct, without
           having speciated, and no events happen on the island", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -133,6 +135,7 @@ test_that("mainland species colonises the island and then goes extinct, without
 test_that("mainland species colonises the island and and then undergoes
           speciation and one of the descendant species goes extinct, and no
           events happen on the island", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -155,12 +158,10 @@ test_that("mainland species colonises the island and and then undergoes
    testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
 })
 
-
-
-
 test_that("mainland species colonises the island and and then undergoes
           speciation and both of the descendant species goes extinct, and no
           events happen on the island", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -195,7 +196,10 @@ test_that("mainland species colonises the island and and then undergoes
 
 
 
-test_that("mainland species undergoes speciation and then one of the descendant species immigrates to the island and the other descendant goes extinct and no events happen on the island", {
+test_that("mainland species undergoes speciation and then one of the descendant
+          species immigrates to the island and the other descendant goes
+          extinct and no events happen on the island", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -220,6 +224,7 @@ test_that("mainland species undergoes speciation and then one of the descendant 
 
 test_that("mainland ancestor is extinct; multiple colonists same species; no
           clado", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -269,6 +274,7 @@ test_that("mainland ancestor is extinct; multiple colonists same species; no
 
 test_that("full mainland species are extinct; multiple colonists same species;
           clado event", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -315,6 +321,7 @@ test_that("full mainland species are extinct; multiple colonists same species;
 
 test_that("mainland ancestor sister is extinct, sister species on the mainland
           is extant, multiple colonists same species; clado event", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -361,7 +368,7 @@ test_that("mainland ancestor sister is extinct, sister species on the mainland
 test_that("mainland ancestor is extinct; only one colonists same species; clade
           and singleton cases", {
    # TODO: check tomorrow; also check: should be "A" in mainland_spec$spec_type?
-
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -415,6 +422,7 @@ test_that("mainland ancestor is extinct; only one colonists same species; clade
 
 test_that("mainland ancestor is extant; two colonists same species: one clade
           and one singleton. ancestor speciates after colonisations", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -447,6 +455,7 @@ test_that("mainland ancestor is extant; two colonists same species: one clade
 test_that("mainland ancestor is extant; two colonists same species: one clade
           and one singleton. ancestor speciates after colonisations, then one
           tip goes extinct", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",
@@ -479,6 +488,7 @@ test_that("mainland ancestor is extant; two colonists same species: one clade
 test_that("mainland ancestor is extant; two colonists same species: one
           clade and one singleton. ancestor speciates after colonisations,
           then all tips goes extinct", {
+   skip("WIP")
    set.seed(
       1,
       kind = "Mersenne-Twister",

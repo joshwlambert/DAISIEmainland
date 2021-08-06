@@ -110,4 +110,3 @@ test_that("sim_island fails with incorrect input", {
     mainland_sample_prob = "nonsense")
   )
 })
-

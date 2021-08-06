@@ -28,4 +28,3 @@ test_that("common_ancestor_time produces correct output", {
   expect_equal(branching_t, 0.2984108693)
 
 })
-

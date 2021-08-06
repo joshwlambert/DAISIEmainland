@@ -310,4 +310,3 @@ test_that("create_test_island_spec fails correctly", {
   expect_error(create_test_mainland_clade(mainland_scenario = -1))
   expect_error(create_test_mainland_clade(mainland_scenario = 44))
 })
-

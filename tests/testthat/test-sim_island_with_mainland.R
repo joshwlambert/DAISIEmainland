@@ -81,7 +81,7 @@ test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
     mainland_ex = 0,
     mainland_sample_prob = 0.1,
     replicates = 1)
-  expect_false(expect_identical(island$ideal_islands, island$empirical_islands))
+  expect_false(identical(island$ideal_islands, island$empirical_islands))
 })
 
 test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
