@@ -1,17 +1,48 @@
 test_that("update_island_endemics produces correct output with empty island", {
 
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
+  island_spec <- create_test_island_spec(island_scenario = 0)
 
   island_spec <- update_island_endemics(
     timeval = 0.05858136,
     total_time = 1,
-    island_spec = NULL,
+    island_spec = island_spec,
     mainland_clade = mainland_clade)
-  expect_null(island_spec)
+  expect_true(is.data.frame(island_spec))
+  expect_true(nrow(island_spec) == 0)
+  expect_true(ncol(island_spec) == 7)
 })
 
-test_that("update_island_endemics produces correct output with non-empty
-          island", {
+test_that("update_island_endemics produces correct output with no non-endemics
+          on the island", {
+
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
+
+  island_spec <- update_island_endemics(
+    total_time = 1,
+    timeval = 0.6,
+    island_spec = data.frame(
+      spec_id = 4,
+      main_anc_id = 1,
+      col_t = 0.2,
+      spec_type = "A",
+      branch_code = as.character(NA),
+      branch_t = NaN,
+      ana_origin = "immig_parent"),
+    mainland_clade = mainland_clade)
+
+  expect_equal(island_spec,
+               data.frame(spec_id = 4,
+                          main_anc_id = 1,
+                          col_t = 0.2,
+                          spec_type = "A",
+                          branch_code = as.character(NA),
+                          branch_t = NaN,
+                          ana_origin = "immig_parent"))
+})
+
+test_that("update_island_endemics produces correct output with non-endemics on
+          the island that change to endemic through mainland extinction", {
 
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
 
@@ -37,3 +68,67 @@ test_that("update_island_endemics produces correct output with non-empty
                           branch_t = NaN,
                           ana_origin = "mainland_extinction"))
 })
+
+test_that("update_island_endemics produces correct output with non-endemics on
+          the island that do not change to endemic through mainland
+          extinction", {
+
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
+
+  island_spec <- update_island_endemics(
+    total_time = 1,
+    timeval = 0.6,
+    island_spec = data.frame(
+      spec_id = 1,
+      main_anc_id = 1,
+      col_t = 0.2,
+      spec_type = "I",
+      branch_code = as.character(NA),
+      branch_t = NaN,
+      ana_origin = as.character(NA)),
+    mainland_clade = mainland_clade)
+
+  expect_equal(island_spec,
+               data.frame(spec_id = 1,
+                          main_anc_id = 1,
+                          col_t = 0.2,
+                          spec_type = "I",
+                          branch_code = as.character(NA),
+                          branch_t = NaN,
+                          ana_origin = as.character(NA)))
+})
+
+test_that("update_island_endemics fails with incorrect input", {
+
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
+  island_spec <- create_test_island_spec(island_scenario = 1)
+
+  expect_error(update_island_endemics(
+    timeval = "nonsense",
+    total_time = 1,
+    island_spec = island_spec,
+    mainland_clade = mainland_clade)
+  )
+
+  expect_error(update_island_endemics(
+    timeval = 0.5,
+    total_time = "nonsense",
+    island_spec = island_spec,
+    mainland_clade = mainland_clade)
+  )
+
+  expect_error(update_island_endemics(
+    timeval = 0.5,
+    total_time = 1,
+    island_spec = "nonsense",
+    mainland_clade = mainland_clade)
+  )
+
+  expect_error(update_island_endemics(
+    timeval = 0.5,
+    total_time = 1,
+    island_spec = island_spec,
+    mainland_clade = "nonsense")
+  )
+})
+
