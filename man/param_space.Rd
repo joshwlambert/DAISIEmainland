@@ -17,7 +17,7 @@ A data frame with 768 rows and 10 variables:
   \item{mainland_ex}{Rate of extinction on the mainland}
   \item{mainland_sample_prob}{Probability of a mainland species being
     sampled at the end of the simulation if it is extant}
-  \item{replicate}{Number or island replicates}
+  \item{replicates}{Number or island replicates}
 }
 }
 \usage{
