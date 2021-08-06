@@ -2,32 +2,31 @@ args <- commandArgs(TRUE)
 
 args <- as.numeric(args)
 
-data <- read.csv(file = "data/param_space.csv")
-
+data("param_space")
 island <- DAISIEmainland::sim_island_with_mainland(
-  total_time = data$total_time[args],
-  m = data$m[args],
-  island_pars = c(data$island_clado[args],
-                  data$island_ex[args],
-                  data$island_k[args],
-                  data$island_immig[args],
-                  data$island_ana[args]),
-  mainland_ex = data$mainland_ex[args],
-  mainland_sample_prob = data$mainland_sample_prob[args],
-  replicates = data$replicates[args],
+  total_time = param_space$total_time[args],
+  m = param_space$m[args],
+  island_pars = c(param_space$island_clado[args],
+                  param_space$island_ex[args],
+                  param_space$island_k[args],
+                  param_space$island_immig[args],
+                  param_space$island_ana[args]),
+  mainland_ex = param_space$mainland_ex[args],
+  mainland_sample_prob = param_space$mainland_sample_prob[args],
+  replicates = param_space$replicates[args],
   verbose = TRUE)
 
-ideal_ml <- vector("list", data$replicates[args])
-empirical_ml <- vector("list", data$replicates[args])
+ideal_ml <- vector("list", param_space$replicates[args])
+empirical_ml <- vector("list", param_space$replicates[args])
 
-for (i in seq_len(data$replicates[args])) {
+for (i in seq_len(param_space$replicates[args])) {
   ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
     datalist = island$ideal_islands[[i]],
-    initparsopt = c(data$island_clado[args],
-                    data$island_ex[args],
-                    data$island_k[args],
-                    data$island_immig[args],
-                    data$island_ana[args]),
+    initparsopt = c(param_space$island_clado[args],
+                    param_space$island_ex[args],
+                    param_space$island_k[args],
+                    param_space$island_immig[args],
+                    param_space$island_ana[args]),
     idparsopt = 1:5,
     parsfix = NULL,
     idparsfix = NULL,
@@ -36,11 +35,11 @@ for (i in seq_len(data$replicates[args])) {
 
   empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
     datalist = island$empirical_islands[[i]],
-    initparsopt = c(data$island_clado[args],
-                    data$island_ex[args],
-                    data$island_k[args],
-                    data$island_immig[args],
-                    data$island_ana[args]),
+    initparsopt = c(param_space$island_clado[args],
+                    param_space$island_ex[args],
+                    param_space$island_k[args],
+                    param_space$island_immig[args],
+                    param_space$island_ana[args]),
     idparsopt = 1:5,
     parsfix = NULL,
     idparsfix = NULL,
