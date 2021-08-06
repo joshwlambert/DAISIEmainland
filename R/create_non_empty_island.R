@@ -53,8 +53,9 @@ create_non_empty_island <- function(
       paste0("^", mainland_clade[mainland_spec, "branch_code"])
     descending_branches <-
       grep(branching_code, mainland_clade[, "branch_code"])
+    browser()
     extant_mainland <-
-      any(mainland_clade[descending_branches, "spec_type"] != "E" &&
+      any(mainland_clade[descending_branches, "spec_type"] != "E" &
             mainland_clade[descending_branches, "spec_type"] != "NS")
 
     if (extant_mainland == FALSE) {
@@ -63,7 +64,7 @@ create_non_empty_island <- function(
         length(unique(subset_island[, "col_t_bp"]))
       ### are there any branching events between the immig time and island
       ### age with extant descendants
-      other_extant_mainland <- any(mainland_clade[, "spec_type"] != "E" &&
+      other_extant_mainland <- any(mainland_clade[, "spec_type"] != "E" &
                                      mainland_clade[, "spec_type"] != "NS")
       if (number_colonisations == 1) {
         if (other_extant_mainland) {
