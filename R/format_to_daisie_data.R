@@ -4,10 +4,9 @@
 #'
 #' @return List with DAISIE simulation output
 #' @keywords internal
-format_to_daisie_data <- function(
-  island_replicates,
-  total_time,
-  m) {
+format_to_daisie_data <- function(island_replicates,
+                                  total_time,
+                                  m) {
 
   ideal_island_replicates <- list()
   empirical_island_replicates <- list()

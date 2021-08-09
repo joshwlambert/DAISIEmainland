@@ -3,10 +3,15 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A data frame
-immig_event <- function(
-  timeval,
-  island_spec,
-  mainland_spec) {
+immig_event <- function(timeval,
+                        island_spec,
+                        mainland_spec) {
+
+  testit::assert(is.numeric(timeval))
+  testit::assert(is.data.frame(island_spec))
+  testit::assert(ncol(island_spec) == 7)
+  testit::assert(is.numeric(mainland_spec))
+
   colonist <- DDD::sample2(mainland_spec, 1)
   if (length(island_spec[, "spec_id"]) != 0) {
     isitthere <- which(island_spec[, "spec_id"] == colonist)

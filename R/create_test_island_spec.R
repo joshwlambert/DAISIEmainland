@@ -27,9 +27,9 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "I",
-      branch_code = NA,
-      branch_t = NA,
-      ana_origin = NA)
+      branch_code = as.character(NA),
+      branch_t = NaN,
+      ana_origin = as.character(NA))
   }
 
   if (island_scenario == 2) {
@@ -39,8 +39,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "mainland_extinction")
   }
 
@@ -51,9 +51,9 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 2,
       col_t = 0.7,
       spec_type = "I",
-      branch_code = NA,
-      branch_t = NA,
-      ana_origin = NA)
+      branch_code = as.character(NA),
+      branch_t = NaN,
+      ana_origin = as.character(NA))
   }
 
   if (island_scenario == 4) {
@@ -63,8 +63,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "mainland_extinction")
   }
 
@@ -75,8 +75,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "mainland_extinction")
   }
 
@@ -87,8 +87,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "mainland_extinction")
   }
 
@@ -99,9 +99,9 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 3,
       col_t = 0.7,
       spec_type = "I",
-      branch_code = NA,
-      branch_t = NA,
-      ana_origin = NA)
+      branch_code = as.character(NA),
+      branch_t = NaN,
+      ana_origin = as.character(NA))
   }
 
   if (island_scenario == 8) {
@@ -111,8 +111,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 3,
       col_t = 0.7,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "mainland_extinction")
   }
 
@@ -123,8 +123,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 3,
       col_t = 0.7,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "mainland_extinction")
   }
 
@@ -135,8 +135,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -147,8 +147,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -159,8 +159,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 2,
       col_t = 0.7,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -171,8 +171,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -183,8 +183,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -195,8 +195,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 1,
       col_t = 0.2,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -207,8 +207,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 3,
       col_t = 0.7,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -219,8 +219,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 3,
       col_t = 0.7,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
   }
 
@@ -231,8 +231,8 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = 3,
       col_t = 0.7,
       spec_type = "A",
-      branch_code = NA,
-      branch_t = NA,
+      branch_code = as.character(NA),
+      branch_t = NaN,
       ana_origin = "immig_parent")
     #should this be "immig_parent" or "mainland_extinction"?
   }
@@ -246,7 +246,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.2, 0.5),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 20) {
@@ -258,7 +259,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.2, 0.55),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 21) {
@@ -270,7 +272,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.2, 0.45),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 22) {
@@ -282,7 +285,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.7, 0.85),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 23) {
@@ -294,7 +298,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.2, 0.55),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 24) {
@@ -306,7 +311,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.2, 0.55),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 25) {
@@ -318,7 +324,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.7, 0.85),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 26) {
@@ -330,7 +337,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.7, 0.85),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 27) {
@@ -342,7 +350,8 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.7, 0.85),
-      ana_origin = c(NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 28) {
@@ -354,7 +363,9 @@ create_test_island_spec <- function(island_scenario) {
       spec_type = c("C", "C", "I"),
       branch_code = c("A", "B", NA),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 29) {
@@ -364,9 +375,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 1, 1),
       col_t = c(0.2, 0.2, 0.65),
       spec_type = c("C", "C", "A"),
-      branch_code = c("A", "B", NA),
+      branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, "mainland_extinction"))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 30) {
@@ -376,9 +389,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 1, 1),
       col_t = c(0.2, 0.2, 0.65),
       spec_type = c("C", "C", "A"),
-      branch_code = c("A", "B", NA),
+      branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, "mainland_extinction"))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 31) {
@@ -388,9 +403,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 1, 1),
       col_t = c(0.2, 0.2, 0.65),
       spec_type = c("C", "C", "A"),
-      branch_code = c("A", "B", NA),
+      branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, "mainland_extinction"))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 32) {
@@ -400,9 +417,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 1, 1),
       col_t = c(0.2, 0.2, 0.65),
       spec_type = c("C", "C", "A"),
-      branch_code = c("A", "B", NA),
+      branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, "mainland_extinction"))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 33) {
@@ -412,9 +431,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(3, 3, 3),
       col_t = c(0.2, 0.2, 0.65),
       spec_type = c("C", "C", "I"),
-      branch_code = c("A", "B", NA),
+      branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, NA))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     as.character(NA)))
   }
 
   if (island_scenario == 34) {
@@ -424,9 +445,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(3, 3, 3),
       col_t = c(0.2, 0.2, 0.65),
       spec_type = c("C", "C", "A"),
-      branch_code = c("A", "B", NA),
+      branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, "mainland_extinction"))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 35) {
@@ -436,9 +459,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(3, 3, 3),
       col_t = c(0.2, 0.2, 0.65),
       spec_type = c("C", "C", "A"),
-      branch_code = c("A", "B", NA),
+      branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.2, 0.55, NaN),
-      ana_origin = c(NA, NA, "mainland_extinction"))
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 36) {
@@ -448,9 +473,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 3),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "I"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", NA))
+      ana_origin = c("mainland_extinction",
+                     as.character(NA)))
   }
 
   if (island_scenario == 37) {
@@ -460,9 +487,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 3),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "I"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", NA))
+      ana_origin = c("mainland_extinction",
+                     as.character(NA)))
   }
 
   if (island_scenario == 38) {
@@ -472,9 +501,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 3),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "A"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", "mainland_extinction"))
+      ana_origin = c("mainland_extinction",
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 39) {
@@ -484,9 +515,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(1, 3),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "A"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", "mainland_extinction"))
+      ana_origin = c("mainland_extinction",
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 40) {
@@ -496,9 +529,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(2, 4),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "I"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", NA))
+      ana_origin = c("mainland_extinction",
+                     as.character(NA)))
   }
 
   if (island_scenario == 41) {
@@ -508,9 +543,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(2, 4),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "I"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", NA))
+      ana_origin = c("mainland_extinction",
+                     as.character(NA)))
   }
 
   if (island_scenario == 42) {
@@ -520,9 +557,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(2, 4),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "A"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", "mainland_extinction"))
+      ana_origin = c("mainland_extinction",
+                     "mainland_extinction"))
   }
 
   if (island_scenario == 43) {
@@ -532,9 +571,11 @@ create_test_island_spec <- function(island_scenario) {
       main_anc_id = c(2, 4),
       col_t = c(0.2, 0.65),
       spec_type = c("A", "A"),
-      branch_code = c(NA, NA),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction", "mainland_extinction"))
+      ana_origin = c("mainland_extinction",
+                     "mainland_extinction"))
   }
 
   return(island_spec)

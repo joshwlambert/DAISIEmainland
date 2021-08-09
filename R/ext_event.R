@@ -3,8 +3,11 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A data frame
-ext_event <- function(
-  island_spec) {
+ext_event <- function(island_spec) {
+
+  testit::assert(is.data.frame(island_spec))
+  testit::assert(ncol(island_spec) == 7)
+
   extinct <- DDD::sample2(seq_len(length(island_spec[, "spec_id"])), 1)
   typeofspecies <- island_spec[extinct, "spec_type"]
   if (typeofspecies == "I" || typeofspecies == "A") {

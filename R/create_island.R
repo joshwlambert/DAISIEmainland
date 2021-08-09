@@ -10,6 +10,14 @@ create_island <- function(total_time,
                           island_spec,
                           mainland_clade,
                           mainland_sample_prob) {
+
+  testit::assert(is.numeric(total_time))
+  testit::assert(is.data.frame(island_spec))
+  testit::assert(ncol(island_spec) == 7)
+  testit::assert(is.data.frame(mainland_clade))
+  testit::assert(ncol(mainland_clade) == 7)
+  testit::assert(is.numeric(mainland_sample_prob))
+
   if (nrow(island_spec) == 0) {
     ideal_island <- empirical_island <-
       list(list(

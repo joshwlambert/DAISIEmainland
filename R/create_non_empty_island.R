@@ -5,11 +5,10 @@
 #' @return List with the island information, composed of
 #' branching times of extant species, status of species on
 #' the island and number of missing species.
-create_non_empty_island <- function(
-  total_time,
-  island_spec,
-  mainland_clade,
-  mainland_sample_prob) {
+create_non_empty_island <- function(total_time,
+                                    island_spec,
+                                    mainland_clade,
+                                    mainland_sample_prob) {
 
   names(island_spec)[3] <- "col_t_bp"
   names(island_spec)[6] <- "branch_t_bp"

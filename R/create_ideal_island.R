@@ -35,9 +35,8 @@
 #'   }
 #' }
 #' @keywords internal
-create_ideal_island <- function(
-  total_time,
-  island_spec) {
+create_ideal_island <- function(total_time,
+                                island_spec) {
   ### number of independent colonisations
   uniquecolonisation <- as.numeric(unique(
     island_spec[, "col_t_bp"]))

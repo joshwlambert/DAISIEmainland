@@ -4,10 +4,9 @@
 #'
 #' @return List with DAISIE simulation output
 #' @keywords internal
-format_to_daisie_data_core <- function(
-  island_replicates,
-  total_time,
-  m) {
+format_to_daisie_data_core <- function(island_replicates,
+                                       total_time,
+                                       m) {
 
   several_islands <- list()
   for (rep in seq_along(island_replicates)) {

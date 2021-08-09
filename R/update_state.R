@@ -16,6 +16,17 @@ update_state <- function(timeval,
                          max_spec_id,
                          mainland_spec,
                          island_spec) {
+
+  testit::assert(is.numeric(timeval))
+  testit::assert(is.numeric(total_time))
+  testit::assert(is.numeric(possible_event))
+  testit::assert(possible_event >= 1)
+  testit::assert(possible_event <= 4)
+  testit::assert(is.numeric(max_spec_id))
+  testit::assert(is.numeric(mainland_spec))
+  testit::assert(is.data.frame(island_spec))
+  testit::assert(ncol(island_spec) == 7)
+
   #IMMIGRATION
   if (possible_event == 1) {
     island_spec <- immig_event(

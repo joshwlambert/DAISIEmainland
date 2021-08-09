@@ -3,10 +3,15 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A two element list
-clado_event <- function(
-  timeval,
-  island_spec,
-  max_spec_id) {
+clado_event <- function(timeval,
+                        island_spec,
+                        max_spec_id) {
+
+  testit::assert(is.numeric(timeval))
+  testit::assert(is.data.frame(island_spec))
+  testit::assert(ncol(island_spec) == 7)
+  testit::assert(is.numeric(max_spec_id))
+
   tosplit <- DDD::sample2(seq_len(length(island_spec[, "spec_id"])), 1)
   #if the species that speciates is cladogenetic
   if (island_spec[tosplit, "spec_type"] == "C") {
