@@ -52,7 +52,7 @@ output <- list(
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml)
 
-output_name <- paste0("param_set_", args)
+output_name <- paste0("param_set_", args, ".rds")
 
 output_folder <- file.path(getwd(), "results")
 
