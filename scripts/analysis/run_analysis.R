@@ -22,7 +22,7 @@ empirical_ml <- vector("list", param_space$replicates[args])
 for (i in seq_len(param_space$replicates[args])) {
   message("Number of clades ", length(island$ideal_islands[[i]]) - 1)
 
-  if (length(island$ideal_islands[[i]] > 1)) {
+  if (length(island$ideal_islands[[i]]) > 1) {
     message("Number of species in each clade")
     for (j in 2:length(island$ideal_islands[[i]])) {
       message(length(island$ideal_islands[[i]][[j]]$branching_times) - 1)
