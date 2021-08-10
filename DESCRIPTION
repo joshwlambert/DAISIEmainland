@@ -15,7 +15,7 @@ Encoding: UTF-8
 Depends: 
     R (>= 4.0.0)
 Imports: 
-    DAISIE,
+    DAISIE (>= 4.0.2),
     DDD (>= 4.4),
     testit
 Suggests: 
@@ -25,3 +25,5 @@ Suggests:
     rmarkdown
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+Remotes:  
+    rsetienne/DAISIE@v4.0.2
