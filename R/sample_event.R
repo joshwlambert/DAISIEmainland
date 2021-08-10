@@ -4,11 +4,11 @@
 #'
 #' @return numeric indicating what event will happen, or a supposed event that
 #' would happen in some timesteps of the ontogeny algorithm.
-#' \itemize{
-#'   \item{[1]: immigration event}
-#'   \item{[2]: extinction event}
-#'   \item{[3]: cladogenesis event}
-#'   \item{[4]: anagenesis event}
+#' \enumerate{
+#'   \item immigration event
+#'   \item extinction event
+#'   \item cladogenesis event
+#'   \item anagenesis event
 #' }
 #' @keywords internal
 sample_event <- function(rates) {

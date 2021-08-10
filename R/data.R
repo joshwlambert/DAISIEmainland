@@ -18,4 +18,5 @@
 #'     sampled at the end of the simulation if it is extant}
 #'   \item{replicates}{Number or island replicates}
 #' }
-"param_space"
+#' @usage data("param_space_data", package = "DAISIEmainland")
+"param_space_data"

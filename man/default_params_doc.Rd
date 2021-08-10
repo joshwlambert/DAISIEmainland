@@ -82,13 +82,13 @@ during the simulation.}
 
 \item{island_pars}{A numeric vector containing the parameters for the island:
 \itemize{
-  \item{\code{island_pars[1]}: lambda^c (cladogenesis rate)}
-  \item{\code{island_pars[2]}: mu (extinction rate)}
-  \item{\code{island_pars[3]}: K (carrying capacity), set K=Inf for
-  diversity independence.}
-  \item{\code{island_pars[4]}: gamma (immigration rate)}
-  \item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
-  }}
+\item{\code{island_pars[1]}: lambda^c (cladogenesis rate)}
+\item{\code{island_pars[2]}: mu (extinction rate)}
+\item{\code{island_pars[3]}: K (carrying capacity), set K=Inf for
+diversity independence.}
+\item{\code{island_pars[4]}: gamma (immigration rate)}
+\item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
+}}
 
 \item{mainland_ex}{Numeric parameter for mainland extinction rate.}
 

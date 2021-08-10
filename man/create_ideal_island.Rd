@@ -15,36 +15,34 @@ of species.}
 }
 \value{
 a list with these elements:
-\itemize{
-  \item{[1]: \code{branching_times}, a sorted numeric vector, as required
-    by the ML estimation functions. The first element always refers to
-    the island age. Subsequent elements refer to colonisation, speciation and
-    recolonisation times. The most recent recolonisation time, if any is
-    always omitted to approximate simulation results to the mathematical
-    formulation of the likelihood functions used for MLE.}
-  \item{[2]: \code{stac}, status of colonist. In this function it can be
-    returned as either 2, 4 or 3. If \code{stac} is 2, then there is only one
-    independent colonisation present on the island and the extant species are
-    endemic. If stac is 4, then only a singleton endemic is present at the
-    present. If stac is 3, then recolonisation occurred, and more than one
-    colonising lineage.}
-  \item{[3]: \code{missing_species}, a numeric value with the number of
-    missing species, that is, species not sampled in the phylogeny but
-    present on the island. As this code only runs for simulation models,
-    here \code{missing_species} is always set to 0.}
-  \item{[4]:
-  \code{all_colonisations}, on recolonising lineages only. It is comprised of
-    \code{$event_times} and \code{$species_type}:
-    \describe{
-      \item{\code{$event_times}}{ordered numeric vectors containing all
-      events for each extant recolonising lineage. This includes all
-      colonisation and branching times. Each vector pertains to one
-      colonising lineage.}
-      \item{\code{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
-      \code{"I"} depending on whether the extant clade is of anagenetic,
-      cladogenetic or immigrant origin, respectively.}
-    }
-  }
+\enumerate{
+\item \code{branching_times}, a sorted numeric vector, as required
+by the ML estimation functions. The first element always refers to
+the island age. Subsequent elements refer to colonisation, speciation and
+recolonisation times. The most recent recolonisation time, if any is
+always omitted to approximate simulation results to the mathematical
+formulation of the likelihood functions used for MLE.
+\item \code{stac}, status of colonist. In this function it can be
+returned as either 2, 4 or 3. If \code{stac} is 2, then there is only one
+independent colonisation present on the island and the extant species are
+endemic. If stac is 4, then only a singleton endemic is present at the
+present. If stac is 3, then recolonisation occurred, and more than one
+colonising lineage.
+\item \code{missing_species}, a numeric value with the number of
+missing species, that is, species not sampled in the phylogeny but
+present on the island. As this code only runs for simulation models,
+here \code{missing_species} is always set to 0.
+\item  \code{all_colonisations}, on recolonising lineages only. It is
+comprised of \code{$event_times} and \code{$species_type}:
+\describe{
+\item{\code{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\code{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
+}
 }
 }
 \description{

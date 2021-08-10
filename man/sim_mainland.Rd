@@ -20,15 +20,15 @@ a list where each element is a mainland clade, this could be a
 single or multiple clades. Each element of the list is a matrix with nine
 columns. The columns contain
 \enumerate{
-    \item Species identity
-    \item Mainland ancestor identity
-    \item Colonisation time
-    \item Species type
-    \item Branching code
-    \item Branching time (forwards in time from the start of the simulation)
-    \item Anagenetic origin
-    \item Species origination time
-    \item Species extinction time
+\item Species identity
+\item Mainland ancestor identity
+\item Colonisation time
+\item Species type
+\item Branching code
+\item Branching time (forwards in time from the start of the simulation)
+\item Anagenetic origin
+\item Species origination time
+\item Species extinction time
 }
 }
 \description{
