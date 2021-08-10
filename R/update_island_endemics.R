@@ -4,11 +4,10 @@
 #' @inheritParams default_params_doc
 #'
 #' @return Data frame of island species
-update_island_endemics <- function(
-  timeval,
-  total_time,
-  island_spec,
-  mainland_clade) {
+update_island_endemics <- function(timeval,
+                                   total_time,
+                                   island_spec,
+                                   mainland_clade) {
 
   testit::assert(is.numeric(timeval))
   testit::assert(is.numeric(total_time))

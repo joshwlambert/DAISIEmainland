@@ -82,3 +82,12 @@ test_that("ext_event produces correct output for more than two species", {
   row.names(expected_island_spec) <- NULL
   expect_equal(island_spec, expected_island_spec)
 })
+
+test_that("ext_event fails with incorrect input", {
+
+  island_spec <- create_test_island_spec(island_scenario = 1)
+
+  expect_error(ext_event(
+    island_spec = "nonsense")
+  )
+})

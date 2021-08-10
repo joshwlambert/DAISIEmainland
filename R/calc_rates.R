@@ -5,15 +5,14 @@
 #'
 #' @keywords internal
 #' @return Named list with rates.
-calc_rates <- function(
-  gam,
-  laa,
-  lac,
-  mu,
-  k,
-  num_spec,
-  num_immigrants,
-  mainland_n) {
+calc_rates <- function(gam,
+                       laa,
+                       lac,
+                       mu,
+                       k,
+                       num_spec,
+                       num_immigrants,
+                       mainland_n) {
 
   testit::assert(is.numeric(gam))
   testit::assert(is.numeric(laa))

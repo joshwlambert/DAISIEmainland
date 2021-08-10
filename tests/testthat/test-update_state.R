@@ -4,13 +4,7 @@ test_that("update_state produces correct output for immigration", {
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection")
-  island_spec <- data.frame(spec_id = numeric(),
-                            main_anc_id = numeric(),
-                            col_t = numeric(),
-                            spec_type = character(),
-                            branch_code = character(),
-                            branch_t = numeric(),
-                            ana_origin = character())
+  island_spec <- create_test_island_spec(island_scenario = 0)
 
   updated_state <- update_state(
     timeval = 0.5,
@@ -43,14 +37,14 @@ test_that("update_state produces correct output for extinction", {
                             col_t = c(0.5, 0.5),
                             spec_type = c("C", "C"),
                             branch_code = c("A", "B"),
-                            branch_t = c(0.5, 0.5),
+                            branch_t = c(0.5, 0.6),
                             ana_origin = c(NA, NA))
 
   updated_state <- update_state(
-    timeval = 0.5,
+    timeval = 0.7,
     total_time = 1.0,
     possible_event = 2,
-    max_spec_id = 1,
+    max_spec_id = 3,
     mainland_spec = 1,
     island_spec = island_spec)
 
@@ -65,7 +59,7 @@ test_that("update_state produces correct output for extinction", {
   row.names(updated_state$island_spec) <- NULL
   row.names(expected_island_spec) <- NULL
   expect_equal(updated_state$island_spec, expected_island_spec)
-  expect_equal(updated_state$max_spec_id, 1)
+  expect_equal(updated_state$max_spec_id, 3)
 })
 
 test_that("update_state produces correct output for anagenesis", {
@@ -83,7 +77,7 @@ test_that("update_state produces correct output for anagenesis", {
                             ana_origin = as.character(NA))
 
   updated_state <- update_state(
-    timeval = 0.5,
+    timeval = 0.7,
     total_time = 1.0,
     possible_event = 3,
     max_spec_id = 1,
@@ -117,7 +111,7 @@ test_that("update_state produces correct output for cladogenesis", {
                             ana_origin = as.character(NA))
 
   updated_state <- update_state(
-    timeval = 0.5,
+    timeval = 0.7,
     total_time = 1.0,
     possible_event = 4,
     max_spec_id = 1,
@@ -130,9 +124,70 @@ test_that("update_state produces correct output for cladogenesis", {
                                      col_t = c(0.5, 0.5),
                                      spec_type = c("C", "C"),
                                      branch_code = c("A", "B"),
-                                     branch_t = c(0.5, 0.5),
+                                     branch_t = c(0.5, 0.7),
                                      ana_origin = c(as.character(NA),
                                                     as.character(NA)))
   expect_equal(updated_state$island_spec, expected_island_spec)
   expect_equal(updated_state$max_spec_id, 3)
 })
+
+test_that("update_state fails with incorrect input", {
+
+  island_spec <- create_test_island_spec(island_scenario = 1)
+
+  expect_error(update_state(
+    timeval = "nonsense",
+    total_time = 1,
+    possible_event = 1,
+    max_spec_id = 1,
+    mainland_spec = 1,
+    island_spec = island_spec)
+  )
+
+  expect_error(update_state(
+    timeval = 0.5,
+    total_time = "nonsense",
+    possible_event = 1,
+    max_spec_id = 1,
+    mainland_spec = 1,
+    island_spec = island_spec)
+  )
+
+  expect_error(update_state(
+    timeval = 0.5,
+    total_time = 1,
+    possible_event = "nonsense",
+    max_spec_id = 1,
+    mainland_spec = 1,
+    island_spec = island_spec)
+  )
+
+  expect_error(update_state(
+    timeval = 0.5,
+    total_time = 1,
+    possible_event = 1,
+    max_spec_id = "nonsense",
+    mainland_spec = 1,
+    island_spec = island_spec)
+  )
+
+  expect_error(update_state(
+    timeval = 0.5,
+    total_time = 1,
+    possible_event = 1,
+    max_spec_id = 1,
+    mainland_spec = "nonsense",
+    island_spec = island_spec)
+  )
+
+  expect_error(update_state(
+    timeval = 0.5,
+    total_time = 1,
+    possible_event = 1,
+    max_spec_id = 1,
+    mainland_spec = 1,
+    island_spec = "nonsense")
+  )
+})
+
+

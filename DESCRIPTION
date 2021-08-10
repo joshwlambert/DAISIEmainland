@@ -12,11 +12,10 @@ Description: Simulates data for the DAISIE model. The simulation includes
     data from extant species.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 Depends: 
     R (>= 4.0.0)
 Imports: 
-    DAISIE,
+    DAISIE (>= 4.0.2),
     DDD (>= 4.4),
     testit
 Suggests: 
@@ -27,3 +26,5 @@ Suggests:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+Remotes:  
+    rsetienne/DAISIE@v4.0.2

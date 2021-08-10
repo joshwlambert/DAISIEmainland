@@ -5,11 +5,10 @@
 #' @return List with the island information, composed of
 #' branching times of extant species, status of species on
 #' the island and number of missing species.
-create_non_empty_island <- function(
-  total_time,
-  island_spec,
-  mainland_clade,
-  mainland_sample_prob) {
+create_non_empty_island <- function(total_time,
+                                    island_spec,
+                                    mainland_clade,
+                                    mainland_sample_prob) {
 
   names(island_spec)[3] <- "col_t_bp"
   names(island_spec)[6] <- "branch_t_bp"
@@ -72,32 +71,24 @@ create_non_empty_island <- function(
             mainland_spec = mainland_spec,
             mainland_clade = mainland_clade)
           empirical_island[[i]] <- list(
-            branching_times = c(
-              total_time,
-              anc_branch_t_bp,
-              sort(
-                subset_island[, "branch_t_bp"],
-                decreasing = TRUE)
-            ),
+            branching_times = c(total_time,
+                                anc_branch_t_bp,
+                                sort(subset_island[, "branch_t_bp"],
+                                     decreasing = TRUE)),
             stac = 2,
             missing_species = 0)
         } else {
           if (nrow(subset_island) == 1) {
             empirical_island[[i]] <- list(
-              branching_times = c(
-                total_time,
-                total_time - 1e-5),
+              branching_times = c(total_time, total_time - 1e-5),
               stac = 5,
               missing_species = 0)
           } else {
             empirical_island[[i]] <- list(
-              branching_times = c(
-                total_time,
-                total_time - 1e-5,
-                sort(
-                  subset_island[, "branch_t_bp"],
-                  decreasing = TRUE)
-              ),
+              branching_times = c(total_time,
+                                  total_time - 1e-5,
+                                  sort(subset_island[, "branch_t_bp"],
+                                       decreasing = TRUE)),
               stac = 6,
               missing_species = 0)
           }
@@ -118,13 +109,10 @@ create_non_empty_island <- function(
             missing_species = 0)
         } else {
           empirical_island[[i]] <- list(
-            branching_times = c(
-              total_time,
-              total_time - 1e-5,
-              sort(
-                as.numeric(subset_island[, "branch_t_bp"]),
-                decreasing = TRUE)
-            ),
+            branching_times = c(total_time,
+                                total_time - 1e-5,
+                                sort(as.numeric(subset_island[, "branch_t_bp"]),
+                                     decreasing = TRUE)),
             stac = 6,
             missing_species = 0)
         }

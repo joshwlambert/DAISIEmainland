@@ -13,6 +13,7 @@
 #' @keywords internal
 sample_event <- function(rates) {
 
+  testit::assert(is.list(rates))
   testit::assert(is.numeric(rates$immig_rate))
   testit::assert(is.numeric(rates$ext_rate))
   testit::assert(is.numeric(rates$ana_rate))
@@ -34,5 +35,6 @@ sample_event <- function(rates) {
 
   testit::assert(is.numeric(possible_event))
   testit::assert(possible_event >= 1)
+  testit::assert(possible_event <= 4)
   return(possible_event)
 }

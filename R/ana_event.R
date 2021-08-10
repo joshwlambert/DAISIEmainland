@@ -3,9 +3,13 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A two element list
-ana_event <- function(
-  island_spec,
-  max_spec_id) {
+ana_event <- function(island_spec,
+                      max_spec_id) {
+
+  testit::assert(is.data.frame(island_spec))
+  testit::assert(ncol(island_spec) == 7)
+  testit::assert(is.numeric(max_spec_id))
+
   immig_specs <- which(island_spec[, "spec_type"] == "I")
   if (length(immig_specs) == 1) {
     anagenesis <- immig_specs
