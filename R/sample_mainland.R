@@ -7,6 +7,7 @@ sample_mainland <- function(total_time,
                             mainland_clade,
                             mainland_sample_prob,
                             island_spec) {
+
   if (mainland_sample_prob == 1) {
     return(mainland_clade)
   } else {

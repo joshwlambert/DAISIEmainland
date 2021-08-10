@@ -30,7 +30,6 @@ format_to_daisie_data_core <- function(island_replicates,
         island_list[[1 + i]] <- new_full_list[[present[i]]]
       }
     }
-
     several_islands[[rep]] <- island_list
   }
   return(several_islands)

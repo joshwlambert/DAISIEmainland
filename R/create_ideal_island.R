@@ -45,41 +45,35 @@ create_ideal_island <- function(total_time,
   ### cladogenetic species are classed as stac=2; immigrant classed as stac=4:
   if (number_colonisations == 1) {
     if (island_spec[1, "spec_type"] == "I") {
-      descendants <- list(branching_times = c(
-                            total_time,
-                            as.numeric(island_spec[1, "col_t_bp"])
-                          ),
-                          stac = 4,
-                          missing_species = 0)
+      descendants <- list(
+        branching_times = c(total_time, as.numeric(island_spec[1, "col_t_bp"])),
+        stac = 4,
+        missing_species = 0)
     }
     if (island_spec[1, "spec_type"] == "A") {
-      descendants <- list(branching_times = c(
-                            total_time,
-                            as.numeric(island_spec[1, "col_t_bp"])
-                          ),
-                          stac = 2,
-                          missing_species = 0)
+      descendants <- list(
+        branching_times = c(total_time, as.numeric(island_spec[1, "col_t_bp"])),
+        stac = 2,
+        missing_species = 0)
     }
     if (island_spec[1, "spec_type"] == "C") {
-      descendants <- list(branching_times = c(
-                            total_time,
-                            sort(
-                              as.numeric(island_spec[, "branch_t_bp"]),
-                              decreasing = TRUE
-                            )
-                          ),
-                          stac = 2,
-                          missing_species = 0)
+      descendants <- list(
+        branching_times = c(total_time,
+                            sort(as.numeric(island_spec[, "branch_t_bp"]),
+                                 decreasing = TRUE)),
+        stac = 2,
+        missing_species = 0)
     }
   }
 
   ### if there are two or more independent colonisations, all species are
   ### classed as stac=3 and put within same list item:
   if (number_colonisations > 1) {
-    descendants <- list(branching_times = NaN,
-                        stac = 3,
-                        missing_species = 0,
-                        all_colonisations = list())
+    descendants <- list(
+      branching_times = NaN,
+      stac = 3,
+      missing_species = 0,
+      all_colonisations = list())
 
     # Get branching and colonisation times
     btimes_all_clado_desc <- rev(

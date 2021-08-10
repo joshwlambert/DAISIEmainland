@@ -71,32 +71,24 @@ create_non_empty_island <- function(total_time,
             mainland_spec = mainland_spec,
             mainland_clade = mainland_clade)
           empirical_island[[i]] <- list(
-            branching_times = c(
-              total_time,
-              anc_branch_t_bp,
-              sort(
-                subset_island[, "branch_t_bp"],
-                decreasing = TRUE)
-            ),
+            branching_times = c(total_time,
+                                anc_branch_t_bp,
+                                sort(subset_island[, "branch_t_bp"],
+                                     decreasing = TRUE)),
             stac = 2,
             missing_species = 0)
         } else {
           if (nrow(subset_island) == 1) {
             empirical_island[[i]] <- list(
-              branching_times = c(
-                total_time,
-                total_time - 1e-5),
+              branching_times = c(total_time, total_time - 1e-5),
               stac = 5,
               missing_species = 0)
           } else {
             empirical_island[[i]] <- list(
-              branching_times = c(
-                total_time,
-                total_time - 1e-5,
-                sort(
-                  subset_island[, "branch_t_bp"],
-                  decreasing = TRUE)
-              ),
+              branching_times = c(total_time,
+                                  total_time - 1e-5,
+                                  sort(subset_island[, "branch_t_bp"],
+                                       decreasing = TRUE)),
               stac = 6,
               missing_species = 0)
           }
@@ -117,13 +109,10 @@ create_non_empty_island <- function(total_time,
             missing_species = 0)
         } else {
           empirical_island[[i]] <- list(
-            branching_times = c(
-              total_time,
-              total_time - 1e-5,
-              sort(
-                as.numeric(subset_island[, "branch_t_bp"]),
-                decreasing = TRUE)
-            ),
+            branching_times = c(total_time,
+                                total_time - 1e-5,
+                                sort(as.numeric(subset_island[, "branch_t_bp"]),
+                                     decreasing = TRUE)),
             stac = 6,
             missing_species = 0)
         }
