@@ -22,12 +22,14 @@ empirical_ml <- vector("list", param_space$replicates[args])
 for (i in seq_len(param_space$replicates[args])) {
   message("Number of clades ", length(island$ideal_islands[[i]]) - 1)
 
-  message("Number of species in each clade")
-  for (j in 2:length(island$ideal_islands[[i]])) {
-    message(length(island$ideal_islands[[i]][[j]]$branching_times) - 1)
+  if (length(island$ideal_islands[[i]] > 1)) {
+    message("Number of species in each clade")
+    for (j in 2:length(island$ideal_islands[[i]])) {
+      message(length(island$ideal_islands[[i]][[j]]$branching_times) - 1)
+    }
   }
 
-  ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+  ideal_ml[[i]] <- suppressMessages(invisible(capture.output(DAISIE::DAISIE_ML_CS(
     datalist = island$ideal_islands[[i]],
     initparsopt = c(param_space$island_clado[args],
                     param_space$island_ex[args],
@@ -38,7 +40,7 @@ for (i in seq_len(param_space$replicates[args])) {
     parsfix = NULL,
     idparsfix = NULL,
     ddmodel = 11,
-    jitter = 1e-5)
+    jitter = 1e-5))))
 
   empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
     datalist = island$empirical_islands[[i]],
