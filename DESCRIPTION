@@ -12,6 +12,7 @@ Description: Simulates data for the DAISIE model. The simulation includes
     data from extant species.
 License: GPL-3
 Encoding: UTF-8
+LazyData: true
 Depends: 
     R (>= 4.0.0)
 Imports: 
