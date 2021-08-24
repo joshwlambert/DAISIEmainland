@@ -14,6 +14,7 @@ calc_error <- function(path = "results") {
     full.names = TRUE
   )
 
+
   ks <- calc_col_ks(result_files = result_files)
 
   max_age_ratio <- calc_max_age_ratio(result_files)
