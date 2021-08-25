@@ -20,7 +20,7 @@
 #'     present on the island.}
 #' }
 #' The subsequent elements of the list pertaining to each replcate contain
-#' information on a single colonist lineage on the island and have 4 components:
+#' information on a single colonist lineage on the island and have 3 components:
 #' \itemize{
 #'   \item{\code{$branching_times}: island age and stem age of the
 #'     population/species in the case of Non-endemic, Non-endemic_MaxAge and
