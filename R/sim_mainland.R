@@ -1,21 +1,20 @@
-#' Simulates mainland extinction as a pure-death process with replacement
-#' via the speciation of an exisiting mainland species.
+#' Simulates mainland extinction as a species-level moran process with
+#' species extinction immediately replaced via the speciation of an exisiting
+#' mainland species.
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return a list where each element is a mainland clade, this could be a
-#' single or multiple clades. Each element of the list is a matrix with nine
-#' columns. The columns contain
+#' @return a list where each element is a mainland clade. Each element of the
+#' list is a data frame with nine columns. The columns contain
 #' \enumerate{
-#'     \item Species identity
-#'     \item Mainland ancestor identity
-#'     \item Colonisation time
-#'     \item Species type
-#'     \item Branching code
+#'     \item Species identity (spec_id)
+#'     \item Mainland ancestor identity (main_anc_id)
+#'     \item Species type (spec_type)
+#'     \item Branching code (branch_code)
 #'     \item Branching time (forwards in time from the start of the simulation)
-#'     \item Anagenetic origin
-#'     \item Species origination time
-#'     \item Species extinction time
+#'     (branch_t)
+#'     \item Species origination time (spec_origin_t)
+#'     \item Species extinction time (spec_ex_t)
 #' }
 #' @keywords internal
 sim_mainland <- function(
