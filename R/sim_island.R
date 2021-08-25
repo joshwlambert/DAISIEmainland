@@ -1,8 +1,32 @@
-#' Simulates the island.
+#' Simulates the island given rates and a mainland clade.
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return List
+#' @return A list of two elements. The first element is \code{ideal_island},
+#' and the second element is \code{empirical_island}. Within each of these
+#' is a list containing 3 components:
+#' \itemize{
+#'   \item{\code{$branching_times}: island age and stem age of the
+#'     population/species in the case of Non-endemic, Non-endemic_MaxAge and
+#'     Endemic anagenetic species.
+#'
+#'     For cladogenetic species these should
+#'     be island age and branching times of the radiation including the
+#'     stem age of the radiation.}
+#'   \item{\code{$stac}: An integer ranging from 1 to 6
+#'   indicating the status of the colonist:}
+#'   \enumerate{
+#'     \item Non_endemic_MaxAge
+#'     \item Endemic
+#'     \item Endemic&Non_Endemic
+#'     \item Non_endemic_MaxAge
+#'     \item Endemic_singleton_MaxAge
+#'     \item Endemic_clade_MaxAge
+#' }
+#' \item{\code{$missing_species}: number of island species that were
+#' not sampled for particular clade (only applicable for endemic clades)}
+#' }
+#'
 #' @keywords internal
 sim_island <- function(
   total_time,
@@ -10,7 +34,7 @@ sim_island <- function(
   mainland_clade,
   mainland_sample_prob
 ) {
-
+browser()
   testit::assert(is.numeric(total_time))
   testit::assert(total_time > 0)
   testit::assert(is.numeric(island_pars))
@@ -20,7 +44,7 @@ sim_island <- function(
   testit::assert(is.numeric(mainland_sample_prob))
   testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
 
-  #### Initialization ####
+  # Initialization
   timeval <- 0
 
   mainland_spec <- mainland_clade[which(
@@ -56,7 +80,7 @@ sim_island <- function(
   num_spec <- 0
   num_immigrants <- 0
 
-  #### Start Monte Carlo iterations ####
+  # Start Monte Carlo iterations
   while (timeval < total_time) {
     rates <- calc_rates(
       gam = gam,
