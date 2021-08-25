@@ -17,11 +17,9 @@
 #'     \item Species extinction time (spec_ex_t)
 #' }
 #' @keywords internal
-sim_mainland <- function(
-  total_time,
-  m,
-  mainland_ex
-) {
+sim_mainland <- function(total_time,
+                         m,
+                         mainland_ex) {
 
   testit::assert(is.numeric(total_time))
   testit::assert(total_time > 0)

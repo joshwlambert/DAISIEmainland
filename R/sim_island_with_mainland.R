@@ -63,15 +63,13 @@
 #' )
 #'
 #' @export
-sim_island_with_mainland <- function(
-  total_time,
-  m,
-  island_pars,
-  mainland_ex,
-  mainland_sample_prob,
-  replicates,
-  verbose = FALSE
-) {
+sim_island_with_mainland <- function(total_time,
+                                     m,
+                                     island_pars,
+                                     mainland_ex,
+                                     mainland_sample_prob,
+                                     replicates,
+                                     verbose = FALSE) {
   testit::assert(is.numeric(total_time))
   testit::assert(total_time > 0)
   testit::assert(is.numeric(m))

@@ -28,12 +28,10 @@
 #' }
 #'
 #' @keywords internal
-sim_island <- function(
-  total_time,
-  island_pars,
-  mainland_clade,
-  mainland_sample_prob
-) {
+sim_island <- function(total_time,
+                       island_pars,
+                       mainland_clade,
+                       mainland_sample_prob) {
 
   testit::assert(is.numeric(total_time))
   testit::assert(total_time > 0)
