@@ -47,12 +47,14 @@ browser()
   # Initialization
   timeval <- 0
 
+  # get mainland species at timeval
   mainland_spec <- mainland_clade[which(
     mainland_clade[, "spec_origin_t"] <= timeval &
       mainland_clade[, "spec_ex_t"] > timeval), "spec_id"]
   mainland_n <- length(mainland_spec)
   max_spec_id <- max(mainland_clade[, "spec_id"])
 
+  #get mainland event times
   mainland_exts <- mainland_clade[, "spec_ex_t"]
   mainland_brts <- mainland_clade[, "spec_origin_t"]
   mainland_event_t <- c(mainland_exts, mainland_brts, total_time + 1)
@@ -101,7 +103,8 @@ browser()
       timeval <- total_time + 1
     }
 
-    # If a mainland speciation event has occurred since the last time step
+    # If dt has jumped over mainland event go back to mainland event time and
+    # update mainland species
     if (timeval > mainland_event_t[1]) {
       timeval <- mainland_event_t[1]
       mainland_event_t <- mainland_event_t[-1]
