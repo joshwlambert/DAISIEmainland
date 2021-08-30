@@ -1,29 +1,26 @@
-#' Title
+#' Calculates the ...
 #'
-#' @param path
+#' @param daisie_data stub
+#' @param ideal_ml stub
+#' @param empirical_ml stub
 #'
 #' @return
 #' @export
-#'
-#' @examples
-calc_error <- function(path = "results") {
+#' @author Joshua W. Lambert
+calc_error <- function(daisie_data,
+                       ideal_ml,
+                       empirical_ml) {
 
-  result_files <- list.files(
-    path = path,
-    pattern = "param_set",
-    full.names = TRUE
-  )
+  delta_ctt <- calc_ctt(daisie_data = daisie_data)
 
+  max_age_ratio <- calc_max_age_ratio(daisie_data = daisie_data)
 
-  ks <- calc_col_ks(result_files = result_files)
+  endemic_ratio <- calc_endemic_ratio(daisie_data = daisie_data)
 
-  max_age_ratio <- calc_max_age_ratio(result_files)
+  param_diffs <- calc_param_diffs(ideal_ml = ideal_ml,
+                                  empirical_ml = empirical_ml)
 
-  endemic_ratio <- calc_endemic_ratio(result_files)
-
-  param_diffs <- calc_param_diffs(result_files = result_files)
-
-  return(list(ks = ks,
+  return(list(delta_ctt = delta_ctt,
               max_age_ratio = max_age_ratio,
               endemic_ratio = endemic_ratio,
               param_diffs = param_diffs))

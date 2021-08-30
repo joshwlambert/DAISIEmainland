@@ -26,3 +26,6 @@ Data frame of island species
 Checks and updates if any changes on the mainland change the state of the
 island species.
 }
+\author{
+Joshua W. Lambert
+}

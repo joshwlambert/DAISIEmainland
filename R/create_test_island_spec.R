@@ -4,6 +4,7 @@
 #'
 #' @return data frame with island community information
 #' @keywords internal
+#' @author Joshua W. Lambert
 create_test_island_spec <- function(island_scenario) {
 
   testit::assert(island_scenario >= 0 && island_scenario <= 43)

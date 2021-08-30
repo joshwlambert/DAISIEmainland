@@ -76,3 +76,12 @@ for (i in seq_len(replicates)) {
     jitter = 1e-5)
 }
 ```
+
+Calculate errors...
+
+```{r eval=FALSE}
+errors <- calc_error(
+  daisie_data = island,
+  ideal_ml = ideal_ml,
+  empirical_ml = empirical_ml)
+```

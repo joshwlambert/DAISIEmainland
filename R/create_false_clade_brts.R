@@ -5,6 +5,7 @@
 #'
 #' @return numeric vector
 #' @keywords internal
+#' @author Joshua W. Lambert
 create_false_clade_brts <- function(total_time,
                                     anc_branch_t_bp,
                                     subset_island) {

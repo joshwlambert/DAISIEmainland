@@ -55,7 +55,7 @@ island information containing:
     present on the island.}
 }
 The subsequent elements of the list pertaining to each replcate contain
-information on a single colonist lineage on the island and have 4 components:
+information on a single colonist lineage on the island and have 3 components:
 \itemize{
   \item{\code{$branching_times}: island age and stem age of the
     population/species in the case of Non-endemic, Non-endemic_MaxAge and
@@ -76,7 +76,6 @@ information on a single colonist lineage on the island and have 4 components:
 }
 \item{\code{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)}
-\item{\code{$type_1or2}: whether the colonist belongs to type 1 or type 2}
 }
 }
 \description{
@@ -106,5 +105,5 @@ island <- sim_island_with_mainland(
 
 }
 \author{
-Joshua Lambert
+Joshua W. Lambert
 }

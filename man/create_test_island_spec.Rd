@@ -12,4 +12,7 @@ data frame with island community information
 \description{
 Creates an island community for testing purposes
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

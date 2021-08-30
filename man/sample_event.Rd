@@ -23,4 +23,7 @@ would happen in some timesteps of the ontogeny algorithm.
 \description{
 Samples what event to happen next on the island.
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

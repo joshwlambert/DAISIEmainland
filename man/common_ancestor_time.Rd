@@ -23,4 +23,7 @@ Numeric
 Calculates the branching time of the common ancestor of two species on the
 mainland.
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

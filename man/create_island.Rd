@@ -27,4 +27,7 @@ the island and number of missing species.
 \description{
 Converts simulation output into island output
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

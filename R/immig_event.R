@@ -3,6 +3,7 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A data frame
+#' @author Joshua W. Lambert
 immig_event <- function(timeval,
                         island_spec,
                         mainland_spec) {

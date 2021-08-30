@@ -16,3 +16,6 @@ A data frame
 \description{
 Updates the island_spec when an extinction event occurs
 }
+\author{
+Joshua W. Lambert
+}

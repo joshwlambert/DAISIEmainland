@@ -17,6 +17,7 @@ Depends:
 Imports: 
     DAISIE (>= 4.0.2),
     DDD (>= 4.4),
+    nLTT (>= 1.4.5),
     testit
 Suggests: 
     lintr,
@@ -27,3 +28,4 @@ RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Remotes:  
     rsetienne/DAISIE@v4.0.2
+    thijsjanzen/nLTT@v1.4.5

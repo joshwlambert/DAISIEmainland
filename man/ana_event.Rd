@@ -18,3 +18,6 @@ A two element list
 \description{
 Updates the island_spec and max_spec_id when an anagenesis event occurs
 }
+\author{
+Joshua W. Lambert
+}

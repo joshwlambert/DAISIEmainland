@@ -3,6 +3,7 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A data frame
+#' @author Joshua W. Lambert
 ext_event <- function(island_spec) {
 
   testit::assert(is.data.frame(island_spec))

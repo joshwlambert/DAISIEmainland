@@ -56,10 +56,16 @@ for (i in seq_len(param_space$replicates[args])) {
     jitter = 1e-5)
 }
 
+error <- calc_error(
+  daisie_data = island,
+  ideal_ml = ideal_ml,
+  empirical_ml = empirical_ml)
+
 output <- list(
   island = island,
   ideal_ml = ideal_ml,
-  empirical_ml = empirical_ml)
+  empirical_ml = empirical_ml,
+  error = error)
 
 output_name <- paste0("param_set_", args, ".rds")
 

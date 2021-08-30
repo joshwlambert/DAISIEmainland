@@ -42,7 +42,7 @@
 #' \item{\code{$missing_species}: number of island species that were
 #' not sampled for particular clade (only applicable for endemic clades)}
 #' }
-#' @author Joshua Lambert
+#' @author Joshua W. Lambert
 #' @examples
 #' ## Simulate 2 islands (replicates) for 1 million years, with a mainland
 #' ## extinction rate of 1 (SpMy^-1). Pool size 100.
@@ -110,9 +110,11 @@ sim_island_with_mainland <- function(total_time,
 
     island_replicates[[rep]] <- full_list
   }
+
   island_replicates <- format_to_daisie_data(
     island_replicates = island_replicates,
     total_time = total_time,
     m = m)
+
   return(island_replicates)
 }

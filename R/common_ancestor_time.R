@@ -5,6 +5,7 @@
 #'
 #' @return Numeric
 #' @keywords internal
+#' @author Joshua W. Lambert
 common_ancestor_time <- function(total_time,
                                  mainland_spec,
                                  mainland_clade) {

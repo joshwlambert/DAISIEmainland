@@ -37,4 +37,7 @@ recent ID of species.
 Makes the event happen by updating island species matrix and species IDs.
 What event happens is determined by the sampling in the algorithm.
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

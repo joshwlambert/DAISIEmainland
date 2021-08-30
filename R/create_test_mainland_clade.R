@@ -4,6 +4,7 @@
 #'
 #' @return data frame with mainland clade information
 #' @keywords internal
+#' @author Joshua W. Lambert
 create_test_mainland_clade <- function(mainland_scenario) {
 
   testit::assert(mainland_scenario >= 1 && mainland_scenario <= 14)

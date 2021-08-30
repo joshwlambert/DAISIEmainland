@@ -17,6 +17,7 @@
 #'     \item Species extinction time (spec_ex_t)
 #' }
 #' @keywords internal
+#' @author Joshua W. Lambert
 sim_mainland <- function(total_time,
                          m,
                          mainland_ex) {

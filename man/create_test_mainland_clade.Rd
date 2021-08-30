@@ -16,4 +16,7 @@ data frame with mainland clade information
 \description{
 Creates a clade on the mainland for testing purposes
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

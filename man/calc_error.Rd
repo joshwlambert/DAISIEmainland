@@ -2,16 +2,23 @@
 % Please edit documentation in R/calc_error.R
 \name{calc_error}
 \alias{calc_error}
-\title{Title}
+\title{Calculates the ...}
 \usage{
-calc_error(path = "results")
+calc_error(daisie_data, ideal_ml, empirical_ml)
 }
 \arguments{
-\item{path}{}
+\item{daisie_data}{stub}
+
+\item{ideal_ml}{stub}
+
+\item{empirical_ml}{stub}
 }
 \value{
 
 }
 \description{
-Title
+Calculates the ...
+}
+\author{
+Joshua W. Lambert
 }

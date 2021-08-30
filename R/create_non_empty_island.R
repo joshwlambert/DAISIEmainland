@@ -5,6 +5,7 @@
 #' @return List with the island information, composed of
 #' branching times of extant species, status of species on
 #' the island and number of missing species.
+#' @author Joshua W. Lambert
 create_non_empty_island <- function(total_time,
                                     island_spec,
                                     mainland_clade,

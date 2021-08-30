@@ -31,4 +31,7 @@ Named list with rates.
 \description{
 Internal function that updates the all the rates at time t.
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

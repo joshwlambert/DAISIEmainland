@@ -2,7 +2,8 @@
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return Matrix
+#' @return A data frame
+#' @author Joshua W. Lambert
 sample_mainland <- function(total_time,
                             mainland_clade,
                             mainland_sample_prob,

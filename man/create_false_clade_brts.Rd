@@ -24,4 +24,7 @@ numeric vector
 Creates a vector of branching times when empirical data is a clade but
 the ideal data is multiple colonisations
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_island.R
 \name{sim_island}
 \alias{sim_island}
-\title{Simulates the island.}
+\title{Simulates the island given rates and a mainland clade.}
 \usage{
 sim_island(total_time, island_pars, mainland_clade, mainland_sample_prob)
 }
@@ -27,9 +27,35 @@ units.}
 probability of an extant mainland species being sampled.}
 }
 \value{
-List
+A list of two elements. The first element is \code{ideal_island},
+and the second element is \code{empirical_island}. Within each of these
+is a list containing 3 components:
+\itemize{
+  \item{\code{$branching_times}: island age and stem age of the
+    population/species in the case of Non-endemic, Non-endemic_MaxAge and
+    Endemic anagenetic species.
+
+    For cladogenetic species these should
+    be island age and branching times of the radiation including the
+    stem age of the radiation.}
+  \item{\code{$stac}: An integer ranging from 1 to 6
+  indicating the status of the colonist:}
+  \enumerate{
+    \item Non_endemic_MaxAge
+    \item Endemic
+    \item Endemic&Non_Endemic
+    \item Non_endemic_MaxAge
+    \item Endemic_singleton_MaxAge
+    \item Endemic_clade_MaxAge
+}
+\item{\code{$missing_species}: number of island species that were
+not sampled for particular clade (only applicable for endemic clades)}
+}
 }
 \description{
-Simulates the island.
+Simulates the island given rates and a mainland clade.
+}
+\author{
+Joshua W. Lambert
 }
 \keyword{internal}

@@ -4,6 +4,7 @@
 #' @inheritParams default_params_doc
 #'
 #' @return Data frame of island species
+#' @author Joshua W. Lambert
 update_island_endemics <- function(timeval,
                                    total_time,
                                    island_spec,

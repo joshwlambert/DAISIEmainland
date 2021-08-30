@@ -2,8 +2,9 @@
 % Please edit documentation in R/sim_mainland.R
 \name{sim_mainland}
 \alias{sim_mainland}
-\title{Simulates mainland extinction as a pure-death process with replacement
-via the speciation of an exisiting mainland species.}
+\title{Simulates mainland extinction as a species-level moran process with
+species extinction immediately replaced via the speciation of an exisiting
+mainland species.}
 \usage{
 sim_mainland(total_time, m, mainland_ex)
 }
@@ -16,23 +17,25 @@ units.}
 \item{mainland_ex}{Numeric parameter for mainland extinction rate.}
 }
 \value{
-a list where each element is a mainland clade, this could be a
-single or multiple clades. Each element of the list is a matrix with nine
-columns. The columns contain
+a list where each element is a mainland clade. Each element of the
+list is a data frame with nine columns. The columns contain
 \enumerate{
-    \item Species identity
-    \item Mainland ancestor identity
-    \item Colonisation time
-    \item Species type
-    \item Branching code
+    \item Species identity (spec_id)
+    \item Mainland ancestor identity (main_anc_id)
+    \item Species type (spec_type)
+    \item Branching code (branch_code)
     \item Branching time (forwards in time from the start of the simulation)
-    \item Anagenetic origin
-    \item Species origination time
-    \item Species extinction time
+    (branch_t)
+    \item Species origination time (spec_origin_t)
+    \item Species extinction time (spec_ex_t)
 }
 }
 \description{
-Simulates mainland extinction as a pure-death process with replacement
-via the speciation of an exisiting mainland species.
+Simulates mainland extinction as a species-level moran process with
+species extinction immediately replaced via the speciation of an exisiting
+mainland species.
+}
+\author{
+Joshua W. Lambert
 }
 \keyword{internal}

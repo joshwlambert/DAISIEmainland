@@ -32,3 +32,6 @@ the island and number of missing species.
 \description{
 Creates an ideal and empirical data set for a single non empty island
 }
+\author{
+Joshua W. Lambert
+}

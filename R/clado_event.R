@@ -3,6 +3,7 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A two element list
+#' @author Joshua W. Lambert
 clado_event <- function(timeval,
                         island_spec,
                         max_spec_id) {

@@ -50,6 +50,7 @@
 #' single colonisation event
 #'
 #' @return Nothing
+#' @author Joshua W. Lambert
 default_params_doc <- function(timeval,
                                total_time,
                                gam,

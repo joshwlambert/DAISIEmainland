@@ -28,6 +28,7 @@
 #' }
 #'
 #' @keywords internal
+#' @author Joshua W. Lambert
 sim_island <- function(total_time,
                        island_pars,
                        mainland_clade,
@@ -164,5 +165,6 @@ sim_island <- function(total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
     mainland_sample_prob = mainland_sample_prob)
+
   return(island)
 }

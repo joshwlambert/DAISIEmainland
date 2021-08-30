@@ -20,3 +20,6 @@ A data frame
 \description{
 Updates the island_spec when an immigration event occurs
 }
+\author{
+Joshua W. Lambert
+}

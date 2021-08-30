@@ -5,6 +5,7 @@
 #'
 #' @keywords internal
 #' @return Named list with rates.
+#' @author Joshua W. Lambert
 calc_rates <- function(gam,
                        laa,
                        lac,

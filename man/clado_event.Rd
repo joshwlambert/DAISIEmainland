@@ -20,3 +20,6 @@ A two element list
 \description{
 Updates the island_spec and max_spec_id when a cladogenesis event occurs
 }
+\author{
+Joshua W. Lambert
+}

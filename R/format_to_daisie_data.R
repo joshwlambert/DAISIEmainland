@@ -4,6 +4,7 @@
 #'
 #' @return List with DAISIE simulation output
 #' @keywords internal
+#' @author Joshua W. Lambert
 format_to_daisie_data <- function(island_replicates,
                                   total_time,
                                   m) {

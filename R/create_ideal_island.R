@@ -35,6 +35,7 @@
 #'   }
 #' }
 #' @keywords internal
+#' @author Joshua W. Lambert
 create_ideal_island <- function(total_time,
                                 island_spec) {
   ### number of independent colonisations

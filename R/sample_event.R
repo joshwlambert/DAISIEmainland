@@ -11,6 +11,7 @@
 #'   \item{[4]: anagenesis event}
 #' }
 #' @keywords internal
+#' @author Joshua W. Lambert
 sample_event <- function(rates) {
 
   testit::assert(is.list(rates))

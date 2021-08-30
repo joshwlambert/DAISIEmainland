@@ -114,3 +114,6 @@ Nothing
 \description{
 Documentation for function arguments in the DAISIEmainland package
 }
+\author{
+Joshua W. Lambert
+}

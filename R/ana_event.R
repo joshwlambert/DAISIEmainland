@@ -3,6 +3,7 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A two element list
+#' @author Joshua W. Lambert
 ana_event <- function(island_spec,
                       max_spec_id) {
 

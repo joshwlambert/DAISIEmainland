@@ -6,6 +6,7 @@
 #' branching times of extant species, status of species on
 #' the island and number of missing species.
 #' @keywords internal
+#' @author Joshua W. Lambert
 create_island <- function(total_time,
                           island_spec,
                           mainland_clade,

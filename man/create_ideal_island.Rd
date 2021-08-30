@@ -50,4 +50,7 @@ a list with these elements:
 \description{
 Convert intermediate output to final simulation output.
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}

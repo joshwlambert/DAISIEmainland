@@ -20,8 +20,11 @@ probability of an extant mainland species being sampled.}
 of species.}
 }
 \value{
-Matrix
+A data frame
 }
 \description{
 Samples the mainland clade with the mainland sampling probability
+}
+\author{
+Joshua W. Lambert
 }

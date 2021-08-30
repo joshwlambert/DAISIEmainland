@@ -10,6 +10,7 @@
 #' recent ID of species.
 #'
 #' @keywords internal
+#' @author Joshua W. Lambert
 update_state <- function(timeval,
                          total_time,
                          possible_event,

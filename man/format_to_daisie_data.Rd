@@ -22,4 +22,7 @@ List with DAISIE simulation output
 \description{
 Formats simulation output into standard DAISIE list output.
 }
+\author{
+Joshua W. Lambert
+}
 \keyword{internal}
