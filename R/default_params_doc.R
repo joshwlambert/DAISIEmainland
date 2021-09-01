@@ -16,26 +16,26 @@
 #' @param island_spec Matrix with current state of simulation containing number
 #' of species.
 #' @param mainland_clade Data frame with state of mainland. see
-#' \code{\link{create_test_mainland_clade}}.
+#' [create_test_mainland_clade()].
 #' @param mainland_spec Numeric focal species on the mainland
 #' @param mainland_sample_prob Numeric between zero and one determining the
 #' probability of an extant mainland species being sampled.
 #' @param island_replicates List that has as many elements as replicates. Each
-#' element must be a list with the elements \code{island_age} and
-#' \code{not_present}. ##### LOOK INTO THIS
+#' element must be a list with the elements `island_age` and
+#' `not_present`. ##### LOOK INTO THIS
 #' @param m Numeric defining the size of mainland pool.
 #' @param verbose Logical, determining if progress output should be printed
 #' during the simulation.
 #' @param rates named list of numeric rates as returned by
-#'   \code{\link{update_rates}()}.
+#'   [update_rates()].
 #' @param island_pars A numeric vector containing the parameters for the island:
 #'   \itemize{
-#'     \item{\code{island_pars[1]}: lambda^c (cladogenesis rate)}
-#'     \item{\code{island_pars[2]}: mu (extinction rate)}
-#'     \item{\code{island_pars[3]}: K (carrying capacity), set K=Inf for
+#'     \item{`island_pars[1]`: lambda^c (cladogenesis rate)}
+#'     \item{`island_pars[2]`: mu (extinction rate)}
+#'     \item{`island_pars[3]`: K (carrying capacity), set K=Inf for
 #'     diversity independence.}
-#'     \item{\code{island_pars[4]}: gamma (immigration rate)}
-#'     \item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
+#'     \item{`island_pars[4]`: gamma (immigration rate)}
+#'     \item{`island_pars[5]`: lambda^a (anagenesis rate)}
 #'     }
 #' @param mainland_ex Numeric parameter for mainland extinction rate.
 #' @param replicates Integer specifying number of island replicates to be
@@ -49,13 +49,13 @@
 #' @param subset_island Data frame of island species that originated from a
 #' single colonisation event
 #' @param daisie_data List containing data of DAISIE simulation with mainland
-#' dynamics. Output from \code{sim_island_with_mainland}
+#' dynamics. Output from `sim_island_with_mainland``
 #' @param ideal_ml List containing maximum likelihood estimates from DAISIE
-#' fitted to ideal data produced from \code{sim_island_with_mainland}. Output
-#' from \code{DAISIE::DAISIE_ML_CS}
+#' fitted to ideal data produced from `sim_island_with_mainland`. Output
+#' from `DAISIE::DAISIE_ML_CS`
 #' @param empirical_ml List containing maximum likelihood estimates from DAISIE
-#' fitted to empirical data produced from \code{sim_island_with_mainland}.
-#' Output from \code{DAISIE::DAISIE_ML_CS}
+#' fitted to empirical data produced from `sim_island_with_mainland`.
+#' Output from `DAISIE::DAISIE_ML_CS`
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert

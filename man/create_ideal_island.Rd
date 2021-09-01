@@ -32,14 +32,14 @@ colonising lineage.
 missing species, that is, species not sampled in the phylogeny but
 present on the island. As this code only runs for simulation models,
 here \code{missing_species} is always set to 0.
-\item  \code{all_colonisations}, on recolonising lineages only. It is
-comprised of \code{$event_times} and \code{$species_type}:
+\item \code{all_colonisations}, on recolonising lineages only. It is
+comprised of \verb{$event_times} and \verb{$species_type}:
 \describe{
-\item{\code{$event_times}}{ordered numeric vectors containing all
+\item{\verb{$event_times}}{ordered numeric vectors containing all
 events for each extant recolonising lineage. This includes all
 colonisation and branching times. Each vector pertains to one
 colonising lineage.}
-\item{\code{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
 \code{"I"} depending on whether the extant clade is of anagenetic,
 cladogenetic or immigrant origin, respectively.}
 }

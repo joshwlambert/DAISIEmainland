@@ -8,7 +8,7 @@ calc_endemic_percent(daisie_data)
 }
 \arguments{
 \item{daisie_data}{List containing data of DAISIE simulation with mainland
-dynamics. Output from \code{sim_island_with_mainland}}
+dynamics. Output from `sim_island_with_mainland``}
 }
 \value{
 A list of six numeric vectors

@@ -18,7 +18,7 @@ units.}
 }
 \value{
 a list where each element is a mainland clade. Each element of the
-list is a data frame with nine columns. The columns contain
+list is a data frame with nine columns. The columns contain:
 \enumerate{
 \item Species identity (spec_id)
 \item Mainland ancestor identity (main_anc_id)

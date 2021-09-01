@@ -1,8 +1,8 @@
-#' \code{DAISIEmainland}: A package to simulate phylogenetic data on an island
+#' `DAISIEmainland`: A package to simulate phylogenetic data on an island
 #' with the presence of mainland speciation and extinction to test the
-#' \code{DAISIE} model of island biogeography.
+#' `DAISIE` model of island biogeography.
 #'
-#' \code{DAISIEmainland} simulates a two data sets for every island: 1) the
+#' `DAISIEmainland` simulates a two data sets for every island: 1) the
 #' ideal data set has the full information, 2) the empirical data set has
 #' the data as would be seen by the empirical collecting phylogenetic data
 #' in the presence of mainland dynamics.
@@ -23,8 +23,8 @@
 #'}
 #'
 #' @seealso
-#' \code{DAISIEmainland} works in association with the
-#' package \code{DAISIE}(github.com/rsetienne/DAISIE)
+#' `DAISIEmainland`` works in association with the
+#' package `DAISIE`(github.com/rsetienne/DAISIE)
 #' @author Joshua W. Lambert
 #' @docType package
 #' @name DAISIEmainland

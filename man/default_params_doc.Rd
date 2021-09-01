@@ -64,7 +64,7 @@ can colonize the island.}
 of species.}
 
 \item{mainland_clade}{Data frame with state of mainland. see
-\code{\link{create_test_mainland_clade}}.}
+\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}.}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 
@@ -81,7 +81,7 @@ element must be a list with the elements \code{island_age} and
 during the simulation.}
 
 \item{rates}{named list of numeric rates as returned by
-\code{\link{update_rates}()}.}
+\code{\link[=update_rates]{update_rates()}}.}
 
 \item{island_pars}{A numeric vector containing the parameters for the island:
 \itemize{
@@ -112,7 +112,7 @@ of the immigrant species ancestor and its extant relative on the mainland}
 single colonisation event}
 
 \item{daisie_data}{List containing data of DAISIE simulation with mainland
-dynamics. Output from \code{sim_island_with_mainland}}
+dynamics. Output from `sim_island_with_mainland``}
 
 \item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
 fitted to ideal data produced from \code{sim_island_with_mainland}. Output

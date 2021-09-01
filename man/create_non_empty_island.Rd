@@ -19,7 +19,7 @@ units.}
 of species.}
 
 \item{mainland_clade}{Data frame with state of mainland. see
-\code{\link{create_test_mainland_clade}}.}
+\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}

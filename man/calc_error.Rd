@@ -11,7 +11,7 @@ calc_error(daisie_data, ideal_ml, empirical_ml)
 }
 \arguments{
 \item{daisie_data}{List containing data of DAISIE simulation with mainland
-dynamics. Output from \code{sim_island_with_mainland}}
+dynamics. Output from `sim_island_with_mainland``}
 
 \item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
 fitted to ideal data produced from \code{sim_island_with_mainland}. Output

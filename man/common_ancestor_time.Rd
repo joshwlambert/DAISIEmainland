@@ -14,7 +14,7 @@ units.}
 \item{mainland_spec}{Numeric focal species on the mainland}
 
 \item{mainland_clade}{Data frame with state of mainland. see
-\code{\link{create_test_mainland_clade}}.}
+\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}.}
 }
 \value{
 Numeric

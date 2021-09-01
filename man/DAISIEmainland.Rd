@@ -29,8 +29,7 @@ verbose = FALSE
 
 }
 \seealso{
-\code{DAISIEmainland} works in association with the
-package \code{DAISIE}(github.com/rsetienne/DAISIE)
+\verb{DAISIEmainland`` works in association with the package }DAISIE`(github.com/rsetienne/DAISIE)
 }
 \author{
 Joshua W. Lambert

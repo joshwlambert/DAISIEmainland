@@ -1,32 +1,27 @@
-#' Simulates the island given rates and a mainland clade.
+#' Simulates the island given rates and a mainland clade
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return A list of two elements. The first element is \code{ideal_island},
-#' and the second element is \code{empirical_island}. Within each of these
+#' @return A list of two elements. The first element is `ideal_island`,
+#' and the second element is `empirical_island`. Within each of these
 #' is a list containing 3 components:
-#' \itemize{
-#'   \item{\code{$branching_times}: island age and stem age of the
-#'     population/species in the case of Non-endemic, Non-endemic_MaxAge and
-#'     Endemic anagenetic species.
+#' * `$branching_times`: island age and stem age of the
+#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
+#'    Endemic anagenetic species.
 #'
-#'     For cladogenetic species these should
-#'     be island age and branching times of the radiation including the
-#'     stem age of the radiation.}
-#'   \item{\code{$stac}: An integer ranging from 1 to 6
-#'   indicating the status of the colonist:}
-#'   \enumerate{
-#'     \item Non_endemic_MaxAge
-#'     \item Endemic
-#'     \item Endemic&Non_Endemic
-#'     \item Non_endemic_MaxAge
-#'     \item Endemic_singleton_MaxAge
-#'     \item Endemic_clade_MaxAge
-#' }
-#' \item{\code{$missing_species}: number of island species that were
-#' not sampled for particular clade (only applicable for endemic clades)}
-#' }
-#'
+#'    For cladogenetic species these should
+#'    be island age and branching times of the radiation including the
+#'    stem age of the radiation.
+#' * `$stac`: An integer ranging from 1 to 6
+#'    indicating the status of the colonist:
+#'    1. Non_endemic_MaxAge
+#'    2. Endemic
+#'    3. Endemic&Non_Endemic
+#'    4. Non_endemic_MaxAge
+#'    5. Endemic_singleton_MaxAge
+#'    6. Endemic_clade_MaxAge
+#' * `$missing_species`: number of island species that were
+#' not sampled for particular clade (only applicable for endemic clades)
 #' @keywords internal
 #' @author Joshua W. Lambert
 sim_island <- function(total_time,

@@ -5,17 +5,16 @@
 #' @inheritParams default_params_doc
 #'
 #' @return a list where each element is a mainland clade. Each element of the
-#' list is a data frame with nine columns. The columns contain
-#' \enumerate{
-#'     \item Species identity (spec_id)
-#'     \item Mainland ancestor identity (main_anc_id)
-#'     \item Species type (spec_type)
-#'     \item Branching code (branch_code)
-#'     \item Branching time (forwards in time from the start of the simulation)
+#' list is a data frame with nine columns. The columns contain:
+#' 1. Species identity (spec_id)
+#' 2. Mainland ancestor identity (main_anc_id)
+#' 3. Species type (spec_type)
+#' 4. Branching code (branch_code)
+#' 5. Branching time (forwards in time from the start of the simulation)
 #'     (branch_t)
-#'     \item Species origination time (spec_origin_t)
-#'     \item Species extinction time (spec_ex_t)
-#' }
+#' 6. Species origination time (spec_origin_t)
+#' 7. Species extinction time (spec_ex_t)
+#'
 #' @keywords internal
 #' @author Joshua W. Lambert
 sim_mainland <- function(total_time,
