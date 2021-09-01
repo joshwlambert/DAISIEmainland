@@ -20,14 +20,14 @@ units.}
 a list where each element is a mainland clade. Each element of the
 list is a data frame with nine columns. The columns contain
 \enumerate{
-    \item Species identity (spec_id)
-    \item Mainland ancestor identity (main_anc_id)
-    \item Species type (spec_type)
-    \item Branching code (branch_code)
-    \item Branching time (forwards in time from the start of the simulation)
-    (branch_t)
-    \item Species origination time (spec_origin_t)
-    \item Species extinction time (spec_ex_t)
+\item Species identity (spec_id)
+\item Mainland ancestor identity (main_anc_id)
+\item Species type (spec_type)
+\item Branching code (branch_code)
+\item Branching time (forwards in time from the start of the simulation)
+(branch_t)
+\item Species origination time (spec_origin_t)
+\item Species extinction time (spec_ex_t)
 }
 }
 \description{

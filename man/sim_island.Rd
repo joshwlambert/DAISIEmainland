@@ -12,13 +12,13 @@ units.}
 
 \item{island_pars}{A numeric vector containing the parameters for the island:
 \itemize{
-  \item{\code{island_pars[1]}: lambda^c (cladogenesis rate)}
-  \item{\code{island_pars[2]}: mu (extinction rate)}
-  \item{\code{island_pars[3]}: K (carrying capacity), set K=Inf for
-  diversity independence.}
-  \item{\code{island_pars[4]}: gamma (immigration rate)}
-  \item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
-  }}
+\item{\code{island_pars[1]}: lambda^c (cladogenesis rate)}
+\item{\code{island_pars[2]}: mu (extinction rate)}
+\item{\code{island_pars[3]}: K (carrying capacity), set K=Inf for
+diversity independence.}
+\item{\code{island_pars[4]}: gamma (immigration rate)}
+\item{\code{island_pars[5]}: lambda^a (anagenesis rate)}
+}}
 
 \item{mainland_clade}{Data frame with state of mainland. see
 \code{\link{create_test_mainland_clade}}.}
@@ -31,22 +31,22 @@ A list of two elements. The first element is \code{ideal_island},
 and the second element is \code{empirical_island}. Within each of these
 is a list containing 3 components:
 \itemize{
-  \item{\code{$branching_times}: island age and stem age of the
-    population/species in the case of Non-endemic, Non-endemic_MaxAge and
-    Endemic anagenetic species.
+\item{\code{$branching_times}: island age and stem age of the
+population/species in the case of Non-endemic, Non-endemic_MaxAge and
+Endemic anagenetic species.\preformatted{For cladogenetic species these should
+be island age and branching times of the radiation including the
+stem age of the radiation.\}
+}
 
-    For cladogenetic species these should
-    be island age and branching times of the radiation including the
-    stem age of the radiation.}
-  \item{\code{$stac}: An integer ranging from 1 to 6
-  indicating the status of the colonist:}
-  \enumerate{
-    \item Non_endemic_MaxAge
-    \item Endemic
-    \item Endemic&Non_Endemic
-    \item Non_endemic_MaxAge
-    \item Endemic_singleton_MaxAge
-    \item Endemic_clade_MaxAge
+\item{\code{$stac}: An integer ranging from 1 to 6
+indicating the status of the colonist:}
+\enumerate{
+\item Non_endemic_MaxAge
+\item Endemic
+\item Endemic&Non_Endemic
+\item Non_endemic_MaxAge
+\item Endemic_singleton_MaxAge
+\item Endemic_clade_MaxAge
 }
 \item{\code{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)}
