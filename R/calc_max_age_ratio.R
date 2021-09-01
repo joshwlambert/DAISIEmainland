@@ -29,28 +29,28 @@ calc_max_age_ratio <- function(daisie_data) {
           daisie_data$ideal_islands[[i]][[j]]$branching_times[2]
         )
       } else {
-        for (l in seq_along(daisie_data$ideal_islands[[i]][[k]]$all_colonisations)) {
+        for (k in seq_along(daisie_data$ideal_islands[[i]][[j]]$all_colonisations)) {
           ideal_col_times <- c(
             ideal_col_times,
-            daisie_data$ideal_islands[[i]][[k]]$all_colonisations[[l]]$event_times[[2]]
+            daisie_data$ideal_islands[[i]][[j]]$all_colonisations[[k]]$event_times[[2]]
           )
         }
       }
     }
 
-    for (k in 2:length(daisie_data$empirical_islands[[i]])) {
-      empirical_stac <- daisie_data$empirical_islands[[i]][[k]]$stac
+    for (j in 2:length(daisie_data$empirical_islands[[i]])) {
+      empirical_stac <- daisie_data$empirical_islands[[i]][[j]]$stac
       if (empirical_stac == 1 || empirical_stac == 2 || empirical_stac == 4 ||
           empirical_stac == 5 || empirical_stac == 6) {
         empirical_col_times <- c(
           empirical_col_times,
-          daisie_data$empirical_islands[[i]][[k]]$branching_times[2]
+          daisie_data$empirical_islands[[i]][[j]]$branching_times[2]
         )
       } else {
-        for (l in seq_along(daisie_data$empirical_islands[[i]][[k]]$all_colonisations)) {
+        for (k in seq_along(daisie_data$empirical_islands[[i]][[j]]$all_colonisations)) {
           empirical_col_times <- c(
             empirical_col_times,
-            daisie_data$ideal_islands[[i]][[k]]$all_colonisations[[l]]$event_times[[2]]
+            daisie_data$ideal_islands[[i]][[j]]$all_colonisations[[k]]$event_times[[2]]
           )
         }
       }
