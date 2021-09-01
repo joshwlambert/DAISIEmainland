@@ -48,6 +48,14 @@
 #' of the immigrant species ancestor and its extant relative on the mainland
 #' @param subset_island Data frame of island species that originated from a
 #' single colonisation event
+#' @param daisie_data List containing data of DAISIE simulation with mainland
+#' dynamics. Output from \code{sim_island_with_mainland}
+#' @param ideal_ml List containing maximum likelihood estimates from DAISIE
+#' fitted to ideal data produced from \code{sim_island_with_mainland}. Output
+#' from \code{DAISIE::DAISIE_ML_CS}
+#' @param empirical_ml List containing maximum likelihood estimates from DAISIE
+#' fitted to empirical data produced from \code{sim_island_with_mainland}.
+#' Output from \code{DAISIE::DAISIE_ML_CS}
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -76,6 +84,9 @@ default_params_doc <- function(timeval,
                                max_spec_id,
                                mainland_scenario,
                                anc_branch_t_bp,
-                               subset_island) {
+                               subset_island,
+                               daisie_data,
+                               ideal_ml,
+                               empirical_ml) {
   #Nothing
 }

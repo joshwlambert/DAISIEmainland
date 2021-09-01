@@ -2,20 +2,30 @@
 % Please edit documentation in R/calc_param_diffs.R
 \name{calc_param_diffs}
 \alias{calc_param_diffs}
-\title{Title}
+\title{Calculates the absolute difference in parameter estimates (cladogenesis,
+extinction, carrying capacity, colonisation, and anagenesis) from the DAISIE
+maximum likelihood model fitted to the ideal and empirical data sets
+simulated from \code{sim_island_with_mainland}.}
 \usage{
 calc_param_diffs(ideal_ml, empirical_ml)
 }
 \arguments{
-\item{ideal_ml}{stub}
+\item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
+fitted to ideal data produced from \code{sim_island_with_mainland}. Output
+from \code{DAISIE::DAISIE_ML_CS}}
 
-\item{empirical_ml}{stub}
+\item{empirical_ml}{List containing maximum likelihood estimates from DAISIE
+fitted to empirical data produced from \code{sim_island_with_mainland}.
+Output from \code{DAISIE::DAISIE_ML_CS}}
 }
 \value{
-
+A list of five numeric vectors
 }
 \description{
-Title
+Calculates the absolute difference in parameter estimates (cladogenesis,
+extinction, carrying capacity, colonisation, and anagenesis) from the DAISIE
+maximum likelihood model fitted to the ideal and empirical data sets
+simulated from \code{sim_island_with_mainland}.
 }
 \author{
 Joshua W. Lambert

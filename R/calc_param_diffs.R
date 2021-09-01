@@ -1,10 +1,11 @@
-#' Title
+#' Calculates the absolute difference in parameter estimates (cladogenesis,
+#' extinction, carrying capacity, colonisation, and anagenesis) from the DAISIE
+#' maximum likelihood model fitted to the ideal and empirical data sets
+#' simulated from \code{sim_island_with_mainland}.
 #'
-#' @param ideal_ml stub
-#' @param empirical_ml stub
+#' @inheritParams default_params_doc
 #'
-#' @return
-#' @export
+#' @return A list of five numeric vectors
 #' @author Joshua W. Lambert
 calc_param_diffs <- function(ideal_ml,
                             empirical_ml) {
@@ -30,17 +31,11 @@ calc_param_diffs <- function(ideal_ml,
       abs(ideal_ml[[i]]$lambda_a - empirical_ml[[i]]$lambda_a)
   }
 
-  mean_clado_abs_diff <- mean(clado_abs_diff)
-  mean_ext_abs_diff <- mean(ext_abs_diff)
-  mean_k_abs_diff <- mean(k_abs_diff)
-  mean_immig_abs_diff <- mean(immig_abs_diff)
-  mean_ana_abs_diff <- mean(ana_abs_diff)
+  param_abs_diff <- list(clado_abs_diff = clado_abs_diff,
+                         ext_abs_diff = ext_abs_diff,
+                         k_abs_diff = k_abs_diff,
+                         immig_abs_diff = immig_abs_diff,
+                         ana_abs_diff = ana_abs_diff)
 
-  mean_abs_diff <- list(clado = mean_clado_abs_diff,
-                        ext = mean_ext_abs_diff,
-                        k = mean_k_abs_diff,
-                        immig = mean_immig_abs_diff,
-                        ana = mean_ana_abs_diff)
-
-  return(mean_abs_diff)
+  return(param_abs_diff)
 }

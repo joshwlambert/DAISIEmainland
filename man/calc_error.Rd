@@ -2,22 +2,33 @@
 % Please edit documentation in R/calc_error.R
 \name{calc_error}
 \alias{calc_error}
-\title{Calculates the ...}
+\title{Calculates the colonisation through time (CTT) statistic, max age ratio,
+percentage of endemics, and differences in parameter estimates from DAISIE
+maximum likelihood estimation on ideal and empirical data simulated from
+sim_island_with_mainland}
 \usage{
 calc_error(daisie_data, ideal_ml, empirical_ml)
 }
 \arguments{
-\item{daisie_data}{stub}
+\item{daisie_data}{List containing data of DAISIE simulation with mainland
+dynamics. Output from \code{sim_island_with_mainland}}
 
-\item{ideal_ml}{stub}
+\item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
+fitted to ideal data produced from \code{sim_island_with_mainland}. Output
+from \code{DAISIE::DAISIE_ML_CS}}
 
-\item{empirical_ml}{stub}
+\item{empirical_ml}{List containing maximum likelihood estimates from DAISIE
+fitted to empirical data produced from \code{sim_island_with_mainland}.
+Output from \code{DAISIE::DAISIE_ML_CS}}
 }
 \value{
-
+List of error metrics
 }
 \description{
-Calculates the ...
+Calculates the colonisation through time (CTT) statistic, max age ratio,
+percentage of endemics, and differences in parameter estimates from DAISIE
+maximum likelihood estimation on ideal and empirical data simulated from
+sim_island_with_mainland
 }
 \author{
 Joshua W. Lambert

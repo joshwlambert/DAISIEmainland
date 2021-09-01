@@ -8,10 +8,11 @@ ideal and empirical data sets simulated for each replicate}
 calc_ctt(daisie_data)
 }
 \arguments{
-\item{daisie_data}{stub}
+\item{daisie_data}{List containing data of DAISIE simulation with mainland
+dynamics. Output from \code{sim_island_with_mainland}}
 }
 \value{
-A list of numerics
+A vector of numerics
 }
 \description{
 Calculates the delta colonisation through time (CTT) statistic between the

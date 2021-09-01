@@ -30,7 +30,10 @@ default_params_doc(
   max_spec_id,
   mainland_scenario,
   anc_branch_t_bp,
-  subset_island
+  subset_island,
+  daisie_data,
+  ideal_ml,
+  empirical_ml
 )
 }
 \arguments{
@@ -107,6 +110,17 @@ of the immigrant species ancestor and its extant relative on the mainland}
 
 \item{subset_island}{Data frame of island species that originated from a
 single colonisation event}
+
+\item{daisie_data}{List containing data of DAISIE simulation with mainland
+dynamics. Output from \code{sim_island_with_mainland}}
+
+\item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
+fitted to ideal data produced from \code{sim_island_with_mainland}. Output
+from \code{DAISIE::DAISIE_ML_CS}}
+
+\item{empirical_ml}{List containing maximum likelihood estimates from DAISIE
+fitted to empirical data produced from \code{sim_island_with_mainland}.
+Output from \code{DAISIE::DAISIE_ML_CS}}
 }
 \value{
 Nothing

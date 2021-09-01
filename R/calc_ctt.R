@@ -1,14 +1,13 @@
 #' Calculates the delta colonisation through time (CTT) statistic between the
 #' ideal and empirical data sets simulated for each replicate
 #'
-#' @param daisie_data stub
+#' @inheritParams default_params_doc
 #'
-#' @return A list of numerics
-#' @export
+#' @return A vector of numerics
 #' @author Joshua W. Lambert
 calc_ctt <- function(daisie_data) {
 
-  delta_ctt_list <- list()
+  delta_ctt_vec <- c()
 
   testit::assert(length(daisie_data$ideal_island) ==
                    length(daisie_data$empirical_island))
@@ -45,7 +44,7 @@ calc_ctt <- function(daisie_data) {
           daisie_data$empirical_islands[[i]][[k]]$branching_times[2]
         )
       } else {
-        for (l in seq_along(daisie_data$ideal_islands[[i]][[k]]$all_colonisations)) {
+        for (l in seq_along(daisie_data$empirical_islands[[i]][[k]]$all_colonisations)) {
           empirical_col_times <- c(
             empirical_col_times,
             daisie_data$ideal_islands[[i]][[k]]$all_colonisations[[l]]$event_times[[2]]
@@ -83,8 +82,8 @@ calc_ctt <- function(daisie_data) {
       lineages2_n = empirical_lineages_norm,
       distance_method = "abs")
 
-    delta_ctt_list[[i]] <- delta_ctt
+    delta_ctt_vec <- c(delta_ctt_vec, delta_ctt)
   }
 
-  return(delta_ctt_list)
+  return(delta_ctt_vec)
 }

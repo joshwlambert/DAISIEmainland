@@ -1,9 +1,8 @@
-#' Title
+#' Calculates the ratio of max age species on the island for each replicate
 #'
-#' @param daisie_data stub
+#' @inheritParams default_params_doc
 #'
-#' @return
-#' @export
+#' @return A list of two numeric vectors
 #' @author Joshua W. Lambert
 calc_max_age_ratio <- function(daisie_data) {
 
@@ -11,7 +10,8 @@ calc_max_age_ratio <- function(daisie_data) {
   time <- daisie_data$ideal_islands[[1]][[1]]$island_age
   max_age <- time - 1e-5
 
-  max_age_ratio_list <- list()
+  ideal_max_age_vec <- c()
+  empirical_max_age_vec <- c()
 
   testit::assert(length(daisie_data$ideal_island) ==
                    length(daisie_data$empirical_island))
@@ -47,7 +47,7 @@ calc_max_age_ratio <- function(daisie_data) {
           daisie_data$empirical_islands[[i]][[k]]$branching_times[2]
         )
       } else {
-        for (l in seq_along(daisie_data$ideal_islands[[i]][[k]]$all_colonisations)) {
+        for (l in seq_along(daisie_data$empirical_islands[[i]][[k]]$all_colonisations)) {
           empirical_col_times <- c(
             empirical_col_times,
             daisie_data$ideal_islands[[i]][[k]]$all_colonisations[[l]]$event_times[[2]]
@@ -62,10 +62,14 @@ calc_max_age_ratio <- function(daisie_data) {
 
     empirical_max_age <- length(which(empirical_col_times == max_age)) /
       length(empirical_col_times)
-    max_age_ratio_list[[i]] <- c(ideal_max_age = ideal_max_age,
-                                 empirical_max_age = empirical_max_age)
+
+    ideal_max_age_vec <- c(ideal_max_age_vec, ideal_max_age)
+    empirical_max_age_vec <- c(empirical_max_age_vec, empirical_max_age)
 
   }
+
+  max_age_ratio_list <- list(ideal_max_age = ideal_max_age_vec,
+                             empirical_max_age = empirical_max_age_vec)
 
   return(max_age_ratio_list)
 }

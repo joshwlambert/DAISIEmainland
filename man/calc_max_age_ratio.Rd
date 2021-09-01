@@ -2,18 +2,19 @@
 % Please edit documentation in R/calc_max_age_ratio.R
 \name{calc_max_age_ratio}
 \alias{calc_max_age_ratio}
-\title{Title}
+\title{Calculates the ratio of max age species on the island for each replicate}
 \usage{
 calc_max_age_ratio(daisie_data)
 }
 \arguments{
-\item{daisie_data}{stub}
+\item{daisie_data}{List containing data of DAISIE simulation with mainland
+dynamics. Output from \code{sim_island_with_mainland}}
 }
 \value{
-
+A list of two numeric vectors
 }
 \description{
-Title
+Calculates the ratio of max age species on the island for each replicate
 }
 \author{
 Joshua W. Lambert
