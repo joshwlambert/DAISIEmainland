@@ -27,5 +27,5 @@ Suggests:
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Remotes:  
-    rsetienne/DAISIE@v4.0.2
+    rsetienne/DAISIE@v4.0.2,
     thijsjanzen/nLTT@v1.4.5
