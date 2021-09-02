@@ -3,6 +3,7 @@ args <- commandArgs(TRUE)
 args <- as.numeric(args)
 
 data("param_space")
+
 island <- DAISIEmainland::sim_island_with_mainland(
   total_time = param_space$total_time[args],
   m = param_space$m[args],
@@ -29,7 +30,7 @@ for (i in seq_len(param_space$replicates[args])) {
     }
   }
 
-  ideal_ml[[i]] <- suppressMessages(invisible(capture.output(DAISIE::DAISIE_ML_CS(
+  ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
     datalist = island$ideal_islands[[i]],
     initparsopt = c(param_space$island_clado[args],
                     param_space$island_ex[args],
@@ -40,7 +41,7 @@ for (i in seq_len(param_space$replicates[args])) {
     parsfix = NULL,
     idparsfix = NULL,
     ddmodel = 11,
-    jitter = 1e-5))))
+    jitter = 1e-5)
 
   empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
     datalist = island$empirical_islands[[i]],
