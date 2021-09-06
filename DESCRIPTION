@@ -19,7 +19,9 @@ Imports:
     DAISIE (>= 4.0.2),
     DDD (>= 4.4),
     nLTT (>= 1.4.5),
-    testit
+    testit,
+    ggplot2,
+    cowplot
 Suggests: 
     lintr,
     testthat,
