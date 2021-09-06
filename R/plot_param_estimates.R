@@ -49,10 +49,15 @@ plot_param_estimates <- function(sim_params,
       ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
       ggplot2::xlim(c(0, 5))
 
-
     ext_density <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_ext),
-                            fill = "cornsilk") +
+                            fill = "#009E73",
+                            colour = "#009E73",
+                            alpha = 0.3) +
+      ggplot2::geom_density(mapping = ggplot2::aes(x = empirical_ext),
+                            fill = "#E69F00",
+                            colour = "#E69F00",
+                            alpha = 0.3) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Density") +
       ggplot2::xlab(expression(mu)) +
@@ -61,7 +66,13 @@ plot_param_estimates <- function(sim_params,
 
     immig_density <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_immig),
-                            fill = "cornsilk") +
+                            fill = "#009E73",
+                            colour = "#009E73",
+                            alpha = 0.3) +
+      ggplot2::geom_density(mapping = ggplot2::aes(x = empirical_immig),
+                            fill = "#E69F00",
+                            colour = "#E69F00",
+                            alpha = 0.3) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Density") +
       ggplot2::xlab(expression(gamma)) +
@@ -70,7 +81,13 @@ plot_param_estimates <- function(sim_params,
 
     ana_density <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_ana),
-                            fill = "cornsilk") +
+                            fill = "#009E73",
+                            colour = "#009E73",
+                            alpha = 0.3) +
+      ggplot2::geom_density(mapping = ggplot2::aes(x = empirical_ana),
+                            fill = "#E69F00",
+                            colour = "#E69F00",
+                            alpha = 0.3) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Density") +
       ggplot2::xlab(expression(lambda^a)) +
@@ -80,12 +97,15 @@ plot_param_estimates <- function(sim_params,
     ext_vs_clado <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
                                                  y = ideal_ext),
-                          colour = "#009E73", shape = 16) +
+                          colour = "#009E73",
+                          shape = 16) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_clado,
                                                  y = empirical_ext),
-                          colour = "#E69F00", shape = 17) +
+                          colour = "#E69F00",
+                          shape = 17) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = sim_clado,
-                                                 y = sim_ext), shape = 15) +
+                                                 y = sim_ext),
+                          shape = 15) +
       ggplot2::theme_classic() +
       ggplot2::theme(legend.position = "none") +
       ggplot2::ylab(expression(mu)) +
@@ -98,67 +118,109 @@ plot_param_estimates <- function(sim_params,
     immig_vs_clado <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
                                                  y = ideal_immig),
-                          colour = "wheat3") +
+                          colour = "#009E73",
+                          shape = 16) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_clado,
+                                                 y = empirical_immig),
+                          colour = "#E69F00",
+                          shape = 17) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = sim_clado,
-                                                 y = sim_immig)) +
+                                                 y = sim_immig),
+                          shape = 15) +
       ggplot2::theme_classic() +
       ggplot2::theme(legend.position = "none") +
       ggplot2::ylab(expression(gamma)) +
       ggplot2::xlab(expression(lambda^c)) +
       ggplot2::ylim(c(0, 0.5)) +
-      ggplot2::xlim(c(0, 5))
+      ggplot2::xlim(c(0, 5)) +
+      ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50")
 
     ana_vs_clado <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
                                                  y = ideal_ana),
-                          colour = "wheat3") +
+                          colour = "#009E73",
+                          shape = 16) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_clado,
+                                                 y = empirical_ana),
+                          colour = "#E69F00",
+                          shape = 17) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = sim_clado,
-                                                 y = sim_ana)) +
+                                                 y = sim_ana),
+                          shape = 15) +
       ggplot2::theme_classic() +
       ggplot2::theme(legend.position = "none") +
       ggplot2::ylab(expression(lambda^a)) +
       ggplot2::xlab(expression(lambda^c)) +
       ggplot2::ylim(c(0, 5)) +
-      ggplot2::xlim(c(0, 5))
+      ggplot2::xlim(c(0, 5)) +
+      ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
     immig_vs_ext <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_ext,
                                                  y = ideal_immig),
-                          colour = "wheat3") +
+                          colour = "#009E73",
+                          shape = 16) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_ext,
+                                                 y = empirical_immig),
+                          colour = "#E69F00",
+                          shape = 17) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = sim_ext,
-                                                 y = sim_immig)) +
+                                                 y = sim_immig),
+                          shape = 15) +
       ggplot2::theme_classic() +
       ggplot2::theme(legend.position = "none") +
       ggplot2::ylab(expression(gamma)) +
       ggplot2::xlab(expression(mu)) +
       ggplot2::ylim(c(0, 0.5)) +
-      ggplot2::xlim(c(0, 5))
+      ggplot2::xlim(c(0, 5)) +
+      ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50")
 
     ana_vs_ext <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_ext,
                                                  y = ideal_ana),
-                          colour = "wheat3") +
+                          colour = "#009E73",
+                          shape = 16) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_ext,
+                                                 y = empirical_ana),
+                          colour = "#E69F00",
+                          shape = 17) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = sim_ext,
-                                                 y = sim_ana)) +
+                                                 y = sim_ana),
+                          shape = 15) +
       ggplot2::theme_classic() +
       ggplot2::theme(legend.position = "none") +
       ggplot2::ylab(expression(lambda^a)) +
       ggplot2::xlab(expression(mu)) +
       ggplot2::ylim(c(0, 5)) +
-      ggplot2::xlim(c(0, 5))
+      ggplot2::xlim(c(0, 5)) +
+      ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
     ana_vs_immig <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_immig,
                                                  y = ideal_ana),
-                          colour = "wheat3") +
+                          colour = "#009E73",
+                          shape = 16) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_immig,
+                                                 y = empirical_ana),
+                          colour = "#E69F00",
+                          shape = 17) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = sim_immig,
-                                                 y = sim_ana)) +
+                                                 y = sim_ana),
+                          shape = 15) +
       ggplot2::theme_classic() +
       ggplot2::theme(legend.position = "none") +
       ggplot2::ylab(expression(lambda^a)) +
       ggplot2::xlab(expression(gamma)) +
       ggplot2::ylim(c(0, 5)) +
-      ggplot2::xlim(c(0, 0.5))
+      ggplot2::xlim(c(0, 0.5)) +
+      ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
+
+    plot_title <- "trunc_axis"
 
     } else {
 
@@ -178,7 +240,13 @@ plot_param_estimates <- function(sim_params,
 
       ext_density <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_ext),
-                              fill = "cornsilk") +
+                              fill = "#009E73",
+                              colour = "#009E73",
+                              alpha = 0.3) +
+        ggplot2::geom_density(mapping = ggplot2::aes(x = empirical_ext),
+                              fill = "#E69F00",
+                              colour = "#E69F00",
+                              alpha = 0.3) +
         ggplot2::theme_classic() +
         ggplot2::ylab("Density") +
         ggplot2::xlab(expression(mu)) +
@@ -186,7 +254,13 @@ plot_param_estimates <- function(sim_params,
 
       immig_density <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_immig),
-                              fill = "cornsilk") +
+                              fill = "#009E73",
+                              colour = "#009E73",
+                              alpha = 0.3) +
+        ggplot2::geom_density(mapping = ggplot2::aes(x = empirical_immig),
+                              fill = "#E69F00",
+                              colour = "#E69F00",
+                              alpha = 0.3) +
         ggplot2::theme_classic() +
         ggplot2::ylab("Density") +
         ggplot2::xlab(expression(gamma)) +
@@ -194,7 +268,13 @@ plot_param_estimates <- function(sim_params,
 
       ana_density <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_ana),
-                              fill = "cornsilk") +
+                              fill = "#009E73",
+                              colour = "#009E73",
+                              alpha = 0.3) +
+        ggplot2::geom_density(mapping = ggplot2::aes(x = empirical_ana),
+                              fill = "#E69F00",
+                              colour = "#E69F00",
+                              alpha = 0.3) +
         ggplot2::theme_classic() +
         ggplot2::ylab("Density") +
         ggplot2::xlab(expression(lambda^a)) +
@@ -203,72 +283,130 @@ plot_param_estimates <- function(sim_params,
       ext_vs_clado <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
                                                    y = ideal_ext),
-                            colour = "wheat3") +
+                            colour = "#009E73", shape = 16) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_clado,
+                                                   y = empirical_ext),
+                            colour = "#E69F00", shape = 17) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = sim_clado,
-                                                   y = sim_ext)) +
+                                                   y = sim_ext), shape = 15) +
         ggplot2::theme_classic() +
         ggplot2::theme(legend.position = "none") +
         ggplot2::ylab(expression(mu)) +
-        ggplot2::xlab(expression(lambda^c))
+        ggplot2::xlab(expression(lambda^c)) +
+        ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = sim_ext, colour = "grey50")
 
       immig_vs_clado <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
                                                    y = ideal_immig),
-                            colour = "wheat3") +
+                            colour = "#009E73",
+                            shape = 16) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_clado,
+                                                   y = empirical_immig),
+                            colour = "#E69F00",
+                            shape = 17) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = sim_clado,
-                                                   y = sim_immig)) +
+                                                   y = sim_immig),
+                            shape = 15) +
         ggplot2::theme_classic() +
         ggplot2::theme(legend.position = "none") +
         ggplot2::ylab(expression(gamma)) +
-        ggplot2::xlab(expression(lambda^c))
+        ggplot2::xlab(expression(lambda^c)) +
+        ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50")
 
       ana_vs_clado <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
                                                    y = ideal_ana),
-                            colour = "wheat3") +
+                            colour = "#009E73",
+                            shape = 16) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_clado,
+                                                   y = empirical_ana),
+                            colour = "#E69F00",
+                            shape = 17) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = sim_clado,
-                                                   y = sim_ana)) +
+                                                   y = sim_ana),
+                            shape = 15) +
         ggplot2::theme_classic() +
         ggplot2::theme(legend.position = "none") +
         ggplot2::ylab(expression(lambda^a)) +
-        ggplot2::xlab(expression(lambda^c))
+        ggplot2::xlab(expression(lambda^c)) +
+        ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
       immig_vs_ext <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_ext,
                                                    y = ideal_immig),
-                            colour = "wheat3") +
+                            colour = "#009E73",
+                            shape = 16) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_ext,
+                                                   y = empirical_immig),
+                            colour = "#E69F00",
+                            shape = 17) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = sim_ext,
-                                                   y = sim_immig)) +
+                                                   y = sim_immig),
+                            shape = 15) +
         ggplot2::theme_classic() +
         ggplot2::theme(legend.position = "none") +
         ggplot2::ylab(expression(gamma)) +
-        ggplot2::xlab(expression(mu))
+        ggplot2::xlab(expression(mu)) +
+        ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50")
 
       ana_vs_ext <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_ext,
                                                    y = ideal_ana),
-                            colour = "wheat3") +
+                            colour = "#009E73",
+                            shape = 16) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_ext,
+                                                   y = empirical_ana),
+                            colour = "#E69F00",
+                            shape = 17) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = sim_ext,
-                                                   y = sim_ana)) +
+                                                   y = sim_ana),
+                            shape = 15) +
         ggplot2::theme_classic() +
         ggplot2::theme(legend.position = "none") +
         ggplot2::ylab(expression(lambda^a)) +
-        ggplot2::xlab(expression(mu))
+        ggplot2::xlab(expression(mu)) +
+        ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
       ana_vs_immig <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_immig,
                                                    y = ideal_ana),
-                            colour = "wheat3") +
+                            colour = "#009E73",
+                            shape = 16) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = empirical_immig,
+                                                   y = empirical_ana),
+                            colour = "#E69F00",
+                            shape = 17) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = sim_immig,
-                                                   y = sim_ana)) +
+                                                   y = sim_ana),
+                            shape = 15) +
         ggplot2::theme_classic() +
         ggplot2::theme(legend.position = "none") +
         ggplot2::ylab(expression(lambda^a)) +
-        ggplot2::xlab(expression(gamma))
+        ggplot2::xlab(expression(gamma)) +
+        ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
+
+      plot_title <- "full_axis"
     }
 
-  cowplot::plot_grid(clado_density, NULL, NULL, NULL,
-                     ext_vs_clado, ext_density, NULL, NULL,
-                     immig_vs_clado, immig_vs_ext, immig_density, NULL,
-                     ana_vs_clado, ana_vs_ext, ana_vs_immig, ana_density)
+  param_estimates <- cowplot::plot_grid(
+    clado_density, NULL, NULL, NULL,
+    ext_vs_clado, ext_density, NULL, NULL,
+    immig_vs_clado, immig_vs_ext, immig_density, NULL,
+    ana_vs_clado, ana_vs_ext, ana_vs_immig, ana_density)
+
+  ggplot2::ggsave(
+    plot = param_estimates,
+    filename = file.path("plots", paste0(plot_title, "_param_estimates.png")),
+    device = "png",
+    width = 168,
+    height = 100,
+    units = "mm",
+    dpi = 600
+  )
 }
