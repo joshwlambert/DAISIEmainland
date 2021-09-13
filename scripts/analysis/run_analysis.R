@@ -86,7 +86,16 @@ output <- list(
   island = island,
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml,
-  error = error)
+  error = error,
+  sim_params = c(
+    param_space$island_clado[args],
+    param_space$island_ex[args],
+    param_space$island_k[args],
+    param_space$island_immig[args],
+    param_space$island_ana[args],
+    mainland_ex = param_space$mainland_ex[args],
+    mainland_sample_prob = param_space$mainland_sample_prob[args])
+)
 
 output_name <- paste0("param_set_", args, ".rds")
 
