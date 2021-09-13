@@ -62,28 +62,6 @@ error <- DAISIEmainland::calc_error(
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml)
 
-DAISIEmainland::plot_param_estimates(
-  sim_params = c(param_space$island_clado[args],
-                 param_space$island_ex[args],
-                 param_space$island_k[args],
-                 param_space$island_immig[args],
-                 param_space$island_ana[args]),
-  ideal_ml = ideal_ml,
-  empirical_ml = empirical_ml,
-  param_set = args,
-  xlim = FALSE)
-
-DAISIEmainland::plot_param_estimates(
-  sim_params = c(param_space$island_clado[args],
-                 param_space$island_ex[args],
-                 param_space$island_k[args],
-                 param_space$island_immig[args],
-                 param_space$island_ana[args]),
-  ideal_ml = ideal_ml,
-  empirical_ml = empirical_ml,
-  param_set = args,
-  xlim = TRUE)
-
 output <- list(
   island = island,
   ideal_ml = ideal_ml,
