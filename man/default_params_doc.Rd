@@ -33,7 +33,9 @@ default_params_doc(
   subset_island,
   daisie_data,
   ideal_ml,
-  empirical_ml
+  empirical_ml,
+  sim_params,
+  xlim
 )
 }
 \arguments{
@@ -121,6 +123,13 @@ from \code{DAISIE::DAISIE_ML_CS}}
 \item{empirical_ml}{List containing maximum likelihood estimates from DAISIE
 fitted to empirical data produced from \code{sim_island_with_mainland}.
 Output from \code{DAISIE::DAISIE_ML_CS}}
+
+\item{sim_params}{Vector of five numerics for the values of cladogenesis,
+extinction, carrying capacity, immigration and anagenesis used to simulate
+data}
+
+\item{xlim}{Boolean determining whether the x-axis should be bounded on the
+plot}
 }
 \value{
 Nothing
