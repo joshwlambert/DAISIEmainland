@@ -57,12 +57,12 @@ for (i in seq_len(param_space$replicates[args])) {
     jitter = 1e-5)
 }
 
-error <- calc_error(
+error <- DAISIEmainland::calc_error(
   daisie_data = island,
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml)
 
-plot_param_estimates(
+DAISIEmainland::plot_param_estimates(
   sim_params = c(param_space$island_clado[args],
                  param_space$island_ex[args],
                  param_space$island_k[args],
@@ -72,7 +72,7 @@ plot_param_estimates(
   empirical_ml = empirical_ml,
   xlim = FALSE)
 
-plot_param_estimates(
+DAISIEmainland::plot_param_estimates(
   sim_params = c(param_space$island_clado[args],
                  param_space$island_ex[args],
                  param_space$island_k[args],
