@@ -59,6 +59,8 @@
 #' @param sim_params Vector of five numerics for the values of cladogenesis,
 #' extinction, carrying capacity, immigration and anagenesis used to simulate
 #' data
+#' @param param_set Numeric for the index of the parameter set from the
+#' parameter space
 #' @param xlim Boolean determining whether the x-axis should be bounded on the
 #' plot
 #'
@@ -94,6 +96,7 @@ default_params_doc <- function(timeval,
                                ideal_ml,
                                empirical_ml,
                                sim_params,
+                               param_set,
                                xlim) {
   #Nothing
 }

@@ -35,6 +35,7 @@ default_params_doc(
   ideal_ml,
   empirical_ml,
   sim_params,
+  param_set,
   xlim
 )
 }
@@ -127,6 +128,9 @@ Output from \code{DAISIE::DAISIE_ML_CS}}
 \item{sim_params}{Vector of five numerics for the values of cladogenesis,
 extinction, carrying capacity, immigration and anagenesis used to simulate
 data}
+
+\item{param_set}{Numeric for the index of the parameter set from the
+parameter space}
 
 \item{xlim}{Boolean determining whether the x-axis should be bounded on the
 plot}

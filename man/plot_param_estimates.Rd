@@ -26,6 +26,9 @@ from \code{DAISIE::DAISIE_ML_CS}}
 fitted to empirical data produced from \code{sim_island_with_mainland}.
 Output from \code{DAISIE::DAISIE_ML_CS}}
 
+\item{param_set}{Numeric for the index of the parameter set from the
+parameter space}
+
 \item{xlim}{Boolean determining whether the x-axis should be bounded on the
 plot}
 }
