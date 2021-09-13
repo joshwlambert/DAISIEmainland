@@ -56,6 +56,11 @@
 #' @param empirical_ml List containing maximum likelihood estimates from DAISIE
 #' fitted to empirical data produced from `sim_island_with_mainland`.
 #' Output from `DAISIE::DAISIE_ML_CS`
+#' @param sim_params Vector of five numerics for the values of cladogenesis,
+#' extinction, carrying capacity, immigration and anagenesis used to simulate
+#' data
+#' @param xlim Boolean determining whether the x-axis should be bounded on the
+#' plot
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -87,6 +92,8 @@ default_params_doc <- function(timeval,
                                subset_island,
                                daisie_data,
                                ideal_ml,
-                               empirical_ml) {
+                               empirical_ml,
+                               sim_params,
+                               xlim) {
   #Nothing
 }

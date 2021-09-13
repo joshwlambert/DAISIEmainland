@@ -1,3 +1,10 @@
+#' Plots a grid of density plots of parameter estimates on the diagonal and
+#' scatter plots of parameter estimates under the diagonal.
+#'
+#' @inheritParams default_params_doc
+#'
+#' @return Void (saves plot)
+#' @export
 plot_param_estimates <- function(sim_params,
                                  ideal_ml,
                                  empirical_ml,
