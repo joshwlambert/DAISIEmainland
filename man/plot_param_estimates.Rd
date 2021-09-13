@@ -5,7 +5,13 @@
 \title{Plots a grid of density plots of parameter estimates on the diagonal and
 scatter plots of parameter estimates under the diagonal.}
 \usage{
-plot_param_estimates(sim_params, ideal_ml, empirical_ml, xlim = FALSE)
+plot_param_estimates(
+  sim_params,
+  ideal_ml,
+  empirical_ml,
+  param_set,
+  xlim = FALSE
+)
 }
 \arguments{
 \item{sim_params}{Vector of five numerics for the values of cladogenesis,

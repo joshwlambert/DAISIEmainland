@@ -8,6 +8,7 @@
 plot_param_estimates <- function(sim_params,
                                  ideal_ml,
                                  empirical_ml,
+                                 param_set,
                                  xlim = FALSE) {
 
   ideal_clado <- unlist(lapply(ideal_ml, '[[', 1))
@@ -409,7 +410,10 @@ plot_param_estimates <- function(sim_params,
 
   ggplot2::ggsave(
     plot = param_estimates,
-    filename = file.path("plots", paste0(plot_title, "_param_estimates.png")),
+    filename = file.path("plots",
+                         paste0(plot_title,
+                                "_param_estimates.png",
+                                param_set)),
     device = "png",
     width = 168,
     height = 100,

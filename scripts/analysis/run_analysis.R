@@ -70,6 +70,7 @@ DAISIEmainland::plot_param_estimates(
                  param_space$island_ana[args]),
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml,
+  param_set = args,
   xlim = FALSE)
 
 DAISIEmainland::plot_param_estimates(
@@ -80,6 +81,7 @@ DAISIEmainland::plot_param_estimates(
                  param_space$island_ana[args]),
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml,
+  param_set = args,
   xlim = TRUE)
 
 output <- list(
