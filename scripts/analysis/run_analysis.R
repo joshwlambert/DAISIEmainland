@@ -30,31 +30,55 @@ for (i in seq_len(param_space$replicates[args])) {
     }
   }
 
-  ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-    datalist = island$ideal_islands[[i]],
-    initparsopt = c(param_space$island_clado[args],
-                    param_space$island_ex[args],
-                    param_space$island_k[args],
-                    param_space$island_immig[args],
-                    param_space$island_ana[args]),
-    idparsopt = 1:5,
-    parsfix = NULL,
-    idparsfix = NULL,
-    ddmodel = 11,
-    jitter = 1e-5)
+  ml_failure <- TRUE
+  while (ml_failure) {
+    ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+      datalist = island$ideal_islands[[i]],
+      initparsopt = c(param_space$island_clado[args],
+                      param_space$island_ex[args],
+                      param_space$island_k[args],
+                      param_space$island_immig[args],
+                      param_space$island_ana[args]),
+      idparsopt = 1:5,
+      parsfix = NULL,
+      idparsfix = NULL,
+      ddmodel = 11,
+      jitter = 1e-5)
 
-  empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-    datalist = island$empirical_islands[[i]],
-    initparsopt = c(param_space$island_clado[args],
-                    param_space$island_ex[args],
-                    param_space$island_k[args],
-                    param_space$island_immig[args],
-                    param_space$island_ana[args]),
-    idparsopt = 1:5,
-    parsfix = NULL,
-    idparsfix = NULL,
-    ddmodel = 11,
-    jitter = 1e-5)
+    if (ideal_ml[[i]]$conv == -1) {
+      ml_failure == TRUE
+      message("Likelihood optimisation failed retrying")
+    } else if (ideal_ml[[i]]$conv == 0) {
+      ml_failure == FALSE
+    } else {
+      stop("Convergence error in likelihood optimisation")
+    }
+  }
+
+  ml_failure <- TRUE
+  while (ml_failure) {
+    empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+      datalist = island$empirical_islands[[i]],
+      initparsopt = c(param_space$island_clado[args],
+                      param_space$island_ex[args],
+                      param_space$island_k[args],
+                      param_space$island_immig[args],
+                      param_space$island_ana[args]),
+      idparsopt = 1:5,
+      parsfix = NULL,
+      idparsfix = NULL,
+      ddmodel = 11,
+      jitter = 1e-5)
+
+    if (ideal_ml[[i]]$conv == -1) {
+      ml_failure == TRUE
+      message("Likelihood optimisation failed retrying")
+    } else if (ideal_ml[[i]]$conv == 0) {
+      ml_failure == FALSE
+    } else {
+      stop("Convergence error in likelihood optimisation")
+    }
+  }
 }
 
 error <- DAISIEmainland::calc_error(
