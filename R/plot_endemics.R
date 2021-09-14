@@ -1,9 +1,9 @@
-#' Title
+#' Plots two faceted violin plots of the percent of endemics on the island for
+#' different values of mainland extinction. The left side facet has the ideal
+#' data and the right side facet has the empirical data.
 #'
-#' @return
+#' @return Plot
 #' @export
-#'
-#' @examples
 plot_endemics <- function() {
 
   files <- list.files(file.path(getwd(), "results"))
@@ -43,7 +43,17 @@ plot_endemics <- function() {
     mainland_ex = as.factor(mainland_ex),
     mainland_sample_prob = as.factor(mainland_sample_prob))
 
-  endemics <- ggplot2::ggplot(data = plotting_data) +
+  ideal_endemics <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
+                                      y = endemic_percent_ideal_means),
+                         fill = "#009E73",
+                         colour = "#009E73",
+                         alpha = 0.3) +
+    ggplot2::theme_classic() +
+    ggplot2::ylab("Mean Ideal Endemic Percent (%)") +
+    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
+
+  empirical_endemics <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
                                       y = endemic_percent_empirical_means),
                          fill = "#E69F00",
@@ -52,10 +62,8 @@ plot_endemics <- function() {
     ggplot2::theme_classic() +
     ggplot2::ylab("Mean Empirical Endemic Percent (%)") +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
+
+  endemics <- cowplot::plot_grid(ideal_endemics, empirical_endemics)
+  return(endemics)
 }
 
-#ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
-#                                  y = endemic_percent_ideal_means),
-#                     fill = "#009E73",
-#                     colour = "#009E73",
-#                     alpha = 0.3) +

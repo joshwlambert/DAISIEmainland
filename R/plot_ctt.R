@@ -1,9 +1,8 @@
-#' Title
+#' Plots a heatmap of the colonisation through time statistic for mainland
+#' sampling probability (y-axis) and mainland extinction rate (x-axis).
 #'
-#' @return
+#' @return Void (saves plot)
 #' @export
-#'
-#' @examples
 plot_ctt <- function() {
 
   files <- list.files(file.path(getwd(), "results"))
@@ -40,7 +39,7 @@ plot_ctt <- function() {
 
   ggplot2::ggsave(
     plot = ctt,
-    filename = file.path("plots", "ctt"),
+    filename = file.path("plots", "ctt.png"),
     device = "png",
     width = 168,
     height = 100,

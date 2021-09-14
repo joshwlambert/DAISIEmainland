@@ -5,27 +5,9 @@
 \title{Plots a grid of density plots of parameter estimates on the diagonal and
 scatter plots of parameter estimates under the diagonal.}
 \usage{
-plot_param_estimates(
-  sim_params,
-  ideal_ml,
-  empirical_ml,
-  param_set,
-  xlim = FALSE
-)
+plot_param_estimates(param_set, xlim = FALSE)
 }
 \arguments{
-\item{sim_params}{Vector of five numerics for the values of cladogenesis,
-extinction, carrying capacity, immigration and anagenesis used to simulate
-data}
-
-\item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
-fitted to ideal data produced from \code{sim_island_with_mainland}. Output
-from \code{DAISIE::DAISIE_ML_CS}}
-
-\item{empirical_ml}{List containing maximum likelihood estimates from DAISIE
-fitted to empirical data produced from \code{sim_island_with_mainland}.
-Output from \code{DAISIE::DAISIE_ML_CS}}
-
 \item{param_set}{Numeric for the index of the parameter set from the
 parameter space}
 
