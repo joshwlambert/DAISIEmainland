@@ -1,29 +1,47 @@
-DAISIEmainland::plot_param_estimates(
-  sim_params = c(param_space$island_clado[args],
-                 param_space$island_ex[args],
-                 param_space$island_k[args],
-                 param_space$island_immig[args],
-                 param_space$island_ana[args]),
-  ideal_ml = ideal_ml,
-  empirical_ml = empirical_ml,
-  param_set = args,
-  xlim = FALSE)
+data("param_space")
 
-DAISIEmainland::plot_param_estimates(
-  sim_params = c(param_space$island_clado[args],
-                 param_space$island_ex[args],
-                 param_space$island_k[args],
-                 param_space$island_immig[args],
-                 param_space$island_ana[args]),
-  ideal_ml = ideal_ml,
-  empirical_ml = empirical_ml,
-  param_set = args,
-  xlim = TRUE)
+for (param_set in 1:nrow(param_space)) {
+  DAISIEmainland::plot_param_estimates(
+    sim_params = c(param_space$island_clado[param_set],
+                   param_space$island_ex[param_set],
+                   param_space$island_k[param_set],
+                   param_space$island_immig[param_set],
+                   param_space$island_ana[param_set]),
+    ideal_ml = ideal_ml,
+    empirical_ml = empirical_ml,
+    param_set = param_set,
+    xlim = FALSE)
+
+  DAISIEmainland::plot_param_estimates(
+    sim_params = c(param_space$island_clado[param_set],
+                   param_space$island_ex[param_set],
+                   param_space$island_k[param_set],
+                   param_space$island_immig[param_set],
+                   param_space$island_ana[param_set]),
+    ideal_ml = ideal_ml,
+    empirical_ml = empirical_ml,
+    param_set = param_set,
+    xlim = TRUE)
+}
+
+
 
 DAISIEmainland::plot_ctt()
 
-#plot max age
+max_age <- DAISIEmainland::plot_max_age()
 
-#plot endemic
+endemics <- DAISIEmainland::plot_endemics()
+
+max_age_and_endemics <- cowplot::plot_grid(max_age, endemics)
+
+ggplot2::ggsave(
+  plot = max_age_and_endemics,
+  filename = file.path("plots", "max_age_and_endemics"),
+  device = "png",
+  width = 168,
+  height = 100,
+  units = "mm",
+  dpi = 600
+)
 
 #plot carrying capacity

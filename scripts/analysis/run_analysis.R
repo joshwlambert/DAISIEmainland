@@ -68,11 +68,11 @@ output <- list(
   empirical_ml = empirical_ml,
   error = error,
   sim_params = c(
-    param_space$island_clado[args],
-    param_space$island_ex[args],
-    param_space$island_k[args],
-    param_space$island_immig[args],
-    param_space$island_ana[args],
+    island_clado = param_space$island_clado[args],
+    island_ex = param_space$island_ex[args],
+    island_k = param_space$island_k[args],
+    island_immig = param_space$island_immig[args],
+    island_ana = param_space$island_ana[args],
     mainland_ex = param_space$mainland_ex[args],
     mainland_sample_prob = param_space$mainland_sample_prob[args])
 )
