@@ -5,24 +5,33 @@
 #'
 #' @return Void (saves plot)
 #' @export
-plot_param_estimates <- function(sim_params,
-                                 ideal_ml,
-                                 empirical_ml,
-                                 param_set,
+plot_param_estimates <- function(param_set,
                                  xlim = FALSE) {
 
+  files <- list.files(file.path(getwd(), "results"))
+
+  if (length(files) == 0) {
+    stop("No results are in the results directory")
+  } else {
+    file_paths <- as.list(paste0(file.path(getwd(), "results"), "/", files))
+    results_list <- lapply(file_paths, readRDS)
+  }
+
+  ideal_ml <- results_list[[param_set]]$ideal_ml
   ideal_clado <- unlist(lapply(ideal_ml, '[[', 1))
   ideal_ext <- unlist(lapply(ideal_ml, '[[', 2))
   ideal_k <- unlist(lapply(ideal_ml, '[[', 3))
   ideal_immig <- unlist(lapply(ideal_ml, '[[', 4))
   ideal_ana <- unlist(lapply(ideal_ml, '[[', 5))
 
+  empirical_ml <- results_list[[param_set]]$empirical_ml
   empirical_clado <- unlist(lapply(empirical_ml, '[[', 1))
   empirical_ext <- unlist(lapply(empirical_ml, '[[', 2))
   empirical_k <- unlist(lapply(empirical_ml, '[[', 3))
   empirical_immig <- unlist(lapply(empirical_ml, '[[', 4))
   empirical_ana <- unlist(lapply(empirical_ml, '[[', 5))
 
+  sim_params <- results_list[[param_set]]$sim_params
   sim_clado <- sim_params[1]
   sim_ext <- sim_params[2]
   sim_k <- sim_params[3]

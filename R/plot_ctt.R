@@ -1,3 +1,9 @@
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
 plot_ctt <- function() {
 
   files <- list.files(file.path(getwd(), "results"))
@@ -22,8 +28,23 @@ plot_ctt <- function() {
                               mainland_ex = mainland_ex,
                               mainland_sample_prob = mainland_sample_prob)
 
-  ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_tile(mapping = ggplot2::aes(x = mainland_ex,
-                                              y = mainland_sample_prob)) +
-    ggplot2::theme_classic()
+  ctt <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_tile(ggplot2::aes(x = mainland_ex,
+                                    y = mainland_sample_prob,
+                                    fill = ctt_means)) +
+    ggplot2::theme_classic() +
+    ggplot2::ylab(expression(paste("Mainland sampling probability ", (rho)))) +
+    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+    ggplot2::scale_fill_continuous(name = expression(paste(Delta, "CTT"))) +
+    ggplot2::scale_x_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5))
+
+  ggplot2::ggsave(
+    plot = ctt,
+    filename = file.path("plots", "ctt"),
+    device = "png",
+    width = 168,
+    height = 100,
+    units = "mm",
+    dpi = 600
+  )
 }
