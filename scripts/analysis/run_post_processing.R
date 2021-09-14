@@ -24,19 +24,17 @@ for (param_set in 1:nrow(param_space)) {
     xlim = TRUE)
 }
 
-
-
 DAISIEmainland::plot_ctt()
 
 max_age <- DAISIEmainland::plot_max_age()
 
 endemics <- DAISIEmainland::plot_endemics()
 
-max_age_and_endemics <- cowplot::plot_grid(max_age, endemics)
+max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
 
 ggplot2::ggsave(
   plot = max_age_and_endemics,
-  filename = file.path("plots", "max_age_and_endemics"),
+  filename = file.path("plots", "max_age_and_endemics.png"),
   device = "png",
   width = 168,
   height = 100,
