@@ -42,6 +42,11 @@ plot_max_age <- function() {
                          fill = "#009E73",
                          colour = "#009E73",
                          alpha = 0.3) +
+    ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
+                                       y = max_age_ratio_ideal_means),
+                          colour = "grey50",
+                          width = 0.1,
+                          alpha = 0.1) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Mean Ideal Max Age Percent (%)") +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
@@ -52,6 +57,11 @@ plot_max_age <- function() {
                          fill = "#E69F00",
                          colour = "#E69F00",
                          alpha = 0.3) +
+    ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
+                                       y = max_age_ratio_empirical_means),
+                          colour = "grey50",
+                          width = 0.1,
+                          alpha = 0.1) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Mean Empirical Max Age Percent (%)") +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
