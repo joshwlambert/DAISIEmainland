@@ -5,7 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --job-name=analysis
 #SBATCH --output=/data/p287218/DAISIEmainland/logs/analysis%a.log
-#SBATCH --array=1-10
+#SBATCH --array=1-960
 #SBATCH --mem=1GB
 
 ml R
