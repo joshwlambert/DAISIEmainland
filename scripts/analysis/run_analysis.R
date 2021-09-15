@@ -46,10 +46,10 @@ for (i in seq_len(param_space$replicates[args])) {
       jitter = 1e-5)
 
     if (ideal_ml[[i]]$conv == -1) {
-      ml_failure == TRUE
+      ml_failure <- TRUE
       message("Likelihood optimisation failed retrying")
     } else if (ideal_ml[[i]]$conv == 0) {
-      ml_failure == FALSE
+      ml_failure <- FALSE
     } else {
       stop("Convergence error in likelihood optimisation")
     }
@@ -71,10 +71,10 @@ for (i in seq_len(param_space$replicates[args])) {
       jitter = 1e-5)
 
     if (empirical_ml[[i]]$conv == -1) {
-      ml_failure == TRUE
+      ml_failure <- TRUE
       message("Likelihood optimisation failed retrying")
     } else if (empirical_ml[[i]]$conv == 0) {
-      ml_failure == FALSE
+      ml_failure <- FALSE
     } else {
       stop("Convergence error in likelihood optimisation")
     }
