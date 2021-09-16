@@ -2,11 +2,17 @@
 #' different values of mainland extinction. The left side facet has the ideal
 #' data and the right side facet has the empirical data.
 #'
+#' @inheritParams default_params_doc
+#'
 #' @return Plot
 #' @export
-plot_endemics <- function() {
+plot_endemics <- function(test = FALSE) {
 
-  files <- list.files(file.path(getwd(), "results"))
+  if (test) {
+    files <- list.files(file.path(getwd(), "testdata"))
+  } else {
+    files <- list.files(file.path(getwd(), "results"))
+  }
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -56,7 +62,8 @@ plot_endemics <- function() {
                           alpha = 0.1) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Mean Ideal Endemic Percent (%)") +
-    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
+    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+    ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
   empirical_endemics <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
@@ -71,7 +78,8 @@ plot_endemics <- function() {
                           alpha = 0.1) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Mean Empirical Endemic Percent (%)") +
-    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
+    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+    ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
   endemics <- cowplot::plot_grid(ideal_endemics, empirical_endemics)
   return(endemics)

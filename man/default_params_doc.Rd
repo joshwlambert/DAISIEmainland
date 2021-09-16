@@ -36,7 +36,9 @@ default_params_doc(
   empirical_ml,
   sim_params,
   param_set,
-  xlim
+  xlim,
+  save,
+  test
 )
 }
 \arguments{
@@ -134,6 +136,11 @@ parameter space}
 
 \item{xlim}{Boolean determining whether the x-axis should be bounded on the
 plot}
+
+\item{save}{Boolean determining whether a plot is saved (TRUE) or returned
+(FALSE)}
+
+\item{test}{Boolean determining whether a function is being tested}
 }
 \value{
 Nothing

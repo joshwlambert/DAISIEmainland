@@ -6,7 +6,10 @@
 different values of mainland extinction. The left side facet has the ideal
 data and the right side facet has the empirical data.}
 \usage{
-plot_endemics()
+plot_endemics(test = FALSE)
+}
+\arguments{
+\item{test}{Boolean determining whether a function is being tested}
 }
 \value{
 Plot

@@ -2,11 +2,17 @@
 #' island for different values of mainland extinction. The left side facet has
 #' the ideal data and the right side facet has the empirical data.
 #'
+#' @inheritParams default_params_doc
+#'
 #' @return Plot
 #' @export
-plot_max_age <- function() {
+plot_max_age <- function(test = FALSE) {
 
-  files <- list.files(file.path(getwd(), "results"))
+  if (test) {
+    files <- list.files(file.path(getwd(), "testdata"))
+  } else {
+    files <- list.files(file.path(getwd(), "results"))
+  }
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -49,7 +55,8 @@ plot_max_age <- function() {
                           alpha = 0.1) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Mean Ideal Max Age Percent (%)") +
-    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
+    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+    ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
   empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
@@ -64,8 +71,10 @@ plot_max_age <- function() {
                           alpha = 0.1) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Mean Empirical Max Age Percent (%)") +
-    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
+    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+    ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
-  cowplot::plot_grid(ideal_max_age, empirical_max_age)
+  max_age <- cowplot::plot_grid(ideal_max_age, empirical_max_age)
+  return(max_age)
 }
 

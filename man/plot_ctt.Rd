@@ -5,7 +5,13 @@
 \title{Plots a heatmap of the colonisation through time statistic for mainland
 sampling probability (y-axis) and mainland extinction rate (x-axis).}
 \usage{
-plot_ctt()
+plot_ctt(save = TRUE, test = FALSE)
+}
+\arguments{
+\item{save}{Boolean determining whether a plot is saved (TRUE) or returned
+(FALSE)}
+
+\item{test}{Boolean determining whether a function is being tested}
 }
 \value{
 Void (saves plot)

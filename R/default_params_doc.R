@@ -63,6 +63,9 @@
 #' parameter space
 #' @param xlim Boolean determining whether the x-axis should be bounded on the
 #' plot
+#' @param save Boolean determining whether a plot is saved (TRUE) or returned
+#' (FALSE)
+#' @param test Boolean determining whether a function is being tested
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -97,6 +100,8 @@ default_params_doc <- function(timeval,
                                empirical_ml,
                                sim_params,
                                param_set,
-                               xlim) {
+                               xlim,
+                               save,
+                               test) {
   #Nothing
 }
