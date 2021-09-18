@@ -20,7 +20,7 @@ island <- DAISIEmainland::sim_island_with_mainland(
 ideal_ml <- vector("list", mainland_sample_prob_param_space$replicates[args])
 empirical_ml <- vector("list", mainland_sample_prob_param_space$replicates[args])
 
-for (i in seq_len(param_space$replicates[args])) {
+for (i in seq_len(mainland_sample_prob_param_space$replicates[args])) {
   message("Number of clades ", length(island$ideal_islands[[i]]) - 1)
 
   if (length(island$ideal_islands[[i]]) > 1) {
