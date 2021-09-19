@@ -5,19 +5,24 @@
 #'
 #' @return Void (saves plot)
 #' @export
-plot_ctt <- function(save = TRUE,
+plot_ctt <- function(output_filename = file.path(here::here(),
+                                                 "plots",
+                                                 "ctt.png"),
+                     save = TRUE,
                      test = FALSE) {
 
   if (test) {
-    files <- list.files(file.path(getwd(), "testdata"))
+    file_path <- file.path(here::here(), "tests", "testthat", "testdata")
   } else {
-    files <- list.files(file.path(getwd(), "results"))
+    file_path <- file.path(here::here(), "results")
   }
+
+  files <- list.files(file_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
   } else {
-    file_paths <- as.list(paste0(file.path(getwd(), "results"), "/", files))
+    file_paths <- as.list(paste0(file_path, "/", files))
     results_list <- lapply(file_paths, readRDS)
   }
 
@@ -45,15 +50,15 @@ plot_ctt <- function(save = TRUE,
     ggplot2::scale_x_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5))
 
   if (save) {
-    ggplot2::ggsave(
-      plot = ctt,
-      filename = file.path("plots", "ctt.png"),
-      device = "png",
-      width = 168,
-      height = 100,
-      units = "mm",
-      dpi = 600
-    )
+      ggplot2::ggsave(
+        plot = ctt,
+        filename = output_filename,
+        device = "png",
+        width = 168,
+        height = 100,
+        units = "mm",
+        dpi = 600
+      )
   } else {
     return(ctt)
   }
