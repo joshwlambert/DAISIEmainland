@@ -2,10 +2,10 @@
 % Please edit documentation in R/calc_error.R
 \name{calc_error}
 \alias{calc_error}
-\title{Calculates the colonisation through time (CTT) statistic, max age ratio,
-percentage of endemics, and differences in parameter estimates from DAISIE
-maximum likelihood estimation on ideal and empirical data simulated from
-sim_island_with_mainland}
+\title{Calculates the colonisation through time (CTT) statistic, percentage of max
+age colonists, percentage of endemics, and differences in parameter estimates
+from DAISIE maximum likelihood estimation on ideal and empirical data
+simulated from sim_island_with_mainland}
 \usage{
 calc_error(daisie_data, ideal_ml, empirical_ml)
 }
@@ -25,10 +25,10 @@ Output from \code{DAISIE::DAISIE_ML_CS}}
 List of error metrics
 }
 \description{
-Calculates the colonisation through time (CTT) statistic, max age ratio,
-percentage of endemics, and differences in parameter estimates from DAISIE
-maximum likelihood estimation on ideal and empirical data simulated from
-sim_island_with_mainland
+Calculates the colonisation through time (CTT) statistic, percentage of max
+age colonists, percentage of endemics, and differences in parameter estimates
+from DAISIE maximum likelihood estimation on ideal and empirical data
+simulated from sim_island_with_mainland
 }
 \author{
 Joshua W. Lambert

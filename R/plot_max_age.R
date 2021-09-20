@@ -21,32 +21,32 @@ plot_max_age <- function(data_folder_path,
   error_list <- lapply(results_list, '[[', "error")
   sim_params_list <- lapply(results_list, '[[', "sim_params")
 
-  max_age_ratio_list <- lapply(error_list, '[[', "max_age_ratio")
-  max_age_ratio_ideal_list <- lapply(max_age_ratio_list, '[[', "ideal_max_age")
-  max_age_ratio_empirical_list <- lapply(max_age_ratio_list,
+  max_age_percent_list <- lapply(error_list, '[[', "max_age_percent")
+  max_age_percent_ideal_list <- lapply(max_age_percent_list, '[[', "ideal_max_age")
+  max_age_percent_empirical_list <- lapply(max_age_percent_list,
                                          '[[',
                                          "empirical_max_age")
-  max_age_ratio_ideal_means <- unlist(lapply(max_age_ratio_ideal_list, mean))
-  max_age_ratio_empirical_means <- unlist(lapply(max_age_ratio_empirical_list,
+  max_age_percent_ideal_means <- unlist(lapply(max_age_percent_ideal_list, mean))
+  max_age_percent_empirical_means <- unlist(lapply(max_age_percent_empirical_list,
                                                  mean))
 
   mainland_ex <- unlist(lapply(sim_params_list, '[[', 6))
   mainland_sample_prob <- unlist(lapply(sim_params_list, '[[', 7))
 
   plotting_data <- data.frame(
-    max_age_ratio_ideal_means = max_age_ratio_ideal_means,
-    max_age_ratio_empirical_means = max_age_ratio_empirical_means,
+    max_age_percent_ideal_means = max_age_percent_ideal_means,
+    max_age_percent_empirical_means = max_age_percent_empirical_means,
     mainland_ex = as.factor(mainland_ex),
     mainland_sample_prob = as.factor(mainland_sample_prob))
 
   ideal_max_age <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
-                                      y = max_age_ratio_ideal_means),
+                                      y = max_age_percent_ideal_means),
                          fill = "#009E73",
                          colour = "#009E73",
                          alpha = 0.3) +
     ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
-                                       y = max_age_ratio_ideal_means),
+                                       y = max_age_percent_ideal_means),
                           colour = "grey50",
                           width = 0.1,
                           alpha = 0.1) +
@@ -57,12 +57,12 @@ plot_max_age <- function(data_folder_path,
 
   empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
-                                      y = max_age_ratio_empirical_means),
+                                      y = max_age_percent_empirical_means),
                          fill = "#E69F00",
                          colour = "#E69F00",
                          alpha = 0.3) +
     ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
-                                       y = max_age_ratio_empirical_means),
+                                       y = max_age_percent_empirical_means),
                           colour = "grey50",
                           width = 0.1,
                           alpha = 0.1) +

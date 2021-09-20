@@ -1,10 +1,10 @@
-#' Calculates the ratio of max age species on the island for each replicate
+#' Calculates the percent of max age species on the island for each replicate
 #'
 #' @inheritParams default_params_doc
 #'
 #' @return A list of two numeric vectors
 #' @author Joshua W. Lambert
-calc_max_age_ratio <- function(daisie_data) {
+calc_max_age_percent <- function(daisie_data) {
 
   #extract island age from one of the simulations
   time <- daisie_data$ideal_islands[[1]][[1]]$island_age
@@ -56,20 +56,20 @@ calc_max_age_ratio <- function(daisie_data) {
       }
     }
     #calc max age percentage
-    ideal_max_age <- length(which(ideal_col_times == max_age)) /
-      length(ideal_col_times)
+    ideal_max_age <- (length(which(ideal_col_times == max_age)) /
+      length(ideal_col_times)) * 100
     testit::assert(ideal_max_age == 0)
 
-    empirical_max_age <- length(which(empirical_col_times == max_age)) /
-      length(empirical_col_times)
+    empirical_max_age <- (length(which(empirical_col_times == max_age)) /
+      length(empirical_col_times)) * 100
 
     ideal_max_age_vec <- c(ideal_max_age_vec, ideal_max_age)
     empirical_max_age_vec <- c(empirical_max_age_vec, empirical_max_age)
 
   }
 
-  max_age_ratio_list <- list(ideal_max_age = ideal_max_age_vec,
-                             empirical_max_age = empirical_max_age_vec)
+  max_age_percent_list <- list(ideal_max_age = ideal_max_age_vec,
+                               empirical_max_age = empirical_max_age_vec)
 
-  return(max_age_ratio_list)
+  return(max_age_percent_list)
 }
