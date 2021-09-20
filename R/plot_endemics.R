@@ -6,18 +6,15 @@
 #'
 #' @return Plot
 #' @export
-plot_endemics <- function(test = FALSE) {
+plot_endemics <- function(data_folder_path,
+                          output_file_path) {
 
-  if (test) {
-    files <- list.files(file.path(getwd(), "testdata"))
-  } else {
-    files <- list.files(file.path(getwd(), "results"))
-  }
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
   } else {
-    file_paths <- as.list(paste0(file.path(getwd(), "results"), "/", files))
+    file_paths <- as.list(paste0(data_folder_path, "/", files))
     results_list <- lapply(file_paths, readRDS)
   }
 
@@ -82,6 +79,19 @@ plot_endemics <- function(test = FALSE) {
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
   endemics <- cowplot::plot_grid(ideal_endemics, empirical_endemics)
-  return(endemics)
+
+  if (!is.null(output_file_path)) {
+    ggplot2::ggsave(
+      plot = endemics,
+      filename = output_file_path,
+      device = "png",
+      width = 168,
+      height = 100,
+      units = "mm",
+      dpi = 600
+    )
+  } else {
+    return(endemics)
+  }
 }
 

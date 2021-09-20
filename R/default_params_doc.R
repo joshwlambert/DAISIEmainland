@@ -67,7 +67,6 @@
 #' from
 #' @param output_file_path String specifying the directory the file is saved
 #' in, if NULL the file is returned to console and not saved
-#' @param test Boolean determining whether a plot is being tested
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -104,7 +103,6 @@ default_params_doc <- function(timeval,
                                param_set,
                                xlim,
                                data_folder_path,
-                               output_file_path,
-                               test) {
+                               output_file_path) {
   #Nothing
 }

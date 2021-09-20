@@ -38,8 +38,7 @@ default_params_doc(
   param_set,
   xlim,
   data_folder_path,
-  output_file_path,
-  test
+  output_file_path
 )
 }
 \arguments{
@@ -143,8 +142,6 @@ from}
 
 \item{output_file_path}{String specifying the directory the file is saved
 in, if NULL the file is returned to console and not saved}
-
-\item{test}{Boolean determining whether a plot is being tested}
 }
 \value{
 Nothing

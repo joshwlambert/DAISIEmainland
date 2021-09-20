@@ -6,10 +6,14 @@
 different values of mainland extinction. The left side facet has the ideal
 data and the right side facet has the empirical data.}
 \usage{
-plot_endemics(test = FALSE)
+plot_endemics(data_folder_path, output_file_path)
 }
 \arguments{
-\item{test}{Boolean determining whether a plot is being tested}
+\item{data_folder_path}{String specifying the directory the data is read
+from}
+
+\item{output_file_path}{String specifying the directory the file is saved
+in, if NULL the file is returned to console and not saved}
 }
 \value{
 Plot

@@ -10,7 +10,12 @@ for (param_set in 1:nrow(param_space)) {
     ideal_ml = ideal_ml,
     empirical_ml = empirical_ml,
     param_set = param_set,
-    xlim = FALSE)
+    xlim = FALSE,
+    data_folder_path = file.path("results"),
+    output_file_path = file.path("plots",
+                                 paste0(plot_title,
+                                        "_param_estimates.png",
+                                        param_set)))
 
   DAISIEmainland::plot_param_estimates(
     sim_params = c(param_space$island_clado[param_set],

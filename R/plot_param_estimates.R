@@ -6,14 +6,16 @@
 #' @return Void (saves plot)
 #' @export
 plot_param_estimates <- function(param_set,
-                                 xlim = FALSE) {
+                                 xlim = FALSE,
+                                 data_folder_path,
+                                 output_file_path) {
 
-  files <- list.files(file.path(getwd(), "results"))
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
   } else {
-    file_paths <- as.list(paste0(file.path(getwd(), "results"), "/", files))
+    file_paths <- as.list(paste0(data_folder_path, "/", files))
     results_list <- lapply(file_paths, readRDS)
   }
 
@@ -417,16 +419,17 @@ plot_param_estimates <- function(param_set,
     immig_vs_clado, immig_vs_ext, immig_density, NULL,
     ana_vs_clado, ana_vs_ext, ana_vs_immig, ana_density)
 
-  ggplot2::ggsave(
-    plot = param_estimates,
-    filename = file.path("plots",
-                         paste0(plot_title,
-                                "_param_estimates.png",
-                                param_set)),
-    device = "png",
-    width = 168,
-    height = 100,
-    units = "mm",
-    dpi = 600
-  )
+  if (!is.null(output_file_path)) {
+    ggplot2::ggsave(
+      plot = param_estimates,
+      filename = output_file_path,
+      device = "png",
+      width = 168,
+      height = 100,
+      units = "mm",
+      dpi = 600
+    )
+  } else {
+    return(param_estimates)
+  }
 }
