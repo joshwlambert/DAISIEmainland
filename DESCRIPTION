@@ -21,8 +21,7 @@ Imports:
     nLTT (>= 1.4.5),
     testit,
     ggplot2,
-    cowplot,
-    here
+    cowplot
 Suggests: 
     lintr,
     testthat,

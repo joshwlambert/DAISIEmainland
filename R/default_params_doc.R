@@ -63,9 +63,11 @@
 #' parameter space
 #' @param xlim Boolean determining whether the x-axis should be bounded on the
 #' plot
-#' @param save Boolean determining whether a plot is saved (TRUE) or returned
-#' (FALSE)
-#' @param test Boolean determining whether a function is being tested
+#' @param data_folder_path String specifying the directory the data is read
+#' from
+#' @param output_file_path String specifying the directory the file is saved
+#' in, if NULL the file is returned to console and not saved
+#' @param test Boolean determining whether a plot is being tested
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -101,7 +103,8 @@ default_params_doc <- function(timeval,
                                sim_params,
                                param_set,
                                xlim,
-                               save,
+                               data_folder_path,
+                               output_file_path,
                                test) {
   #Nothing
 }

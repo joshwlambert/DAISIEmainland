@@ -9,7 +9,7 @@ data and the right side facet has the empirical data.}
 plot_endemics(test = FALSE)
 }
 \arguments{
-\item{test}{Boolean determining whether a function is being tested}
+\item{test}{Boolean determining whether a plot is being tested}
 }
 \value{
 Plot

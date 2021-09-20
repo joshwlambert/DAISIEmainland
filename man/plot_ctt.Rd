@@ -5,13 +5,14 @@
 \title{Plots a heatmap of the colonisation through time statistic for mainland
 sampling probability (y-axis) and mainland extinction rate (x-axis).}
 \usage{
-plot_ctt(save = TRUE, test = FALSE)
+plot_ctt(data_folder_path, output_file_path)
 }
 \arguments{
-\item{save}{Boolean determining whether a plot is saved (TRUE) or returned
-(FALSE)}
+\item{data_folder_path}{String specifying the directory the data is read
+from}
 
-\item{test}{Boolean determining whether a function is being tested}
+\item{output_file_path}{String specifying the directory the file is saved
+in, if NULL the file is returned to console and not saved}
 }
 \value{
 Void (saves plot)

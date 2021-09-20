@@ -37,7 +37,8 @@ default_params_doc(
   sim_params,
   param_set,
   xlim,
-  save,
+  data_folder_path,
+  output_file_path,
   test
 )
 }
@@ -137,10 +138,13 @@ parameter space}
 \item{xlim}{Boolean determining whether the x-axis should be bounded on the
 plot}
 
-\item{save}{Boolean determining whether a plot is saved (TRUE) or returned
-(FALSE)}
+\item{data_folder_path}{String specifying the directory the data is read
+from}
 
-\item{test}{Boolean determining whether a function is being tested}
+\item{output_file_path}{String specifying the directory the file is saved
+in, if NULL the file is returned to console and not saved}
+
+\item{test}{Boolean determining whether a plot is being tested}
 }
 \value{
 Nothing
