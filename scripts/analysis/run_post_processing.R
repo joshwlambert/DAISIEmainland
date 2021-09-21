@@ -27,6 +27,25 @@ for (param_set in 1:nrow(param_space)) {
     empirical_ml = empirical_ml,
     param_set = param_set,
     xlim = TRUE)
+
+  #could list all the results in a list and then lapply mean and var
+
+  mean(output$ideal_sim_metrics$num_col)
+  var(output$ideal_sim_metrics$num_col)
+  max(output$ideal_sim_metrics$num_col)
+  min(output$ideal_sim_metrics$num_col)
+  mean(output$ideal_sim_metrics$num_spec)
+  var(output$ideal_sim_metrics$num_spec)
+  max(output$ideal_sim_metrics$num_spec)
+  min(output$ideal_sim_metrics$num_spec)
+  mean(output$empirical_sim_metrics$num_col)
+  var(output$empirical_sim_metrics$num_col)
+  max(output$empirical_sim_metrics$num_col)
+  min(output$empirical_sim_metrics$num_col)
+  mean(output$empirical_sim_metrics$num_spec)
+  var(output$empirical_sim_metrics$num_spec)
+  max(output$empirical_sim_metrics$num_spec)
+  min(output$empirical_sim_metrics$num_spec)
 }
 
 DAISIEmainland::plot_ctt()
@@ -46,5 +65,8 @@ ggplot2::ggsave(
   units = "mm",
   dpi = 600
 )
+
+ideal_results <- calc_sim_metrics(daisie_data = island$ideal_islands)
+empirical_results <- calc_sim_metrics(daisie_data = island$empirical_islands)
 
 #plot carrying capacity
