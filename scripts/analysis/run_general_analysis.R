@@ -30,9 +30,9 @@ empirical_sim_metrics <- vector("list", general_param_space$replicates[args])
 ideal_ml <- vector("list", general_param_space$replicates[args])
 empirical_ml <- vector("list", general_param_space$replicates[args])
 
-ideal_sim_metrics <- calc_sim_metrics(
+ideal_sim_metrics <- DAISIEmainland::calc_sim_metrics(
   daisie_data = island$ideal_islands)
-empirical_sim_metrics <- calc_sim_metrics(
+empirical_sim_metrics <- DAISIEmainland::calc_sim_metrics(
   daisie_data = island$empirical_islands)
 
 for (i in seq_len(general_param_space$replicates[args])) {
