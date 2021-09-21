@@ -142,7 +142,7 @@ output <- list(
 
 output_name <- paste0("general_param_set_", args, ".rds")
 
-output_folder <- file.path(getwd(), "results")
+output_folder <- file.path("results")
 
 output_file_path <- file.path(output_folder, output_name)
 
