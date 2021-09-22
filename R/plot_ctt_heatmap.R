@@ -5,10 +5,10 @@
 #'
 #' @return Void (saves plot)
 #' @export
-plot_ctt <- function(data_folder_path,
-                     output_file_path) {
+plot_ctt_heatmap <- function(data_folder_path,
+                             output_file_path) {
 
-  files <- list.files(data_folder_path)
+  files <- list.files(data_folder_path, pattern = "general")
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -37,8 +37,8 @@ plot_ctt <- function(data_folder_path,
     ggplot2::theme_classic() +
     ggplot2::ylab(expression(paste("Mainland sampling probability ", (rho)))) +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-    ggplot2::scale_fill_continuous(name = expression(paste(Delta, "CTT"))) +
-    ggplot2::scale_x_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5))
+    ggplot2::scale_fill_continuous(name = expression(paste(Delta, "CTT")))
+    #ggplot2::scale_x_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5))
 
   if (!is.null(output_file_path)) {
       ggplot2::ggsave(

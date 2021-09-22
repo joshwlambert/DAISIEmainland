@@ -2,7 +2,7 @@
 
 export(calc_error)
 export(calc_sim_metrics)
-export(plot_ctt)
+export(plot_ctt_heatmap)
 export(plot_ctt_scatter)
 export(plot_endemics)
 export(plot_max_age)
