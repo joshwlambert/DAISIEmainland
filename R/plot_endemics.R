@@ -18,15 +18,15 @@ plot_endemics <- function(data_folder_path,
     results_list <- lapply(file_paths, readRDS)
   }
 
-  error_list <- lapply(results_list, '[[', "error")
-  sim_params_list <- lapply(results_list, '[[', "sim_params")
+  error_list <- lapply(results_list, "[[", "error")
+  sim_params_list <- lapply(results_list, "[[", "sim_params")
 
-  endemic_percent_list <- lapply(error_list, '[[', "endemic_percent")
+  endemic_percent_list <- lapply(error_list, "[[", "endemic_percent")
   endemic_percent_empirical_list <- lapply(endemic_percent_list,
-                                           '[[',
+                                           "[[",
                                            "empirical_endemic_percent")
   endemic_percent_ideal_list <- lapply(endemic_percent_list,
-                                       '[[',
+                                       "[[",
                                        "ideal_endemic_percent")
 
   endemic_percent_empirical_means <- unlist(lapply(
@@ -37,8 +37,8 @@ plot_endemics <- function(data_folder_path,
     mean))
 
 
-  mainland_ex <- unlist(lapply(sim_params_list, '[[', 6))
-  mainland_sample_prob <- unlist(lapply(sim_params_list, '[[', 7))
+  mainland_ex <- unlist(lapply(sim_params_list, "[[", 6))
+  mainland_sample_prob <- unlist(lapply(sim_params_list, "[[", 7))
 
   plotting_data <- data.frame(
     endemic_percent_empirical_means = endemic_percent_empirical_means,
@@ -94,4 +94,3 @@ plot_endemics <- function(data_folder_path,
     return(endemics)
   }
 }
-

@@ -116,4 +116,3 @@ test_that("create_island fails with incorrect input", {
       mainland_sample_prob = "nonsense")
    )
 })
-

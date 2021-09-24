@@ -28,18 +28,18 @@ plot_param_estimates <- function(param_set,
   }
 
   ideal_ml <- results_list[[1]]$ideal_ml
-  ideal_clado <- unlist(lapply(ideal_ml, '[[', 1))
-  ideal_ext <- unlist(lapply(ideal_ml, '[[', 2))
-  ideal_k <- unlist(lapply(ideal_ml, '[[', 3))
-  ideal_immig <- unlist(lapply(ideal_ml, '[[', 4))
-  ideal_ana <- unlist(lapply(ideal_ml, '[[', 5))
+  ideal_clado <- unlist(lapply(ideal_ml, "[[", 1))
+  ideal_ext <- unlist(lapply(ideal_ml, "[[", 2))
+  ideal_k <- unlist(lapply(ideal_ml, "[[", 3))
+  ideal_immig <- unlist(lapply(ideal_ml, "[[", 4))
+  ideal_ana <- unlist(lapply(ideal_ml, "[[", 5))
 
   empirical_ml <- results_list[[1]]$empirical_ml
-  empirical_clado <- unlist(lapply(empirical_ml, '[[', 1))
-  empirical_ext <- unlist(lapply(empirical_ml, '[[', 2))
-  empirical_k <- unlist(lapply(empirical_ml, '[[', 3))
-  empirical_immig <- unlist(lapply(empirical_ml, '[[', 4))
-  empirical_ana <- unlist(lapply(empirical_ml, '[[', 5))
+  empirical_clado <- unlist(lapply(empirical_ml, "[[", 1))
+  empirical_ext <- unlist(lapply(empirical_ml, "[[", 2))
+  empirical_k <- unlist(lapply(empirical_ml, "[[", 3))
+  empirical_immig <- unlist(lapply(empirical_ml, "[[", 4))
+  empirical_ana <- unlist(lapply(empirical_ml, "[[", 5))
 
   param_diffs_list <- results_list[[1]]$error$param_diffs
   clado_diffs <- param_diffs_list$clado_diff

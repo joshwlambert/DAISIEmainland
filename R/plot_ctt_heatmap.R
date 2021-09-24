@@ -17,14 +17,14 @@ plot_ctt_heatmap <- function(data_folder_path,
     results_list <- lapply(file_paths, readRDS)
   }
 
-  error_list <- lapply(results_list, '[[', "error")
-  sim_params_list <- lapply(results_list, '[[', "sim_params")
+  error_list <- lapply(results_list, "[[", "error")
+  sim_params_list <- lapply(results_list, "[[", "sim_params")
 
-  ctt_list <- lapply(error_list, '[[', "delta_ctt")
+  ctt_list <- lapply(error_list, "[[", "delta_ctt")
   ctt_means <- unlist(lapply(ctt_list, mean))
 
-  mainland_ex <- unlist(lapply(sim_params_list, '[[', 6))
-  mainland_sample_prob <- unlist(lapply(sim_params_list, '[[', 7))
+  mainland_ex <- unlist(lapply(sim_params_list, "[[", 6))
+  mainland_sample_prob <- unlist(lapply(sim_params_list, "[[", 7))
 
   plotting_data <- data.frame(ctt_means = ctt_means,
                               mainland_ex = mainland_ex,
@@ -38,7 +38,6 @@ plot_ctt_heatmap <- function(data_folder_path,
     ggplot2::ylab(expression(paste("Mainland sampling probability ", (rho)))) +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
     ggplot2::scale_fill_continuous(name = expression(paste(Delta, "CTT")))
-    #ggplot2::scale_x_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5))
 
   if (!is.null(output_file_path)) {
       ggplot2::ggsave(

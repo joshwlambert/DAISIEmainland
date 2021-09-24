@@ -23,20 +23,25 @@ plot_max_age_sup <- function(data_folder_path,
     results_list <- lapply(file_paths, readRDS)
   }
 
-  error_list <- lapply(results_list, '[[', "error")
-  sim_params_list <- lapply(results_list, '[[', "sim_params")
+  error_list <- lapply(results_list, "[[", "error")
+  sim_params_list <- lapply(results_list, "[[", "sim_params")
 
-  max_age_percent_list <- lapply(error_list, '[[', "max_age_percent")
-  max_age_percent_ideal_list <- lapply(max_age_percent_list, '[[', "ideal_max_age")
+  max_age_percent_list <- lapply(error_list, "[[", "max_age_percent")
+  max_age_percent_ideal_list <- lapply(max_age_percent_list,
+                                       "[[",
+                                       "ideal_max_age")
   max_age_percent_empirical_list <- lapply(max_age_percent_list,
-                                           '[[',
+                                           "[[",
                                            "empirical_max_age")
-  max_age_percent_ideal_means <- unlist(lapply(max_age_percent_ideal_list, mean))
-  max_age_percent_empirical_means <- unlist(lapply(max_age_percent_empirical_list,
-                                                   mean))
+  max_age_percent_ideal_means <- unlist(lapply(
+    max_age_percent_ideal_list,
+    mean))
+  max_age_percent_empirical_means <- unlist(lapply(
+    max_age_percent_empirical_list,
+    mean))
 
-  mainland_ex <- unlist(lapply(sim_params_list, '[[', 6))
-  mainland_sample_prob <- unlist(lapply(sim_params_list, '[[', 7))
+  mainland_ex <- unlist(lapply(sim_params_list, "[[", 6))
+  mainland_sample_prob <- unlist(lapply(sim_params_list, "[[", 7))
 
   plotting_data <- data.frame(
     max_age_percent_ideal_means = max_age_percent_ideal_means,
@@ -92,4 +97,3 @@ plot_max_age_sup <- function(data_folder_path,
     return(max_age)
   }
 }
-

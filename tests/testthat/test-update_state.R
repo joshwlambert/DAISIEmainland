@@ -189,5 +189,3 @@ test_that("update_state fails with incorrect input", {
     island_spec = "nonsense")
   )
 })
-
-

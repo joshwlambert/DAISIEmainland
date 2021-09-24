@@ -19,13 +19,17 @@ plot_sim_metrics <- function(data_folder_path,
     results_list <- lapply(file_paths, readRDS)
   }
 
-  ideal_sim_metrics_list <- lapply(results_list, '[[', "ideal_sim_metrics")
-  empirical_sim_metrics_list <- lapply(results_list, '[[', "empirical_sim_metrics")
+  ideal_sim_metrics_list <- lapply(results_list, "[[", "ideal_sim_metrics")
+  empirical_sim_metrics_list <- lapply(results_list,
+                                       "[[",
+                                       "empirical_sim_metrics")
 
-  ideal_num_col_list <- lapply(ideal_sim_metrics_list, '[[', "num_col")
-  ideal_num_spec_list <- lapply(ideal_sim_metrics_list, '[[', "num_spec")
-  empirical_num_col_list <- lapply(empirical_sim_metrics_list, '[[', "num_col")
-  empirical_num_spec_list <- lapply(empirical_sim_metrics_list, '[[', "num_spec")
+  ideal_num_col_list <- lapply(ideal_sim_metrics_list, "[[", "num_col")
+  ideal_num_spec_list <- lapply(ideal_sim_metrics_list, "[[", "num_spec")
+  empirical_num_col_list <- lapply(empirical_sim_metrics_list, "[[", "num_col")
+  empirical_num_spec_list <- lapply(empirical_sim_metrics_list,
+                                    "[[",
+                                    "num_spec")
 
   ideal_mean_num_col <- unlist(lapply(ideal_num_col_list, mean))
   ideal_var_num_col <- unlist(lapply(ideal_num_col_list, var))

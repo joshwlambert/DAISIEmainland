@@ -15,7 +15,7 @@ calc_sim_metrics <- function(daisie_data) {
 
     temp_num_spec <- c()
 
-    stacs <- lapply(sim_rep, '[[', "stac")
+    stacs <- lapply(sim_rep, "[[", "stac")
 
     for (j in 2:length(sim_rep)) {
       if (stacs[[j]] != 3) {
@@ -24,7 +24,7 @@ calc_sim_metrics <- function(daisie_data) {
           length(sim_rep[[j]]$branching_times) - 1
         )
       } else {
-        for (k in 1:length(sim_rep[[j]]$all_colonisations)) {
+        for (k in seq_len(sim_rep[[j]]$all_colonisations)) {
           temp_num_spec <- c(
             temp_num_spec,
             length(sim_rep[[j]]$all_colonisations[[k]]$event_times) - 1

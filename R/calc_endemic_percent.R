@@ -37,7 +37,7 @@ calc_endemic_percent <- function(daisie_data) {
       } else {
         for (k in seq_along(daisie_data$ideal_islands[[i]][[j]]$all_colonisations)) {
           species_type <- daisie_data$ideal_islands[[i]][[j]]$all_colonisations[[k]]$species_type
-          if(is.null(species_type)) browser() #delete
+          if (is.null(species_type)) browser() #delete
           if (species_type == "C" || species_type == "A") {
             ideal_endemics <- ideal_endemics + 1
           } else if (species_type == "I") {
@@ -63,7 +63,7 @@ calc_endemic_percent <- function(daisie_data) {
       } else {
         for (k in seq_along(daisie_data$empirical_islands[[i]][[j]]$all_colonisations)) {
           species_type <- daisie_data$empirical_islands[[i]][[j]]$all_colonisations[[k]]$species_type
-          if(is.null(species_type)) browser()
+          if (is.null(species_type)) browser()
           if (species_type == "C" || species_type == "A") {
             empirical_endemics <- empirical_endemics + 1
           } else if (species_type == "I") {

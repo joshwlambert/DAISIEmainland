@@ -4,7 +4,8 @@ test_that("plot_param_estimates (no save) runs silent without error", {
     param_set = 1,
     xlim = TRUE,
     data_folder_path = file.path("testdata"),
-    output_file_path = NULL))
+    output_file_path = NULL,
+    parameter = "general"))
 })
 
 test_that("plot_param_estimates (no save) runs silent without error", {
@@ -12,7 +13,8 @@ test_that("plot_param_estimates (no save) runs silent without error", {
     param_set = 1,
     xlim = FALSE,
     data_folder_path = file.path("testdata"),
-    output_file_path = NULL))
+    output_file_path = NULL,
+    parameter = "general"))
 })
 
 test_that("plot_param_estimates (save) runs silent without error", {
@@ -28,7 +30,8 @@ test_that("plot_param_estimates (save) runs silent without error", {
     param_set = 1,
     xlim = TRUE,
     data_folder_path = file.path("testdata"),
-    output_file_path = output_filename))
+    output_file_path = output_filename,
+    parameter = "general"))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))
@@ -46,7 +49,8 @@ test_that("plot_param_estimates (save) runs silent without error", {
     param_set = 1,
     xlim = FALSE,
     data_folder_path = file.path("testdata"),
-    output_file_path = output_filename))
+    output_file_path = output_filename,
+    parameter = "general"))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))

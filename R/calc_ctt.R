@@ -55,18 +55,19 @@ calc_ctt <- function(daisie_data) {
 
     # normalise data
     ideal_col_times <- sort(ideal_col_times, decreasing = TRUE)
-    ideal_norm_col_times <- 1 - ideal_col_times/max(ideal_col_times)
+    ideal_norm_col_times <- 1 - ideal_col_times / max(ideal_col_times)
     ideal_lineages <- seq_along(ideal_norm_col_times)
-    ideal_lineages_norm <- ideal_lineages/max(ideal_lineages)
+    ideal_lineages_norm <- ideal_lineages / max(ideal_lineages)
     testit::assert(all(ideal_norm_col_times >= 0 & ideal_norm_col_times <= 1))
     testit::assert(all(ideal_lineages_norm >= 0 & ideal_lineages_norm <= 1))
     ideal_norm_col_times <- c(ideal_norm_col_times, 1) #check with Thijs why this is needed
     ideal_lineages_norm <- c(ideal_lineages_norm, 1) #check with Thijs why this is needed
 
     empirical_col_times <- sort(empirical_col_times, decreasing = TRUE)
-    empirical_norm_col_times <- 1 - empirical_col_times/max(empirical_col_times)
+    empirical_norm_col_times <-
+      1 - empirical_col_times / max(empirical_col_times)
     empirical_lineages <- seq_along(empirical_norm_col_times)
-    empirical_lineages_norm <- empirical_lineages/max(empirical_lineages)
+    empirical_lineages_norm <- empirical_lineages / max(empirical_lineages)
     testit::assert(all(empirical_norm_col_times >= 0 &
                          empirical_norm_col_times <= 1))
     testit::assert(all(empirical_lineages_norm >= 0 &
