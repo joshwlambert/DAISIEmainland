@@ -32,22 +32,22 @@ plot_sim_metrics <- function(data_folder_path,
                                     "num_spec")
 
   ideal_mean_num_col <- unlist(lapply(ideal_num_col_list, mean))
-  ideal_var_num_col <- unlist(lapply(ideal_num_col_list, var))
+  ideal_var_num_col <- unlist(lapply(ideal_num_col_list, stats::var))
   ideal_max_num_col <- unlist(lapply(ideal_num_col_list, max))
   ideal_min_num_col <- unlist(lapply(ideal_num_col_list, min))
 
   ideal_mean_num_spec <- unlist(lapply(ideal_num_spec_list, mean))
-  ideal_var_num_spec <- unlist(lapply(ideal_num_spec_list, var))
+  ideal_var_num_spec <- unlist(lapply(ideal_num_spec_list, stats::var))
   ideal_max_num_spec <- unlist(lapply(ideal_num_spec_list, max))
   ideal_min_num_spec <- unlist(lapply(ideal_num_spec_list, min))
 
   empirical_mean_num_col <- unlist(lapply(empirical_num_col_list, mean))
-  empirical_var_num_col <- unlist(lapply(empirical_num_col_list, var))
+  empirical_var_num_col <- unlist(lapply(empirical_num_col_list, stats::var))
   empirical_max_num_col <- unlist(lapply(empirical_num_col_list, max))
   empirical_min_num_col <- unlist(lapply(empirical_num_col_list, min))
 
   empirical_mean_num_spec <- unlist(lapply(empirical_num_spec_list, mean))
-  empirical_var_num_spec <- unlist(lapply(empirical_num_spec_list, var))
+  empirical_var_num_spec <- unlist(lapply(empirical_num_spec_list, stats::var))
   empirical_max_num_spec <- unlist(lapply(empirical_num_spec_list, max))
   empirical_min_num_spec <- unlist(lapply(empirical_num_spec_list, min))
 

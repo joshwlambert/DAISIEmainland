@@ -5,7 +5,7 @@
 \title{Plots a heatmap of the colonisation through time statistic for mainland
 sampling probability (y-axis) and mainland extinction rate (x-axis).}
 \usage{
-plot_ctt_scatter(data_folder_path, output_file_path, parameter)
+plot_ctt_scatter(data_folder_path, output_file_path, param_space)
 }
 \arguments{
 \item{data_folder_path}{String specifying the directory the data is read
@@ -13,6 +13,9 @@ from}
 
 \item{output_file_path}{String specifying the directory the file is saved
 in, if NULL the file is returned to console and not saved}
+
+\item{param_space}{String specifying which parameter space results to read.
+Either "general", "mainland_ex", or "mainland_sample_prob"}
 }
 \value{
 Void (saves plot)

@@ -67,6 +67,8 @@
 #' from
 #' @param output_file_path String specifying the directory the file is saved
 #' in, if NULL the file is returned to console and not saved
+#' @param param_space String specifying which parameter space results to read.
+#' Either "general", "mainland_ex", or "mainland_sample_prob"
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -103,6 +105,7 @@ default_params_doc <- function(timeval,
                                param_set,
                                xlim,
                                data_folder_path,
-                               output_file_path) {
+                               output_file_path,
+                               param_space) {
   #Nothing
 }

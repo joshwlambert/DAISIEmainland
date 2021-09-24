@@ -8,13 +8,13 @@
 #' @export
 plot_max_age_sup <- function(data_folder_path,
                              output_file_path,
-                             parameter) {
+                             param_space) {
 
   testit::assert(
-    "Parameter must be either 'mainland_ex' or 'mainland_sample_prob'",
-    parameter == "mainland_ex" || parameter == "mainland_sample_prob")
+    "Param_space must be either 'mainland_ex' or 'mainland_sample_prob'",
+    param_space == "mainland_ex" || param_space == "mainland_sample_prob")
 
-  files <- list.files(data_folder_path, pattern = parameter)
+  files <- list.files(data_folder_path, pattern = param_space)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")

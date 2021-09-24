@@ -9,16 +9,16 @@ plot_param_estimates <- function(param_set,
                                  xlim = FALSE,
                                  data_folder_path,
                                  output_file_path,
-                                 parameter) {
+                                 param_space) {
 
   testit::assert(
-    "Parameter must be either 'general', 'mainland_ex' or
+    "Param_space must be either 'general', 'mainland_ex' or
     'mainland_sample_prob'",
-    parameter == "general" || parameter == "mainland_ex" ||
-      parameter == "mainland_sample_prob")
+    param_space == "general" || param_space == "mainland_ex" ||
+      param_space == "mainland_sample_prob")
 
-  parameter_name <- paste0(parameter, "_param_set_", param_set, ".rds")
-  files <- list.files(data_folder_path, pattern = parameter_name)
+  param_space_name <- paste0(param_space, "_param_set_", param_set, ".rds")
+  files <- list.files(data_folder_path, pattern = param_space_name)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
