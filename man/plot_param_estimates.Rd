@@ -9,7 +9,8 @@ plot_param_estimates(
   param_set,
   xlim = FALSE,
   data_folder_path,
-  output_file_path
+  output_file_path,
+  parameter
 )
 }
 \arguments{

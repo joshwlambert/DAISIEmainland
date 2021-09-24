@@ -20,11 +20,11 @@ test_that("calc_param_diff runs without error", {
                                                 empirical_ml = empirical_ml))
 
   expect_length(param_diffs, 5)
-  expect_equal(param_diffs$clado_abs_diff, 0.06)
-  expect_equal(param_diffs$ext_abs_diff, 0.32)
-  expect_equal(param_diffs$k_abs_diff, 39)
-  expect_equal(param_diffs$immig_abs_diff, 0.02)
-  expect_equal(param_diffs$ana_abs_diff, 0.04)
+  expect_equal(param_diffs$clado_diff, 0.06)
+  expect_equal(param_diffs$ext_diff, 0.32)
+  expect_equal(param_diffs$k_diff, 39)
+  expect_equal(param_diffs$immig_diff, 0.02)
+  expect_equal(param_diffs$ana_diff, 0.04)
 })
 
 test_that("calc_param_diff fails with incorrect ideal_ml", {

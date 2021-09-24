@@ -4,10 +4,14 @@
 \alias{plot_sim_metrics}
 \title{Plots metrics from simulations}
 \usage{
-plot_sim_metrics(sim_metrics)
+plot_sim_metrics(data_folder_path, output_file_path)
 }
 \arguments{
-\item{sim_metrics}{A list of metrics output from \code{\link[=calc_sim_metrics]{calc_sim_metrics()}}}
+\item{data_folder_path}{String specifying the directory the data is read
+from}
+
+\item{output_file_path}{String specifying the directory the file is saved
+in, if NULL the file is returned to console and not saved}
 }
 \value{
 none Four plots are shown: histogram of the number of species,
