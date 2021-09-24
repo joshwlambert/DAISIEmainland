@@ -8,9 +8,17 @@
 plot_param_estimates <- function(param_set,
                                  xlim = FALSE,
                                  data_folder_path,
-                                 output_file_path) {
+                                 output_file_path,
+                                 parameter) {
 
-  files <- list.files(data_folder_path)
+  testit::assert(
+    "Parameter must be either 'general', 'mainland_ex' or
+    'mainland_sample_prob'",
+    parameter == "general" || parameter == "mainland_ex" ||
+      parameter == "mainland_sample_prob")
+
+  parameter_name <- paste0(parameter, "_param_set_", param_set, ".rds")
+  files <- list.files(data_folder_path, pattern = parameter_name)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -19,21 +27,28 @@ plot_param_estimates <- function(param_set,
     results_list <- lapply(file_paths, readRDS)
   }
 
-  ideal_ml <- results_list[[param_set]]$ideal_ml
+  ideal_ml <- results_list[[1]]$ideal_ml
   ideal_clado <- unlist(lapply(ideal_ml, '[[', 1))
   ideal_ext <- unlist(lapply(ideal_ml, '[[', 2))
   ideal_k <- unlist(lapply(ideal_ml, '[[', 3))
   ideal_immig <- unlist(lapply(ideal_ml, '[[', 4))
   ideal_ana <- unlist(lapply(ideal_ml, '[[', 5))
 
-  empirical_ml <- results_list[[param_set]]$empirical_ml
+  empirical_ml <- results_list[[1]]$empirical_ml
   empirical_clado <- unlist(lapply(empirical_ml, '[[', 1))
   empirical_ext <- unlist(lapply(empirical_ml, '[[', 2))
   empirical_k <- unlist(lapply(empirical_ml, '[[', 3))
   empirical_immig <- unlist(lapply(empirical_ml, '[[', 4))
   empirical_ana <- unlist(lapply(empirical_ml, '[[', 5))
 
-  sim_params <- results_list[[param_set]]$sim_params
+  param_diffs_list <- results_list[[1]]$error$param_diffs
+  clado_diffs <- param_diffs_list$clado_diff
+  ext_diffs <- param_diffs_list$ext_diff
+  k_diffs <- param_diffs_list$k_diff
+  immig_diffs <- param_diffs_list$immig_diff
+  ana_diffs <- param_diffs_list$ana_diff
+
+  sim_params <- results_list[[1]]$sim_params
   sim_clado <- sim_params[1]
   sim_ext <- sim_params[2]
   sim_k <- sim_params[3]
@@ -239,9 +254,63 @@ plot_param_estimates <- function(param_set,
       ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
       ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
+    clado_vs_ext_diffs <- ggplot2::ggplot(data = plotting_data) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = ext_diffs,
+                                                 y = clado_diffs),
+                          colour = "#56B4E9",
+                          shape = 16) +
+      ggplot2::theme_classic() +
+      ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+      ggplot2::xlab(expression(paste(Delta, mu)))
+
+    clado_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
+                                                 y = clado_diffs),
+                          colour = "#56B4E9",
+                          shape = 16) +
+      ggplot2::theme_classic() +
+      ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+      ggplot2::xlab(expression(paste(Delta, gamma)))
+
+    clado_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                                 y = clado_diffs),
+                          colour = "#56B4E9",
+                          shape = 16) +
+      ggplot2::theme_classic() +
+      ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+      ggplot2::xlab(expression(paste(Delta, lambda^a)))
+
+    ext_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
+                                                 y = ext_diffs),
+                          colour = "#56B4E9",
+                          shape = 16) +
+      ggplot2::theme_classic() +
+      ggplot2::ylab(expression(paste(Delta, mu))) +
+      ggplot2::xlab(expression(paste(Delta, gamma)))
+
+    ext_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                                 y = ext_diffs),
+                          colour = "#56B4E9",
+                          shape = 16) +
+      ggplot2::theme_classic() +
+      ggplot2::ylab(expression(paste(Delta, mu))) +
+      ggplot2::xlab(expression(paste(Delta, lambda^a)))
+
+    immig_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+      ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                                 y = immig_diffs),
+                          colour = "#56B4E9",
+                          shape = 16) +
+      ggplot2::theme_classic() +
+      ggplot2::ylab(expression(paste(Delta, gamma))) +
+      ggplot2::xlab(expression(paste(Delta, lambda^a)))
+
     plot_title <- "trunc_axis"
 
-    } else {
+  } else {
 
       clado_density <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_clado),
@@ -410,13 +479,67 @@ plot_param_estimates <- function(param_set,
         ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
         ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
+      clado_vs_ext_diffs <- ggplot2::ggplot(data = plotting_data) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = ext_diffs,
+                                                   y = clado_diffs),
+                            colour = "#56B4E9",
+                            shape = 16) +
+        ggplot2::theme_classic() +
+        ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+        ggplot2::xlab(expression(paste(Delta, mu)))
+
+      clado_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
+                                                   y = clado_diffs),
+                            colour = "#56B4E9",
+                            shape = 16) +
+        ggplot2::theme_classic() +
+        ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+        ggplot2::xlab(expression(paste(Delta, gamma)))
+
+      clado_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                                   y = clado_diffs),
+                            colour = "#56B4E9",
+                            shape = 16) +
+        ggplot2::theme_classic() +
+        ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+        ggplot2::xlab(expression(paste(Delta, lambda^a)))
+
+      ext_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
+                                                   y = ext_diffs),
+                            colour = "#56B4E9",
+                            shape = 16) +
+        ggplot2::theme_classic() +
+        ggplot2::ylab(expression(paste(Delta, mu))) +
+        ggplot2::xlab(expression(paste(Delta, gamma)))
+
+      ext_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                                   y = ext_diffs),
+                            colour = "#56B4E9",
+                            shape = 16) +
+        ggplot2::theme_classic() +
+        ggplot2::ylab(expression(paste(Delta, mu))) +
+        ggplot2::xlab(expression(paste(Delta, lambda^a)))
+
+      immig_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+        ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                                   y = immig_diffs),
+                            colour = "#56B4E9",
+                            shape = 16) +
+        ggplot2::theme_classic() +
+        ggplot2::ylab(expression(paste(Delta, gamma))) +
+        ggplot2::xlab(expression(paste(Delta, lambda^a)))
+
       plot_title <- "full_axis"
     }
 
   param_estimates <- cowplot::plot_grid(
-    clado_density, NULL, NULL, NULL,
-    ext_vs_clado, ext_density, NULL, NULL,
-    immig_vs_clado, immig_vs_ext, immig_density, NULL,
+    clado_density, clado_vs_ext_diffs, clado_vs_immig_diffs, clado_vs_ana_diffs,
+    ext_vs_clado, ext_density, ext_vs_immig_diffs, ext_vs_ana_diffs,
+    immig_vs_clado, immig_vs_ext, immig_density, immig_vs_ana_diffs,
     ana_vs_clado, ana_vs_ext, ana_vs_immig, ana_density)
 
   if (!is.null(output_file_path)) {
