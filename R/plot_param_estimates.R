@@ -261,7 +261,9 @@ plot_param_estimates <- function(param_set,
                           shape = 16) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-      ggplot2::xlab(expression(paste(Delta, mu)))
+      ggplot2::xlab(expression(paste(Delta, mu))) +
+      ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
     clado_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
@@ -270,7 +272,9 @@ plot_param_estimates <- function(param_set,
                           shape = 16) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-      ggplot2::xlab(expression(paste(Delta, gamma)))
+      ggplot2::xlab(expression(paste(Delta, gamma))) +
+      ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
     clado_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -279,7 +283,9 @@ plot_param_estimates <- function(param_set,
                           shape = 16) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-      ggplot2::xlab(expression(paste(Delta, lambda^a)))
+      ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+      ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
     ext_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
@@ -288,7 +294,9 @@ plot_param_estimates <- function(param_set,
                           shape = 16) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, mu))) +
-      ggplot2::xlab(expression(paste(Delta, gamma)))
+      ggplot2::xlab(expression(paste(Delta, gamma))) +
+      ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
     ext_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -297,7 +305,9 @@ plot_param_estimates <- function(param_set,
                           shape = 16) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, mu))) +
-      ggplot2::xlab(expression(paste(Delta, lambda^a)))
+      ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+      ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
     immig_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -306,7 +316,9 @@ plot_param_estimates <- function(param_set,
                           shape = 16) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, gamma))) +
-      ggplot2::xlab(expression(paste(Delta, lambda^a)))
+      ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+      ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+      ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
     plot_title <- "trunc_axis"
 
@@ -486,7 +498,9 @@ plot_param_estimates <- function(param_set,
                             shape = 16) +
         ggplot2::theme_classic() +
         ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-        ggplot2::xlab(expression(paste(Delta, mu)))
+        ggplot2::xlab(expression(paste(Delta, mu))) +
+        ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
       clado_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
@@ -495,7 +509,9 @@ plot_param_estimates <- function(param_set,
                             shape = 16) +
         ggplot2::theme_classic() +
         ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-        ggplot2::xlab(expression(paste(Delta, gamma)))
+        ggplot2::xlab(expression(paste(Delta, gamma))) +
+        ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
       clado_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -504,7 +520,9 @@ plot_param_estimates <- function(param_set,
                             shape = 16) +
         ggplot2::theme_classic() +
         ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-        ggplot2::xlab(expression(paste(Delta, lambda^a)))
+        ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+        ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
       ext_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
@@ -513,7 +531,9 @@ plot_param_estimates <- function(param_set,
                             shape = 16) +
         ggplot2::theme_classic() +
         ggplot2::ylab(expression(paste(Delta, mu))) +
-        ggplot2::xlab(expression(paste(Delta, gamma)))
+        ggplot2::xlab(expression(paste(Delta, gamma))) +
+        ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
       ext_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -522,7 +542,9 @@ plot_param_estimates <- function(param_set,
                             shape = 16) +
         ggplot2::theme_classic() +
         ggplot2::ylab(expression(paste(Delta, mu))) +
-        ggplot2::xlab(expression(paste(Delta, lambda^a)))
+        ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+        ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
       immig_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
         ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -531,7 +553,9 @@ plot_param_estimates <- function(param_set,
                             shape = 16) +
         ggplot2::theme_classic() +
         ggplot2::ylab(expression(paste(Delta, gamma))) +
-        ggplot2::xlab(expression(paste(Delta, lambda^a)))
+        ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+        ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+        ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
       plot_title <- "full_axis"
     }
