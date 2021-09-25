@@ -1,33 +1,61 @@
 data("param_space")
 
-for (param_set in 1:nrow(param_space)) {
-  DAISIEmainland::plot_param_estimates(
-    sim_params = c(param_space$island_clado[param_set],
-                   param_space$island_ex[param_set],
-                   param_space$island_k[param_set],
-                   param_space$island_immig[param_set],
-                   param_space$island_ana[param_set]),
-    ideal_ml = ideal_ml,
-    empirical_ml = empirical_ml,
-    param_set = param_set,
-    xlim = FALSE,
-    data_folder_path = file.path("results"),
-    output_file_path = file.path("plots",
-                                 paste0(plot_title,
-                                        "_param_estimates.png",
-                                        param_set)))
+DAISIEmainland::plot_param_estimates(
+  param_set = 1,
+  xlim = FALSE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_1.png"),
+  param_space = "general")
 
-  DAISIEmainland::plot_param_estimates(
-    sim_params = c(param_space$island_clado[param_set],
-                   param_space$island_ex[param_set],
-                   param_space$island_k[param_set],
-                   param_space$island_immig[param_set],
-                   param_space$island_ana[param_set]),
-    ideal_ml = ideal_ml,
-    empirical_ml = empirical_ml,
-    param_set = param_set,
-    xlim = TRUE)
-}
+DAISIEmainland::plot_param_estimates(
+  param_set = 21,
+  xlim = FALSE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_21.png"),
+  param_space = "general")
+
+DAISIEmainland::plot_param_estimates(
+  param_set = 111,
+  xlim = FALSE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_111.png"),
+  param_space = "general")
+
+DAISIEmainland::plot_param_estimates(
+  param_set = 131,
+  xlim = FALSE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_131.png"),
+  param_space = "general")
+
+DAISIEmainland::plot_param_estimates(
+  param_set = 1,
+  xlim = TRUE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_1_xlim.png"),
+  param_space = "general")
+
+DAISIEmainland::plot_param_estimates(
+  param_set = 21,
+  xlim = TRUE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_21_xlim.png"),
+  param_space = "general")
+
+DAISIEmainland::plot_param_estimates(
+  param_set = 111,
+  xlim = TRUE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_111_xlim.png"),
+  param_space = "general")
+
+DAISIEmainland::plot_param_estimates(
+  param_set = 131,
+  xlim = TRUE,
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "param_estimates_131_xlim.png"),
+  param_space = "general")
+
 
 DAISIEmainland::plot_ctt()
 
