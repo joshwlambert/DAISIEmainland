@@ -9,5 +9,5 @@ mainland_sample_prob_param_space <- expand.grid(
   island_ana = c(0.5),
   mainland_ex = c(0),
   mainland_sample_prob = seq(0, 1.0, 0.02),
-  replicates = c(10))
+  replicates = c(100))
 usethis::use_data(mainland_sample_prob_param_space, overwrite = TRUE)
