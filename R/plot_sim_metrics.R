@@ -51,6 +51,17 @@ plot_sim_metrics <- function(data_folder_path,
   empirical_max_num_spec <- unlist(lapply(empirical_num_spec_list, max))
   empirical_min_num_spec <- unlist(lapply(empirical_num_spec_list, min))
 
+  testit::assert(identical(ideal_mean_num_col, empirical_mean_num_col))
+  testit::assert(identical(ideal_var_num_col, empirical_var_num_col))
+  testit::assert(identical(ideal_max_num_col, empirical_max_num_col))
+  testit::assert(identical(ideal_min_num_col, empirical_min_num_col))
+
+  # uncomment when worked out why numbers are not identical
+  #testit::assert(identical(ideal_mean_num_spec, empirical_mean_num_spec))
+  #testit::assert(identical(ideal_var_num_spec, empirical_var_num_spec))
+  #testit::assert(identical(ideal_max_num_spec, empirical_max_num_spec))
+  #testit::assert(identical(ideal_min_num_spec, empirical_min_num_spec))
+
   plotting_data <- data.frame(
     ideal_mean_num_col = ideal_mean_num_col,
     ideal_var_num_col = ideal_var_num_col,
@@ -60,45 +71,41 @@ plot_sim_metrics <- function(data_folder_path,
     ideal_var_num_spec = ideal_var_num_spec,
     ideal_max_num_spec = ideal_max_num_spec,
     ideal_min_num_spec = ideal_min_num_spec,
-    empirical_mean_num_col = empirical_mean_num_col,
-    empirical_var_num_col = empirical_var_num_col,
-    empirical_max_num_col = empirical_max_num_col,
-    empirical_min_num_col = empirical_min_num_col,
     empirical_mean_num_spec = empirical_mean_num_spec,
     empirical_var_num_spec = empirical_var_num_spec,
     empirical_max_num_spec = empirical_max_num_spec,
     empirical_min_num_spec = empirical_min_num_spec)
 
-  ideal_mean_num_col <- ggplot2::ggplot(data = plotting_data) +
+  mean_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_mean_num_col),
-                            fill = "#009E73",
+                            fill = "#56B4E9",
                             bins = 50) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
     ggplot2::theme(text = ggplot2::element_text(size = 5))
 
-  ideal_var_num_col <- ggplot2::ggplot(data = plotting_data) +
+  var_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_var_num_col),
-                            fill = "#009E73",
+                            fill = "#56B4E9",
                             bins = 50) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
     ggplot2::theme(text = ggplot2::element_text(size = 5))
 
-  ideal_max_num_col <- ggplot2::ggplot(data = plotting_data) +
+  max_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_max_num_col),
-                            fill = "#009E73",
+                            fill = "#56B4E9",
                             bins = 50) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
     ggplot2::theme(text = ggplot2::element_text(size = 5))
 
-  ideal_min_num_col <- ggplot2::ggplot(data = plotting_data) +
+  min_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_min_num_col),
-                            fill = "#009E73",
+                            fill = "#56B4E9",
                             bins = 50) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Colonisation events") +
@@ -141,42 +148,6 @@ plot_sim_metrics <- function(data_folder_path,
     ggplot2::ylab("Frequency") +
     ggplot2::theme(text = ggplot2::element_text(size = 5))
 
-  empirical_mean_num_col <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_histogram(ggplot2::aes(x = empirical_mean_num_col),
-                            fill = "#E69F00",
-                            bins = 50) +
-    ggplot2::theme_classic() +
-    ggplot2::xlab("Mean Number of Colonisation events") +
-    ggplot2::ylab("Frequency") +
-    ggplot2::theme(text = ggplot2::element_text(size = 5))
-
-  empirical_var_num_col <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_histogram(ggplot2::aes(x = empirical_var_num_col),
-                            fill = "#E69F00",
-                            bins = 50) +
-    ggplot2::theme_classic() +
-    ggplot2::xlab("Variance of Number of Colonisation events") +
-    ggplot2::ylab("Frequency") +
-    ggplot2::theme(text = ggplot2::element_text(size = 5))
-
-  empirical_max_num_col <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_histogram(ggplot2::aes(x = empirical_max_num_col),
-                            fill = "#E69F00",
-                            bins = 50) +
-    ggplot2::theme_classic() +
-    ggplot2::xlab("Maximum Number of Colonisation events") +
-    ggplot2::ylab("Frequency") +
-    ggplot2::theme(text = ggplot2::element_text(size = 5))
-
-  empirical_min_num_col <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_histogram(ggplot2::aes(x = empirical_min_num_col),
-                            fill = "#E69F00",
-                            bins = 50) +
-    ggplot2::theme_classic() +
-    ggplot2::xlab("Minimum Number of Colonisation events") +
-    ggplot2::ylab("Frequency") +
-    ggplot2::theme(text = ggplot2::element_text(size = 5))
-
   empirical_mean_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_mean_num_spec),
                             fill = "#E69F00",
@@ -213,29 +184,14 @@ plot_sim_metrics <- function(data_folder_path,
     ggplot2::ylab("Frequency") +
     ggplot2::theme(text = ggplot2::element_text(size = 5))
 
-  ideal_sim_metrics <- cowplot::plot_grid(
-    ideal_mean_num_col, ideal_var_num_col,
-    ideal_max_num_col, ideal_min_num_col,
+  sim_metrics <- cowplot::plot_grid(
+    mean_num_col, var_num_col,
+    max_num_col, min_num_col,
     ideal_mean_num_spec, ideal_var_num_spec,
     ideal_max_num_spec, ideal_min_num_spec,
-    labels = "Ideal Data",
-    label_size = 8,
-    hjust = -1.5,
-    nrow = 2)
-
-  empirical_sim_metrics <- cowplot::plot_grid(
-    empirical_mean_num_col, empirical_var_num_col,
-    empirical_max_num_col, empirical_min_num_col,
     empirical_mean_num_spec, empirical_var_num_spec,
     empirical_max_num_spec, empirical_min_num_spec,
-    labels = "Empirical Data",
-    label_size = 8,
-    hjust = -1.0,
-    nrow = 2)
-
-  sim_metrics <- cowplot::plot_grid(ideal_sim_metrics,
-                                    empirical_sim_metrics,
-                                    nrow = 2)
+    nrow = 3)
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(
