@@ -1,5 +1,14 @@
 data("param_space")
 
+DAISIEmainland::calc_overall_sim_metrics(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  param_space = "general")
+
+DAISIEmainland::plot_sim_metrics(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "sim_metrics.png"))
+
 DAISIEmainland::plot_param_estimates(
   param_set = 1,
   xlim = FALSE,
@@ -57,7 +66,9 @@ DAISIEmainland::plot_param_estimates(
   param_space = "general")
 
 
-DAISIEmainland::plot_ctt()
+DAISIEmainland::plot_ctt_heatmap(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "ctt_heatmap.png"))
 
 max_age <- DAISIEmainland::plot_max_age()
 
@@ -74,8 +85,5 @@ ggplot2::ggsave(
   units = "mm",
   dpi = 600
 )
-
-plot_sim_metrics(data_folder_path = file.path("results"),
-                 output_file_path = file.path("plots", "sim_metrics.png"))
 
 #plot carrying capacity
