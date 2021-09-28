@@ -1,5 +1,3 @@
-data("param_space")
-
 DAISIEmainland::calc_overall_sim_metrics(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
@@ -8,6 +6,55 @@ DAISIEmainland::calc_overall_sim_metrics(
 DAISIEmainland::plot_sim_metrics(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "sim_metrics.png"))
+
+DAISIEmainland::plot_ctt_heatmap(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "ctt_heatmap.png"))
+
+DAISIEmainland::plot_ctt_scatter(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "mainland_ex_ctt_scatter.png"),
+  param_space = "mainland_ex")
+
+DAISIEmainland::plot_ctt_scatter(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "mainland_sample_prob_scatter.png"),
+  param_space = "mainland_sample_prob")
+
+ctt_mainland_ex <- DAISIEmainland::plot_ctt_scatter(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  param_space = "mainland_ex")
+
+ctt_mainland_sample_prob <- DAISIEmainland::plot_ctt_scatter(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  param_space = "mainland_sample_prob")
+
+ctt_heatmap <- DAISIEmainland::plot_ctt_heatmap(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL)
+
+ctt_scatter <- cowplot::plot_grid(
+  ctt_mainland_ex,
+  ctt_mainland_sample_prob,
+  nrow = 1, labels = "AUTO")
+
+ctt <- cowplot::plot_grid(
+  ctt_scatter,
+  ctt_heatmap,
+  nrow = 2,
+  labels = c('', "C"))
+
+ggplot2::ggsave(
+  plot = ctt,
+  filename = file.path("plots", "ctt.png"),
+  device = "png",
+  width = 168,
+  height = 100,
+  units = "mm",
+  dpi = 600
+)
 
 DAISIEmainland::plot_param_estimates(
   param_set = 1,
@@ -65,20 +112,66 @@ DAISIEmainland::plot_param_estimates(
   output_file_path = file.path("plots", "param_estimates_131_xlim.png"),
   param_space = "general")
 
-
-DAISIEmainland::plot_ctt_heatmap(
+max_age <- DAISIEmainland::plot_max_age(
   data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "ctt_heatmap.png"))
+  output_file_path = NULL,
+  parameter = "all")
 
-max_age <- DAISIEmainland::plot_max_age()
-
-endemics <- DAISIEmainland::plot_endemics()
+endemics <- DAISIEmainland::plot_endemics(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  parameter = "all")
 
 max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
 
 ggplot2::ggsave(
   plot = max_age_and_endemics,
-  filename = file.path("plots", "max_age_and_endemics.png"),
+  filename = file.path("plots", "max_age_and_endemics_all.png"),
+  device = "png",
+  width = 168,
+  height = 100,
+  units = "mm",
+  dpi = 600
+)
+
+max_age <- DAISIEmainland::plot_max_age(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  parameter = "mainland_ex")
+
+endemics <- DAISIEmainland::plot_endemics(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  parameter = "mainland_ex")
+
+max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
+
+ggplot2::ggsave(
+  plot = max_age_and_endemics,
+  filename = file.path("plots", "max_age_and_endemics_mainland_ex.png"),
+  device = "png",
+  width = 168,
+  height = 100,
+  units = "mm",
+  dpi = 600
+)
+
+max_age <- DAISIEmainland::plot_max_age(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  parameter = "mainland_sample_prob")
+
+endemics <- DAISIEmainland::plot_endemics(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  parameter = "mainland_sample_prob")
+
+max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
+
+ggplot2::ggsave(
+  plot = max_age_and_endemics,
+  filename = file.path("plots",
+                       "max_age_and_endemics_mainland_sample_prob.png"),
   device = "png",
   width = 168,
   height = 100,
