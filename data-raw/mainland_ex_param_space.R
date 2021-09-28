@@ -7,7 +7,7 @@ mainland_ex_param_space <- expand.grid(
   island_k = c(10),
   island_immig = c(0.01),
   island_ana = c(0.5),
-  mainland_ex = seq(0, 10, 0.1),
+  mainland_ex = seq(0, 5, 0.1),
   mainland_sample_prob = c(1.0),
   replicates = c(100))
 usethis::use_data(mainland_ex_param_space, overwrite = TRUE)
