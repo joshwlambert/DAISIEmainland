@@ -69,6 +69,10 @@
 #' in, if NULL the file is returned to console and not saved
 #' @param param_space String specifying which parameter space results to read.
 #' Either "general", "mainland_ex", or "mainland_sample_prob"
+#' @param parameter String specifying which parameter is plotted. "all" plots
+#' all data with mainland extinction on the x-axis. "mainland_ex" plots only
+#' mainland extinction, "mainland_sample_prob" plots mainland sampling
+#' probability on the x-axis.
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -106,6 +110,7 @@ default_params_doc <- function(timeval,
                                xlim,
                                data_folder_path,
                                output_file_path,
-                               param_space) {
+                               param_space,
+                               parameter) {
   #Nothing
 }

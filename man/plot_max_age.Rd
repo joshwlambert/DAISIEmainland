@@ -6,7 +6,7 @@
 island for different values of mainland extinction. The left side facet has
 the ideal data and the right side facet has the empirical data.}
 \usage{
-plot_max_age(data_folder_path, output_file_path)
+plot_max_age(data_folder_path, output_file_path, parameter)
 }
 \arguments{
 \item{data_folder_path}{String specifying the directory the data is read
@@ -14,6 +14,11 @@ from}
 
 \item{output_file_path}{String specifying the directory the file is saved
 in, if NULL the file is returned to console and not saved}
+
+\item{parameter}{String specifying which parameter is plotted. "all" plots
+all data with mainland extinction on the x-axis. "mainland_ex" plots only
+mainland extinction, "mainland_sample_prob" plots mainland sampling
+probability on the x-axis.}
 }
 \value{
 Plot
