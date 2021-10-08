@@ -4,7 +4,7 @@ general_param_space <- expand.grid(
   m = c(1000),
   island_clado = c(0.5),
   island_ex = c(0.25),
-  island_k = c(10, 100),
+  island_k = c(5, 50),
   island_immig = c(0.01),
   island_ana = c(0.5),
   mainland_ex = c(0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0),
