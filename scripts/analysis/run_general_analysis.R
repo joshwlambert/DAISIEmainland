@@ -131,13 +131,13 @@ output <- list(
   empirical_sim_metrics = empirical_sim_metrics,
   error = error,
   sim_params = c(
-    island_clado = island_clado,
-    island_ex = island_ex,
-    island_k = island_k,
-    island_immig = island_immig,
-    island_ana = island_ana,
-    mainland_ex = mainland_ex,
-    mainland_sample_prob = mainland_sample_prob)
+    island_clado = general_param_space$island_clado[args],
+    island_ex = general_param_space$island_ex[args],
+    island_k = general_param_space$island_k[args],
+    island_immig = general_param_space$island_immig[args],
+    island_ana = general_param_space$island_ana[args],
+    mainland_ex = general_param_space$mainland_ex[args],
+    mainland_sample_prob = general_param_space$mainland_sample_prob[args])
 )
 
 output_name <- paste0("general_param_set_", args, ".rds")

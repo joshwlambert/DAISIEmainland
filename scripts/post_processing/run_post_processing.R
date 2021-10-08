@@ -14,22 +14,22 @@ DAISIEmainland::plot_ctt_heatmap(
 DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "mainland_ex_ctt_scatter.png"),
-  param_space = "mainland_ex")
+  parameter = "mainland_ex")
 
 DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "mainland_sample_prob_scatter.png"),
-  param_space = "mainland_sample_prob")
+  parameter = "mainland_sample_prob")
 
 ctt_mainland_ex <- DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
-  param_space = "mainland_ex")
+  parameter = "mainland_ex")
 
 ctt_mainland_sample_prob <- DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
-  param_space = "mainland_sample_prob")
+  parameter = "mainland_sample_prob")
 
 ctt_heatmap <- DAISIEmainland::plot_ctt_heatmap(
   data_folder_path = file.path("results"),
@@ -115,12 +115,12 @@ DAISIEmainland::plot_param_estimates(
 max_age <- DAISIEmainland::plot_max_age(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
-  parameter = "all")
+  parameter = "both")
 
 endemics <- DAISIEmainland::plot_endemics(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
-  parameter = "all")
+  parameter = "both")
 
 max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
 
