@@ -6,7 +6,8 @@
 #' @export
 plot_k_estimates <- function(data_folder_path,
                              output_file_path,
-                             param_space) {
+                             param_space,
+                             parameter) {
 
   testit::assert(
     "Param_space must be either 'general', 'mainland_ex' or
@@ -32,102 +33,166 @@ plot_k_estimates <- function(data_folder_path,
   empirical_k <- lapply(empirical_ml, function(x) {
     unlist(lapply(x, '[[', "K"))
   })
-  num_ideal_inf_k <- unlist(lapply(ideal_k, function(x) {
-    length(which(x == Inf))
-  }))
-  num_empirical_inf_k <- unlist(lapply(empirical_k, function(x) {
-    length(which(x == Inf))
-  }))
-  num_ideal_k <- unlist(lapply(ideal_k, length))
-  num_empirical_k <- unlist(lapply(empirical_k, length))
-  percent_ideal_k_inf <- (num_ideal_inf_k / num_ideal_k) * 100
-  percent_empirical_k_inf <- (num_empirical_inf_k / num_empirical_k) * 100
+
+  ideal_k_no_inf <- lapply(ideal_k, function(x) {
+    temp_x <- x[!is.infinite(x)]
+    temp_x <- temp_x[!is.nan(temp_x)]
+    temp_x <- asinh(temp_x)
+    return(temp_x)
+  })
+
+  empirical_k_no_inf <- lapply(empirical_k, function(x) {
+    temp_x <- x[!is.infinite(x)]
+    temp_x <- temp_x[!is.nan(temp_x)]
+    temp_x <- asinh(temp_x)
+    return(temp_x)
+  })
 
   sim_params_list <- lapply(results_list, "[[", "sim_params")
-  sim_k <- unlist(lapply(sim_params_list, "[[", "island_k"))
-  mainland_ex <- unlist(lapply(sim_params_list, "[[", 6))
-  mainland_sample_prob <- unlist(lapply(sim_params_list, "[[", 7))
+  mainland_ex <- lapply(sim_params_list, "[[", 6)
+  mainland_sample_prob <- lapply(sim_params_list, "[[", 7)
+  sim_k <- lapply(sim_params_list, "[[", "island_k")
 
-  param_diffs_list <- lapply(error_list, "[[", "param_diffs")
-  k_diffs_list <- lapply(param_diffs_list, "[[", "k_diff")
+  ideal_mainland_ex <- list()
+  ideal_mainland_sample_prob <- list()
+  ideal_sim_k <- list()
+  for (i in seq_along(ideal_k_no_inf)) {
+    ideal_mainland_ex[[i]] <- rep(mainland_ex[[i]],
+                                  length(ideal_k_no_inf[[i]]))
+    ideal_mainland_sample_prob[[i]] <- rep(mainland_sample_prob[[i]],
+                                          length(ideal_k_no_inf[[i]]))
+    ideal_sim_k[[i]] <- rep(sim_k[[i]], length(ideal_k_no_inf[[i]]))
+  }
 
-  mean_k_diffs_no_inf <- unlist(lapply(k_diffs_list, function(x) {
-    temp_x <- x[!is.infinite(x)]
-    temp_x <- temp_x[!is.nan(temp_x)]
-    mean(temp_x)
-  }))
+  empirical_mainland_ex <- list()
+  empirical_mainland_sample_prob <- list()
+  empirical_sim_k <- list()
+  for (i in seq_along(empirical_k_no_inf)) {
+    empirical_mainland_ex[[i]] <- rep(mainland_ex[[i]],
+                                      length(empirical_k_no_inf[[i]]))
+    empirical_mainland_sample_prob[[i]] <- rep(mainland_sample_prob[[i]],
+                                               length(empirical_k_no_inf[[i]]))
+    empirical_sim_k[[i]] <- rep(sim_k[[i]], length(empirical_k_no_inf[[i]]))
+  }
 
-  median_k_diffs_no_inf <- unlist(lapply(k_diffs_list, function(x) {
-    temp_x <- x[!is.infinite(x)]
-    temp_x <- temp_x[!is.nan(temp_x)]
-    stats::median(temp_x)
-  }))
+  ideal_plotting_data <- data.frame(
+    ideal_k = unlist(ideal_k_no_inf),
+    mainland_ex = unlist(ideal_mainland_ex),
+    mainland_sample_prob = unlist(ideal_mainland_sample_prob),
+    sim_k = unlist(ideal_sim_k))
 
-  plotting_data <- data.frame(percent_ideal_k_inf = percent_ideal_k_inf,
-                              percent_empirical_k_inf = percent_empirical_k_inf,
-                              sim_k = sim_k,
-                              mainland_ex = mainland_ex,
-                              mainland_sample_prob = mainland_sample_prob,
-                              mean_k_diffs_no_inf = mean_k_diffs_no_inf,
-                              median_k_diffs_no_inf = median_k_diffs_no_inf)
+  empirical_plotting_data <- data.frame(
+    empirical_k = unlist(empirical_k_no_inf),
+    mainland_ex = unlist(empirical_mainland_ex),
+    mainland_sample_prob = unlist(empirical_mainland_sample_prob),
+    sim_k = unlist(empirical_sim_k))
 
-  mean_k_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(ggplot2::aes(x = mainland_ex,
-                                     y = mean_k_diffs_no_inf)) +
+  if (parameter == "mainland_ex") {
+    ideal_plotting_data <- dplyr::filter(
+      ideal_plotting_data,
+      ideal_plotting_data$mainland_sample_prob == 1.0)
+    empirical_plotting_data <- dplyr::filter(
+      empirical_plotting_data,
+      empirical_plotting_data$mainland_sample_prob == 1.0)
+  } else {
+    ideal_plotting_data <- dplyr::filter(
+      ideal_plotting_data,
+      ideal_plotting_data$mainland_ex == 0.0)
+    empirical_plotting_data <- dplyr::filter(
+      empirical_plotting_data,
+      empirical_plotting_data$mainland_ex == 0.0)
+  }
+
+  ideal_plotting_data_k_10 <- dplyr::filter(
+    ideal_plotting_data,
+    ideal_plotting_data$sim_k == 10)
+  empirical_plotting_data_k_10 <- dplyr::filter(
+    empirical_plotting_data,
+    empirical_plotting_data$sim_k == 10)
+
+  ideal_plotting_data_k_100 <- dplyr::filter(
+    ideal_plotting_data,
+    ideal_plotting_data$sim_k == 100)
+  empirical_plotting_data_k_100 <- dplyr::filter(
+    empirical_plotting_data,
+    empirical_plotting_data$sim_k == 100)
+
+  ideal_k_10 <- ggplot2::ggplot(data = ideal_plotting_data_k_10) +
+    ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                      y = ideal_k),
+                          fill = "#009E73",
+                          outlier.size = 0.5,
+                          lwd = 0.25) +
     ggplot2::theme_classic() +
-    ggplot2::facet_wrap(ggplot2::vars(sim_k)) +
-    ggplot2::ylab(expression(bar(paste(Delta, "K'")))) +
+    ggplot2::ylab(expression("K'"[I])) +
     ggplot2::xlab(expression(mu[M]))
 
-  median_k_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(ggplot2::aes(x = mainland_ex,
-                                     y = median_k_diffs_no_inf)) +
+  empirical_k_10 <- ggplot2::ggplot(data = empirical_plotting_data_k_10) +
+    ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                       y = empirical_k),
+                          fill = "#E69F00",
+                          outlier.size = 0.5,
+                          lwd = 0.25) +
     ggplot2::theme_classic() +
-    ggplot2::facet_wrap(ggplot2::vars(sim_k)) +
-    ggplot2::ylim(c(-20, 20)) +
-    ggplot2::ylab(expression(tilde(paste(Delta, "K'")))) +
+    ggplot2::ylab(expression("K'"[E])) +
     ggplot2::xlab(expression(mu[M]))
 
-  median_k_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_violin(ggplot2::aes(x = factor(mainland_ex),
-                                      y = median_k_diffs_no_inf)) +
+  ideal_k_100 <- ggplot2::ggplot(data = ideal_plotting_data_k_100) +
+    ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                       y = ideal_k),
+                          fill = "#009E73",
+                          outlier.size = 0.5,
+                          lwd = 0.25) +
     ggplot2::theme_classic() +
-    ggplot2::facet_wrap(ggplot2::vars(sim_k)) +
-    ggplot2::ylim(c(-20, 20)) +
-    ggplot2::ylab(expression(tilde(paste(Delta, "K'")))) +
+    ggplot2::ylab(expression("K'"[I])) +
+    ggplot2::xlab(expression(mu[M]))
+
+  empirical_k_100 <- ggplot2::ggplot(data = empirical_plotting_data_k_100) +
+    ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                       y = empirical_k),
+                          fill = "#E69F00",
+                          outlier.size = 0.5,
+                          lwd = 0.25) +
+    ggplot2::theme_classic() +
+    ggplot2::ylab(expression("K'"[E])) +
     ggplot2::xlab(expression(mu[M]))
 
 
-  percent_k_inf <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(ggplot2::aes(x = mainland_ex,
-                                     y = percent_ideal_k_inf)) +
-    ggplot2::geom_point(ggplot2::aes(x = mainland_ex,
-                                     y = percent_empirical_k_inf),
-                        shape = 15) +
-    ggplot2::facet_wrap(ggplot2::vars(sim_k)) +
-    ggplot2::ylab("Percentage of Infinite Ideal K' (%)") +
+  k_10_title <- cowplot::ggdraw() +
+    cowplot::draw_label(
+      "True K' = 10") +
+    ggplot2::theme(
+      plot.margin = ggplot2::margin(0, 0, 0, 250))
 
+  k_100_title <- cowplot::ggdraw() +
+    cowplot::draw_label(
+      "True K' = 100") +
+    ggplot2::theme(
+      plot.margin = ggplot2::margin(0, 0, 0, 250))
 
-  percent_k_inf <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_bar(ggplot2::aes(y = percent_ideal_k_inf))
+  k_10_plot <- cowplot::plot_grid(
+    k_10_title, NULL,
+    ideal_k_10, empirical_k_10,
+    nrow = 2, rel_heights = c(0.1, 1))
 
-  k_estimates <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_tile(ggplot2::aes(x = mainland_ex,
-                                    y = mainland_sample_prob,
-                                    fill = ctt_means)) +
-    ggplot2::theme_classic() +
-    ggplot2::ylab(expression(paste("Mainland sampling probability ", (rho)))) +
-    ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-    ggplot2::scale_fill_continuous(name = expression(paste(Delta, "CTT"))) +
-    ggplot2::scale_x_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5))
+  k_100_plot <- cowplot::plot_grid(
+    k_100_title, NULL,
+    ideal_k_100, empirical_k_100,
+    nrow = 2, rel_heights = c(0.1, 1))
 
-  ggplot2::ggsave(
-    plot = ctt,
-    filename = file.path("plots", "ctt"),
-    device = "png",
-    width = 168,
-    height = 100,
-    units = "mm",
-    dpi = 600
-  )
+  k_plot <- cowplot::plot_grid(k_10_plot, k_100_plot, nrow = 2)
+
+  if (!is.null(output_file_path)) {
+    ggplot2::ggsave(
+      plot = k_plot,
+      filename = output_file_path,
+      device = "png",
+      width = 168,
+      height = 100,
+      units = "mm",
+      dpi = 600
+    )
+  } else {
+    return(k_plot)
+  }
 }

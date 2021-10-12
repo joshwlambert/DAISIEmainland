@@ -7,13 +7,19 @@
 #' @export
 plot_ctt_scatter <- function(data_folder_path,
                              output_file_path,
-                             param_space) {
+                             parameter) {
 
   testit::assert(
-    "Param_space must be either 'mainland_ex' or 'mainland_sample_prob'",
-    param_space == "mainland_ex" || param_space == "mainland_sample_prob")
+    "Parameter must be either 'mainland_ex' or 'mainland_sample_prob'",
+    parameter == "mainland_ex" || parameter == "mainland_sample_prob")
 
-  files <- list.files(data_folder_path, pattern = param_space)
+  if (parameter == "mainland_ex") {
+    param_sets <- which(general_param_space$mainland_sample_prob == 1.0)
+  } else {
+    param_sets <- which(general_param_space$mainland_ex == 0.0)
+  }
+
+  files <- paste0("general_param_set_", param_sets, ".rds")
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -35,7 +41,7 @@ plot_ctt_scatter <- function(data_folder_path,
                               mainland_ex = mainland_ex,
                               mainland_sample_prob = mainland_sample_prob)
 
-  if (param_space == "mainland_ex") {
+  if (parameter == "mainland_ex") {
     ctt <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(ggplot2::aes(x = mainland_ex, y = ctt_means)) +
       ggplot2::theme_classic() +

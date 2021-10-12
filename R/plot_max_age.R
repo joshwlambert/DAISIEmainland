@@ -11,19 +11,19 @@ plot_max_age <- function(data_folder_path,
                          parameter) {
 
   testit::assert(
-    "Parameter must be either 'all', 'mainland_ex' or 'mainland_sample_prob'",
-    parameter == "all" || parameter == "mainland_ex" ||
-      parameter == "mainland_sample_prob")
+    "Parameter must be either 'mainland_ex', 'mainland_sample_prob' or 'both'",
+    parameter == "mainland_ex" || parameter == "mainland_sample_prob" ||
+      parameter == "both")
 
-  if (parameter == "all") {
-    param_sets <- 1:nrow(general_param_space)
-  } else if (parameter == "mainland_ex") {
+  if (parameter == "mainland_ex") {
     param_sets <- which(general_param_space$mainland_sample_prob == 1.0)
-  } else {
+    files <- paste0("general_param_set_", param_sets, ".rds")
+  } else if (parameter == "mainland_sample_prob") {
     param_sets <- which(general_param_space$mainland_ex == 0.0)
+    files <- paste0("general_param_set_", param_sets, ".rds")
+  } else if (parameter == "both") {
+    files <- list.files(data_folder_path, pattern = "general")
   }
-
-  files <- as.list(paste0("general_param_set_", param_sets, ".rds"))
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -73,7 +73,8 @@ plot_max_age <- function(data_folder_path,
       ggplot2::theme_classic() +
       ggplot2::ylab("Mean Ideal Max Age Percent (%)") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5))
+      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::ylim(c(0, 60))
 
     empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
@@ -89,7 +90,8 @@ plot_max_age <- function(data_folder_path,
       ggplot2::theme_classic() +
       ggplot2::ylab("Mean Empirical Max Age Percent (%)") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5))
+      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::ylim(c(0, 60))
   } else {
     ideal_max_age <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_violin(ggplot2::aes(x = mainland_sample_prob,
@@ -106,7 +108,8 @@ plot_max_age <- function(data_folder_path,
       ggplot2::ylab("Mean Ideal Max Age Percent (%)") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5))
+      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::ylim(c(0, 60))
 
     empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_violin(ggplot2::aes(x = mainland_sample_prob,
@@ -123,7 +126,8 @@ plot_max_age <- function(data_folder_path,
       ggplot2::ylab("Mean Empirical Max Age Percent (%)") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5))
+      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::ylim(c(0, 60))
   }
 
   max_age <- cowplot::plot_grid(ideal_max_age, empirical_max_age)
