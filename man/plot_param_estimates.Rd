@@ -7,7 +7,6 @@ scatter plots of parameter estimates under the diagonal.}
 \usage{
 plot_param_estimates(
   param_set,
-  xlim = FALSE,
   data_folder_path,
   output_file_path,
   param_space
@@ -16,9 +15,6 @@ plot_param_estimates(
 \arguments{
 \item{param_set}{Numeric for the index of the parameter set from the
 parameter space}
-
-\item{xlim}{Boolean determining whether the x-axis should be bounded on the
-plot}
 
 \item{data_folder_path}{String specifying the directory the data is read
 from}
