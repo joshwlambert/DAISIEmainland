@@ -30,6 +30,7 @@ island <- DAISIEmainland::sim_island_with_mainland(
                   island_ana),
   mainland_ex = mainland_ex,
   mainland_sample_prob = mainland_sample_prob,
+  mainland_sample_type = mainland_sample_type,
   replicates = param_space$replicates[args],
   verbose = TRUE)
 
@@ -145,7 +146,8 @@ output <- list(
     island_immig = param_space$island_immig[args],
     island_ana = param_space$island_ana[args],
     mainland_ex = param_space$mainland_ex[args],
-    mainland_sample_prob = param_space$mainland_sample_prob[args])
+    mainland_sample_prob = param_space$mainland_sample_prob[args],
+    mainland_sample_type = param_space$mainland_sample_type[args])
 )
 
 output_name <- paste0("param_set_", args, ".rds")
