@@ -11,6 +11,7 @@ sim_island_with_mainland(
   island_pars,
   mainland_ex,
   mainland_sample_prob,
+  mainland_sample_type,
   replicates,
   verbose = FALSE
 )
@@ -35,6 +36,10 @@ diversity independence.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}
+
+\item{mainland_sample_type}{String either "unsampled" for unsampled known
+species on the mainland or "undiscovered" for undiscovered species on the
+mainland}
 
 \item{replicates}{Integer specifying number of island replicates to be
 simulated.}

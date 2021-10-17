@@ -4,7 +4,13 @@
 \alias{sample_mainland}
 \title{Samples the mainland clade with the mainland sampling probability}
 \usage{
-sample_mainland(total_time, mainland_clade, mainland_sample_prob, island_spec)
+sample_mainland(
+  total_time,
+  mainland_clade,
+  mainland_sample_prob,
+  mainland_sample_type,
+  island_spec
+)
 }
 \arguments{
 \item{total_time}{Numeric defining the length of the simulation in time
@@ -15,6 +21,10 @@ units.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}
+
+\item{mainland_sample_type}{String either "unsampled" for unsampled known
+species on the mainland or "undiscovered" for undiscovered species on the
+mainland}
 
 \item{island_spec}{Matrix with current state of simulation containing number
 of species.}

@@ -8,7 +8,8 @@ create_non_empty_island(
   total_time,
   island_spec,
   mainland_clade,
-  mainland_sample_prob
+  mainland_sample_prob,
+  mainland_sample_type
 )
 }
 \arguments{
@@ -23,6 +24,10 @@ of species.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}
+
+\item{mainland_sample_type}{String either "unsampled" for unsampled known
+species on the mainland or "undiscovered" for undiscovered species on the
+mainland}
 }
 \value{
 List with the island information, composed of

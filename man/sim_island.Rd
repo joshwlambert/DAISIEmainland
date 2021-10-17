@@ -4,7 +4,13 @@
 \alias{sim_island}
 \title{Simulates the island given rates and a mainland clade}
 \usage{
-sim_island(total_time, island_pars, mainland_clade, mainland_sample_prob)
+sim_island(
+  total_time,
+  island_pars,
+  mainland_clade,
+  mainland_sample_prob,
+  mainland_sample_type
+)
 }
 \arguments{
 \item{total_time}{Numeric defining the length of the simulation in time
@@ -25,6 +31,10 @@ diversity independence.}
 
 \item{mainland_sample_prob}{Numeric between zero and one determining the
 probability of an extant mainland species being sampled.}
+
+\item{mainland_sample_type}{String either "unsampled" for unsampled known
+species on the mainland or "undiscovered" for undiscovered species on the
+mainland}
 }
 \value{
 A list of two elements. The first element is \code{ideal_island},

@@ -152,6 +152,10 @@ Either "general", "mainland_ex", or "mainland_sample_prob"}
 "mainland_ex" plots mainland extinction as the variable,
 "mainland_sample_prob" plots mainland sampling probability as the variable
 and "both" plots all the data}
+
+\item{mainland_sample_type}{String either "unsampled" for unsampled known
+species on the mainland or "undiscovered" for undiscovered species on the
+mainland}
 }
 \value{
 Nothing
