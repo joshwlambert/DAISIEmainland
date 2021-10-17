@@ -9,6 +9,5 @@
 
 mkdir -p logs
 mkdir -p results
-mkdir -p plots
 ml R
-Rscript -e "remotes::install_github('joshwlambert/DAISIEmainland@sim_plot')"
+Rscript -e "remotes::install_github('joshwlambert/DAISIEmainland@new_params')"
