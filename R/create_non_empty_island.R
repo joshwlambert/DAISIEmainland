@@ -14,15 +14,25 @@ create_non_empty_island <- function(total_time,
 
   names(island_spec)[3] <- "col_t_bp"
   names(island_spec)[6] <- "branch_t_bp"
-  ### set ages as counting backwards from present
+  # set ages as counting backwards from present
   island_spec[, "branch_t_bp"] <- total_time - island_spec[, "branch_t_bp"]
   island_spec[, "col_t_bp"] <- total_time - island_spec[, "col_t_bp"]
 
-  ### number of independent colonisations from different mainland species
+  # number of independent colonisations from different mainland species
   colonists_present <- sort(unique(island_spec[, "main_anc_id"]))
   number_colonists_present <- length(colonists_present)
 
-  ### adjust mainland object for sampling probability
+  ideal_island <- list()
+  for (i in 1:number_colonists_present) {
+    subset_island <- island_spec[which(island_spec[, "main_anc_id"] ==
+                                         colonists_present[i]), ]
+
+    ideal_island[[i]] <- create_ideal_island(
+      total_time = total_time,
+      island_spec = subset_island)
+  }
+
+  # adjust mainland object for sampling probability
   mainland_clade <- sample_mainland(
     total_time = total_time,
     mainland_clade = mainland_clade,
@@ -36,17 +46,14 @@ create_non_empty_island <- function(total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade)
 
-  ideal_island <- list()
   empirical_island <- list()
-
   for (i in 1:number_colonists_present) {
     subset_island <- island_spec[which(island_spec[, "main_anc_id"] ==
                                          colonists_present[i]), ]
 
-    ideal_island[[i]] <- empirical_island[[i]] <-
-      create_ideal_island(
-        total_time = total_time,
-        island_spec = subset_island)
+    empirical_island[[i]] <- create_ideal_island(
+      total_time = total_time,
+      island_spec = subset_island)
 
     mainland_spec <-
       which(mainland_clade[, "spec_id"] == colonists_present[i])
@@ -61,11 +68,11 @@ create_non_empty_island <- function(total_time,
             mainland_clade[descending_branches, "spec_type"] != "UD")
 
     if (extant_mainland == FALSE) {
-      ### number of independent colonisations from the same mainland species
+      # number of independent colonisations from the same mainland species
       number_colonisations <-
         length(unique(subset_island[, "col_t_bp"]))
-      ### are there any branching events between the immig time and island
-      ### age with extant descendants
+      # are there any branching events between the immig time and island
+      # age with extant descendants
       other_extant_mainland <- any(mainland_clade[, "spec_type"] != "E" &
                                      mainland_clade[, "spec_type"] != "US" &
                                      mainland_clade[, "spec_type"] != "UD")
