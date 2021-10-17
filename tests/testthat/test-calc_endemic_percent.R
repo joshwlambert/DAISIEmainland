@@ -11,6 +11,7 @@ test_that("calc_endemic_percent runs without error", {
     island_pars = c(0.1, 0.1, 10, 0.01, 0.1),
     mainland_ex = 0.5,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
 

@@ -12,6 +12,7 @@ test_that("sim_island_with_mainland produces correct empty island", {
       island_pars = c(1, 1, 10, 0.1, 1),
       mainland_ex = 1,
       mainland_sample_prob = 1,
+      mainland_sample_type = "undiscovered",
       replicates = 1,
       verbose = FALSE)
   expect_equal(island$ideal_islands[[1]][[1]]$island_age, 1)
@@ -33,6 +34,7 @@ test_that("sim_island_mainland produces correct non-empty island", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = FALSE)
 
@@ -63,6 +65,7 @@ test_that("sim_island_with_mainland with 0 mainland_ex produces correct
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 0,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1)
   expect_identical(island$ideal_islands, island$empirical_islands)
 })
@@ -80,6 +83,7 @@ test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 0,
     mainland_sample_prob = 0.1,
+    mainland_sample_type = "undiscovered",
     replicates = 1)
   expect_false(identical(island$ideal_islands, island$empirical_islands))
 })
@@ -91,6 +95,7 @@ test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
     island_pars = c(1, 1, 10, 0.1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = FALSE)
   )
@@ -103,6 +108,7 @@ test_that("sim_island_with_mainland produces output with verbose = TRUE", {
     island_pars = c(1, 1, 10, 0.1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE),
     regexp = "Island replicate 1")
@@ -115,6 +121,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -125,6 +132,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -135,6 +143,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = "nonsense",
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -145,6 +154,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c("nonsense", 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -155,6 +165,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, "nonsense", 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
     )
@@ -165,6 +176,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, "nonsense", 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -175,6 +187,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, "nonsense", 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -185,6 +198,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, 1, "nonsense"),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -195,6 +209,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = "nonsense",
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -205,6 +220,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = "nonsense",
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = TRUE)
   )
@@ -215,6 +231,18 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "nonsense",
+    replicates = 1,
+    verbose = TRUE)
+  )
+
+  expect_error(sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = "nonsense",
     verbose = TRUE)
   )
@@ -225,6 +253,7 @@ test_that("sim_island_mainland fails with incorrect input", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
     replicates = 1,
     verbose = "nonsense")
   )
