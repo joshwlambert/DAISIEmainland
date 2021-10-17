@@ -57,6 +57,7 @@
 #'   island_pars = c(1, 1, 10, 0.1, 1),
 #'   mainland_ex = 1,
 #'   mainland_sample_prob = 1,
+#'   mainland_sample_type = "undiscovered",
 #'   replicates = 2,
 #'   verbose = FALSE
 #' )
