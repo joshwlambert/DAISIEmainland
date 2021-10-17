@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --job-name=general_analysis
-#SBATCH --output=/data/p287218/DAISIEmainland/logs/general_analysis%a.log
+#SBATCH --output=/data/p287218/DAISIEmainland/logs/analysis%a.log
 #SBATCH --array=1-46
 #SBATCH --mem=1GB
 
