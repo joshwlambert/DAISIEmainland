@@ -57,7 +57,8 @@ create_non_empty_island <- function(total_time,
       grep(branching_code, mainland_clade[, "branch_code"])
     extant_mainland <-
       any(mainland_clade[descending_branches, "spec_type"] != "E" &
-            mainland_clade[descending_branches, "spec_type"] != "NS")
+            mainland_clade[descending_branches, "spec_type"] != "US" &
+            mainland_clade[descending_branches, "spec_type"] != "UD")
 
     if (extant_mainland == FALSE) {
       ### number of independent colonisations from the same mainland species
@@ -66,7 +67,8 @@ create_non_empty_island <- function(total_time,
       ### are there any branching events between the immig time and island
       ### age with extant descendants
       other_extant_mainland <- any(mainland_clade[, "spec_type"] != "E" &
-                                     mainland_clade[, "spec_type"] != "NS")
+                                     mainland_clade[, "spec_type"] != "US" &
+                                     mainland_clade[, "spec_type"] != "UD")
 
       if (number_colonisations == 1) {
         if (other_extant_mainland) {
