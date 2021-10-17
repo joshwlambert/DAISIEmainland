@@ -9,7 +9,8 @@
 create_non_empty_island <- function(total_time,
                                     island_spec,
                                     mainland_clade,
-                                    mainland_sample_prob) {
+                                    mainland_sample_prob,
+                                    mainland_sample_type) {
 
   names(island_spec)[3] <- "col_t_bp"
   names(island_spec)[6] <- "branch_t_bp"
@@ -26,6 +27,7 @@ create_non_empty_island <- function(total_time,
     total_time = total_time,
     mainland_clade = mainland_clade,
     mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type,
     island_spec = island_spec)
 
   island_spec <- update_island_endemics(

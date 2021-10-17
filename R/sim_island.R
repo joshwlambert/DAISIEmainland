@@ -27,7 +27,8 @@
 sim_island <- function(total_time,
                        island_pars,
                        mainland_clade,
-                       mainland_sample_prob) {
+                       mainland_sample_prob,
+                       mainland_sample_type) {
 
   testit::assert(is.numeric(total_time))
   testit::assert(total_time > 0)
@@ -159,7 +160,8 @@ sim_island <- function(total_time,
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob)
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type)
 
   return(island)
 }

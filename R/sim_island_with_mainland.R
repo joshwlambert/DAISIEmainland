@@ -67,6 +67,7 @@ sim_island_with_mainland <- function(total_time,
                                      island_pars,
                                      mainland_ex,
                                      mainland_sample_prob,
+                                     mainland_sample_type,
                                      replicates,
                                      verbose = FALSE) {
   testit::assert(is.numeric(total_time))
@@ -80,6 +81,8 @@ sim_island_with_mainland <- function(total_time,
   testit::assert(mainland_ex >= 0)
   testit::assert(is.numeric(mainland_sample_prob))
   testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
+  testit::assert(mainland_sample_type == "unsampled" ||
+                   mainland_sample_type == "undiscovered")
   testit::assert(is.numeric(replicates))
   testit::assert(replicates >= 1)
   testit::assert(is.logical(verbose))
@@ -103,7 +106,8 @@ sim_island_with_mainland <- function(total_time,
         total_time = total_time,
         island_pars = island_pars,
         mainland_clade = mainland_replicates[[rep]][[mainland_clade]],
-        mainland_sample_prob = mainland_sample_prob
+        mainland_sample_prob = mainland_sample_prob,
+        mainland_sample_type = mainland_sample_type
       )
     }
 

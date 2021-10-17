@@ -23,10 +23,15 @@ update_island_endemics <- function(timeval,
     mainland_ex_time <-
       mainland_clade[which(mainland_clade[, "spec_id"] %in% immig_spec),
                      "spec_ex_t"]
+    mainland_spec_type <-
+      mainland_clade[which(mainland_clade[, "spec_id"] %in% immig_spec),
+                     "spec_type"]
     for (i in seq_along(mainland_ex_time)) {
       if (timeval > mainland_ex_time[i] && total_time > mainland_ex_time[i]) {
-        island_spec[island_spec[, "spec_id"] == immig_spec[i], "spec_type"] <-
-          "A"
+        if (mainland_spec_type[i] != "US") {
+          island_spec[island_spec[, "spec_id"] == immig_spec[i], "spec_type"] <-
+            "A"
+        }
         island_spec[island_spec[, "spec_id"] == immig_spec[i], "ana_origin"] <-
           "mainland_extinction"
       }
