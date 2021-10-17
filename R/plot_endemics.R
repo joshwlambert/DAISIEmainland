@@ -15,15 +15,7 @@ plot_endemics <- function(data_folder_path,
     parameter == "mainland_ex" || parameter == "mainland_sample_prob" ||
       parameter == "both")
 
-  if (parameter == "mainland_ex") {
-    param_sets <- which(general_param_space$mainland_sample_prob == 1.0)
-    files <- paste0("general_param_set_", param_sets, ".rds")
-  } else if (parameter == "mainland_sample_prob") {
-    param_sets <- which(general_param_space$mainland_ex == 0.0)
-    files <- paste0("general_param_set_", param_sets, ".rds")
-  } else if (parameter == "both") {
-    files <- list.files(data_folder_path, pattern = "general")
-  }
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -58,6 +50,18 @@ plot_endemics <- function(data_folder_path,
     endemic_percent_ideal_means = endemic_percent_ideal_means,
     mainland_ex = as.factor(mainland_ex),
     mainland_sample_prob = as.factor(mainland_sample_prob))
+
+  #TODO fix bug when mainland sample prob == 1.0 in sample param set and
+  # when mainland_ex == 0.0 in mainland ex param set
+  if (parameter == "mainland_ex") {
+    plotting_data <- dplyr::filter(
+      plotting_data,
+      plotting_data$mainland_sample_prob == 1.0)
+  } else {
+    plotting_data <- dplyr::filter(
+      plotting_data,
+      plotting_data$mainland_ex == 0.0)
+  }
 
   if (parameter == "all" || parameter == "mainland_ex") {
     ideal_endemics <- ggplot2::ggplot(data = plotting_data) +

@@ -13,13 +13,7 @@ plot_ctt_scatter <- function(data_folder_path,
     "Parameter must be either 'mainland_ex' or 'mainland_sample_prob'",
     parameter == "mainland_ex" || parameter == "mainland_sample_prob")
 
-  if (parameter == "mainland_ex") {
-    param_sets <- which(general_param_space$mainland_sample_prob == 1.0)
-  } else {
-    param_sets <- which(general_param_space$mainland_ex == 0.0)
-  }
-
-  files <- paste0("general_param_set_", param_sets, ".rds")
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -40,6 +34,18 @@ plot_ctt_scatter <- function(data_folder_path,
   plotting_data <- data.frame(ctt_means = ctt_means,
                               mainland_ex = mainland_ex,
                               mainland_sample_prob = mainland_sample_prob)
+
+  #TODO fix bug when mainland sample prob == 1.0 in sample param set and
+  # when mainland_ex == 0.0 in mainland ex param set
+  if (parameter == "mainland_ex") {
+    plotting_data <- dplyr::filter(
+      plotting_data,
+      plotting_data$mainland_sample_prob == 1.0)
+  } else {
+    plotting_data <- dplyr::filter(
+      plotting_data,
+      plotting_data$mainland_ex == 0.0)
+  }
 
   if (parameter == "mainland_ex") {
     ctt <- ggplot2::ggplot(data = plotting_data) +
