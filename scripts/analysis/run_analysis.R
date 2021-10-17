@@ -2,19 +2,27 @@ args <- commandArgs(TRUE)
 
 args <- as.numeric(args)
 
-data("general_param_space")
+data("param_space")
 
-island_clado <- general_param_space$island_clado[args]
-island_ex <- general_param_space$island_ex[args]
-island_k <- general_param_space$island_k[args]
-island_immig <- general_param_space$island_immig[args]
-island_ana <- general_param_space$island_ana[args]
-mainland_ex <- general_param_space$mainland_ex[args]
-mainland_sample_prob <- general_param_space$mainland_sample_prob[args]
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+
+island_clado <- param_space$island_clado[args]
+island_ex <- param_space$island_ex[args]
+island_k <- param_space$island_k[args]
+island_immig <- param_space$island_immig[args]
+island_ana <- param_space$island_ana[args]
+mainland_ex <- param_space$mainland_ex[args]
+mainland_sample_prob <- param_space$mainland_sample_prob[args]
+mainland_sample_type <- param_space$mainland_sample_type[args]
 
 island <- DAISIEmainland::sim_island_with_mainland(
-  total_time = general_param_space$total_time[args],
-  m = general_param_space$m[args],
+  total_time = param_space$total_time[args],
+  m = param_space$m[args],
   island_pars = c(island_clado,
                   island_ex,
                   island_k,
@@ -22,20 +30,20 @@ island <- DAISIEmainland::sim_island_with_mainland(
                   island_ana),
   mainland_ex = mainland_ex,
   mainland_sample_prob = mainland_sample_prob,
-  replicates = general_param_space$replicates[args],
+  replicates = param_space$replicates[args],
   verbose = TRUE)
 
-ideal_sim_metrics <- vector("list", general_param_space$replicates[args])
-empirical_sim_metrics <- vector("list", general_param_space$replicates[args])
-ideal_ml <- vector("list", general_param_space$replicates[args])
-empirical_ml <- vector("list", general_param_space$replicates[args])
+ideal_sim_metrics <- vector("list", param_space$replicates[args])
+empirical_sim_metrics <- vector("list", param_space$replicates[args])
+ideal_ml <- vector("list", param_space$replicates[args])
+empirical_ml <- vector("list", param_space$replicates[args])
 
 ideal_sim_metrics <- DAISIEmainland::calc_sim_metrics(
   daisie_data = island$ideal_islands)
 empirical_sim_metrics <- DAISIEmainland::calc_sim_metrics(
   daisie_data = island$empirical_islands)
 
-for (i in seq_len(general_param_space$replicates[args])) {
+for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
   while (ml_failure) {
@@ -131,16 +139,16 @@ output <- list(
   empirical_sim_metrics = empirical_sim_metrics,
   error = error,
   sim_params = c(
-    island_clado = general_param_space$island_clado[args],
-    island_ex = general_param_space$island_ex[args],
-    island_k = general_param_space$island_k[args],
-    island_immig = general_param_space$island_immig[args],
-    island_ana = general_param_space$island_ana[args],
-    mainland_ex = general_param_space$mainland_ex[args],
-    mainland_sample_prob = general_param_space$mainland_sample_prob[args])
+    island_clado = param_space$island_clado[args],
+    island_ex = param_space$island_ex[args],
+    island_k = param_space$island_k[args],
+    island_immig = param_space$island_immig[args],
+    island_ana = param_space$island_ana[args],
+    mainland_ex = param_space$mainland_ex[args],
+    mainland_sample_prob = param_space$mainland_sample_prob[args])
 )
 
-output_name <- paste0("general_param_set_", args, ".rds")
+output_name <- paste0("param_set_", args, ".rds")
 
 output_folder <- file.path("results")
 
@@ -149,4 +157,3 @@ output_file_path <- file.path(output_folder, output_name)
 saveRDS(object = output, file = output_file_path)
 
 message("Finished")
-
