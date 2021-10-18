@@ -33,8 +33,8 @@ diversity independence.}
 probability of an extant mainland species being sampled.}
 
 \item{mainland_sample_type}{String either "unsampled" for unsampled known
-species on the mainland or "undiscovered" for undiscovered species on the
-mainland}
+species on the mainland, "undiscovered" for undiscovered species on the
+mainland, or "complete" if the mainland sampling probability is one.}
 }
 \value{
 A list of two elements. The first element is \code{ideal_island},

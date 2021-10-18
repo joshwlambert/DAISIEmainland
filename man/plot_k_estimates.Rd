@@ -4,7 +4,7 @@
 \alias{plot_k_estimates}
 \title{Plots carrying capacity estimates}
 \usage{
-plot_k_estimates(data_folder_path, output_file_path, param_space, parameter)
+plot_k_estimates(data_folder_path, output_file_path, parameter)
 }
 \arguments{
 \item{data_folder_path}{String specifying the directory the data is read
@@ -12,9 +12,6 @@ from}
 
 \item{output_file_path}{String specifying the directory the file is saved
 in, if NULL the file is returned to console and not saved}
-
-\item{param_space}{String specifying which parameter space results to read.
-Either "general", "mainland_ex", or "mainland_sample_prob"}
 
 \item{parameter}{String specifying which parameter is plotted.
 "mainland_ex" plots mainland extinction as the variable,

@@ -5,12 +5,7 @@
 \title{Plots a grid of density plots of parameter estimates on the diagonal and
 scatter plots of parameter estimates under the diagonal.}
 \usage{
-plot_param_estimates(
-  param_set,
-  data_folder_path,
-  output_file_path,
-  param_space
-)
+plot_param_estimates(param_set, data_folder_path, output_file_path)
 }
 \arguments{
 \item{param_set}{Numeric for the index of the parameter set from the
@@ -21,9 +16,6 @@ from}
 
 \item{output_file_path}{String specifying the directory the file is saved
 in, if NULL the file is returned to console and not saved}
-
-\item{param_space}{String specifying which parameter space results to read.
-Either "general", "mainland_ex", or "mainland_sample_prob"}
 }
 \value{
 Void (saves plot)
