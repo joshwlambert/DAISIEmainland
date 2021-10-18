@@ -11,9 +11,9 @@ plot_endemics <- function(data_folder_path,
                           parameter) {
 
   testit::assert(
-    "Parameter must be either 'mainland_ex', 'mainland_sample_prob' or 'both'",
-    parameter == "mainland_ex" || parameter == "mainland_sample_prob" ||
-      parameter == "both")
+    "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
+    parameter == "mainland_ex" || parameter == "unsampled" ||
+      parameter == "undiscovered")
 
   files <- list.files(data_folder_path)
 
@@ -42,28 +42,34 @@ plot_endemics <- function(data_folder_path,
     endemic_percent_ideal_list,
     mean))
 
-  mainland_ex <- unlist(lapply(sim_params_list, "[[", 6))
-  mainland_sample_prob <- unlist(lapply(sim_params_list, "[[", 7))
+  mainland_ex <- unlist(lapply(sim_params_list, "[[", "mainland_ex"))
+  mainland_sample_prob <- unlist(lapply(sim_params_list, "[[",
+                                        "mainland_sample_prob"))
+  mainland_sample_type <- unlist(lapply(sim_params_list, "[[",
+                                        "mainland_sample_type"))
 
   plotting_data <- data.frame(
     endemic_percent_empirical_means = endemic_percent_empirical_means,
     endemic_percent_ideal_means = endemic_percent_ideal_means,
     mainland_ex = as.factor(mainland_ex),
-    mainland_sample_prob = as.factor(mainland_sample_prob))
+    mainland_sample_prob = as.factor(mainland_sample_prob),
+    mainland_sample_type = mainland_sample_type)
 
-  #TODO fix bug when mainland sample prob == 1.0 in sample param set and
-  # when mainland_ex == 0.0 in mainland ex param set
   if (parameter == "mainland_ex") {
     plotting_data <- dplyr::filter(
       plotting_data,
-      plotting_data$mainland_sample_prob == 1.0)
-  } else {
+      plotting_data$mainland_sample_type == "complete")
+  } else if (parameter == "unsampled") {
     plotting_data <- dplyr::filter(
       plotting_data,
-      plotting_data$mainland_ex == 0.0)
+      plotting_data$mainland_sample_type == "unsampled")
+  } else if (parameter == "undiscovered") {
+    plotting_data <- dplyr::filter(
+      plotting_data,
+      plotting_data$mainland_sample_type == "undiscovered")
   }
 
-  if (parameter == "all" || parameter == "mainland_ex") {
+  if (parameter == "mainland_ex") {
     ideal_endemics <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
                                         y = endemic_percent_ideal_means),

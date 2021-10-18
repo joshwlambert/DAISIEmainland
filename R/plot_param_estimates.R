@@ -20,11 +20,11 @@ plot_param_estimates <- function(param_set,
   }
 
   ideal_ml <- results_list[[1]]$ideal_ml
-  ideal_clado <- unlist(lapply(ideal_ml, "[[", 1))
-  ideal_ext <- unlist(lapply(ideal_ml, "[[", 2))
-  ideal_k <- unlist(lapply(ideal_ml, "[[", 3))
-  ideal_immig <- unlist(lapply(ideal_ml, "[[", 4))
-  ideal_ana <- unlist(lapply(ideal_ml, "[[", 5))
+  ideal_clado <- unlist(lapply(ideal_ml, "[[", "lambda_c"))
+  ideal_ext <- unlist(lapply(ideal_ml, "[[", "mu"))
+  ideal_k <- unlist(lapply(ideal_ml, "[[", "K"))
+  ideal_immig <- unlist(lapply(ideal_ml, "[[", "gamma"))
+  ideal_ana <- unlist(lapply(ideal_ml, "[[", "lambda_a"))
 
   ideal_clado <- asinh(ideal_clado)
   ideal_ext <- asinh(ideal_ext)
@@ -33,11 +33,11 @@ plot_param_estimates <- function(param_set,
   ideal_ana <- asinh(ideal_ana)
 
   empirical_ml <- results_list[[1]]$empirical_ml
-  empirical_clado <- unlist(lapply(empirical_ml, "[[", 1))
-  empirical_ext <- unlist(lapply(empirical_ml, "[[", 2))
-  empirical_k <- unlist(lapply(empirical_ml, "[[", 3))
-  empirical_immig <- unlist(lapply(empirical_ml, "[[", 4))
-  empirical_ana <- unlist(lapply(empirical_ml, "[[", 5))
+  empirical_clado <- unlist(lapply(empirical_ml, "[[", "lambda_c"))
+  empirical_ext <- unlist(lapply(empirical_ml, "[[", "mu"))
+  empirical_k <- unlist(lapply(empirical_ml, "[[", "K"))
+  empirical_immig <- unlist(lapply(empirical_ml, "[[", "gamma"))
+  empirical_ana <- unlist(lapply(empirical_ml, "[[", "lambda_a"))
 
   empirical_clado <- asinh(empirical_clado)
   empirical_ext <- asinh(empirical_ext)
@@ -59,11 +59,11 @@ plot_param_estimates <- function(param_set,
   ana_diffs <- asinh(ana_diffs)
 
   sim_params <- results_list[[1]]$sim_params
-  sim_clado <- asinh(sim_params[1])
-  sim_ext <- asinh(sim_params[2])
-  sim_k <- asinh(sim_params[3])
-  sim_immig <- asinh(sim_params[4])
-  sim_ana <- asinh(sim_params[5])
+  sim_clado <- asinh(sim_params$island_clado)
+  sim_ext <- asinh(sim_params$island_ex)
+  sim_k <- asinh(sim_params$island_k)
+  sim_immig <- asinh(sim_params$island_immig)
+  sim_ana <- asinh(sim_params$island_ana)
 
   plotting_data <- data.frame(ideal_clado = ideal_clado,
                               ideal_ext = ideal_ext,

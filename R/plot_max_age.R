@@ -11,7 +11,7 @@ plot_max_age <- function(data_folder_path,
                          parameter) {
 
   testit::assert(
-    "Parameter must be either 'mainland_ex', 'unsampleed' or 'undiscovered'",
+    "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
     parameter == "mainland_ex" || parameter == "unsampled" ||
       parameter == "undiscovered")
 
@@ -52,25 +52,23 @@ plot_max_age <- function(data_folder_path,
     max_age_percent_empirical_means = max_age_percent_empirical_means,
     mainland_ex = as.factor(mainland_ex),
     mainland_sample_prob = as.factor(mainland_sample_prob),
-    mainland_sample_type = as.factor(mainland_sample_type))
+    mainland_sample_type = mainland_sample_type)
 
-  #TODO fix bug when mainland sample prob == 1.0 in sample param set and
-  # when mainland_ex == 0.0 in mainland ex param set
   if (parameter == "mainland_ex") {
     plotting_data <- dplyr::filter(
       plotting_data,
-      plotting_data$mainland_sample_prob == 1.0)
+      plotting_data$mainland_sample_type == "complete")
   } else if (parameter == "unsampled") {
     plotting_data <- dplyr::filter(
       plotting_data,
-      plotting_data$mainland_ex == 0.0)
+      plotting_data$mainland_sample_type == "unsampled")
   } else if (parameter == "undiscovered") {
     plotting_data <- dplyr::filter(
       plotting_data,
       plotting_data$mainland_sample_type == "undiscovered")
   }
 
-  if (parameter == "all" || parameter == "mainland_ex") {
+  if (parameter == "mainland_ex") {
     ideal_max_age <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
                                         y = max_age_percent_ideal_means),
