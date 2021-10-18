@@ -83,10 +83,15 @@ sim_island_with_mainland <- function(total_time,
   testit::assert(is.numeric(mainland_sample_prob))
   testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
   testit::assert(mainland_sample_type == "unsampled" ||
-                   mainland_sample_type == "undiscovered")
+                   mainland_sample_type == "undiscovered" ||
+                   mainland_sample_type == "complete")
   testit::assert(is.numeric(replicates))
   testit::assert(replicates >= 1)
   testit::assert(is.logical(verbose))
+
+  if (mainland_sample_type == "complete" && mainland_sample_prob < 1.0) {
+    stop("Mainland sampling probability less than 1.0 requires a sampling type")
+  }
 
   island_replicates <- list()
   mainland_replicates <- list()
