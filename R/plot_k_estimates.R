@@ -6,16 +6,9 @@
 #' @export
 plot_k_estimates <- function(data_folder_path,
                              output_file_path,
-                             param_space,
                              parameter) {
 
-  testit::assert(
-    "Param_space must be either 'general', 'mainland_ex' or
-    'mainland_sample_prob'",
-    param_space == "general" || param_space == "mainland_ex" ||
-      param_space == "mainland_sample_prob")
-
-  files <- list.files(data_folder_path, pattern = param_space)
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -103,21 +96,21 @@ plot_k_estimates <- function(data_folder_path,
       empirical_plotting_data$mainland_ex == 0.0)
   }
 
-  ideal_plotting_data_k_10 <- dplyr::filter(
+  ideal_plotting_data_k_5 <- dplyr::filter(
     ideal_plotting_data,
-    ideal_plotting_data$sim_k == 10)
-  empirical_plotting_data_k_10 <- dplyr::filter(
+    ideal_plotting_data$sim_k == 5)
+  empirical_plotting_data_k_5 <- dplyr::filter(
     empirical_plotting_data,
-    empirical_plotting_data$sim_k == 10)
+    empirical_plotting_data$sim_k == 5)
 
-  ideal_plotting_data_k_100 <- dplyr::filter(
+  ideal_plotting_data_k_50 <- dplyr::filter(
     ideal_plotting_data,
-    ideal_plotting_data$sim_k == 100)
-  empirical_plotting_data_k_100 <- dplyr::filter(
+    ideal_plotting_data$sim_k == 50)
+  empirical_plotting_data_k_50 <- dplyr::filter(
     empirical_plotting_data,
-    empirical_plotting_data$sim_k == 100)
+    empirical_plotting_data$sim_k == 50)
 
-  ideal_k_10 <- ggplot2::ggplot(data = ideal_plotting_data_k_10) +
+  ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5) +
     ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
                                       y = ideal_k),
                           fill = "#009E73",
@@ -127,7 +120,7 @@ plot_k_estimates <- function(data_folder_path,
     ggplot2::ylab(expression("K'"[I])) +
     ggplot2::xlab(expression(mu[M]))
 
-  empirical_k_10 <- ggplot2::ggplot(data = empirical_plotting_data_k_10) +
+  empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5) +
     ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
                                        y = empirical_k),
                           fill = "#E69F00",
@@ -137,7 +130,7 @@ plot_k_estimates <- function(data_folder_path,
     ggplot2::ylab(expression("K'"[E])) +
     ggplot2::xlab(expression(mu[M]))
 
-  ideal_k_100 <- ggplot2::ggplot(data = ideal_plotting_data_k_100) +
+  ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50) +
     ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
                                        y = ideal_k),
                           fill = "#009E73",
@@ -147,7 +140,7 @@ plot_k_estimates <- function(data_folder_path,
     ggplot2::ylab(expression("K'"[I])) +
     ggplot2::xlab(expression(mu[M]))
 
-  empirical_k_100 <- ggplot2::ggplot(data = empirical_plotting_data_k_100) +
+  empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50) +
     ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
                                        y = empirical_k),
                           fill = "#E69F00",
@@ -158,29 +151,29 @@ plot_k_estimates <- function(data_folder_path,
     ggplot2::xlab(expression(mu[M]))
 
 
-  k_10_title <- cowplot::ggdraw() +
+  k_5_title <- cowplot::ggdraw() +
     cowplot::draw_label(
-      "True K' = 10") +
+      "True K' = 5") +
     ggplot2::theme(
       plot.margin = ggplot2::margin(0, 0, 0, 250))
 
-  k_100_title <- cowplot::ggdraw() +
+  k_50_title <- cowplot::ggdraw() +
     cowplot::draw_label(
-      "True K' = 100") +
+      "True K' = 50") +
     ggplot2::theme(
       plot.margin = ggplot2::margin(0, 0, 0, 250))
 
-  k_10_plot <- cowplot::plot_grid(
-    k_10_title, NULL,
-    ideal_k_10, empirical_k_10,
+  k_5_plot <- cowplot::plot_grid(
+    k_5_title, NULL,
+    ideal_k_5, empirical_k_5,
     nrow = 2, rel_heights = c(0.1, 1))
 
-  k_100_plot <- cowplot::plot_grid(
-    k_100_title, NULL,
-    ideal_k_100, empirical_k_100,
+  k_50_plot <- cowplot::plot_grid(
+    k_50_title, NULL,
+    ideal_k_50, empirical_k_50,
     nrow = 2, rel_heights = c(0.1, 1))
 
-  k_plot <- cowplot::plot_grid(k_10_plot, k_100_plot, nrow = 2)
+  k_plot <- cowplot::plot_grid(k_5_plot, k_50_plot, nrow = 2)
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(

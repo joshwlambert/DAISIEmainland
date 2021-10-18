@@ -10,7 +10,7 @@
 plot_sim_metrics <- function(data_folder_path,
                              output_file_path) {
 
-  files <- list.files(data_folder_path, pattern = "general")
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -73,7 +73,7 @@ plot_sim_metrics <- function(data_folder_path,
   ideal_mean_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_mean_num_col),
                             fill = "#009E73",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -82,7 +82,7 @@ plot_sim_metrics <- function(data_folder_path,
   ideal_var_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_var_num_col),
                             fill = "#009E73",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -91,7 +91,7 @@ plot_sim_metrics <- function(data_folder_path,
   ideal_max_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_max_num_col),
                             fill = "#009E73",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -100,7 +100,7 @@ plot_sim_metrics <- function(data_folder_path,
   ideal_min_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_min_num_col),
                             fill = "#009E73",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -109,7 +109,7 @@ plot_sim_metrics <- function(data_folder_path,
   empirical_mean_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_mean_num_col),
                             fill = "#E69F00",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -118,7 +118,7 @@ plot_sim_metrics <- function(data_folder_path,
   empirical_var_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_var_num_col),
                             fill = "#E69F00",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -127,7 +127,7 @@ plot_sim_metrics <- function(data_folder_path,
   empirical_max_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_max_num_col),
                             fill = "#E69F00",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -136,7 +136,7 @@ plot_sim_metrics <- function(data_folder_path,
   empirical_min_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_min_num_col),
                             fill = "#E69F00",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Colonisation events") +
     ggplot2::ylab("Frequency") +
@@ -145,7 +145,7 @@ plot_sim_metrics <- function(data_folder_path,
   mean_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_mean_num_spec),
                             fill = "#56B4E9",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Species") +
     ggplot2::ylab("Frequency") +
@@ -154,7 +154,7 @@ plot_sim_metrics <- function(data_folder_path,
   var_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_var_num_spec),
                             fill = "#56B4E9",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Species") +
     ggplot2::ylab("Frequency") +
@@ -163,7 +163,7 @@ plot_sim_metrics <- function(data_folder_path,
   max_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_max_num_spec),
                             fill = "#56B4E9",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Species") +
     ggplot2::ylab("Frequency") +
@@ -172,7 +172,7 @@ plot_sim_metrics <- function(data_folder_path,
   min_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_min_num_spec),
                             fill = "#56B4E9",
-                            bins = 25) +
+                            bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Species") +
     ggplot2::ylab("Frequency") +

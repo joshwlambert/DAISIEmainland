@@ -6,10 +6,9 @@
 #' @export
 #' @author Joshua W. Lambert
 calc_overall_sim_metrics <- function(data_folder_path,
-                                     output_file_path,
-                                     param_space) {
+                                     output_file_path) {
 
-  files <- list.files(data_folder_path, pattern = param_space)
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")

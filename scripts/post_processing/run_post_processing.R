@@ -1,15 +1,10 @@
 DAISIEmainland::calc_overall_sim_metrics(
   data_folder_path = file.path("results"),
-  output_file_path = NULL,
-  param_space = "general")
+  output_file_path = NULL)
 
 DAISIEmainland::plot_sim_metrics(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "sim_metrics.png"))
-
-DAISIEmainland::plot_ctt_heatmap(
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "ctt_heatmap.png"))
 
 DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
@@ -31,20 +26,10 @@ ctt_mainland_sample_prob <- DAISIEmainland::plot_ctt_scatter(
   output_file_path = NULL,
   parameter = "mainland_sample_prob")
 
-ctt_heatmap <- DAISIEmainland::plot_ctt_heatmap(
-  data_folder_path = file.path("results"),
-  output_file_path = NULL)
-
-ctt_scatter <- cowplot::plot_grid(
+ctt <- cowplot::plot_grid(
   ctt_mainland_ex,
   ctt_mainland_sample_prob,
   nrow = 1, labels = "AUTO")
-
-ctt <- cowplot::plot_grid(
-  ctt_scatter,
-  ctt_heatmap,
-  nrow = 2,
-  labels = c('', "C"))
 
 ggplot2::ggsave(
   plot = ctt,
@@ -56,61 +41,13 @@ ggplot2::ggsave(
   dpi = 600
 )
 
-DAISIEmainland::plot_param_estimates(
-  param_set = 1,
-  xlim = FALSE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_1.png"),
-  param_space = "general")
-
-DAISIEmainland::plot_param_estimates(
-  param_set = 21,
-  xlim = FALSE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_21.png"),
-  param_space = "general")
-
-DAISIEmainland::plot_param_estimates(
-  param_set = 111,
-  xlim = FALSE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_111.png"),
-  param_space = "general")
-
-DAISIEmainland::plot_param_estimates(
-  param_set = 131,
-  xlim = FALSE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_131.png"),
-  param_space = "general")
-
-DAISIEmainland::plot_param_estimates(
-  param_set = 1,
-  xlim = TRUE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_1_xlim.png"),
-  param_space = "general")
-
-DAISIEmainland::plot_param_estimates(
-  param_set = 21,
-  xlim = TRUE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_21_xlim.png"),
-  param_space = "general")
-
-DAISIEmainland::plot_param_estimates(
-  param_set = 111,
-  xlim = TRUE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_111_xlim.png"),
-  param_space = "general")
-
-DAISIEmainland::plot_param_estimates(
-  param_set = 131,
-  xlim = TRUE,
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "param_estimates_131_xlim.png"),
-  param_space = "general")
+for (i in seq_along(list.files(file.path("results")))) {
+  DAISIEmainland::plot_param_estimates(
+    param_set = i,
+    data_folder_path = file.path("results"),
+    output_file_path = file.path("plots", paste0("param_estimates_", i, ".png"))
+  )
+}
 
 max_age <- DAISIEmainland::plot_max_age(
   data_folder_path = file.path("results"),
@@ -179,4 +116,12 @@ ggplot2::ggsave(
   dpi = 600
 )
 
-#plot carrying capacity
+DAISIEmainland::plot_k_estimates(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "k_estimates.png"),
+  parameter = "mainland_ex")
+
+DAISIEmainland::plot_inf_k(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "inf_k.png"),
+  parameter = "mainland_ex")

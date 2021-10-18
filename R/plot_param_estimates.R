@@ -7,16 +7,9 @@
 #' @export
 plot_param_estimates <- function(param_set,
                                  data_folder_path,
-                                 output_file_path,
-                                 param_space) {
+                                 output_file_path) {
 
-  testit::assert(
-    "Param_space must be either 'general', 'mainland_ex' or
-    'mainland_sample_prob'",
-    param_space == "general" || param_space == "mainland_ex" ||
-      param_space == "mainland_sample_prob")
-
-  param_space_name <- paste0(param_space, "_param_set_", param_set, ".rds")
+  param_space_name <- paste0("param_set_", param_set, ".rds")
   files <- list.files(data_folder_path, pattern = param_space_name)
 
   if (length(files) == 0) {

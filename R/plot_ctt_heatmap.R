@@ -8,7 +8,7 @@
 plot_ctt_heatmap <- function(data_folder_path,
                              output_file_path) {
 
-  files <- list.files(data_folder_path, pattern = "general")
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")

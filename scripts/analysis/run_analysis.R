@@ -139,7 +139,7 @@ output <- list(
   ideal_sim_metrics = ideal_sim_metrics,
   empirical_sim_metrics = empirical_sim_metrics,
   error = error,
-  sim_params = c(
+  sim_params = list(
     island_clado = param_space$island_clado[args],
     island_ex = param_space$island_ex[args],
     island_k = param_space$island_k[args],

@@ -5,17 +5,10 @@
 #' @return Void (saves plot)
 #' @export
 plot_inf_k <- function(data_folder_path,
-                               output_file_path,
-                               param_space,
-                               parameter) {
+                       output_file_path,
+                       parameter) {
 
-  testit::assert(
-    "Param_space must be either 'general', 'mainland_ex' or
-    'mainland_sample_prob'",
-    param_space == "general" || param_space == "mainland_ex" ||
-      param_space == "mainland_sample_prob")
-
-  files <- list.files(data_folder_path, pattern = param_space)
+  files <- list.files(data_folder_path)
 
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -67,15 +60,15 @@ plot_inf_k <- function(data_folder_path,
       plotting_data$mainland_ex == 0.0)
   }
 
-  plotting_data_k_10 <- dplyr::filter(
+  plotting_data_k_5 <- dplyr::filter(
     plotting_data,
-    plotting_data$sim_k == 10)
+    plotting_data$sim_k == 5)
 
-  plotting_data_k_100 <- dplyr::filter(
+  plotting_data_k_50 <- dplyr::filter(
     plotting_data,
-    plotting_data$sim_k == 100)
+    plotting_data$sim_k == 50)
 
-  percent_k_10_inf <- ggplot2::ggplot(data = plotting_data_k_10) +
+  percent_k_5_inf <- ggplot2::ggplot(data = plotting_data_k_5) +
     ggplot2::geom_point(ggplot2::aes(x = mainland_ex,
                                      y = percent_ideal_k_inf),
                         colour = "#009E73",
@@ -89,10 +82,10 @@ plot_inf_k <- function(data_folder_path,
                         alpha = 0.5,
                         size = 3) +
     ggplot2::theme_classic() +
-    ggplot2::ylab("Percentage of Infinite Ideal K' (%)") +
+    ggplot2::ylab("Percentage of Infinite K' (%)") +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
 
-  percent_k_100_inf <- ggplot2::ggplot(data = plotting_data_k_100) +
+  percent_k_50_inf <- ggplot2::ggplot(data = plotting_data_k_50) +
     ggplot2::geom_point(ggplot2::aes(x = mainland_ex,
                                      y = percent_ideal_k_inf),
                         colour = "#009E73",
@@ -106,32 +99,32 @@ plot_inf_k <- function(data_folder_path,
                         alpha = 0.5,
                         size = 3) +
     ggplot2::theme_classic() +
-    ggplot2::ylab("Percentage of Infinite Ideal K' (%)") +
+    ggplot2::ylab("Percentage of Infinite K' (%)") +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
 
-  k_10_title <- cowplot::ggdraw() +
+  k_5_title <- cowplot::ggdraw() +
     cowplot::draw_label(
-      "True K' = 10") +
+      "True K' = 5") +
     ggplot2::theme(
       plot.margin = ggplot2::margin(0, 0, 0, 0))
 
-  k_100_title <- cowplot::ggdraw() +
+  k_50_title <- cowplot::ggdraw() +
     cowplot::draw_label(
-      "True K' = 100") +
+      "True K' = 50") +
     ggplot2::theme(
       plot.margin = ggplot2::margin(0, 0, 0, 0))
 
-  k_10_plot <- cowplot::plot_grid(
-    k_10_title,
-    percent_k_10_inf,
+  k_5_plot <- cowplot::plot_grid(
+    k_5_title,
+    percent_k_5_inf,
     nrow = 2, rel_heights = c(0.1, 1))
 
-  k_100_plot <- cowplot::plot_grid(
-    k_100_title,
-    percent_k_100_inf,
+  k_50_plot <- cowplot::plot_grid(
+    k_50_title,
+    percent_k_50_inf,
     nrow = 2, rel_heights = c(0.1, 1))
 
-  k_inf_plot <- cowplot::plot_grid(k_10_plot, k_100_plot, nrow = 1)
+  k_inf_plot <- cowplot::plot_grid(k_5_plot, k_50_plot, nrow = 1)
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(
