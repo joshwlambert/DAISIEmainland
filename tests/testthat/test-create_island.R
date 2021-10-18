@@ -8,12 +8,14 @@ test_that("create_island produces the same ideal and empirical empty islands", {
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
    island_spec <- create_test_island_spec(island_scenario = 0)
    mainland_sample_prob <- 1
+   mainland_sample_type <- "undiscovered"
 
    island <- create_island(
      total_time = total_time,
      island_spec = island_spec,
      mainland_clade = mainland_clade,
-     mainland_sample_prob = mainland_sample_prob
+     mainland_sample_prob = mainland_sample_prob,
+     mainland_sample_type = mainland_sample_type
    )
 
    expect_identical(island$ideal_island, island$empirical_island)
@@ -33,12 +35,14 @@ test_that("create_island produces the same ideal and empirical non-empty
    mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
    island_spec <- create_test_island_spec(island_scenario = 1)
    mainland_sample_prob <- 1
+   mainland_sample_type <- "undiscovered"
 
    island <- create_island(
       total_time = total_time,
       island_spec = island_spec,
       mainland_clade = mainland_clade,
-      mainland_sample_prob = mainland_sample_prob
+      mainland_sample_prob = mainland_sample_prob,
+      mainland_sample_type = mainland_sample_type
    )
 
    expect_identical(island$ideal_island, island$empirical_island)
@@ -66,17 +70,19 @@ test_that("create_island produces different ideal and empirical non-empty
       branch_t = NaN,
       ana_origin = as.character(NA))
    mainland_sample_prob <- 1
+   mainland_sample_type <- "undiscovered"
 
    island <- create_island(
       total_time = total_time,
       island_spec = island_spec,
       mainland_clade = mainland_clade,
-      mainland_sample_prob = mainland_sample_prob
+      mainland_sample_prob = mainland_sample_prob,
+      mainland_sample_type = mainland_sample_type
    )
 
    expect_false(identical(island$ideal_island, island$empirical_island))
    expect_equal(island$ideal_island[[1]]$branching_times, c(1.0, 0.3))
-   expect_identical(island$ideal_island[[1]]$stac, 2)
+   expect_identical(island$ideal_island[[1]]$stac, 4)
    expect_identical(island$ideal_island[[1]]$missing_species, 0)
    expect_identical(island$empirical_island[[1]]$branching_times, c(1.0, 0.5))
    expect_identical(island$empirical_island[[1]]$stac, 2)
