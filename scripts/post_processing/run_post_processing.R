@@ -13,22 +13,27 @@ DAISIEmainland::plot_ctt_scatter(
 
 DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "mainland_sample_prob_scatter.png"),
-  parameter = "mainland_sample_prob")
+  output_file_path = file.path("plots", "unsampled_ctt_scatter.png"),
+  parameter = "unsampled")
+
+DAISIEmainland::plot_ctt_scatter(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "undiscovered_ctt_scatter.png"),
+  parameter = "undiscovered")
 
 ctt_mainland_ex <- DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
   parameter = "mainland_ex")
 
-ctt_mainland_sample_prob <- DAISIEmainland::plot_ctt_scatter(
+ctt_unsampled <- DAISIEmainland::plot_ctt_scatter(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
-  parameter = "mainland_sample_prob")
+  parameter = "unsampled")
 
 ctt <- cowplot::plot_grid(
   ctt_mainland_ex,
-  ctt_mainland_sample_prob,
+  ctt_unsampled,
   nrow = 1, labels = "AUTO")
 
 ggplot2::ggsave(
@@ -48,28 +53,6 @@ for (i in seq_along(list.files(file.path("results")))) {
     output_file_path = file.path("plots", paste0("param_estimates_", i, ".png"))
   )
 }
-
-max_age <- DAISIEmainland::plot_max_age(
-  data_folder_path = file.path("results"),
-  output_file_path = NULL,
-  parameter = "both")
-
-endemics <- DAISIEmainland::plot_endemics(
-  data_folder_path = file.path("results"),
-  output_file_path = NULL,
-  parameter = "both")
-
-max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
-
-ggplot2::ggsave(
-  plot = max_age_and_endemics,
-  filename = file.path("plots", "max_age_and_endemics_all.png"),
-  device = "png",
-  width = 168,
-  height = 100,
-  units = "mm",
-  dpi = 600
-)
 
 max_age <- DAISIEmainland::plot_max_age(
   data_folder_path = file.path("results"),
@@ -96,19 +79,40 @@ ggplot2::ggsave(
 max_age <- DAISIEmainland::plot_max_age(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
-  parameter = "mainland_sample_prob")
+  parameter = "unsampled")
 
 endemics <- DAISIEmainland::plot_endemics(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
-  parameter = "mainland_sample_prob")
+  parameter = "unsampled")
 
 max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
 
 ggplot2::ggsave(
   plot = max_age_and_endemics,
-  filename = file.path("plots",
-                       "max_age_and_endemics_mainland_sample_prob.png"),
+  filename = file.path("plots", "max_age_and_endemics_unsampled.png"),
+  device = "png",
+  width = 168,
+  height = 100,
+  units = "mm",
+  dpi = 600
+)
+
+max_age <- DAISIEmainland::plot_max_age(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  parameter = "undiscovered")
+
+endemics <- DAISIEmainland::plot_endemics(
+  data_folder_path = file.path("results"),
+  output_file_path = NULL,
+  parameter = "undiscovered")
+
+max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
+
+ggplot2::ggsave(
+  plot = max_age_and_endemics,
+  filename = file.path("plots", "max_age_and_endemics_undiscovered.png"),
   device = "png",
   width = 168,
   height = 100,
@@ -118,10 +122,20 @@ ggplot2::ggsave(
 
 DAISIEmainland::plot_k_estimates(
   data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "k_estimates.png"),
+  output_file_path = file.path("plots", "k_estimates_mainland_ex.png"),
   parameter = "mainland_ex")
+
+DAISIEmainland::plot_k_estimates(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "k_estimates_unsampled.png"),
+  parameter = "unsampled")
+
+DAISIEmainland::plot_k_estimates(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "k_estimates_undiscovered.png"),
+  parameter = "undiscovered")
 
 DAISIEmainland::plot_inf_k(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "inf_k.png"),
-  parameter = "mainland_ex")
+  parameter = "unsampled")
