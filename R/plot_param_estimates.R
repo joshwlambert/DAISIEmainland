@@ -87,7 +87,7 @@ plot_param_estimates <- function(param_set,
                           alpha = 0.3) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Density") +
-    ggplot2::xlab(expression(lambda^c)) +
+    ggplot2::xlab(expression(tilde(lambda^c))) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
@@ -102,7 +102,7 @@ plot_param_estimates <- function(param_set,
                           alpha = 0.3) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Density") +
-    ggplot2::xlab(expression(mu)) +
+    ggplot2::xlab(expression(tilde(mu))) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
@@ -117,7 +117,7 @@ plot_param_estimates <- function(param_set,
                           alpha = 0.3) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Density") +
-    ggplot2::xlab(expression(gamma)) +
+    ggplot2::xlab(expression(tilde(gamma))) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
@@ -132,7 +132,7 @@ plot_param_estimates <- function(param_set,
                           alpha = 0.3) +
     ggplot2::theme_classic() +
     ggplot2::ylab("Density") +
-    ggplot2::xlab(expression(lambda^a)) +
+    ggplot2::xlab(expression(tilde(lambda^a))) +
     ggplot2::geom_vline(xintercept = sim_ana, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
 
@@ -152,8 +152,8 @@ plot_param_estimates <- function(param_set,
                         shape = 15) +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
-    ggplot2::ylab(expression(mu)) +
-    ggplot2::xlab(expression(lambda^c)) +
+    ggplot2::ylab(expression(tilde(mu))) +
+    ggplot2::xlab(expression(tilde(lambda^c))) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ext, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -174,8 +174,8 @@ plot_param_estimates <- function(param_set,
                         shape = 15) +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
-    ggplot2::ylab(expression(gamma)) +
-    ggplot2::xlab(expression(lambda^c)) +
+    ggplot2::ylab(expression(tilde(gamma))) +
+    ggplot2::xlab(expression(tilde(lambda^c))) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -196,8 +196,8 @@ plot_param_estimates <- function(param_set,
                         shape = 15) +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
-    ggplot2::ylab(expression(lambda^a)) +
-    ggplot2::xlab(expression(lambda^c)) +
+    ggplot2::ylab(expression(tilde(lambda^a))) +
+    ggplot2::xlab(expression(tilde(lambda^c))) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -218,8 +218,8 @@ plot_param_estimates <- function(param_set,
                         shape = 15) +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
-    ggplot2::ylab(expression(gamma)) +
-    ggplot2::xlab(expression(mu)) +
+    ggplot2::ylab(expression(tilde(gamma))) +
+    ggplot2::xlab(expression(tilde(mu))) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -240,8 +240,8 @@ plot_param_estimates <- function(param_set,
                         shape = 15) +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
-    ggplot2::ylab(expression(lambda^a)) +
-    ggplot2::xlab(expression(mu)) +
+    ggplot2::ylab(expression(tilde(lambda^a))) +
+    ggplot2::xlab(expression(tilde(mu))) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -262,8 +262,8 @@ plot_param_estimates <- function(param_set,
                         shape = 15) +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
-    ggplot2::ylab(expression(lambda^a)) +
-    ggplot2::xlab(expression(gamma)) +
+    ggplot2::ylab(expression(tilde(lambda^a))) +
+    ggplot2::xlab(expression(tilde(gamma))) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -275,8 +275,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-    ggplot2::xlab(expression(paste(Delta, mu))) +
+    ggplot2::ylab(expression(tilde(paste(Delta, lambda^c)))) +
+    ggplot2::xlab(expression(tilde(paste(Delta, mu)))) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -288,8 +288,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-    ggplot2::xlab(expression(paste(Delta, gamma))) +
+    ggplot2::ylab(expression(tilde(paste(Delta, lambda^c)))) +
+    ggplot2::xlab(expression(tilde(paste(Delta, gamma)))) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -301,8 +301,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::ylab(expression(tilde(paste(Delta, lambda^c)))) +
+    ggplot2::xlab(expression(tilde(paste(Delta, lambda^a)))) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -314,8 +314,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::ylab(expression(paste(Delta, mu))) +
-    ggplot2::xlab(expression(paste(Delta, gamma))) +
+    ggplot2::ylab(expression(tilde(paste(Delta, mu)))) +
+    ggplot2::xlab(expression(tilde(paste(Delta, gamma)))) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -327,8 +327,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::ylab(expression(paste(Delta, mu))) +
-    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::ylab(expression(tilde(paste(Delta, mu)))) +
+    ggplot2::xlab(expression(tilde(paste(Delta, lambda^a)))) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))
@@ -340,8 +340,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::ylab(expression(paste(Delta, gamma))) +
-    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::ylab(expression(tilde(paste(Delta, gamma)))) +
+    ggplot2::xlab(expression(tilde(paste(Delta, lambda^a)))) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::theme(text = ggplot2::element_text(size = 7.5))

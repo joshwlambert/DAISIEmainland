@@ -144,7 +144,7 @@ plot_sim_metrics <- function(data_folder_path,
 
   mean_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_mean_num_spec),
-                            fill = "#56B4E9",
+                            fill = "#E34234",
                             bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Species") +
@@ -153,7 +153,7 @@ plot_sim_metrics <- function(data_folder_path,
 
   var_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_var_num_spec),
-                            fill = "#56B4E9",
+                            fill = "#E34234",
                             bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Species") +
@@ -162,7 +162,7 @@ plot_sim_metrics <- function(data_folder_path,
 
   max_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_max_num_spec),
-                            fill = "#56B4E9",
+                            fill = "#E34234",
                             bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Species") +
@@ -171,7 +171,7 @@ plot_sim_metrics <- function(data_folder_path,
 
   min_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_min_num_spec),
-                            fill = "#56B4E9",
+                            fill = "#E34234",
                             bins = 8) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Species") +

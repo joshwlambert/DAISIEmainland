@@ -56,14 +56,17 @@ plot_ctt_scatter <- function(data_folder_path,
 
   if (parameter == "mainland_ex") {
     ctt <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_point(ggplot2::aes(x = mainland_ex, y = ctt_means)) +
+      ggplot2::geom_point(ggplot2::aes(x = mainland_ex,
+                                       y = ctt_means),
+                          colour = "#56B4E9") +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, "CTT"))) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
   } else {
     ctt <- ggplot2::ggplot(data = plotting_data) +
       ggplot2::geom_point(ggplot2::aes(x = mainland_sample_prob,
-                                       y = ctt_means)) +
+                                       y = ctt_means),
+                          colour = "#56B4E9") +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, "CTT"))) +
       ggplot2::xlab(expression(paste("Mainland sample probability ", (rho))))

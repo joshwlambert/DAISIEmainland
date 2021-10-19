@@ -81,7 +81,7 @@ plot_max_age <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Max Age Percent (%)") +
+      ggplot2::ylab("Mean Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 60))
@@ -98,7 +98,7 @@ plot_max_age <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Max Age Percent (%)") +
+      ggplot2::ylab("Mean Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 60))
@@ -115,7 +115,7 @@ plot_max_age <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Max Age Percent (%)") +
+      ggplot2::ylab("Mean Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
@@ -133,14 +133,16 @@ plot_max_age <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Max Age Percent (%)") +
+      ggplot2::ylab("Mean Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 60))
   }
 
-  max_age <- cowplot::plot_grid(ideal_max_age, empirical_max_age)
+  max_age <- cowplot::plot_grid(ideal_max_age, empirical_max_age,
+                                labels = c("A", "B"),
+                                label_size = 10)
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(

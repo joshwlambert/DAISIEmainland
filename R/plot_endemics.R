@@ -82,7 +82,7 @@ plot_endemics <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Endemic Percent (%)") +
+      ggplot2::ylab("Mean Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(50, 100))
@@ -99,7 +99,7 @@ plot_endemics <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Endemic Percent (%)") +
+      ggplot2::ylab("Mean Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(50, 100))
@@ -116,7 +116,7 @@ plot_endemics <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Endemic Percent (%)") +
+      ggplot2::ylab("Mean Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
@@ -134,14 +134,16 @@ plot_endemics <- function(data_folder_path,
                             width = 0.1,
                             alpha = 0.1) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Endemic Percent (%)") +
+      ggplot2::ylab("Mean Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(50, 100))
   }
 
-  endemics <- cowplot::plot_grid(ideal_endemics, empirical_endemics)
+  endemics <- cowplot::plot_grid(ideal_endemics, empirical_endemics,
+                                 labels = c("C", "D"),
+                                 label_size = 10)
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(
