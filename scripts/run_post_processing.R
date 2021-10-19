@@ -34,7 +34,9 @@ ctt_unsampled <- DAISIEmainland::plot_ctt_scatter(
 ctt <- cowplot::plot_grid(
   ctt_mainland_ex,
   ctt_unsampled,
-  nrow = 1, labels = "AUTO")
+  nrow = 1,
+  labels = c("A", "B"),
+  label_size = 10)
 
 ggplot2::ggsave(
   plot = ctt,
