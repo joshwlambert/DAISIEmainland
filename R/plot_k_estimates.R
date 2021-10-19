@@ -139,8 +139,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[I])) +
-      ggplot2::xlab(expression(mu[M]))
+      ggplot2::ylab(expression(tilde("K'"[I]))) +
+      ggplot2::xlab(expression(mu[M])) +
+      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5) +
       ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
@@ -149,8 +150,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[E])) +
-      ggplot2::xlab(expression(mu[M]))
+      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::xlab(expression(mu[M])) +
+      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50) +
       ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
@@ -159,8 +161,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[I])) +
-      ggplot2::xlab(expression(mu[M]))
+      ggplot2::ylab(expression(tilde("K'"[I]))) +
+      ggplot2::xlab(expression(mu[M])) +
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50) +
       ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
@@ -169,8 +172,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[E])) +
-      ggplot2::xlab(expression(mu[M]))
+      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::xlab(expression(mu[M])) +
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
   } else {
     ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5) +
       ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
@@ -179,8 +183,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[I])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho))))
+      ggplot2::ylab(expression(tilde("K'"[I]))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5) +
       ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
@@ -189,8 +194,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[E])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho))))
+      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50) +
       ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
@@ -199,8 +205,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[I])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho))))
+      ggplot2::ylab(expression(tilde("K'"[I]))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50) +
       ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
@@ -209,8 +216,9 @@ plot_k_estimates <- function(data_folder_path,
                             outlier.size = 0.5,
                             lwd = 0.25) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression("K'"[E])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho))))
+      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
   }
 
   k_5_title <- cowplot::ggdraw() +
