@@ -27,20 +27,13 @@ plot_endemics <- function(data_folder_path,
   error_list <- lapply(results_list, "[[", "error")
   sim_params_list <- lapply(results_list, "[[", "sim_params")
 
-  endemic_percent_list <- lapply(error_list, "[[", "endemic_percent")
-  endemic_percent_empirical_list <- lapply(endemic_percent_list,
+  endemic_list <- lapply(error_list, "[[", "endemic_percent")
+  endemic_empirical_list <- lapply(endemic_list,
                                            "[[",
                                            "empirical_endemic_percent")
-  endemic_percent_ideal_list <- lapply(endemic_percent_list,
+  endemic_ideal_list <- lapply(endemic_list,
                                        "[[",
                                        "ideal_endemic_percent")
-
-  endemic_percent_empirical_means <- unlist(lapply(
-    endemic_percent_empirical_list,
-    mean))
-  endemic_percent_ideal_means <- unlist(lapply(
-    endemic_percent_ideal_list,
-    mean))
 
   mainland_ex <- unlist(lapply(sim_params_list, "[[", "mainland_ex"))
   mainland_sample_prob <- unlist(lapply(sim_params_list, "[[",
@@ -48,12 +41,27 @@ plot_endemics <- function(data_folder_path,
   mainland_sample_type <- unlist(lapply(sim_params_list, "[[",
                                         "mainland_sample_type"))
 
+  mainland_ex_list <- list()
+  mainland_sample_prob_list <- list()
+  mainland_sample_type_list <- list()
+  for (i in seq_along(endemic_empirical_list)) {
+    mainland_ex_list[[i]] <- rep(
+      mainland_ex[i],
+      length(endemic_empirical_list[[i]]))
+    mainland_sample_prob_list[[i]] <- rep(
+      mainland_sample_prob[i],
+      length(endemic_empirical_list[[i]]))
+    mainland_sample_type_list[[i]] <- rep(
+      mainland_sample_type[i],
+      length(endemic_empirical_list[[i]]))
+  }
+
   plotting_data <- data.frame(
-    endemic_percent_empirical_means = endemic_percent_empirical_means,
-    endemic_percent_ideal_means = endemic_percent_ideal_means,
-    mainland_ex = as.factor(mainland_ex),
-    mainland_sample_prob = as.factor(mainland_sample_prob),
-    mainland_sample_type = mainland_sample_type)
+    endemic_empirical = unlist(endemic_empirical_list),
+    endemic_ideal = unlist(endemic_ideal_list),
+    mainland_ex = unlist(mainland_ex_list),
+    mainland_sample_prob = unlist(mainland_sample_prob_list),
+    mainland_sample_type = unlist(mainland_sample_type))
 
   if (parameter == "mainland_ex") {
     plotting_data <- dplyr::filter(
@@ -71,74 +79,54 @@ plot_endemics <- function(data_folder_path,
 
   if (parameter == "mainland_ex") {
     ideal_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
-                                        y = endemic_percent_ideal_means),
-                           fill = "#009E73",
-                           colour = "#009E73",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
-                                         y = endemic_percent_ideal_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                         y = endemic_ideal),
+                            fill = "#009E73",
+                            outlier.size = 0.5,
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Endemic %") +
+      ggplot2::ylab("Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(50, 100))
+      ggplot2::ylim(c(0, 100))
 
     empirical_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
-                                        y = endemic_percent_empirical_means),
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                        y = endemic_empirical),
                            fill = "#E69F00",
-                           colour = "#E69F00",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
-                                         y = endemic_percent_empirical_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+                           outlier.size = 0.5,
+                           lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Endemic %") +
+      ggplot2::ylab("Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(50, 100))
+      ggplot2::ylim(c(0, 100))
   } else {
     ideal_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_sample_prob,
-                                        y = endemic_percent_ideal_means),
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
+                                        y = endemic_ideal),
                            fill = "#009E73",
-                           colour = "#009E73",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_sample_prob,
-                                         y = endemic_percent_ideal_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+                           outlier.size = 0.5,
+                           lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Endemic %") +
+      ggplot2::ylab("Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(50, 100))
+      ggplot2::ylim(c(0, 100))
 
     empirical_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_sample_prob,
-                                        y = endemic_percent_empirical_means),
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
+                                        y = endemic_empirical),
                            fill = "#E69F00",
-                           colour = "#E69F00",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_sample_prob,
-                                         y = endemic_percent_empirical_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+                           outlier.size = 0.5,
+                           lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Endemic %") +
+      ggplot2::ylab("Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(50, 100))
+      ggplot2::ylim(c(0, 100))
   }
 
   endemics <- cowplot::plot_grid(ideal_endemics, empirical_endemics,

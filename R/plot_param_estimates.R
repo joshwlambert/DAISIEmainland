@@ -7,7 +7,8 @@
 #' @export
 plot_param_estimates <- function(param_set,
                                  data_folder_path,
-                                 output_file_path) {
+                                 output_file_path,
+                                 parameter) {
 
   param_space_name <- paste0("param_set_", param_set, ".rds")
   files <- list.files(data_folder_path, pattern = param_space_name)
@@ -351,6 +352,24 @@ plot_param_estimates <- function(param_set,
     ext_vs_clado, ext_density, ext_vs_immig_diffs, ext_vs_ana_diffs,
     immig_vs_clado, immig_vs_ext, immig_density, immig_vs_ana_diffs,
     ana_vs_clado, ana_vs_ext, ana_vs_immig, ana_density)
+
+  if (parameter == "mainland_ex") {
+    title <- cowplot::ggdraw() +
+      cowplot::draw_label(
+        paste0("Mainland extinction = ", sim_params$mainland_ex),
+        size = 12)
+  } else {
+    title <- cowplot::ggdraw() +
+      cowplot::draw_label(
+        paste0("Mainland sampling probability = ",
+               sim_params$mainland_sample_prob),
+        size = 12)
+  }
+  param_estimates <- cowplot::plot_grid(
+    title,
+    param_estimates,
+    nrow = 2, rel_heights = c(0.05, 1))
+
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(

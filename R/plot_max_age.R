@@ -27,19 +27,13 @@ plot_max_age <- function(data_folder_path,
   error_list <- lapply(results_list, "[[", "error")
   sim_params_list <- lapply(results_list, "[[", "sim_params")
 
-  max_age_percent_list <- lapply(error_list, "[[", "max_age_percent")
-  max_age_percent_ideal_list <- lapply(max_age_percent_list,
-                                       "[[",
-                                       "ideal_max_age")
-  max_age_percent_empirical_list <- lapply(max_age_percent_list,
-                                         "[[",
-                                         "empirical_max_age")
-  max_age_percent_ideal_means <- unlist(lapply(
-    max_age_percent_ideal_list,
-    mean))
-  max_age_percent_empirical_means <- unlist(lapply(
-    max_age_percent_empirical_list,
-    mean))
+  max_age_list <- lapply(error_list, "[[", "max_age_percent")
+  max_age_ideal_list <- lapply(max_age_list,
+                               "[[",
+                               "ideal_max_age")
+  max_age_empirical_list <- lapply(max_age_list,
+                                   "[[",
+                                   "empirical_max_age")
 
   mainland_ex <- unlist(lapply(sim_params_list, "[[", "mainland_ex"))
   mainland_sample_prob <- unlist(lapply(sim_params_list, "[[",
@@ -47,12 +41,27 @@ plot_max_age <- function(data_folder_path,
   mainland_sample_type <- unlist(lapply(sim_params_list, "[[",
                                         "mainland_sample_type"))
 
+  mainland_ex_list <- list()
+  mainland_sample_prob_list <- list()
+  mainland_sample_type_list <- list()
+  for (i in seq_along(max_age_empirical_list)) {
+    mainland_ex_list[[i]] <- rep(
+      mainland_ex[i],
+      length(max_age_empirical_list[[i]]))
+    mainland_sample_prob_list[[i]] <- rep(
+      mainland_sample_prob[i],
+      length(max_age_empirical_list[[i]]))
+    mainland_sample_type_list[[i]] <- rep(
+      mainland_sample_type[i],
+      length(max_age_empirical_list[[i]]))
+  }
+
   plotting_data <- data.frame(
-    max_age_percent_ideal_means = max_age_percent_ideal_means,
-    max_age_percent_empirical_means = max_age_percent_empirical_means,
-    mainland_ex = as.factor(mainland_ex),
-    mainland_sample_prob = as.factor(mainland_sample_prob),
-    mainland_sample_type = mainland_sample_type)
+    max_age_ideal = unlist(max_age_ideal_list),
+    max_age_empirical = unlist(max_age_empirical_list),
+    mainland_ex = unlist(mainland_ex_list),
+    mainland_sample_prob = unlist(mainland_sample_prob_list),
+    mainland_sample_type = unlist(mainland_sample_type_list))
 
   if (parameter == "mainland_ex") {
     plotting_data <- dplyr::filter(
@@ -70,74 +79,54 @@ plot_max_age <- function(data_folder_path,
 
   if (parameter == "mainland_ex") {
     ideal_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
-                                        y = max_age_percent_ideal_means),
-                           fill = "#009E73",
-                           colour = "#009E73",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
-                                         y = max_age_percent_ideal_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                         y = max_age_ideal),
+                            fill = "#009E73",
+                            outlier.size = 0.5,
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Max Age %") +
+      ggplot2::ylab("Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(0, 60))
+      ggplot2::ylim(c(0, 100))
 
     empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_ex,
-                                        y = max_age_percent_empirical_means),
-                           fill = "#E69F00",
-                           colour = "#E69F00",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_ex,
-                                         y = max_age_percent_empirical_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
+                                         y = max_age_empirical),
+                            fill = "#E69F00",
+                            outlier.size = 0.5,
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Max Age %") +
+      ggplot2::ylab("Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(0, 60))
+      ggplot2::ylim(c(0, 100))
   } else {
     ideal_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_sample_prob,
-                                        y = max_age_percent_ideal_means),
-                           fill = "#009E73",
-                           colour = "#009E73",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_sample_prob,
-                                         y = max_age_percent_ideal_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
+                                         y = max_age_ideal),
+                            fill = "#009E73",
+                            outlier.size = 0.5,
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Ideal Max Age %") +
+      ggplot2::ylab("Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(0, 60))
+      ggplot2::ylim(c(0, 100))
 
     empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_violin(ggplot2::aes(x = mainland_sample_prob,
-                                        y = max_age_percent_empirical_means),
-                           fill = "#E69F00",
-                           colour = "#E69F00",
-                           alpha = 0.3) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = mainland_sample_prob,
-                                         y = max_age_percent_empirical_means),
-                            colour = "grey50",
-                            width = 0.1,
-                            alpha = 0.1) +
+      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
+                                         y = max_age_empirical),
+                            fill = "#E69F00",
+                            outlier.size = 0.5,
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab("Mean Empirical Max Age %") +
+      ggplot2::ylab("Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
-      ggplot2::ylim(c(0, 60))
+      ggplot2::ylim(c(0, 100))
   }
 
   max_age <- cowplot::plot_grid(ideal_max_age, empirical_max_age,

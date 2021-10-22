@@ -137,7 +137,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = ideal_k),
                             fill = "#009E73",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
       ggplot2::xlab(expression(mu[M])) +
@@ -148,7 +148,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = empirical_k),
                             fill = "#E69F00",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
       ggplot2::xlab(expression(mu[M])) +
@@ -159,7 +159,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = ideal_k),
                             fill = "#009E73",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
       ggplot2::xlab(expression(mu[M])) +
@@ -170,7 +170,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = empirical_k),
                             fill = "#E69F00",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
       ggplot2::xlab(expression(mu[M])) +
@@ -181,7 +181,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = ideal_k),
                             fill = "#009E73",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
@@ -192,7 +192,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = empirical_k),
                             fill = "#E69F00",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
@@ -203,7 +203,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = ideal_k),
                             fill = "#009E73",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
@@ -214,7 +214,7 @@ plot_k_estimates <- function(data_folder_path,
                                          y = empirical_k),
                             fill = "#E69F00",
                             outlier.size = 0.5,
-                            lwd = 0.25) +
+                            lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
@@ -223,27 +223,27 @@ plot_k_estimates <- function(data_folder_path,
 
   k_5_title <- cowplot::ggdraw() +
     cowplot::draw_label(
-      "True K' = 5") +
+      "True K' = 5",
+      size = 12) +
     ggplot2::theme(
       plot.margin = ggplot2::margin(0, 0, 0, 250))
 
   k_50_title <- cowplot::ggdraw() +
     cowplot::draw_label(
-      "True K' = 50") +
+      "True K' = 50",
+      size = 12) +
     ggplot2::theme(
       plot.margin = ggplot2::margin(0, 0, 0, 250))
 
-  k_5_plot <- cowplot::plot_grid(
+  k_plot <- cowplot::plot_grid(
     k_5_title, NULL,
     ideal_k_5, empirical_k_5,
-    nrow = 2, rel_heights = c(0.1, 1))
-
-  k_50_plot <- cowplot::plot_grid(
     k_50_title, NULL,
     ideal_k_50, empirical_k_50,
-    nrow = 2, rel_heights = c(0.1, 1))
-
-  k_plot <- cowplot::plot_grid(k_5_plot, k_50_plot, nrow = 2)
+    nrow = 4,
+    rel_heights = c(0.1, 1, 0.1, 1),
+    labels = c("", "", "A", "B", "", "", "C", "D"),
+    label_size = 10)
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(
