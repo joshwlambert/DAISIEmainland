@@ -28,12 +28,12 @@ plot_max_age <- function(data_folder_path,
   sim_params_list <- lapply(results_list, "[[", "sim_params")
 
   max_age_list <- lapply(error_list, "[[", "max_age_percent")
-  max_age_ideal_list <- lapply(max_age_list,
-                               "[[",
-                               "ideal_max_age")
-  max_age_empirical_list <- lapply(max_age_list,
-                                   "[[",
-                                   "empirical_max_age")
+  max_age_ideal <- lapply(max_age_list,
+                          "[[",
+                          "ideal_max_age")
+  max_age_empirical <- lapply(max_age_list,
+                              "[[",
+                              "empirical_max_age")
 
   mainland_ex <- unlist(lapply(sim_params_list, "[[", "mainland_ex"))
   mainland_sample_prob <- unlist(lapply(sim_params_list, "[[",
@@ -44,21 +44,21 @@ plot_max_age <- function(data_folder_path,
   mainland_ex_list <- list()
   mainland_sample_prob_list <- list()
   mainland_sample_type_list <- list()
-  for (i in seq_along(max_age_empirical_list)) {
+  for (i in seq_along(max_age_empirical)) {
     mainland_ex_list[[i]] <- rep(
       mainland_ex[i],
-      length(max_age_empirical_list[[i]]))
+      length(max_age_empirical[[i]]))
     mainland_sample_prob_list[[i]] <- rep(
       mainland_sample_prob[i],
-      length(max_age_empirical_list[[i]]))
+      length(max_age_empirical[[i]]))
     mainland_sample_type_list[[i]] <- rep(
       mainland_sample_type[i],
-      length(max_age_empirical_list[[i]]))
+      length(max_age_empirical[[i]]))
   }
 
   plotting_data <- data.frame(
-    max_age_ideal = unlist(max_age_ideal_list),
-    max_age_empirical = unlist(max_age_empirical_list),
+    max_age_ideal = unlist(max_age_ideal),
+    max_age_empirical = unlist(max_age_empirical),
     mainland_ex = unlist(mainland_ex_list),
     mainland_sample_prob = unlist(mainland_sample_prob_list),
     mainland_sample_type = unlist(mainland_sample_type_list))
