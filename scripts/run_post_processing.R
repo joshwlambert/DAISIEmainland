@@ -6,27 +6,27 @@ DAISIEmainland::plot_sim_metrics(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "sim_metrics.png"))
 
-DAISIEmainland::plot_ctt_scatter(
+DAISIEmainland::plot_ctt_boxplot(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "mainland_ex_ctt_scatter.png"),
   parameter = "mainland_ex")
 
-DAISIEmainland::plot_ctt_scatter(
+DAISIEmainland::plot_ctt_boxplot(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "unsampled_ctt_scatter.png"),
   parameter = "unsampled")
 
-DAISIEmainland::plot_ctt_scatter(
+DAISIEmainland::plot_ctt_boxplot(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "undiscovered_ctt_scatter.png"),
   parameter = "undiscovered")
 
-ctt_mainland_ex <- DAISIEmainland::plot_ctt_scatter(
+ctt_mainland_ex <- DAISIEmainland::plot_ctt_boxplot(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
   parameter = "mainland_ex")
 
-ctt_unsampled <- DAISIEmainland::plot_ctt_scatter(
+ctt_unsampled <- DAISIEmainland::plot_ctt_boxplot(
   data_folder_path = file.path("results"),
   output_file_path = NULL,
   parameter = "unsampled")
@@ -48,11 +48,23 @@ ggplot2::ggsave(
   dpi = 600
 )
 
+data("param_space")
 for (i in seq_along(list.files(file.path("results")))) {
+
+  if (param_space$mainland_sample_type[i] == "complete") {
+    parameter <- "mainland_ex"
+  } else if (param_space$mainland_sample_type[i] == "unsampled") {
+    parameter <- "unsampled"
+  } else if (param_space$mainland_sample_type[i] == "undiscovered") {
+    parameter <- "undiscovered"
+  }
+
   DAISIEmainland::plot_param_estimates(
     param_set = i,
     data_folder_path = file.path("results"),
-    output_file_path = file.path("plots", paste0("param_estimates_", i, ".png"))
+    output_file_path = file.path("plots",
+                                 paste0("param_estimates_", i, ".png")),
+    parameter = parameter
   )
 }
 
