@@ -3,6 +3,7 @@
 export(calc_error)
 export(calc_overall_sim_metrics)
 export(calc_sim_metrics)
+export(plot_ctt_boxplot)
 export(plot_ctt_heatmap)
 export(plot_ctt_scatter)
 export(plot_endemics)
