@@ -16,14 +16,13 @@ plot_inf_k <- function(data_folder_path,
     results_list <- lapply(file_paths, readRDS)
   }
 
-  error_list <- lapply(results_list, "[[", "error")
   ideal_ml <- lapply(results_list, "[[", "ideal_ml")
   empirical_ml <- lapply(results_list, "[[", "empirical_ml")
   ideal_k <- lapply(ideal_ml, function(x) {
-    unlist(lapply(x, '[[', "K"))
+    unlist(lapply(x, "[[", "K"))
   })
   empirical_k <- lapply(empirical_ml, function(x) {
-    unlist(lapply(x, '[[', "K"))
+    unlist(lapply(x, "[[", "K"))
   })
 
   num_ideal_inf_k <- unlist(lapply(ideal_k, function(x) {

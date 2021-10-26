@@ -22,14 +22,13 @@ plot_k_estimates <- function(data_folder_path,
     results_list <- lapply(file_paths, readRDS)
   }
 
-  error_list <- lapply(results_list, "[[", "error")
   ideal_ml <- lapply(results_list, "[[", "ideal_ml")
   empirical_ml <- lapply(results_list, "[[", "empirical_ml")
   ideal_k <- lapply(ideal_ml, function(x) {
-    unlist(lapply(x, '[[', "K"))
+    unlist(lapply(x, "[[", "K"))
   })
   empirical_k <- lapply(empirical_ml, function(x) {
-    unlist(lapply(x, '[[', "K"))
+    unlist(lapply(x, "[[", "K"))
   })
 
   ideal_k_no_inf <- lapply(ideal_k, function(x) {
@@ -184,7 +183,8 @@ plot_k_estimates <- function(data_folder_path,
                             lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ",
+                                     (rho)))) +
       ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5) +
@@ -195,7 +195,8 @@ plot_k_estimates <- function(data_folder_path,
                             lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ",
+                                     (rho)))) +
       ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50) +
@@ -206,7 +207,8 @@ plot_k_estimates <- function(data_folder_path,
                             lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ",
+                                     (rho)))) +
       ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50) +
@@ -217,7 +219,8 @@ plot_k_estimates <- function(data_folder_path,
                             lwd = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ", (rho)))) +
+      ggplot2::xlab(expression(paste("Mainland sampling probability ",
+                                     (rho)))) +
       ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
   }
 

@@ -29,5 +29,3 @@ test_that("multiplication works", {
   expect_equal(empirical_sim_metrics$num_col, 3)
   expect_equal(empirical_sim_metrics$num_spec, 5)
 })
-
-

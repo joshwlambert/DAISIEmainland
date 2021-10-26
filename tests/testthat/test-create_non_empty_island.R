@@ -16,10 +16,10 @@ test_that("mainland species immigrates and does not go extinct or speciate,
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(island$ideal_island, island$empirical_island)
-            testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 4)
-            testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
+            expect_identical(island$ideal_island, island$empirical_island)
+            expect_length(island$ideal_island[[1]]$branching_times, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 4)
+            expect_identical(island$ideal_island[[1]]$missing_species, 0)
           })
 
 test_that("mainland species immigrates to the island then undergoes speciation
@@ -42,10 +42,10 @@ test_that("mainland species immigrates to the island then undergoes speciation
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(island$ideal_island, island$empirical_island)
-            testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
+            expect_identical(island$ideal_island, island$empirical_island)
+            expect_length(island$ideal_island[[1]]$branching_times, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 2)
+            expect_identical(island$ideal_island[[1]]$missing_species, 0)
           })
 
 test_that("mainland species undergoes speciation and then one of the descendent
@@ -67,10 +67,10 @@ test_that("mainland species undergoes speciation and then one of the descendent
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(island$ideal_island, island$empirical_island)
-            testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 4)
-            testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
+            expect_identical(island$ideal_island, island$empirical_island)
+            expect_length(island$ideal_island[[1]]$branching_times, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 4)
+            expect_identical(island$ideal_island[[1]]$missing_species, 0)
           })
 
 test_that("mainland species colonises the island and then goes extinct, without
@@ -92,20 +92,20 @@ test_that("mainland species colonises the island and then goes extinct, without
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_false(
+            expect_false(
               identical(island$ideal_island, island$empirical_island)
             )
-            testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
+            expect_length(island$ideal_island[[1]]$branching_times, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 2)
+            expect_identical(island$ideal_island[[1]]$missing_species, 0)
 
-            testthat::expect_length(island$empirical_island[[1]]$branching_times, 2)
-            testthat::expect_identical(
+            expect_length(island$empirical_island[[1]]$branching_times, 2)
+            expect_identical(
               island$empirical_island[[1]]$branching_times[1],
               island$empirical_island[[1]]$branching_times[2] + 1e-5
             )
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 5)
-            testthat::expect_identical(island$empirical_island[[1]]$missing_species, 0)
+            expect_identical(island$empirical_island[[1]]$stac, 5)
+            expect_identical(island$empirical_island[[1]]$missing_species, 0)
           })
 
 test_that("mainland species colonises the island and and then undergoes
@@ -128,10 +128,10 @@ test_that("mainland species colonises the island and and then undergoes
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(island$ideal_island, island$empirical_island)
-            testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
+            expect_identical(island$ideal_island, island$empirical_island)
+            expect_length(island$ideal_island[[1]]$branching_times, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 2)
+            expect_identical(island$ideal_island[[1]]$missing_species, 0)
           })
 
 test_that("mainland species colonises the island and and then undergoes
@@ -154,20 +154,20 @@ test_that("mainland species colonises the island and and then undergoes
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_false(
+            expect_false(
               identical(island$ideal_island, island$empirical_island)
             )
-            testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
+            expect_length(island$ideal_island[[1]]$branching_times, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 2)
+            expect_identical(island$ideal_island[[1]]$missing_species, 0)
 
-            testthat::expect_length(island$empirical_island[[1]]$branching_times, 2)
-            testthat::expect_identical(
+            expect_length(island$empirical_island[[1]]$branching_times, 2)
+            expect_identical(
               island$empirical_island[[1]]$branching_times[1],
               island$empirical_island[[1]]$branching_times[2] + 1e-5
             )
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 5)
-            testthat::expect_identical(island$empirical_island[[1]]$missing_species, 0)
+            expect_identical(island$empirical_island[[1]]$stac, 5)
+            expect_identical(island$empirical_island[[1]]$missing_species, 0)
           })
 
 
@@ -192,10 +192,10 @@ test_that("mainland species undergoes speciation and then one of the descendant
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(island$ideal_island, island$empirical_island)
-            testthat::expect_length(island$ideal_island[[1]]$branching_times, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$missing_species, 0)
+            expect_identical(island$ideal_island, island$empirical_island)
+            expect_length(island$ideal_island[[1]]$branching_times, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 2)
+            expect_identical(island$ideal_island[[1]]$missing_species, 0)
           })
 
 test_that("mainland ancestor is extinct; multiple colonists same species; no
@@ -218,31 +218,31 @@ test_that("mainland ancestor is extinct; multiple colonists same species; no
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_false(
+            expect_false(
               identical(
                 island$ideal_island,
                 island$empirical_island
               )
             )
-            testthat::expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
-            testthat::expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 6)
-            testthat::expect_identical(island$empirical_island[[2]]$stac, 6)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
-            testthat::expect_identical(island$ideal_island[[2]]$stac, 3)
-            testthat::expect_identical(
+            expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
+            expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
+            expect_identical(island$empirical_island[[1]]$stac, 6)
+            expect_identical(island$empirical_island[[2]]$stac, 6)
+            expect_identical(island$ideal_island[[1]]$stac, 3)
+            expect_identical(island$ideal_island[[2]]$stac, 3)
+            expect_identical(
               island$empirical_island[[1]]$branching_times[1],
               island$empirical_island[[1]]$branching_times[2] + 1e-5
             )
-            testthat::expect_identical(
+            expect_identical(
               island$empirical_island[[2]]$branching_times[1],
               island$empirical_island[[2]]$branching_times[2] + 1e-5
             )
-            testthat::expect_gt(
+            expect_gt(
               island$ideal_island[[1]]$branching_times[1],
               island$ideal_island[[1]]$branching_times[2]
             )
-            testthat::expect_gt(
+            expect_gt(
               island$ideal_island[[2]]$branching_times[1],
               island$ideal_island[[2]]$branching_times[2]
             )
@@ -269,27 +269,28 @@ test_that("full mainland species are extinct; multiple colonists same species;
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_false(
+            expect_false(
               identical(
                 island$ideal_island,
                 island$empirical_island
               )
             )
-            testthat::expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
-            testthat::expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
+            expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
+            expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
 
             # ideal has info on recolonist, empirical puts it in same clade
-            testthat::expect_lt(
-              length(island$empirical_island[[1]]), length(island$ideal_island[[1]])
+            expect_lt(
+              length(island$empirical_island[[1]]),
+              length(island$ideal_island[[1]])
             )
 
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 6)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
-            testthat::expect_identical(
+            expect_identical(island$empirical_island[[1]]$stac, 6)
+            expect_identical(island$ideal_island[[1]]$stac, 3)
+            expect_identical(
               island$empirical_island[[1]]$branching_times[1],
               island$empirical_island[[1]]$branching_times[2] + 1e-5
             )
-            testthat::expect_gt(
+            expect_gt(
               island$ideal_island[[1]]$branching_times[1],
               island$ideal_island[[1]]$branching_times[2]
             )
@@ -315,27 +316,28 @@ test_that("mainland ancestor sister is extinct, sister species on the mainland
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_false(
+            expect_false(
               identical(
                 island$ideal_island,
                 island$empirical_island
               )
             )
-            testthat::expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
-            testthat::expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
+            expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
+            expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
 
             # ideal has info on recolonist, empirical puts it in same clade
-            testthat::expect_lt(
-              length(island$empirical_island[[1]]), length(island$ideal_island[[1]])
+            expect_lt(
+              length(island$empirical_island[[1]]),
+              length(island$ideal_island[[1]])
             )
 
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 2)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
-            testthat::expect_gt(
+            expect_identical(island$empirical_island[[1]]$stac, 2)
+            expect_identical(island$ideal_island[[1]]$stac, 3)
+            expect_gt(
               island$empirical_island[[1]]$branching_times[1],
               island$empirical_island[[1]]$branching_times[2] + 1e-5
             )
-            testthat::expect_gt(
+            expect_gt(
               island$ideal_island[[1]]$branching_times[1],
               island$ideal_island[[1]]$branching_times[2]
             )
@@ -343,7 +345,8 @@ test_that("mainland ancestor sister is extinct, sister species on the mainland
 
 test_that("mainland ancestor is extinct; only one colonists same species; clade
           and singleton cases", {
-            # TODO: check tomorrow; also check: should be "A" in mainland_spec$spec_type?
+            # TODO: check tomorrow; also check: should be "A" in
+            # mainland_spec$spec_type?
             skip("WIP")
             set.seed(
               1,
@@ -362,35 +365,37 @@ test_that("mainland ancestor is extinct; only one colonists same species; clade
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_false(
+            expect_false(
               identical(
                 island$ideal_island,
                 island$empirical_island
               )
             )
-            testthat::expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
-            testthat::expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
+            expect_gt(length(island$ideal_island[[1]]$branching_times), 1)
+            expect_gt(length(island$empirical_island[[1]]$branching_times), 1)
             # Singleton
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 6)
+            expect_identical(island$empirical_island[[1]]$stac, 6)
 
             # Singleton is grafted onto clade on empirical, so only one clade
-            testthat::expect_length(island$empirical_island, 1)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+            expect_length(island$empirical_island, 1)
+            expect_identical(island$ideal_island[[1]]$stac, 3)
 
-            # Re-colonisations are in object within same level, not as separate clade
-            testthat::expect_length(island$ideal_island, 1)
+            # Re-colonisations are in object within same level, not as
+            # separate clade
+            expect_length(island$ideal_island, 1)
 
             # Re-colonists take more elements in ideal island
-            testthat::expect_lt(
-              length(island$empirical_island[[1]]), length(island$ideal_island[[1]])
+            expect_lt(
+              length(island$empirical_island[[1]]),
+              length(island$ideal_island[[1]])
             )
 
-            testthat::expect_equal(
+            expect_equal(
               island$empirical_island[[1]]$branching_times[1],
               island$empirical_island[[1]]$branching_times[2],
               tolerance = 1e-5
             )
-            testthat::expect_gt(
+            expect_gt(
               island$ideal_island[[1]]$branching_times[1],
               island$ideal_island[[1]]$branching_times[2]
             )
@@ -416,16 +421,16 @@ test_that("mainland ancestor is extant; two colonists same species: one clade
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(
+            expect_identical(
               island$ideal_island,
               island$empirical_island
             )
 
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 3)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+            expect_identical(island$empirical_island[[1]]$stac, 3)
+            expect_identical(island$ideal_island[[1]]$stac, 3)
 
-            testthat::expect_length(island$empirical_island, 1)
-            testthat::expect_length(island$ideal_island, 1)
+            expect_length(island$empirical_island, 1)
+            expect_length(island$ideal_island, 1)
           })
 
 test_that("mainland ancestor is extant; two colonists same species: one clade
@@ -449,16 +454,16 @@ test_that("mainland ancestor is extant; two colonists same species: one clade
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(
+            expect_identical(
               island$ideal_island,
               island$empirical_island
             )
 
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 3)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+            expect_identical(island$empirical_island[[1]]$stac, 3)
+            expect_identical(island$ideal_island[[1]]$stac, 3)
 
-            testthat::expect_length(island$empirical_island, 1)
-            testthat::expect_length(island$ideal_island, 1)
+            expect_length(island$empirical_island, 1)
+            expect_length(island$ideal_island, 1)
           })
 
 test_that("mainland ancestor is extant; two colonists same species: one
@@ -482,14 +487,14 @@ test_that("mainland ancestor is extant; two colonists same species: one
               mainland_clade = mainland_clade,
               mainland_sample_prob = mainland_sample_prob
             )
-            testthat::expect_identical(
+            expect_identical(
               island$ideal_island,
               island$empirical_island
             )
 
-            testthat::expect_identical(island$empirical_island[[1]]$stac, 3)
-            testthat::expect_identical(island$ideal_island[[1]]$stac, 3)
+            expect_identical(island$empirical_island[[1]]$stac, 3)
+            expect_identical(island$ideal_island[[1]]$stac, 3)
 
-            testthat::expect_length(island$empirical_island, 1)
-            testthat::expect_length(island$ideal_island, 1)
+            expect_length(island$empirical_island, 1)
+            expect_length(island$ideal_island, 1)
           })

@@ -29,7 +29,7 @@ plot_ctt_boxplot <- function(data_folder_path,
   ctt_list <- lapply(error_list, "[[", "delta_ctt")
   upper_ylim <- max(unlist(ctt_list)) + 0.05
 
-  mainland_ex <- unlist(lapply(sim_params_list,"[[", "mainland_ex"))
+  mainland_ex <- unlist(lapply(sim_params_list, "[[", "mainland_ex"))
   mainland_sample_prob <- unlist(lapply(sim_params_list, "[[",
                                         "mainland_sample_prob"))
   mainland_sample_type <- unlist(lapply(sim_params_list, "[[",

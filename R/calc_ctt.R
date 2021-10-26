@@ -60,8 +60,8 @@ calc_ctt <- function(daisie_data) {
     ideal_lineages_norm <- ideal_lineages / max(ideal_lineages)
     testit::assert(all(ideal_norm_col_times >= 0 & ideal_norm_col_times <= 1))
     testit::assert(all(ideal_lineages_norm >= 0 & ideal_lineages_norm <= 1))
-    ideal_norm_col_times <- c(ideal_norm_col_times, 1) #check with Thijs why this is needed
-    ideal_lineages_norm <- c(ideal_lineages_norm, 1) #check with Thijs why this is needed
+    ideal_norm_col_times <- c(ideal_norm_col_times, 1) #check with Richel why this is needed
+    ideal_lineages_norm <- c(ideal_lineages_norm, 1) #check with Richel why this is needed
 
     empirical_col_times <- sort(empirical_col_times, decreasing = TRUE)
     empirical_norm_col_times <-
@@ -72,8 +72,8 @@ calc_ctt <- function(daisie_data) {
                          empirical_norm_col_times <= 1))
     testit::assert(all(empirical_lineages_norm >= 0 &
                          empirical_lineages_norm <= 1))
-    empirical_norm_col_times <- c(empirical_norm_col_times, 1) #check with Thijs why this is needed
-    empirical_lineages_norm <- c(empirical_lineages_norm, 1) #check with Thijs why this is needed
+    empirical_norm_col_times <- c(empirical_norm_col_times, 1) #check with Richel why this is needed
+    empirical_lineages_norm <- c(empirical_lineages_norm, 1) #check with Richel why this is needed
 
     # calculate delta colonisation through time
     delta_ctt <- nLTT::nltt_diff_exact_norm_brts(
@@ -85,6 +85,5 @@ calc_ctt <- function(daisie_data) {
 
     delta_ctt_vec <- c(delta_ctt_vec, delta_ctt)
   }
-
   return(delta_ctt_vec)
 }

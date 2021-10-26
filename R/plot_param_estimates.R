@@ -62,7 +62,6 @@ plot_param_estimates <- function(param_set,
   sim_params <- results_list[[1]]$sim_params
   sim_clado <- asinh(sim_params$island_clado)
   sim_ext <- asinh(sim_params$island_ex)
-  sim_k <- asinh(sim_params$island_k)
   sim_immig <- asinh(sim_params$island_immig)
   sim_ana <- asinh(sim_params$island_ana)
 
