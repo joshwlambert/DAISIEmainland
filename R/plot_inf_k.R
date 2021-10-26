@@ -5,13 +5,7 @@
 #' @return Void (saves plot)
 #' @export
 plot_inf_k <- function(data_folder_path,
-                       output_file_path,
-                       parameter) {
-
-  testit::assert(
-    "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
-    parameter == "mainland_ex" || parameter == "unsampled" ||
-      parameter == "undiscovered")
+                       output_file_path) {
 
   files <- list.files(data_folder_path)
 
@@ -59,19 +53,9 @@ plot_inf_k <- function(data_folder_path,
     mainland_sample_type = mainland_sample_type,
     sim_k = sim_k)
 
-  if (parameter == "mainland_ex") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "complete")
-  } else if (parameter == "unsampled") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "unsampled")
-  } else if (parameter == "undiscovered") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "undiscovered")
-  }
+  plotting_data <- dplyr::filter(
+    plotting_data,
+    plotting_data$mainland_sample_type == "complete")
 
   plotting_data_k_5 <- dplyr::filter(
     plotting_data,
@@ -152,5 +136,4 @@ plot_inf_k <- function(data_folder_path,
   } else {
     return(k_inf_plot)
   }
-
 }
