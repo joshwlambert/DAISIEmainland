@@ -151,5 +151,4 @@ DAISIEmainland::plot_k_estimates(
 
 DAISIEmainland::plot_inf_k(
   data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "inf_k.png"),
-  parameter = "unsampled")
+  output_file_path = file.path("plots", "inf_k.png"))
