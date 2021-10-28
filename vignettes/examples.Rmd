@@ -48,9 +48,20 @@ island <- sim_island_with_mainland(
 Now we have the data (stored in the island object), which is a list object.
 At the highest level of the list there are two lists (`island$ideal_islands` and
 `island$empirical_islands`). The first (`island$ideal_islands`) contains 1,000
-elements, whereby each element of the list is one replicate. Therefore, to
-run a maximum likelihood DAISIE model on each replicate we create objects to
-store the data in (`ideal_ml` and `empirical_ml`) and then loop over each replicate.
+elements, whereby each element of the list is one replicate.
+
+We can now calculate the simulation metrics for the ideal and empirical islands.
+
+```{r eval=FALSE}
+ideal_sim_metrics <- DAISIEmainland::calc_sim_metrics(
+  daisie_data = island$ideal_islands)
+empirical_sim_metrics <- DAISIEmainland::calc_sim_metrics(
+  daisie_data = island$empirical_islands)
+```
+  
+To run a maximum likelihood DAISIE model on each replicate we create objects to
+store the data in (`ideal_ml` and `empirical_ml`) and then loop over each
+replicate.
 
 ```{r eval=FALSE}
 ideal_ml <- vector("list", replicates)
@@ -77,7 +88,8 @@ for (i in seq_len(replicates)) {
 }
 ```
 
-Calculate errors...
+To calculate the errors we can run `calc_error()` with the simulated data and 
+the maximum likelihood estimates.
 
 ```{r eval=FALSE}
 errors <- calc_error(
@@ -85,3 +97,6 @@ errors <- calc_error(
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml)
 ```
+
+For the code used to run the analysis for Lambert et al. (2021) see the
+`run_analysis.R` script and for plotting see `run_post_processing.R` script.
