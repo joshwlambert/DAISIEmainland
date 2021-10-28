@@ -31,9 +31,9 @@ update_island_endemics <- function(timeval,
         if (mainland_spec_type[i] != "US") {
           island_spec[island_spec[, "spec_id"] == immig_spec[i], "spec_type"] <-
             "A"
+          island_spec[island_spec[, "spec_id"] == immig_spec[i], "ana_origin"] <-
+            "mainland_extinction"
         }
-        island_spec[island_spec[, "spec_id"] == immig_spec[i], "ana_origin"] <-
-          "mainland_extinction"
       }
     }
   }

@@ -57,7 +57,7 @@ create_non_empty_island <- function(total_time,
 
     mainland_spec <-
       which(mainland_clade[, "spec_id"] == colonists_present[i])
-    ### is there any extant descendants of the immigrant on the mainland
+    # is there any extant descendants of the immigrant on the mainland
     branching_code <-
       paste0("^", mainland_clade[mainland_spec, "branch_code"])
     descending_branches <-
@@ -94,10 +94,17 @@ create_non_empty_island <- function(total_time,
             missing_species = 0)
         } else {
           if (nrow(subset_island) == 1) {
-            empirical_island[[i]] <- list(
-              branching_times = c(total_time, total_time - 1e-5),
-              stac = 5,
-              missing_species = 0)
+            if (mainland_clade[mainland_spec, "spec_type"] == "US") {
+              empirical_island[[i]] <- list(
+                branching_times = c(total_time, total_time - 1e-5),
+                stac = 1,
+                missing_species = 0)
+            } else {
+              empirical_island[[i]] <- list(
+                branching_times = c(total_time, total_time - 1e-5),
+                stac = 5,
+                missing_species = 0)
+            }
           } else {
             brts <- sort(subset_island[, "branch_t_bp"], decreasing = TRUE)
             brts <- brts[-1]
