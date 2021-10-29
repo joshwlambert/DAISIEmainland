@@ -14,32 +14,46 @@ knitr::opts_chunk$set(
 )
 ```
 
-Load the DAISIEmainland package. This will also load the DAISIE package
-which is required.
+The DAISIEmainland package has several dependencies (the entire list can be
+found in the DESCRIPTION). Most of these are on CRAN and can be installed with
+`install.packages()`. However, two packages require more up-to-date version than
+available on CRAN and need to be installed from github using the code below. 
 
-```{r setup}
+```{r install dependencies}
+remotes::install_github("rsetienne/DAISIE")
+remotes::install_github("thijsjanzen/nLTT")
+remotes::install_github("joshwlambert/DAISIEmainland")
+```
+
+Load the DAISIEmainland package with the `library()` function. This will also
+load the package dependencies, specifically the DAISIE package which will be
+used later on for parameter estimation by fitting maximum likelihood models.
+
+```{r load package}
 library(DAISIEmainland)
 ```
 
-First, we simulate 1,000 islands. This will produce phylogenetic data for each
-island. We simulate 1,000 island (or 1,000 replicates of the same island) to 
-account for the stochasticity in the simulation.
+First, we simulate an island. This will produce phylogenetic data for a single
+island. In an analysis many more replicates (e.g. 1,000) would be required to 
+account for the stochastic differences between replicates given the simulation
+is stochastic. 
 
-```{r eval=FALSE}
+```{r Run simulation}
 set.seed(
   1,
   kind = "Mersenne-Twister",
   normal.kind = "Inversion",
   sample.kind = "Rejection")
 
-replicates <- 1000
+replicates <- 1
 
-island <- sim_island_with_mainland(
-  total_time = 5,
+island <- DAISIEmainland::sim_island_with_mainland(
+  total_time = 1,
   m = 100,
-  island_pars = c(1, 1, 10, 0.1, 1),
-  mainland_ex = 1,
+  island_pars = c(1, 1, 50, 0.1, 1),
+  mainland_ex = 0.5,
   mainland_sample_prob = 1,
+  mainland_sample_type = "complete",
   replicates = replicates,
   verbose = FALSE
 )
@@ -47,23 +61,43 @@ island <- sim_island_with_mainland(
 
 Now we have the data (stored in the island object), which is a list object.
 At the highest level of the list there are two lists (`island$ideal_islands` and
-`island$empirical_islands`). The first (`island$ideal_islands`) contains 1,000
-elements, whereby each element of the list is one replicate.
+`island$empirical_islands`). The first (`island$ideal_islands`) contains 1
+elements, if more replicates where run each element of `island$ideal_islands` 
+is one replicate. The `island$ideal_islands` and `island$empirical_islands` 
+have the same structure. The first element of each is the `island_age` and the 
+number of species `not_present` on the island that are on the mainland.
+
+```{r Inspect data part 1}
+island$ideal_islands[[1]][[1]]
+island$empirical_islands[[1]][[1]]
+```
+
+Subsequent elements of the list are the island clades which are composed of:
+`branching_times`, status of colonisation or `stac`, and number of
+`missing_species`.
+
+```{r Inspect data part 2}
+island$ideal_islands[[1]][[2]]
+island$empirical_islands[[1]][[2]]
+```
 
 We can now calculate the simulation metrics for the ideal and empirical islands.
 
-```{r eval=FALSE}
+```{r Calculate simulation metrics}
 ideal_sim_metrics <- DAISIEmainland::calc_sim_metrics(
   daisie_data = island$ideal_islands)
 empirical_sim_metrics <- DAISIEmainland::calc_sim_metrics(
   daisie_data = island$empirical_islands)
+
+ideal_sim_metrics
+empirical_sim_metrics
 ```
   
 To run a maximum likelihood DAISIE model on each replicate we create objects to
 store the data in (`ideal_ml` and `empirical_ml`) and then loop over each
 replicate.
 
-```{r eval=FALSE}
+```{r Calculate parameter estimates}
 ideal_ml <- vector("list", replicates)
 empirical_ml <- vector("list", replicates)
 
@@ -91,8 +125,8 @@ for (i in seq_len(replicates)) {
 To calculate the errors we can run `calc_error()` with the simulated data and 
 the maximum likelihood estimates.
 
-```{r eval=FALSE}
-errors <- calc_error(
+```{r Calculate error}
+errors <- DAISIEmainland::calc_error(
   daisie_data = island,
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml)
