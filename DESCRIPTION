@@ -29,8 +29,8 @@ Suggests:
     knitr,
     rmarkdown
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
-Remotes:  
+Remotes: 
     rsetienne/DAISIE@v4.0.2,
     thijsjanzen/nLTT
