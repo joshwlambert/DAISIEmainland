@@ -59,7 +59,7 @@ island information containing:
 \item{\verb{$not_present}}{the number of mainland lineages that are not
 present on the island.}
 }
-The subsequent elements of the list pertaining to each replcate contain
+The subsequent elements of the list pertaining to each replicate contain
 information on a single colonist lineage on the island and have 3 components:
 \describe{
 \item{\verb{$branching_times}}{island age and stem age of the
