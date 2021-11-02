@@ -34,14 +34,12 @@ plot_k_estimates <- function(data_folder_path,
   ideal_k_no_inf <- lapply(ideal_k, function(x) {
     temp_x <- x[!is.infinite(x)]
     temp_x <- temp_x[!is.nan(temp_x)]
-    temp_x <- asinh(temp_x)
     return(temp_x)
   })
 
   empirical_k_no_inf <- lapply(empirical_k, function(x) {
     temp_x <- x[!is.infinite(x)]
     temp_x <- temp_x[!is.nan(temp_x)]
-    temp_x <- asinh(temp_x)
     return(temp_x)
   })
 
@@ -78,6 +76,8 @@ plot_k_estimates <- function(data_folder_path,
                                                length(empirical_k_no_inf[[i]]))
     empirical_sim_k[[i]] <- rep(sim_k[[i]], length(empirical_k_no_inf[[i]]))
   }
+
+  upper_ylim <- max(unlist(ideal_k_no_inf), unlist(empirical_k_no_inf))
 
   ideal_plotting_data <- data.frame(
     ideal_k = unlist(ideal_k_no_inf),
@@ -131,97 +131,151 @@ plot_k_estimates <- function(data_folder_path,
     empirical_plotting_data$sim_k == 50)
 
   if (parameter == "mainland_ex") {
-    ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = ideal_k),
+    ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5,
+                                 ggplot2::aes(
+                                   x = as.factor(mainland_ex),
+                                   y = ideal_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[I]))) +
-      ggplot2::xlab(expression(mu[M])) +
-      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
+      ggplot2::ylab(expression("K'"[I])) +
+      ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+      ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = sinh(seq(0, asinh(upper_ylim), 2)),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh,
+                                  format = scales::comma_format(accuracy = 1)))
 
-    empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = empirical_k),
+    empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
+                                 ggplot2::aes(
+                                   x = as.factor(mainland_ex),
+                                   y = empirical_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
-      ggplot2::xlab(expression(mu[M])) +
-      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
+      ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50") +
+      ggplot2::ylim(c(0, upper_ylim))
 
-    ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = ideal_k),
+    ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
+                                 ggplot2::aes(
+                                   x = as.factor(mainland_ex),
+                                   y = ideal_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
-      ggplot2::xlab(expression(mu[M])) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
+      ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
+      ggplot2::ylim(c(0, upper_ylim))
 
-    empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = empirical_k),
+    empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
+                                     ggplot2::aes(
+                                       x = as.factor(mainland_ex),
+                                       y = empirical_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
-      ggplot2::xlab(expression(mu[M])) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
+      ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
+      ggplot2::ylim(c(0, upper_ylim))
   } else {
-    ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = ideal_k),
+    ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5,
+                                 ggplot2::aes(
+                                   x = as.factor(mainland_sample_prob),
+                                   y = ideal_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
+      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50") +
+      ggplot2::ylim(c(0, upper_ylim))
 
-    empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = empirical_k),
+    empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
+                                     ggplot2::aes(
+                                       x = as.factor(mainland_sample_prob),
+                                       y = empirical_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50")
+      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50") +
+      ggplot2::ylim(c(0, upper_ylim))
 
-    ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = ideal_k),
+    ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
+                                  ggplot2::aes(
+                                    x = as.factor(mainland_sample_prob),
+                                    y = ideal_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[I]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
+      ggplot2::ylim(c(0, upper_ylim))
 
-    empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = empirical_k),
+    empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
+                                      ggplot2::aes(
+                                        x = as.factor(mainland_sample_prob),
+                                        y = empirical_k)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(tilde("K'"[E]))) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50")
+      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
+      ggplot2::ylim(c(0, upper_ylim))
   }
 
   k_5_title <- cowplot::ggdraw() +
