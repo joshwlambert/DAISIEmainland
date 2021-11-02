@@ -22,6 +22,7 @@ Imports:
     testit,
     ggplot2,
     cowplot,
+    scales,
     dplyr
 Suggests: 
     lintr,
