@@ -76,6 +76,7 @@
 #' "mainland_ex" plots mainland extinction as the variable,
 #' "mainland_sample_prob" plots mainland sampling probability as the variable
 #' and "both" plots all the data
+#' @param plotting_data Numeric vector of data points
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -115,6 +116,7 @@ default_params_doc <- function(timeval,
                                data_folder_path,
                                output_file_path,
                                param_space,
-                               parameter) {
+                               parameter,
+                               plotting_data) {
   #Nothing
 }

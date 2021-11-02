@@ -41,7 +41,8 @@ default_params_doc(
   data_folder_path,
   output_file_path,
   param_space,
-  parameter
+  parameter,
+  plotting_data
 )
 }
 \arguments{
@@ -157,6 +158,8 @@ Either "general", "mainland_ex", or "mainland_sample_prob"}
 "mainland_ex" plots mainland extinction as the variable,
 "mainland_sample_prob" plots mainland sampling probability as the variable
 and "both" plots all the data}
+
+\item{plotting_data}{Numeric vector of data points}
 }
 \value{
 Nothing
