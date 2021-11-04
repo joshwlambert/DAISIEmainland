@@ -13,7 +13,7 @@
 #' str_to_event("cladogenesis")
 #'
 #' @keywords internal
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 str_to_event <- function(event_str) {
   testthat::expect_equal(length(event_str), 1)
   if (event_str == "immigration") {

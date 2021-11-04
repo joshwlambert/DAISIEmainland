@@ -13,7 +13,7 @@
 #' event_to_str(4)
 #'
 #' @keywords internal
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 event_to_str <- function(possible_event) {
   testthat::expect_equal(length(possible_event), 1)
   if (possible_event == 1) {
