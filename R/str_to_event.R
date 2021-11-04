@@ -7,10 +7,10 @@
 #' @seealso use \link{event_to_str} to convent an `event` to a string
 #'
 #' @examples
-#' str_to_event("immigration")
-#' str_to_event("extinction")
-#' str_to_event("anagenesis")
-#' str_to_event("cladogenesis")
+#' DAISIEmainland:::str_to_event("immigration")
+#' DAISIEmainland:::str_to_event("extinction")
+#' DAISIEmainland:::str_to_event("anagenesis")
+#' DAISIEmainland:::str_to_event("cladogenesis")
 #'
 #' @keywords internal
 #' @author Richèl J.C. Bilderbeek

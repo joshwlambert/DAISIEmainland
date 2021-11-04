@@ -16,16 +16,16 @@ the event as a string
 Convert a string to an event
 }
 \examples{
-str_to_event("immigration")
-str_to_event("extinction")
-str_to_event("anagenesis")
-str_to_event("cladogenesis")
+DAISIEmainland:::str_to_event("immigration")
+DAISIEmainland:::str_to_event("extinction")
+DAISIEmainland:::str_to_event("anagenesis")
+DAISIEmainland:::str_to_event("cladogenesis")
 
 }
 \seealso{
 use \link{event_to_str} to convent an \code{event} to a string
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }
 \keyword{internal}
