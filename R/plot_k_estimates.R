@@ -77,6 +77,7 @@ plot_k_estimates <- function(data_folder_path,
     empirical_sim_k[[i]] <- rep(sim_k[[i]], length(empirical_k_no_inf[[i]]))
   }
 
+  lower_ylim <- 0
   upper_ylim <- max(unlist(ideal_k_no_inf), unlist(empirical_k_no_inf))
 
   ideal_plotting_data <- data.frame(
@@ -147,12 +148,18 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = sinh(seq(0, asinh(upper_ylim), 2)),
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
         limits = c(0, upper_ylim),
         trans = scales::trans_new(name = "ihs",
                                   transform = asinh,
-                                  inverse = sinh,
-                                  format = scales::comma_format(accuracy = 1)))
+                                  inverse = sinh))
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
                                  ggplot2::aes(
@@ -166,10 +173,22 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50") +
-      ggplot2::ylim(c(0, upper_ylim))
+      ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh))
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
                                  ggplot2::aes(
@@ -183,10 +202,22 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[I]))) +
+      ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
-      ggplot2::ylim(c(0, upper_ylim))
+      ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh))
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
                                      ggplot2::aes(
@@ -200,10 +231,22 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
-      ggplot2::ylim(c(0, upper_ylim))
+      ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh))
   } else {
     ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5,
                                  ggplot2::aes(
@@ -217,11 +260,23 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[I]))) +
+      ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50") +
-      ggplot2::ylim(c(0, upper_ylim))
+      ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh))
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
                                      ggplot2::aes(
@@ -235,11 +290,23 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(5), colour = "grey50") +
-      ggplot2::ylim(c(0, upper_ylim))
+      ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh))
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
                                   ggplot2::aes(
@@ -253,11 +320,23 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[I]))) +
+      ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
-      ggplot2::ylim(c(0, upper_ylim))
+      ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh))
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
                                       ggplot2::aes(
@@ -271,11 +350,23 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(tilde("K'"[E]))) +
+      ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::geom_hline(yintercept = asinh(50), colour = "grey50") +
-      ggplot2::ylim(c(0, upper_ylim))
+      ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
+      ggplot2::scale_y_continuous(
+        breaks = create_plot_breaks(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        labels = create_plot_labels(lower_lim = lower_ylim,
+                                    upper_lim = upper_ylim,
+                                    accuracy = 1,
+                                    round_func = floor),
+        limits = c(0, upper_ylim),
+        trans = scales::trans_new(name = "ihs",
+                                  transform = asinh,
+                                  inverse = sinh))
   }
 
   k_5_title <- cowplot::ggdraw() +
