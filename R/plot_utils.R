@@ -26,3 +26,40 @@ calc_outliers <- function(plotting_data) {
   }
   return(outliers)
 }
+
+#' Creates the axis numbers (breaks) for plotting with an inverse hyperbolic
+#' sine transformation, with rounding to a set accuracy to reduce decimal
+#' places plotted
+#'
+#' @inheritParams default_params_doc
+#'
+#' @return Numeric vector
+create_plot_breaks <- function(lower_lim, upper_lim, accuracy, round_func) {
+  breaks <- sinh(labeling::extended(asinh(lower_lim),
+                                    asinh(upper_lim),
+                                    m = 4))
+  breaks <- round_func(breaks/accuracy) * accuracy
+  return(breaks)
+}
+
+#' Creates the axis numbers (labels) for plotting with an inverse hyperbolic
+#' sine transformation, with rounding to a set accuracy to reduce decimal
+#' places plotted
+#'
+#' @inheritParams default_params_doc
+#'
+#' @return Character vector
+create_plot_labels <- function(lower_lim, upper_lim, accuracy, round_func) {
+  breaks <- sinh(labeling::extended(asinh(lower_lim),
+                                    asinh(upper_lim),
+                                    m = 4))
+  breaks <- round_func(breaks/accuracy) * accuracy
+  breaks <- as.character(breaks)
+  for (i in seq_along(breaks)) {
+    if (as.numeric(breaks[i]) > 1e4 || as.numeric(breaks[i]) < -1e4) {
+      breaks[i] <- scales::scientific(as.numeric(breaks[i]), digits = 2)
+      breaks[i] <- gsub(pattern = "e\\+0", replacement = "e+", x = breaks[i])
+    }
+  }
+  return(breaks)
+}
