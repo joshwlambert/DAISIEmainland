@@ -77,6 +77,12 @@
 #' "mainland_sample_prob" plots mainland sampling probability as the variable
 #' and "both" plots all the data
 #' @param plotting_data Numeric vector of data points
+#' @param lower_lim Numeric stating the lower bound of the axis to be plotted
+#' @param upper_lim Numeric stating the upper bound of the axis to be plotted
+#' @param accuracy Numeric stating to which decimal place to kept, e.g. 0.1 is
+#' to one decimal place
+#' @param round_func Function to be passed through to the rounding, either
+#' `floor` or `ceiling` function
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -117,6 +123,10 @@ default_params_doc <- function(timeval,
                                output_file_path,
                                param_space,
                                parameter,
-                               plotting_data) {
+                               plotting_data,
+                               lower_lim,
+                               upper_lim,
+                               accuracy,
+                               round_func) {
   #Nothing
 }

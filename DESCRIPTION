@@ -23,6 +23,7 @@ Imports:
     ggplot2,
     cowplot,
     scales,
+    labeling,
     dplyr
 Suggests: 
     lintr,
