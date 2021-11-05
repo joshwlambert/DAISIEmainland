@@ -78,36 +78,51 @@ plot_max_age <- function(data_folder_path,
   }
 
   if (parameter == "mainland_ex") {
-    ideal_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = max_age_ideal),
+    ideal_max_age <- ggplot2::ggplot(data = plotting_data,
+                                       ggplot2::aes(
+                                         x = as.factor(mainland_ex),
+                                         y = max_age_ideal)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 100))
 
-    empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = max_age_empirical),
+    empirical_max_age <- ggplot2::ggplot(data = plotting_data,
+                                     ggplot2::aes(
+                                       x = as.factor(mainland_ex),
+                                       y = max_age_empirical)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 100))
   } else {
-    ideal_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = max_age_ideal),
+    ideal_max_age <- ggplot2::ggplot(data = plotting_data,
+                                     ggplot2::aes(
+                                       x = as.factor(mainland_sample_prob),
+                                       y = max_age_ideal)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
@@ -115,12 +130,17 @@ plot_max_age <- function(data_folder_path,
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 100))
 
-    empirical_max_age <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = max_age_empirical),
+    empirical_max_age <- ggplot2::ggplot(data = plotting_data,
+                                         ggplot2::aes(
+                                           x = as.factor(mainland_sample_prob),
+                                           y = max_age_empirical)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",

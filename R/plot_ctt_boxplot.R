@@ -67,23 +67,31 @@ plot_ctt_boxplot <- function(data_folder_path,
   }
 
   if (parameter == "mainland_ex") {
-    ctt <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = ctt),
+    ctt <- ggplot2::ggplot(data = plotting_data,
+                           ggplot2::aes(x = as.factor(mainland_ex),
+                                        y = ctt)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#56B4E9",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, "CTT"))) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::ylim(c(0, upper_ylim))
   } else {
-    ctt <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                       y = ctt),
-                          fill = "#56B4E9",
-                          outlier.size = 0.5,
-                          lwd = 0.5) +
+    ctt <- ggplot2::ggplot(data = plotting_data,
+                           ggplot2::aes(x = as.factor(mainland_sample_prob),
+                                        y = ctt)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
+                            fill = "#56B4E9",
+                            lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression(paste(Delta, "CTT"))) +
       ggplot2::xlab(expression(paste("Mainland sample probability ", (rho)))) +

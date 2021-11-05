@@ -41,7 +41,12 @@ default_params_doc(
   data_folder_path,
   output_file_path,
   param_space,
-  parameter
+  parameter,
+  plotting_data,
+  lower_lim,
+  upper_lim,
+  accuracy,
+  round_func
 )
 }
 \arguments{
@@ -157,6 +162,18 @@ Either "general", "mainland_ex", or "mainland_sample_prob"}
 "mainland_ex" plots mainland extinction as the variable,
 "mainland_sample_prob" plots mainland sampling probability as the variable
 and "both" plots all the data}
+
+\item{plotting_data}{Numeric vector of data points}
+
+\item{lower_lim}{Numeric stating the lower bound of the axis to be plotted}
+
+\item{upper_lim}{Numeric stating the upper bound of the axis to be plotted}
+
+\item{accuracy}{Numeric stating to which decimal place to kept, e.g. 0.1 is
+to one decimal place}
+
+\item{round_func}{Function to be passed through to the rounding, either
+\code{floor} or \code{ceiling} function}
 }
 \value{
 Nothing

@@ -22,6 +22,14 @@ You can install the released version of DAISIEmainland from github with:
 remotes::install_github("joshwlambert/DAISIEmainland")
 ```
 
+The two non-CRAN dependecies required for DAISIEmainland are DAISIE and nLTT,
+these can be install from github with:
+
+``` r
+remotes::install_github("rsetienne/DAISIE")
+remotes::install_github("thijsjanzen/nLTT")
+```
+
 ## Examples
 
 See [examples](vignettes/examples.Rmd).

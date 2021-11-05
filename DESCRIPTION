@@ -22,6 +22,8 @@ Imports:
     testit,
     ggplot2,
     cowplot,
+    scales,
+    labeling,
     dplyr
 Suggests: 
     lintr,

@@ -78,36 +78,51 @@ plot_endemics <- function(data_folder_path,
   }
 
   if (parameter == "mainland_ex") {
-    ideal_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = endemic_ideal),
+    ideal_endemics <- ggplot2::ggplot(data = plotting_data,
+                                       ggplot2::aes(
+                                         x = as.factor(mainland_ex),
+                                         y = endemic_ideal)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 100))
 
-    empirical_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_ex),
-                                         y = endemic_empirical),
+    empirical_endemics <- ggplot2::ggplot(data = plotting_data,
+                                          ggplot2::aes(
+                                            x = as.factor(mainland_ex),
+                                            y = endemic_empirical)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 100))
   } else {
-    ideal_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = endemic_ideal),
+    ideal_endemics <- ggplot2::ggplot(data = plotting_data,
+                                       ggplot2::aes(
+                                         x = as.factor(mainland_sample_prob),
+                                         y = endemic_ideal)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#009E73",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
@@ -115,12 +130,17 @@ plot_endemics <- function(data_folder_path,
       ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
       ggplot2::ylim(c(0, 100))
 
-    empirical_endemics <- ggplot2::ggplot(data = plotting_data) +
-      ggplot2::geom_boxplot(ggplot2::aes(x = as.factor(mainland_sample_prob),
-                                         y = endemic_empirical),
+    empirical_endemics <- ggplot2::ggplot(data = plotting_data,
+                                          ggplot2::aes(
+                                            x = as.factor(mainland_sample_prob),
+                                            y = endemic_empirical)) +
+      ggplot2::stat_summary(fun.data = calc_quantiles,
+                            geom = "boxplot",
                             fill = "#E69F00",
-                            outlier.size = 0.5,
                             lwd = 0.5) +
+      ggplot2::stat_summary(fun = calc_outliers,
+                            geom = "point",
+                            size = 0.5) +
       ggplot2::theme_classic() +
       ggplot2::ylab("Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
