@@ -58,7 +58,8 @@ create_plot_labels <- function(lower_lim, upper_lim, accuracy, round_func) {
   for (i in seq_along(breaks)) {
     if (as.numeric(breaks[i]) > 1e4 || as.numeric(breaks[i]) < -1e4) {
       breaks[i] <- scales::scientific(as.numeric(breaks[i]), digits = 2)
-      breaks[i] <- gsub(pattern = "e\\+0", replacement = "e+", x = breaks[i])
+      breaks[i] <- gsub(pattern = "e\\+0", replacement = "x10<sup>", x = breaks[i])
+      breaks[i] <- paste0(breaks[i], "</sup>")
     }
   }
   return(breaks)

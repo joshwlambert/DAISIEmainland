@@ -35,5 +35,5 @@ test_that("create_plot_labels runs silent without error", {
                                round_func = floor)
   expect_length(labels, 3)
   expect_true(is.character(labels))
-  expect_equal(labels, c("0", "74.2", "1.1e+4"))
+  expect_equal(labels, c("0", "74.2", "1.1x10<sup>4</sup>"))
 })

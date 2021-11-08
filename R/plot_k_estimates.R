@@ -144,6 +144,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
@@ -173,6 +175,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
@@ -202,6 +206,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
@@ -231,6 +237,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
@@ -260,6 +268,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
@@ -290,6 +300,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
@@ -320,6 +332,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
@@ -350,6 +364,8 @@ plot_k_estimates <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
+      ggplot2::theme(axis.text.y = ggtext::element_markdown(),
+                     axis.text.x = ggtext::element_markdown()) +
       ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
