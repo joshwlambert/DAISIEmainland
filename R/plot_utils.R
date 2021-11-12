@@ -34,11 +34,8 @@ calc_outliers <- function(plotting_data) {
 #' @inheritParams default_params_doc
 #'
 #' @return Numeric vector
-create_plot_breaks <- function(lower_lim, upper_lim, accuracy, round_func) {
-  breaks <- sinh(labeling::extended(asinh(lower_lim),
-                                    asinh(upper_lim),
-                                    m = 4))
-  breaks <- round_func(breaks/accuracy) * accuracy
+create_plot_breaks <- function(lower_lim, upper_lim) {
+  breaks <- scales::breaks_log(base = exp(1))(lower_lim:upper_lim)
   return(breaks)
 }
 
@@ -49,18 +46,69 @@ create_plot_breaks <- function(lower_lim, upper_lim, accuracy, round_func) {
 #' @inheritParams default_params_doc
 #'
 #' @return Character vector
-create_plot_labels <- function(lower_lim, upper_lim, accuracy, round_func) {
-  breaks <- sinh(labeling::extended(asinh(lower_lim),
-                                    asinh(upper_lim),
-                                    m = 4))
-  breaks <- round_func(breaks/accuracy) * accuracy
-  breaks <- as.character(breaks)
+create_plot_labelss <- function(lower_lim, upper_lim) {
+  breaks <- scales::breaks_log(base = exp(1))(lower_lim:upper_lim)
+  labels <- as.character(breaks)
   for (i in seq_along(breaks)) {
-    if (as.numeric(breaks[i]) > 1e4 || as.numeric(breaks[i]) < -1e4) {
-      breaks[i] <- scales::scientific(as.numeric(breaks[i]), digits = 2)
-      breaks[i] <- gsub(pattern = "e\\+0", replacement = "x10<sup>", x = breaks[i])
-      breaks[i] <- paste0(breaks[i], "</sup>")
+    if (breaks[i] > 1e4 || breaks[i] < -1e4) {
+      labels[i] <- gsub(pattern = "e",
+                        replacement = "%*%10<sup>",
+                        x = scales::scientific_format()(x))
+      labels[i] <- paste0(labels[i], "</sup>")
     }
   }
-  return(breaks)
+  return(labels)
+}
+
+
+scientific <- function(x) {
+  browser()
+  x <- ifelse(x > 1e4 | x < -1e4,
+              format(x, digits = 2, scientific = TRUE),
+              format(x, digits = 2, scientific = FALSE))
+  x <- parse(text = gsub(pattern = "e",
+                         replacement = " %*% 10^",
+                         x = x))
+  return(x)
+}
+
+old_scientific <- function(x) {
+  parse(text = gsub(pattern = "e",
+                    replacement = " %*% 10^",
+                    x = choose_scientific(x)))
+}
+
+choose_scientific <- function(x) {
+  ifelse(x > 1e4,
+         format(x, digits = 2, scientific = TRUE),
+         format(x, digits = 2, scientific = FALSE))
+}
+
+old_choose_scientific <- function(x) {
+  for (i in seq_along(x)) {
+    if (!is.na(x[i])) {
+      if (x[i] > 1e4 || x[i] < -1e4) {
+        x[i] <- parse(text = gsub(
+          pattern = "e",
+          replacement = " %*% 10^",
+          x = format(x[i], digits = 2, scientific = TRUE)))
+      } else {
+        x[i] <- format(x[i], digits = 2, scientific = FALSE)
+      }
+    }
+  }
+  return(x)
+}
+
+create_plot_labelsss <- function(x) {
+  if (!is.na(x)) {
+    if (x > 1e4 || x < -1e4) {
+      return(parse(text = gsub(
+        pattern = "e",
+        replacement = " %*% 10^",
+        x = scales::scientific_format()(x))))
+    } else {
+      return(as.character(x))
+    }
+  }
 }
