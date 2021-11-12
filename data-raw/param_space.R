@@ -10,7 +10,7 @@ mainland_ex_param_space <- expand.grid(
   mainland_ex = c(0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0),
   mainland_sample_prob = c(1.0),
   mainland_sample_type = "complete",
-  replicates = c(1000))
+  replicates = c(10))
 
 sample_param_space <- expand.grid(
   total_time = c(5),
@@ -23,7 +23,7 @@ sample_param_space <- expand.grid(
   mainland_ex = c(0),
   mainland_sample_prob = c(0.5, 0.6, 0.7, 0.8, 0.9, 1.0),
   mainland_sample_type = c("unsampled", "undiscovered"),
-  replicates = c(1000))
+  replicates = c(10))
 
 param_space <- rbind(mainland_ex_param_space, sample_param_space)
 
