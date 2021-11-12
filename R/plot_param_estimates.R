@@ -32,11 +32,11 @@ plot_param_estimates <- function(param_set,
   empirical_immig <- unlist(lapply(empirical_ml, "[[", "gamma"))
   empirical_ana <- unlist(lapply(empirical_ml, "[[", "lambda_a"))
 
-  param_diffs_list <- results_list[[1]]$error$param_diffs
-  clado_diffs <- param_diffs_list$clado_diff
-  ext_diffs <- param_diffs_list$ext_diff
-  immig_diffs <- param_diffs_list$immig_diff
-  ana_diffs <- param_diffs_list$ana_diff
+  param_ratios_list <- results_list[[1]]$error$param_ratios
+  clado_ratios <- param_ratios_list$clado_ratios
+  ext_ratios <- param_ratios_list$ext_ratios
+  immig_ratios <- param_ratios_list$immig_ratios
+  ana_ratios <- param_ratios_list$ana_ratios
 
   sim_params <- results_list[[1]]$sim_params
   sim_clado <- sim_params$island_clado
@@ -52,14 +52,14 @@ plot_param_estimates <- function(param_set,
   lower_ext <- min(ideal_ext, empirical_ext)
   lower_immig <- min(ideal_immig, empirical_immig)
   lower_ana <- min(ideal_ana, empirical_ana)
-  upper_clado_diffs <- max(clado_diffs)
-  upper_ext_diffs <- max(ext_diffs)
-  upper_immig_diffs <- max(immig_diffs)
-  upper_ana_diffs <- max(ana_diffs)
-  lower_clado_diffs <- min(clado_diffs)
-  lower_ext_diffs <- min(ext_diffs)
-  lower_immig_diffs <- min(immig_diffs)
-  lower_ana_diffs <- min(ana_diffs)
+  upper_clado_ratios <- max(clado_ratios)
+  upper_ext_ratios <- max(ext_ratios)
+  upper_immig_ratios <- max(immig_ratios)
+  upper_ana_ratios <- max(ana_ratios)
+  lower_clado_ratios <- min(clado_ratios)
+  lower_ext_ratios <- min(ext_ratios)
+  lower_immig_ratios <- min(immig_ratios)
+  lower_ana_ratios <- min(ana_ratios)
 
   plotting_data <- data.frame(ideal_clado = ideal_clado,
                               ideal_ext = ideal_ext,
@@ -69,10 +69,10 @@ plot_param_estimates <- function(param_set,
                               empirical_ext = empirical_ext,
                               empirical_immig = empirical_immig,
                               empirical_ana = empirical_ana,
-                              clado_diffs = clado_diffs,
-                              ext_diffs = ext_diffs,
-                              immig_diffs = immig_diffs,
-                              ana_diffs = ana_diffs)
+                              clado_ratios = clado_ratios,
+                              ext_ratios = ext_ratios,
+                              immig_ratios = immig_ratios,
+                              ana_ratios = ana_ratios)
 
   clado_density <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_clado),
@@ -504,9 +504,9 @@ plot_param_estimates <- function(param_set,
                                 transform = asinh,
                                 inverse = sinh))
 
-  clado_vs_ext_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ext_diffs,
-                                               y = clado_diffs),
+  clado_vs_ext_ratios <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ext_ratios,
+                                               y = clado_ratios),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -520,35 +520,35 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_clado_diffs,
-                                  upper_lim = upper_clado_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_clado_ratios,
+                                  upper_lim = upper_clado_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_clado_diffs,
-                                  upper_lim = upper_clado_diffs,
+      labels = create_plot_labels(lower_lim = lower_clado_ratios,
+                                  upper_lim = upper_clado_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_clado_diffs, upper_clado_diffs),
+      limits = c(lower_clado_ratios, upper_clado_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh)) +
     ggplot2::scale_x_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_ext_diffs,
-                                  upper_lim = upper_ext_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_ext_ratios,
+                                  upper_lim = upper_ext_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_ext_diffs,
-                                  upper_lim = upper_ext_diffs,
+      labels = create_plot_labels(lower_lim = lower_ext_ratios,
+                                  upper_lim = upper_ext_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_ext_diffs, upper_ext_diffs),
+      limits = c(lower_ext_ratios, upper_ext_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh))
 
-  clado_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
-                                               y = clado_diffs),
+  clado_vs_immig_ratios <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_ratios,
+                                               y = clado_ratios),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -562,35 +562,35 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_clado_diffs,
-                                  upper_lim = upper_clado_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_clado_ratios,
+                                  upper_lim = upper_clado_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_clado_diffs,
-                                  upper_lim = upper_clado_diffs,
+      labels = create_plot_labels(lower_lim = lower_clado_ratios,
+                                  upper_lim = upper_clado_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_clado_diffs, upper_clado_diffs),
+      limits = c(lower_clado_ratios, upper_clado_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh)) +
     ggplot2::scale_x_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_immig_diffs,
-                                  upper_lim = upper_immig_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_immig_ratios,
+                                  upper_lim = upper_immig_ratios,
                                   accuracy = 0.001,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_immig_diffs,
-                                  upper_lim = upper_immig_diffs,
+      labels = create_plot_labels(lower_lim = lower_immig_ratios,
+                                  upper_lim = upper_immig_ratios,
                                   accuracy = 0.001,
                                   round_func = floor),
-      limits = c(lower_immig_diffs, upper_immig_diffs),
+      limits = c(lower_immig_ratios, upper_immig_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh))
 
-  clado_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
-                                               y = clado_diffs),
+  clado_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_ratios,
+                                               y = clado_ratios),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -604,35 +604,35 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_clado_diffs,
-                                  upper_lim = upper_clado_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_clado_ratios,
+                                  upper_lim = upper_clado_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_clado_diffs,
-                                  upper_lim = upper_clado_diffs,
+      labels = create_plot_labels(lower_lim = lower_clado_ratios,
+                                  upper_lim = upper_clado_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_clado_diffs, upper_clado_diffs),
+      limits = c(lower_clado_ratios, upper_clado_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh)) +
     ggplot2::scale_x_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_ana_diffs,
-                                  upper_lim = upper_ana_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_ana_ratios,
+                                  upper_lim = upper_ana_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_ana_diffs,
-                                  upper_lim = upper_ana_diffs,
+      labels = create_plot_labels(lower_lim = lower_ana_ratios,
+                                  upper_lim = upper_ana_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_ana_diffs, upper_ana_diffs),
+      limits = c(lower_ana_ratios, upper_ana_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh))
 
-  ext_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
-                                               y = ext_diffs),
+  ext_vs_immig_ratios <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_ratios,
+                                               y = ext_ratios),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -646,35 +646,35 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_ext_diffs,
-                                  upper_lim = upper_ext_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_ext_ratios,
+                                  upper_lim = upper_ext_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_ext_diffs,
-                                  upper_lim = upper_ext_diffs,
+      labels = create_plot_labels(lower_lim = lower_ext_ratios,
+                                  upper_lim = upper_ext_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_ext_diffs, upper_ext_diffs),
+      limits = c(lower_ext_ratios, upper_ext_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh)) +
     ggplot2::scale_x_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_immig_diffs,
-                                  upper_lim = upper_immig_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_immig_ratios,
+                                  upper_lim = upper_immig_ratios,
                                   accuracy = 0.001,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_immig_diffs,
-                                  upper_lim = upper_immig_diffs,
+      labels = create_plot_labels(lower_lim = lower_immig_ratios,
+                                  upper_lim = upper_immig_ratios,
                                   accuracy = 0.001,
                                   round_func = floor),
-      limits = c(lower_immig_diffs, upper_immig_diffs),
+      limits = c(lower_immig_ratios, upper_immig_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh))
 
-  ext_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
-                                               y = ext_diffs),
+  ext_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_ratios,
+                                               y = ext_ratios),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -688,35 +688,35 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_ext_diffs,
-                                  upper_lim = upper_ext_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_ext_ratios,
+                                  upper_lim = upper_ext_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_ext_diffs,
-                                  upper_lim = upper_ext_diffs,
+      labels = create_plot_labels(lower_lim = lower_ext_ratios,
+                                  upper_lim = upper_ext_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_ext_diffs, upper_ext_diffs),
+      limits = c(lower_ext_ratios, upper_ext_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh)) +
     ggplot2::scale_x_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_ana_diffs,
-                                  upper_lim = upper_ana_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_ana_ratios,
+                                  upper_lim = upper_ana_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_ana_diffs,
-                                  upper_lim = upper_ana_diffs,
+      labels = create_plot_labels(lower_lim = lower_ana_ratios,
+                                  upper_lim = upper_ana_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_ana_diffs, upper_ana_diffs),
+      limits = c(lower_ana_ratios, upper_ana_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh))
 
-  immig_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
-                                               y = immig_diffs),
+  immig_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_ratios,
+                                               y = immig_ratios),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -730,43 +730,46 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 0, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_immig_diffs,
-                                  upper_lim = upper_immig_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_immig_ratios,
+                                  upper_lim = upper_immig_ratios,
                                   accuracy = 0.001,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_immig_diffs,
-                                  upper_lim = upper_immig_diffs,
+      labels = create_plot_labels(lower_lim = lower_immig_ratios,
+                                  upper_lim = upper_immig_ratios,
                                   accuracy = 0.001,
                                   round_func = floor),
-      limits = c(lower_immig_diffs, upper_immig_diffs),
+      limits = c(lower_immig_ratios, upper_immig_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh)) +
     ggplot2::scale_x_continuous(
-      breaks = create_plot_breaks(lower_lim = lower_ana_diffs,
-                                  upper_lim = upper_ana_diffs,
+      breaks = create_plot_breaks(lower_lim = lower_ana_ratios,
+                                  upper_lim = upper_ana_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      labels = create_plot_labels(lower_lim = lower_ana_diffs,
-                                  upper_lim = upper_ana_diffs,
+      labels = create_plot_labels(lower_lim = lower_ana_ratios,
+                                  upper_lim = upper_ana_ratios,
                                   accuracy = 0.01,
                                   round_func = floor),
-      limits = c(lower_ana_diffs, upper_ana_diffs),
+      limits = c(lower_ana_ratios, upper_ana_ratios),
       trans = scales::trans_new(name = "ihs",
                                 transform = asinh,
                                 inverse = sinh))
 
   param_estimates <- cowplot::plot_grid(
-    clado_density, clado_vs_ext_diffs, clado_vs_immig_diffs, clado_vs_ana_diffs,
-    ext_vs_clado, ext_density, ext_vs_immig_diffs, ext_vs_ana_diffs,
-    immig_vs_clado, immig_vs_ext, immig_density, immig_vs_ana_diffs,
+    clado_density, clado_vs_ext_ratios,
+    clado_vs_immig_ratios, clado_vs_ana_ratios,
+    ext_vs_clado, ext_density,
+    ext_vs_immig_ratios, ext_vs_ana_ratios,
+    immig_vs_clado, immig_vs_ext,
+    immig_density, immig_vs_ana_ratios,
     ana_vs_clado, ana_vs_ext, ana_vs_immig, ana_density,
     align = "hv", nrow = 4, ncol = 4)
 
   if (parameter == "mainland_ex") {
     title <- cowplot::ggdraw() +
       cowplot::draw_label(
-        paste0("Mainland extinction = ", sim_params$mainland_ex),
+        paste0("Mainland extinction rate = ", sim_params$mainland_ex),
         size = 12)
   } else {
     title <- cowplot::ggdraw() +
