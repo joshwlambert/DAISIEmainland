@@ -272,3 +272,17 @@ test_that("sim_island_with_mainland with 1 mainland clade", {
     )
   )
 })
+
+test_that("sim_island_with_mainland with 0.0 time", {
+  expect_silent(
+    sim_island_with_mainland(
+      total_time = 0.0, # Nothing happened yet
+      m = 2, # Irrelevant
+      island_pars = c(1, 1, 10, 0.1, 1), # Irrelevant
+      mainland_ex = 1, # Irrelevant
+      mainland_sample_prob = 1, # Irrelevant
+      mainland_sample_type = "undiscovered", # Irrelevant
+      replicates = 1 # Irrelevant
+    )
+  )
+})

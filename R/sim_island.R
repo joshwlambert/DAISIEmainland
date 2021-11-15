@@ -31,7 +31,7 @@ sim_island <- function(total_time,
                        mainland_sample_type) {
 
   testit::assert(is.numeric(total_time))
-  testit::assert(total_time > 0)
+  testit::assert(total_time >= 0)
   testit::assert(is.numeric(island_pars))
   testit::assert(length(island_pars) == 5)
   testit::assert(island_pars[4] > 0)

@@ -33,9 +33,9 @@ sim_island_and_mainland <- function(total_time,
                                      mainland_sample_type,
                                      verbose = FALSE) {
   testit::assert(is.numeric(total_time))
-  testit::assert(total_time > 0)
+  testit::assert(total_time >= 0)
   testit::assert(is.numeric(m))
-  testit::assert(m > 1)
+  testit::assert(m >= 1)
   testit::assert(is.numeric(island_pars))
   testit::assert(length(island_pars) == 5)
   testit::assert(island_pars[4] > 0)
@@ -60,26 +60,24 @@ sim_island_and_mainland <- function(total_time,
     mainland_ex = mainland_ex
   )
 
+  island <- sim_island(
+    total_time = total_time,
+    island_pars = island_pars,
+    mainland_clade = mainland[[1]],
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
+  )
 
-  island <- list()
-  full_list <- list()
-  for (mainland_clade in seq_along(mainland)) {
-    message("mainland_clade: ", mainland_clade)
-    full_list[[mainland_clade]] <- sim_island(
-      total_time = total_time,
-      island_pars = island_pars,
-      mainland_clade = mainland[[mainland_clade]],
-      mainland_sample_prob = mainland_sample_prob,
-      mainland_sample_type = mainland_sample_type
-    )
-  }
-
-  island <- full_list
-
-  island_1 <- format_to_daisie_data(
-    island_1 = island_1,
+  island_as_daisie_data <- format_to_daisie_data(
+    island_replicates = island,
     total_time = total_time,
     m = m)
 
-  return(island_1)
+  return(
+    list(
+      mainland = mainland,
+      island = island,
+      island_as_daisie_data = island_as_daisie_data
+    )
+  )
 }

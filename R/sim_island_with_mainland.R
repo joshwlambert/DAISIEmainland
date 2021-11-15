@@ -72,7 +72,7 @@ sim_island_with_mainland <- function(total_time,
                                      replicates,
                                      verbose = FALSE) {
   testit::assert(is.numeric(total_time))
-  testit::assert(total_time > 0)
+  testit::assert(total_time >= 0)
   testit::assert(is.numeric(m))
   testit::assert(m >= 1)
   testit::assert(is.numeric(island_pars))

@@ -1,21 +1,31 @@
 test_that("Figure A1", {
+  skip("Re-create figure A1")
   # If the mainland species immigrates and does not go extinct or speciate, and no
   # events happen on the island, the island species is non-endemic (NE), and the colonisation
   # time in the empirical data (gamma_E) is the same as the colonisation time in the ideal data (gamma).
   # Empirical and ideal data are assigned stac 4.
-  HIERO
-  island_with_mainland <- sim_island_with_mainland(
-    total_time = 0.0000001,
-    m = 10,
+  island_with_mainland <- sim_island_and_mainland(
+    total_time = 100.0,
+    m = 2,
     island_pars = c(1, 1, 10, 0.1, 1),
-    mainland_ex = 1,
+    mainland_ex = 0.0,
     mainland_sample_prob = 1,
-    mainland_sample_type = "undiscovered",
-    replicates = 1,
-    verbose = FALSE
+    mainland_sample_type = "undiscovered"
   )
-  island_with_mainland$ideal_islands
-  island_with_mainland$empirical_islands
+  expect_equal(
+    names(island_with_mainland),
+    c("mainland", "island", "island_as_daisie_data")
+  )
+  island_with_mainland$mainland
+  expect_equal(
+    names(island_with_mainland$island),
+    c("ideal_island", "empirical_island")
+  )
+  expect_equal(
+    names(island_with_mainland$island_as_daisie_data),
+    c("ideal_islands", "empirical_islands")
+  )
+
   # Empty island
   island_spec_before <- create_test_island_spec(island_scenario = 0)
 
