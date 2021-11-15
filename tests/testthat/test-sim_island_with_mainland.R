@@ -258,3 +258,17 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = "nonsense")
   )
 })
+
+test_that("sim_island_with_mainland with 1 mainland clade", {
+  expect_silent(
+    sim_island_with_mainland(
+      total_time = 1, # Irrelevant
+      m = 1, # Number of mainland clades
+      island_pars = c(1, 1, 10, 0.1, 1), # Irrelevant
+      mainland_ex = 1, # Irrelevant
+      mainland_sample_prob = 1, # Irrelevant
+      mainland_sample_type = "undiscovered", # Irrelevant
+      replicates = 1 # Irrelevant
+    )
+  )
+})
