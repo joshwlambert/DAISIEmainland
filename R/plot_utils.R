@@ -27,88 +27,29 @@ calc_outliers <- function(plotting_data) {
   return(outliers)
 }
 
-#' Creates the axis numbers (breaks) for plotting with an inverse hyperbolic
-#' sine transformation, with rounding to a set accuracy to reduce decimal
-#' places plotted
-#'
-#' @inheritParams default_params_doc
-#'
-#' @return Numeric vector
-create_plot_breaks <- function(lower_lim, upper_lim) {
-  breaks <- scales::breaks_log(base = exp(1))(lower_lim:upper_lim)
-  return(breaks)
-}
-
-#' Creates the axis numbers (labels) for plotting with an inverse hyperbolic
-#' sine transformation, with rounding to a set accuracy to reduce decimal
-#' places plotted
+#' Creates the axis numbers (labels) for plotting with scientific form in
+#' x10 notation
 #'
 #' @inheritParams default_params_doc
 #'
 #' @return Character vector
-create_plot_labelss <- function(lower_lim, upper_lim) {
-  breaks <- scales::breaks_log(base = exp(1))(lower_lim:upper_lim)
-  labels <- as.character(breaks)
-  for (i in seq_along(breaks)) {
-    if (breaks[i] > 1e4 || breaks[i] < -1e4) {
-      labels[i] <- gsub(pattern = "e",
-                        replacement = "%*%10<sup>",
-                        x = scales::scientific_format()(x))
-      labels[i] <- paste0(labels[i], "</sup>")
-    }
-  }
-  return(labels)
-}
-
-
-scientific <- function(x) {
-  browser()
-  x <- ifelse(x > 1e4 | x < -1e4,
-              format(x, digits = 2, scientific = TRUE),
-              format(x, digits = 2, scientific = FALSE))
-  x <- parse(text = gsub(pattern = "e",
-                         replacement = " %*% 10^",
-                         x = x))
-  return(x)
-}
-
-old_scientific <- function(x) {
+scientific <- function(breaks) {
+  breaks <- gsub(pattern = "e\\+",
+                 replacement = "%*%10^",
+                 x = choose_scientific(breaks))
   parse(text = gsub(pattern = "e",
-                    replacement = " %*% 10^",
-                    x = choose_scientific(x)))
+                    replacement = "%*%10^",
+                    x = breaks))
 }
 
-choose_scientific <- function(x) {
-  ifelse(x > 1e4,
-         format(x, digits = 2, scientific = TRUE),
-         format(x, digits = 2, scientific = FALSE))
-}
-
-old_choose_scientific <- function(x) {
-  for (i in seq_along(x)) {
-    if (!is.na(x[i])) {
-      if (x[i] > 1e4 || x[i] < -1e4) {
-        x[i] <- parse(text = gsub(
-          pattern = "e",
-          replacement = " %*% 10^",
-          x = format(x[i], digits = 2, scientific = TRUE)))
-      } else {
-        x[i] <- format(x[i], digits = 2, scientific = FALSE)
-      }
-    }
-  }
-  return(x)
-}
-
-create_plot_labelsss <- function(x) {
-  if (!is.na(x)) {
-    if (x > 1e4 || x < -1e4) {
-      return(parse(text = gsub(
-        pattern = "e",
-        replacement = " %*% 10^",
-        x = scales::scientific_format()(x))))
-    } else {
-      return(as.character(x))
-    }
-  }
+#' Decides whether number should be in normal or scientific form depending on
+#' the magnitude of the number
+#'
+#' @inheritParams default_params_doc
+#'
+#' @return Character vector
+choose_scientific <- function(breaks) {
+  ifelse(breaks > 1e3 | breaks < 1e-3,
+         scales::scientific(breaks, digits = 2),
+         scales::number(signif(breaks, digits = 2), big.mark = ""))
 }
