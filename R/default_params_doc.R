@@ -83,6 +83,7 @@
 #' to one decimal place
 #' @param round_func Function to be passed through to the rounding, either
 #' `floor` or `ceiling` function
+#' @param breaks A vector of numerics
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -127,6 +128,7 @@ default_params_doc <- function(timeval,
                                lower_lim,
                                upper_lim,
                                accuracy,
-                               round_func) {
+                               round_func,
+                               breaks) {
   #Nothing
 }

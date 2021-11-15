@@ -46,7 +46,8 @@ default_params_doc(
   lower_lim,
   upper_lim,
   accuracy,
-  round_func
+  round_func,
+  breaks
 )
 }
 \arguments{
@@ -174,6 +175,8 @@ to one decimal place}
 
 \item{round_func}{Function to be passed through to the rounding, either
 \code{floor} or \code{ceiling} function}
+
+\item{breaks}{A vector of numerics}
 }
 \value{
 Nothing
