@@ -54,23 +54,6 @@ plot_param_estimates <- function(param_set,
   sim_immig <- sim_params$island_immig
   sim_ana <- sim_params$island_ana
 
-  upper_clado <- max(ideal_clado, empirical_clado)
-  upper_ext <- max(ideal_ext, empirical_ext)
-  upper_immig <- max(ideal_immig, empirical_immig)
-  upper_ana <- max(ideal_ana, empirical_ana)
-  lower_clado <- min(ideal_clado, empirical_clado)
-  lower_ext <- min(ideal_ext, empirical_ext)
-  lower_immig <- min(ideal_immig, empirical_immig)
-  lower_ana <- min(ideal_ana, empirical_ana)
-  upper_clado_ratios <- max(clado_ratios)
-  upper_ext_ratios <- max(ext_ratios)
-  upper_immig_ratios <- max(immig_ratios)
-  upper_ana_ratios <- max(ana_ratios)
-  lower_clado_ratios <- min(clado_ratios)
-  lower_ext_ratios <- min(ext_ratios)
-  lower_immig_ratios <- min(immig_ratios)
-  lower_ana_ratios <- min(ana_ratios)
-
   plotting_data <- data.frame(ideal_clado = ideal_clado,
                               ideal_ext = ideal_ext,
                               ideal_immig = ideal_immig,
@@ -94,12 +77,13 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -113,12 +97,13 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -132,12 +117,13 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(gamma)) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -151,12 +137,13 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(lambda^a)) +
     ggplot2::geom_vline(xintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -175,17 +162,18 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ext),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab(expression(mu)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ext, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -204,17 +192,18 @@ plot_param_estimates <- function(param_set,
                                                y = sim_immig),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab(expression(gamma)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -233,17 +222,18 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ana),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -262,17 +252,18 @@ plot_param_estimates <- function(param_set,
                                                y = sim_immig),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab(expression(gamma)) +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -291,17 +282,18 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ana),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -320,17 +312,18 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ana),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(gamma)) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -341,17 +334,18 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-    ggplot2::xlab(expression(paste(Delta, mu))) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
+    ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
+    ggplot2::xlab(expression(mu[I] / mu[E])) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -362,17 +356,18 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-    ggplot2::xlab(expression(paste(Delta, gamma))) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
+    ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
+    ggplot2::xlab(expression(gamma[I] / gamma[E])) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -383,17 +378,18 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
-    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
+    ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
+    ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -404,17 +400,18 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(paste(Delta, mu))) +
-    ggplot2::xlab(expression(paste(Delta, gamma))) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
+    ggplot2::ylab(expression(mu[I] / mu[E])) +
+    ggplot2::xlab(expression(gamma[I] / gamma[E])) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -425,17 +422,18 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(paste(Delta, mu))) +
-    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
+    ggplot2::ylab(expression(mu[I] / mu[E])) +
+    ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
@@ -446,17 +444,18 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(paste(Delta, gamma))) +
-    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::theme(title = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(size = 5)) +
+    ggplot2::ylab(expression(gamma[I] / gamma[E])) +
+    ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(base = exp(1)),
+      breaks = scales::breaks_log(n = 4, base = exp(1)),
       labels = scientific,
       trans = "log")
 
