@@ -18,22 +18,15 @@ test_that("calc_outliers runs silent without error when all values are equal", {
   expect_equal(outliers, 1)
 })
 
-test_that("create_plot_breaks runs silent without error", {
-  breaks <- create_plot_breaks(lower_lim = 0,
-                               upper_lim = 10000,
-                               accuracy = 0.1,
-                               round_func = floor)
-  expect_length(breaks, 3)
-  expect_true(is.numeric(breaks))
-  expect_equal(breaks, c(0, 74.2, 11013.2))
+test_that("scientific runs silent without error", {
+  labels <- scientific(c(1, 2, 3, 4, 5))
+  expect_true(is.expression(labels))
+  expect_length(labels, 5)
 })
 
-test_that("create_plot_labels runs silent without error", {
-  labels <- create_plot_labels(lower_lim = 0,
-                               upper_lim = 10000,
-                               accuracy = 0.1,
-                               round_func = floor)
+test_that("choose_scientific runs silent without error", {
+  labels <- choose_scientific(c(1e-5, 1, 1e5))
   expect_length(labels, 3)
   expect_true(is.character(labels))
-  expect_equal(labels, c("0", "74.2", "1.1x10<sup>4</sup>"))
+  expect_equal(labels, c("1e-05", "1.00", "1e+05"))
 })

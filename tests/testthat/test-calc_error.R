@@ -47,11 +47,11 @@ test_that("calc_error runs without error", {
   expect_equal(error$endemic_percent$ideal_non_endemics, 3)
   expect_equal(error$endemic_percent$empirical_endemics, 4)
   expect_equal(error$endemic_percent$empirical_non_endemics, 0)
-  expect_equal(error$param_ratios$clado_ratio, 1.122449)
+  expect_equal(error$param_ratios$clado_ratio, 1.12244897959)
   expect_equal(error$param_ratios$ext_ratio, 1.64)
   expect_equal(error$param_ratios$k_ratio, 4)
-  expect_equal(error$param_ratios$immig_ratio, 1.333333)
-  expect_equal(error$param_ratios$ana_ratio, 1.052632)
+  expect_equal(error$param_ratios$immig_ratio, 1.33333333333)
+  expect_equal(error$param_ratios$ana_ratio, 1.05263157895)
 })
 
 test_that("calc_error fails with incorrect daisie data", {

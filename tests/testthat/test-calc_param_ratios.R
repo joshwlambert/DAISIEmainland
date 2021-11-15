@@ -20,11 +20,11 @@ test_that("calc_param_ratios runs without error", {
                                                   empirical_ml = empirical_ml))
 
   expect_length(param_ratios, 5)
-  expect_equal(param_ratios$clado_ratio, 1.122449)
+  expect_equal(param_ratios$clado_ratio, 1.12244897959)
   expect_equal(param_ratios$ext_ratio, 1.64)
   expect_equal(param_ratios$k_ratio, 4)
-  expect_equal(param_ratios$immig_ratio, 1.333333)
-  expect_equal(param_ratios$ana_ratio, 1.052632)
+  expect_equal(param_ratios$immig_ratio, 1.33333333333)
+  expect_equal(param_ratios$ana_ratio, 1.05263157895)
 })
 
 test_that("calc_param_ratios fails with incorrect ideal_ml", {
