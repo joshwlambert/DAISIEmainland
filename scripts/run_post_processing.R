@@ -64,7 +64,9 @@ for (i in seq_along(list.files(file.path("results")))) {
     data_folder_path = file.path("results"),
     output_file_path = file.path("plots",
                                  paste0("param_estimates_", i, ".png")),
-    parameter = parameter
+    parameter = parameter,
+    num_breaks = 4,
+    signif = 2
   )
 }
 
@@ -137,17 +139,23 @@ ggplot2::ggsave(
 DAISIEmainland::plot_k_estimates(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "k_estimates_mainland_ex.png"),
-  parameter = "mainland_ex")
+  parameter = "mainland_ex",
+  num_breaks = 4,
+  signif = 2)
 
 DAISIEmainland::plot_k_estimates(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "k_estimates_unsampled.png"),
-  parameter = "unsampled")
+  parameter = "unsampled",
+  num_breaks = 4,
+  signif = 2)
 
 DAISIEmainland::plot_k_estimates(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "k_estimates_undiscovered.png"),
-  parameter = "undiscovered")
+  parameter = "undiscovered",
+  num_breaks = 4,
+  signif = 2)
 
 DAISIEmainland::plot_inf_k(
   data_folder_path = file.path("results"),
