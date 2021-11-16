@@ -8,7 +8,9 @@
 plot_param_estimates <- function(param_set,
                                  data_folder_path,
                                  output_file_path,
-                                 parameter) {
+                                 parameter,
+                                 num_breaks,
+                                 signif) {
 
   param_space_name <- paste0("param_set_", param_set, ".rds")
   files <- list.files(data_folder_path, pattern = param_space_name)
@@ -83,8 +85,8 @@ plot_param_estimates <- function(param_set,
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ext_density <- ggplot2::ggplot(data = plotting_data) +
@@ -103,8 +105,8 @@ plot_param_estimates <- function(param_set,
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   immig_density <- ggplot2::ggplot(data = plotting_data) +
@@ -123,8 +125,8 @@ plot_param_estimates <- function(param_set,
     ggplot2::xlab(expression(gamma)) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ana_density <- ggplot2::ggplot(data = plotting_data) +
@@ -143,8 +145,8 @@ plot_param_estimates <- function(param_set,
     ggplot2::xlab(expression(lambda^a)) +
     ggplot2::geom_vline(xintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ext_vs_clado <- ggplot2::ggplot(data = plotting_data) +
@@ -169,12 +171,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ext, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   immig_vs_clado <- ggplot2::ggplot(data = plotting_data) +
@@ -199,12 +201,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ana_vs_clado <- ggplot2::ggplot(data = plotting_data) +
@@ -229,12 +231,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   immig_vs_ext <- ggplot2::ggplot(data = plotting_data) +
@@ -259,12 +261,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ana_vs_ext <- ggplot2::ggplot(data = plotting_data) +
@@ -289,12 +291,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ana_vs_immig <- ggplot2::ggplot(data = plotting_data) +
@@ -319,12 +321,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
     ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   clado_vs_ext_ratios <- ggplot2::ggplot(data = plotting_data) +
@@ -341,12 +343,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   clado_vs_immig_ratios <- ggplot2::ggplot(data = plotting_data) +
@@ -363,12 +365,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   clado_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
@@ -385,12 +387,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ext_vs_immig_ratios <- ggplot2::ggplot(data = plotting_data) +
@@ -407,12 +409,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   ext_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
@@ -429,12 +431,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   immig_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
@@ -451,12 +453,12 @@ plot_param_estimates <- function(param_set,
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
     ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
     ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log") +
     ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = 4, base = exp(1)),
-      labels = scientific,
+      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
+      labels = create_labels(signif = signif),
       trans = "log")
 
   param_estimates <- cowplot::plot_grid(

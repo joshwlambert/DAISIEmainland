@@ -6,7 +6,9 @@
 #' @export
 plot_k_estimates <- function(data_folder_path,
                              output_file_path,
-                             parameter) {
+                             parameter,
+                             num_breaks,
+                             signif) {
 
   testit::assert(
     "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
@@ -151,8 +153,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
@@ -171,8 +173,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
@@ -191,8 +193,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
@@ -211,8 +213,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
   } else {
     ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5,
@@ -232,8 +234,8 @@ plot_k_estimates <- function(data_folder_path,
                                      (rho)))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
@@ -253,8 +255,8 @@ plot_k_estimates <- function(data_folder_path,
                                      (rho)))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
@@ -274,8 +276,8 @@ plot_k_estimates <- function(data_folder_path,
                                      (rho)))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
@@ -295,8 +297,8 @@ plot_k_estimates <- function(data_folder_path,
                                      (rho)))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
-        breaks = scales::breaks_log(n = 4, base = exp(1)),
-        labels = scientific,
+        breaks = scales::breaks_log(num_breaks, base = exp(1)),
+        labels = create_labels(signif = signif),
         trans = "log")
   }
 

@@ -27,16 +27,28 @@ calc_outliers <- function(plotting_data) {
   return(outliers)
 }
 
+#' Creates labels for plots by calling `scientific`.
+#'
+#' @inheritParams default_params_doc
+#'
+#' @return A function that takes a vector
+create_labels <- function(signif) {
+  function(breaks) scientific(
+    breaks,
+    signif = signif
+  )
+}
+
 #' Creates the axis numbers (labels) for plotting with scientific form in
 #' x10 notation
 #'
 #' @inheritParams default_params_doc
 #'
 #' @return Character vector
-scientific <- function(breaks) {
+scientific <- function(breaks, signif) {
   breaks <- gsub(pattern = "e\\+",
                  replacement = "%*%10^",
-                 x = choose_scientific(breaks))
+                 x = choose_scientific(breaks, signif))
   parse(text = gsub(pattern = "e",
                     replacement = "%*%10^",
                     x = breaks))
@@ -48,8 +60,8 @@ scientific <- function(breaks) {
 #' @inheritParams default_params_doc
 #'
 #' @return Character vector
-choose_scientific <- function(breaks) {
+choose_scientific <- function(breaks, signif) {
   ifelse(breaks > 1e3 | breaks < 1e-3,
          scales::scientific(breaks, digits = 2),
-         scales::number(signif(breaks, digits = 2), big.mark = ""))
+         scales::number(signif(breaks, digits = signif), big.mark = ""))
 }
