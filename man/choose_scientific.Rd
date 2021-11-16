@@ -5,10 +5,13 @@
 \title{Decides whether number should be in normal or scientific form depending on
 the magnitude of the number}
 \usage{
-choose_scientific(breaks)
+choose_scientific(breaks, signif)
 }
 \arguments{
 \item{breaks}{A vector of numerics}
+
+\item{signif}{A numeric specifying how many significant figures the axes
+labels have when plotting}
 }
 \value{
 Character vector

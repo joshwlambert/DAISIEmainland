@@ -5,10 +5,13 @@
 \title{Creates the axis numbers (labels) for plotting with scientific form in
 x10 notation}
 \usage{
-scientific(breaks)
+scientific(breaks, signif)
 }
 \arguments{
 \item{breaks}{A vector of numerics}
+
+\item{signif}{A numeric specifying how many significant figures the axes
+labels have when plotting}
 }
 \value{
 Character vector

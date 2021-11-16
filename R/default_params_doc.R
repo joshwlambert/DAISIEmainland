@@ -64,8 +64,6 @@
 #' data
 #' @param param_set Numeric for the index of the parameter set from the
 #' parameter space
-#' @param xlim Boolean determining whether the x-axis should be bounded on the
-#' plot
 #' @param data_folder_path String specifying the directory the data is read
 #' from
 #' @param output_file_path String specifying the directory the file is saved
@@ -77,13 +75,11 @@
 #' "mainland_sample_prob" plots mainland sampling probability as the variable
 #' and "both" plots all the data
 #' @param plotting_data Numeric vector of data points
-#' @param lower_lim Numeric stating the lower bound of the axis to be plotted
-#' @param upper_lim Numeric stating the upper bound of the axis to be plotted
-#' @param accuracy Numeric stating to which decimal place to kept, e.g. 0.1 is
-#' to one decimal place
-#' @param round_func Function to be passed through to the rounding, either
-#' `floor` or `ceiling` function
 #' @param breaks A vector of numerics
+#' @param num_breaks A numeric specifying how many breaks are wanted on the
+#' plot axes
+#' @param signif A numeric specifying how many significant figures the axes
+#' labels have when plotting
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -119,16 +115,13 @@ default_params_doc <- function(timeval,
                                empirical_ml,
                                sim_params,
                                param_set,
-                               xlim,
                                data_folder_path,
                                output_file_path,
                                param_space,
                                parameter,
                                plotting_data,
-                               lower_lim,
-                               upper_lim,
-                               accuracy,
-                               round_func,
-                               breaks) {
+                               breaks,
+                               num_breaks,
+                               signif) {
   #Nothing
 }

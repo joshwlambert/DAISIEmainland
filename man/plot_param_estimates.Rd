@@ -5,7 +5,14 @@
 \title{Plots a grid of density plots of parameter estimates on the diagonal and
 scatter plots of parameter estimates under the diagonal.}
 \usage{
-plot_param_estimates(param_set, data_folder_path, output_file_path, parameter)
+plot_param_estimates(
+  param_set,
+  data_folder_path,
+  output_file_path,
+  parameter,
+  num_breaks,
+  signif
+)
 }
 \arguments{
 \item{param_set}{Numeric for the index of the parameter set from the
@@ -21,6 +28,12 @@ in, if NULL the file is returned to console and not saved}
 "mainland_ex" plots mainland extinction as the variable,
 "mainland_sample_prob" plots mainland sampling probability as the variable
 and "both" plots all the data}
+
+\item{num_breaks}{A numeric specifying how many breaks are wanted on the
+plot axes}
+
+\item{signif}{A numeric specifying how many significant figures the axes
+labels have when plotting}
 }
 \value{
 Void (saves plot)
