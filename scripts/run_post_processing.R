@@ -1,4 +1,6 @@
-DAISIEmainland::calc_overall_sim_metrics(
+# Produce summary statistic and a range of plots for data visualisation
+
+DAISIEmainland::calc_sim_metrics(
   data_folder_path = file.path("results"),
   output_file_path = NULL)
 
