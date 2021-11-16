@@ -39,13 +39,13 @@ test_that("sim_island_mainland produces correct non-empty island", {
     verbose = FALSE)
 
   expect_equal(island$ideal_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$ideal_island[[1]][[1]]$not_present, 5)
+  expect_equal(island$ideal_island[[1]][[1]]$not_present, 6)
   expect_equal(island$ideal_island[[1]][[2]]$branching_times,
                c(1.000000000000, 0.4393665143))
   expect_equal(island$ideal_island[[1]][[2]]$stac, 2)
   expect_equal(island$ideal_island[[1]][[2]]$missing_species, 0)
   expect_equal(island$empirical_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$empirical_island[[1]][[1]]$not_present, 5)
+  expect_equal(island$empirical_island[[1]][[1]]$not_present, 6)
   expect_equal(island$empirical_island[[1]][[2]]$branching_times,
                c(1.000000000000, 0.4393665143))
   expect_equal(island$empirical_island[[1]][[2]]$stac, 2)
