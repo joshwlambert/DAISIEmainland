@@ -2,7 +2,8 @@
 % Please edit documentation in R/plot_k_estimates.R
 \name{plot_k_estimates}
 \alias{plot_k_estimates}
-\title{Plots carrying capacity estimates}
+\title{Boxplots of the estimated carrying capacity faceted for ideal and empirical
+data for two different values of K'.}
 \usage{
 plot_k_estimates(
   data_folder_path,
@@ -34,5 +35,6 @@ labels have when plotting}
 Void (saves plot)
 }
 \description{
-Plots carrying capacity estimates
+Boxplots of the estimated carrying capacity faceted for ideal and empirical
+data for two different values of K'.
 }

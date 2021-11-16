@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_endemics.R
 \name{plot_endemics}
 \alias{plot_endemics}
-\title{Plots two faceted violin plots of the percent of endemics on the island for
+\title{Plots two faceted boxplots of the percent of endemics on the island for
 different values of mainland extinction. The left side facet has the ideal
 data and the right side facet has the empirical data.}
 \usage{
@@ -24,7 +24,7 @@ and "both" plots all the data}
 Plot
 }
 \description{
-Plots two faceted violin plots of the percent of endemics on the island for
+Plots two faceted boxplots of the percent of endemics on the island for
 different values of mainland extinction. The left side facet has the ideal
 data and the right side facet has the empirical data.
 }

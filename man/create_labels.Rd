@@ -6,6 +6,10 @@
 \usage{
 create_labels(signif)
 }
+\arguments{
+\item{signif}{A numeric specifying how many significant figures the axes
+labels have when plotting}
+}
 \value{
 A function that takes a vector
 }
