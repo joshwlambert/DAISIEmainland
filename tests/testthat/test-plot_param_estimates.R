@@ -3,7 +3,9 @@ test_that("plot_param_estimates (no save) runs silent without error", {
     param_set = 1,
     data_folder_path = file.path("testdata"),
     output_file_path = NULL,
-    parameter = "mainland_ex"))
+    parameter = "mainland_ex",
+    num_breaks = 4,
+    signif = 2))
 })
 
 test_that("plot_param_estimates (save) runs silent without error", {
@@ -18,7 +20,9 @@ test_that("plot_param_estimates (save) runs silent without error", {
     param_set = 1,
     data_folder_path = file.path("testdata"),
     output_file_path = output_filename,
-    parameter = "mainland_ex"))
+    parameter = "mainland_ex",
+    num_breaks = 4,
+    signif = 2))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))

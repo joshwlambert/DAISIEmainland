@@ -18,14 +18,19 @@ test_that("calc_outliers runs silent without error when all values are equal", {
   expect_equal(outliers, 1)
 })
 
+test_that("create_labels runs silent without error", {
+  labels <- create_labels(signif = 2)
+  expect_true(is.function(labels))
+})
+
 test_that("scientific runs silent without error", {
-  labels <- scientific(c(1, 2, 3, 4, 5))
+  labels <- scientific(c(1, 2, 3, 4, 5), signif = 2)
   expect_true(is.expression(labels))
   expect_length(labels, 5)
 })
 
 test_that("choose_scientific runs silent without error", {
-  labels <- choose_scientific(c(1e-5, 1, 1e5))
+  labels <- choose_scientific(c(1e-5, 1, 1e5), signif = 2)
   expect_length(labels, 3)
   expect_true(is.character(labels))
   expect_equal(labels, c("1e-05", "1.00", "1e+05"))
