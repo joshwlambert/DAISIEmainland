@@ -8,6 +8,7 @@ ext_event <- function(island_spec) {
 
   testit::assert(is.data.frame(island_spec))
   testit::assert(ncol(island_spec) == 7)
+  testit::assert(nrow(island_spec) > 0)
 
   extinct <- DDD::sample2(seq_len(length(island_spec[, "spec_id"])), 1)
   typeofspecies <- island_spec[extinct, "spec_type"]
