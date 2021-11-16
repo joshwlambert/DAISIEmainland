@@ -23,7 +23,7 @@ create_non_empty_island <- function(total_time,
   number_colonists_present <- length(colonists_present)
 
   ideal_island <- list()
-  for (i in 1:number_colonists_present) {
+  for (i in seq_len(number_colonists_present)) {
     subset_island <- island_spec[which(island_spec[, "main_anc_id"] ==
                                          colonists_present[i]), ]
 
