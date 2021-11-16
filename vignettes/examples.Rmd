@@ -57,7 +57,7 @@ island <- DAISIEmainland::sim_island_with_mainland(
 Now we have the data (stored in the island object), which is a list object.
 At the highest level of the list there are two lists (`island$ideal_islands` and
 `island$empirical_islands`). The first (`island$ideal_islands`) contains 1
-elements, if more replicates where run each element of `island$ideal_islands` 
+element, if more replicates where run each element of `island$ideal_islands` 
 is one replicate. The `island$ideal_islands` and `island$empirical_islands` 
 have the same structure. The first element of each is the `island_age` and the 
 number of species `not_present` on the island that are on the mainland.
@@ -79,10 +79,20 @@ island$empirical_islands[[1]][[2]]
 We can now calculate the simulation metrics for the ideal and empirical islands.
 
 ```{r Calculate simulation metrics}
-ideal_sim_metrics <- DAISIEmainland::calc_sim_metrics(
+ideal_sim_num_spec <- DAISIEmainland::calc_num_spec(
   daisie_data = island$ideal_islands)
-empirical_sim_metrics <- DAISIEmainland::calc_sim_metrics(
+ideal_sim_num_col <- DAISIEmainland::calc_num_col(
+  daisie_data = island$ideal_islands)
+ideal_sim_metrics <- list(
+  ideal_sim_num_spec = ideal_sim_num_spec,
+  ideal_sim_num_col = ideal_sim_num_col)
+empirical_sim_num_spec <- DAISIEmainland::calc_num_spec(
   daisie_data = island$empirical_islands)
+empirical_sim_num_col <- DAISIEmainland::calc_num_col(
+  daisie_data = island$empirical_islands)
+empirical_sim_metrics <- list(
+  empirical_sim_num_spec = empirical_sim_num_spec,
+  empirical_sim_num_col = empirical_sim_num_col)
 
 ideal_sim_metrics
 empirical_sim_metrics
