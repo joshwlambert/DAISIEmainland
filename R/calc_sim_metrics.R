@@ -1,52 +1,83 @@
-#' Calculates summary metrics from a simulation
+#' Calculates the summary metrics for the entire parameter space
 #'
 #' @inheritParams default_params_doc
 #'
 #' @return List of simulation metrics
 #' @export
 #' @author Joshua W. Lambert
-calc_sim_metrics <- function(daisie_data) {
+calc_sim_metrics <- function(data_folder_path,
+                                     output_file_path) {
 
-  num_col <- c()
-  num_spec <- c()
+  files <- list.files(data_folder_path)
 
-  for (i in seq_along(daisie_data)) {
-    sim_rep <- daisie_data[[i]]
-
-    temp_num_spec <- c()
-    temp_num_col <- c()
-
-    stacs <- lapply(sim_rep, "[[", "stac")
-
-    for (j in 2:length(sim_rep)) {
-      if (stacs[[j]] != 3) {
-        temp_num_spec <- c(
-          temp_num_spec,
-          length(sim_rep[[j]]$branching_times) - 1
-        )
-        temp_num_col <- c(
-          temp_num_col,
-          1
-        )
-      } else {
-        for (k in seq_along(sim_rep[[j]]$all_colonisations)) {
-          temp_num_spec <- c(
-            temp_num_spec,
-            length(sim_rep[[j]]$all_colonisations[[k]]$event_times) - 1
-          )
-          temp_num_col <- c(
-            temp_num_col,
-            1
-          )
-        }
-      }
-    }
-    num_spec <- c(num_spec, sum(temp_num_spec))
-    num_col <- c(num_col, sum(temp_num_col))
+  if (length(files) == 0) {
+    stop("No results are in the results directory")
+  } else {
+    file_paths <- as.list(paste0(data_folder_path, "/", files))
+    results_list <- lapply(file_paths, readRDS)
   }
 
-  sim_metrics <- list(num_col = num_col,
-                      num_spec = num_spec)
+  ideal_sim_metrics_list <- lapply(results_list, "[[", "ideal_sim_metrics")
+  empirical_sim_metrics_list <- lapply(results_list,
+                                       "[[",
+                                       "empirical_sim_metrics")
 
-  return(sim_metrics)
+  ideal_num_col_list <- lapply(ideal_sim_metrics_list, "[[", "num_col")
+  ideal_num_spec_list <- lapply(ideal_sim_metrics_list, "[[", "num_spec")
+  empirical_num_col_list <- lapply(empirical_sim_metrics_list, "[[", "num_col")
+  empirical_num_spec_list <- lapply(empirical_sim_metrics_list,
+                                    "[[",
+                                    "num_spec")
+
+  ideal_mean_num_col <- unlist(lapply(ideal_num_col_list, mean))
+  ideal_max_num_col <- unlist(lapply(ideal_num_col_list, max))
+  ideal_min_num_col <- unlist(lapply(ideal_num_col_list, min))
+
+  ideal_mean_num_spec <- unlist(lapply(ideal_num_spec_list, mean))
+  ideal_max_num_spec <- unlist(lapply(ideal_num_spec_list, max))
+  ideal_min_num_spec <- unlist(lapply(ideal_num_spec_list, min))
+
+  empirical_mean_num_col <- unlist(lapply(empirical_num_col_list, mean))
+  empirical_max_num_col <- unlist(lapply(empirical_num_col_list, max))
+  empirical_min_num_col <- unlist(lapply(empirical_num_col_list, min))
+
+  empirical_mean_num_spec <- unlist(lapply(empirical_num_spec_list, mean))
+  empirical_max_num_spec <- unlist(lapply(empirical_num_spec_list, max))
+  empirical_min_num_spec <- unlist(lapply(empirical_num_spec_list, min))
+
+  ideal_mean_num_col <- mean(ideal_mean_num_col)
+  ideal_max_num_col <- max(ideal_max_num_col)
+  ideal_min_num_col <- min(ideal_min_num_col)
+
+  ideal_mean_num_spec <- mean(ideal_mean_num_spec)
+  ideal_max_num_spec <- max(ideal_max_num_spec)
+  ideal_min_num_spec <- min(ideal_min_num_spec)
+
+  empirical_mean_num_col <- mean(empirical_mean_num_col)
+  empirical_max_num_col <- max(empirical_max_num_col)
+  empirical_min_num_col <- min(empirical_min_num_col)
+
+  empirical_mean_num_spec <- mean(empirical_mean_num_spec)
+  empirical_max_num_spec <- max(empirical_max_num_spec)
+  empirical_min_num_spec <- min(empirical_min_num_spec)
+
+  output <- list(
+    ideal_mean_num_col = ideal_mean_num_col,
+    ideal_max_num_col = ideal_max_num_col,
+    ideal_min_num_col = ideal_min_num_col,
+    ideal_mean_num_spec = ideal_mean_num_spec,
+    ideal_max_num_spec = ideal_max_num_spec,
+    ideal_min_num_spec = ideal_min_num_spec,
+    empirical_mean_num_col = empirical_mean_num_col,
+    empirical_max_num_col = empirical_max_num_col,
+    empirical_min_num_col = empirical_min_num_col,
+    empirical_mean_num_spec = empirical_mean_num_spec,
+    empirical_max_num_spec = empirical_max_num_spec,
+    empirical_min_num_spec = empirical_min_num_spec)
+
+if (!is.null(output_file_path)) {
+    saveRDS(object = output, file = output_file_path)
+  } else {
+    return(output)
+  }
 }
