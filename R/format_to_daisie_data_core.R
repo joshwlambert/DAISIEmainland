@@ -27,7 +27,7 @@ format_to_daisie_data_core <- function(island_replicates,
     island_list[[1]] <- list(island_age = total_time,
                              not_present = number_not_present)
     if (number_present > 0) {
-      for (i in 1:number_present) {
+      for (i in seq_len(number_present)) {
         island_list[[1 + i]] <- new_full_list[[present[i]]]
       }
     }
