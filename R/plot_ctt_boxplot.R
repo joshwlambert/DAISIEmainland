@@ -1,5 +1,6 @@
-#' Plots a heatmap of the colonisation through time statistic for mainland
-#' sampling probability (y-axis) and mainland extinction rate (x-axis).
+#' Plots a boxplot of the delta colonisation through time statistic (y-axis)
+#' for either mainland extinction rate or mainland sampling probability
+#' (x-axis).
 #'
 #' @inheritParams default_params_doc
 #'

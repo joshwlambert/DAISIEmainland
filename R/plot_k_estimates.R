@@ -1,4 +1,5 @@
-#' Plots carrying capacity estimates
+#' Boxplots of the estimated carrying capacity faceted for ideal and empirical
+#' data for two different values of K'.
 #'
 #' @inheritParams default_params_doc
 #'

@@ -4,7 +4,8 @@
 #'
 #' @return Named vector of 5 named elements
 calc_quantiles <- function(plotting_data) {
-  quantiles <- stats::quantile(plotting_data, probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
+  quantiles <- stats::quantile(plotting_data,
+                               probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
   names(quantiles) <- c("ymin", "lower", "middle", "upper", "ymax")
   return(quantiles)
 }

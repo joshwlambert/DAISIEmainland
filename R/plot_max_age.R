@@ -1,4 +1,4 @@
-#' Plots two faceted violin plots of the percent of max age colonists on the
+#' Plots two faceted boxplots of the percent of max age colonists on the
 #' island for different values of mainland extinction. The left side facet has
 #' the ideal data and the right side facet has the empirical data.
 #'
