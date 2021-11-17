@@ -67,6 +67,9 @@ create_non_empty_island <- function(total_time,
             mainland_clade[descending_branches, "spec_type"] != "US" &
             mainland_clade[descending_branches, "spec_type"] != "UD")
 
+    ### HERE FUNCTION COULD BE CALLED FOR CREATING EMPIRICAL ISLAND
+    # PASS THROUGH i
+
     if (extant_mainland == FALSE) {
       # number of independent colonisations from the same mainland species
       number_colonisations <-

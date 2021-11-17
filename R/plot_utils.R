@@ -63,6 +63,6 @@ scientific <- function(breaks, signif) {
 #' @return Character vector
 choose_scientific <- function(breaks, signif) {
   ifelse(breaks > 1e3 | breaks < 1e-3,
-         scales::scientific(breaks, digits = 2),
+         scales::scientific(breaks, digits = 1),
          scales::number(signif(breaks, digits = signif), big.mark = ""))
 }
