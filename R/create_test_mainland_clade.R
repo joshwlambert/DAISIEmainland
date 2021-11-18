@@ -219,35 +219,35 @@ create_test_mainland_clade <- function(mainland_scenario) {
       main_anc_id = rep(1, 5),
       spec_type = c("E", "E", "C", "C", "C"),
       branch_code = c("A", "AA", "AB", "AAA", "AAB"),
-      branch_t = c(NA, 0.5, 0.5, 0.6, 0.6),
-      spec_origin_t = c(0, 0.5, 0.5, 0.6, 0.6),
-      spec_ex_t = c(0.5, 0.6, 1.0, 1.0, 1.0)
+      branch_t = c(NA, 0.33, 0.33, 0.5, 0.5),
+      spec_origin_t = c(0, 0.33, 0.33, 0.5, 0.5),
+      spec_ex_t = c(0.33, 0.5, 1.0, 1.0, 1.0)
     )
   }
 
   if (mainland_scenario == 18) {
-    # 2 speciations 1 extinction (other branch)
+    # 2 speciations 1 extinction
     mainland_clade <- data.frame(
       spec_id = 1:5,
       main_anc_id = rep(1, 5),
       spec_type = c("E", "E", "C", "C", "E"),
       branch_code = c("A", "AA", "AB", "AAA", "AAB"),
-      branch_t = c(NA, 0.5, 0.5, 0.6, 0.6),
-      spec_origin_t = c(0, 0.5, 0.5, 0.6, 0.6),
-      spec_ex_t = c(0.5, 0.6, 1.0, 1.0, 0.75)
+      branch_t = c(NA, 0.33, 0.33, 0.5, 0.5),
+      spec_origin_t = c(0, 0.33, 0.33, 0.5, 0.5),
+      spec_ex_t = c(0.33, 0.5, 1.0, 1.0, 0.83)
     )
   }
 
   if (mainland_scenario == 19) {
-    # 2 speciations 1 extinction
+    # 2 speciations 1 extinction (other branch)
     mainland_clade <- data.frame(
       spec_id = 1:5,
       main_anc_id = rep(1, 5),
       spec_type = c("E", "E", "C", "E", "C"),
       branch_code = c("A", "AA", "AB", "AAA", "AAB"),
-      branch_t = c(NA, 0.5, 0.5, 0.6, 0.6),
-      spec_origin_t = c(0, 0.5, 0.5, 0.6, 0.6),
-      spec_ex_t = c(0.5, 0.6, 1.0, 0.75, 1.0)
+      branch_t = c(NA, 0.33, 0.33, 0.5, 0.5),
+      spec_origin_t = c(0, 0.33, 0.33, 0.5, 0.5),
+      spec_ex_t = c(0.33, 0.5, 1.0, 0.83, 1.0)
     )
   }
 
@@ -258,9 +258,9 @@ create_test_mainland_clade <- function(mainland_scenario) {
       main_anc_id = rep(1, 5),
       spec_type = c("E", "E", "C", "E", "E"),
       branch_code = c("A", "AA", "AB", "AAA", "AAB"),
-      branch_t = c(NA, 0.5, 0.5, 0.6, 0.6),
-      spec_origin_t = c(0, 0.5, 0.5, 0.6, 0.6),
-      spec_ex_t = c(0.5, 0.6, 1.0, 0.75, 0.75)
+      branch_t = c(NA, 0.33, 0.33, 0.5, 0.5),
+      spec_origin_t = c(0, 0.33, 0.33, 0.5, 0.5),
+      spec_ex_t = c(0.33, 0.5, 1.0, 0.83, 0.83)
     )
   }
 
