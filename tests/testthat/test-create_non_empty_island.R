@@ -11,13 +11,16 @@ test_that("appendix scenario 0 (empty island)", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
   island_spec <- create_test_island_spec(island_scenario = 0)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, 1)
   expect_identical(island$ideal_island[[1]]$stac, 0)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
@@ -33,13 +36,16 @@ test_that("appendix scenario A1", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
   island_spec <- create_test_island_spec(island_scenario = 1)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 4)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
@@ -55,13 +61,16 @@ test_that("appendix scenario A2", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 2)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
@@ -77,13 +86,16 @@ test_that("appendix scenario A3", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 3)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 4)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
@@ -99,17 +111,20 @@ test_that("appendix scenario A4", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
   island_spec <- create_test_island_spec(island_scenario = 4)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
-  expect_length(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999))
+  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -128,13 +143,16 @@ test_that("appendix scnario A5", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
   island_spec <- create_test_island_spec(island_scenario = 5)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
@@ -150,16 +168,20 @@ test_that("appendix scenario A6", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
   island_spec <- create_test_island_spec(island_scenario = 6)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -179,13 +201,16 @@ test_that("appendix scenario A7", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
   island_spec <- create_test_island_spec(island_scenario = 7)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 4)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
@@ -201,16 +226,20 @@ test_that("appendix scenario A8", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 6)
   island_spec <- create_test_island_spec(island_scenario = 8)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island,island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.5))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -226,16 +255,20 @@ test_that("appendix scenario A9", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
   island_spec <- create_test_island_spec(island_scenario = 9)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -255,16 +288,20 @@ test_that("appendix scenario A10", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
   island_spec <- create_test_island_spec(island_scenario = 10)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
-  expect_true(identical(island$ideal_island, island$empirical_island))
+  expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -280,16 +317,20 @@ test_that("appendix scenario A11", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 11)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
-  expect_true(identical(island$ideal_island, island$empirical_island))
+  expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -305,16 +346,20 @@ test_that("appendix scenario A12", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 12)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -330,16 +375,20 @@ test_that("appendix scenario A13", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
   island_spec <- create_test_island_spec(island_scenario = 13)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -359,16 +408,20 @@ test_that("appendix scenario A14", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 7)
   island_spec <- create_test_island_spec(island_scenario = 14)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island,island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -385,16 +438,20 @@ test_that("appendix scenario A15", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 8)
   island_spec <- create_test_island_spec(island_scenario = 15)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -414,16 +471,20 @@ test_that("appendix scenario A16", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
   island_spec <- create_test_island_spec(island_scenario = 16)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -439,16 +500,20 @@ test_that("appendix scenario A17", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 6)
   island_spec <- create_test_island_spec(island_scenario = 17)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.5))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -464,16 +529,20 @@ test_that("appendix scenario A18", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
   island_spec <- create_test_island_spec(island_scenario = 18)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -493,16 +562,20 @@ test_that("appendix scenario A19", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
   island_spec <- create_test_island_spec(island_scenario = 19)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.50))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.5))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -518,16 +591,20 @@ test_that("appendix scenario A20", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 20)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.42))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.42))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -543,16 +620,20 @@ test_that("appendix scenario A21", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
   island_spec <- create_test_island_spec(island_scenario = 21)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.5))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.5))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -573,16 +654,20 @@ test_that("appendix scenario A22", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 22)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33, 0.17))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.33, 0.17))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -598,16 +683,20 @@ test_that("appendix scenario A23", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 23)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.42))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.42))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -623,16 +712,20 @@ test_that("appendix scenario A24", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 9)
   island_spec <- create_test_island_spec(island_scenario = 24)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.42))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.42))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -652,16 +745,20 @@ test_that("appendix scenario A25", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 10)
   island_spec <- create_test_island_spec(island_scenario = 25)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33, 0.17))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.33, 0.17))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -677,16 +774,20 @@ test_that("appendix scenario A26", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 6)
   island_spec <- create_test_island_spec(island_scenario = 26)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33, 0.17))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.50, 0.17))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -702,16 +803,20 @@ test_that("appendix scenario A27", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
   island_spec <- create_test_island_spec(island_scenario = 27)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33, 0.09))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.09))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
@@ -731,16 +836,20 @@ test_that("appendix scenario A28", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 1)
   island_spec <- create_test_island_spec(island_scenario = 28)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$empirical_island[[1]]$stac, 3)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -756,16 +865,20 @@ test_that("appendix scenario A29", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 3)
   island_spec <- create_test_island_spec(island_scenario = 29)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.84, 0.67))
   expect_identical(island$empirical_island[[1]]$stac, 6)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -781,16 +894,20 @@ test_that("appendix scenario A30", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 11)
   island_spec <- create_test_island_spec(island_scenario = 30)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$empirical_island[[1]]$stac, 3)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -806,16 +923,20 @@ test_that("appendix scenario A31", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 12)
   island_spec <- create_test_island_spec(island_scenario = 31)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$empirical_island[[1]]$stac, 3)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -831,16 +952,20 @@ test_that("appendix scenario A32", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 13)
   island_spec <- create_test_island_spec(island_scenario = 32)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84, 0.67))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.84, 0.67))
   expect_identical(island$empirical_island[[1]]$stac, 6)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -856,16 +981,20 @@ test_that("appendix scenario A33", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 14)
   island_spec <- create_test_island_spec(island_scenario = 33)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.67, 0.5))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.67, 0.5))
   expect_identical(island$empirical_island[[1]]$stac, 3)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -881,16 +1010,20 @@ test_that("appendix scenario A34", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 15)
   island_spec <- create_test_island_spec(island_scenario = 34)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.67, 0.5))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.67, 0.5))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -906,16 +1039,20 @@ test_that("appendix scenario A35", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 16)
   island_spec <- create_test_island_spec(island_scenario = 35)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.67, 0.5))
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.67, 0.5))
   expect_identical(island$empirical_island[[1]]$stac, 6)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -931,18 +1068,20 @@ test_that("appendix scenario A36", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
   island_spec <- create_test_island_spec(island_scenario = 36)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
   expect_length(island$ideal_island, 2)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
-  expect_length(island$ideal_island, 2)
+  expect_length(island$empirical_island, 2)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -958,11 +1097,13 @@ test_that("appendix scenario A37", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
   island_spec <- create_test_island_spec(island_scenario = 37)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_identical(island$ideal_island, island$empirical_island)
   expect_length(island$ideal_island, 2)
@@ -972,7 +1113,7 @@ test_that("appendix scenario A37", {
   expect_equal(island$ideal_island[[2]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[2]]$stac, 4)
   expect_identical(island$ideal_island[[2]]$missing_species, 0)
-  expect_length(island$ideal_island, 2)
+  expect_length(island$empirical_island, 2)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
@@ -991,11 +1132,13 @@ test_that("appendix scenario A38", {
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 6)
   island_spec <- create_test_island_spec(island_scenario = 38)
   mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
   island <- create_island(
     total_time = total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
   )
   expect_false(identical(island$ideal_island, island$empirical_island))
   expect_length(island$ideal_island, 2)
@@ -1005,11 +1148,184 @@ test_that("appendix scenario A38", {
   expect_equal(island$ideal_island[[2]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[2]]$stac, 2)
   expect_identical(island$ideal_island[[2]]$missing_species, 0)
-  expect_length(island$ideal_island, 2)
+  expect_length(island$empirical_island, 2)
   expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
   expect_equal(island$empirical_island[[2]]$branching_times, c(1.00, 0.5))
   expect_identical(island$empirical_island[[2]]$stac, 2)
   expect_identical(island$empirical_island[[2]]$missing_species, 0)
+})
+
+test_that("appendix scenario A39", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
+  total_time <- 1
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 5)
+  island_spec <- create_test_island_spec(island_scenario = 39)
+  mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
+  island <- create_island(
+    total_time = total_time,
+    island_spec = island_spec,
+    mainland_clade = mainland_clade,
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
+  )
+  expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 2)
+  expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
+  expect_identical(island$ideal_island[[1]]$stac, 2)
+  expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_equal(island$ideal_island[[2]]$branching_times, c(1.00, 0.33))
+  expect_identical(island$ideal_island[[2]]$stac, 2)
+  expect_identical(island$ideal_island[[2]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
+  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.84))
+  expect_identical(
+    island$empirical_island[[1]]$branching_times[1],
+    island$empirical_island[[1]]$branching_times[2] + 1e-5
+  )
+  expect_identical(island$empirical_island[[1]]$stac, 6)
+  expect_identical(island$empirical_island[[1]]$missing_species, 0)
+})
+
+test_that("appendix scenario A40", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
+  total_time <- 1
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 17)
+  island_spec <- create_test_island_spec(island_scenario = 40)
+  mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
+  island <- create_island(
+    total_time = total_time,
+    island_spec = island_spec,
+    mainland_clade = mainland_clade,
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
+  )
+  expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 2)
+  expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.58))
+  expect_identical(island$ideal_island[[1]]$stac, 2)
+  expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_equal(island$ideal_island[[2]]$branching_times, c(1.00, 0.33))
+  expect_identical(island$ideal_island[[2]]$stac, 4)
+  expect_identical(island$ideal_island[[2]]$missing_species, 0)
+  expect_length(island$empirical_island, 2)
+  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.58))
+  expect_identical(island$empirical_island[[1]]$stac, 2)
+  expect_identical(island$empirical_island[[1]]$missing_species, 0)
+  expect_equal(island$empirical_island[[2]]$branching_times, c(1.00, 0.33))
+  expect_identical(island$empirical_island[[2]]$stac, 4)
+  expect_identical(island$empirical_island[[2]]$missing_species, 0)
+})
+
+test_that("appendix scenario A41", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
+  total_time <- 1
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 18)
+  island_spec <- create_test_island_spec(island_scenario = 41)
+  mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
+  island <- create_island(
+    total_time = total_time,
+    island_spec = island_spec,
+    mainland_clade = mainland_clade,
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
+  )
+  expect_identical(island$ideal_island, island$empirical_island)
+  expect_length(island$ideal_island, 2)
+  expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.58))
+  expect_identical(island$ideal_island[[1]]$stac, 2)
+  expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_equal(island$ideal_island[[2]]$branching_times, c(1.00, 0.33))
+  expect_identical(island$ideal_island[[2]]$stac, 4)
+  expect_identical(island$ideal_island[[2]]$missing_species, 0)
+  expect_length(island$empirical_island, 2)
+  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.58))
+  expect_identical(island$empirical_island[[1]]$stac, 2)
+  expect_identical(island$empirical_island[[1]]$missing_species, 0)
+  expect_equal(island$empirical_island[[2]]$branching_times, c(1.00, 0.33))
+  expect_identical(island$empirical_island[[2]]$stac, 4)
+  expect_identical(island$empirical_island[[2]]$missing_species, 0)
+})
+
+test_that("appendix scenario A42", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
+  total_time <- 1
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 19)
+  island_spec <- create_test_island_spec(island_scenario = 42)
+  mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
+  island <- create_island(
+    total_time = total_time,
+    island_spec = island_spec,
+    mainland_clade = mainland_clade,
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
+  )
+  expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 2)
+  expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.58))
+  expect_identical(island$ideal_island[[1]]$stac, 2)
+  expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_equal(island$ideal_island[[2]]$branching_times, c(1.00, 0.33))
+  expect_identical(island$ideal_island[[2]]$stac, 2)
+  expect_identical(island$ideal_island[[2]]$missing_species, 0)
+  expect_length(island$empirical_island, 2)
+  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.58))
+  expect_identical(island$empirical_island[[1]]$stac, 2)
+  expect_identical(island$empirical_island[[1]]$missing_species, 0)
+  expect_equal(island$empirical_island[[2]]$branching_times, c(1.00, 0.5))
+  expect_identical(island$empirical_island[[2]]$stac, 2)
+  expect_identical(island$empirical_island[[2]]$missing_species, 0)
+})
+
+test_that("appendix scenario A43", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection")
+  total_time <- 1
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 20)
+  island_spec <- create_test_island_spec(island_scenario = 43)
+  mainland_sample_prob <- 1
+  mainland_sample_type <- "complete"
+  island <- create_island(
+    total_time = total_time,
+    island_spec = island_spec,
+    mainland_clade = mainland_clade,
+    mainland_sample_prob = mainland_sample_prob,
+    mainland_sample_type = mainland_sample_type
+  )
+  expect_false(identical(island$ideal_island, island$empirical_island))
+  expect_length(island$ideal_island, 2)
+  expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.58))
+  expect_identical(island$ideal_island[[1]]$stac, 2)
+  expect_identical(island$ideal_island[[1]]$missing_species, 0)
+  expect_equal(island$ideal_island[[2]]$branching_times, c(1.00, 0.33))
+  expect_identical(island$ideal_island[[2]]$stac, 2)
+  expect_identical(island$ideal_island[[2]]$missing_species, 0)
+  expect_length(island$empirical_island, 1)
+  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.67, 0.58))
+  expect_identical(island$empirical_island[[1]]$stac, 2)
+  expect_identical(island$empirical_island[[1]]$missing_species, 0)
 })
