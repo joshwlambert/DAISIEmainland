@@ -46,18 +46,9 @@ create_non_empty_island <- function(total_time,
     island_spec = island_spec,
     mainland_clade = mainland_clade)
 
-  # number of independent colonisations from different mainland species
-  empirical_col_present <- sort(unique(island_spec[, "main_anc_id"]))
-
-  # determine whether colonisations from different mainland species are more
-  # closely related to each other than to the extant species on the mainland
-  if (length(empirical_col_present) > 1) {
-    empirical_col_present <- calc_empirical_col(
-      empirical_col_present = empirical_col_present,
-      island_spec = island_spec,
-      mainland_clade = mainland_clade)
-  }
-
+  empirical_col_present <- calc_empirical_col(
+    island_spec = island_spec,
+    mainland_clade = mainland_clade)
   num_empirical_col_present <- length(empirical_col_present)
 
   empirical_island <- list()
