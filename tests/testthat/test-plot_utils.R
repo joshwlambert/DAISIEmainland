@@ -7,7 +7,7 @@ test_that("calc_quantiles runs silent without error", {
 })
 
 test_that("calc_outliers runs silent without error", {
-  outliers <- calc_outliers(plotting_data = c(1, 2, 3, 4, 5, 6, 7, 8 , 9, 10))
+  outliers <- calc_outliers(plotting_data = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
   expect_length(outliers, 2)
   expect_equal(outliers, c(1, 10))
 })
