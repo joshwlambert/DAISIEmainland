@@ -5,7 +5,6 @@ test_that("sim_island_with_mainland produces correct empty island", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-
   island <- sim_island_with_mainland(
       total_time = 1,
       m = 10,
@@ -34,10 +33,9 @@ test_that("sim_island_mainland produces correct non-empty island", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
-    mainland_sample_type = "undiscovered",
+    mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-
   expect_equal(island$ideal_island[[1]][[1]]$island_age, 1)
   expect_equal(island$ideal_island[[1]][[1]]$not_present, 6)
   expect_equal(island$ideal_island[[1]][[2]]$branching_times,
