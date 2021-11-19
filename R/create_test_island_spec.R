@@ -7,7 +7,7 @@
 #' @author Joshua W. Lambert
 create_test_island_spec <- function(island_scenario) {
 
-  testit::assert(island_scenario >= 0 && island_scenario <= 43)
+  testit::assert(island_scenario >= 0 && island_scenario <= 54)
 
   if (island_scenario == 0) {
     # Empty island
@@ -577,6 +577,142 @@ create_test_island_spec <- function(island_scenario) {
       branch_t = c(NaN, NaN),
       ana_origin = c("mainland_extinction",
                      "mainland_extinction"))
+  }
+
+  if (island_scenario == 44) {
+    island_spec <- data.frame(
+      spec_id = c(1, 4),
+      main_anc_id = c(1, 3),
+      col_t = c(0.16, 0.67),
+      spec_type = c("A", "A"),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
+      branch_t = c(NaN, NaN),
+      ana_origin = c("mainland_extinction",
+                     "immig_parent"))
+  }
+
+  if (island_scenario == 45) {
+    island_spec <- data.frame(
+      spec_id = c(4, 3, 5),
+      main_anc_id = c(1, 1, 1),
+      col_t = c(0.16, 0.16, 0.16),
+      spec_type = c("C", "C", "C"),
+      branch_code = c("AA", "B", "AB"),
+      branch_t = c(0.16, 0.5, 0.9),
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     as.character(NA)))
+  }
+
+  if (island_scenario == 46) {
+    island_spec <- data.frame(
+      spec_id = 1,
+      main_anc_id = 1,
+      col_t = 0.5,
+      spec_type = "I",
+      branch_code = as.character(NA),
+      branch_t = NaN,
+      ana_origin = as.character(NA))
+  }
+
+  if (island_scenario == 47) {
+    island_spec <- data.frame(
+      spec_id = c(1, 2),
+      main_anc_id = c(1, 2),
+      col_t = c(0.16, 0.5),
+      spec_type = c("I", "I"),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
+      branch_t = c(NaN, NaN),
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
+  }
+
+  if (island_scenario == 48) {
+    island_spec <- data.frame(
+      spec_id = 1,
+      main_anc_id = 1,
+      col_t_bp = 0.5,
+      spec_type = "I",
+      branch_code = as.character(NA),
+      branch_t_bp = NaN,
+      ana_origin = as.character(NA))
+  }
+
+  if (island_scenario == 49) {
+    island_spec <- data.frame(
+      spec_id = 2,
+      main_anc_id = 1,
+      col_t_bp = 0.5,
+      spec_type = "A",
+      branch_code = as.character(NA),
+      branch_t_bp = NaN,
+      ana_origin = "immig_parent")
+  }
+
+  if (island_scenario == 50) {
+    island_spec <- data.frame(
+      spec_id = c(2, 3),
+      main_anc_id = c(1, 1),
+      col_t_bp = c(0.5, 0.5),
+      spec_type = c("C", "C"),
+      branch_code = c("A", "B"),
+      branch_t_bp = c(0.5, 0.25),
+      ana_origin = c(as.character(NA),
+                     as.character(NA)))
+  }
+
+  if (island_scenario == 51) {
+    island_spec <- data.frame(
+      spec_id = c(2, 1),
+      main_anc_id = c(1, 1),
+      col_t_bp = c(0.5, 0.3),
+      spec_type = c("A", "I"),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
+      branch_t_bp = c(NaN, NaN),
+      ana_origin = c("immig_parent",
+                     as.character(NA)))
+  }
+
+  if (island_scenario == 52) {
+    island_spec <- data.frame(
+      spec_id = c(2, 3, 1),
+      main_anc_id = c(1, 1, 1),
+      col_t_bp = c(0.5, 0.5, 0.25),
+      spec_type = c("C", "C", "I"),
+      branch_code = c("A", "B", as.character(NA)),
+      branch_t_bp = c(0.5, 0.4, 0.25),
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     as.character(NA)))
+  }
+
+  if (island_scenario == 53) {
+    island_spec <- data.frame(
+      spec_id = c(2, 3),
+      main_anc_id = c(1, 1),
+      col_t_bp = c(0.5, 0.25),
+      spec_type = c("A", "A"),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
+      branch_t_bp = c(NaN, NaN),
+      ana_origin = c("immig_parent",
+                     "immig_parent"))
+  }
+
+  if (island_scenario == 54) {
+    island_spec <- data.frame(
+      spec_id = c(2, 3, 4),
+      main_anc_id = c(1, 1, 1),
+      col_t_bp = c(0.5, 0.5, 0.25),
+      spec_type = c("C", "C", "A"),
+      branch_code = c("A", "B", as.character(NA)),
+      branch_t_bp = c(0.5, 0.4, 0.25),
+      ana_origin = c(as.character(NA),
+                     as.character(NA),
+                     "immig_parent"))
   }
 
   return(island_spec)
