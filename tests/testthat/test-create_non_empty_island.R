@@ -170,7 +170,7 @@ test_that("appendix scenario A8", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
   )
-  expect_false(identical(island$ideal_island,island$empirical_island))
+  expect_false(identical(island$ideal_island, island$empirical_island))
   expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.33))
   expect_identical(island$ideal_island[[1]]$stac, 2)
@@ -476,7 +476,8 @@ test_that("appendix scenario A21", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.5))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.99999, 0.5))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -545,7 +546,8 @@ test_that("appendix scenario A24", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.42))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.99999, 0.42))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -593,7 +595,8 @@ test_that("appendix scenario A26", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.50, 0.17))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.50, 0.17))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
 })
@@ -617,7 +620,8 @@ test_that("appendix scenario A27", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.09))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.99999, 0.09))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -665,7 +669,8 @@ test_that("appendix scenario A29", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.84, 0.67))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.99999, 0.84, 0.67))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -733,7 +738,8 @@ test_that("appendix scenario A32", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.84, 0.67))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.99999, 0.84, 0.67))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -781,7 +787,8 @@ test_that("appendix scenario A34", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.84, 0.67, 0.5))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.84, 0.67, 0.5))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
 })
@@ -805,7 +812,8 @@ test_that("appendix scenario A35", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.67, 0.5))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.99999, 0.67, 0.5))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -912,7 +920,8 @@ test_that("appendix scenario A39", {
   expect_identical(island$ideal_island[[2]]$stac, 2)
   expect_identical(island$ideal_island[[2]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.99999, 0.84))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.99999, 0.84))
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -1019,7 +1028,8 @@ test_that("appendix scenario A43", {
   expect_identical(island$ideal_island[[2]]$stac, 2)
   expect_identical(island$ideal_island[[2]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times, c(1.00, 0.67, 0.58))
+  expect_equal(island$empirical_island[[1]]$branching_times,
+               c(1.00, 0.67, 0.58))
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
 })
