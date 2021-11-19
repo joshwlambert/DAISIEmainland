@@ -8,7 +8,7 @@ ext_event(island_spec)
 }
 \arguments{
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 }
 \value{
 A data frame

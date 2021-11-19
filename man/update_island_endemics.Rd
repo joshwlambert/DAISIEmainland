@@ -14,10 +14,10 @@ update_island_endemics(timeval, total_time, island_spec, mainland_clade)
 units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 
-\item{mainland_clade}{Data frame with state of mainland. see
-\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}.}
+\item{mainland_clade}{Data frame with state of mainland, see
+\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}
 }
 \value{
 Data frame of island species

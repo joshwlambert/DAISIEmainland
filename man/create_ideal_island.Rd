@@ -11,7 +11,7 @@ create_ideal_island(total_time, island_spec)
 units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 }
 \value{
 a list with these elements:

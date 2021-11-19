@@ -10,7 +10,7 @@ clado_event(timeval, island_spec, max_spec_id)
 \item{timeval}{Numeric defining current time of simulation.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 
 \item{max_spec_id}{Current species IDs.}
 }

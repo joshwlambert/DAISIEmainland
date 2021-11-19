@@ -72,10 +72,10 @@ species.}
 can colonize the island.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 
-\item{mainland_clade}{Data frame with state of mainland. see
-\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}.}
+\item{mainland_clade}{Data frame with state of mainland, see
+\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 

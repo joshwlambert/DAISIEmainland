@@ -14,9 +14,9 @@
 #' @param mainland_n Numeric stating the number of mainland species that
 #' can colonize the island.
 #' @param island_spec Matrix with current state of simulation containing number
-#' of species.
-#' @param mainland_clade Data frame with state of mainland. see
-#' [create_test_mainland_clade()].
+#' of species, see [create_test_island_spec()]
+#' @param mainland_clade Data frame with state of mainland, see
+#' [create_test_mainland_clade()]
 #' @param mainland_spec Numeric focal species on the mainland
 #' @param mainland_sample_prob Numeric between zero and one determining the
 #' probability of an extant mainland species being sampled.
