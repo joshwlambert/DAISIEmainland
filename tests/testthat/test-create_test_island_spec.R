@@ -16,16 +16,14 @@ test_that("scenario 0 -> colonization -> scenario 1", {
 
   # Empty island
   island_spec_before <- create_test_island_spec(island_scenario = 0)
-
   island_spec_after <- update_state(
-    timeval = 0.2,
+    timeval = 0.16,
     total_time = 1.0,
     possible_event = str_to_event("immigration"),
     max_spec_id = 1,
     mainland_spec = 1,
     island_spec = island_spec_before
   )
-
   expect_identical(
     island_spec_after$island_spec,
     create_test_island_spec(island_scenario = 1)
@@ -327,7 +325,35 @@ test_that("create_test_island_spec produces correct output for scenario 43", {
   expect_true(nrow(island_spec) == 2)
 })
 
+test_that("create_test_island_spec produces correct output for scenario 44", {
+  island_spec <- create_test_island_spec(island_scenario = 44)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 2)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 45", {
+  island_spec <- create_test_island_spec(island_scenario = 45)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 3)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 46", {
+  island_spec <- create_test_island_spec(island_scenario = 46)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 1)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 47", {
+  island_spec <- create_test_island_spec(island_scenario = 47)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 2)
+})
+
 test_that("create_test_island_spec fails correctly", {
-  expect_error(create_test_mainland_clade(mainland_scenario = -1))
-  expect_error(create_test_mainland_clade(mainland_scenario = 44))
+  expect_error(create_test_island_spec(island_scenario = -1))
+  expect_error(create_test_island_spec(island_scenario = 100))
 })
