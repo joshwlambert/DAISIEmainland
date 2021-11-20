@@ -24,7 +24,7 @@ create_non_empty_island <- function(total_time,
 
   ideal_island <- list()
   for (i in seq_len(num_ideal_col_present)) {
-    subset_island <- island_spec[which(island_spec[, "main_anc_id"] ==
+    subset_island <- island_spec[which(island_spec[, "main_anc_id"] %in%
                                          ideal_col_present[i]), ]
 
     ideal_island[[i]] <- create_ideal_island(
@@ -53,7 +53,7 @@ create_non_empty_island <- function(total_time,
 
   empirical_island <- list()
   for (i in seq_len(num_empirical_col_present)) {
-    subset_island <- island_spec[which(island_spec[, "main_anc_id"] ==
+    subset_island <- island_spec[which(island_spec[, "main_anc_id"] %in%
                                          empirical_col_present[[i]]), ]
 
     mainland_spec <-
