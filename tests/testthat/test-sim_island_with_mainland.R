@@ -256,3 +256,31 @@ test_that("sim_island_mainland fails with incorrect input", {
     verbose = "nonsense")
   )
 })
+
+test_that("sim_island_with_mainland runs with 1 mainland clade without mainland
+          extinction", {
+  expect_silent(
+    sim_island_with_mainland(
+      total_time = 1,
+      m = 1,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 0,
+      mainland_sample_prob = 1,
+      mainland_sample_type = "complete",
+      replicates = 1))
+})
+
+test_that("sim_island_with_mainland fails with 1 mainland clade with mainland
+          extinction", {
+  expect_error(
+    sim_island_with_mainland(
+      total_time = 1,
+      m = 1,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      mainland_sample_type = "complete",
+      replicates = 1),
+    regexp = "To simulate with mainland extinction more than one clade is
+    required")
+})
