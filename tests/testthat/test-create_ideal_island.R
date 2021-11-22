@@ -1,4 +1,4 @@
-test_that("create_ideal_island is correct for singletone nonendemic (stac 4)", {
+test_that("create_ideal_island is correct for singleton nonendemic (stac 4)", {
   island_spec <- create_test_island_spec(island_scenario = 48)
   ideal_island <- create_ideal_island(
     total_time = 1,

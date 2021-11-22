@@ -7,7 +7,7 @@
 #' @author Joshua W. Lambert
 create_test_island_spec <- function(island_scenario) {
 
-  testit::assert(island_scenario >= 0 && island_scenario <= 54)
+  testit::assert(island_scenario >= 0 && island_scenario <= 58)
 
   if (island_scenario == 0) {
     # Empty island
@@ -713,6 +713,54 @@ create_test_island_spec <- function(island_scenario) {
       ana_origin = c(as.character(NA),
                      as.character(NA),
                      "immig_parent"))
+  }
+
+  if (island_scenario == 55) {
+    island_spec <- data.frame(
+      spec_id = 2,
+      main_anc_id = 2,
+      col_t_bp = 0.33,
+      spec_type = "A",
+      branch_code = as.character(NA),
+      branch_t_bp = NaN,
+      ana_origin = "mainland_extinction")
+  }
+
+  if (island_scenario == 56) {
+    island_spec <- data.frame(
+      spec_id = 1,
+      main_anc_id = 1,
+      col_t_bp = 0.5,
+      spec_type = "A",
+      branch_code = as.character(NA),
+      branch_t_bp = NaN,
+      ana_origin = "mainland_extinction")
+  }
+
+  if (island_scenario == 57) {
+    island_spec <- data.frame(
+      spec_id = c(3, 4),
+      main_anc_id = c(3, 4),
+      col_t_bp = c(0.6, 0.33),
+      spec_type = c("A", "A"),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
+      branch_t_bp = c(NaN, NaN),
+      ana_origin = c("mainland_extinction",
+                     "mainland_extinction"))
+  }
+
+  if (island_scenario == 58) {
+    island_spec <- data.frame(
+      spec_id = c(1, 2),
+      main_anc_id = c(1, 2),
+      col_t_bp = c(0.67, 0.33),
+      spec_type = c("A", "A"),
+      branch_code = c(as.character(NA),
+                      as.character(NA)),
+      branch_t_bp = c(NaN, NaN),
+      ana_origin = c("mainland_extinction",
+                     "mainland_extinction"))
   }
 
   return(island_spec)

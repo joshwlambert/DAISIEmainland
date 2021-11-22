@@ -7,7 +7,7 @@
 #' @author Joshua W. Lambert
 create_test_mainland_clade <- function(mainland_scenario) {
 
-  testit::assert(mainland_scenario >= 1 && mainland_scenario <= 24)
+  testit::assert(mainland_scenario >= 1 && mainland_scenario <= 22)
 
   if (mainland_scenario == 1) {
     # Single species (regular DAISIE)
@@ -261,6 +261,32 @@ create_test_mainland_clade <- function(mainland_scenario) {
       branch_t = c(NA, 0.33, 0.33, 0.5, 0.5),
       spec_origin_t = c(0, 0.33, 0.33, 0.5, 0.5),
       spec_ex_t = c(0.33, 0.5, 1.0, 0.83, 0.83)
+    )
+  }
+
+  if (mainland_scenario == 21) {
+    # no speciations no extinction unsampled
+    mainland_clade <- data.frame(
+      spec_id = 1,
+      main_anc_id = 1,
+      spec_type = "US",
+      branch_code = "A",
+      branch_t = NaN,
+      spec_origin_t = 0,
+      spec_ex_t = 0.99999
+    )
+  }
+
+  if (mainland_scenario == 22) {
+    # 2 speciations 2 extinction (other branch)
+    mainland_clade <- data.frame(
+      spec_id = 1:5,
+      main_anc_id = rep(1, 5),
+      spec_type = c("E", "C", "E", "E", "E"),
+      branch_code = c("A", "AA", "AB", "ABA", "ABB"),
+      branch_t = c(NA, 0.33, 0.33, 0.5, 0.5),
+      spec_origin_t = c(0, 0.33, 0.33, 0.5, 0.5),
+      spec_ex_t = c(0.33, 1.0, 0.5, 0.83, 0.83)
     )
   }
 

@@ -310,7 +310,7 @@ test_that("appendix scenario A14", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
   )
-  expect_identical(island$ideal_island,island$empirical_island)
+  expect_identical(island$ideal_island, island$empirical_island)
   expect_length(island$ideal_island, 1)
   expect_equal(island$ideal_island[[1]]$branching_times, c(1.00, 0.84))
   expect_identical(island$ideal_island[[1]]$stac, 2)

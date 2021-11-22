@@ -353,6 +353,83 @@ test_that("create_test_island_spec produces correct output for scenario 47", {
   expect_true(nrow(island_spec) == 2)
 })
 
+test_that("create_test_island_spec produces correct output for scenario 48", {
+  island_spec <- create_test_island_spec(island_scenario = 48)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 1)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 49", {
+  island_spec <- create_test_island_spec(island_scenario = 49)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 1)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 50", {
+  island_spec <- create_test_island_spec(island_scenario = 50)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 2)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 51", {
+  island_spec <- create_test_island_spec(island_scenario = 51)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 2)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 52", {
+  island_spec <- create_test_island_spec(island_scenario = 52)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 3)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 53", {
+  island_spec <- create_test_island_spec(island_scenario = 53)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 2)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 54", {
+  island_spec <- create_test_island_spec(island_scenario = 54)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 3)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 55", {
+  island_spec <- create_test_island_spec(island_scenario = 55)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 1)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 56", {
+  island_spec <- create_test_island_spec(island_scenario = 56)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 1)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 57", {
+  island_spec <- create_test_island_spec(island_scenario = 57)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 2)
+})
+
+test_that("create_test_island_spec produces correct output for scenario 58", {
+  island_spec <- create_test_island_spec(island_scenario = 58)
+  expect_true(is.data.frame(island_spec))
+  expect_true(ncol(island_spec) == 7)
+  expect_true(nrow(island_spec) == 2)
+})
+
 test_that("create_test_island_spec fails correctly", {
   expect_error(create_test_island_spec(island_scenario = -1))
   expect_error(create_test_island_spec(island_scenario = 100))

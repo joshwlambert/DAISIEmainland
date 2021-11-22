@@ -149,6 +149,22 @@ test_that("create_test_mainland_clade produces correct output for scenario
   expect_true(nrow(mainland_clade) == 5)
 })
 
+test_that("create_test_mainland_clade produces correct output for scenario
+          21", {
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 21)
+  expect_true(is.data.frame(mainland_clade))
+  expect_true(ncol(mainland_clade) == 7)
+  expect_true(nrow(mainland_clade) == 1)
+})
+
+test_that("create_test_mainland_clade produces correct output for scenario
+          22", {
+  mainland_clade <- create_test_mainland_clade(mainland_scenario = 22)
+  expect_true(is.data.frame(mainland_clade))
+  expect_true(ncol(mainland_clade) == 7)
+  expect_true(nrow(mainland_clade) == 5)
+})
+
 test_that("create_test_mainland_clade fails correctly", {
   expect_error(create_test_mainland_clade(mainland_scenario = 0))
   expect_error(create_test_mainland_clade(mainland_scenario = 100))
