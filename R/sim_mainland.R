@@ -22,7 +22,7 @@ sim_mainland <- function(total_time,
                          mainland_ex) {
 
   testit::assert(is.numeric(total_time))
-  testit::assert(total_time > 0)
+  testit::assert(total_time >= 0)
   testit::assert(is.numeric(m))
   testit::assert(m >= 1)
   testit::assert(is.numeric(mainland_ex))

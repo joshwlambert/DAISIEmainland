@@ -281,6 +281,18 @@ test_that("sim_island_with_mainland fails with 1 mainland clade with mainland
       mainland_sample_prob = 1,
       mainland_sample_type = "complete",
       replicates = 1),
-    regexp = "To simulate with mainland extinction more than one clade is
-    required")
+    regexp = "Simulating with mainland extinction requires more than one clade")
+})
+
+test_that("sim_island_with_mainland with 0.0 time", {
+  expect_silent(
+    sim_island_with_mainland(
+      total_time = 0.0,
+      m = 10,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      mainland_sample_type = "complete",
+      replicates = 1)
+  )
 })

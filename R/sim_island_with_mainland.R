@@ -72,7 +72,7 @@ sim_island_with_mainland <- function(total_time,
                                      replicates,
                                      verbose = FALSE) {
   testit::assert(is.numeric(total_time))
-  testit::assert(total_time > 0)
+  testit::assert(total_time >= 0)
   testit::assert(is.numeric(m))
   testit::assert(m >= 1)
   testit::assert(is.numeric(island_pars))
@@ -90,7 +90,7 @@ sim_island_with_mainland <- function(total_time,
   testit::assert(is.logical(verbose))
 
   if (m == 1 && mainland_ex > 0) {
-    stop("To simulate with mainland extinction more than one clade is required")
+    stop("Simulating with mainland extinction requires more than one clade")
   }
   if (mainland_sample_type == "complete" && mainland_sample_prob < 1.0) {
     stop("Mainland sampling probability less than 1.0 requires a sampling type")
