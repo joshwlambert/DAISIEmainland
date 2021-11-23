@@ -5,7 +5,7 @@ args <- as.numeric(args)
 data("param_space")
 
 set.seed(
-  1,
+  param_space$seed[args],
   kind = "Mersenne-Twister",
   normal.kind = "Inversion",
   sample.kind = "Rejection"
