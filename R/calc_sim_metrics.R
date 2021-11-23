@@ -22,12 +22,18 @@ calc_sim_metrics <- function(data_folder_path,
                                        "[[",
                                        "empirical_sim_metrics")
 
-  ideal_num_col_list <- lapply(ideal_sim_metrics_list, "[[", "num_col")
-  ideal_num_spec_list <- lapply(ideal_sim_metrics_list, "[[", "num_spec")
-  empirical_num_col_list <- lapply(empirical_sim_metrics_list, "[[", "num_col")
+  ideal_num_col_list <- lapply(ideal_sim_metrics_list,
+                               "[[",
+                               "ideal_sim_num_col")
+  ideal_num_spec_list <- lapply(ideal_sim_metrics_list,
+                                "[[",
+                                "ideal_sim_num_spec")
+  empirical_num_col_list <- lapply(empirical_sim_metrics_list,
+                                   "[[",
+                                   "empirical_sim_num_col")
   empirical_num_spec_list <- lapply(empirical_sim_metrics_list,
                                     "[[",
-                                    "num_spec")
+                                    "empirical_sim_num_spec")
 
   ideal_mean_num_col <- unlist(lapply(ideal_num_col_list, mean))
   ideal_max_num_col <- unlist(lapply(ideal_num_col_list, max))
