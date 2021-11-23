@@ -79,8 +79,8 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
@@ -100,8 +100,8 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
@@ -121,8 +121,8 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(gamma)) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
@@ -142,8 +142,8 @@ plot_param_estimates <- function(param_set,
                           colour = "#E69F00",
                           alpha = 0.3) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(lambda^a)) +
     ggplot2::geom_vline(xintercept = sim_ana, colour = "grey50") +
@@ -168,8 +168,8 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ext),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(mu)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
@@ -199,8 +199,8 @@ plot_param_estimates <- function(param_set,
                                                y = sim_immig),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(gamma)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
@@ -230,8 +230,8 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ana),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
@@ -261,8 +261,8 @@ plot_param_estimates <- function(param_set,
                                                y = sim_immig),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(gamma)) +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
@@ -292,8 +292,8 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ana),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
@@ -323,8 +323,8 @@ plot_param_estimates <- function(param_set,
                                                y = sim_ana),
                         shape = 15) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(gamma)) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
@@ -346,8 +346,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
     ggplot2::xlab(expression(mu[I] / mu[E])) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
@@ -369,8 +369,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
     ggplot2::xlab(expression(gamma[I] / gamma[E])) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
@@ -392,8 +392,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
     ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
@@ -415,8 +415,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(mu[I] / mu[E])) +
     ggplot2::xlab(expression(gamma[I] / gamma[E])) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
@@ -438,8 +438,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(mu[I] / mu[E])) +
     ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
@@ -461,8 +461,8 @@ plot_param_estimates <- function(param_set,
                         shape = 16,
                         alpha = 0.5) +
     ggplot2::theme_classic() +
-    ggplot2::theme(title = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(title = ggplot2::element_text(size = 10),
+                   text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab(expression(gamma[I] / gamma[E])) +
     ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
     ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
@@ -510,8 +510,8 @@ plot_param_estimates <- function(param_set,
       plot = param_estimates,
       filename = output_file_path,
       device = "png",
-      width = 168,
-      height = 168,
+      width = 180,
+      height = 180,
       units = "mm",
       dpi = 600
     )

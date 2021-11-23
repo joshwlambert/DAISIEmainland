@@ -317,8 +317,8 @@ plot_k_estimates <- function(data_folder_path,
       plot = k_plot,
       filename = output_file_path,
       device = "png",
-      width = 168,
-      height = 100,
+      width = 180,
+      height = 80,
       units = "mm",
       dpi = 600
     )

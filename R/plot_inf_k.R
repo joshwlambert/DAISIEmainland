@@ -121,7 +121,7 @@ plot_inf_k <- function(data_folder_path,
       plot = k_inf_plot,
       filename = output_file_path,
       device = "png",
-      width = 168,
+      width = 160,
       height = 100,
       units = "mm",
       dpi = 600

@@ -86,7 +86,7 @@ plot_endemics <- function(data_folder_path,
       ggplot2::theme_classic() +
       ggplot2::ylab("Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
 
     empirical_endemics <- ggplot2::ggplot(data = plotting_data,
@@ -103,7 +103,7 @@ plot_endemics <- function(data_folder_path,
       ggplot2::theme_classic() +
       ggplot2::ylab("Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
   } else {
     ideal_endemics <- ggplot2::ggplot(data = plotting_data,
@@ -121,7 +121,7 @@ plot_endemics <- function(data_folder_path,
       ggplot2::ylab("Ideal Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
 
     empirical_endemics <- ggplot2::ggplot(data = plotting_data,
@@ -139,7 +139,7 @@ plot_endemics <- function(data_folder_path,
       ggplot2::ylab("Empirical Endemic %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
   }
 
@@ -152,7 +152,7 @@ plot_endemics <- function(data_folder_path,
       plot = endemics,
       filename = output_file_path,
       device = "png",
-      width = 168,
+      width = 180,
       height = 100,
       units = "mm",
       dpi = 600
