@@ -52,17 +52,11 @@ plot_inf_k <- function(data_folder_path,
     mainland_sample_type = mainland_sample_type,
     sim_k = sim_k)
 
-  plotting_data <- dplyr::filter(
-    plotting_data,
-    plotting_data$mainland_sample_type == "complete")
+  plotting_data <-
+    plotting_data[plotting_data$mainland_sample_type %in% "complete", ]
 
-  plotting_data_k_5 <- dplyr::filter(
-    plotting_data,
-    plotting_data$sim_k == 5)
-
-  plotting_data_k_50 <- dplyr::filter(
-    plotting_data,
-    plotting_data$sim_k == 50)
+  plotting_data_k_5 <- plotting_data[plotting_data$sim_k %in% 5, ]
+  plotting_data_k_50 <- plotting_data[plotting_data$sim_k %in% 50, ]
 
   percent_k_5_inf <- ggplot2::ggplot(data = plotting_data_k_5) +
     ggplot2::geom_point(ggplot2::aes(x = mainland_ex,

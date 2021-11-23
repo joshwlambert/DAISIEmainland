@@ -95,44 +95,29 @@ plot_k_estimates <- function(data_folder_path,
     sim_k = unlist(empirical_sim_k))
 
   if (parameter == "mainland_ex") {
-    ideal_plotting_data <- dplyr::filter(
-      ideal_plotting_data,
-      ideal_plotting_data$mainland_sample_type == "complete")
-    empirical_plotting_data <- dplyr::filter(
-      empirical_plotting_data,
-      empirical_plotting_data$mainland_sample_type == "complete")
-  } else if (parameter == "unsampled") {
-    ideal_plotting_data <- dplyr::filter(
-      ideal_plotting_data,
-      ideal_plotting_data$mainland_sample_type == "unsampled")
-    empirical_plotting_data <- dplyr::filter(
-      empirical_plotting_data,
-      empirical_plotting_data$mainland_sample_type == "unsampled")
-  } else if (parameter == "undiscovered") {
-    ideal_plotting_data <- dplyr::filter(
-      ideal_plotting_data,
-      ideal_plotting_data$mainland_sample_type == "undiscovered")
-    empirical_plotting_data <- dplyr::filter(
-      empirical_plotting_data,
-      empirical_plotting_data$mainland_sample_type == "undiscovered")
+    ideal_plotting_data <-
+      ideal_plotting_data[ideal_plotting_data$mainland_sample_type %in% "complete", ]
+    empirical_plotting_data <-
+      empirical_plotting_data[empirical_plotting_data$mainland_sample_type %in% "complete", ]
+  } else {
+    ideal_plotting_data <-
+      ideal_plotting_data[ideal_plotting_data$mainland_sample_type %in% parameter, ]
+    empirical_plotting_data <-
+      empirical_plotting_data[empirical_plotting_data$mainland_sample_type %in% parameter, ]
   }
 
-  ideal_plotting_data_k_5 <- dplyr::filter(
-    ideal_plotting_data,
-    ideal_plotting_data$sim_k == 5)
-  empirical_plotting_data_k_5 <- dplyr::filter(
-    empirical_plotting_data,
-    empirical_plotting_data$sim_k == 5)
+  ideal_plotting_data_k_5 <-
+    ideal_plotting_data[ideal_plotting_data$sim_k %in% 5, ]
+  empirical_plotting_data_k_5 <-
+    empirical_plotting_data[empirical_plotting_data$sim_k %in% 5, ]
 
   upper_k_5_ylim <- max(ideal_plotting_data_k_5$ideal_k,
                         empirical_plotting_data_k_5$empirical_k)
 
-  ideal_plotting_data_k_50 <- dplyr::filter(
-    ideal_plotting_data,
-    ideal_plotting_data$sim_k == 50)
-  empirical_plotting_data_k_50 <- dplyr::filter(
-    empirical_plotting_data,
-    empirical_plotting_data$sim_k == 50)
+  ideal_plotting_data_k_50 <-
+    ideal_plotting_data[ideal_plotting_data$sim_k %in% 50, ]
+  empirical_plotting_data_k_50 <-
+    empirical_plotting_data[empirical_plotting_data$sim_k %in% 50, ]
 
   upper_k_50_ylim <- max(ideal_plotting_data_k_50$ideal_k,
                          empirical_plotting_data_k_50$empirical_k)

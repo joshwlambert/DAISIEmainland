@@ -64,17 +64,11 @@ plot_max_age <- function(data_folder_path,
     mainland_sample_type = unlist(mainland_sample_type_list))
 
   if (parameter == "mainland_ex") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "complete")
-  } else if (parameter == "unsampled") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "unsampled")
-  } else if (parameter == "undiscovered") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "undiscovered")
+    plotting_data <-
+      plotting_data[plotting_data$mainland_sample_type %in% "complete", ]
+  } else {
+    plotting_data <-
+      plotting_data[plotting_data$mainland_sample_type %in% parameter, ]
   }
 
   if (parameter == "mainland_ex") {
