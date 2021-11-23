@@ -44,8 +44,8 @@ plot_ctt_heatmap <- function(data_folder_path,
         plot = ctt,
         filename = output_file_path,
         device = "png",
-        width = 168,
-        height = 100,
+        width = 180,
+        height = 180,
         units = "mm",
         dpi = 600
       )

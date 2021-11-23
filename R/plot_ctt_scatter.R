@@ -74,8 +74,8 @@ plot_ctt_scatter <- function(data_folder_path,
       plot = ctt,
       filename = output_file_path,
       device = "png",
-      width = 168,
-      height = 100,
+      width = 80,
+      height = 80,
       units = "mm",
       dpi = 600
     )
