@@ -10,4 +10,4 @@
 mkdir -p logs
 mkdir -p results
 ml R
-Rscript -e "remotes::install_github('joshwlambert/DAISIEmainland@develop')"
+Rscript -e "remotes::install_github('joshwlambert/DAISIEmainland')"
