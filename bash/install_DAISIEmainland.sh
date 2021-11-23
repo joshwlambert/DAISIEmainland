@@ -5,7 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --job-name=install_DAISIEmainland
 #SBATCH --output=/data/p287218/DAISIEmainland/install_DAISIEmainland.log
-#SBATCH --mem=1GB
+#SBATCH --mem=5GB
 
 mkdir -p logs
 mkdir -p results
