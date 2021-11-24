@@ -12,12 +12,8 @@ ana_event <- function(island_spec,
   testit::assert(is.numeric(max_spec_id))
 
   immig_specs <- which(island_spec[, "spec_type"] == "I")
-  if (length(immig_specs) == 1) {
-    anagenesis <- immig_specs
-  }
-  if (length(immig_specs) > 1) {
-    anagenesis <- DDD::sample2(immig_specs, 1)
-  }
+  testit::assert(length(immig_specs) >= 1)
+  anagenesis <- DDD::sample2(immig_specs, 1)
   max_spec_id <- max_spec_id + 1
   island_spec[anagenesis, "spec_type"] <- "A"
   island_spec[anagenesis, "spec_id"] <- max_spec_id

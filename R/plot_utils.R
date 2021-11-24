@@ -4,7 +4,8 @@
 #'
 #' @return Named vector of 5 named elements
 calc_quantiles <- function(plotting_data) {
-  quantiles <- stats::quantile(plotting_data, probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
+  quantiles <- stats::quantile(plotting_data,
+                               probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
   names(quantiles) <- c("ymin", "lower", "middle", "upper", "ymax")
   return(quantiles)
 }
@@ -27,40 +28,41 @@ calc_outliers <- function(plotting_data) {
   return(outliers)
 }
 
-#' Creates the axis numbers (breaks) for plotting with an inverse hyperbolic
-#' sine transformation, with rounding to a set accuracy to reduce decimal
-#' places plotted
+#' Creates labels for plots by calling `scientific`.
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return Numeric vector
-create_plot_breaks <- function(lower_lim, upper_lim, accuracy, round_func) {
-  breaks <- sinh(labeling::extended(asinh(lower_lim),
-                                    asinh(upper_lim),
-                                    m = 4))
-  breaks <- round_func(breaks/accuracy) * accuracy
-  return(breaks)
+#' @return A function that takes a vector
+create_labels <- function(signif) {
+  function(breaks) scientific(
+    breaks,
+    signif = signif
+  )
 }
 
-#' Creates the axis numbers (labels) for plotting with an inverse hyperbolic
-#' sine transformation, with rounding to a set accuracy to reduce decimal
-#' places plotted
+#' Creates the axis numbers (labels) for plotting with scientific form in
+#' x10 notation
 #'
 #' @inheritParams default_params_doc
 #'
 #' @return Character vector
-create_plot_labels <- function(lower_lim, upper_lim, accuracy, round_func) {
-  breaks <- sinh(labeling::extended(asinh(lower_lim),
-                                    asinh(upper_lim),
-                                    m = 4))
-  breaks <- round_func(breaks/accuracy) * accuracy
-  breaks <- as.character(breaks)
-  for (i in seq_along(breaks)) {
-    if (as.numeric(breaks[i]) > 1e4 || as.numeric(breaks[i]) < -1e4) {
-      breaks[i] <- scales::scientific(as.numeric(breaks[i]), digits = 2)
-      breaks[i] <- gsub(pattern = "e\\+0", replacement = "x10<sup>", x = breaks[i])
-      breaks[i] <- paste0(breaks[i], "</sup>")
-    }
-  }
-  return(breaks)
+scientific <- function(breaks, signif) {
+  breaks <- gsub(pattern = "e\\+",
+                 replacement = "%*%10^",
+                 x = choose_scientific(breaks, signif))
+  parse(text = gsub(pattern = "e",
+                    replacement = "%*%10^",
+                    x = breaks))
+}
+
+#' Decides whether number should be in normal or scientific form depending on
+#' the magnitude of the number
+#'
+#' @inheritParams default_params_doc
+#'
+#' @return Character vector
+choose_scientific <- function(breaks, signif) {
+  ifelse(breaks > 1e3 | breaks < 1e-3,
+         scales::scientific(breaks, digits = 1),
+         scales::number(signif(breaks, digits = signif), big.mark = ""))
 }

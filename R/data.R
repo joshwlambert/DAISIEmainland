@@ -4,7 +4,7 @@
 #' DAISIE mainland extinction model for the analysis of the error inferred by
 #' DAISIE's maximum likelihood model.
 #'
-#' @format A data frame with 46 rows and 11 variables:
+#' @format A data frame with 46 rows and 12 variables:
 #' \describe{
 #'   \item{total_time}{Duration of simulation (million years)}
 #'   \item{m}{Number of species on the mainland}
@@ -18,6 +18,7 @@
 #'     sampled at the end of the simulation if it is extant}
 #'   \item{mainland_sample_type}{Type of incomplete sampling on the mainland}
 #'   \item{replicates}{Number or island replicates}
+#'   \item{seed}{Sets the random number generator seed}
 #' }
 #' @usage data("param_space", package = "DAISIEmainland")
 "param_space"

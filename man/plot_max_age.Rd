@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_max_age.R
 \name{plot_max_age}
 \alias{plot_max_age}
-\title{Plots two faceted violin plots of the percent of max age colonists on the
+\title{Plots two faceted boxplots of the percent of max age colonists on the
 island for different values of mainland extinction. The left side facet has
 the ideal data and the right side facet has the empirical data.}
 \usage{
@@ -24,7 +24,7 @@ and "both" plots all the data}
 Plot
 }
 \description{
-Plots two faceted violin plots of the percent of max age colonists on the
+Plots two faceted boxplots of the percent of max age colonists on the
 island for different values of mainland extinction. The left side facet has
 the ideal data and the right side facet has the empirical data.
 }

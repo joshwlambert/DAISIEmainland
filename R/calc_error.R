@@ -18,11 +18,11 @@ calc_error <- function(daisie_data,
 
   endemic_percent <- calc_endemic_percent(daisie_data = daisie_data)
 
-  param_diffs <- calc_param_diffs(ideal_ml = ideal_ml,
-                                  empirical_ml = empirical_ml)
+  param_ratios <- calc_param_ratios(ideal_ml = ideal_ml,
+                                    empirical_ml = empirical_ml)
 
   return(list(delta_ctt = delta_ctt,
               max_age_percent = max_age_percent,
               endemic_percent = endemic_percent,
-              param_diffs = param_diffs))
+              param_ratios = param_ratios))
 }

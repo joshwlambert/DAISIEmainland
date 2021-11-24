@@ -1,4 +1,4 @@
-#' Plots two faceted violin plots of the percent of max age colonists on the
+#' Plots two faceted boxplots of the percent of max age colonists on the
 #' island for different values of mainland extinction. The left side facet has
 #' the ideal data and the right side facet has the empirical data.
 #'
@@ -64,17 +64,11 @@ plot_max_age <- function(data_folder_path,
     mainland_sample_type = unlist(mainland_sample_type_list))
 
   if (parameter == "mainland_ex") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "complete")
-  } else if (parameter == "unsampled") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "unsampled")
-  } else if (parameter == "undiscovered") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "undiscovered")
+    plotting_data <-
+      plotting_data[plotting_data$mainland_sample_type %in% "complete", ]
+  } else {
+    plotting_data <-
+      plotting_data[plotting_data$mainland_sample_type %in% parameter, ]
   }
 
   if (parameter == "mainland_ex") {
@@ -92,7 +86,7 @@ plot_max_age <- function(data_folder_path,
       ggplot2::theme_classic() +
       ggplot2::ylab("Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
 
     empirical_max_age <- ggplot2::ggplot(data = plotting_data,
@@ -109,7 +103,7 @@ plot_max_age <- function(data_folder_path,
       ggplot2::theme_classic() +
       ggplot2::ylab("Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
   } else {
     ideal_max_age <- ggplot2::ggplot(data = plotting_data,
@@ -127,7 +121,7 @@ plot_max_age <- function(data_folder_path,
       ggplot2::ylab("Ideal Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
 
     empirical_max_age <- ggplot2::ggplot(data = plotting_data,
@@ -145,7 +139,7 @@ plot_max_age <- function(data_folder_path,
       ggplot2::ylab("Empirical Max Age %") +
       ggplot2::xlab(expression(paste("Mainland sampling probability ",
                                      (rho)))) +
-      ggplot2::theme(text = ggplot2::element_text(size = 7.5)) +
+      ggplot2::theme(text = ggplot2::element_text(size = 7)) +
       ggplot2::ylim(c(0, 100))
   }
 
@@ -158,7 +152,7 @@ plot_max_age <- function(data_folder_path,
       plot = max_age,
       filename = output_file_path,
       device = "png",
-      width = 168,
+      width = 180,
       height = 100,
       units = "mm",
       dpi = 600

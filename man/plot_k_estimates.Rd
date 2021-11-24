@@ -2,9 +2,16 @@
 % Please edit documentation in R/plot_k_estimates.R
 \name{plot_k_estimates}
 \alias{plot_k_estimates}
-\title{Plots carrying capacity estimates}
+\title{Boxplots of the estimated carrying capacity faceted for ideal and empirical
+data for two different values of K'.}
 \usage{
-plot_k_estimates(data_folder_path, output_file_path, parameter)
+plot_k_estimates(
+  data_folder_path,
+  output_file_path,
+  parameter,
+  num_breaks,
+  signif
+)
 }
 \arguments{
 \item{data_folder_path}{String specifying the directory the data is read
@@ -17,10 +24,17 @@ in, if NULL the file is returned to console and not saved}
 "mainland_ex" plots mainland extinction as the variable,
 "mainland_sample_prob" plots mainland sampling probability as the variable
 and "both" plots all the data}
+
+\item{num_breaks}{A numeric specifying how many breaks are wanted on the
+plot axes}
+
+\item{signif}{A numeric specifying how many significant figures the axes
+labels have when plotting}
 }
 \value{
 Void (saves plot)
 }
 \description{
-Plots carrying capacity estimates
+Boxplots of the estimated carrying capacity faceted for ideal and empirical
+data for two different values of K'.
 }

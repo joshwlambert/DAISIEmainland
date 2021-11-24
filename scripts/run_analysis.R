@@ -5,7 +5,7 @@ args <- as.numeric(args)
 data("param_space")
 
 set.seed(
-  1,
+  param_space$seed[args],
   kind = "Mersenne-Twister",
   normal.kind = "Inversion",
   sample.kind = "Rejection"
@@ -39,10 +39,20 @@ empirical_sim_metrics <- vector("list", param_space$replicates[args])
 ideal_ml <- vector("list", param_space$replicates[args])
 empirical_ml <- vector("list", param_space$replicates[args])
 
-ideal_sim_metrics <- DAISIEmainland::calc_sim_metrics(
+ideal_sim_num_spec <- DAISIEmainland::calc_num_spec(
   daisie_data = island$ideal_islands)
-empirical_sim_metrics <- DAISIEmainland::calc_sim_metrics(
+ideal_sim_num_col <- DAISIEmainland::calc_num_col(
+  daisie_data = island$ideal_islands)
+ideal_sim_metrics <- list(
+  ideal_sim_num_spec = ideal_sim_num_spec,
+  ideal_sim_num_col = ideal_sim_num_col)
+empirical_sim_num_spec <- DAISIEmainland::calc_num_spec(
   daisie_data = island$empirical_islands)
+empirical_sim_num_col <- DAISIEmainland::calc_num_col(
+  daisie_data = island$empirical_islands)
+empirical_sim_metrics <- list(
+  empirical_sim_num_spec = empirical_sim_num_spec,
+  empirical_sim_num_col = empirical_sim_num_col)
 
 for (i in seq_len(param_space$replicates[args])) {
 

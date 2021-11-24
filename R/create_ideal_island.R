@@ -1,4 +1,4 @@
-#' Convert intermediate output to final simulation output.
+#' Convert intermediate output to final simulation output for ideal data
 #'
 #' @inheritParams default_params_doc
 #'

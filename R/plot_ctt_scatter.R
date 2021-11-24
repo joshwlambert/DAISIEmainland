@@ -1,5 +1,6 @@
-#' Plots a heatmap of the colonisation through time statistic for mainland
-#' sampling probability (y-axis) and mainland extinction rate (x-axis).
+#' Plots points of the mean delta colonisation through time statistic (y-axis)
+#' for either mainland extinction rate or mainland sampling probability
+#' (x-axis).
 #'
 #' @inheritParams default_params_doc
 #'
@@ -41,17 +42,11 @@ plot_ctt_scatter <- function(data_folder_path,
                               mainland_sample_type = mainland_sample_type)
 
   if (parameter == "mainland_ex") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "complete")
-  } else if (parameter == "unsampled") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "unsampled")
-  } else if (parameter == "undiscovered") {
-    plotting_data <- dplyr::filter(
-      plotting_data,
-      plotting_data$mainland_sample_type == "undiscovered")
+    plotting_data <-
+      plotting_data[plotting_data$mainland_sample_type %in% "complete", ]
+  } else {
+    plotting_data <-
+      plotting_data[plotting_data$mainland_sample_type %in% parameter, ]
   }
 
   if (parameter == "mainland_ex") {
@@ -79,8 +74,8 @@ plot_ctt_scatter <- function(data_folder_path,
       plot = ctt,
       filename = output_file_path,
       device = "png",
-      width = 168,
-      height = 100,
+      width = 80,
+      height = 80,
       units = "mm",
       dpi = 600
     )

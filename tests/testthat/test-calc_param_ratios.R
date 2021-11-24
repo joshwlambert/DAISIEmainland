@@ -1,4 +1,4 @@
-test_that("calc_param_diff runs without error", {
+test_that("calc_param_ratios runs without error", {
   ideal_ml <- list(data.frame("lambda_c" = 0.55,
                               "mu" = 0.82,
                               "K" = 52,
@@ -16,18 +16,18 @@ test_that("calc_param_diff runs without error", {
                                   "loglik" = -86.01,
                                   "df" = 5,
                                   "conv" = 0))
-  expect_silent(param_diffs <- calc_param_diffs(ideal_ml = ideal_ml,
-                                                empirical_ml = empirical_ml))
+  expect_silent(param_ratios <- calc_param_ratios(ideal_ml = ideal_ml,
+                                                  empirical_ml = empirical_ml))
 
-  expect_length(param_diffs, 5)
-  expect_equal(param_diffs$clado_diff, 0.06)
-  expect_equal(param_diffs$ext_diff, 0.32)
-  expect_equal(param_diffs$k_diff, 39)
-  expect_equal(param_diffs$immig_diff, 0.02)
-  expect_equal(param_diffs$ana_diff, 0.04)
+  expect_length(param_ratios, 5)
+  expect_equal(param_ratios$clado_ratio, 1.12244897959)
+  expect_equal(param_ratios$ext_ratio, 1.64)
+  expect_equal(param_ratios$k_ratio, 4)
+  expect_equal(param_ratios$immig_ratio, 1.33333333333)
+  expect_equal(param_ratios$ana_ratio, 1.05263157895)
 })
 
-test_that("calc_param_diff fails with incorrect ideal_ml", {
+test_that("calc_param_ratios fails with incorrect ideal_ml", {
   ideal_ml <- "nonsense"
 
   empirical_ml <- list(data.frame("lambda_c" = 0.49,
@@ -38,12 +38,12 @@ test_that("calc_param_diff fails with incorrect ideal_ml", {
                                   "loglik" = -86.01,
                                   "df" = 5,
                                   "conv" = 0))
-  expect_error(calc_param_diffs(ideal_ml = ideal_ml,
-                                empirical_ml = empirical_ml))
+  expect_error(calc_param_ratios(ideal_ml = ideal_ml,
+                                 empirical_ml = empirical_ml))
 
 })
 
-test_that("calc_param_diff fails with incorrect empirical_ml", {
+test_that("calc_param_ratios fails with incorrect empirical_ml", {
   ideal_ml <- list(data.frame("lambda_c" = 0.55,
                               "mu" = 0.82,
                               "K" = 52,
@@ -54,7 +54,7 @@ test_that("calc_param_diff fails with incorrect empirical_ml", {
                               "conv" = 0))
 
   empirical_ml <- "nonsense"
-  expect_error(calc_param_diffs(ideal_ml = ideal_ml,
-                                empirical_ml = empirical_ml))
+  expect_error(calc_param_ratios(ideal_ml = ideal_ml,
+                                 empirical_ml = empirical_ml))
 
 })

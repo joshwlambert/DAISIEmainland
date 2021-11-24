@@ -26,7 +26,7 @@ units.}
 \item{mainland_spec}{Numeric focal species on the mainland}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 }
 \value{
 The updated state of the system, which is a list with the

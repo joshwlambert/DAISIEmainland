@@ -1,31 +1,35 @@
-test_that("multiplication works", {
+test_that("calc_sim_metrics runs silent without error", {
+  expect_silent(sim_metrics <- calc_sim_metrics(
+    data_folder_path = file.path("testdata"),
+    output_file_path = NULL))
 
-  meta <- list(island_age = 1, not_present = 98)
-  stac_2 <- list(branching_times = c(1.0, 0.98, 0.01),
-                 stac = 2,
-                 missing_spec = 0)
-  stac_3 <- list(branching_times = c(1.0, 0.36, 0.09),
-                 stac = 3,
-                 missing_spec = 0,
-                 all_colonisations = list(list(event_times = c(1.0, 0.36, 0.09),
-                                               species_type = "C"),
-                                          list(event_times = c(1.0, 0.06),
-                                               species_type = "I")))
+  expect_length(sim_metrics, 12)
+  expect_equal(sim_metrics$ideal_mean_num_col, 34.2456521739)
+  expect_equal(sim_metrics$ideal_max_num_col, 50)
+  expect_equal(sim_metrics$ideal_min_num_col, 16)
+  expect_equal(sim_metrics$ideal_mean_num_spec, 75.1782608696)
+  expect_equal(sim_metrics$ideal_max_num_spec, 150)
+  expect_equal(sim_metrics$ideal_min_num_spec, 28)
+  expect_equal(sim_metrics$empirical_mean_num_col, 33.8413043478)
+  expect_equal(sim_metrics$empirical_max_num_col, 49)
+  expect_equal(sim_metrics$empirical_min_num_col, 16)
+  expect_equal(sim_metrics$empirical_mean_num_spec, 75.1782608696)
+  expect_equal(sim_metrics$empirical_max_num_spec, 150)
+  expect_equal(sim_metrics$empirical_min_num_spec, 28)
+})
 
-  ideal_islands <- list(list(meta, stac_2, stac_3))
-  empirical_islands <- list(list(meta, stac_2, stac_3))
-  island <- list(ideal_islands = ideal_islands,
-                     empirical_islands = empirical_islands)
+test_that("calc_sim_metrics (save) runs silent without error", {
+  output_filename <- tempfile(
+    pattern = "",
+    tmpdir = tempdir(),
+    fileext = ".png"
+  )
+  expect_false(file.exists(output_filename))
 
-  expect_silent(ideal_sim_metrics <- DAISIEmainland::calc_sim_metrics(
-    daisie_data = island$ideal_islands))
-  expect_silent(empirical_sim_metrics <- DAISIEmainland::calc_sim_metrics(
-    daisie_data = island$empirical_islands))
+  expect_silent(sim_metrics <- calc_sim_metrics(
+    data_folder_path = file.path("testdata"),
+    output_file_path = output_filename))
 
-  expect_length(ideal_sim_metrics, 2)
-  expect_length(empirical_sim_metrics, 2)
-  expect_equal(ideal_sim_metrics$num_col, 3)
-  expect_equal(ideal_sim_metrics$num_spec, 5)
-  expect_equal(empirical_sim_metrics$num_col, 3)
-  expect_equal(empirical_sim_metrics$num_spec, 5)
+  file.remove(output_filename)
+  expect_false(file.exists(output_filename))
 })

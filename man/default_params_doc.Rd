@@ -37,16 +37,14 @@ default_params_doc(
   empirical_ml,
   sim_params,
   param_set,
-  xlim,
   data_folder_path,
   output_file_path,
   param_space,
   parameter,
   plotting_data,
-  lower_lim,
-  upper_lim,
-  accuracy,
-  round_func
+  breaks,
+  num_breaks,
+  signif
 )
 }
 \arguments{
@@ -74,10 +72,10 @@ species.}
 can colonize the island.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 
-\item{mainland_clade}{Data frame with state of mainland. see
-\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}.}
+\item{mainland_clade}{Data frame with state of mainland, see
+\code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 
@@ -146,9 +144,6 @@ data}
 \item{param_set}{Numeric for the index of the parameter set from the
 parameter space}
 
-\item{xlim}{Boolean determining whether the x-axis should be bounded on the
-plot}
-
 \item{data_folder_path}{String specifying the directory the data is read
 from}
 
@@ -165,15 +160,13 @@ and "both" plots all the data}
 
 \item{plotting_data}{Numeric vector of data points}
 
-\item{lower_lim}{Numeric stating the lower bound of the axis to be plotted}
+\item{breaks}{A vector of numerics}
 
-\item{upper_lim}{Numeric stating the upper bound of the axis to be plotted}
+\item{num_breaks}{A numeric specifying how many breaks are wanted on the
+plot axes}
 
-\item{accuracy}{Numeric stating to which decimal place to kept, e.g. 0.1 is
-to one decimal place}
-
-\item{round_func}{Function to be passed through to the rounding, either
-\code{floor} or \code{ceiling} function}
+\item{signif}{A numeric specifying how many significant figures the axes
+labels have when plotting}
 }
 \value{
 Nothing

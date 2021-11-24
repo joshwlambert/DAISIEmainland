@@ -5,7 +5,7 @@
 \alias{param_space}
 \title{Parameter space for the analysis of the DAISIE mainland extinction model.}
 \format{
-A data frame with 46 rows and 11 variables:
+A data frame with 46 rows and 12 variables:
 \describe{
 \item{total_time}{Duration of simulation (million years)}
 \item{m}{Number of species on the mainland}
@@ -19,6 +19,7 @@ A data frame with 46 rows and 11 variables:
 sampled at the end of the simulation if it is extant}
 \item{mainland_sample_type}{Type of incomplete sampling on the mainland}
 \item{replicates}{Number or island replicates}
+\item{seed}{Sets the random number generator seed}
 }
 }
 \usage{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_ideal_island.R
 \name{create_ideal_island}
 \alias{create_ideal_island}
-\title{Convert intermediate output to final simulation output.}
+\title{Convert intermediate output to final simulation output for ideal data}
 \usage{
 create_ideal_island(total_time, island_spec)
 }
@@ -11,7 +11,7 @@ create_ideal_island(total_time, island_spec)
 units.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 }
 \value{
 a list with these elements:
@@ -46,7 +46,7 @@ cladogenetic or immigrant origin, respectively.}
 }
 }
 \description{
-Convert intermediate output to final simulation output.
+Convert intermediate output to final simulation output for ideal data
 }
 \author{
 Joshua W. Lambert

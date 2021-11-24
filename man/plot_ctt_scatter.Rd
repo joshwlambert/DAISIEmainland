@@ -2,8 +2,9 @@
 % Please edit documentation in R/plot_ctt_scatter.R
 \name{plot_ctt_scatter}
 \alias{plot_ctt_scatter}
-\title{Plots a heatmap of the colonisation through time statistic for mainland
-sampling probability (y-axis) and mainland extinction rate (x-axis).}
+\title{Plots points of the mean delta colonisation through time statistic (y-axis)
+for either mainland extinction rate or mainland sampling probability
+(x-axis).}
 \usage{
 plot_ctt_scatter(data_folder_path, output_file_path, parameter)
 }
@@ -23,6 +24,7 @@ and "both" plots all the data}
 Void (saves plot)
 }
 \description{
-Plots a heatmap of the colonisation through time statistic for mainland
-sampling probability (y-axis) and mainland extinction rate (x-axis).
+Plots points of the mean delta colonisation through time statistic (y-axis)
+for either mainland extinction rate or mainland sampling probability
+(x-axis).
 }

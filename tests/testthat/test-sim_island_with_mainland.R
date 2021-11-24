@@ -5,7 +5,6 @@ test_that("sim_island_with_mainland produces correct empty island", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-
   island <- sim_island_with_mainland(
       total_time = 1,
       m = 10,
@@ -34,18 +33,17 @@ test_that("sim_island_mainland produces correct non-empty island", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
-    mainland_sample_type = "undiscovered",
+    mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-
   expect_equal(island$ideal_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$ideal_island[[1]][[1]]$not_present, 5)
+  expect_equal(island$ideal_island[[1]][[1]]$not_present, 6)
   expect_equal(island$ideal_island[[1]][[2]]$branching_times,
                c(1.000000000000, 0.4393665143))
   expect_equal(island$ideal_island[[1]][[2]]$stac, 2)
   expect_equal(island$ideal_island[[1]][[2]]$missing_species, 0)
   expect_equal(island$empirical_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$empirical_island[[1]][[1]]$not_present, 5)
+  expect_equal(island$empirical_island[[1]][[1]]$not_present, 6)
   expect_equal(island$empirical_island[[1]][[2]]$branching_times,
                c(1.000000000000, 0.4393665143))
   expect_equal(island$empirical_island[[1]][[2]]$stac, 2)
@@ -259,30 +257,42 @@ test_that("sim_island_mainland fails with incorrect input", {
   )
 })
 
-test_that("sim_island_with_mainland with 1 mainland clade", {
+test_that("sim_island_with_mainland runs with 1 mainland clade without mainland
+          extinction", {
   expect_silent(
     sim_island_with_mainland(
-      total_time = 1, # Irrelevant
-      m = 1, # Number of mainland clades
-      island_pars = c(1, 1, 10, 0.1, 1), # Irrelevant
-      mainland_ex = 1, # Irrelevant
-      mainland_sample_prob = 1, # Irrelevant
-      mainland_sample_type = "undiscovered", # Irrelevant
-      replicates = 1 # Irrelevant
-    )
-  )
+      total_time = 1,
+      m = 1,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 0,
+      mainland_sample_prob = 1,
+      mainland_sample_type = "complete",
+      replicates = 1))
+})
+
+test_that("sim_island_with_mainland fails with 1 mainland clade with mainland
+          extinction", {
+  expect_error(
+    sim_island_with_mainland(
+      total_time = 1,
+      m = 1,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      mainland_sample_type = "complete",
+      replicates = 1),
+    regexp = "Simulating with mainland extinction requires more than one clade")
 })
 
 test_that("sim_island_with_mainland with 0.0 time", {
   expect_silent(
     sim_island_with_mainland(
-      total_time = 0.0, # Nothing happened yet
-      m = 2, # Irrelevant
-      island_pars = c(1, 1, 10, 0.1, 1), # Irrelevant
-      mainland_ex = 1, # Irrelevant
-      mainland_sample_prob = 1, # Irrelevant
-      mainland_sample_type = "undiscovered", # Irrelevant
-      replicates = 1 # Irrelevant
-    )
+      total_time = 0.0,
+      m = 10,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 1,
+      mainland_sample_prob = 1,
+      mainland_sample_type = "complete",
+      replicates = 1)
   )
 })

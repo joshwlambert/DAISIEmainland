@@ -29,8 +29,7 @@ immig_event <- function(timeval,
                  branch_code = as.character(NA),
                  branch_t = NaN,
                  ana_origin = as.character(NA)))
-  }
-  if (length(isitthere) != 0) {
+  } else {
     island_spec[isitthere, ] <- data.frame(spec_id = colonist,
                                            main_anc_id = colonist,
                                            col_t = timeval,

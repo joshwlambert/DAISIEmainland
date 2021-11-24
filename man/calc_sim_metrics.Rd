@@ -2,19 +2,22 @@
 % Please edit documentation in R/calc_sim_metrics.R
 \name{calc_sim_metrics}
 \alias{calc_sim_metrics}
-\title{Calculates summary metrics from a simulation}
+\title{Calculates the summary metrics for the entire parameter space}
 \usage{
-calc_sim_metrics(daisie_data)
+calc_sim_metrics(data_folder_path, output_file_path)
 }
 \arguments{
-\item{daisie_data}{List containing data of DAISIE simulation with mainland
-dynamics. Output from `sim_island_with_mainland``}
+\item{data_folder_path}{String specifying the directory the data is read
+from}
+
+\item{output_file_path}{String specifying the directory the file is saved
+in, if NULL the file is returned to console and not saved}
 }
 \value{
 List of simulation metrics
 }
 \description{
-Calculates summary metrics from a simulation
+Calculates the summary metrics for the entire parameter space
 }
 \author{
 Joshua W. Lambert

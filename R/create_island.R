@@ -19,6 +19,7 @@ create_island <- function(total_time,
   testit::assert(is.data.frame(mainland_clade))
   testit::assert(ncol(mainland_clade) == 7)
   testit::assert(is.numeric(mainland_sample_prob))
+  testit::assert(is.character(mainland_sample_type))
 
   if (nrow(island_spec) == 0) {
     ideal_island <- empirical_island <-

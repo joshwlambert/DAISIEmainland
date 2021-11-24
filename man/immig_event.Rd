@@ -10,7 +10,7 @@ immig_event(timeval, island_spec, mainland_spec)
 \item{timeval}{Numeric defining current time of simulation.}
 
 \item{island_spec}{Matrix with current state of simulation containing number
-of species.}
+of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 }
