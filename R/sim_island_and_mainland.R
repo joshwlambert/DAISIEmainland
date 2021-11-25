@@ -16,7 +16,7 @@
 #' @examples
 #' island <- sim_island_and_mainland(
 #'   total_time = 1,
-#'   m = 1, # Number of mainland clades
+#'   m = 2, # Number of mainland clades
 #'   island_pars = c(1, 1, 10, 0.1, 1),
 #'   mainland_ex = 1,
 #'   mainland_sample_prob = 1,
