@@ -6,6 +6,10 @@
 \usage{
 plot_mainland(mainland)
 }
+\arguments{
+\item{mainland}{the evolutionary history of the mainland species,
+as created by \link{sim_mainland}}
+}
 \value{
 a \code{ggplot2}
 }
