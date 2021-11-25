@@ -1,5 +1,5 @@
 #' Simulate both the island and mainland,
-#' a version of \link{sim_island_with_main} used in debugging, that
+#' a version of \link{sim_island_with_mainland} used in debugging, that
 #'  * returns both the island and the mainland,
 #'    to verify the correctness of the simulation
 #'  * has no 1,

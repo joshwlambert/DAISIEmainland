@@ -1,5 +1,4 @@
-#' Plot the simulated mainland
-#'
+#' Plot the simulated mainland.
 #' @inheritParams default_params_doc
 #'
 #' @return a `ggplot2`

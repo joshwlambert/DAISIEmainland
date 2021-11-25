@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_mainland.R
 \name{plot_mainland}
 \alias{plot_mainland}
-\title{Plot the simulated mainland}
+\title{Plot the simulated mainland.}
 \usage{
 plot_mainland(mainland)
 }
@@ -15,7 +15,7 @@ Use \link{plot_mainland} to visualise the that evolutionary history.}
 a \code{ggplot2}
 }
 \description{
-Plot the simulated mainland
+Plot the simulated mainland.
 }
 \examples{
 mainland <- DAISIEmainland:::sim_mainland(
