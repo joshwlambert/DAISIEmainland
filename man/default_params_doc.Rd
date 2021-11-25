@@ -170,7 +170,8 @@ plot axes}
 labels have when plotting}
 
 \item{mainland}{the evolutionary history of the mainland species,
-as created by \link{sim_mainland}}
+as created by \link{sim_mainland}.
+Use \link{plot_mainland} to visualise the that evolutionary history.}
 }
 \value{
 Nothing

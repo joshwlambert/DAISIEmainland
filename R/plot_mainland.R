@@ -15,6 +15,12 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 plot_mainland <- function(mainland) {
+
+  # Fix build warnings
+  spec_origin_t <- NULL; rm(spec_origin_t) # nolint, fixes warning: no visible binding for global variable
+  spec_ex_t <- NULL; rm(spec_ex_t) # nolint, fixes warning: no visible binding for global variable
+  unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
+
   # Give each list element a clade id
   for (i in seq_along(mainland)) {
     mainland[[i]]$clade_id <- i
