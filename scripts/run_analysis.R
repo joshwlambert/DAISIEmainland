@@ -54,6 +54,8 @@ empirical_sim_metrics <- list(
   empirical_sim_num_spec = empirical_sim_num_spec,
   empirical_sim_num_col = empirical_sim_num_col)
 
+DAISIE::DAISIE_CS_max_steps(1e8)
+
 for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
