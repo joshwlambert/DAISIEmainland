@@ -30,7 +30,6 @@ test_that("scenario 0 -> colonization -> scenario 1", {
   )
 })
 
-
 test_that("create_test_island_spec produces correct output for scenario 2", {
   island_spec <- create_test_island_spec(island_scenario = 2)
   expect_true(is.data.frame(island_spec))

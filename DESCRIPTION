@@ -18,6 +18,7 @@ Depends:
 Imports: 
     DAISIE (>= 4.0.5),
     DDD (>= 4.4),
+    dplyr,
     nLTT (>= 1.4.5),
     testit,
     ggplot2,

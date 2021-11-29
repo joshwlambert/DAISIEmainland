@@ -61,7 +61,6 @@
 #'   replicates = 2,
 #'   verbose = FALSE
 #' )
-#'
 #' @export
 sim_island_with_mainland <- function(total_time,
                                      m,

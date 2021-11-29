@@ -107,7 +107,6 @@ island <- sim_island_with_mainland(
   replicates = 2,
   verbose = FALSE
 )
-
 }
 \author{
 Joshua W. Lambert

@@ -80,6 +80,9 @@
 #' plot axes
 #' @param signif A numeric specifying how many significant figures the axes
 #' labels have when plotting
+#' @param mainland the evolutionary history of the mainland species,
+#' as created by \link{sim_mainland}.
+#' Use \link{plot_mainland} to visualise the that evolutionary history.
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -122,6 +125,7 @@ default_params_doc <- function(timeval,
                                plotting_data,
                                breaks,
                                num_breaks,
-                               signif) {
+                               signif,
+                               mainland) {
   #Nothing
 }

@@ -44,7 +44,8 @@ default_params_doc(
   plotting_data,
   breaks,
   num_breaks,
-  signif
+  signif,
+  mainland
 )
 }
 \arguments{
@@ -167,6 +168,10 @@ plot axes}
 
 \item{signif}{A numeric specifying how many significant figures the axes
 labels have when plotting}
+
+\item{mainland}{the evolutionary history of the mainland species,
+as created by \link{sim_mainland}.
+Use \link{plot_mainland} to visualise the that evolutionary history.}
 }
 \value{
 Nothing
