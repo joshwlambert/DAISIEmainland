@@ -11,24 +11,26 @@
 #'   mainland = mainland_clade,
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete")
-#' if (1 == 2 ) {
-#'   # TODO: add 'plot_ideal_island'
-#'   plot_ideal_island(island$ideal_island)
-#' }
+#' plot_ideal_island(island$ideal_island)
 #' @author Richèl J.C. Bilderbeek
 #' @export
 plot_ideal_island <- function(ideal_island) {
 
-
   # Fix build warnings
-  branching_times <- NULL; rm(spec_origin_t) # nolint, fixes warning: no visible binding for global variable
+  branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
 
   # Move 'ideal_island$all_colonisations' to a seperate list
   all_colonisations <- list()
   for (i in seq_along(ideal_island)) {
+    if (is.null(ideal_island[[i]]$all_colonisations)) next
     all_colonisations[[i]] <- ideal_island[[i]]$all_colonisations
+    all_colonisations[[i]]$clade_id <- i
     ideal_island[[i]]$all_colonisations <- NULL
+  }
+  if (1 == 2) {
+    # This is too complex for now
+    dplyr::bind_rows(all_colonisations)
   }
 
   # Give each list element a clade id
@@ -37,6 +39,8 @@ plot_ideal_island <- function(ideal_island) {
   }
   # Combine the list into one big tibble
   t_ideal_island <- dplyr::bind_rows(ideal_island)
+  t_ideal_island$stac_str <- Vectorize(stac_to_str)(t_ideal_island$stac)
+  t_ideal_island$stac_str <- as.factor(t_ideal_island$stac_str)
 
   # Number all species of all clades individually
   t_ideal_island$unique_species_id <- seq(1, nrow(t_ideal_island))
@@ -52,7 +56,9 @@ plot_ideal_island <- function(ideal_island) {
     ggplot2::geom_point(
       ggplot2::aes(
         x = branching_times,
-        y = unique_species_id
+        y = unique_species_id,
+        color = unique_species_id,
+        shape = stac_str
       )
     ) +
     ggplot2::facet_grid(

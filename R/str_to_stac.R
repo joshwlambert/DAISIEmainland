@@ -24,7 +24,7 @@ str_to_stac <- function(stac_str) {
     return(2)
   } else if (stac_str == "Endemic&Non_Endemic") {
     return(3)
-  } else if (stac_str == "Non_endemic_MaxAge") {
+  } else if (stac_str == "Non_endemic") {
     return(4)
   } else if (stac_str == "Endemic_singleton_MaxAge") {
     return(5)

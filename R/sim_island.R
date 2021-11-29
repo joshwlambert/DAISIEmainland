@@ -17,7 +17,7 @@
 #'    1. Non_endemic_MaxAge
 #'    2. Endemic
 #'    3. Endemic&Non_Endemic
-#'    4. Non_endemic_MaxAge
+#'    4. Non_endemic
 #'    5. Endemic_singleton_MaxAge
 #'    6. Endemic_clade_MaxAge
 #' * `$missing_species`: number of island species that were

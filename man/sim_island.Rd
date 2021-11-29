@@ -54,7 +54,7 @@ indicating the status of the colonist:
 \item Non_endemic_MaxAge
 \item Endemic
 \item Endemic&Non_Endemic
-\item Non_endemic_MaxAge
+\item Non_endemic
 \item Endemic_singleton_MaxAge
 \item Endemic_clade_MaxAge
 }

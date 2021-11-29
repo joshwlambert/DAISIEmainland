@@ -20,10 +20,7 @@ island <- sim_island(
   mainland = mainland_clade,
   mainland_sample_prob = 1,
   mainland_sample_type = "complete")
-if (1 == 2 ) {
-  # TODO: add 'plot_ideal_island'
-  plot_ideal_island(island$ideal_island)
-}
+plot_ideal_island(island$ideal_island)
 }
 \author{
 Richèl J.C. Bilderbeek
