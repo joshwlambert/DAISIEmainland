@@ -69,6 +69,7 @@ for (i in seq_len(param_space$replicates[args])) {
       parsfix = NULL,
       idparsfix = NULL,
       ddmodel = 11,
+      methode = "odeint::runge_kutta_fehlberg78",
       jitter = 1e-5)
 
     if (ideal_ml[[i]]$conv == -1) {
@@ -109,6 +110,7 @@ for (i in seq_len(param_space$replicates[args])) {
       parsfix = NULL,
       idparsfix = NULL,
       ddmodel = 11,
+      methode = "odeint::runge_kutta_fehlberg78",
       jitter = 1e-5)
 
     if (empirical_ml[[i]]$conv == -1) {
