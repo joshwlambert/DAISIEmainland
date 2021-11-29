@@ -35,7 +35,21 @@ Simulates mainland extinction as a species-level moran process with
 species extinction immediately replaced via the speciation of an exisiting
 mainland species.
 }
+\examples{
+## Simulate mainland for 1 million years with a size of 100 species and a
+## mainland extinction rate of 1 (SpMy^-1).
+
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection")
+mainland <- sim_mainland(
+  total_time = 1,
+  m = 100,
+  mainland_ex = 1
+)
+}
 \author{
 Joshua W. Lambert
 }
-\keyword{internal}

@@ -5,7 +5,7 @@ test_that("minimal example use", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  mainland <- DAISIEmainland:::sim_mainland(
+  mainland <- sim_mainland(
     total_time = 1,
     m = 2,
     mainland_ex = 1)
@@ -20,7 +20,7 @@ test_that("interesting example", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  mainland <- DAISIEmainland:::sim_mainland(
+  mainland <- sim_mainland(
     total_time = 1,
     m = 4,
     mainland_ex = 1)
