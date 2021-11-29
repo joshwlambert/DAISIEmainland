@@ -114,6 +114,8 @@ for (i in seq_len(replicates)) {
     parsfix = NULL,
     idparsfix = NULL,
     ddmodel = 11,
+    methode = "odeint::runge_kutta_fehlberg78",
+    optimmethod = "simplex",
     jitter = 1e-5)
   
   empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
@@ -123,6 +125,8 @@ for (i in seq_len(replicates)) {
     parsfix = NULL,
     idparsfix = NULL,
     ddmodel = 11,
+    methode = "odeint::runge_kutta_fehlberg78",
+    optimmethod = "simplex",
     jitter = 1e-5)
 }
 ```
