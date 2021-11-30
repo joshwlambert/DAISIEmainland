@@ -17,7 +17,7 @@
 #'    1. Non_endemic_MaxAge
 #'    2. Endemic
 #'    3. Endemic&Non_Endemic
-#'    4. Non_endemic_MaxAge
+#'    4. Non_endemic
 #'    5. Endemic_singleton_MaxAge
 #'    6. Endemic_clade_MaxAge
 #' * `$missing_species`: number of island species that were
@@ -38,6 +38,9 @@ sim_island <- function(total_time,
   testit::assert(is.data.frame(mainland_clade))
   testit::assert(is.numeric(mainland_sample_prob))
   testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
+  testit::assert(mainland_sample_type == "unsampled" ||
+                   mainland_sample_type == "undiscovered" ||
+                   mainland_sample_type == "complete")
 
   # Initialization
   timeval <- 0

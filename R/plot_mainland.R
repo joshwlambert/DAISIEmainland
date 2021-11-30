@@ -4,7 +4,7 @@
 #' @return a `ggplot2`
 #'
 #' @examples
-#' mainland <- DAISIEmainland:::sim_mainland(
+#' mainland <- DAISIEmainland::sim_mainland(
 #'   total_time = 1,
 #'   m = 2,
 #'   mainland_ex = 2)
