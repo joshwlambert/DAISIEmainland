@@ -23,7 +23,7 @@ collect_ideal_island_stacs <- function(ideal_island) {
   }
   # Prove it is indeed the same as using purrr:
   #
-  testthat::expect_equal(stacs, purrr::map_dbl(ideal_island, function(x) x$stac)) # nolint indeed, this code :-)
+  # testthat::expect_equal(stacs, purrr::map_dbl(ideal_island, function(x) x$stac)) # nolint indeed, this code :-)
   stacs
 }
 
@@ -58,7 +58,7 @@ count_extant_mainland_species <- function(mainland) {
   #
   # Prove it is the same as using purrr:
   #
-  testthat::expect_equal(n, purrr::map_dbl(mainland, function(x) { return(sum(x$spec_ex_t == 1.0)) } )) # nolint indeed, this code :-)
+  # testthat::expect_equal(n, purrr::map_dbl(mainland, function(x) { return(sum(x$spec_ex_t == 1.0)) } )) # nolint indeed, this code :-)
 
   n
 }
