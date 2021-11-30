@@ -51,9 +51,9 @@ count_extant_mainland_species <- function(mainland) {
   #
   # We use this handcrafted function to avoid adding a dependency
   #
-  n <- 0
-  for (clade in mainland) {
-    n <- n + sum(clade$spec_ex_t == 1.0)
+  n <- rep(0, length(mainland))
+  for (i in seq_along(mainland)) {
+    n[i] <- sum(mainland[[i]]$spec_ex_t == 1.0)
   }
   #
   # Prove it is the same as using purrr:
