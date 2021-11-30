@@ -4,7 +4,8 @@
 #' @return a `ggplot2`
 #'
 #' @examples
-#' mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
+#' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
+#'   mainland_scenario = 2)
 #' island <- sim_island(
 #'   total_time = 1,
 #'   island_pars = c(1, 1, 10, 1, 1),
@@ -19,6 +20,7 @@ plot_ideal_island <- function(ideal_island) {
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
+  stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
 
   # Move 'ideal_island$all_colonisations' to a seperate list
   all_colonisations <- list()

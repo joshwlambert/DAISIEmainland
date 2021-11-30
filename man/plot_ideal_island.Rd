@@ -6,6 +6,34 @@
 \usage{
 plot_ideal_island(ideal_island)
 }
+\arguments{
+\item{ideal_island}{a simulated island with perfect information,
+as created by \link{sim_island} (together with \code{empirical_island},
+which has imperfect information).
+
+\code{ideal_island} is a list  containing 3 components:
+\itemize{
+\item \verb{$branching_times}: island age and stem age of the
+population/species in the case of Non-endemic, Non-endemic_MaxAge and
+Endemic anagenetic species.
+
+For cladogenetic species these should
+be island age and branching times of the radiation including the
+stem age of the radiation.
+\item \verb{$stac}: An integer ranging from 1 to 6
+indicating the status of the colonist:
+\enumerate{
+\item Non_endemic_MaxAge
+\item Endemic
+\item Endemic&Non_Endemic
+\item Non_endemic
+\item Endemic_singleton_MaxAge
+\item Endemic_clade_MaxAge
+}
+\item \verb{$missing_species}: number of island species that were
+not sampled for particular clade (only applicable for endemic clades)
+}}
+}
 \value{
 a \code{ggplot2}
 }
@@ -13,7 +41,8 @@ a \code{ggplot2}
 Plot the simulated mainland.
 }
 \examples{
-mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
+mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
+  mainland_scenario = 2)
 island <- sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 1, 1),

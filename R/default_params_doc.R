@@ -53,6 +53,29 @@
 #' single colonisation event
 #' @param daisie_data List containing data of DAISIE simulation with mainland
 #' dynamics. Output from `sim_island_with_mainland``
+#' @param ideal_island a simulated island with perfect information,
+#' as created by \link{sim_island} (together with `empirical_island`,
+#' which has imperfect information).
+#'
+#' `ideal_island` is a list  containing 3 components:
+#' * `$branching_times`: island age and stem age of the
+#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
+#'    Endemic anagenetic species.
+#'
+#'    For cladogenetic species these should
+#'    be island age and branching times of the radiation including the
+#'    stem age of the radiation.
+#' * `$stac`: An integer ranging from 1 to 6
+#'    indicating the status of the colonist:
+#'    1. Non_endemic_MaxAge
+#'    2. Endemic
+#'    3. Endemic&Non_Endemic
+#'    4. Non_endemic
+#'    5. Endemic_singleton_MaxAge
+#'    6. Endemic_clade_MaxAge
+#' * `$missing_species`: number of island species that were
+#' not sampled for particular clade (only applicable for endemic clades)
+#'
 #' @param ideal_ml List containing maximum likelihood estimates from DAISIE
 #' fitted to ideal data produced from `sim_island_with_mainland`. Output
 #' from `DAISIE::DAISIE_ML_CS`
@@ -114,6 +137,7 @@ default_params_doc <- function(timeval,
                                anc_branch_t_bp,
                                subset_island,
                                daisie_data,
+                               ideal_island,
                                ideal_ml,
                                empirical_ml,
                                sim_params,
