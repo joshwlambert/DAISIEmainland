@@ -1,4 +1,4 @@
-# Simulation utility functions,
+# Simulation utility functions, 
 # ordered alphabetically by function name:
 #
 # * event_to_str
