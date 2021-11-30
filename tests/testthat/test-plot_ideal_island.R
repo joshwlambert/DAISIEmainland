@@ -89,7 +89,7 @@ test_that("ideal data has 2, 3 and 4", {
       mainland_sample_prob = 1,
       mainland_sample_type = "complete")
     ideal_island <- island$ideal_island
-    stacs <- purrr::map_dbl(ideal_island, function(x) x$stac)
+    stacs <- collect_ideal_island_stacs(ideal_island)
     if (length(stacs) == 1 && stacs == 0) next
     expect_true(all(stacs %in% c(2, 3, 4)))
   }
@@ -114,7 +114,7 @@ test_that("find stac == 6", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
   empirical_island <- island$empirical_island
-  stacs <- purrr::map_dbl(empirical_island, function(x) x$stac)
+  stacs <- collect_empirical_island_stacs(empirical_island)
   expect_true(any(stacs == 6))
 })
 
@@ -136,7 +136,7 @@ test_that("stac == 5", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
   empirical_island <- island$empirical_island
-  stacs <- purrr::map_dbl(empirical_island, function(x) x$stac)
+  stacs <- collect_empirical_island_stacs(empirical_island)
   expect_equal(5, stacs)
 })
 
@@ -158,7 +158,7 @@ test_that("stac == 1", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
   empirical_island <- island$empirical_island
-  stacs <- purrr::map_dbl(empirical_island, function(x) x$stac)
+  stacs <- collect_empirical_island_stacs(empirical_island)
   expect_equal(1, stacs)
 })
 
@@ -185,7 +185,7 @@ test_that("find stacs in emperical data", {
       mainland_sample_prob = 1,
       mainland_sample_type = "complete")
     empirical_island <- island$empirical_island
-    stacs <- purrr::map_dbl(empirical_island, function(x) x$stac)
+    stacs <- collect_empirical_island_stacs(empirical_island)
     if (any(stacs %in% c(1))) {
       message("FOUND")
       message(seed)
