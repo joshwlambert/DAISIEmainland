@@ -55,7 +55,7 @@ empirical_sim_metrics <- list(
   empirical_sim_num_col = empirical_sim_num_col)
 
 message("Number of likelihood integration steps permitted:")
-DAISIE::DAISIE_CS_max_steps(1e6)
+DAISIE::DAISIE_CS_max_steps(1e7)
 
 for (i in seq_len(param_space$replicates[args])) {
 
