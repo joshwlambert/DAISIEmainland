@@ -55,27 +55,44 @@ empirical_sim_metrics <- list(
   empirical_sim_num_col = empirical_sim_num_col)
 
 message("Number of likelihood integration steps permitted:")
-DAISIE::DAISIE_CS_max_steps(1e7)
+DAISIE::DAISIE_CS_max_steps(1e6)
+
+percent_endemic <- calc_endemic_percent(daisie_data = island)
 
 for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
   while (ml_failure) {
-    ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-      datalist = island$ideal_islands[[i]],
-      initparsopt = c(island_clado,
-                      island_ex,
-                      island_k,
-                      island_immig,
-                      island_ana),
-      idparsopt = 1:5,
-      parsfix = NULL,
-      idparsfix = NULL,
-      ddmodel = 11,
-      methode = "odeint::runge_kutta_fehlberg78",
-      optimmethod = "simplex",
-      jitter = 1e-5)
-
+    if (percent_endemic$ideal_endemic_percent[i] == 100) {
+      ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+        datalist = island$ideal_islands[[i]],
+        initparsopt = c(island_clado,
+                        island_ex,
+                        island_k,
+                        island_immig),
+        idparsopt = 1:4,
+        parsfix = 100,
+        idparsfix = 5,
+        ddmodel = 11,
+        methode = "odeint::runge_kutta_fehlberg78",
+        optimmethod = "simplex",
+        jitter = 1e-5)
+    } else {
+      ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+        datalist = island$ideal_islands[[i]],
+        initparsopt = c(island_clado,
+                        island_ex,
+                        island_k,
+                        island_immig,
+                        island_ana),
+        idparsopt = 1:5,
+        parsfix = NULL,
+        idparsfix = NULL,
+        ddmodel = 11,
+        methode = "odeint::runge_kutta_fehlberg78",
+        optimmethod = "simplex",
+        jitter = 1e-5)
+    }
     if (ideal_ml[[i]]$conv == -1) {
       ml_failure <- TRUE
       message("Likelihood optimisation failed retrying with new initial values")
@@ -103,21 +120,36 @@ for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
   while (ml_failure) {
-    empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-      datalist = island$empirical_islands[[i]],
-      initparsopt = c(island_clado,
-                      island_ex,
-                      island_k,
-                      island_immig,
-                      island_ana),
-      idparsopt = 1:5,
-      parsfix = NULL,
-      idparsfix = NULL,
-      ddmodel = 11,
-      methode = "odeint::runge_kutta_fehlberg78",
-      optimmethod = "simplex",
-      jitter = 1e-5)
-
+    if (percent_endemic$empirical_endemic_percent[i] == 100) {
+      empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+        datalist = island$empirical_islands[[i]],
+        initparsopt = c(island_clado,
+                        island_ex,
+                        island_k,
+                        island_immig),
+        idparsopt = 1:4,
+        parsfix = 100,
+        idparsfix = 5,
+        ddmodel = 11,
+        methode = "odeint::runge_kutta_fehlberg78",
+        optimmethod = "simplex",
+        jitter = 1e-5)
+    } else {
+      empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+        datalist = island$empirical_islands[[i]],
+        initparsopt = c(island_clado,
+                        island_ex,
+                        island_k,
+                        island_immig,
+                        island_ana),
+        idparsopt = 1:5,
+        parsfix = NULL,
+        idparsfix = NULL,
+        ddmodel = 11,
+        methode = "odeint::runge_kutta_fehlberg78",
+        optimmethod = "simplex",
+        jitter = 1e-5)
+    }
     if (empirical_ml[[i]]$conv == -1) {
       ml_failure <- TRUE
       message("Likelihood optimisation failed retrying with new initial values")
