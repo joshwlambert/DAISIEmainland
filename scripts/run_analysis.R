@@ -54,6 +54,9 @@ empirical_sim_metrics <- list(
   empirical_sim_num_spec = empirical_sim_num_spec,
   empirical_sim_num_col = empirical_sim_num_col)
 
+message("Number of likelihood integration steps permitted:")
+DAISIE::DAISIE_CS_max_steps(1e7)
+
 for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
@@ -69,6 +72,8 @@ for (i in seq_len(param_space$replicates[args])) {
       parsfix = NULL,
       idparsfix = NULL,
       ddmodel = 11,
+      methode = "odeint::runge_kutta_fehlberg78",
+      optimmethod = "simplex",
       jitter = 1e-5)
 
     if (ideal_ml[[i]]$conv == -1) {
@@ -109,6 +114,8 @@ for (i in seq_len(param_space$replicates[args])) {
       parsfix = NULL,
       idparsfix = NULL,
       ddmodel = 11,
+      methode = "odeint::runge_kutta_fehlberg78",
+      optimmethod = "simplex",
       jitter = 1e-5)
 
     if (empirical_ml[[i]]$conv == -1) {
