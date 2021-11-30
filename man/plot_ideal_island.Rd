@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_ideal_island.R
 \name{plot_ideal_island}
 \alias{plot_ideal_island}
-\title{Plot the simulated mainland.}
+\title{Plot the simulated ideal island.}
 \usage{
 plot_ideal_island(ideal_island)
 }
@@ -38,12 +38,12 @@ not sampled for particular clade (only applicable for endemic clades)
 a \code{ggplot2}
 }
 \description{
-Plot the simulated mainland.
+Plot the simulated ideal island.
 }
 \examples{
 mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
   mainland_scenario = 2)
-island <- sim_island(
+island <- DAISIEmainland:::sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 1, 1),
   mainland = mainland_clade,

@@ -4,9 +4,10 @@
 #'
 #' @return the event as a string
 #'
-#' @seealso use \link{str_to_event} to convent a string to an `event`
+#' @seealso use \link{str_to_stac} to convent a string to a `stac`
 #'
 #' @examples
+#' DAISIEmainland:::stac_to_str(0)
 #' DAISIEmainland:::stac_to_str(1)
 #' DAISIEmainland:::stac_to_str(2)
 #' DAISIEmainland:::stac_to_str(3)
@@ -17,7 +18,9 @@
 #' @author Richèl J.C. Bilderbeek
 stac_to_str <- function(stac) {
   testthat::expect_equal(length(stac), 1)
-  if (stac == 1) {
+  if (stac == 0) {
+    return("[no colonization has taken place]")
+  } else if (stac == 1) {
     return("Non_endemic_MaxAge")
   } else if (stac == 2) {
     return("Endemic")

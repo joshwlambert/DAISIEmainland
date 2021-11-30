@@ -16,6 +16,7 @@ the \code{stac} as a string
 Convert a string to a \code{stac}
 }
 \examples{
+DAISIEmainland:::str_to_stac("[no colonization has taken place]")
 DAISIEmainland:::str_to_stac("Non_endemic_MaxAge")
 DAISIEmainland:::str_to_stac("Endemic")
 DAISIEmainland:::str_to_stac("Endemic&Non_Endemic")

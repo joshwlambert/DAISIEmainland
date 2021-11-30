@@ -13,6 +13,7 @@ the event as a string
 Convert a \code{stac} (status of colonist) to a string
 }
 \examples{
+DAISIEmainland:::stac_to_str(0)
 DAISIEmainland:::stac_to_str(1)
 DAISIEmainland:::stac_to_str(2)
 DAISIEmainland:::stac_to_str(3)
@@ -21,7 +22,7 @@ DAISIEmainland:::stac_to_str(5)
 DAISIEmainland:::stac_to_str(6)
 }
 \seealso{
-use \link{str_to_event} to convent a string to an \code{event}
+use \link{str_to_stac} to convent a string to a \code{stac}
 }
 \author{
 Richèl J.C. Bilderbeek

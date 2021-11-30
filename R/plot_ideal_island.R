@@ -1,4 +1,4 @@
-#' Plot the simulated mainland.
+#' Plot the simulated ideal island.
 #' @inheritParams default_params_doc
 #'
 #' @return a `ggplot2`
@@ -6,7 +6,7 @@
 #' @examples
 #' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
 #'   mainland_scenario = 2)
-#' island <- sim_island(
+#' island <- DAISIEmainland:::sim_island(
 #'   total_time = 1,
 #'   island_pars = c(1, 1, 10, 1, 1),
 #'   mainland = mainland_clade,

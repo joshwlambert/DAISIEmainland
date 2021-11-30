@@ -7,6 +7,7 @@
 #' @seealso use \link{stac_to_str} to convent an `stac` to a string
 #'
 #' @examples
+#' DAISIEmainland:::str_to_stac("[no colonization has taken place]")
 #' DAISIEmainland:::str_to_stac("Non_endemic_MaxAge")
 #' DAISIEmainland:::str_to_stac("Endemic")
 #' DAISIEmainland:::str_to_stac("Endemic&Non_Endemic")
@@ -18,7 +19,9 @@
 #' @author Richèl J.C. Bilderbeek
 str_to_stac <- function(stac_str) {
   testthat::expect_equal(length(stac_str), 1)
-  if (stac_str == "Non_endemic_MaxAge") {
+  if (stac_str == "[no colonization has taken place]") {
+    return(0)
+  } else if (stac_str == "Non_endemic_MaxAge") {
     return(1)
   } else if (stac_str == "Endemic") {
     return(2)
