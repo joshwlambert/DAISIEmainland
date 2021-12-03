@@ -4,7 +4,8 @@
 #' @return a `ggplot2`
 #'
 #' @examples
-#' mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
+#' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
+#'   mainland_scenario = 2)
 #' plot_mainland_clade(mainland_clade)
 #' @author Richèl J.C. Bilderbeek
 #' @export

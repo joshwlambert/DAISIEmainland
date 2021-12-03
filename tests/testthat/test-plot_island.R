@@ -11,9 +11,6 @@ test_that("use", {
     mainland_ex = 2)
   plot_mainland(mainland = mainland)
 
-  count_extant_mainland_species <- function(mainland) {
-    purrr::map_dbl(mainland, function(x) { return(sum(x$spec_ex_t == 1.0)) } )
-  }
   clade_with_most_species <- which(
     count_extant_mainland_species(mainland) ==
       max(count_extant_mainland_species(mainland))
