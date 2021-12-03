@@ -4,6 +4,7 @@
 #'
 #' @return A list of six numeric vectors
 #' @author Joshua W. Lambert
+#' @export
 calc_endemic_percent <- function(daisie_data) {
 
   ideal_endemic_percent_vec <- c()

@@ -55,9 +55,9 @@ empirical_sim_metrics <- list(
   empirical_sim_num_col = empirical_sim_num_col)
 
 message("Number of likelihood integration steps permitted:")
-DAISIE::DAISIE_CS_max_steps(1e6)
+DAISIE::DAISIE_CS_max_steps(1e8)
 
-percent_endemic <- calc_endemic_percent(daisie_data = island)
+percent_endemic <- DAISIEmainland::calc_endemic_percent(daisie_data = island)
 
 for (i in seq_len(param_space$replicates[args])) {
 
