@@ -16,15 +16,16 @@ calc_island_endemics <- function(island) {
     all_cols <- lapply(recol, "[[", "all_colonisations")
     event_times <- lapply(all_cols,
                           function(x) {lapply(x, "[[", "event_times")})
-    num_recol_spec <- lapply(event_times,
-                             function(x) {lapply(x, function(y) length(y) - 1)})
+    num_recol_spec <- unlist(
+      lapply(event_times, function(x) {lapply(x, function(y) length(y) - 1)})
+    )
     species_type <- unlist(
       lapply(all_cols, function(x) {lapply(x, "[[", "species_type")})
     )
     endemics <- which(species_type %in% c("C", "A"))
     non_endemics <- which(species_type %in% c("I"))
-    num_recol_endemics <- sum(unlist(num_recol_spec[[1]][endemics]))
-    num_recol_non_endemics <- sum(unlist(num_recol_spec[[1]][non_endemics]))
+    num_recol_endemics <- sum(num_recol_spec[endemics])
+    num_recol_non_endemics <- sum(num_recol_spec[non_endemics])
     num_endemics <- num_endemics + num_recol_endemics
     num_non_endemics <- num_non_endemics + num_recol_non_endemics
   }
