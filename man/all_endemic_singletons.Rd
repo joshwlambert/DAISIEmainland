@@ -2,7 +2,8 @@
 % Please edit documentation in R/all_endemic_singletons.R
 \name{all_endemic_singletons}
 \alias{all_endemic_singletons}
-\title{Checks if there are any singleton}
+\title{Checks if all island species are endemic singletons. Singletons are single
+lineages that have not formed an island clade of two or more species.}
 \usage{
 all_endemic_singletons(island)
 }
@@ -14,7 +15,8 @@ data}
 Boolean
 }
 \description{
-Checks if there are any singleton
+Checks if all island species are endemic singletons. Singletons are single
+lineages that have not formed an island clade of two or more species.
 }
 \examples{
 \dontrun{
