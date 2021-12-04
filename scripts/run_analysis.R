@@ -60,7 +60,9 @@ DAISIE::DAISIE_CS_max_steps(1e8)
 for (i in seq_len(param_space$replicates[args])) {
   ml_failure <- TRUE
   while (ml_failure) {
-    if (all_endemic_singletons(island = island$ideal_islands[[i]])) {
+    fix_ana <- DAISIEmainland::all_endemic_singletons(
+      island = island$ideal_islands[[i]])
+    if (fix_ana) {
       ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
         datalist = island$ideal_islands[[i]],
         initparsopt = c(island_clado,
@@ -117,7 +119,9 @@ for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
   while (ml_failure) {
-    if (all_endemic_singletons(island = island$empirical_islands[[i]])) {
+    fix_ana <- DAISIEmainland::all_endemic_singletons(
+      island = island$empirical_islands[[i]])
+    if (fix_ana) {
       empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
         datalist = island$empirical_islands[[i]],
         initparsopt = c(island_clado,
