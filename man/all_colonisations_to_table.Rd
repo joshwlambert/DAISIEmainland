@@ -49,18 +49,32 @@ cladogenetic or immigrant origin, respectively.}
 }}
 }
 \value{
-a \link{list} with elements:
+a table with column names:
 \itemize{
-\item \code{t}: a table
-\item \code{empirical_island$all_colonisations}: a list with all colonizations
-in the empirical data
-\item \code{ideal_island$all_colonisations}: a list with all colonizations
-in the ideal data
+\item \code{clade_id}: the clade ID
+\item \code{colonist_id}: the colonists' ID
+\item \code{event_times} ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times
+\item \code{species_type} a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.
 }
 }
 \description{
 Extract all colonisations from an island history
 and put these in a table
+}
+\examples{
+mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
+  mainland_scenario = 20)
+island <- DAISIEmainland:::sim_island(
+  total_time = 1,
+  island_pars = c(1, 1, 10, 12, 1),
+  mainland = mainland_clade,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "complete")
+all_colonisations_to_table(ideal_or_empirical_island = island$ideal_island)
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -1,5 +1,7 @@
 #' Convert an `island` to a list of tables
+#'
 #' @inheritParams default_params_doc
+#'
 #' @return a \link{list} with elements:
 #'   * `t`: a table
 #'   * `empirical_island$all_colonisations`: a list with all colonizations

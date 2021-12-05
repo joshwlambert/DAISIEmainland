@@ -30,6 +30,11 @@
 #'
 #' @export
 plot_island <- function(island) {
+  # Fix build warnings
+  branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
+  unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
+  stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
+
   t <- DAISIEmainland::island_to_tables(island)
 
   # Draw lines, with time going from past/left to present/right
