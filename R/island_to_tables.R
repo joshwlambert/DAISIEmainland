@@ -3,11 +3,8 @@
 #' @inheritParams default_params_doc
 #'
 #' @return a \link{list} with elements:
-#'   * `t`: a table
-#'   * `empirical_island$all_colonisations`: a list with all colonizations
-#'     in the empirical data
-#'   * `ideal_island$all_colonisations`: a list with all colonizations
-#'     in the ideal data
+#'   * `speciations`: a table with the speciation events
+#'   * `colonisations`: a table with colonisations
 #'
 #' @author Richèl J.C. Bilderbeek
 #'
@@ -16,21 +13,27 @@ island_to_tables <- function(island) {
 
   tables <- list()
   tables$empirical_island <- empirical_island_to_tables(island$empirical_island)
-  tables$empirical_island$t$data_type <- "empirical"
+  tables$empirical_island$speciations$data_type <- "empirical"
+  tables$empirical_island$colonisations$data_type <- "empirical"
   tables$ideal_island <- ideal_island_to_tables(island$ideal_island)
-  tables$ideal_island$t$data_type <- "ideal"
-  tables$t <- dplyr::bind_rows(tables$empirical_island$t, tables$ideal_island$t)
-  tables$empirical_island$t <- NULL
-  tables$ideal_island$t <- NULL
-  tables$t$data_type <- as.factor(tables$t$data_type)
+  tables$ideal_island$speciations$data_type <- "ideal"
+  tables$ideal_island$colonisations$data_type <- "ideal"
+  tables$speciations <- dplyr::bind_rows(
+    tables$empirical_island$speciations,
+    tables$ideal_island$speciations
+  )
+  tables$colonisations <- dplyr::bind_rows(
+    tables$empirical_island$colonisations,
+    tables$ideal_island$colonisations
+  )
   tables
 }
 
 #' Convert an `empirical_island` to a list of tables
 #' @inheritParams default_params_doc
 #' @return a \link{list} with elements:
-#'   * `t`: a table
-#'   * `all_colonisations`: a list with all colonizations
+#'   * `speciations`: a table with the speciation events
+#'   * `colonisations`: a table with colonisations
 #' @export
 empirical_island_to_tables <- function(empirical_island) {
   # It is exactly the same
@@ -40,8 +43,8 @@ empirical_island_to_tables <- function(empirical_island) {
 #' Convert an `ideal_island` to a list of tables
 #' @inheritParams default_params_doc
 #' @return a \link{list} with elements:
-#'   * `t`: a table
-#'   * `all_colonisations`: a list with all colonizations
+#'   * `speciations`: a table with the speciation events
+#'   * `colonisations`: a table with colonisations
 #' @export
 ideal_island_to_tables <- function(ideal_island) {
   # Fix build warnings
@@ -74,7 +77,7 @@ ideal_island_to_tables <- function(ideal_island) {
   t$unique_species_id <- as.factor(t$unique_species_id)
 
   list(
-    t = t,
-    all_colonisations = all_colonisations
+    speciations = t,
+    colonisations = all_colonisations
   )
 }

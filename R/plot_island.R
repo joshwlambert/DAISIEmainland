@@ -43,7 +43,7 @@ plot_island <- function(island) {
   # y1 = y = unique_species_id
   # y2 = yend = unique_species_id
   # color = unique_species_id
-  ggplot2::ggplot(data = t$t) +
+  ggplot2::ggplot(data = t$speciations) +
     ggplot2::geom_point(
       ggplot2::aes(
         x = branching_times,
