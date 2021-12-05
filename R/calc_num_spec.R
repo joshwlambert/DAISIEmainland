@@ -6,16 +6,11 @@
 #' @export
 #' @author Joshua W. Lambert
 calc_num_spec <- function(daisie_data) {
-
   num_spec <- c()
-
   for (i in seq_along(daisie_data)) {
     sim_rep <- daisie_data[[i]]
-
     temp_num_spec <- c()
-
     stacs <- lapply(sim_rep, "[[", "stac")
-
     for (j in 2:length(sim_rep)) {
       if (stacs[[j]] != 3) {
         temp_num_spec <- c(

@@ -128,6 +128,9 @@
 #' @param mainland the evolutionary history of the mainland species,
 #' as created by \link{sim_mainland}.
 #' Use \link{plot_mainland} to visualise the that evolutionary history.
+#' @param island A single island replicate, can be either ideal or empirical
+#' data
+#'
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -173,6 +176,7 @@ default_params_doc <- function(timeval,
                                breaks,
                                num_breaks,
                                signif,
-                               mainland) {
+                               mainland,
+                               island) {
   #Nothing
 }

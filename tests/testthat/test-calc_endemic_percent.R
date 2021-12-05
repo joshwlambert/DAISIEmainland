@@ -4,7 +4,6 @@ test_that("calc_endemic_percent runs without error", {
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection")
-
   daisie_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 5,
     m = 100,
@@ -18,11 +17,11 @@ test_that("calc_endemic_percent runs without error", {
   expect_silent(endemic_percent <- calc_endemic_percent(
     daisie_data = daisie_data))
   expect_length(endemic_percent, 6)
-  expect_equal(endemic_percent$ideal_endemic_percent, 25)
+  expect_equal(endemic_percent$ideal_endemic_percent, 40)
   expect_equal(endemic_percent$empirical_endemic_percent, 100)
-  expect_equal(endemic_percent$ideal_endemics, 1)
+  expect_equal(endemic_percent$ideal_endemics, 2)
   expect_equal(endemic_percent$ideal_non_endemics, 3)
-  expect_equal(endemic_percent$empirical_endemics, 4)
+  expect_equal(endemic_percent$empirical_endemics, 5)
   expect_equal(endemic_percent$empirical_non_endemics, 0)
 })
 
