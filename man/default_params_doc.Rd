@@ -36,6 +36,7 @@ default_params_doc(
   ideal_island,
   empirical_island,
   ideal_or_empirical_island,
+  species_type,
   ideal_ml,
   empirical_ml,
   sim_params,
@@ -252,6 +253,10 @@ colonising lineage.}
 \code{"I"} depending on whether the extant clade is of anagenetic,
 cladogenetic or immigrant origin, respectively.}
 }}
+
+\item{species_type}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
 
 \item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
 fitted to ideal data produced from \code{sim_island_with_mainland}. Output

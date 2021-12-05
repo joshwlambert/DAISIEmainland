@@ -157,6 +157,9 @@
 #'     `"I"` depending on whether the extant clade is of anagenetic,
 #'     cladogenetic or immigrant origin, respectively.}
 #' }
+#' @param species_type a string. Can be `"A"`, `"C"` or
+#' `"I"` depending on whether the extant clade is of anagenetic,
+#' cladogenetic or immigrant origin, respectively.
 #' @param ideal_ml List containing maximum likelihood estimates from DAISIE
 #' fitted to ideal data produced from `sim_island_with_mainland`. Output
 #' from `DAISIE::DAISIE_ML_CS`
@@ -258,6 +261,7 @@ default_params_doc <- function(timeval,
                                ideal_island,
                                empirical_island,
                                ideal_or_empirical_island,
+                               species_type,
                                ideal_ml,
                                empirical_ml,
                                sim_params,

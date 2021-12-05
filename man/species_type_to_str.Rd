@@ -7,6 +7,11 @@ where the \code{species_type} denotes the origin of a species.}
 \usage{
 species_type_to_str(species_type)
 }
+\arguments{
+\item{species_type}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
+}
 \value{
 the species type as a string
 }

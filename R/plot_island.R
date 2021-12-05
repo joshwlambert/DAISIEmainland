@@ -55,9 +55,10 @@ plot_island <- function(island) {
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
+  event_times <- NULL; rm(event_times) # nolint, fixes warning: no visible binding for global variable
+  species_type_str <- NULL; rm(species_type_str) # nolint, fixes warning: no visible binding for global variable
 
   t <- DAISIEmainland::island_to_tables(island)
-  t$speciations
 
   # Convert species_type to factor species_type_str
   t$colonisations$species_type_str <- as.character(Vectorize(
