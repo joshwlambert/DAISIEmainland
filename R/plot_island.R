@@ -38,11 +38,11 @@ plot_island <- function(island) {
   t <- DAISIEmainland::island_to_tables(island)
 
   # Draw lines, with time going from past/left to present/right
-  # x1 = x = branching_times
-  # NO IDEA YET x2 = xend = spec_ex_t
-  # y1 = y = unique_species_id
-  # y2 = yend = unique_species_id
-  # color = unique_species_id
+  # x1 = x = branching_times                                                    # nolint this is no commented code
+  # NO IDEA YET x2 = xend = spec_ex_t                                           # nolint this is no commented code
+  # y1 = y = unique_species_id                                                  # nolint this is no commented code
+  # y2 = yend = unique_species_id                                               # nolint this is no commented code
+  # color = unique_species_id                                                   # nolint this is no commented code
   ggplot2::ggplot(data = t$speciations) +
     ggplot2::geom_point(
       ggplot2::aes(

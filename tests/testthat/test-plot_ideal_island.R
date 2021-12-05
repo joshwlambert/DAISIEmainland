@@ -34,8 +34,6 @@ test_that("use", {
     mainland_sample_type = "complete")
   ideal_island <- island$ideal_island
   plot_ideal_island(ideal_island = island$ideal_island)
-  # Endemic&Non_Endemic
-  # Non_endemic
 })
 
 test_that("9 island species", {

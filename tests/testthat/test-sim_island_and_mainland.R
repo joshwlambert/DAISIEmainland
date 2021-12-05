@@ -1,8 +1,10 @@
 test_that("Figure A1", {
   skip("Re-create figure A1")
-  # If the mainland species immigrates and does not go extinct or speciate, and no
-  # events happen on the island, the island species is non-endemic (NE), and the colonisation
-  # time in the empirical data (gamma_E) is the same as the colonisation time in the ideal data (gamma).
+  # If the mainland species immigrates and does not go extinct or speciate,
+  # and no events happen on the island, the island species is non-endemic (NE),
+  # and the colonisation
+  # time in the empirical data (gamma_E) is the same as the colonisation time
+  # in the ideal data (gamma).
   # Empirical and ideal data are assigned stac 4.
   island_with_mainland <- sim_island_and_mainland(
     total_time = 100.0,

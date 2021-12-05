@@ -25,7 +25,7 @@
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-all_colonisations_to_table <- function(ideal_or_empirical_island) {
+all_colonisations_to_table <- function(ideal_or_empirical_island) { # nolint indeed a too complex function
 
   # Collect the 'ideal_or_empirical_island[[i]]$all_colonisations's
   # in one list without adding a dependency on purrr
