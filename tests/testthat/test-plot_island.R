@@ -1,4 +1,27 @@
-test_that("create an interesting picture", {
+test_that("interesting picture, no recolonisations", {
+  set.seed(
+    13,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  mainland <- sim_mainland(
+    total_time = 10,
+    m = 10,
+    mainland_ex = 1.0
+  )
+  mainland_clade <- mainland[[1]]
+  plot_mainland_clade(mainland_clade)
+  island <- sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, 10, 12, 1),
+    mainland = mainland_clade,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete")
+  plot_island(island)
+})
+
+test_that("interesting picture, with recolonisation", {
   set.seed(
     9,
     kind = "Mersenne-Twister",
@@ -10,7 +33,10 @@ test_that("create an interesting picture", {
     m = 10,
     mainland_ex = 1.0
   )
+
+  # Clade goes extinct, but after island age
   mainland_clade <- mainland[[1]]
+
   plot_mainland_clade(mainland_clade)
   island <- sim_island(
     total_time = 1,

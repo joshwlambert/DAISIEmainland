@@ -57,14 +57,12 @@ plot_island <- function(island) {
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
 
   t <- DAISIEmainland::island_to_tables(island)
+  t$speciations
 
-  # Convert species_type to species_type_str
+  # Convert species_type to factor species_type_str
   t$colonisations$species_type_str <- as.character(Vectorize(
       DAISIEmainland::species_type_to_str)(t$colonisations$species_type))
-
-
   t$colonisations$species_type_str <- as.factor(t$colonisations$species_type_str)
-
 
   # Draw lines, with time going from past/left to present/right
   # x1 = x = branching_times                                                    # nolint this is no commented code
@@ -84,7 +82,7 @@ plot_island <- function(island) {
         color = unique_species_id,
         shape = stac_str
       ),
-      size = 2
+      size = 3
     ) +
     ggplot2::facet_grid(
       clade_id ~ data_type,
