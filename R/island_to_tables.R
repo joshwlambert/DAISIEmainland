@@ -14,10 +14,14 @@ island_to_tables <- function(island) {
   tables <- list()
   tables$empirical_island <- empirical_island_to_tables(island$empirical_island)
   tables$empirical_island$speciations$data_type <- "empirical"
-  tables$empirical_island$colonisations$data_type <- "empirical"
+  if (nrow(tables$empirical_island$colonisations) != 0) {
+    tables$empirical_island$colonisations$data_type <- "empirical"
+  }
   tables$ideal_island <- ideal_island_to_tables(island$ideal_island)
   tables$ideal_island$speciations$data_type <- "ideal"
-  tables$ideal_island$colonisations$data_type <- "ideal"
+  if (nrow(tables$ideal_island$colonisations) != 0) {
+    tables$ideal_island$colonisations$data_type <- "ideal"
+  }
   tables$speciations <- dplyr::bind_rows(
     tables$empirical_island$speciations,
     tables$ideal_island$speciations
