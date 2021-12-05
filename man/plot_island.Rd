@@ -80,7 +80,7 @@ mainland <- sim_mainland(
 )
 mainland_clade <- mainland[[1]]
 plot_mainland_clade(mainland_clade)
-island <- DAISIEmainland::sim_island(
+island <- DAISIEmainland:::sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 12, 1),
   mainland = mainland_clade,
