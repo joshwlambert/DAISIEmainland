@@ -56,11 +56,31 @@ a \code{ggplot2}
 \description{
 Plot the simulated island, based on ideal and empirical data.
 }
+\details{
+The plot will consist of a grid,
+with two columns and one or more rows.
+The columns depict the same evolutionary history of the
+island, yet for different type of data.
+The rows depict the species clades.
+
+The vertical lines in the column for the ideal data depict
+one or more colonisation events.
+}
 \examples{
-mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
-  mainland_scenario = mainland_scenario
+set.seed(
+  9,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
 )
-island <- DAISIEmainland:::sim_island(
+mainland <- sim_mainland(
+  total_time = 10,
+  m = 10,
+  mainland_ex = 1.0
+)
+mainland_clade <- mainland[[1]]
+plot_mainland_clade(mainland_clade)
+island <- sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 12, 1),
   mainland = mainland_clade,

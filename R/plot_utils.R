@@ -66,3 +66,26 @@ choose_scientific <- function(breaks, signif) {
          scales::scientific(breaks, digits = 1),
          scales::number(signif(breaks, digits = signif), big.mark = ""))
 }
+
+#' Convert an `species_type` to a string,
+#' where the `species_type` denotes the origin of a species.
+#'
+#' @inheritParams default_params_doc
+#'
+#' @return the species type as a string
+#'
+#' @examples
+#' species_type_to_str("A") # Anagenetic
+#' species_type_to_str("C") # Cladogentic
+#' species_type_to_str("I") # Immigrant
+#'
+#' @author Richèl J.C. Bilderbeek
+#'
+#' @export
+species_type_to_str <- function(species_type) {
+  testthat::expect_equal(length(species_type), 1)
+  if (species_type == "A") return("anagenetic")
+  if (species_type == "C") return("cladogenetic")
+  testthat::expect_equal(species_type, "I")
+  return("immigrant")
+}

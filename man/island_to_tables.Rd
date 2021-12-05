@@ -53,11 +53,8 @@ cladogenetic or immigrant origin, respectively.}
 \value{
 a \link{list} with elements:
 \itemize{
-\item \code{t}: a table
-\item \code{empirical_island$all_colonisations}: a list with all colonizations
-in the empirical data
-\item \code{ideal_island$all_colonisations}: a list with all colonizations
-in the ideal data
+\item \code{speciations}: a table with the speciation events
+\item \code{colonisations}: a table with colonisations
 }
 }
 \description{
