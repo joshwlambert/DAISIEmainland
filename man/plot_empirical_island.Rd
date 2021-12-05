@@ -32,6 +32,19 @@ indicating the status of the colonist:
 }
 \item \verb{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
 }}
 }
 \value{
@@ -50,6 +63,18 @@ island <- DAISIEmainland:::sim_island(
   mainland_sample_prob = 1,
   mainland_sample_type = "complete")
 plot_empirical_island(island$empirical_island)
+}
+\seealso{
+These are the functions to plot an evolutionary history:
+\itemize{
+\item Use \link{plot_mainland} to plot the mainland history
+\item Use \link{plot_island} to plot the island history.
+based on both empirical data and ideal data.
+\item Use \link{plot_empirical_island} to plot the island history.
+based on empirical data.
+\item Use \link{plot_ideal_island} to plot the island history
+based on ideal data.
+}
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -32,6 +32,19 @@ indicating the status of the colonist:
 }
 \item \verb{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
 }}
 }
 \value{

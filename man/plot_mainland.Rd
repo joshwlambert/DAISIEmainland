@@ -26,6 +26,18 @@ mainland <- DAISIEmainland::sim_mainland(
 plot_mainland(mainland)
 
 }
+\seealso{
+These are the functions to plot an evolutionary history:
+\itemize{
+\item Use \link{plot_mainland} to plot the mainland history
+\item Use \link{plot_island} to plot the island history.
+based on both empirical data and ideal data.
+\item Use \link{plot_empirical_island} to plot the island history.
+based on empirical data.
+\item Use \link{plot_ideal_island} to plot the island history
+based on ideal data.
+}
+}
 \author{
 Richèl J.C. Bilderbeek
 }

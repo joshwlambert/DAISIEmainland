@@ -6,6 +6,9 @@
 #'     in the empirical data
 #'   * `ideal_island$all_colonisations`: a list with all colonizations
 #'     in the ideal data
+#'
+#' @author Richèl J.C. Bilderbeek
+#'
 #' @export
 island_to_tables <- function(island) {
 
@@ -44,17 +47,15 @@ ideal_island_to_tables <- function(ideal_island) {
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
 
-  # Move 'ideal_island$all_colonisations' to a seperate list
-  all_colonisations <- list()
+  # Convert the list elements 'all_colonisations' to its own table
+  all_colonisations <- DAISIEmainland::all_colonisations_to_table(
+    ideal_or_empirical_island = ideal_island
+  )
+  # Remove the 'all_colonisations's, so that the remaining data can be
+  # conerted to a table
   for (i in seq_along(ideal_island)) {
     if (is.null(ideal_island[[i]]$all_colonisations)) next
-    all_colonisations[[i]] <- ideal_island[[i]]$all_colonisations
-    all_colonisations[[i]]$clade_id <- i
     ideal_island[[i]]$all_colonisations <- NULL
-  }
-  if (1 == 2) {
-    # This is too complex for now
-    dplyr::bind_rows(all_colonisations)
   }
 
   # Give each list element a clade id

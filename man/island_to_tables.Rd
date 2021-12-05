@@ -6,9 +6,23 @@
 \usage{
 island_to_tables(island)
 }
+\arguments{
+\item{island}{A single island replicate, can be either ideal or empirical
+data}
+}
 \value{
-a \link{list} with elements
+a \link{list} with elements:
+\itemize{
+\item \code{t}: a table
+\item \code{empirical_island$all_colonisations}: a list with all colonizations
+in the empirical data
+\item \code{ideal_island$all_colonisations}: a list with all colonizations
+in the ideal data
+}
 }
 \description{
 Convert an \code{island} to a list of tables
+}
+\author{
+Richèl J.C. Bilderbeek
 }

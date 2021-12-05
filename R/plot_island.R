@@ -1,5 +1,36 @@
+#' Plot the simulated island, based on ideal and empirical data.
+#' @inheritParams default_params_doc
+#'
+#' @return a `ggplot2`
+#'
+#' @seealso
+#' These are the functions to plot an evolutionary history:
+#'
+#'  * Use \link{plot_mainland} to plot the mainland history
+#'  * Use \link{plot_island} to plot the island history.
+#'    based on both empirical data and ideal data.
+#'  * Use \link{plot_empirical_island} to plot the island history.
+#'    based on empirical data.
+#'  * Use \link{plot_ideal_island} to plot the island history
+#'    based on ideal data.
+#'
+#' @examples
+#' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
+#'   mainland_scenario = mainland_scenario
+#' )
+#' island <- DAISIEmainland:::sim_island(
+#'   total_time = 1,
+#'   island_pars = c(1, 1, 10, 12, 1),
+#'   mainland = mainland_clade,
+#'   mainland_sample_prob = 1,
+#'   mainland_sample_type = "complete")
+#' plot_island(island)
+#'
+#' @author Richèl J.C. Bilderbeek
+#'
+#' @export
 plot_island <- function(island) {
-  t <- island_to_tables(island)
+  t <- DAISIEmainland::island_to_tables(island)
 
   # Draw lines, with time going from past/left to present/right
   # x1 = x = branching_times
