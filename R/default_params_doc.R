@@ -29,8 +29,7 @@
 #' @param m Numeric defining the size of mainland pool.
 #' @param verbose Logical, determining if progress output should be printed
 #' during the simulation.
-#' @param rates named list of numeric rates as returned by
-#'   [update_rates()].
+#' @param rates named list of numeric rates as returned by \link{calc_rates}.
 #' @param island_pars A numeric vector containing the parameters for the island:
 #'   \itemize{
 #'     \item{`island_pars[1]`: lambda^c (cladogenesis rate)}

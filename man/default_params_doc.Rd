@@ -100,8 +100,7 @@ element must be a list with the elements \code{island_age} and
 \item{verbose}{Logical, determining if progress output should be printed
 during the simulation.}
 
-\item{rates}{named list of numeric rates as returned by
-\code{\link[=update_rates]{update_rates()}}.}
+\item{rates}{named list of numeric rates as returned by \link{calc_rates}.}
 
 \item{island_pars}{A numeric vector containing the parameters for the island:
 \itemize{

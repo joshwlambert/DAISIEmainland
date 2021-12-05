@@ -7,8 +7,7 @@
 sample_event(rates)
 }
 \arguments{
-\item{rates}{named list of numeric rates as returned by
-\code{\link[=update_rates]{update_rates()}}.}
+\item{rates}{named list of numeric rates as returned by \link{calc_rates}.}
 }
 \value{
 numeric indicating what event will happen, or a supposed event that
