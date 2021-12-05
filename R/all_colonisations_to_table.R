@@ -70,10 +70,11 @@ all_colonisations_to_table <- function(ideal_or_empirical_island) { # nolint ind
     clade_tables <- list()
     for (colonist_id in seq_along(clade_colonisations_list)) {
       colonist <- clade_colonisations_list[[colonist_id]]
-      clade_table <- tibble::tibble(
+      clade_table <- data.frame(
         colonist_id = colonist_id,
         event_times = colonist$event_times,
-        species_type = colonist$species_type
+        species_type = colonist$species_type,
+        stringsAsFactors = FALSE
       )
       clade_tables[[colonist_id]] <- clade_table
     }
@@ -84,11 +85,12 @@ all_colonisations_to_table <- function(ideal_or_empirical_island) { # nolint ind
   t <- dplyr::bind_rows(tables)
   if (nrow(t) == 0) {
     # Same column order and data type as a regular table
-    t <- tibble::tibble(
+    t <- data.frame(
       colonist_id = integer(0),
       event_times = numeric(0),
       species_type = character(0),
-      clade_id = integer(0)
+      clade_id = integer(0),
+      stringsAsFactors = FALSE
     )
   }
   testthat::expect_true("colonist_id" %in% names(t))
