@@ -29,8 +29,7 @@
 #' @param m Numeric defining the size of mainland pool.
 #' @param verbose Logical, determining if progress output should be printed
 #' during the simulation.
-#' @param rates named list of numeric rates as returned by
-#'   [update_rates()].
+#' @param rates named list of numeric rates as returned by \link{calc_rates}.
 #' @param island_pars A numeric vector containing the parameters for the island:
 #'   \itemize{
 #'     \item{`island_pars[1]`: lambda^c (cladogenesis rate)}
@@ -76,6 +75,18 @@
 #' * `$missing_species`: number of island species that were
 #' not sampled for particular clade (only applicable for endemic clades)
 #'
+#' For recolonising lineages, there is an extra element,
+#' `all_colonisations` per list element.
+#' It is comprised of `$event_times` and `$species_type`:
+#' \describe{
+#'   \item{`$event_times`}{ordered numeric vectors containing all
+#'     events for each extant recolonising lineage. This includes all
+#'     colonisation and branching times. Each vector pertains to one
+#'     colonising lineage.}
+#'   \item{`$species_type`}{a string. Can be `"A"`, `"C"` or
+#'     `"I"` depending on whether the extant clade is of anagenetic,
+#'     cladogenetic or immigrant origin, respectively.}
+#' }
 #' @param empirical_island a simulated island with imperfect information,
 #' as created by \link{sim_island} (together with `ideal_island`,
 #' which has perfect information).
@@ -98,6 +109,57 @@
 #'    6. Endemic_clade_MaxAge
 #' * `$missing_species`: number of island species that were
 #' not sampled for particular clade (only applicable for endemic clades)
+#'
+#' For recolonising lineages, there is an extra element,
+#' `all_colonisations` per list element.
+#' It is comprised of `$event_times` and `$species_type`:
+#' \describe{
+#'   \item{`$event_times`}{ordered numeric vectors containing all
+#'     events for each extant recolonising lineage. This includes all
+#'     colonisation and branching times. Each vector pertains to one
+#'     colonising lineage.}
+#'   \item{`$species_type`}{a string. Can be `"A"`, `"C"` or
+#'     `"I"` depending on whether the extant clade is of anagenetic,
+#'     cladogenetic or immigrant origin, respectively.}
+#' }
+#' @param ideal_or_empirical_island the evolutionary history of
+#' an island from ideal or empirical data,
+#' as created by \link{sim_island}
+#'
+#' `ideal_or_empirical_island` is a list  containing 3 components:
+#' * `$branching_times`: island age and stem age of the
+#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
+#'    Endemic anagenetic species.
+#'
+#'    For cladogenetic species these should
+#'    be island age and branching times of the radiation including the
+#'    stem age of the radiation.
+#' * `$stac`: An integer ranging from 1 to 6
+#'    indicating the status of the colonist:
+#'    1. Non_endemic_MaxAge
+#'    2. Endemic
+#'    3. Endemic&Non_Endemic
+#'    4. Non_endemic
+#'    5. Endemic_singleton_MaxAge
+#'    6. Endemic_clade_MaxAge
+#' * `$missing_species`: number of island species that were
+#' not sampled for particular clade (only applicable for endemic clades)
+#'
+#' For recolonising lineages, there is an extra element,
+#' `all_colonisations` per list element.
+#' It is comprised of `$event_times` and `$species_type`:
+#' \describe{
+#'   \item{`$event_times`}{ordered numeric vectors containing all
+#'     events for each extant recolonising lineage. This includes all
+#'     colonisation and branching times. Each vector pertains to one
+#'     colonising lineage.}
+#'   \item{`$species_type`}{a string. Can be `"A"`, `"C"` or
+#'     `"I"` depending on whether the extant clade is of anagenetic,
+#'     cladogenetic or immigrant origin, respectively.}
+#' }
+#' @param species_type a string. Can be `"A"`, `"C"` or
+#' `"I"` depending on whether the extant clade is of anagenetic,
+#' cladogenetic or immigrant origin, respectively.
 #' @param ideal_ml List containing maximum likelihood estimates from DAISIE
 #' fitted to ideal data produced from `sim_island_with_mainland`. Output
 #' from `DAISIE::DAISIE_ML_CS`
@@ -128,9 +190,43 @@
 #' @param mainland the evolutionary history of the mainland species,
 #' as created by \link{sim_mainland}.
 #' Use \link{plot_mainland} to visualise the that evolutionary history.
-#' @param island A single island replicate, can be either ideal or empirical
-#' data
+#' @param island The history of a a single island.
+#' A \link{list} with two elements:
 #'
+#'  * `ideal_island`: the island history based on ideal data
+#'  * `empirical_island`: the island history based on empirical data
+#'
+#' Each of these is a \link{list} with the following elements:
+#' * `$branching_times`: island age and stem age of the
+#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
+#'    Endemic anagenetic species.
+#'
+#'    For cladogenetic species these should
+#'    be island age and branching times of the radiation including the
+#'    stem age of the radiation.
+#' * `$stac`: An integer ranging from 1 to 6
+#'    indicating the status of the colonist:
+#'    1. Non_endemic_MaxAge
+#'    2. Endemic
+#'    3. Endemic&Non_Endemic
+#'    4. Non_endemic
+#'    5. Endemic_singleton_MaxAge
+#'    6. Endemic_clade_MaxAge
+#' * `$missing_species`: number of island species that were
+#' not sampled for particular clade (only applicable for endemic clades)
+#'
+#' For recolonising lineages, there is an extra element,
+#' `all_colonisations` per list element.
+#' It is comprised of `$event_times` and `$species_type`:
+#' \describe{
+#'   \item{`$event_times`}{ordered numeric vectors containing all
+#'     events for each extant recolonising lineage. This includes all
+#'     colonisation and branching times. Each vector pertains to one
+#'     colonising lineage.}
+#'   \item{`$species_type`}{a string. Can be `"A"`, `"C"` or
+#'     `"I"` depending on whether the extant clade is of anagenetic,
+#'     cladogenetic or immigrant origin, respectively.}
+#' }
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -164,6 +260,8 @@ default_params_doc <- function(timeval,
                                daisie_data,
                                ideal_island,
                                empirical_island,
+                               ideal_or_empirical_island,
+                               species_type,
                                ideal_ml,
                                empirical_ml,
                                sim_params,

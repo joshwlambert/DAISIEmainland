@@ -35,6 +35,8 @@ default_params_doc(
   daisie_data,
   ideal_island,
   empirical_island,
+  ideal_or_empirical_island,
+  species_type,
   ideal_ml,
   empirical_ml,
   sim_params,
@@ -99,8 +101,7 @@ element must be a list with the elements \code{island_age} and
 \item{verbose}{Logical, determining if progress output should be printed
 during the simulation.}
 
-\item{rates}{named list of numeric rates as returned by
-\code{\link[=update_rates]{update_rates()}}.}
+\item{rates}{named list of numeric rates as returned by \link{calc_rates}.}
 
 \item{island_pars}{A numeric vector containing the parameters for the island:
 \itemize{
@@ -158,6 +159,19 @@ indicating the status of the colonist:
 }
 \item \verb{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
 }}
 
 \item{empirical_island}{a simulated island with imperfect information,
@@ -185,7 +199,64 @@ indicating the status of the colonist:
 }
 \item \verb{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
 }}
+
+\item{ideal_or_empirical_island}{the evolutionary history of
+an island from ideal or empirical data,
+as created by \link{sim_island}
+
+\code{ideal_or_empirical_island} is a list  containing 3 components:
+\itemize{
+\item \verb{$branching_times}: island age and stem age of the
+population/species in the case of Non-endemic, Non-endemic_MaxAge and
+Endemic anagenetic species.
+
+For cladogenetic species these should
+be island age and branching times of the radiation including the
+stem age of the radiation.
+\item \verb{$stac}: An integer ranging from 1 to 6
+indicating the status of the colonist:
+\enumerate{
+\item Non_endemic_MaxAge
+\item Endemic
+\item Endemic&Non_Endemic
+\item Non_endemic
+\item Endemic_singleton_MaxAge
+\item Endemic_clade_MaxAge
+}
+\item \verb{$missing_species}: number of island species that were
+not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
+}}
+
+\item{species_type}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
 
 \item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
 fitted to ideal data produced from \code{sim_island_with_mainland}. Output
@@ -230,8 +301,48 @@ labels have when plotting}
 as created by \link{sim_mainland}.
 Use \link{plot_mainland} to visualise the that evolutionary history.}
 
-\item{island}{A single island replicate, can be either ideal or empirical
-data}
+\item{island}{The history of a a single island.
+A \link{list} with two elements:
+\itemize{
+\item \code{ideal_island}: the island history based on ideal data
+\item \code{empirical_island}: the island history based on empirical data
+}
+
+Each of these is a \link{list} with the following elements:
+\itemize{
+\item \verb{$branching_times}: island age and stem age of the
+population/species in the case of Non-endemic, Non-endemic_MaxAge and
+Endemic anagenetic species.
+
+For cladogenetic species these should
+be island age and branching times of the radiation including the
+stem age of the radiation.
+\item \verb{$stac}: An integer ranging from 1 to 6
+indicating the status of the colonist:
+\enumerate{
+\item Non_endemic_MaxAge
+\item Endemic
+\item Endemic&Non_Endemic
+\item Non_endemic
+\item Endemic_singleton_MaxAge
+\item Endemic_clade_MaxAge
+}
+\item \verb{$missing_species}: number of island species that were
+not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
+}}
 }
 \value{
 Nothing

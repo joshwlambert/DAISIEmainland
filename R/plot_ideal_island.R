@@ -3,6 +3,17 @@
 #'
 #' @return a `ggplot2`
 #'
+#' @seealso
+#' These are the functions to plot an evolutionary history:
+#'
+#'  * Use \link{plot_mainland} to plot the mainland history
+#'  * Use \link{plot_island} to plot the island history.
+#'    based on both empirical data and ideal data.
+#'  * Use \link{plot_empirical_island} to plot the island history.
+#'    based on empirical data.
+#'  * Use \link{plot_ideal_island} to plot the island history
+#'    based on ideal data.
+#'
 #' @examples
 #' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
 #'   mainland_scenario = 2)
@@ -13,6 +24,7 @@
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete")
 #' plot_ideal_island(island$ideal_island)
+#'
 #' @author Richèl J.C. Bilderbeek
 #' @export
 plot_ideal_island <- function(ideal_island) {
@@ -46,14 +58,16 @@ plot_ideal_island <- function(ideal_island) {
 
   # Number all species of all clades individually
   t_ideal_island$unique_species_id <- seq(1, nrow(t_ideal_island))
-  t_ideal_island$unique_species_id <- as.factor(t_ideal_island$unique_species_id)
+  t_ideal_island$unique_species_id <- as.factor(
+    t_ideal_island$unique_species_id
+  )
 
   # Draw lines, with time going from past/left to present/right
-  # x1 = x = branching_times
-  # NO IDEA YET x2 = xend = spec_ex_t
-  # y1 = y = unique_species_id
-  # y2 = yend = unique_species_id
-  # color = unique_species_id
+  # x1 = x = branching_times             # nolint this is no commented code
+  # NO IDEA YET x2 = xend = spec_ex_t    # nolint this is no commented code
+  # y1 = y = unique_species_id           # nolint this is no commented code
+  # y2 = yend = unique_species_id        # nolint this is no commented code
+  # color = unique_species_id            # nolint this is no commented code
   ggplot2::ggplot(data = t_ideal_island) +
     ggplot2::geom_point(
       ggplot2::aes(

@@ -3,6 +3,17 @@
 #'
 #' @return a `ggplot2`
 #'
+#' @seealso
+#' These are the functions to plot an evolutionary history:
+#'
+#'  * Use \link{plot_mainland} to plot the mainland history
+#'  * Use \link{plot_island} to plot the island history.
+#'    based on both empirical data and ideal data.
+#'  * Use \link{plot_empirical_island} to plot the island history.
+#'    based on empirical data.
+#'  * Use \link{plot_ideal_island} to plot the island history
+#'    based on ideal data.
+#'
 #' @examples
 #' mainland <- DAISIEmainland::sim_mainland(
 #'   total_time = 1,
@@ -34,9 +45,9 @@ plot_mainland <- function(mainland) {
   # Draw lines, with time going from past/left to present/right
   # x1 = x = = spec_origin_t
   # x2 = xend = spec_ex_t (always conveniently stopped at time 'total_time')
-  # y1 = y = unique_species_id
-  # y2 = yend = unique_species_id
-  # color = unique_species_id
+  # y1 = y = unique_species_id                                                  # nolint this is no commented code
+  # y2 = yend = unique_species_id                                               # nolint this is no commented code
+  # color = unique_species_id                                                   # nolint this is no commented code
   ggplot2::ggplot(data = t_mainland) +
     ggplot2::geom_segment(
       ggplot2::aes(

@@ -16,7 +16,6 @@ LazyData: true
 Depends: 
     R (>= 4.0.0)
 Imports: 
-    DAISIE (>= 4.0.5),
     DDD (>= 4.4),
     dplyr,
     nLTT (>= 1.4.5),
@@ -25,6 +24,7 @@ Imports:
     cowplot,
     scales
 Suggests: 
+    DAISIE (>= 4.0.5),
     lintr,
     testthat,
     knitr,
