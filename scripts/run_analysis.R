@@ -57,26 +57,13 @@ empirical_sim_metrics <- list(
 message("Number of likelihood integration steps permitted:")
 DAISIE::DAISIE_CS_max_steps(1e8)
 
+endemics <- DAISIEmainland:::calc_endemic_percent(daisie_data = island)
+
 for (i in seq_len(param_space$replicates[args])) {
   ml_failure <- TRUE
   while (ml_failure) {
-    fix_ana <- DAISIEmainland::all_endemic_singletons(
-      island = island$ideal_islands[[i]])
-    if (fix_ana) {
-      ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-        datalist = island$ideal_islands[[i]],
-        initparsopt = c(island_clado,
-                        island_ex,
-                        island_k,
-                        island_immig),
-        idparsopt = 1:4,
-        parsfix = 100,
-        idparsfix = 5,
-        ddmodel = 11,
-        methode = "odeint::runge_kutta_fehlberg78",
-        optimmethod = "simplex",
-        jitter = 1e-5)
-    } else {
+    optim_ana <- endemics$ideal_endemic_percent[i] != 100
+    if (optim_ana) {
       ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
         datalist = island$ideal_islands[[i]],
         initparsopt = c(island_clado,
@@ -91,6 +78,38 @@ for (i in seq_len(param_space$replicates[args])) {
         methode = "odeint::runge_kutta_fehlberg78",
         optimmethod = "simplex",
         jitter = 1e-5)
+    } else {
+      fix_ana_zero <- DAISIEmainland::all_endemic_clades(
+        island = island$ideal_islands[[i]])
+      if (fix_ana_zero) {
+        ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+          datalist = island$ideal_islands[[i]],
+          initparsopt = c(island_clado,
+                          island_ex,
+                          island_k,
+                          island_immig),
+          idparsopt = 1:4,
+          parsfix = 0,
+          idparsfix = 5,
+          ddmodel = 11,
+          methode = "odeint::runge_kutta_fehlberg78",
+          optimmethod = "simplex",
+          jitter = 1e-5)
+      } else {
+        ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+          datalist = island$ideal_islands[[i]],
+          initparsopt = c(island_clado,
+                          island_ex,
+                          island_k,
+                          island_immig),
+          idparsopt = 1:4,
+          parsfix = 100,
+          idparsfix = 5,
+          ddmodel = 11,
+          methode = "odeint::runge_kutta_fehlberg78",
+          optimmethod = "simplex",
+          jitter = 1e-5)
+      }
     }
     if (ideal_ml[[i]]$conv == -1) {
       ml_failure <- TRUE
@@ -119,23 +138,8 @@ for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
   while (ml_failure) {
-    fix_ana <- DAISIEmainland::all_endemic_singletons(
-      island = island$empirical_islands[[i]])
-    if (fix_ana) {
-      empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-        datalist = island$empirical_islands[[i]],
-        initparsopt = c(island_clado,
-                        island_ex,
-                        island_k,
-                        island_immig),
-        idparsopt = 1:4,
-        parsfix = 100,
-        idparsfix = 5,
-        ddmodel = 11,
-        methode = "odeint::runge_kutta_fehlberg78",
-        optimmethod = "simplex",
-        jitter = 1e-5)
-    } else {
+    optim_ana <- endemics$empirical_endemic_percent[i] != 100
+    if (optim_ana) {
       empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
         datalist = island$empirical_islands[[i]],
         initparsopt = c(island_clado,
@@ -150,6 +154,38 @@ for (i in seq_len(param_space$replicates[args])) {
         methode = "odeint::runge_kutta_fehlberg78",
         optimmethod = "simplex",
         jitter = 1e-5)
+    } else {
+      fix_ana_zero <- DAISIEmainland::all_endemic_clades(
+        island = island$empirical_islands[[i]])
+      if (fix_ana_zero) {
+        empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+          datalist = island$empirical_islands[[i]],
+          initparsopt = c(island_clado,
+                          island_ex,
+                          island_k,
+                          island_immig),
+          idparsopt = 1:4,
+          parsfix = 0,
+          idparsfix = 5,
+          ddmodel = 11,
+          methode = "odeint::runge_kutta_fehlberg78",
+          optimmethod = "simplex",
+          jitter = 1e-5)
+      } else {
+        empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
+          datalist = island$empirical_islands[[i]],
+          initparsopt = c(island_clado,
+                          island_ex,
+                          island_k,
+                          island_immig),
+          idparsopt = 1:4,
+          parsfix = 100,
+          idparsfix = 5,
+          ddmodel = 11,
+          methode = "odeint::runge_kutta_fehlberg78",
+          optimmethod = "simplex",
+          jitter = 1e-5)
+      }
     }
     if (empirical_ml[[i]]$conv == -1) {
       ml_failure <- TRUE
