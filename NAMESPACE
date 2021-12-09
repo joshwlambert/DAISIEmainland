@@ -3,6 +3,7 @@
 export(all_colonisations_to_table)
 export(all_endemic_clades)
 export(all_endemic_singletons)
+export(any_recols)
 export(calc_error)
 export(calc_num_col)
 export(calc_num_spec)

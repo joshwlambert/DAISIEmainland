@@ -62,7 +62,9 @@ endemics <- DAISIEmainland:::calc_endemic_percent(daisie_data = island)
 for (i in seq_len(param_space$replicates[args])) {
   ml_failure <- TRUE
   while (ml_failure) {
-    optim_ana <- endemics$ideal_endemic_percent[i] != 100
+    recols <- DAISIEmainland::any_recols(
+      island = island$ideal_islands[[i]])
+    optim_ana <- endemics$ideal_endemic_percent[i] != 100 || recols
     if (optim_ana) {
       ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
         datalist = island$ideal_islands[[i]],
@@ -138,7 +140,9 @@ for (i in seq_len(param_space$replicates[args])) {
 
   ml_failure <- TRUE
   while (ml_failure) {
-    optim_ana <- endemics$empirical_endemic_percent[i] != 100
+    recols <- DAISIEmainland::any_recols(
+      island = island$empirical_islands[[i]])
+    optim_ana <- endemics$empirical_endemic_percent[i] != 100 || recols
     if (optim_ana) {
       empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
         datalist = island$empirical_islands[[i]],

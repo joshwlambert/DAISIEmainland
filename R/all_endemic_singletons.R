@@ -21,6 +21,7 @@
 #' bool <- all_endemic_singletons(island$ideal_islands[[1]])
 #' }
 all_endemic_singletons <- function(island) {
+  testit::assert(is.list(island))
   island_spec <- calc_island_endemics(island = island)
   num_spec <- island_spec$endemics + island_spec$non_endemics
   if (num_spec == 0) {
