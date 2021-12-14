@@ -1,37 +1,20 @@
 test_that("use", {
-  skip("Seems to be dull")
   set.seed(
-    3,
+    4,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  total_time <- 1.0
-  m <- 10
-  mainland <- sim_mainland(
-    total_time = total_time,
-    m = m,
-    mainland_ex = 2.0
-  )
-  # plot_mainland(mainland)
-  mainland_clade <- mainland[[1]]
-  plot_mainland_clade(mainland_clade)
-  island <- sim_island(
-    total_time = total_time,
-    island_pars = c(1, 1, 10, 12, 1),
-    mainland = mainland_clade,
+  daisie_data <- sim_island_with_mainland(
+    total_time = 1.0,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
-
-  plot_island(island)
-  daisie_data <- format_to_daisie_data(
-    island_replicates = island,
-    total_time = total_time,
-    m = m
-  )
-  expect_silent(
-    ideal_daisie_data_to_tables(ideal_daisie_data = daisie_data$ideal_islands)
-  )
+    mainland_sample_type = "complete",
+    replicates = 1)
+  expect_error(plot_island(daisie_data), "Argument 4 must have names")
+  ideal_daisie_data_to_tables(ideal_daisie_data = daisie_data$ideal_islands)
 })
 
 test_that("search for non-dull scenario", {
@@ -51,17 +34,23 @@ test_that("search for non-dull scenario", {
       m = m,
       mainland_ex = 2.0
     )
-    # plot_mainland(mainland)
-    mainland_clade <- mainland[[1]]
-    plot_mainland_clade(mainland_clade)
+    mainland_clade_index <- sample(seq_len(length(mainland)), size = 1)
+    message("mainland_clade_index: ", mainland_clade_index)
+    mainland_clade <- mainland[[mainland_clade_index]]
+    mainland_sample_prob <- sample(c(0.5, 0.9, 1.0), size = 1)
+    message("mainland_sample_prob: ", mainland_sample_prob)
+    mainland_sample_type <- sample(
+      c("unsampled", "undiscovered", "complete"),
+      size = 1
+    )
+    message("mainland_sample_type: ", mainland_sample_type)
     island <- sim_island(
       total_time = total_time,
       island_pars = c(1, 1, 10, 12, 1),
       mainland = mainland_clade,
-      mainland_sample_prob = 1,
-      mainland_sample_type = "unsampled")
+      mainland_sample_prob = mainland_sample_prob,
+      mainland_sample_type = mainland_sample_type)
 
-    plot_island(island)
     daisie_data <- format_to_daisie_data(
       island_replicates = island,
       total_time = total_time,
@@ -79,9 +68,7 @@ test_that("search for non-dull scenario", {
       ideal_daisie_data[[2]][[1]]$island_age == total_time &&
       ideal_daisie_data[[2]][[1]]$not_present == 0
     }
-    expect_true(is_dull(ideal_daisie_data))
-    # expect_silent(
-    #   ideal_daisie_data_to_tables(ideal_daisie_data)
-    # )
+    expect_true(is_dull(daisie_data$ideal_islands))
+    expect_true(is_dull(daisie_data$empirical_islands))
   }
 })

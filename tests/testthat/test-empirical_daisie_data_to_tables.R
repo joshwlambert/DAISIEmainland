@@ -69,6 +69,7 @@ test_that("search for non-dull scenario", {
       m = m
     )
     empirical_daisie_data <- daisie_data$empirical_islands
+
     is_dull <- function(empirical_daisie_data) {
       length(empirical_daisie_data) == 2 &&
       length(empirical_daisie_data[[1]]) == 1 &&

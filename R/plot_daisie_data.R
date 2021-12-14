@@ -58,7 +58,7 @@ plot_daisie_data <- function(daisie_data) {
   event_times <- NULL; rm(event_times) # nolint, fixes warning: no visible binding for global variable
   species_type_str <- NULL; rm(species_type_str) # nolint, fixes warning: no visible binding for global variable
 
-  t <- DAISIEmainland::island_to_tables(daisie_data)
+  t <- DAISIEmainland::daisie_data_to_tables(daisie_data)
 
   # Convert species_type to factor species_type_str
   t$colonisations$species_type_str <- as.character(Vectorize(

@@ -1,3 +1,22 @@
+test_that("Arguments 4 must have names", {
+  set.seed(
+    4,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  daisie_data <- sim_island_with_mainland(
+    total_time = 1.0,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1)
+  expect_error(plot_island(daisie_data), "Argument 4 must have names")
+  plot_daisie_data(daisie_data)
+})
+
 test_that("Arguments 2 must have names", {
   skip("TODO, always seem dull")
   set.seed(
@@ -13,22 +32,18 @@ test_that("Arguments 2 must have names", {
     m = m,
     mainland_ex = 2.0
   )
-  # plot_mainland(mainland)
-  mainland_clade <- mainland[[1]]
-  plot_mainland_clade(mainland_clade)
   island <- sim_island(
     total_time = total_time,
     island_pars = c(1, 1, 10, 12, 1),
-    mainland = mainland_clade,
+    mainland = mainland[[1]],
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-
-  plot_island(island)
   daisie_data <- format_to_daisie_data(
     island_replicates = island,
     total_time = total_time,
     m = m
   )
+  expect_error(plot_island(daisie_data), "Argument 2 must have names")
   plot_daisie_data(daisie_data)
 })
 
