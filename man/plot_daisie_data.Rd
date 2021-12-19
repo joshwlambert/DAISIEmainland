@@ -78,7 +78,7 @@ daisie_data <- DAISIEmainland:::format_to_daisie_data(
   total_time = total_time,
   m = m
 )
-plot_daisie_data(daisie_data)
+# Not yet plot_daisie_data(daisie_data)
 }
 \seealso{
 These are the functions to plot an evolutionary history:

@@ -45,7 +45,7 @@
 #'   total_time = total_time,
 #'   m = m
 #' )
-#' plot_daisie_data(daisie_data)
+#' # Not yet plot_daisie_data(daisie_data)
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
