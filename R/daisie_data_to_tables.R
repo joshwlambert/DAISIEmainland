@@ -55,6 +55,39 @@ empirical_daisie_data_to_tables <- function(empirical_daisie_data) {
 #'   * `colonisations`: a table with colonisations
 #' @export
 ideal_daisie_data_to_tables <- function(ideal_daisie_data) {
+  testthat::expect_true(is.list(ideal_daisie_data))
+  n_replicates <- length(ideal_daisie_data)
+
+  ideal_daisie_data[[1]]
+  ideal_daisie_data[[1]][[1]]
+  ideal_daisie_data[[1]][[2]]
+  ideal_daisie_data[[1]][[3]]
+  DAISIE::DAISIE_ML_CS(
+    datalist = ideal_daisie_data[[1]],
+    initparsopt = c(1, 1, 50, 0.1, 1),
+    idparsopt = 1:5,
+    parsfix = NULL,
+    idparsfix = NULL,
+    ddmodel = 11,
+    methode = "odeint::runge_kutta_fehlberg78",
+    optimmethod = "simplex",
+    jitter = 1e-5)
+
+  DAISIE::DAISIE_ML(
+    datalist = ideal_daisie_data,
+    initparsopt = c(2.5,2.7,20,0.009,1.01),
+    ddmodel = 11,
+    idparsopt = 1:5,
+    parsfix = NULL,
+    idparsfix = NULL
+  )
+  pars1 = c(0.195442017,0.087959583,Inf,0.002247364,0.873605049,
+            3755.202241,8.909285094,14.99999923,0.002247364,0.873605049,0.163)
+  pars2 = c(100,11,0,1)
+  DAISIE::DAISIE_loglik_all(pars1,pars2,ideal_daisie_data)
+
+
+
   # It is always the same?
   testthat::expect_true(
     length(ideal_daisie_data) == 2 &&

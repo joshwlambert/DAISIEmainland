@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_daisie_data.R
 \name{plot_daisie_data}
 \alias{plot_daisie_data}
-\title{Plot the simulated island, based on ideal and empirical data.}
+\title{Plot the DAISIE data}
 \usage{
 plot_daisie_data(daisie_data)
 }
@@ -14,17 +14,7 @@ dynamics. Output from `sim_island_with_mainland``}
 a \code{ggplot2}
 }
 \description{
-Plot the simulated island, based on ideal and empirical data.
-}
-\details{
-The plot will consist of a grid,
-with two columns and one or more rows.
-The columns depict the same evolutionary history of the
-island, yet for different type of data.
-The rows depict the species clades.
-
-The vertical lines in the column for the ideal data depict
-one or more colonisation events.
+Plot the DAISIE data
 }
 \examples{
 set.seed(
