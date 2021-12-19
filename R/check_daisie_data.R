@@ -16,7 +16,7 @@
 #'   replicates = 1,
 #'   verbose = FALSE
 #' )
-#' check_daisie_datalist(daisie_data)
+#' check_daisie_data(daisie_data)
 #'
 #' @author Richèl J.C. Bilderbeek
 #'
