@@ -50,6 +50,8 @@
 #'
 #' @export
 plot_daisie_data <- function(daisie_data) {
+  DAISIEmainland::check_daisie_data(daisie_data)
+
   # There appears to be no difference
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable

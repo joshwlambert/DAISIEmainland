@@ -3,35 +3,41 @@
 #' @inheritParams default_params_doc
 #'
 #' @return a \link{list} with elements:
-#'   * `speciations`: a table with the speciation events
-#'   * `colonisations`: a table with colonisations
+#'   * `ideal_island_table`: the `daisie_data$empirical_islands` as a table,
+#'     as done by \link{empirical_daisie_data_to_tables}
+#'   * `empirical_island_table`: the `daisie_data$ideal_island` as a table
+#'     as done by \link{ideal_daisie_data_to_tables}
+#'
+#' @examples
+#' set.seed(
+#'   4,
+#'   kind = "Mersenne-Twister",
+#'   normal.kind = "Inversion",
+#'   sample.kind = "Rejection"
+#' )
+#' daisie_data <- sim_island_with_mainland(
+#'   total_time = 1.0,
+#'   m = 10,
+#'   island_pars = c(1, 1, 10, 0.1, 1),
+#'   mainland_ex = 1,
+#'   mainland_sample_prob = 1,
+#'   mainland_sample_type = "complete",
+#'   replicates = 1)
+#' daisie_data_to_tables(daisie_data)
 #'
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
 daisie_data_to_tables <- function(daisie_data) {
 
+  DAISIEmainland::check_daisie_data(daisie_data)
   tables <- list()
-  tables$empirical_island <- empirical_daisie_data_to_tables(
-    empirical_daisie_data = daisie_data$empirical_islands
-  )
-  tables$empirical_island$speciations$data_type <- "empirical"
-  if (nrow(tables$empirical_island$colonisations) != 0) {
-    tables$empirical_island$colonisations$data_type <- "empirical"
-  }
-  tables$ideal_island <- ideal_island_to_tables(island$ideal_island)
-  tables$ideal_island$speciations$data_type <- "ideal"
-  if (nrow(tables$ideal_island$colonisations) != 0) {
-    tables$ideal_island$colonisations$data_type <- "ideal"
-  }
-  tables$speciations <- dplyr::bind_rows(
-    tables$empirical_island$speciations,
-    tables$ideal_island$speciations
-  )
-  tables$colonisations <- dplyr::bind_rows(
-    tables$empirical_island$colonisations,
-    tables$ideal_island$colonisations
-  )
+  tables$empirical_island <- DAISIEmainland::empirical_daisie_data_to_tables(
+    empirical_daisie_data = daisie_data$empirical_islands)
+  tables$empirical_island$data_type <- "empirical"
+  tables$ideal_island <- DAISIEmainland::ideal_daisie_data_to_tables(
+    daisie_data$ideal_island)
+  tables$ideal_island$data_type <- "ideal"
   tables
 }
 
@@ -55,50 +61,14 @@ empirical_daisie_data_to_tables <- function(empirical_daisie_data) {
 #'   * `colonisations`: a table with colonisations
 #' @export
 ideal_daisie_data_to_tables <- function(ideal_daisie_data) {
-  testthat::expect_true(is.list(ideal_daisie_data))
-  n_replicates <- length(ideal_daisie_data)
+  DAISIEmainland::check_ideal_daisie_data(ideal_daisie_data)
 
-  ideal_daisie_data[[1]]
-  ideal_daisie_data[[1]][[1]]
-  ideal_daisie_data[[1]][[2]]
-  ideal_daisie_data[[1]][[3]]
-  DAISIE::DAISIE_ML_CS(
-    datalist = ideal_daisie_data[[1]],
-    initparsopt = c(1, 1, 50, 0.1, 1),
-    idparsopt = 1:5,
-    parsfix = NULL,
-    idparsfix = NULL,
-    ddmodel = 11,
-    methode = "odeint::runge_kutta_fehlberg78",
-    optimmethod = "simplex",
-    jitter = 1e-5)
-
-  DAISIE::DAISIE_ML(
-    datalist = ideal_daisie_data,
-    initparsopt = c(2.5,2.7,20,0.009,1.01),
-    ddmodel = 11,
-    idparsopt = 1:5,
-    parsfix = NULL,
-    idparsfix = NULL
-  )
-  pars1 = c(0.195442017,0.087959583,Inf,0.002247364,0.873605049,
-            3755.202241,8.909285094,14.99999923,0.002247364,0.873605049,0.163)
-  pars2 = c(100,11,0,1)
-  DAISIE::DAISIE_loglik_all(pars1,pars2,ideal_daisie_data)
-
-
-
-  # It is always the same?
-  testthat::expect_true(
-    length(ideal_daisie_data) == 2 &&
-      length(ideal_daisie_data[[1]]) == 1 &&
-      length(ideal_daisie_data[[1]][[1]]) == 2 &&
-      ideal_daisie_data[[1]][[1]]$island_age == total_time &&
-      ideal_daisie_data[[1]][[1]]$not_present == 0 &&
-      length(ideal_daisie_data[[2]]) == 1 &&
-      length(ideal_daisie_data[[2]][[1]]) == 2 &&
-      ideal_daisie_data[[2]][[1]]$island_age == total_time &&
-      ideal_daisie_data[[2]][[1]]$not_present == 0
-  )
-  stop("No idea how to put this in a table yet")
+  tables <- list()
+  for (i in seq_along(ideal_daisie_data)) {
+    daisie_datalist <- ideal_daisie_data[[i]]
+    table <- DAISIEmainland::daisie_datalist_to_tables(daisie_datalist)
+    table$replicate <- i
+    tables[[i]] <- table
+  }
+  dplyr::bind_rows(tables)
 }

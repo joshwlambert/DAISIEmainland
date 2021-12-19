@@ -9,18 +9,18 @@ test_that("use", {
     replicates = 1,
     verbose = FALSE
   )
-  ideal_daisie_data <- island$ideal_islands
-  expect_silent(check_ideal_daisie_data(ideal_daisie_data))
+  empirical_daisie_data <- island$empirical_islands
+  expect_silent(check_empirical_daisie_data(empirical_daisie_data))
   expect_error(
-    check_ideal_daisie_data(ideal_daisie_data[[1]]),
-    "'ideal_daisie_data' must be a list of 'DAISIE::datalist'"
+    check_empirical_daisie_data(empirical_daisie_data[[1]]),
+    "'empirical_daisie_data' must be a list of 'DAISIE::datalist'"
   )
 
   # Only run locally, as DAISIE's output cannot be suppressed
   if (1 == 2) {
     # This is where daisie_data is used
     loglik <- DAISIE::DAISIE_ML_CS(
-      datalist = ideal_daisie_data[[1]],
+      datalist = empirical_daisie_data[[1]],
       initparsopt = c(1, 1, 50, 0.1, 1),
       idparsopt = 1:5,
       parsfix = NULL,
@@ -31,5 +31,4 @@ test_that("use", {
       jitter = 1e-5
     )
   }
-
 })

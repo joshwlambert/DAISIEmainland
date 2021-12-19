@@ -6,6 +6,16 @@
 \usage{
 empirical_daisie_data_to_tables(empirical_daisie_data)
 }
+\arguments{
+\item{empirical_daisie_data}{a list, of which each element contains the
+history of a DAISIE simulation with mainland dynamics, with a length that
+equals the number of replicates.
+The simulated history is recorded as an empiricist would,
+resulting in imperfect data.
+The list elements are of type \code{DAISIE::datalist},
+as checked by \link{check_daisie_datalist}
+and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})}
+}
 \value{
 a \link{list} with elements:
 \itemize{
