@@ -12,7 +12,9 @@
 island_to_tables <- function(island) {
 
   tables <- list()
-  tables$empirical_island <- empirical_island_to_tables(island$empirical_island)
+  tables$empirical_island <- empirical_island_to_tables(
+    empirical_island = island$empirical_island
+  )
   tables$empirical_island$speciations$data_type <- "empirical"
   if (nrow(tables$empirical_island$colonisations) != 0) {
     tables$empirical_island$colonisations$data_type <- "empirical"
@@ -41,7 +43,7 @@ island_to_tables <- function(island) {
 #' @export
 empirical_island_to_tables <- function(empirical_island) {
   # It is exactly the same
-  DAISIEmainland::ideal_island_to_tables(empirical_island)
+  DAISIEmainland::ideal_island_to_tables(ideal_island = empirical_island)
 }
 
 #' Convert an `ideal_island` to a list of tables
