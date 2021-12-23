@@ -89,3 +89,31 @@ species_type_to_str <- function(species_type) {
   testthat::expect_equal(species_type, "I")
   return("immigrant")
 }
+
+#' create a singleton
+#' @inheritParams default_params_doc
+#' @export
+create_singleton_phylo <- function(age) {
+  singleton_phylo <- list(
+    edge = matrix(data = c(2, 1), nrow = 1, ncol = 2),
+    edge.length = age,
+    tip.label = "t1",
+    Nnode = 1L)
+  class(singleton_phylo) <- "phylo"
+  return(singleton_phylo)
+}
+
+#' Converts singleton phylo object into segment that can be plotted
+#'
+#' @param singleton_phylo
+#'
+#' @return
+#' @export
+#'
+#' @examples
+singleton_to_segment <- function(singleton_phylo) {
+  segment <- data.frame()
+  ### TODO write function
+  return(segment)
+}
+
