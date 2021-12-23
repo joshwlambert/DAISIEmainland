@@ -8,6 +8,17 @@ places plotted}
 \usage{
 create_plot_breaks(lower_lim, upper_lim, accuracy, round_func)
 }
+\arguments{
+\item{lower_lim}{Numeric stating the lower bound of the axis to be plotted}
+
+\item{upper_lim}{Numeric stating the upper bound of the axis to be plotted}
+
+\item{accuracy}{Numeric stating to which decimal place to kept, e.g. 0.1 is
+to one decimal place}
+
+\item{round_func}{Function to be passed through to the rounding, either
+\code{floor} or \code{ceiling} function}
+}
 \value{
 Numeric vector
 }

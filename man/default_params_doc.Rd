@@ -53,7 +53,11 @@ default_params_doc(
   num_breaks,
   signif,
   mainland,
-  island
+  island,
+  lower_lim,
+  upper_lim,
+  accuracy,
+  round_func
 )
 }
 \arguments{
@@ -432,6 +436,16 @@ colonising lineage.}
 \code{"I"} depending on whether the extant clade is of anagenetic,
 cladogenetic or immigrant origin, respectively.}
 }}
+
+\item{lower_lim}{Numeric stating the lower bound of the axis to be plotted}
+
+\item{upper_lim}{Numeric stating the upper bound of the axis to be plotted}
+
+\item{accuracy}{Numeric stating to which decimal place to kept, e.g. 0.1 is
+to one decimal place}
+
+\item{round_func}{Function to be passed through to the rounding, either
+\code{floor} or \code{ceiling} function}
 }
 \value{
 Nothing
