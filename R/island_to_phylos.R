@@ -15,21 +15,26 @@
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete",
 #'   replicates = 1)
-#' phylos <- island_to_phylos(island = island$ideal_islands)
+#' island_phylos <- island_to_phylos(island = island$ideal_islands)
 island_to_phylos <- function(island) {
+  browser()
   testit::assert(is.list(island))
+  if (length(island[[1]]) == 1) {
+    stop("Empty island")
+  }
   island_age <- island[[1]][[1]]$island_age
   island <- island[[1]][-1]
   all_times <- lapply(island, "[[", "branching_times")
-  col_times <- lapply(all_times, "[[", 2)
-  branching_times <- lapply(all_times, function(x) {
-    if (length(x) > 2) return(x[-c(1)])
+  phylos <- lapply(all_times, function(x) {
+    if (length(x) == 2) {
+      create_singleton_phylo(x[2])
+    } else if (length(x) > 2) {
+      branching_times <- x[-1]
+      DDD::brts2phylo(branching_times, root = TRUE)
+    } else {
+      stop("no species in island clade")
+    }
   })
-  phylos <- lapply(branching_times, function(x) {
-    if (!is.null(x)) DDD::brts2phylo(x, root = TRUE)
-  })
-  null_phylos <- which(sapply(phylos, is.null))
-  phylos <- phylos[-null_phylos]
 
   stacs <- unlist(lapply(island, "[[", "stac"))
   if (any(stacs == 3)) {
