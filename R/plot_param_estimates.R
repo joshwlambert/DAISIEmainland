@@ -83,12 +83,7 @@ plot_param_estimates <- function(param_set,
                    text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(lambda^c)) +
-    ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50")
 
   ext_density <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_ext),
@@ -104,12 +99,7 @@ plot_param_estimates <- function(param_set,
                    text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(mu)) +
-    ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50")
 
   immig_density <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_immig),
@@ -125,12 +115,7 @@ plot_param_estimates <- function(param_set,
                    text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(gamma)) +
-    ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50")
 
   ana_density <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_ana),
@@ -146,12 +131,7 @@ plot_param_estimates <- function(param_set,
                    text = ggplot2::element_text(size = 7)) +
     ggplot2::ylab("Density") +
     ggplot2::xlab(expression(lambda^a)) +
-    ggplot2::geom_vline(xintercept = sim_ana, colour = "grey50") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_vline(xintercept = sim_ana, colour = "grey50")
 
   ext_vs_clado <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
@@ -173,16 +153,7 @@ plot_param_estimates <- function(param_set,
     ggplot2::ylab(expression(mu)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = sim_ext, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_hline(yintercept = sim_ext, colour = "grey50")
 
   immig_vs_clado <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
@@ -204,16 +175,7 @@ plot_param_estimates <- function(param_set,
     ggplot2::ylab(expression(gamma)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50")
 
   ana_vs_clado <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_clado,
@@ -235,16 +197,7 @@ plot_param_estimates <- function(param_set,
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(lambda^c)) +
     ggplot2::geom_vline(xintercept = sim_clado, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
   immig_vs_ext <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_ext,
@@ -266,16 +219,7 @@ plot_param_estimates <- function(param_set,
     ggplot2::ylab(expression(gamma)) +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_hline(yintercept = sim_immig, colour = "grey50")
 
   ana_vs_ext <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_ext,
@@ -297,16 +241,7 @@ plot_param_estimates <- function(param_set,
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(mu)) +
     ggplot2::geom_vline(xintercept = sim_ext, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
   ana_vs_immig <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ideal_immig,
@@ -328,16 +263,7 @@ plot_param_estimates <- function(param_set,
     ggplot2::ylab(expression(lambda^a)) +
     ggplot2::xlab(expression(gamma)) +
     ggplot2::geom_vline(xintercept = sim_immig, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::geom_hline(yintercept = sim_ana, colour = "grey50")
 
   clado_vs_ext_diffs <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ext_diffs,
@@ -348,19 +274,10 @@ plot_param_estimates <- function(param_set,
     ggplot2::theme_classic() +
     ggplot2::theme(title = ggplot2::element_text(size = 10),
                    text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
-    ggplot2::xlab(expression(mu[I] / mu[E])) +
-    ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+    ggplot2::xlab(expression(paste(Delta, mu))) +
+    ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+    ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
   clado_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
@@ -371,19 +288,10 @@ plot_param_estimates <- function(param_set,
     ggplot2::theme_classic() +
     ggplot2::theme(title = ggplot2::element_text(size = 10),
                    text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
-    ggplot2::xlab(expression(gamma[I] / gamma[E])) +
-    ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+    ggplot2::xlab(expression(paste(Delta, gamma))) +
+    ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+    ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
   clado_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -394,19 +302,10 @@ plot_param_estimates <- function(param_set,
     ggplot2::theme_classic() +
     ggplot2::theme(title = ggplot2::element_text(size = 10),
                    text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(lambda[I]^c / lambda[E]^c)) +
-    ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
-    ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::ylab(expression(paste(Delta, lambda^c))) +
+    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+    ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
   ext_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
@@ -417,19 +316,10 @@ plot_param_estimates <- function(param_set,
     ggplot2::theme_classic() +
     ggplot2::theme(title = ggplot2::element_text(size = 10),
                    text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(mu[I] / mu[E])) +
-    ggplot2::xlab(expression(gamma[I] / gamma[E])) +
-    ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::ylab(expression(paste(Delta, mu))) +
+    ggplot2::xlab(expression(paste(Delta, gamma))) +
+    ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+    ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
   ext_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -440,19 +330,10 @@ plot_param_estimates <- function(param_set,
     ggplot2::theme_classic() +
     ggplot2::theme(title = ggplot2::element_text(size = 10),
                    text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(mu[I] / mu[E])) +
-    ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
-    ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::ylab(expression(paste(Delta, mu))) +
+    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+    ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
   immig_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
@@ -463,19 +344,10 @@ plot_param_estimates <- function(param_set,
     ggplot2::theme_classic() +
     ggplot2::theme(title = ggplot2::element_text(size = 10),
                    text = ggplot2::element_text(size = 7)) +
-    ggplot2::ylab(expression(gamma[I] / gamma[E])) +
-    ggplot2::xlab(expression(lambda[I]^a / lambda[E]^a)) +
-    ggplot2::geom_vline(xintercept = 1, colour = "grey50") +
-    ggplot2::geom_hline(yintercept = 1, colour = "grey50") +
-    ggplot2::scale_y_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log") +
-    ggplot2::scale_x_continuous(
-      breaks = scales::breaks_log(n = num_breaks, base = exp(1)),
-      labels = create_labels(signif = signif),
-      trans = "log",
-      guide = ggplot2::guide_axis(angle = 25))
+    ggplot2::ylab(expression(paste(Delta, gamma))) +
+    ggplot2::xlab(expression(paste(Delta, lambda^a))) +
+    ggplot2::geom_vline(xintercept = 0, colour = "grey50") +
+    ggplot2::geom_hline(yintercept = 0, colour = "grey50")
 
   param_estimates <- cowplot::plot_grid(
     clado_density, clado_vs_ext_diffs,
