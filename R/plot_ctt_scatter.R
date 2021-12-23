@@ -56,7 +56,7 @@ plot_ctt_scatter <- function(data_folder_path,
                           colour = "#56B4E9",
                           size = 2) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(paste(Delta, "CTT"))) +
+      ggplot2::ylab(expression(paste(Delta, "nCTT"))) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M]))))
   } else {
     ctt <- ggplot2::ggplot(data = plotting_data) +
@@ -65,7 +65,7 @@ plot_ctt_scatter <- function(data_folder_path,
                           colour = "#56B4E9",
                           size = 2) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(paste(Delta, "CTT"))) +
+      ggplot2::ylab(expression(paste(Delta, "nCTT"))) +
       ggplot2::xlab(expression(paste("Mainland sample probability ", (rho))))
   }
 

@@ -37,7 +37,7 @@ plot_ctt_heatmap <- function(data_folder_path,
     ggplot2::theme_classic() +
     ggplot2::ylab(expression(paste("Mainland sampling probability ", (rho)))) +
     ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
-    ggplot2::scale_fill_continuous(name = expression(paste(Delta, "CTT")))
+    ggplot2::scale_fill_continuous(name = expression(paste(Delta, "nCTT")))
 
   if (!is.null(output_file_path)) {
       ggplot2::ggsave(
