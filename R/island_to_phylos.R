@@ -53,7 +53,7 @@ island_to_phylos <- function(island) {
       })
     })
     recol_phylos <- unlist(recol_phylos, recursive = FALSE)
-    phylos <- c(phylos, recol_phylos)
+    phylos <- c(phylos_no_recols, recol_phylos)
   }
   if (length(phylos) == 1) {
     class(phylos) <- "phylo"
