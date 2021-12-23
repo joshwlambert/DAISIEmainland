@@ -94,11 +94,13 @@ species_type_to_str <- function(species_type) {
 #' @inheritParams default_params_doc
 #' @export
 create_singleton_phylo <- function(age) {
-  singleton_phylo <- list(
-    edge = matrix(data = c(2, 1), nrow = 1, ncol = 2),
-    edge.length = age,
-    tip.label = "t1",
-    Nnode = 1L)
+  singleton_phylo <- list()
+  singleton_phylo$edge <- matrix(data = c(2, 1), nrow = 1, ncol = 2)
+  singleton_phylo$tip.label <- "t1"
+  singleton_phylo$edge.length <- age
+  singleton_phylo$Nnode <- 1
+  singleton_phylo$root.edge <- age
+  singleton_phylo$root <- age
   class(singleton_phylo) <- "phylo"
   return(singleton_phylo)
 }
@@ -112,8 +114,10 @@ create_singleton_phylo <- function(age) {
 #'
 #' @examples
 singleton_to_segment <- function(singleton_phylo) {
-  segment <- data.frame()
-  ### TODO write function
+  segment <- data.frame(x = 0,
+                        xend = singleton_phylo$root.edge,
+                        y = 0,
+                        yend = 0)
   return(segment)
 }
 
