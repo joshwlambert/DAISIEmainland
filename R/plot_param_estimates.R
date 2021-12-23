@@ -44,11 +44,11 @@ plot_param_estimates <- function(param_set,
   testit::assert(empirical_immig > 0)
   testit::assert(empirical_ana > 0)
 
-  param_ratios_list <- results_list[[1]]$error$param_ratios
-  clado_ratios <- param_ratios_list$clado_ratio
-  ext_ratios <- param_ratios_list$ext_ratio
-  immig_ratios <- param_ratios_list$immig_ratio
-  ana_ratios <- param_ratios_list$ana_ratio
+  param_diffs_list <- results_list[[1]]$error$param_diffs
+  clado_diffs <- param_diffs_list$clado_diffs
+  ext_diffs <- param_diffs_list$ext_diffs
+  immig_diffs <- param_diffs_list$immig_diffs
+  ana_diffs <- param_diffs_list$ana_diffs
 
   sim_params <- results_list[[1]]$sim_params
   sim_clado <- sim_params$island_clado
@@ -64,10 +64,10 @@ plot_param_estimates <- function(param_set,
                               empirical_ext = empirical_ext,
                               empirical_immig = empirical_immig,
                               empirical_ana = empirical_ana,
-                              clado_ratios = clado_ratios,
-                              ext_ratios = ext_ratios,
-                              immig_ratios = immig_ratios,
-                              ana_ratios = ana_ratios)
+                              clado_diffs = clado_diffs,
+                              ext_diffs = ext_diffs,
+                              immig_diffs = immig_diffs,
+                              ana_diffs = ana_diffs)
 
   clado_density <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_density(mapping = ggplot2::aes(x = ideal_clado),
@@ -339,9 +339,9 @@ plot_param_estimates <- function(param_set,
       trans = "log",
       guide = ggplot2::guide_axis(angle = 25))
 
-  clado_vs_ext_ratios <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ext_ratios,
-                                               y = clado_ratios),
+  clado_vs_ext_diffs <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ext_diffs,
+                                               y = clado_diffs),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -362,9 +362,9 @@ plot_param_estimates <- function(param_set,
       trans = "log",
       guide = ggplot2::guide_axis(angle = 25))
 
-  clado_vs_immig_ratios <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_ratios,
-                                               y = clado_ratios),
+  clado_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
+                                               y = clado_diffs),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -385,9 +385,9 @@ plot_param_estimates <- function(param_set,
       trans = "log",
       guide = ggplot2::guide_axis(angle = 25))
 
-  clado_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_ratios,
-                                               y = clado_ratios),
+  clado_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                               y = clado_diffs),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -408,9 +408,9 @@ plot_param_estimates <- function(param_set,
       trans = "log",
       guide = ggplot2::guide_axis(angle = 25))
 
-  ext_vs_immig_ratios <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_ratios,
-                                               y = ext_ratios),
+  ext_vs_immig_diffs <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = immig_diffs,
+                                               y = ext_diffs),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -431,9 +431,9 @@ plot_param_estimates <- function(param_set,
       trans = "log",
       guide = ggplot2::guide_axis(angle = 25))
 
-  ext_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_ratios,
-                                               y = ext_ratios),
+  ext_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                               y = ext_diffs),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -454,9 +454,9 @@ plot_param_estimates <- function(param_set,
       trans = "log",
       guide = ggplot2::guide_axis(angle = 25))
 
-  immig_vs_ana_ratios <- ggplot2::ggplot(data = plotting_data) +
-    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_ratios,
-                                               y = immig_ratios),
+  immig_vs_ana_diffs <- ggplot2::ggplot(data = plotting_data) +
+    ggplot2::geom_point(mapping = ggplot2::aes(x = ana_diffs,
+                                               y = immig_diffs),
                         colour = "#56B4E9",
                         shape = 16,
                         alpha = 0.5) +
@@ -478,12 +478,12 @@ plot_param_estimates <- function(param_set,
       guide = ggplot2::guide_axis(angle = 25))
 
   param_estimates <- cowplot::plot_grid(
-    clado_density, clado_vs_ext_ratios,
-    clado_vs_immig_ratios, clado_vs_ana_ratios,
+    clado_density, clado_vs_ext_diffs,
+    clado_vs_immig_diffs, clado_vs_ana_diffs,
     ext_vs_clado, ext_density,
-    ext_vs_immig_ratios, ext_vs_ana_ratios,
+    ext_vs_immig_diffs, ext_vs_ana_diffs,
     immig_vs_clado, immig_vs_ext,
-    immig_density, immig_vs_ana_ratios,
+    immig_density, immig_vs_ana_diffs,
     ana_vs_clado, ana_vs_ext, ana_vs_immig, ana_density,
     align = "hv", nrow = 4, ncol = 4)
 
