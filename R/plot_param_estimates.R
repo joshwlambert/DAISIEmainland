@@ -8,9 +8,7 @@
 plot_param_estimates <- function(param_set,
                                  data_folder_path,
                                  output_file_path,
-                                 parameter,
-                                 num_breaks,
-                                 signif) {
+                                 parameter) {
 
   param_space_name <- paste0("param_set_", param_set, ".rds")
   files <- list.files(data_folder_path, pattern = param_space_name)
@@ -28,21 +26,11 @@ plot_param_estimates <- function(param_set,
   ideal_immig <- unlist(lapply(ideal_ml, "[[", "gamma"))
   ideal_ana <- unlist(lapply(ideal_ml, "[[", "lambda_a"))
 
-  testit::assert(ideal_clado > 0)
-  testit::assert(ideal_ext > 0)
-  testit::assert(ideal_immig > 0)
-  testit::assert(ideal_ana > 0)
-
   empirical_ml <- results_list[[1]]$empirical_ml
   empirical_clado <- unlist(lapply(empirical_ml, "[[", "lambda_c"))
   empirical_ext <- unlist(lapply(empirical_ml, "[[", "mu"))
   empirical_immig <- unlist(lapply(empirical_ml, "[[", "gamma"))
   empirical_ana <- unlist(lapply(empirical_ml, "[[", "lambda_a"))
-
-  testit::assert(empirical_clado > 0)
-  testit::assert(empirical_ext > 0)
-  testit::assert(empirical_immig > 0)
-  testit::assert(empirical_ana > 0)
 
   param_diffs_list <- results_list[[1]]$error$param_diffs
   clado_diffs <- param_diffs_list$clado_diffs
