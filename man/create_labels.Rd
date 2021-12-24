@@ -11,7 +11,7 @@ create_labels(signif)
 labels have when plotting}
 }
 \value{
-A function that takes a vector
+A function that takes a numeric vector
 }
 \description{
 Creates labels for plots by calling \code{scientific}.

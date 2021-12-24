@@ -10,8 +10,8 @@ plot_param_estimates(
   data_folder_path,
   output_file_path,
   parameter,
-  num_breaks,
-  signif
+  signif,
+  transform = NULL
 )
 }
 \arguments{
@@ -28,9 +28,6 @@ in, if NULL the file is returned to console and not saved}
 "mainland_ex" plots mainland extinction as the variable,
 "mainland_sample_prob" plots mainland sampling probability as the variable
 and "both" plots all the data}
-
-\item{num_breaks}{A numeric specifying how many breaks are wanted on the
-plot axes}
 
 \item{signif}{A numeric specifying how many significant figures the axes
 labels have when plotting}
