@@ -22,8 +22,7 @@ Imports:
     testit,
     ggplot2,
     cowplot,
-    scales,
-    labeling
+    scales
 Suggests: 
     DAISIE (>= 4.0.5),
     lintr,
