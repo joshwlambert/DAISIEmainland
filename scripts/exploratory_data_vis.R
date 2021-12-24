@@ -35,9 +35,7 @@ for (i in seq_along(list.files(file.path("results")))) {
     data_folder_path = file.path("results"),
     output_file_path = file.path("plots",
                                  paste0("param_estimates_", i, ".png")),
-    parameter = parameter,
-    num_breaks = 5,
-    signif = 3
+    parameter = parameter
   )
 }
 

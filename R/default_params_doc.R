@@ -309,12 +309,6 @@
 #'     `"I"` depending on whether the extant clade is of anagenetic,
 #'     cladogenetic or immigrant origin, respectively.}
 #' }
-#' @param lower_lim Numeric stating the lower bound of the axis to be plotted
-#' @param upper_lim Numeric stating the upper bound of the axis to be plotted
-#' @param accuracy Numeric stating to which decimal place to kept, e.g. 0.1 is
-#' to one decimal place
-#' @param round_func Function to be passed through to the rounding, either
-#' `floor` or `ceiling` function
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -366,10 +360,6 @@ default_params_doc <- function(timeval,
                                num_breaks,
                                signif,
                                mainland,
-                               island,
-                               lower_lim,
-                               upper_lim,
-                               accuracy,
-                               round_func) {
+                               island) {
   #Nothing
 }
