@@ -1,6 +1,6 @@
-#' Convert a `branch_code` to a y coordinat in range [0, 1]
+#' Convert a `branch_code` to a y coordinat in range `[0, 1]`
 #'
-#' Convert a `branch_code` to a y coordinat in range [0, 1].
+#' Convert a `branch_code` to a y coordinat in range `[0, 1]`.
 #'
 #' The y coordinat is the result of a division:
 #'   * numerator: for a binary value of `b` (converted from the `branch_code`,

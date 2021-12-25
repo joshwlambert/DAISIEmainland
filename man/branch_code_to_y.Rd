@@ -2,7 +2,7 @@
 % Please edit documentation in R/branch_code_to_y.R
 \name{branch_code_to_y}
 \alias{branch_code_to_y}
-\title{Convert a \code{branch_code} to a y coordinat in range \link{0, 1}}
+\title{Convert a \code{branch_code} to a y coordinat in range \verb{[0, 1]}}
 \usage{
 branch_code_to_y(branch_code)
 }
@@ -14,7 +14,7 @@ as checked by \link{check_branch_code}, e.g. \code{A}, \code{AB}, \code{AABA}.}
 a y coordinat in range \link{0, 1}
 }
 \description{
-Convert a \code{branch_code} to a y coordinat in range \link{0, 1}.
+Convert a \code{branch_code} to a y coordinat in range \verb{[0, 1]}.
 }
 \details{
 The y coordinat is the result of a division:
