@@ -31,6 +31,10 @@ plot_mainland <- function(mainland) {
   spec_ex_t <- NULL; rm(spec_ex_t) # nolint, fixes warning: no visible binding for global variable
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
   y <- NULL; rm(y) # nolint, fixes warning: no visible binding for global variable
+  ancestor_spec_ex_t <- NULL; rm(ancestor_spec_ex_t) # nolint, fixes warning: no visible binding for global variable
+  ancestor_y <- NULL; rm(ancestor_y) # nolint, fixes warning: no visible binding for global variable
+  offspring_spec_origin_t <- NULL; rm(offspring_spec_origin_t) # nolint, fixes warning: no visible binding for global variable
+  offspring_y <- NULL; rm(offspring_y) # nolint, fixes warning: no visible binding for global variable
 
   # Give each list element a clade id
   for (i in seq_along(mainland)) {
