@@ -1,5 +1,7 @@
 #' Documentation for function arguments in the DAISIEmainland package
 #'
+#' @param branch_code a species' branching pattern,
+#' as checked by \link{check_branch_code}, e.g. `A`, `AB`, `AABA`.
 #' @param timeval Numeric defining current time of simulation.
 #' @param total_time Numeric defining the length of the simulation in time
 #' units.
@@ -312,7 +314,8 @@
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
-default_params_doc <- function(timeval,
+default_params_doc <- function(branch_code,
+                               timeval,
                                total_time,
                                gam,
                                laa,

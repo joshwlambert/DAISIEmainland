@@ -5,6 +5,7 @@
 \title{Documentation for function arguments in the DAISIEmainland package}
 \usage{
 default_params_doc(
+  branch_code,
   timeval,
   total_time,
   gam,
@@ -57,6 +58,9 @@ default_params_doc(
 )
 }
 \arguments{
+\item{branch_code}{a species' branching pattern,
+as checked by \link{check_branch_code}, e.g. \code{A}, \code{AB}, \code{AABA}.}
+
 \item{timeval}{Numeric defining current time of simulation.}
 
 \item{total_time}{Numeric defining the length of the simulation in time

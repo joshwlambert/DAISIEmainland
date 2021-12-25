@@ -1,0 +1,12 @@
+test_that("use", {
+  expect_silent(check_branch_code("A"))
+  expect_silent(check_branch_code(branch_code = "AAAABABAABABAAA"))
+  expect_error(check_branch_code(NULL))
+  expect_error(check_branch_code(NA))
+  expect_error(check_branch_code(Inf))
+  expect_error(check_branch_code(c()))
+  expect_error(check_branch_code(list()))
+  expect_error(check_branch_code("nonsense"))
+  expect_error(check_branch_code(42))
+  expect_error(check_branch_code(3.14))
+})
