@@ -49,7 +49,10 @@ plot_mainland <- function(mainland) {
   )
 
   # Number all species of all clades individually
-  t_mainland$unique_species_id <- paste0(t_mainland$clade_id, "-", t_mainland$branch_code)
+  # Keep the clade ID first; it is assumed the branch code is at the end:
+  # by removing the last character, the ancestor is found
+  t_mainland$unique_species_id <- paste0(
+    t_mainland$clade_id, "-", t_mainland$branch_code)
 
   # Do not make a factor, as we need to work on the string
   # t_mainland$unique_species_id <- as.factor(t_mainland$unique_species_id)     # nolint yup, this is code
