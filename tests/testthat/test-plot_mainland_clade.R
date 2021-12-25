@@ -41,6 +41,6 @@ test_that("Speciation, both offspring species live", {
   m = 2,
   mainland_ex = 1)
 
-  plot_mainland_clade(mainland[[1]])
+  plot_mainland_clade(mainland_clade = mainland[[1]])
   plot_mainland_clade(mainland[[2]])
 })

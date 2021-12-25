@@ -17,12 +17,15 @@ a y coordinat in range \link{0, 1}
 Convert a \code{branch_code} to a y coordinat in range \link{0, 1}.
 }
 \details{
-The y coordinat is the result of a division.
-The numerator in this division equals the binary value of the
-\code{branch_code} (where the \code{A} equals a zero, and the \code{B} equals a
-one) plus one.
-The denominator in this division equals the number of characters in
-the \code{branch_code} plus one.
+The y coordinat is the result of a division:
+\itemize{
+\item numerator: for a binary value of \code{b} (converted from the \code{branch_code},
+where the \code{A} equals a zero, and the \code{B} equals a
+one), the numerator in this division
+equals \verb{1 + 2b}
+\item denominator: for a \code{branch_code} of length \code{n},
+the denominator equals \code{2 ^ n}.
+}
 }
 \examples{
 branch_code_to_y("A")

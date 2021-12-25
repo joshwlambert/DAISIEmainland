@@ -2,12 +2,13 @@
 #'
 #' Convert a `branch_code` to a y coordinat in range [0, 1].
 #'
-#' The y coordinat is the result of a division.
-#' The numerator in this division equals the binary value of the
-#' `branch_code` (where the `A` equals a zero, and the `B` equals a
-#' one) plus one.
-#' The denominator in this division equals the number of characters in
-#' the `branch_code` plus one.
+#' The y coordinat is the result of a division:
+#'   * numerator: for a binary value of `b` (converted from the `branch_code`,
+#'     where the `A` equals a zero, and the `B` equals a
+#'     one), the numerator in this division
+#'     equals `1 + 2b`
+#'   * denominator: for a `branch_code` of length `n`,
+#'     the denominator equals `2 ^ n`.
 #'
 #' @inheritParams default_params_doc
 #'
@@ -27,7 +28,7 @@ branch_code_to_y <- function(branch_code) {
   split_branch_code[split_branch_code == "B"] <- 1
   binary_branch_code <- paste0(split_branch_code, collapse = "")
   branch_code_value <- strtoi(binary_branch_code, base = 2)
-  numerator <- 1 + branch_code_value
-  denominator <- nchar(branch_code) + 1
+  numerator <- 1 + (2 * branch_code_value)
+  denominator <- 2 ^ nchar(branch_code)
   numerator / denominator
 }
