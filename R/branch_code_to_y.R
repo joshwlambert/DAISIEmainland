@@ -12,7 +12,7 @@
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return a y coordinat in range [0, 1]
+#' @return a y coordinat in range `[0, 1]`
 #'
 #' @examples
 #' branch_code_to_y("A")

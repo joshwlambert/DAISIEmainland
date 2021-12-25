@@ -11,7 +11,7 @@ branch_code_to_y(branch_code)
 as checked by \link{check_branch_code}, e.g. \code{A}, \code{AB}, \code{AABA}.}
 }
 \value{
-a y coordinat in range \link{0, 1}
+a y coordinat in range \verb{[0, 1]}
 }
 \description{
 Convert a \code{branch_code} to a y coordinat in range \verb{[0, 1]}.
