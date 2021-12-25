@@ -1,5 +1,13 @@
 #' Check if a `branch_code` is valid.
+#'
+#' Check if a `branch_code` is valid.
 #' Will \link{stop} if not
+#'
+#' A valid `branch_code` ...
+#'
+#'  * is a string, i.e. a character vector with one element
+#'  * consists out of characters that are either `A` or `B`
+#'  * starts with `A`
 #'
 #' @inheritParams default_params_doc
 #'

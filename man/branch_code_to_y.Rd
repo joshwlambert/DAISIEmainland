@@ -14,14 +14,15 @@ as checked by \link{check_branch_code}, e.g. \code{A}, \code{AB}, \code{AABA}.}
 a y coordinat in range \link{0, 1}
 }
 \description{
-A valid \code{branch_code} ...
+Convert a \code{branch_code} to a y coordinat in range \link{0, 1}.
 }
 \details{
-\itemize{
-\item is a string, i.e. a character vector with one element
-\item consists out of characters that are either \code{A} or \code{B}
-\item starts with \code{A}
-}
+The y coordinat is the result of a division.
+The numerator in this division equals the binary value of the
+\code{branch_code} (where the \code{A} equals a zero, and the \code{B} equals a
+one) plus one.
+The denominator in this division equals the number of characters in
+the \code{branch_code} plus one.
 }
 \examples{
 branch_code_to_y("A")

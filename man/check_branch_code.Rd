@@ -2,8 +2,7 @@
 % Please edit documentation in R/check_branch_code.R
 \name{check_branch_code}
 \alias{check_branch_code}
-\title{Check if a \code{branch_code} is valid.
-Will \link{stop} if not}
+\title{Check if a \code{branch_code} is valid.}
 \usage{
 check_branch_code(branch_code)
 }
@@ -17,6 +16,14 @@ nothing
 \description{
 Check if a \code{branch_code} is valid.
 Will \link{stop} if not
+}
+\details{
+A valid \code{branch_code} ...
+\itemize{
+\item is a string, i.e. a character vector with one element
+\item consists out of characters that are either \code{A} or \code{B}
+\item starts with \code{A}
+}
 }
 \examples{
 check_branch_code("A")
