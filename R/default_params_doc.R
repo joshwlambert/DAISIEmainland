@@ -84,44 +84,18 @@
 #'   \cr \code{$missing_species} - number of island species that were not
 #'   sampled for particular clade (only applicable for endemic clades) \cr
 #'   \code{$type1or2} - whether the colonist belongs to type 1 or type 2 \cr
-#' @param daisie_data List containing data of DAISIE simulation with mainland
-#' dynamics. Output from `sim_island_with_mainland`.
+#' @param daisie_data \link{list} containing data of of a DAISIE simulation
+#' with mainland dynamics,
+#' as produced by \link{sim_island_with_mainland}
+#' and checked by \link{check_daisie_data}
 #'
-#' A list. The highest level of the list has two elements called
-#' `ideal_islands` and `empirical_islands` which corresponds to
-#' the ideal and empirical data sets produce in each simulation. Within each
-#' `ideal_islands` and `empirical_islands` each element is an
-#' individual replicate. The first element of each replicate is composed of
-#' island information containing:
-#' \describe{
-#'   \item{`$island_age`}{A numeric with the island age.}
-#'   \item{`$not_present`}{the number of mainland lineages that are not
-#'     present on the island.}
-#' }
-#' The subsequent elements of the list pertaining to each replicate contain
-#' information on a single colonist lineage on the island and have 3 components:
-#' \describe{
-#'   \item{`$branching_times`}{island age and stem age of the
-#'     population/species in the case of Non-endemic, Non-endemic_MaxAge and
-#'     Endemic anagenetic species.
-#'     For cladogenetic species these should
-#'     be island age and branching times of the radiation including the
-#'     stem age of the radiation.}
-#'   \item{`$stac`}{An integer ranging from 1 to 6
-#'   indicating the status of the colonist:
-#'   \enumerate{
-#'     \item Non_endemic_MaxAge
-#'     \item Endemic
-#'     \item Endemic&Non_Endemic
-#'     \item Non_endemic_MaxAge
-#'     \item Endemic_singleton_MaxAge
-#'     \item Endemic_clade_MaxAge
-#' }}
-#' \item{`missing_species`}{number of island species that were
-#' not sampled for particular clade (only applicable for endemic clades)}
-#' }
-#'
-#' @param ideal_daisie_data a list, of which each element contains the history
+#' A `daisie_data` has two elements:
+#'  * `ideal_islands`: the ideal data set produced in a simulation,
+#'    see \link{check_ideal_islands} for more details
+#'  * `empirical_islands`: the empirical data sets produced in a simulation
+#'    see \link{check_empirical_islands} for more details
+#' @param ideal_daisie_data a \link{list},
+#' of which each element contains the history
 #' of a DAISIE simulation with mainland dynamics, with a length that
 #' equals the number of replicates.
 #' The simulated history is recorded perfectly, resulting in ideal data.

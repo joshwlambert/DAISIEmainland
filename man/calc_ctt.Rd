@@ -8,41 +8,17 @@ ideal and empirical data sets simulated for each replicate}
 calc_ctt(daisie_data)
 }
 \arguments{
-\item{daisie_data}{List containing data of DAISIE simulation with mainland
-dynamics. Output from \code{sim_island_with_mainland}.
+\item{daisie_data}{\link{list} containing data of of a DAISIE simulation
+with mainland dynamics,
+as produced by \link{sim_island_with_mainland}
+and checked by \link{check_daisie_data}
 
-A list. The highest level of the list has two elements called
-\code{ideal_islands} and \code{empirical_islands} which corresponds to
-the ideal and empirical data sets produce in each simulation. Within each
-\code{ideal_islands} and \code{empirical_islands} each element is an
-individual replicate. The first element of each replicate is composed of
-island information containing:
-\describe{
-\item{\verb{$island_age}}{A numeric with the island age.}
-\item{\verb{$not_present}}{the number of mainland lineages that are not
-present on the island.}
-}
-The subsequent elements of the list pertaining to each replicate contain
-information on a single colonist lineage on the island and have 3 components:
-\describe{
-\item{\verb{$branching_times}}{island age and stem age of the
-population/species in the case of Non-endemic, Non-endemic_MaxAge and
-Endemic anagenetic species.
-For cladogenetic species these should
-be island age and branching times of the radiation including the
-stem age of the radiation.}
-\item{\verb{$stac}}{An integer ranging from 1 to 6
-indicating the status of the colonist:
-\enumerate{
-\item Non_endemic_MaxAge
-\item Endemic
-\item Endemic&Non_Endemic
-\item Non_endemic_MaxAge
-\item Endemic_singleton_MaxAge
-\item Endemic_clade_MaxAge
-}}
-\item{\code{missing_species}}{number of island species that were
-not sampled for particular clade (only applicable for endemic clades)}
+A \code{daisie_data} has two elements:
+\itemize{
+\item \code{ideal_islands}: the ideal data set produced in a simulation,
+see \link{check_ideal_islands} for more details
+\item \code{empirical_islands}: the empirical data sets produced in a simulation
+see \link{check_empirical_islands} for more details
 }}
 }
 \value{

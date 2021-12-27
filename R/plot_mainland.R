@@ -1,7 +1,13 @@
 #' Plot the simulated mainland.
+#'
 #' @inheritParams default_params_doc
 #'
-#' @return a `ggplot2`
+#' @return a `ggplot2` facet plot, where each facet/row contains
+#' the evolutionary history of a clade.
+#' Per clade, the x axis shows the time from past (at the left)
+#' to the present (at the right).
+#' The y-axis has no meaning except for separating the different
+#' species using \link{branch_code_to_y}.
 #'
 #' @seealso
 #' These are the functions to plot an evolutionary history:
@@ -112,5 +118,9 @@ plot_mainland <- function(mainland) {
       clade_id ~ .,
       scales = "free",
       space = "free"
+    ) + ggplot2::theme(
+      axis.title.y = ggplot2::element_blank(),
+      axis.text.y = ggplot2::element_blank(),
+      axis.ticks.y = ggplot2::element_blank()
     )
 }
