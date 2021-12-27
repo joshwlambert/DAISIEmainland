@@ -9,7 +9,8 @@ plot_k_estimates <- function(data_folder_path,
                              output_file_path,
                              parameter,
                              num_breaks,
-                             signif) {
+                             signif,
+                             scientific) {
 
   testit::assert(
     "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
@@ -140,7 +141,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
@@ -160,7 +162,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
@@ -180,7 +183,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
@@ -200,7 +204,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
   } else {
     ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5,
@@ -221,7 +226,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
 
     empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
@@ -242,7 +248,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
 
     ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
@@ -263,7 +270,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
 
     empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
@@ -284,7 +292,8 @@ plot_k_estimates <- function(data_folder_path,
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif),
+        labels = create_labels(signif = signif,
+                               scientific = scientific),
         trans = "log")
   }
 

@@ -52,6 +52,7 @@ default_params_doc(
   breaks,
   num_breaks,
   signif,
+  scientific,
   mainland,
   island
 )
@@ -386,6 +387,9 @@ plot axes}
 \item{signif}{A numeric specifying how many significant figures the axes
 labels have when plotting}
 
+\item{scientific}{A boolean determining whether the axis labels will be
+converted to scientific notation}
+
 \item{mainland}{the evolutionary history of the mainland species,
 as created by \link{sim_mainland}.
 Use \link{plot_mainland} to visualise the that evolutionary history.}
@@ -432,6 +436,9 @@ colonising lineage.}
 \code{"I"} depending on whether the extant clade is of anagenetic,
 cladogenetic or immigrant origin, respectively.}
 }}
+
+\item{transform}{Either \code{NULL} or \code{"ihs"} to specify no transformation of
+the data or an inverse hyperbolic sine (ihs) transformation}
 }
 \value{
 Nothing

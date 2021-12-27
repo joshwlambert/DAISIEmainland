@@ -41,9 +41,10 @@ create_ihs_breaks <- function() {
 #' @inheritParams default_params_doc
 #'
 #' @return A function that takes a numeric vector
-create_labels <- function(signif) {
+create_labels <- function(signif, scientific) {
   function(breaks) scientific(
     breaks,
+    scientific = scientific,
     signif = signif
   )
 }
@@ -54,10 +55,16 @@ create_labels <- function(signif) {
 #' @inheritParams default_params_doc
 #'
 #' @return Character vector
-scientific <- function(breaks, signif) {
-  breaks <- gsub(pattern = "e\\+",
-                 replacement = "%*%10^",
-                 x = choose_scientific(breaks, signif))
+scientific <- function(breaks, scientific, signif) {
+  if (scientific) {
+    breaks <- gsub(pattern = "e\\+",
+                   replacement = "%*%10^",
+                   x = signif(breaks, digits = signif))
+  } else {
+    breaks <- gsub(pattern = "e\\+",
+                   replacement = "%*%10^",
+                   x = choose_scientific(breaks, signif))
+  }
   parse(text = gsub(pattern = "e",
                     replacement = "%*%10^",
                     x = breaks))

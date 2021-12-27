@@ -269,6 +269,10 @@
 #' plot axes
 #' @param signif A numeric specifying how many significant figures the axes
 #' labels have when plotting
+#' @param scientific A boolean determining whether the axis labels will be
+#' converted to scientific notation
+#' @param transform Either `NULL` or `"ihs"` to specify no transformation of
+#' the data or an inverse hyperbolic sine (ihs) transformation
 #' @param mainland the evolutionary history of the mainland species,
 #' as created by \link{sim_mainland}.
 #' Use \link{plot_mainland} to visualise the that evolutionary history.
@@ -359,6 +363,7 @@ default_params_doc <- function(timeval,
                                breaks,
                                num_breaks,
                                signif,
+                               scientific,
                                mainland,
                                island) {
   #Nothing
