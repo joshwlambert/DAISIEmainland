@@ -114,7 +114,11 @@ plot_inf_k <- function(data_folder_path,
     percent_k_50_inf,
     nrow = 2, rel_heights = c(0.1, 1))
 
-  k_inf_plot <- cowplot::plot_grid(k_5_plot, k_50_plot, nrow = 1)
+  k_inf_plot <- cowplot::plot_grid(k_5_plot,
+                                   k_50_plot,
+                                   nrow = 1,
+                                   labels = c("A", "B"),
+                                   label_size = 10)
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(

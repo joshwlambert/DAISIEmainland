@@ -59,11 +59,11 @@ scientific <- function(breaks, scientific, signif) {
   if (scientific) {
     breaks <- gsub(pattern = "e\\+",
                    replacement = "%*%10^",
-                   x = signif(breaks, digits = signif))
+                   x = choose_scientific(breaks, signif))
   } else {
     breaks <- gsub(pattern = "e\\+",
                    replacement = "%*%10^",
-                   x = choose_scientific(breaks, signif))
+                   x = signif(breaks, digits = signif))
   }
   parse(text = gsub(pattern = "e",
                     replacement = "%*%10^",
