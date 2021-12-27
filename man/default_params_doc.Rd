@@ -181,15 +181,17 @@ and checked by \link{check_daisie_data}
 A \code{daisie_data} has two elements:
 \itemize{
 \item \code{ideal_islands}: the ideal data set produced in a simulation,
-see \link{check_ideal_islands} for more details
+see \link{check_ideal_daisie_data} for more details
 \item \code{empirical_islands}: the empirical data sets produced in a simulation
-see \link{check_empirical_islands} for more details
+see \link{check_empirical_daisie_data} for more details
 }}
 
 \item{ideal_daisie_data}{a \link{list},
 of which each element contains the history
 of a DAISIE simulation with mainland dynamics, with a length that
-equals the number of replicates.
+equals the number of replicates,
+as can be checked by \link{check_ideal_daisie_data}
+
 The simulated history is recorded perfectly, resulting in ideal data.
 The list elements are of type \code{DAISIE::datalist},
 as checked by \link{check_daisie_datalist}
@@ -197,7 +199,9 @@ and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})}
 
 \item{empirical_daisie_data}{a list, of which each element contains the
 history of a DAISIE simulation with mainland dynamics, with a length that
-equals the number of replicates.
+equals the number of replicates,
+as can be checked by \link{check_empirical_daisie_data}
+
 The simulated history is recorded as an empiricist would,
 resulting in imperfect data.
 The list elements are of type \code{DAISIE::datalist},

@@ -11,7 +11,9 @@ check_ideal_daisie_data(ideal_daisie_data)
 \item{ideal_daisie_data}{a \link{list},
 of which each element contains the history
 of a DAISIE simulation with mainland dynamics, with a length that
-equals the number of replicates.
+equals the number of replicates,
+as can be checked by \link{check_ideal_daisie_data}
+
 The simulated history is recorded perfectly, resulting in ideal data.
 The list elements are of type \code{DAISIE::datalist},
 as checked by \link{check_daisie_datalist}

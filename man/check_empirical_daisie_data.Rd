@@ -10,7 +10,9 @@ check_empirical_daisie_data(empirical_daisie_data)
 \arguments{
 \item{empirical_daisie_data}{a list, of which each element contains the
 history of a DAISIE simulation with mainland dynamics, with a length that
-equals the number of replicates.
+equals the number of replicates,
+as can be checked by \link{check_empirical_daisie_data}
+
 The simulated history is recorded as an empiricist would,
 resulting in imperfect data.
 The list elements are of type \code{DAISIE::datalist},
