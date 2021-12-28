@@ -17,8 +17,9 @@
 #'   normal.kind = "Inversion",
 #'   sample.kind = "Rejection"
 #' )
-#' mainland_clade <- create_test_mainland_clade(mainland_scenario = 2)
-#' island <- sim_island(
+#' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
+#'   mainland_scenario = 2)
+#' island <- DAISIEmainland:::sim_island(
 #'   total_time = 1,
 #'   empirical_island_pars = c(1, 1, 10, 1, 1),
 #'   mainland = mainland_clade,
