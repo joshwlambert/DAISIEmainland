@@ -14,29 +14,35 @@ Check if a \code{all_colonisations} is valid.
 Will \link{stop} if not
 }
 \details{
-\code{all_colonisations} contains:
-\itemize{
-\item for cladogenetic species: the island age
-and branching times of the radiation,
-including the stem age of the radiation
-\item for non-endemic, non-endemic_MaxAge and
-Endemic anagenetic species:
-island age and stem age of the population/species
-}
+\code{all_colonisations} is a list of one or more colonisations,
+where each element is checked by \link{check_colonisations}.
+See \link{check_colonisations} for more details.
 
 A valid \code{all_colonisations} ...
 \itemize{
-\item is numeric
-\item has only finite values
-\item has at least 1 element (which equals the island age)
-\item has only positive non-zero values (although zero is accepted, to prevent
-false negatives by rounding off errors)
-\item has a descending order
+\item is a list of one or more \code{colonisations},
+where each \code{colonisations} is checked by \link{check_colonisations}
 }
 }
 \examples{
-check_all_colonisations(1.0)
-check_all_colonisations(c(1.0, 0.25))
+set.seed(
+  2,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
+  mainland_scenario = 20
+)
+island <- sim_island(
+  total_time = 1,
+  island_pars = c(1, 1, 10, 12, 1),
+  mainland = mainland_clade,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "complete")
+all_colonisations <- island$ideal_island[[2]]$all_colonisations
+check_all_colonisations(all_colonisations)
+
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -3,6 +3,16 @@
 #' Check if an `colonisations` is valid.
 #' Will \link{stop} if not.
 #'
+#' A `colonisations` contains:
+#'
+#'  * a `species_type`, which is the origin of the clade,
+#'    which can be anagenetic, cladogenetic or immigration.
+#'    See \link{check_species_type} for details
+#'  * a `event_times`, which holds events such as the island age,
+#'    stem age of the species and -for cladogenetic species only-,
+#'    the branching times of the radiation.
+#'    see \link{check_event_times}
+#'
 #' @inheritParams default_params_doc
 #'
 #' @return nothing

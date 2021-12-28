@@ -13,6 +13,18 @@ nothing
 Check if an \code{colonisations} is valid.
 Will \link{stop} if not.
 }
+\details{
+A \code{colonisations} contains:
+\itemize{
+\item a \code{species_type}, which is the origin of the clade,
+which can be anagenetic, cladogenetic or immigration.
+See \link{check_species_type} for details
+\item a \code{event_times}, which holds events such as the island age,
+stem age of the species and -for cladogenetic species only-,
+the branching times of the radiation.
+see \link{check_event_times}
+}
+}
 \examples{
 set.seed(
   2,
