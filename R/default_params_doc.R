@@ -17,6 +17,9 @@
 #' See \link{check_branching_times} for a more detailed description.
 #' @param colonisations a `colonisations`,
 #' as can be checked by \link{check_colonisations}.
+#' @param event_times the island age, stem age of species,
+#' and -for cladogenetic species- speciation times,
+#' as checked by \link{check_event_times}
 #' @param species_type the type of species:
 #'
 #'  * `"A"`: the extant clade is of anagenetic origin
@@ -24,7 +27,7 @@
 #'  * `"I"`: the extant clade is of immigrant origin
 #'
 #' Use \link{check_species_type} to check if the `species_type` is valid
-#' @param stac` the status of the colonist,
+#' @param stac the status of the colonist,
 #' see \link{stac_to_str} for values and meanings
 #' @param timeval Numeric defining current time of simulation.
 #' @param total_time Numeric defining the length of the simulation in time

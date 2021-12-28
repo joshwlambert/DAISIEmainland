@@ -6,6 +6,11 @@
 \usage{
 check_event_times(event_times)
 }
+\arguments{
+\item{event_times}{the island age, stem age of species,
+and -for cladogenetic species- speciation times,
+as checked by \link{check_event_times}}
+}
 \value{
 nothing
 }

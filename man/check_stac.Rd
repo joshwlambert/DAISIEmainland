@@ -6,6 +6,10 @@
 \usage{
 check_stac(stac)
 }
+\arguments{
+\item{stac}{the status of the colonist,
+see \link{stac_to_str} for values and meanings}
+}
 \value{
 nothing
 }

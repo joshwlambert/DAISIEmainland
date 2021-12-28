@@ -6,6 +6,10 @@
 \usage{
 stac_to_str(stac)
 }
+\arguments{
+\item{stac}{the status of the colonist,
+see \link{stac_to_str} for values and meanings}
+}
 \value{
 the status of a colonist as a string
 }

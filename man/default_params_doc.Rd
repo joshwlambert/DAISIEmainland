@@ -86,6 +86,13 @@ See \link{check_branching_times} for a more detailed description.}
 \item{colonisations}{a \code{colonisations},
 as can be checked by \link{check_colonisations}.}
 
+\item{event_times}{the island age, stem age of species,
+and -for cladogenetic species- speciation times,
+as checked by \link{check_event_times}}
+
+\item{stac}{the status of the colonist,
+see \link{stac_to_str} for values and meanings}
+
 \item{timeval}{Numeric defining current time of simulation.}
 
 \item{total_time}{Numeric defining the length of the simulation in time
@@ -384,9 +391,6 @@ as can be checked by \link{check_ideal_island}
 \item \code{empirical_island}: the island history based on empirical data
 as can be checked by \link{check_empirical_island}
 }}
-
-\item{stac`}{the status of the colonist,
-see \link{stac_to_str} for values and meanings}
 }
 \value{
 Nothing
