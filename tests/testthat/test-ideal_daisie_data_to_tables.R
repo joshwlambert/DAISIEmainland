@@ -13,7 +13,7 @@ test_that("use", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1)
-  expect_error(plot_island(daisie_data), "Argument 4 must have names")
+  expect_error(plot_island(daisie_data))
   ideal_daisie_data_to_tables(ideal_daisie_data = daisie_data$ideal_islands)
 })
 

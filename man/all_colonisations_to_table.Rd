@@ -14,23 +14,10 @@ as created by \link{sim_island}
 
 \code{ideal_or_empirical_island} is a list  containing 3 components:
 \itemize{
-\item \verb{$branching_times}: island age and stem age of the
-population/species in the case of Non-endemic, Non-endemic_MaxAge and
-Endemic anagenetic species.
-
-For cladogenetic species these should
-be island age and branching times of the radiation including the
-stem age of the radiation.
-\item \verb{$stac}: An integer ranging from 1 to 6
-indicating the status of the colonist:
-\enumerate{
-\item Non_endemic_MaxAge
-\item Endemic
-\item Endemic&Non_Endemic
-\item Non_endemic
-\item Endemic_singleton_MaxAge
-\item Endemic_clade_MaxAge
-}
+\item \verb{$branching_times}: island age, species stem age and speciation times.
+See \link{check_branching_times} for more details
+\item \verb{$stac}: the status of the colonist,
+see \link{stac_to_str} for values and meanings
 \item \verb{$missing_species}: number of island species that were
 not sampled for particular clade (only applicable for endemic clades)
 }

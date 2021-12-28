@@ -51,6 +51,9 @@
 #'
 #' @export
 plot_island <- function(island) {
+
+  DAISIEmainland::check_island(island)
+
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable

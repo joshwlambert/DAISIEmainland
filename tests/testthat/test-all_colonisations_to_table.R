@@ -5,7 +5,6 @@ test_that("use", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  # Pick an interesting one
   mainland_clade <- create_test_mainland_clade(
     mainland_scenario = 20
   )

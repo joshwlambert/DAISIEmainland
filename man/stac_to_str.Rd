@@ -7,10 +7,22 @@
 stac_to_str(stac)
 }
 \value{
-the event as a string
+the status of a colonist as a string
 }
 \description{
-Convert a \code{stac} (status of colonist) to a string
+Convert a \code{stac} (status of colonist) to a string:
+}
+\details{
+\tabular{ll}{
+   Value \tab String \cr
+   0 \tab \verb{[no colonization has taken place]} \cr
+   1 \tab \code{Non_endemic_MaxAge} \cr
+   2 \tab \code{Endemic} \cr
+   3 \tab \code{Endemic&Non_Endemic} \cr
+   4 \tab \code{Non_endemic} \cr
+   5 \tab \code{Endemic_singleton_MaxAge} \cr
+   6 \tab \code{Endemic_clade_MaxAge} \cr
+}
 }
 \examples{
 DAISIEmainland:::stac_to_str(0)

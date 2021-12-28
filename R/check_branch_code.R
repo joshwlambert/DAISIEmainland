@@ -27,5 +27,7 @@ check_branch_code <- function(branch_code) {
   testthat::expect_equal(chars[1], "A")
   testthat::expect_true(all(chars %in% c("A","B")))
 
+  # As function is mainly called for side effect, see
+  # See https://style.tidyverse.org/functions.html#return
   invisible(branch_code)
 }

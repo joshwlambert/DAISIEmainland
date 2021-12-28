@@ -13,7 +13,16 @@ event_to_str(possible_event)
 the event as a string
 }
 \description{
-Convert an event to a string
+Convert an event to a string:
+}
+\details{
+\tabular{ll}{
+   Value \tab String \cr
+   1 \tab \code{immigration} \cr
+   2 \tab \code{extinction} \cr
+   3 \tab \code{anagenesis} \cr
+   4 \tab \code{cladogenesis} \cr
+}
 }
 \examples{
 DAISIEmainland:::event_to_str(1)
