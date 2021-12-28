@@ -6,6 +6,11 @@
 \usage{
 check_all_colonisations(all_colonisations)
 }
+\arguments{
+\item{all_colonisations}{a list of one or more \code{colonisations},
+as can be checked by \link{check_all_colonisations}.
+See \link{check_colonisations} for details on the \code{colonisations}}
+}
 \value{
 nothing
 }
@@ -34,7 +39,7 @@ set.seed(
 mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
   mainland_scenario = 20
 )
-island <- sim_island(
+island <- DAISIEmainland:::sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 12, 1),
   mainland = mainland_clade,

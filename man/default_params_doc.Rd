@@ -5,7 +5,13 @@
 \title{Documentation for function arguments in the DAISIEmainland package}
 \usage{
 default_params_doc(
+  all_colonisations,
   branch_code,
+  branching_times,
+  colonisations,
+  event_times,
+  missing_species,
+  stac,
   timeval,
   total_time,
   gam,
@@ -38,7 +44,9 @@ default_params_doc(
   ideal_daisie_data,
   empirical_daisie_data,
   ideal_island,
+  ideal_island_clade,
   empirical_island,
+  empirical_island_clade,
   ideal_or_empirical_island,
   species_type,
   ideal_ml,
@@ -58,8 +66,25 @@ default_params_doc(
 )
 }
 \arguments{
+\item{all_colonisations}{a list of one or more \code{colonisations},
+as can be checked by \link{check_all_colonisations}.
+See \link{check_colonisations} for details on the \code{colonisations}}
+
 \item{branch_code}{a species' branching pattern,
 as checked by \link{check_branch_code}, e.g. \code{A}, \code{AB}, \code{AABA}.}
+
+\item{branching_times}{island age and stem age of the
+population/species in the case of Non-endemic, Non-endemic_MaxAge and
+Endemic anagenetic species.
+
+For cladogenetic species these should
+be island age and branching times of the radiation including the
+stem age of the radiation.
+
+See \link{check_branching_times} for a more detailed description.}
+
+\item{colonisations}{a \code{colonisations},
+as can be checked by \link{check_colonisations}.}
 
 \item{timeval}{Numeric defining current time of simulation.}
 
@@ -215,12 +240,65 @@ An \code{ideal_island} is created by \link{sim_island} (together with \code{empi
 which has imperfect information),
 as can be checked by \link{check_ideal_island}}
 
+\item{ideal_island_clade}{A simulated island clade with perfect information,
+which is a \link{list} of one or more \link{ideal_island_clade}s,
+as can be checked by \link{check_ideal_island_clade}
+
+\code{ideal_island_clade} is a list  containing 3 components:
+\itemize{
+\item \verb{$branching_times}: island age, species stem age and speciation times.
+See \link{check_branching_times} for more details
+\item \verb{$stac}: the status of the colonist,
+see \link{stac_to_str} for values and meanings
+\item \verb{$missing_species}: number of island species that were
+not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
+}}
+
 \item{empirical_island}{a simulated island with imperfect information,
 with one \code{empirical_island_clade} per simulated island clade.
 
 An \code{empirical_island} is created by \link{sim_island}
 (together with \code{ideal_island}, which has perfect information),
 as can be checked by \link{check_empirical_island}.}
+
+\item{empirical_island_clade}{A simulated island clade with imperfect information,
+as can be checked by \link{check_empirical_island_clade}.
+
+An \code{empirical_island_clade} contains 3 components:
+\itemize{
+\item \verb{$branching_times}: island age, species stem age and speciation times.
+See \link{check_branching_times} for more details
+\item \verb{$stac}: the status of the colonist,
+see \link{stac_to_str} for values and meanings
+\item \verb{$missing_species}: number of island species that were
+not sampled for particular clade (only applicable for endemic clades)
+}
+
+For recolonising lineages, there is an extra element,
+\code{all_colonisations} per list element.
+It is comprised of \verb{$event_times} and \verb{$species_type}:
+\describe{
+\item{\verb{$event_times}}{ordered numeric vectors containing all
+events for each extant recolonising lineage. This includes all
+colonisation and branching times. Each vector pertains to one
+colonising lineage.}
+\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
+\code{"I"} depending on whether the extant clade is of anagenetic,
+cladogenetic or immigrant origin, respectively.}
+}}
 
 \item{ideal_or_empirical_island}{the evolutionary history of
 an island from ideal or empirical data,
@@ -307,71 +385,8 @@ as can be checked by \link{check_ideal_island}
 as can be checked by \link{check_empirical_island}
 }}
 
-\item{branching_times}{island age and stem age of the
-population/species in the case of Non-endemic, Non-endemic_MaxAge and
-Endemic anagenetic species.
-
-For cladogenetic species these should
-be island age and branching times of the radiation including the
-stem age of the radiation.
-
-See \link{check_branching_times} for a more detailed description.}
-
 \item{stac`}{the status of the colonist,
 see \link{stac_to_str} for values and meanings}
-
-\item{ideal_island_clade}{A simulated island clade with perfect information,
-which is a \link{list} of one or more \link{ideal_island_clade}s,
-as can be checked by \link{check_ideal_island_clade}
-
-\code{ideal_island_clade} is a list  containing 3 components:
-\itemize{
-\item \verb{$branching_times}: island age, species stem age and speciation times.
-See \link{check_branching_times} for more details
-\item \verb{$stac}: the status of the colonist,
-see \link{stac_to_str} for values and meanings
-\item \verb{$missing_species}: number of island species that were
-not sampled for particular clade (only applicable for endemic clades)
-}
-
-For recolonising lineages, there is an extra element,
-\code{all_colonisations} per list element.
-It is comprised of \verb{$event_times} and \verb{$species_type}:
-\describe{
-\item{\verb{$event_times}}{ordered numeric vectors containing all
-events for each extant recolonising lineage. This includes all
-colonisation and branching times. Each vector pertains to one
-colonising lineage.}
-\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
-\code{"I"} depending on whether the extant clade is of anagenetic,
-cladogenetic or immigrant origin, respectively.}
-}}
-
-\item{empirical_island_clade}{A simulated island clade with imperfect information,
-as can be checked by \link{check_empirical_island_clade}.
-
-An \code{empirical_island_clade} contains 3 components:
-\itemize{
-\item \verb{$branching_times}: island age, species stem age and speciation times.
-See \link{check_branching_times} for more details
-\item \verb{$stac}: the status of the colonist,
-see \link{stac_to_str} for values and meanings
-\item \verb{$missing_species}: number of island species that were
-not sampled for particular clade (only applicable for endemic clades)
-}
-
-For recolonising lineages, there is an extra element,
-\code{all_colonisations} per list element.
-It is comprised of \verb{$event_times} and \verb{$species_type}:
-\describe{
-\item{\verb{$event_times}}{ordered numeric vectors containing all
-events for each extant recolonising lineage. This includes all
-colonisation and branching times. Each vector pertains to one
-colonising lineage.}
-\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
-\code{"I"} depending on whether the extant clade is of anagenetic,
-cladogenetic or immigrant origin, respectively.}
-}}
 }
 \value{
 Nothing

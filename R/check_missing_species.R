@@ -13,8 +13,6 @@
 #'
 #' @return nothing
 #'
-#' @seealso Use \link{missing_species_to_str} to convert a `missing_species` to a string.
-#'
 #' @examples
 #' check_missing_species(1)
 #' @author Richèl J.C. Bilderbeek

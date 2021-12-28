@@ -24,9 +24,6 @@ A valid \code{missing_species} ...
 \examples{
 check_missing_species(1)
 }
-\seealso{
-Use \link{missing_species_to_str} to convert a \code{missing_species} to a string.
-}
 \author{
 Richèl J.C. Bilderbeek
 }

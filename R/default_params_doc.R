@@ -1,5 +1,8 @@
 #' Documentation for function arguments in the DAISIEmainland package
 #'
+#' @param all_colonisations a list of one or more `colonisations`,
+#' as can be checked by \link{check_all_colonisations}.
+#' See \link{check_colonisations} for details on the `colonisations`
 #' @param branch_code a species' branching pattern,
 #' as checked by \link{check_branch_code}, e.g. `A`, `AB`, `AABA`.
 #' @param branching_times
@@ -12,6 +15,8 @@
 #' stem age of the radiation.
 #'
 #' See \link{check_branching_times} for a more detailed description.
+#' @param colonisations a `colonisations`,
+#' as can be checked by \link{check_colonisations}.
 #' @param species_type the type of species:
 #'
 #'  * `"A"`: the extant clade is of anagenetic origin
@@ -267,7 +272,13 @@
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
-default_params_doc <- function(branch_code,
+default_params_doc <- function(all_colonisations,
+                               branch_code,
+                               branching_times,
+                               colonisations,
+                               event_times,
+                               missing_species,
+                               stac,
                                timeval,
                                total_time,
                                gam,
@@ -300,7 +311,9 @@ default_params_doc <- function(branch_code,
                                ideal_daisie_data,
                                empirical_daisie_data,
                                ideal_island,
+                               ideal_island_clade,
                                empirical_island,
+                               empirical_island_clade,
                                ideal_or_empirical_island,
                                species_type,
                                ideal_ml,
