@@ -28,14 +28,23 @@ calc_outliers <- function(plotting_data) {
   return(outliers)
 }
 
+#' Creates the axis numbers (breaks) for plotting with an inverse hyperbolic
+#' sine transformation
+#'
+#' @return A function that takes a numeric vector
+create_ihs_breaks <- function() {
+  function(breaks) sinh(scales::extended_breaks()(asinh(breaks)))
+}
+
 #' Creates labels for plots by calling `scientific`.
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return A function that takes a vector
-create_labels <- function(signif) {
+#' @return A function that takes a numeric vector
+create_labels <- function(signif, scientific) {
   function(breaks) scientific(
     breaks,
+    scientific = scientific,
     signif = signif
   )
 }
@@ -46,10 +55,16 @@ create_labels <- function(signif) {
 #' @inheritParams default_params_doc
 #'
 #' @return Character vector
-scientific <- function(breaks, signif) {
-  breaks <- gsub(pattern = "e\\+",
-                 replacement = "%*%10^",
-                 x = choose_scientific(breaks, signif))
+scientific <- function(breaks, scientific, signif) {
+  if (scientific) {
+    breaks <- gsub(pattern = "e\\+",
+                   replacement = "%*%10^",
+                   x = choose_scientific(breaks, signif))
+  } else {
+    breaks <- gsub(pattern = "e\\+",
+                   replacement = "%*%10^",
+                   x = signif(breaks, digits = signif))
+  }
   parse(text = gsub(pattern = "e",
                     replacement = "%*%10^",
                     x = breaks))

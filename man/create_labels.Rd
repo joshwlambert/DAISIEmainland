@@ -4,14 +4,17 @@
 \alias{create_labels}
 \title{Creates labels for plots by calling \code{scientific}.}
 \usage{
-create_labels(signif)
+create_labels(signif, scientific)
 }
 \arguments{
 \item{signif}{A numeric specifying how many significant figures the axes
 labels have when plotting}
+
+\item{scientific}{A boolean determining whether the axis labels will be
+converted to scientific notation}
 }
 \value{
-A function that takes a vector
+A function that takes a numeric vector
 }
 \description{
 Creates labels for plots by calling \code{scientific}.

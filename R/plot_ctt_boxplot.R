@@ -73,7 +73,7 @@ plot_ctt_boxplot <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(paste(Delta, "CTT"))) +
+      ggplot2::ylab(expression(paste(Delta, "nCTT"))) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::ylim(c(0, upper_ylim))
   } else {
@@ -88,7 +88,7 @@ plot_ctt_boxplot <- function(data_folder_path,
                             geom = "point",
                             size = 0.5) +
       ggplot2::theme_classic() +
-      ggplot2::ylab(expression(paste(Delta, "CTT"))) +
+      ggplot2::ylab(expression(paste(Delta, "nCTT"))) +
       ggplot2::xlab(expression(paste("Mainland sample probability ", (rho)))) +
       ggplot2::ylim(c(0, upper_ylim))
   }

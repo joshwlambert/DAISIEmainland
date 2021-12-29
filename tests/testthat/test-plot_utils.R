@@ -23,8 +23,14 @@ test_that("create_labels runs silent without error", {
   expect_true(is.function(labels))
 })
 
-test_that("scientific runs silent without error", {
-  labels <- scientific(c(1, 2, 3, 4, 5), signif = 2)
+test_that("scientific (TRUE) runs silent without error", {
+  labels <- scientific(c(1, 2, 3, 4, 5), signif = 2, scientific = TRUE)
+  expect_true(is.expression(labels))
+  expect_length(labels, 5)
+})
+
+test_that("scientific (FALSE) runs silent without error", {
+  labels <- scientific(c(1, 2, 3, 4, 5), signif = 2, scientific = FALSE)
   expect_true(is.expression(labels))
   expect_length(labels, 5)
 })

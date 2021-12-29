@@ -10,7 +10,8 @@ plot_k_estimates(
   output_file_path,
   parameter,
   num_breaks,
-  signif
+  signif,
+  scientific
 )
 }
 \arguments{
@@ -30,6 +31,9 @@ plot axes}
 
 \item{signif}{A numeric specifying how many significant figures the axes
 labels have when plotting}
+
+\item{scientific}{A boolean determining whether the axis labels will be
+converted to scientific notation}
 }
 \value{
 Void (saves plot)
