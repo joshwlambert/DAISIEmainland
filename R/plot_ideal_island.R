@@ -1,4 +1,5 @@
 #' Plot the simulated ideal island.
+#'
 #' @inheritParams default_params_doc
 #'
 #' @return a `ggplot2`

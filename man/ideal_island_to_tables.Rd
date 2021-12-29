@@ -8,7 +8,7 @@ ideal_island_to_tables(ideal_island)
 }
 \arguments{
 \item{ideal_island}{a simulated island with perfect information,
-which is a \link{list} of one or more \link{ideal_island_clade}s.
+which is a \link{list} of one or more \code{ideal_island_clade}s.
 
 An \code{ideal_island} is created by \link{sim_island} (together with \code{empirical_island},
 which has imperfect information),

@@ -275,14 +275,14 @@ as checked by \link{check_daisie_datalist}
 and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})}
 
 \item{ideal_island}{a simulated island with perfect information,
-which is a \link{list} of one or more \link{ideal_island_clade}s.
+which is a \link{list} of one or more \code{ideal_island_clade}s.
 
 An \code{ideal_island} is created by \link{sim_island} (together with \code{empirical_island},
 which has imperfect information),
 as can be checked by \link{check_ideal_island}}
 
 \item{ideal_island_clade}{A simulated island clade with perfect information,
-which is a \link{list} of one or more \link{ideal_island_clade}s,
+which is a \link{list} of one or more \code{ideal_island_clade}s,
 as can be checked by \link{check_ideal_island_clade}
 
 \code{ideal_island_clade} is a list  containing 3 components:

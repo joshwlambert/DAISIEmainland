@@ -8,7 +8,7 @@ check_ideal_island_clade(ideal_island_clade)
 }
 \arguments{
 \item{ideal_island_clade}{A simulated island clade with perfect information,
-which is a \link{list} of one or more \link{ideal_island_clade}s,
+which is a \link{list} of one or more \code{ideal_island_clade}s,
 as can be checked by \link{check_ideal_island_clade}
 
 \code{ideal_island_clade} is a list  containing 3 components:
