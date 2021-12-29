@@ -1,0 +1,91 @@
+---
+title: "Simulation algorithm"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{island-mainland_algorithm}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The Doob-Gillespie algorithm is a stochastic exact solution that is used to
+simulate continuous-time processes, with several applications 
+in biological modelling. The Doob-Gillespie algorithm
+can be used in evolutionary biology, for example to efficiently simulate a
+birth-death process. The island-mainland simulation in the DAISIEmainland
+package uses a two-part Doob-Gillespie simulation, one for the mainland
+(`DAISIEmainland::sim_mainland`) and one for the island
+(`DAISIEmainland::sim_island`).
+
+Firstly the mainland, which is simulated under
+a Moran process, whereby every species extinction is immediately 
+followed by a random species giving rise to two new species (speciation).
+
+```{r}
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+mainland <- DAISIEmainland:::sim_mainland(total_time = 1,
+                        m = 5,
+                        mainland_ex = 1)
+```
+
+The output is a list of five mainland clades.
+
+```{r}
+mainland
+```
+
+The island Doob-Gillespie algorithm is altered to accommodate the dynamic 
+mainland pool. The time-steps are bounded to not jump over changes on the 
+mainland to ensure the present state of the system (i.e. species on mainland)
+is always up-to-date. The algorithm checks whether any changes have occurs on
+the mainland since the last time step and if so the system is updated and the
+returned to the time at which the mainland last changed. This is valid owing to
+the Markov (memoryless) property of the Doob-Gillespie algorithm.
+
+```{r}
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+island <- DAISIEmainland:::sim_island(total_time = 1,
+                     island_pars = c(1, 1, 10, 1, 1),
+                     mainland_clade = mainland[[1]],
+                     mainland_sample_prob = 1,
+                     mainland_sample_type = "complete")
+```
+
+For both the island and mainland Doob-Gillespie algorithms time steps are
+sampled from an exponential distribution with rate:
+
+$$X = \lambda e ^{-\lambda x}, \text{ where } \lambda = \sum_j r_j$$
+
+where $r_j$ are the rates, for the mainland process this is just the rate of
+mainland extinction ($\mu_M$), this is the only mainland parameter, whereas,
+for the island algorithm $r_j$ are the rates of cladogenesis ($\lambda^c$),
+island extinction ($\mu$), colonisation ($\gamma$), and anagenesis
+($\lambda^a$). After the time step ($\Delta$ t) is sampled the event is sampled
+from a dynamic discrete probability distribution, weighted by its rate
+(propensity) relative to all other rates: 
+
+$$r_i / \sum_j r_j$$
+The system is then updated for the algorithm repeats until the time step exceeds
+the total time of the simulation. Lastly, the data is formatted and the
+endemicity of each island colonist is assigned which is used in the `DAISIE`
+inference model. The `DAISIEmainland` simulation outputs two data sets: (1) 
+contains full information of all species colonisation times, and (2) an 
+incomplete information data set which resembles what an empirist would have
+access to. These two data sets allow for the quantification of error in
+estimation when the empirists does not have access to all the data.
