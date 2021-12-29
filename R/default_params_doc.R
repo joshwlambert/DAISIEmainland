@@ -176,8 +176,7 @@
 #' which has imperfect information),
 #' as can be checked by \link{check_ideal_island}
 #'
-#' @param ideal_island_clade
-#' A simulated island clade with perfect information,
+#' @param ideal_island_clade A simulated island clade with perfect information,
 #' which is a \link{list} of one or more \link{ideal_island_clade}s,
 #' as can be checked by \link{check_ideal_island_clade}
 #'
