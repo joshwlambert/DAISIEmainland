@@ -8,6 +8,15 @@
 
 #' Convert an event to a string
 #'
+#' Convert an event to a string:
+#'
+#' Value|String
+#' -----|----------
+#' 1    | `immigration`
+#' 2    | `extinction`
+#' 3    | `anagenesis`
+#' 4    | `cladogenesis`
+#'
 #' @inheritParams default_params_doc
 #'
 #' @return the event as a string
@@ -41,9 +50,21 @@ event_to_str <- function(possible_event) {
 
 #' Convert a `stac` (status of colonist) to a string
 #'
+#' Convert a `stac` (status of colonist) to a string:
+#'
+#' Value|String
+#' -----|------
+#' 0    | `[no colonization has taken place]`
+#' 1    | `Non_endemic_MaxAge`
+#' 2    | `Endemic`
+#' 3    | `Endemic&Non_Endemic`
+#' 4    | `Non_endemic`
+#' 5    | `Endemic_singleton_MaxAge`
+#' 6    | `Endemic_clade_MaxAge`
+#'
 #' @inheritParams default_params_doc
 #'
-#' @return the event as a string
+#' @return the status of a colonist as a string
 #'
 #' @seealso use \link{str_to_stac} to convent a string to a `stac`
 #'
@@ -58,7 +79,7 @@ event_to_str <- function(possible_event) {
 #' @keywords internal
 #' @author Richèl J.C. Bilderbeek
 stac_to_str <- function(stac) {
-  testthat::expect_equal(length(stac), 1)
+  DAISIEmainland::check_stac(stac)
   if (stac == 0) {
     return("[no colonization has taken place]")
   } else if (stac == 1) {
@@ -71,13 +92,9 @@ stac_to_str <- function(stac) {
     return("Non_endemic")
   } else if (stac == 5) {
     return("Endemic_singleton_MaxAge")
-  } else if (stac == 6) {
-    return("Endemic_clade_MaxAge")
   }
-  stop(
-    "Invalid event with value ", stac, " \n",
-    "Tip: values can be 1, 2, 3, 4, 5 or 6"
-  )
+  testthat::expect_true(stac == 6)
+  "Endemic_clade_MaxAge"
 }
 
 #' Convert a string to an event

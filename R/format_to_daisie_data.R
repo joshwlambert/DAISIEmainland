@@ -2,7 +2,9 @@
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return List with DAISIE simulation output
+#' @return a `daisie_data` object,
+#' as can be checked by \link{check_daisie_data}
+
 #' @keywords internal
 #' @author Joshua W. Lambert
 format_to_daisie_data <- function(island_replicates,

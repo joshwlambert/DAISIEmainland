@@ -12,7 +12,12 @@ as created by \link{sim_mainland}.
 Use \link{plot_mainland} to visualise the that evolutionary history.}
 }
 \value{
-a \code{ggplot2}
+a \code{ggplot2} facet plot, where each facet/row contains
+the evolutionary history of a clade.
+Per clade, the x axis shows the time from past (at the left)
+to the present (at the right).
+The y-axis has no meaning except for separating the different
+species using \link{branch_code_to_y}.
 }
 \description{
 Plot the simulated mainland.

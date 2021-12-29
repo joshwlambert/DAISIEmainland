@@ -1,0 +1,13 @@
+test_that("use", {
+  expect_silent(check_branching_times(3.14))
+  expect_silent(check_branching_times(c(1.0, 0.24)))
+  expect_silent(check_branching_times(c(1.0, 0.24, 0.00001)))
+  expect_error(check_branching_times(c(1.0, 123.456)))
+  expect_error(check_branching_times(-1.0))
+  expect_error(check_branching_times(NULL))
+  expect_error(check_branching_times(NA))
+  expect_error(check_branching_times(Inf))
+  expect_error(check_branching_times(c()))
+  expect_error(check_branching_times(list()))
+  expect_error(check_branching_times("nonsense"))
+})

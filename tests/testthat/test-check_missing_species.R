@@ -1,0 +1,13 @@
+test_that("use", {
+  expect_silent(check_missing_species(1))
+  expect_silent(check_missing_species(0))
+  expect_silent(check_missing_species(7))
+  expect_error(check_missing_species(-1))
+  expect_error(check_missing_species(c(1, 2)))
+  expect_error(check_missing_species(NULL))
+  expect_error(check_missing_species(NA))
+  expect_error(check_missing_species(Inf))
+  expect_error(check_missing_species(c()))
+  expect_error(check_missing_species(list()))
+  expect_error(check_missing_species("nonsense"))
+})

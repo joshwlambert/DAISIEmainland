@@ -1,5 +1,48 @@
 #' Documentation for function arguments in the DAISIEmainland package
 #'
+#' @param all_colonisations a list of one or more `colonisations`,
+#' see \link{check_colonisations} for details.
+#' `all_colonisations` can be checked by \link{check_all_colonisations}.
+#'
+#' `all_colonisations` is an element of
+#'  * `ideal_island_clade` (see \link{check_ideal_island_clade})
+#'  * `emprical_island_clade` (see \link{check_empirical_island_clade})
+#' @param branch_code a species' branching pattern,
+#' as checked by \link{check_branch_code}, e.g. `A`, `AB`, `AABA`.
+#' @param branching_times
+#' island age and stem age of the
+#' population/species in the case of Non-endemic, Non-endemic_MaxAge and
+#' Endemic anagenetic species.
+#'
+#' For cladogenetic species these should
+#' be island age and branching times of the radiation including the
+#' stem age of the radiation.
+#'
+#' See \link{check_branching_times} for a more detailed description.
+#' @param colonisations a `colonisations`, which is a \link{list} with elements:
+#'
+#'  * `event_times`: the times that events (i.e. island age, immigration,
+#'    speciation) occurred (see \link{check_event_times})
+#'  * `species_type`:  the origin of a clade (i.e. anagenetic, cladogenetic
+#'    or immigrant) (see \link{check_species_type})
+#'
+#' An `all_colonisations` (see \link{check_all_colonisations}) is a \link{list}
+#' of `colonisations`.
+#' @param event_times the island age, stem age of species,
+#' and -for cladogenetic species- speciation times,
+#' as checked by \link{check_event_times}
+#' @param missing_species the number of island species that were not
+#' sampled for particular clade (only applicable for endemic clades),
+#' as can be checked by \link{check_missing_species}
+#' @param species_type the type of species:
+#'
+#'  * `"A"`: the extant clade is of anagenetic origin
+#'  * `"C"`: the extant clade is of cladogenetic origin
+#'  * `"I"`: the extant clade is of immigrant origin
+#'
+#' Use \link{check_species_type} to check if the `species_type` is valid
+#' @param stac the status of the colonist,
+#' see \link{stac_to_str} for values and meanings
 #' @param timeval Numeric defining current time of simulation.
 #' @param total_time Numeric defining the length of the simulation in time
 #' units.
@@ -53,107 +96,96 @@
 #' @param daisie_datalist a \link[DAISIE]{DAISIE} `datalist`, as can be
 #' checked by \link{check_daisie_datalist}. To quote the DAISE doc:
 #'
-#' Data object containing information on colonisation and
-#'   branching times. This object can be generated using the
-#'   \link[DAISIE]{DAISIE_dataprep}
-#'   function, which converts a user-specified data table into a data object,
-#'   but the object can of course also be entered directly.
-#'   It is an R list object with the following elements.\cr The first element
-#'   of the list has two or three components: \cr \cr \code{$island_age} - the
-#'   island age \cr Then, depending on whether a distinction between types is
-#'   made, we have:\cr \code{$not_present} - the number of mainland lineages
-#'   that are not present on the island \cr or:\cr \code{$not_present_type1} -
-#'   the number of mainland lineages of type 1 that are not present on the
-#'   island \cr \code{$not_present_type2} - the number of mainland lineages of
-#'   type 2 that are not present on the island \cr \cr The remaining elements of
-#'   the list each contains information on a single colonist lineage on the
-#'   island and has 5 components:\cr \cr \code{$colonist_name} - the name of the
-#'   species or clade that colonized the island \cr \code{$branching_times} -
-#'   island age followed by stem age of the population/species in the case of
-#'   Non-endemic, Non-endemic_MaxAge species and Endemic species with no close relatives
-#'   on the island. For endemic clades with more than one species on the island
-#'   (cladogenetic clades/ radiations) these should be island age followed by the
-#'   branching times of the island clade
-#'   including the stem age of the clade\cr \code{$stac} - the
-#'   status of the colonist \cr \cr * Non_endemic_MaxAge: 1 \cr * Endemic: 2
-#'   \cr * Endemic&Non_Endemic: 3 \cr * Non_Endemic: 4 \cr
-#'   * Endemic_Singleton_MaxAge: 5 \cr * Endemic_Clade_MaxAge: 6
-#'   \cr * Endemic&Non_Endemic_Clade_MaxAge: 7 \cr
-#'   \cr \code{$missing_species} - number of island species that were not
-#'   sampled for particular clade (only applicable for endemic clades) \cr
-#'   \code{$type1or2} - whether the colonist belongs to type 1 or type 2 \cr
-#' @param daisie_data List containing data of DAISIE simulation with mainland
-#' dynamics. Output from `sim_island_with_mainland`.
+#' A `datalist` is an object containing information on colonisation and
+#' branching times. This object can be generated using
+#' \link[DAISIE]{DAISIE_dataprep},
+#' which converts a user-specified data table into a `datalist`,
+#' but the object can of course also be entered directly.
 #'
-#' A list. The highest level of the list has two elements called
-#' `ideal_islands` and `empirical_islands` which corresponds to
-#' the ideal and empirical data sets produce in each simulation. Within each
-#' `ideal_islands` and `empirical_islands` each element is an
-#' individual replicate. The first element of each replicate is composed of
-#' island information containing:
-#' \describe{
-#'   \item{`$island_age`}{A numeric with the island age.}
-#'   \item{`$not_present`}{the number of mainland lineages that are not
-#'     present on the island.}
-#' }
-#' The subsequent elements of the list pertaining to each replicate contain
-#' information on a single colonist lineage on the island and have 3 components:
-#' \describe{
-#'   \item{`$branching_times`}{island age and stem age of the
-#'     population/species in the case of Non-endemic, Non-endemic_MaxAge and
-#'     Endemic anagenetic species.
-#'     For cladogenetic species these should
-#'     be island age and branching times of the radiation including the
-#'     stem age of the radiation.}
-#'   \item{`$stac`}{An integer ranging from 1 to 6
-#'   indicating the status of the colonist:
-#'   \enumerate{
-#'     \item Non_endemic_MaxAge
-#'     \item Endemic
-#'     \item Endemic&Non_Endemic
-#'     \item Non_endemic_MaxAge
-#'     \item Endemic_singleton_MaxAge
-#'     \item Endemic_clade_MaxAge
-#' }}
-#' \item{`missing_species`}{number of island species that were
-#' not sampled for particular clade (only applicable for endemic clades)}
-#' }
+#' A `datalist` is a \link{list} with the following elements:
 #'
-#' @param ideal_daisie_data a list, of which each element contains the history
+#' The first element of the list has two or three components:
+#'
+#'  * \code{$island_age} - the island age
+#'
+#' Then, depending on whether a distinction between types is
+#' made, we have:
+#'
+#'  * \code{$not_present} - the number of mainland lineages
+#'   that are not present on the island \cr
+#'
+#'  or:
+#'
+#'   * \code{$not_present_type1} - the number of mainland lineages
+#'     of type 1 that are not present on the island
+#'   * \code{$not_present_type2} - the number of mainland lineages of
+#'     type 2 that are not present on the island
+#'
+#' The remaining elements of
+#' the `datalist` each contains information on a single colonist lineage on the
+#'   island and has 5 components:
+#'
+#'    * \code{$colonist_name} - the name of the species or clade that
+#'      colonized the island
+#'    * \code{$branching_times} - island age followed by stem age of the
+#'      population/species in the case of Non-endemic, Non-endemic_MaxAge
+#'      species and Endemic species with no close relatives
+#'      on the island. For endemic clades with more than one species on the island
+#'      (cladogenetic clades/ radiations) these should be island age followed by the
+#'      branching times of the island clade
+#'      including the stem age of the clade
+#'    * \code{$stac} - the status of the colonist, see \link{stac_to_str}
+#'      for values and descriptions
+#'    * \code{$missing_species} - number of island species that were not
+#'      sampled for particular clade (only applicable for endemic clades)
+#'    * \code{$type1or2} - whether the colonist belongs to type 1 or type 2
+#' @param daisie_data \link{list} containing data of of a DAISIE simulation
+#' with mainland dynamics,
+#' as produced by \link{sim_island_with_mainland}
+#' and checked by \link{check_daisie_data}
+#'
+#' A `daisie_data` has two elements:
+#'  * `ideal_islands`: the ideal data set produced in a simulation,
+#'    see \link{check_ideal_daisie_data} for more details
+#'  * `empirical_islands`: the empirical data sets produced in a simulation
+#'    see \link{check_empirical_daisie_data} for more details
+#' @param ideal_daisie_data a \link{list},
+#' of which each element contains the history
 #' of a DAISIE simulation with mainland dynamics, with a length that
-#' equals the number of replicates.
+#' equals the number of replicates,
+#' as can be checked by \link{check_ideal_daisie_data}
+#'
 #' The simulated history is recorded perfectly, resulting in ideal data.
 #' The list elements are of type `DAISIE::datalist`,
 #' as checked by \link{check_daisie_datalist}
 #' and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})
 #' @param empirical_daisie_data a list, of which each element contains the
 #' history of a DAISIE simulation with mainland dynamics, with a length that
-#' equals the number of replicates.
+#' equals the number of replicates,
+#' as can be checked by \link{check_empirical_daisie_data}
+#'
 #' The simulated history is recorded as an empiricist would,
 #' resulting in imperfect data.
 #' The list elements are of type `DAISIE::datalist`,
 #' as checked by \link{check_daisie_datalist}
 #' and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})
 #' @param ideal_island a simulated island with perfect information,
-#' as created by \link{sim_island} (together with `empirical_island`,
-#' which has imperfect information).
+#' which is a \link{list} of one or more `ideal_island_clade`s.
 #'
-#' `ideal_island` is a list  containing 3 components:
-#' * `$branching_times`: island age and stem age of the
-#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
-#'    Endemic anagenetic species.
+#' An `ideal_island` is created by \link{sim_island} (together with `empirical_island`,
+#' which has imperfect information),
+#' as can be checked by \link{check_ideal_island}
 #'
-#'    For cladogenetic species these should
-#'    be island age and branching times of the radiation including the
-#'    stem age of the radiation.
-#' * `$stac`: An integer ranging from 1 to 6
-#'    indicating the status of the colonist:
-#'    1. Non_endemic_MaxAge
-#'    2. Endemic
-#'    3. Endemic&Non_Endemic
-#'    4. Non_endemic
-#'    5. Endemic_singleton_MaxAge
-#'    6. Endemic_clade_MaxAge
+#' @param ideal_island_clade A simulated island clade with perfect information,
+#' which is a \link{list} of one or more `ideal_island_clade`s,
+#' as can be checked by \link{check_ideal_island_clade}
+#'
+#' `ideal_island_clade` is a list  containing 3 components:
+#'
+#' * `$branching_times`: island age, species stem age and speciation times.
+#'    See \link{check_branching_times} for more details
+#' * `$stac`: the status of the colonist,
+#'    see \link{stac_to_str} for values and meanings
 #' * `$missing_species`: number of island species that were
 #' not sampled for particular clade (only applicable for endemic clades)
 #'
@@ -170,25 +202,22 @@
 #'     cladogenetic or immigrant origin, respectively.}
 #' }
 #' @param empirical_island a simulated island with imperfect information,
-#' as created by \link{sim_island} (together with `ideal_island`,
-#' which has perfect information).
+#' with one `empirical_island_clade` per simulated island clade.
 #'
-#' `empirical_island` is a list  containing 3 components:
-#' * `$branching_times`: island age and stem age of the
-#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
-#'    Endemic anagenetic species.
+#' An `empirical_island` is created by \link{sim_island}
+#' (together with `ideal_island`, which has perfect information),
+#' as can be checked by \link{check_empirical_island}.
 #'
-#'    For cladogenetic species these should
-#'    be island age and branching times of the radiation including the
-#'    stem age of the radiation.
-#' * `$stac`: An integer ranging from 1 to 6
-#'    indicating the status of the colonist:
-#'    1. Non_endemic_MaxAge
-#'    2. Endemic
-#'    3. Endemic&Non_Endemic
-#'    4. Non_endemic
-#'    5. Endemic_singleton_MaxAge
-#'    6. Endemic_clade_MaxAge
+#' @param empirical_island_clade
+#' A simulated island clade with imperfect information,
+#' as can be checked by \link{check_empirical_island_clade}.
+#'
+#' An `empirical_island_clade` contains 3 components:
+#'
+#' * `$branching_times`: island age, species stem age and speciation times.
+#'    See \link{check_branching_times} for more details
+#' * `$stac`: the status of the colonist,
+#'    see \link{stac_to_str} for values and meanings
 #' * `$missing_species`: number of island species that were
 #' not sampled for particular clade (only applicable for endemic clades)
 #'
@@ -209,21 +238,10 @@
 #' as created by \link{sim_island}
 #'
 #' `ideal_or_empirical_island` is a list  containing 3 components:
-#' * `$branching_times`: island age and stem age of the
-#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
-#'    Endemic anagenetic species.
-#'
-#'    For cladogenetic species these should
-#'    be island age and branching times of the radiation including the
-#'    stem age of the radiation.
-#' * `$stac`: An integer ranging from 1 to 6
-#'    indicating the status of the colonist:
-#'    1. Non_endemic_MaxAge
-#'    2. Endemic
-#'    3. Endemic&Non_Endemic
-#'    4. Non_endemic
-#'    5. Endemic_singleton_MaxAge
-#'    6. Endemic_clade_MaxAge
+#' * `$branching_times`: island age, species stem age and speciation times.
+#'    See \link{check_branching_times} for more details
+#' * `$stac`: the status of the colonist,
+#'    see \link{stac_to_str} for values and meanings
 #' * `$missing_species`: number of island species that were
 #' not sampled for particular clade (only applicable for endemic clades)
 #'
@@ -272,47 +290,26 @@
 #' @param mainland the evolutionary history of the mainland species,
 #' as created by \link{sim_mainland}.
 #' Use \link{plot_mainland} to visualise the that evolutionary history.
-#' @param island The history of a a single island.
-#' A \link{list} with two elements:
+#' @param island The history of a a single island,
+#' as can be checked by \link{check_island}.
 #'
-#'  * `ideal_island`: the island history based on ideal data
+#' An `island` is \link{list} with two elements:
+#'
+#'  * `ideal_island`: the island history based on ideal data,
+#'    as can be checked by \link{check_ideal_island}
 #'  * `empirical_island`: the island history based on empirical data
-#'
-#' Each of these is a \link{list} with the following elements:
-#' * `$branching_times`: island age and stem age of the
-#'    population/species in the case of Non-endemic, Non-endemic_MaxAge and
-#'    Endemic anagenetic species.
-#'
-#'    For cladogenetic species these should
-#'    be island age and branching times of the radiation including the
-#'    stem age of the radiation.
-#' * `$stac`: An integer ranging from 1 to 6
-#'    indicating the status of the colonist:
-#'    1. Non_endemic_MaxAge
-#'    2. Endemic
-#'    3. Endemic&Non_Endemic
-#'    4. Non_endemic
-#'    5. Endemic_singleton_MaxAge
-#'    6. Endemic_clade_MaxAge
-#' * `$missing_species`: number of island species that were
-#' not sampled for particular clade (only applicable for endemic clades)
-#'
-#' For recolonising lineages, there is an extra element,
-#' `all_colonisations` per list element.
-#' It is comprised of `$event_times` and `$species_type`:
-#' \describe{
-#'   \item{`$event_times`}{ordered numeric vectors containing all
-#'     events for each extant recolonising lineage. This includes all
-#'     colonisation and branching times. Each vector pertains to one
-#'     colonising lineage.}
-#'   \item{`$species_type`}{a string. Can be `"A"`, `"C"` or
-#'     `"I"` depending on whether the extant clade is of anagenetic,
-#'     cladogenetic or immigrant origin, respectively.}
-#' }
+#'    as can be checked by \link{check_empirical_island}
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
-default_params_doc <- function(timeval,
+default_params_doc <- function(all_colonisations,
+                               branch_code,
+                               branching_times,
+                               colonisations,
+                               event_times,
+                               missing_species,
+                               stac,
+                               timeval,
                                total_time,
                                gam,
                                laa,
@@ -344,7 +341,9 @@ default_params_doc <- function(timeval,
                                ideal_daisie_data,
                                empirical_daisie_data,
                                ideal_island,
+                               ideal_island_clade,
                                empirical_island,
+                               empirical_island_clade,
                                ideal_or_empirical_island,
                                species_type,
                                ideal_ml,

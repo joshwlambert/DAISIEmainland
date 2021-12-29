@@ -15,6 +15,10 @@ test_that("format_to_daisie_data works with empty island", {
   daisie_data <- format_to_daisie_data(island_replicates = island_replicates,
                                        total_time = 1,
                                        m = 2)
+  if (1 == 2) {
+    expect_silent(check_daisie_data(daisie_data))
+  }
+
   expect_length(daisie_data, 2)
   expect_named(daisie_data, c("ideal_islands", "empirical_islands"))
   expect_equal(daisie_data$ideal_islands[[1]],
@@ -42,8 +46,9 @@ test_that("format_to_daisie_data works with non-empty island", {
   daisie_data <- format_to_daisie_data(island_replicates = island_replicates,
                                        total_time = 1,
                                        m = 2)
-  expect_length(daisie_data, 2)
-  expect_named(daisie_data, c("ideal_islands", "empirical_islands"))
+
+  expect_silent(check_daisie_data(daisie_data))
+
   expect_equal(daisie_data$ideal_islands[[1]],
                list(list(island_age = 1,
                          not_present = 0),

@@ -17,7 +17,8 @@ units.}
 \item{m}{Numeric defining the size of mainland pool.}
 }
 \value{
-List with DAISIE simulation output
+a \code{daisie_data} object,
+as can be checked by \link{check_daisie_data}
 }
 \description{
 Formats simulation output into standard DAISIE list output.

@@ -1,4 +1,5 @@
 #' Plot the simulated ideal island.
+#'
 #' @inheritParams default_params_doc
 #'
 #' @return a `ggplot2`
@@ -28,6 +29,7 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 plot_ideal_island <- function(ideal_island) {
+  DAISIEmainland::check_ideal_island(ideal_island)
 
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
