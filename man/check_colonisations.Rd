@@ -7,8 +7,16 @@
 check_colonisations(colonisations)
 }
 \arguments{
-\item{colonisations}{a \code{colonisations},
-as can be checked by \link{check_colonisations}.}
+\item{colonisations}{a \code{colonisations}, which is a \link{list} with elements:
+\itemize{
+\item \code{event_times}: the times that events (i.e. island age, immigration,
+speciation) occurred (see \link{check_event_times})
+\item \code{species_type}:  the origin of a clade (i.e. anagenetic, cladogenetic
+or immigrant) (see \link{check_species_type})
+}
+
+An \code{all_colonisations} (see \link{check_all_colonisations}) is a \link{list}
+of \code{colonisations}.}
 }
 \value{
 nothing

@@ -3,6 +3,12 @@
 #' Check if a `species_type` is valid.
 #' Will \link{stop} if not
 #'
+#' The type of species:
+#'
+#'  * `"A"`: the extant clade is of anagenetic origin
+#'  * `"C"`: the extant clade is of cladogenetic origin
+#'  * `"I"`: the extant clade is of immigrant origin
+#'
 #' A valid `species_type` ...
 #'
 #'  * is numeric

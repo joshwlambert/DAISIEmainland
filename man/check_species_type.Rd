@@ -19,6 +19,13 @@ Check if a \code{species_type} is valid.
 Will \link{stop} if not
 }
 \details{
+The type of species:
+\itemize{
+\item \code{"A"}: the extant clade is of anagenetic origin
+\item \code{"C"}: the extant clade is of cladogenetic origin
+\item \code{"I"}: the extant clade is of immigrant origin
+}
+
 A valid \code{species_type} ...
 \itemize{
 \item is numeric

@@ -1,8 +1,12 @@
 #' Documentation for function arguments in the DAISIEmainland package
 #'
 #' @param all_colonisations a list of one or more `colonisations`,
-#' as can be checked by \link{check_all_colonisations}.
-#' See \link{check_colonisations} for details on the `colonisations`
+#' see \link{check_colonisations} for details.
+#' `all_colonisations` can be checked by \link{check_all_colonisations}.
+#'
+#' `all_colonisations` is an element of
+#'  * `ideal_island_clade` (see \link{check_ideal_island_clade})
+#'  * `emprical_island_clade` (see \link{check_empirical_island_clade})
 #' @param branch_code a species' branching pattern,
 #' as checked by \link{check_branch_code}, e.g. `A`, `AB`, `AABA`.
 #' @param branching_times
@@ -15,11 +19,21 @@
 #' stem age of the radiation.
 #'
 #' See \link{check_branching_times} for a more detailed description.
-#' @param colonisations a `colonisations`,
-#' as can be checked by \link{check_colonisations}.
+#' @param colonisations a `colonisations`, which is a \link{list} with elements:
+#'
+#'  * `event_times`: the times that events (i.e. island age, immigration,
+#'    speciation) occurred (see \link{check_event_times})
+#'  * `species_type`:  the origin of a clade (i.e. anagenetic, cladogenetic
+#'    or immigrant) (see \link{check_species_type})
+#'
+#' An `all_colonisations` (see \link{check_all_colonisations}) is a \link{list}
+#' of `colonisations`.
 #' @param event_times the island age, stem age of species,
 #' and -for cladogenetic species- speciation times,
 #' as checked by \link{check_event_times}
+#' @param missing_species the number of island species that were not
+#' sampled for particular clade (only applicable for endemic clades),
+#' as can be checked by \link{check_missing_species}
 #' @param species_type the type of species:
 #'
 #'  * `"A"`: the extant clade is of anagenetic origin
@@ -82,35 +96,49 @@
 #' @param daisie_datalist a \link[DAISIE]{DAISIE} `datalist`, as can be
 #' checked by \link{check_daisie_datalist}. To quote the DAISE doc:
 #'
-#' Data object containing information on colonisation and
-#'   branching times. This object can be generated using the
-#'   \link[DAISIE]{DAISIE_dataprep}
-#'   function, which converts a user-specified data table into a data object,
-#'   but the object can of course also be entered directly.
-#'   It is an R list object with the following elements.\cr The first element
-#'   of the list has two or three components: \cr \cr \code{$island_age} - the
-#'   island age \cr Then, depending on whether a distinction between types is
-#'   made, we have:\cr \code{$not_present} - the number of mainland lineages
-#'   that are not present on the island \cr or:\cr \code{$not_present_type1} -
-#'   the number of mainland lineages of type 1 that are not present on the
-#'   island \cr \code{$not_present_type2} - the number of mainland lineages of
-#'   type 2 that are not present on the island \cr \cr The remaining elements of
-#'   the list each contains information on a single colonist lineage on the
-#'   island and has 5 components:\cr \cr \code{$colonist_name} - the name of the
-#'   species or clade that colonized the island \cr \code{$branching_times} -
-#'   island age followed by stem age of the population/species in the case of
-#'   Non-endemic, Non-endemic_MaxAge species and Endemic species with no close relatives
-#'   on the island. For endemic clades with more than one species on the island
-#'   (cladogenetic clades/ radiations) these should be island age followed by the
-#'   branching times of the island clade
-#'   including the stem age of the clade\cr \code{$stac} - the
-#'   status of the colonist \cr \cr * Non_endemic_MaxAge: 1 \cr * Endemic: 2
-#'   \cr * Endemic&Non_Endemic: 3 \cr * Non_Endemic: 4 \cr
-#'   * Endemic_Singleton_MaxAge: 5 \cr * Endemic_Clade_MaxAge: 6
-#'   \cr * Endemic&Non_Endemic_Clade_MaxAge: 7 \cr
-#'   \cr \code{$missing_species} - number of island species that were not
-#'   sampled for particular clade (only applicable for endemic clades) \cr
-#'   \code{$type1or2} - whether the colonist belongs to type 1 or type 2 \cr
+#' A `datalist` is an object containing information on colonisation and
+#' branching times. This object can be generated using
+#' \link[DAISIE]{DAISIE_dataprep},
+#' which converts a user-specified data table into a `datalist`,
+#' but the object can of course also be entered directly.
+#'
+#' A `datalist` is a \link{list} with the following elements:
+#'
+#' The first element of the list has two or three components:
+#'
+#'  * \code{$island_age} - the island age
+#'
+#' Then, depending on whether a distinction between types is
+#' made, we have:
+#'
+#'  * \code{$not_present} - the number of mainland lineages
+#'   that are not present on the island \cr
+#'
+#'  or:
+#'
+#'   * \code{$not_present_type1} - the number of mainland lineages
+#'     of type 1 that are not present on the island
+#'   * \code{$not_present_type2} - the number of mainland lineages of
+#'     type 2 that are not present on the island
+#'
+#' The remaining elements of
+#' the `datalist` each contains information on a single colonist lineage on the
+#'   island and has 5 components:
+#'
+#'    * \code{$colonist_name} - the name of the species or clade that
+#'      colonized the island
+#'    * \code{$branching_times} - island age followed by stem age of the
+#'      population/species in the case of Non-endemic, Non-endemic_MaxAge
+#'      species and Endemic species with no close relatives
+#'      on the island. For endemic clades with more than one species on the island
+#'      (cladogenetic clades/ radiations) these should be island age followed by the
+#'      branching times of the island clade
+#'      including the stem age of the clade
+#'    * \code{$stac} - the status of the colonist, see \link{stac_to_str}
+#'      for values and descriptions
+#'    * \code{$missing_species} - number of island species that were not
+#'      sampled for particular clade (only applicable for endemic clades)
+#'    * \code{$type1or2} - whether the colonist belongs to type 1 or type 2
 #' @param daisie_data \link{list} containing data of of a DAISIE simulation
 #' with mainland dynamics,
 #' as produced by \link{sim_island_with_mainland}

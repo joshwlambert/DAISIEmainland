@@ -8,8 +8,14 @@ check_all_colonisations(all_colonisations)
 }
 \arguments{
 \item{all_colonisations}{a list of one or more \code{colonisations},
-as can be checked by \link{check_all_colonisations}.
-See \link{check_colonisations} for details on the \code{colonisations}}
+see \link{check_colonisations} for details.
+\code{all_colonisations} can be checked by \link{check_all_colonisations}.
+
+\code{all_colonisations} is an element of
+\itemize{
+\item \code{ideal_island_clade} (see \link{check_ideal_island_clade})
+\item \code{emprical_island_clade} (see \link{check_empirical_island_clade})
+}}
 }
 \value{
 nothing

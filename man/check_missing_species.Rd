@@ -6,6 +6,11 @@
 \usage{
 check_missing_species(missing_species)
 }
+\arguments{
+\item{missing_species}{the number of island species that were not
+sampled for particular clade (only applicable for endemic clades),
+as can be checked by \link{check_missing_species}}
+}
 \value{
 nothing
 }
