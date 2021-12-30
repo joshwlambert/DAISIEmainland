@@ -26,10 +26,11 @@ test_that("interesting island, with recolonisations", {
   plot_island(island)
   daisie_data <- format_to_daisie_data(
     island_replicates = island,
-    total_time = total_time,
+    total_time = 1,
     m = m
   )
   empirical_daisie_data <- daisie_data$empirical_islands
+  check_empirical_daisie_data(empirical_daisie_data)
   empirical_daisie_data_to_tables(empirical_daisie_data)
 })
 

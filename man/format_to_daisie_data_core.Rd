@@ -7,9 +7,11 @@
 format_to_daisie_data_core(island_replicates, total_time, m)
 }
 \arguments{
-\item{island_replicates}{List that has as many elements as replicates. Each
-element must be a list with the elements \code{island_age} and
-\code{not_present}. ##### LOOK INTO THIS}
+\item{island_replicates}{a \link{list} of that has as many elements as
+replicates. Each element is a \link{list} of \code{islands} (as checked
+by \link{check_island}).
+Use \link{check_island_replicates} to check a \code{island_replicates}
+being correct}
 
 \item{total_time}{Numeric defining the length of the simulation in time
 units.}

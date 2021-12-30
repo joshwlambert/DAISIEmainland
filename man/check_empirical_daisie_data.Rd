@@ -23,8 +23,13 @@ and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})}
 nothing
 }
 \description{
-Check if an \code{empirical_daisie_data} is valid.
-Will \link{stop} if not.
+An \code{empirical_daisie_data} ...
+}
+\details{
+\itemize{
+\item is a \link{list} of \code{daisie_datalist}, see \link{check_daisie_datalist}
+\item has at least 1 element
+}
 }
 \examples{
 daisie_data <- sim_island_with_mainland(
