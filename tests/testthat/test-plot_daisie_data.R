@@ -1,5 +1,5 @@
 test_that("Arguments 4 must have names", {
-  skip("Not yet")
+  skip("WIP, #42")
   set.seed(
     4,
     kind = "Mersenne-Twister",
@@ -18,7 +18,7 @@ test_that("Arguments 4 must have names", {
 })
 
 test_that("Arguments 2 must have names", {
-  skip("TODO, always seem dull")
+  skip("WIP, #42")
   set.seed(
     3,
     kind = "Mersenne-Twister",
@@ -48,7 +48,7 @@ test_that("Arguments 2 must have names", {
 })
 
 test_that("use", {
-  skip("All is dull")
+  skip("WIP, #42")
   set.seed(
     13,
     kind = "Mersenne-Twister",
@@ -82,7 +82,7 @@ test_that("use", {
 })
 
 test_that("example from vignette, ideal is nor empirical", {
-  skip("All is dull")
+  skip("WIP, #42")
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -105,7 +105,7 @@ test_that("example from vignette, ideal is nor empirical", {
 })
 
 test_that("search for trouble", {
-  skip("No trouble")
+  skip("WIP, #42")
   for (seed in seq_len(10)) {
     message(seed)
     set.seed(

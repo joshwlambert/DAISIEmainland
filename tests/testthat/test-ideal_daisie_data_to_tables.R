@@ -18,7 +18,7 @@ test_that("use", {
 })
 
 test_that("search for non-dull scenario", {
-  skip("All scenarios are dull")
+  skip("WIP, #42")
   for (seed in seq_len(1000)) {
     message(seed)
     set.seed(
