@@ -1,23 +1,23 @@
-test_that("use", {
-  skip("Seems to be dull?")
+test_that("interesting island, with recolonisations", {
+  skip("WIP, #42")
   set.seed(
-    3,
+    9,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  total_time <- 1.0
-  m <- 10
   mainland <- sim_mainland(
-    total_time = total_time,
-    m = m,
-    mainland_ex = 2.0
+    total_time = 10,
+    m = 10,
+    mainland_ex = 1.0
   )
-  # plot_mainland(mainland)
+
+  # Clade goes extinct, but after island age
   mainland_clade <- mainland[[1]]
+
   plot_mainland_clade(mainland_clade)
   island <- sim_island(
-    total_time = total_time,
+    total_time = 1,
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
@@ -30,9 +30,7 @@ test_that("use", {
     m = m
   )
   empirical_daisie_data <- daisie_data$empirical_islands
-  expect_silent(
-    empirical_daisie_data_to_tables(empirical_daisie_data)
-  )
+  empirical_daisie_data_to_tables(empirical_daisie_data)
 })
 
 test_that("search for non-dull scenario", {

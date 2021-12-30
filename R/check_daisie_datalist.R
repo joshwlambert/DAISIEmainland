@@ -40,6 +40,10 @@ check_daisie_datalist <- function(daisie_datalist) {
     all(c("not_present_type1", "not_present_type2") %in% names(daisie_datalist_header))
   )
 
+  if (length(daisie_datalist) == 1) {
+    return(invisible(daisie_datalist))
+  }
+
   # '2' as the first element is special
   for (colonist_index in seq(2, length(daisie_datalist))) {
    # colonist_index '2' is the index of the first colonist
