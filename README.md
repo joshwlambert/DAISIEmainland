@@ -36,9 +36,9 @@ See [examples](vignettes/examples.Rmd).
 
 ## Cite this package
 
-Lambert, J. W., Neves, P., Bilderbeek, R. J. C., Valente, L. & Etienne, R. S.
-(2021) DAISIEmainland: testing DAISIE in the presence of mainland dynamics. 
-R package version 1.0.0. https://github.com/joshwlambert/DAISIEmainland
+``` r
+citation("DAISIEmainland")
+```
 
 ## Cite the DAISIE package
 
