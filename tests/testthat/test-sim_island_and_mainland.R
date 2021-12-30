@@ -1,6 +1,5 @@
 test_that("Figure A1", {
   skip("WIP, #44")
-  skip("Re-create figure A1")
   # If the mainland species immigrates and does not go extinct or speciate,
   # and no events happen on the island, the island species is non-endemic (NE),
   # and the colonisation
