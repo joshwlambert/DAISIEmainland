@@ -1,5 +1,5 @@
 ---
-title: "examples"
+title: "Inference Performance"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{examples}
@@ -74,28 +74,6 @@ Subsequent elements of the list are the island clades which are composed of:
 ```{r Inspect data part 2}
 island$ideal_islands[[1]][[2]]
 island$empirical_islands[[1]][[2]]
-```
-
-We can now calculate the simulation metrics for the ideal and empirical islands.
-
-```{r Calculate simulation metrics}
-ideal_sim_num_spec <- DAISIEmainland::calc_num_spec(
-  daisie_data = island$ideal_islands)
-ideal_sim_num_col <- DAISIEmainland::calc_num_col(
-  daisie_data = island$ideal_islands)
-ideal_sim_metrics <- list(
-  ideal_sim_num_spec = ideal_sim_num_spec,
-  ideal_sim_num_col = ideal_sim_num_col)
-empirical_sim_num_spec <- DAISIEmainland::calc_num_spec(
-  daisie_data = island$empirical_islands)
-empirical_sim_num_col <- DAISIEmainland::calc_num_col(
-  daisie_data = island$empirical_islands)
-empirical_sim_metrics <- list(
-  empirical_sim_num_spec = empirical_sim_num_spec,
-  empirical_sim_num_col = empirical_sim_num_col)
-
-ideal_sim_metrics
-empirical_sim_metrics
 ```
   
 To run a maximum likelihood DAISIE model on each replicate we create objects to
