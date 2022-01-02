@@ -1,6 +1,11 @@
 #' Check if an `empirical_daisie_data` is valid.
 #' Will \link{stop} if not.
 #'
+#' An `empirical_daisie_data` ...
+#'
+#'  * is a \link{list} of `daisie_datalist`, see \link{check_daisie_datalist}
+#'  * has at least 1 element
+#'
 #' @inheritParams default_params_doc
 #'
 #' @return nothing

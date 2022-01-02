@@ -37,6 +37,10 @@ daisie_datalist_to_tables <- function(daisie_datalist) {
   # according to do. However, DAISIEmainland never uses this
   testthat::expect_true("not_present" %in% names(daisie_datalist_header))
 
+  if (length(daisie_datalist) == 1) {
+    return(daisie_datalist_header)
+  }
+
   tables <- list()
 
   # '2' as the first element is special

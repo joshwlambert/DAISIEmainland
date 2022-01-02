@@ -66,9 +66,11 @@
 #' @param mainland_sample_type String either "unsampled" for unsampled known
 #' species on the mainland, "undiscovered" for undiscovered species on the
 #' mainland, or "complete" if the mainland sampling probability is one.
-#' @param island_replicates List that has as many elements as replicates. Each
-#' element must be a list with the elements `island_age` and
-#' `not_present`. ##### LOOK INTO THIS
+#' @param island_replicates a \link{list} of that has as many elements as
+#' replicates. Each element is a \link{list} of `islands` (as checked
+#' by \link{check_island}).
+#' Use \link{check_island_replicates} to check a `island_replicates`
+#' being correct
 #' @param m Numeric defining the size of mainland pool.
 #' @param verbose Logical, determining if progress output should be printed
 #' during the simulation.

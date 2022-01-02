@@ -1,15 +1,36 @@
-test_that("multiplication works", {
-  island <- DAISIEmainland::sim_island_with_mainland(
-    total_time = 1,
-    m = 100,
-    island_pars = c(1, 1, 50, 0.1, 1),
-    mainland_ex = 0.5,
-    mainland_sample_prob = 1,
-    mainland_sample_type = "complete",
-    replicates = 1,
-    verbose = FALSE
+test_that("use", {
+  skip("WIP, #42")
+  set.seed(
+    9,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
   )
-  ideal_daisie_data <- island$ideal_islands
+  mainland <- sim_mainland(
+    total_time = 10,
+    m = 10,
+    mainland_ex = 1.0
+  )
+
+  # Clade goes extinct, but after island age
+  mainland_clade <- mainland[[1]]
+
+  plot_mainland_clade(mainland_clade)
+  island <- sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, 10, 12, 1),
+    mainland = mainland_clade,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete")
+
+  plot_island(island)
+  daisie_data <- format_to_daisie_data(
+    island_replicates = island,
+    total_time = total_time,
+    m = m
+  )
+
+  ideal_daisie_data <- daisie_data$ideal_islands
   daisie_datalist <- ideal_daisie_data[[1]]
   t <- daisie_datalist_to_tables(daisie_datalist)
 

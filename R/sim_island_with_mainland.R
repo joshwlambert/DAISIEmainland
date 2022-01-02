@@ -122,10 +122,15 @@ sim_island_with_mainland <- function(total_time,
     island_replicates[[rep]] <- full_list
   }
 
-  island_replicates <- format_to_daisie_data(
+  if (1 == 2) {
+    # Commented out temporarily for speed
+    DAISIEmainland::check_island_replicates(island_replicates) # TODO: remove, #45
+  }
+
+  daisie_data <- format_to_daisie_data(
     island_replicates = island_replicates,
     total_time = total_time,
     m = m)
 
-  return(island_replicates)
+  return(daisie_data)
 }

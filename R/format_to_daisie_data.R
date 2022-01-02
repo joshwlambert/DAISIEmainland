@@ -10,6 +10,10 @@
 format_to_daisie_data <- function(island_replicates,
                                   total_time,
                                   m) {
+  if (1 == 2) {
+    # Commented out temporarily for speed
+    DAISIEmainland::check_island_replicates(island_replicates) # TODO: remove, #45
+  }
 
   ideal_island_replicates <- list()
   empirical_island_replicates <- list()
@@ -34,6 +38,8 @@ format_to_daisie_data <- function(island_replicates,
     total_time = total_time,
     m = m)
 
-  return(list(ideal_islands = ideal_islands,
-              empirical_islands = empirical_islands))
+  daisie_data <- list(ideal_islands = ideal_islands,
+                      empirical_islands = empirical_islands)
+  DAISIEmainland::check_daisie_data(daisie_data) # TODO: remove, #45
+  daisie_data
 }
