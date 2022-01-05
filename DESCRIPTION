@@ -35,5 +35,5 @@ RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Remotes: 
     rsetienne/DAISIE@onto_IW,
-    thijsjanzen/nLTT
+    thijsjanzen/nLTT,
     YuLab-SMU/ggtree
