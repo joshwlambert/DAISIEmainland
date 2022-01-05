@@ -1,0 +1,68 @@
+---
+title: "Summary metrics visualisation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Summary metrics visualisation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(DAISIEmainland)
+```
+
+```{r}
+island <- DAISIEmainland::sim_island_with_mainland(
+  total_time = 1,
+  m = 100,
+  island_pars = c(1, 1, 10, 0.1, 1),
+  mainland_ex = 1,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "complete",
+  replicates = 100,
+  verbose = FALSE)
+```
+
+We can now calculate the simulation metrics for the ideal and empirical islands.
+
+```{r Calculate simulation metrics}
+ideal_sim_num_spec <- DAISIEmainland::calc_num_spec(
+  daisie_data = island$ideal_islands)
+ideal_sim_num_col <- DAISIEmainland::calc_num_col(
+  daisie_data = island$ideal_islands)
+ideal_sim_metrics <- list(
+  ideal_sim_num_spec = ideal_sim_num_spec,
+  ideal_sim_num_col = ideal_sim_num_col)
+empirical_sim_num_spec <- DAISIEmainland::calc_num_spec(
+  daisie_data = island$empirical_islands)
+empirical_sim_num_col <- DAISIEmainland::calc_num_col(
+  daisie_data = island$empirical_islands)
+empirical_sim_metrics <- list(
+  empirical_sim_num_spec = empirical_sim_num_spec,
+  empirical_sim_num_col = empirical_sim_num_col)
+
+ideal_sim_metrics
+empirical_sim_metrics
+```
+
+```{r}
+delta_ctt <- DAISIEmainland:::calc_ctt(daisie_data = island)
+delta_ctt
+```
+
+```{r}
+max_age_percent <- DAISIEmainland:::calc_max_age_percent(daisie_data = island)
+max_age_percent
+```
+
+```{r}
+endemic_percent <- DAISIEmainland:::calc_endemic_percent(daisie_data = island)
+endemic_percent
+```
