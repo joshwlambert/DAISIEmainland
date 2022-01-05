@@ -2,7 +2,7 @@
 title: "Summary metrics visualisation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{summary_metrics_visualisation}
+  %\VignetteIndexEntry{Summary metrics visualisation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

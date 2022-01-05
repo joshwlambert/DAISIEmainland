@@ -2,7 +2,7 @@
 title: "DAISIEmainland data standards"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{data_standards}
+  %\VignetteIndexEntry{DAISIEmainland data standards}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

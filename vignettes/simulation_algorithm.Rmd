@@ -2,7 +2,7 @@
 title: "Simulation algorithm"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{island-mainland_algorithm}
+  %\VignetteIndexEntry{Simulation algorithm}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
