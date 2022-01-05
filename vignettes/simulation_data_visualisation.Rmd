@@ -1,8 +1,8 @@
 ---
-title: "data_visualisation"
+title: "Simulation data visualisation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{data_visualisation}
+  %\VignetteIndexEntry{Simulation data visualisation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,10 +26,10 @@ set.seed(
   normal.kind = "Inversion",
   sample.kind = "Rejection"
 )
-mainland <- sim_mainland(
+mainland <- DAISIEmainland::sim_mainland(
   total_time = 1, # total simulation time
   m = 4, # Number of mainland clades
   mainland_ex = 1) # mainland extinction rate
 
-plot_mainland(mainland)
+DAISIEmainland::plot_mainland(mainland)
 ``` 
