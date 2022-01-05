@@ -305,6 +305,19 @@
 #'    as can be checked by \link{check_ideal_island}
 #'  * `empirical_island`: the island history based on empirical data
 #'    as can be checked by \link{check_empirical_island}
+#' For recolonising lineages, there is an extra element,
+#' `all_colonisations` per list element.
+#' It is comprised of `$event_times` and `$species_type`:
+#' \describe{
+#'   \item{`$event_times`}{ordered numeric vectors containing all
+#'     events for each extant recolonising lineage. This includes all
+#'     colonisation and branching times. Each vector pertains to one
+#'     colonising lineage.}
+#'   \item{`$species_type`}{a string. Can be `"A"`, `"C"` or
+#'     `"I"` depending on whether the extant clade is of anagenetic,
+#'     cladogenetic or immigrant origin, respectively.}
+#' }
+#' @param age Numeric defining age of singleton species
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -367,6 +380,7 @@ default_params_doc <- function(all_colonisations,
                                scientific,
                                transform,
                                mainland,
-                               island) {
+                               island,
+                               age) {
   #Nothing
 }

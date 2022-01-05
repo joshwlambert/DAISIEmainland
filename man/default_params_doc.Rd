@@ -64,7 +64,8 @@ default_params_doc(
   scientific,
   transform,
   mainland,
-  island
+  island,
+  age
 )
 }
 \arguments{
@@ -435,6 +436,8 @@ as can be checked by \link{check_ideal_island}
 \item \code{empirical_island}: the island history based on empirical data
 as can be checked by \link{check_empirical_island}
 }}
+
+\item{age}{Numeric defining age of singleton species}
 }
 \value{
 Nothing
