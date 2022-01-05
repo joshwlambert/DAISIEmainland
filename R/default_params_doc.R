@@ -309,6 +309,7 @@
 #'     `"I"` depending on whether the extant clade is of anagenetic,
 #'     cladogenetic or immigrant origin, respectively.}
 #' }
+#' @param age Numeric defining age of singleton species
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -360,6 +361,7 @@ default_params_doc <- function(timeval,
                                num_breaks,
                                signif,
                                mainland,
-                               island) {
+                               island,
+                               age) {
   #Nothing
 }

@@ -7,10 +7,10 @@
 singleton_to_segment(singleton_phylos)
 }
 \arguments{
-\item{singleton_phylo}{}
+\item{singleton_phylos}{stub}
 }
 \value{
-
+stub
 }
 \description{
 Converts singleton phylo object into segment that can be plotted

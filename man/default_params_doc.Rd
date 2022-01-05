@@ -53,7 +53,8 @@ default_params_doc(
   num_breaks,
   signif,
   mainland,
-  island
+  island,
+  age
 )
 }
 \arguments{
@@ -432,6 +433,8 @@ colonising lineage.}
 \code{"I"} depending on whether the extant clade is of anagenetic,
 cladogenetic or immigrant origin, respectively.}
 }}
+
+\item{age}{Numeric defining age of singleton species}
 }
 \value{
 Nothing

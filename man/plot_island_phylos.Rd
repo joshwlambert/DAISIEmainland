@@ -7,12 +7,10 @@
 plot_island_phylos(island)
 }
 \arguments{
-\item{island_phylos}{stub}
-
-\item{island_age}{stub}
+\item{island}{stub}
 }
 \value{
-
+stub
 }
 \description{
 Plots island phylogenetic data

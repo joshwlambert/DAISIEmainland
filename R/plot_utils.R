@@ -107,12 +107,10 @@ create_singleton_phylo <- function(age) {
 
 #' Converts singleton phylo object into segment that can be plotted
 #'
-#' @param singleton_phylo
+#' @param singleton_phylos stub
 #'
-#' @return
+#' @return stub
 #' @export
-#'
-#' @examples
 singleton_to_segment <- function(singleton_phylos) {
   x <- c()
   y <- c()

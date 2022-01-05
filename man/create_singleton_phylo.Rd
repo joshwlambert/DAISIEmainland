@@ -6,6 +6,9 @@
 \usage{
 create_singleton_phylo(age)
 }
+\arguments{
+\item{age}{Numeric defining age of singleton species}
+}
 \description{
 create a singleton
 }

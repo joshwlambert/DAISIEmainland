@@ -1,14 +1,18 @@
 #' Plots island phylogenetic data
 #'
-#' @param island_phylos stub
-#' @param island_age stub
+#' @param island stub
 #'
-#' @return
+#' @return stub
 #' @export
-#'
-#' @examples
 plot_island_phylos <- function(island) {
-browser()
+
+  # Fix build warnings
+  x <- NULL; rm(x) # nolint, fixes warning: no visible binding for global variable
+  y <- NULL; rm(y) # nolint, fixes warning: no visible binding for global variable
+  xend <- NULL; rm(xend) # nolint, fixes warning: no visible binding for global variable
+  yend <- NULL; rm(yend) # nolint, fixes warning: no visible binding for global variable
+  root_length <- NULL; rm(root_length) # nolint, fixes warning: no visible binding for global variable
+
   island_phylos <- island_to_phylos(island = island)
   island_endemicity <- unlist(lapply(island[[1]], "[[", "stac"))
   island_age <- island[[1]][[1]]$island_age

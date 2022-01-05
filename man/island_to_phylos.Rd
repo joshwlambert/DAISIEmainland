@@ -58,14 +58,3 @@ List of phylo objects. See ape R package for details on phylo class
 Converts a DAISIE datalist (either ideal or empirical) to a list of phylo
 objects that can be used to plot the island.
 }
-\examples{
-island <- sim_island_with_mainland(
-  total_time = 1,
-  m = 100,
-  island_pars = c(1,1,10,0.1,1),
-  mainland_ex = 1,
-  mainland_sample_prob = 1,
-  mainland_sample_type = "complete",
-  replicates = 1)
-island_phylos <- island_to_phylos(island = island$ideal_islands)
-}
