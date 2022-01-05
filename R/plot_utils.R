@@ -113,11 +113,18 @@ create_singleton_phylo <- function(age) {
 #' @export
 #'
 #' @examples
-singleton_to_segment <- function(singleton_phylo) {
-  segment <- data.frame(x = 0,
-                        xend = singleton_phylo$root.edge,
-                        y = 0,
-                        yend = 0)
-  return(segment)
+singleton_to_segment <- function(singleton_phylos) {
+  x <- c()
+  y <- c()
+  xend <- c()
+  yend <- c()
+  for (i in seq_along(singleton_phylos)) {
+    x[i] <- 0
+    xend[i] <- -singleton_phylos[[i]]$root.edge
+    y[i] <- i
+    yend[i] <- i
+  }
+  singleton_tbl <- data.frame(x = x, y = y, xend = xend, yend = yend)
+  return(singleton_tbl)
 }
 

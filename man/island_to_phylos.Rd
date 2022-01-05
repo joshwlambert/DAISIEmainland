@@ -67,5 +67,5 @@ island <- sim_island_with_mainland(
   mainland_sample_prob = 1,
   mainland_sample_type = "complete",
   replicates = 1)
-phylos <- island_to_phylos(island = island$ideal_islands)
+island_phylos <- island_to_phylos(island = island$ideal_islands)
 }
