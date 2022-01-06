@@ -5,3 +5,4 @@
 ^scripts$
 ^bash$
 ^data-raw$
+^doc$
