@@ -95,31 +95,39 @@ sim_island_with_mainland <- function(total_time,
     stop("Mainland sampling probability less than 1.0 requires a sampling type")
   }
 
-  island_replicates <- list()
-  mainland_replicates <- list()
+  multi_daisie_data <- list()
+  multi_mainland_clade <- list()
 
   for (rep in seq_len(replicates)) {
     if (verbose) {
       message("Island replicate ", rep)
     }
-    island_replicates[[rep]] <- list()
-    mainland_replicates[[rep]] <- list()
-    full_list <- list()
-    mainland_replicates[[rep]] <- sim_mainland(
+    multi_daisie_data[[rep]] <- list()
+    multi_mainland_clade[[rep]] <- list()
+    island_tbl_list <- list()
+    island_list <- list()
+    multi_mainland_clade[[rep]] <- sim_mainland(
       total_time = total_time,
       m = m,
       mainland_ex = mainland_ex)
-    for (mainland_clade in seq_along(mainland_replicates[[rep]])) {
-      full_list[[mainland_clade]] <- sim_island(
+    for (mainland_clade in seq_along(multi_mainland_clade[[rep]])) {
+      island_tbl_list[[mainland_clade]] <- sim_island(
         total_time = total_time,
         island_pars = island_pars,
-        mainland_clade = mainland_replicates[[rep]][[mainland_clade]],
+        mainland_clade = multi_mainland_clade[[rep]][[mainland_clade]],
         mainland_sample_prob = mainland_sample_prob,
         mainland_sample_type = mainland_sample_type
       )
+
+      island_list[[mainland_clade]] <- create_island(
+        total_time = total_time,
+        island_spec = island_tbl_list[[mainland_clade]],
+        mainland_clade = multi_mainland_clade[[rep]][[mainland_clade]],
+        mainland_sample_prob = mainland_sample_prob,
+        mainland_sample_type = mainland_sample_type)
     }
 
-    island_replicates[[rep]] <- full_list
+    multi_daisie_data[[rep]] <- island_list
   }
 
   if (1 == 2) {
@@ -127,10 +135,28 @@ sim_island_with_mainland <- function(total_time,
     DAISIEmainland::check_island_replicates(island_replicates) # TODO: remove, #45
   }
 
-  daisie_data <- format_to_daisie_data(
-    island_replicates = island_replicates,
+  daisie_data <- group_daisie_data(
+    island_replicates = multi_daisie_data,
     total_time = total_time,
     m = m)
+
+  #daisie_data <- format_to_daisie_data(
+  #  island_replicates = island_replicates,
+  #  total_time = total_time,
+  #  m = m)
+
+  ideal_daisie_data <- add_metadata_to_daisie_data(
+    island_replicates = ideal_island_replicates,
+    total_time = total_time,
+    m = m)
+
+  empirical_daisie_data <- add_metadata_to_daisie_data(
+    island_replicates = empirical_island_replicates,
+    total_time = total_time,
+    m = m)
+
+  daisie_data <- list(ideal_islands = ideal_islands,
+                      empirical_islands = empirical_islands)
 
   return(daisie_data)
 }

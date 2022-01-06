@@ -159,12 +159,12 @@ sim_island <- function(total_time,
     }
   }
 
-  island <- create_island(
-    total_time = total_time,
-    island_spec = island_spec,
-    mainland_clade = mainland_clade,
-    mainland_sample_prob = mainland_sample_prob,
-    mainland_sample_type = mainland_sample_type)
+  #island <- create_island(
+  #  total_time = total_time,
+  #  island_spec = island_spec,
+  #  mainland_clade = mainland_clade,
+  #  mainland_sample_prob = mainland_sample_prob,
+  #  mainland_sample_type = mainland_sample_type)
 
-  return(island)
+  return(island_spec)
 }
