@@ -1,18 +1,4 @@
----
-title: "DAISIEmainland data standards"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{DAISIEmainland data standards}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+# DAISIEmainland data standards
 
 ## Reasoning
 
@@ -52,7 +38,7 @@ subsequent branching times (all given in time before the present).
 ### `mainland_clade`
 
 * A data frame of seven columns and one or more rows. The column names are:
-`spec_id`, `main_anc_id`, `spec_type`, `branch_code`, `branch_t`,
+  `spec_id`, `main_anc_id`, `spec_type`, `branch_code`, `branch_t`,
 `spec_origin_t`, `spec_ex_t`.
 
 ### `multi_mainland_clade`
