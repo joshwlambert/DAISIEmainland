@@ -3,7 +3,18 @@ Type: Package
 Title: Simulates Data for Phylogenetic Data on Islands for DAISIE with the 
     Addition of Mainland Dynamics
 Version: 0.1.0
-Author: Joshua W. Lambert <ORCID = "0000-0001-5218-3046">
+Date: 2021-12-30
+Authors@R: c(
+    person(given = "Joshua W.",
+           family = "Lambert",
+           email = "j.w.l.lambert@rug.nl",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5218-3046")),
+    person(given = "Richèl J.C.",
+           family = "Bilderbeek",
+           email = "richel@richelbilderbeek.nl",
+           role = c("aut"),
+           comment = c(ORCID = "0000-0003-1107-7049")))
 Maintainer: Joshua W. Lambert <j.w.l.lambert@rug.nl>
 Description: Simulates data for the DAISIE model. The simulation includes
     the mainland and island, and produces two data sets: 1) the ideal data set
@@ -30,6 +41,7 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
+URL: https://github.com/joshwlambert/DAISIEmainland
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr
