@@ -35,6 +35,10 @@ information on recolonisations `all_colonisations`. `branching_times` is a
 numeric vector containing the island age, time of island colonisation, and an
 subsequent branching times (all given in time before the present).
 
+### `multi_daisie_data`
+
+* A list of `daisie_data` elements
+
 ### `mainland_clade`
 
 * A data frame of seven columns and one or more rows. The column names are:
@@ -44,5 +48,4 @@ subsequent branching times (all given in time before the present).
 ### `multi_mainland_clade`
 
 * A list of `mainland_clade` objects.
-
 
