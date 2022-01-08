@@ -10,7 +10,7 @@ update_state(
   possible_event,
   max_spec_id,
   mainland_spec,
-  island_spec
+  island_tbl
 )
 }
 \arguments{
@@ -25,12 +25,12 @@ units.}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 }
 \value{
 The updated state of the system, which is a list with the
-\code{island_spec} matrix and an integer \code{max_spec_id} with the most
+\code{island_tbl} matrix and an integer \code{max_spec_id} with the most
 recent ID of species.
 }
 \description{

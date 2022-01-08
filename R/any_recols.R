@@ -18,10 +18,10 @@
 #'   verbose = FALSE)
 #' bool <- any_recols(island$ideal_islands[[1]])
 #' }
-any_recols <- function(island) {
-  testit::assert(is.list(island))
-  island <- island[-1]
-  stacs <- unlist(lapply(island, "[[", "stac"))
+any_recols <- function(daisie_data) {
+  testit::assert(is.list(daisie_data))
+  daisie_data <- daisie_data[-1]
+  stacs <- unlist(lapply(daisie_data, "[[", "stac"))
   any_recols <- any(stacs == 3)
   return(any_recols)
 }

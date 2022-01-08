@@ -105,7 +105,7 @@ sim_island_with_mainland <- function(total_time,
     multi_daisie_data[[rep]] <- list()
     multi_mainland_clade[[rep]] <- list()
     island_tbl_list <- list()
-    island_list <- list()
+    daisie_data_list <- list()
     multi_mainland_clade[[rep]] <- sim_mainland(
       total_time = total_time,
       m = m,
@@ -119,15 +119,15 @@ sim_island_with_mainland <- function(total_time,
         mainland_sample_type = mainland_sample_type
       )
 
-      island_list[[mainland_clade]] <- create_island(
+      daisie_data_list[[mainland_clade]] <- create_daisie_data(
         total_time = total_time,
-        island_spec = island_tbl_list[[mainland_clade]],
+        island_tbl = island_tbl_list[[mainland_clade]],
         mainland_clade = multi_mainland_clade[[rep]][[mainland_clade]],
         mainland_sample_prob = mainland_sample_prob,
         mainland_sample_type = mainland_sample_type)
     }
 
-    multi_daisie_data[[rep]] <- island_list
+    multi_daisie_data[[rep]] <- daisie_data_list
   }
 
   if (1 == 2) {
@@ -135,8 +135,8 @@ sim_island_with_mainland <- function(total_time,
     DAISIEmainland::check_island_replicates(island_replicates) # TODO: remove, #45
   }
 
-  daisie_data <- group_daisie_data(
-    island_replicates = multi_daisie_data,
+  daisie_mainland_data <- group_multi_daisie_data(
+    multi_daisie_data = multi_daisie_data,
     total_time = total_time,
     m = m)
 
@@ -145,18 +145,19 @@ sim_island_with_mainland <- function(total_time,
   #  total_time = total_time,
   #  m = m)
 
-  ideal_daisie_data <- add_metadata_to_daisie_data(
-    island_replicates = ideal_island_replicates,
+  ideal_multi_daisie_data <- add_metadata_to_daisie_data(
+    multi_daisie_data = daisie_mainland_data$ideal_multi_daisie_data,
     total_time = total_time,
     m = m)
 
-  empirical_daisie_data <- add_metadata_to_daisie_data(
-    island_replicates = empirical_island_replicates,
+  empirical_multi_daisie_data <- add_metadata_to_daisie_data(
+    multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data,
     total_time = total_time,
     m = m)
 
-  daisie_data <- list(ideal_islands = ideal_islands,
-                      empirical_islands = empirical_islands)
+  daisie_mainland_data <- list(
+    ideal_multi_daisie_data = ideal_multi_daisie_data,
+    empirical_multi_daisie_data = empirical_multi_daisie_data)
 
-  return(daisie_data)
+  return(daisie_mainland_data)
 }

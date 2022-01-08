@@ -35,12 +35,12 @@
 #' @keywords internal
 #' @author Joshua W. Lambert
 create_empirical_island <- function(total_time,
-                                    island_spec,
+                                    island_tbl,
                                     mainland_clade,
                                     mainland_spec) {
   # number of independent colonisations from the same mainland species
   number_colonisations <-
-    length(unique(island_spec[, "col_t_bp"]))
+    length(unique(island_tbl[, "col_t_bp"]))
   # are there any branching events between the immig time and island
   # age with extant descendants
   other_extant_mainland <- any(mainland_clade[, "spec_type"] != "E" &
@@ -53,7 +53,7 @@ create_empirical_island <- function(total_time,
         total_time = total_time,
         mainland_spec = mainland_spec,
         mainland_clade = mainland_clade)
-      brts <- unique(sort(island_spec[, "branch_t_bp"],
+      brts <- unique(sort(island_tbl[, "branch_t_bp"],
                           decreasing = TRUE))
       brts <- brts[-1]
       empirical_island <- list(
@@ -63,7 +63,7 @@ create_empirical_island <- function(total_time,
         stac = 2,
         missing_species = 0)
     } else {
-      if (nrow(island_spec) == 1) {
+      if (nrow(island_tbl) == 1) {
         if (mainland_clade[mainland_spec, "spec_type"] == "US") {
           empirical_island <- list(
             branching_times = c(total_time, total_time - 1e-5),
@@ -76,7 +76,7 @@ create_empirical_island <- function(total_time,
             missing_species = 0)
         }
       } else {
-        brts <- sort(island_spec[, "branch_t_bp"], decreasing = TRUE)
+        brts <- sort(island_tbl[, "branch_t_bp"], decreasing = TRUE)
         brts <- brts[-1]
         empirical_island <- list(
           branching_times = c(total_time, total_time - 1e-5, brts),
@@ -93,7 +93,7 @@ create_empirical_island <- function(total_time,
       false_clade_brts <- create_false_clade_brts(
         total_time = total_time,
         anc_branch_t_bp = anc_branch_t_bp,
-        subset_island = island_spec)
+        subset_island = island_tbl)
       empirical_island <- list(
         branching_times = false_clade_brts,
         stac = 2,
@@ -102,7 +102,7 @@ create_empirical_island <- function(total_time,
       false_clade_brts <- create_false_clade_brts(
         total_time = total_time,
         anc_branch_t_bp = total_time - 1e-5,
-        subset_island = island_spec)
+        subset_island = island_tbl)
       empirical_island <- list(
         branching_times = false_clade_brts,
         stac = 6,

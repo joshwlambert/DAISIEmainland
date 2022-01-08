@@ -56,8 +56,8 @@
 #' species.
 #' @param mainland_n Numeric stating the number of mainland species that
 #' can colonize the island.
-#' @param island_spec Matrix with current state of simulation containing number
-#' of species, see [create_test_island_spec()]
+#' @param island_tbl Data frame with current state of simulation containing
+#' number of species, see [create_test_island_tbl()]
 #' @param mainland_clade Data frame with state of mainland, see
 #' [create_test_mainland_clade()]
 #' @param mainland_spec Numeric focal species on the mainland
@@ -338,7 +338,7 @@ default_params_doc <- function(all_colonisations,
                                num_spec,
                                num_immigrants,
                                mainland_n,
-                               island_spec,
+                               island_tbl,
                                mainland_clade,
                                mainland_spec,
                                mainland_sample_prob,

@@ -4,14 +4,14 @@
 \alias{create_ideal_island}
 \title{Convert intermediate output to final simulation output for ideal data}
 \usage{
-create_ideal_island(total_time, island_spec)
+create_ideal_island(total_time, island_tbl)
 }
 \arguments{
 \item{total_time}{Numeric defining the length of the simulation in time
 units.}
 
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 }
 \value{
 a list with these elements:

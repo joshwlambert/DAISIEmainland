@@ -5,30 +5,20 @@
 \title{Calculates the number of endemic and non-endemics species on a single island
 replicate}
 \usage{
-calc_island_endemics(island)
+calc_island_endemics(daisie_data)
 }
 \arguments{
-\item{island}{The history of a a single island,
-as can be checked by \link{check_island}.
+\item{daisie_data}{\link{list} containing data of of a DAISIE simulation
+with mainland dynamics,
+as produced by \link{sim_island_with_mainland}
+and checked by \link{check_daisie_data}
 
-An \code{island} is \link{list} with two elements:
+A \code{daisie_data} has two elements:
 \itemize{
-\item \code{ideal_island}: the island history based on ideal data,
-as can be checked by \link{check_ideal_island}
-\item \code{empirical_island}: the island history based on empirical data
-as can be checked by \link{check_empirical_island}
-For recolonising lineages, there is an extra element,
-\code{all_colonisations} per list element.
-It is comprised of \verb{$event_times} and \verb{$species_type}:
-\describe{
-\item{\verb{$event_times}}{ordered numeric vectors containing all
-events for each extant recolonising lineage. This includes all
-colonisation and branching times. Each vector pertains to one
-colonising lineage.}
-\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
-\code{"I"} depending on whether the extant clade is of anagenetic,
-cladogenetic or immigrant origin, respectively.}
-}
+\item \code{ideal_islands}: the ideal data set produced in a simulation,
+see \link{check_ideal_daisie_data} for more details
+\item \code{empirical_islands}: the empirical data sets produced in a simulation
+see \link{check_empirical_daisie_data} for more details
 }}
 }
 \value{

@@ -2,19 +2,19 @@
 % Please edit documentation in R/ext_event.R
 \name{ext_event}
 \alias{ext_event}
-\title{Updates the island_spec when an extinction event occurs}
+\title{Updates the island_tbl when an extinction event occurs}
 \usage{
-ext_event(island_spec)
+ext_event(island_tbl)
 }
 \arguments{
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 }
 \value{
 A data frame
 }
 \description{
-Updates the island_spec when an extinction event occurs
+Updates the island_tbl when an extinction event occurs
 }
 \author{
 Joshua W. Lambert

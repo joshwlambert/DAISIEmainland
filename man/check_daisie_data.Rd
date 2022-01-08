@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_daisie_data.R
 \name{check_daisie_data}
 \alias{check_daisie_data}
-\title{Check if a \code{daisie_data} is valid.
+\title{Check if a \code{daisie_data} (i.e. a \code{DAISIE} \code{datalist}) is valid.
 Will \link{stop} if not.}
 \usage{
 check_daisie_data(daisie_data)
@@ -25,11 +25,15 @@ see \link{check_empirical_daisie_data} for more details
 nothing
 }
 \description{
-Check if a \code{daisie_data} is valid.
+Check if a \code{daisie_data} (i.e. a \code{DAISIE} \code{datalist}) is valid.
 Will \link{stop} if not.
 }
+\note{
+this function would better fit in the \link[DAISIE]{DAISIE} package
+}
 \examples{
-daisie_data <- sim_island_with_mainland(
+
+island <- sim_island_with_mainland(
   total_time = 1,
   m = 100,
   island_pars = c(1, 1, 50, 0.1, 1),
@@ -39,6 +43,10 @@ daisie_data <- sim_island_with_mainland(
   replicates = 1,
   verbose = FALSE
 )
+
+ideal_daisie_data <- island$ideal_islands
+
+daisie_data <- ideal_daisie_data[[1]]
 check_daisie_data(daisie_data)
 
 }

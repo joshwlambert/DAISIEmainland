@@ -4,21 +4,7 @@
 \alias{calc_num_spec}
 \title{Calculates summary metrics from a simulation}
 \usage{
-calc_num_spec(daisie_data)
-}
-\arguments{
-\item{daisie_data}{\link{list} containing data of of a DAISIE simulation
-with mainland dynamics,
-as produced by \link{sim_island_with_mainland}
-and checked by \link{check_daisie_data}
-
-A \code{daisie_data} has two elements:
-\itemize{
-\item \code{ideal_islands}: the ideal data set produced in a simulation,
-see \link{check_ideal_daisie_data} for more details
-\item \code{empirical_islands}: the empirical data sets produced in a simulation
-see \link{check_empirical_daisie_data} for more details
-}}
+calc_num_spec(multi_daisie_data)
 }
 \value{
 Numeric vector number of species for each island replicate

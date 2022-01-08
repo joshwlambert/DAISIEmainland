@@ -9,7 +9,7 @@ test_that("appendix scenario A1", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 1),
+    island_tbl = create_test_island_tbl(island_scenario = 1),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -29,7 +29,7 @@ test_that("appendix scenario A2", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 2),
+    island_tbl = create_test_island_tbl(island_scenario = 2),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -49,7 +49,7 @@ test_that("appendix scenario A3", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 3),
+    island_tbl = create_test_island_tbl(island_scenario = 3),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -69,7 +69,7 @@ test_that("appendix scenario A4", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 4),
+    island_tbl = create_test_island_tbl(island_scenario = 4),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 3),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -97,7 +97,7 @@ test_that("appendix scnario A5", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 5),
+    island_tbl = create_test_island_tbl(island_scenario = 5),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 4),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -117,7 +117,7 @@ test_that("appendix scenario A6", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 6),
+    island_tbl = create_test_island_tbl(island_scenario = 6),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 5),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -145,7 +145,7 @@ test_that("appendix scenario A7", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 7),
+    island_tbl = create_test_island_tbl(island_scenario = 7),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 4),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -165,7 +165,7 @@ test_that("appendix scenario A8", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 8),
+    island_tbl = create_test_island_tbl(island_scenario = 8),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 6),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -189,7 +189,7 @@ test_that("appendix scenario A9", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 9),
+    island_tbl = create_test_island_tbl(island_scenario = 9),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 5),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -217,7 +217,7 @@ test_that("appendix scenario A10", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 10),
+    island_tbl = create_test_island_tbl(island_scenario = 10),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -237,7 +237,7 @@ test_that("appendix scenario A11", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 11),
+    island_tbl = create_test_island_tbl(island_scenario = 11),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -257,7 +257,7 @@ test_that("appendix scenario A12", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 12),
+    island_tbl = create_test_island_tbl(island_scenario = 12),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -277,7 +277,7 @@ test_that("appendix scenario A13", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 13),
+    island_tbl = create_test_island_tbl(island_scenario = 13),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 3),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -305,7 +305,7 @@ test_that("appendix scenario A14", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 14),
+    island_tbl = create_test_island_tbl(island_scenario = 14),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 7),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -325,7 +325,7 @@ test_that("appendix scenario A15", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 15),
+    island_tbl = create_test_island_tbl(island_scenario = 15),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 8),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -353,7 +353,7 @@ test_that("appendix scenario A16", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 16),
+    island_tbl = create_test_island_tbl(island_scenario = 16),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 4),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -373,7 +373,7 @@ test_that("appendix scenario A17", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 17),
+    island_tbl = create_test_island_tbl(island_scenario = 17),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 6),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -397,7 +397,7 @@ test_that("appendix scenario A18", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 18),
+    island_tbl = create_test_island_tbl(island_scenario = 18),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 5),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -425,7 +425,7 @@ test_that("appendix scenario A19", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 19),
+    island_tbl = create_test_island_tbl(island_scenario = 19),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -445,7 +445,7 @@ test_that("appendix scenario A20", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 20),
+    island_tbl = create_test_island_tbl(island_scenario = 20),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -465,7 +465,7 @@ test_that("appendix scenario A21", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 21),
+    island_tbl = create_test_island_tbl(island_scenario = 21),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 3),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -495,7 +495,7 @@ test_that("appendix scenario A22", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 22),
+    island_tbl = create_test_island_tbl(island_scenario = 22),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -515,7 +515,7 @@ test_that("appendix scenario A23", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 23),
+    island_tbl = create_test_island_tbl(island_scenario = 23),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -535,7 +535,7 @@ test_that("appendix scenario A24", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 24),
+    island_tbl = create_test_island_tbl(island_scenario = 24),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 9),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -564,7 +564,7 @@ test_that("appendix scenario A25", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 25),
+    island_tbl = create_test_island_tbl(island_scenario = 25),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 10),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -584,7 +584,7 @@ test_that("appendix scenario A26", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 26),
+    island_tbl = create_test_island_tbl(island_scenario = 26),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 6),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -609,7 +609,7 @@ test_that("appendix scenario A27", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 27),
+    island_tbl = create_test_island_tbl(island_scenario = 27),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 5),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -638,7 +638,7 @@ test_that("appendix scenario A28", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 28),
+    island_tbl = create_test_island_tbl(island_scenario = 28),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 1),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -658,7 +658,7 @@ test_that("appendix scenario A29", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 29),
+    island_tbl = create_test_island_tbl(island_scenario = 29),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 3),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -687,7 +687,7 @@ test_that("appendix scenario A30", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 30),
+    island_tbl = create_test_island_tbl(island_scenario = 30),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 11),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -707,7 +707,7 @@ test_that("appendix scenario A31", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 31),
+    island_tbl = create_test_island_tbl(island_scenario = 31),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 12),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -727,7 +727,7 @@ test_that("appendix scenario A32", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 32),
+    island_tbl = create_test_island_tbl(island_scenario = 32),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 13),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -756,7 +756,7 @@ test_that("appendix scenario A33", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 33),
+    island_tbl = create_test_island_tbl(island_scenario = 33),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 14),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -776,7 +776,7 @@ test_that("appendix scenario A34", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 34),
+    island_tbl = create_test_island_tbl(island_scenario = 34),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 15),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -801,7 +801,7 @@ test_that("appendix scenario A35", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 35),
+    island_tbl = create_test_island_tbl(island_scenario = 35),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 16),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -830,7 +830,7 @@ test_that("appendix scenario A36", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 36),
+    island_tbl = create_test_island_tbl(island_scenario = 36),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 2),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -853,7 +853,7 @@ test_that("appendix scenario A37", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 37),
+    island_tbl = create_test_island_tbl(island_scenario = 37),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 4),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -876,7 +876,7 @@ test_that("appendix scenario A38", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 38),
+    island_tbl = create_test_island_tbl(island_scenario = 38),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 6),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -906,7 +906,7 @@ test_that("appendix scenario A39", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 39),
+    island_tbl = create_test_island_tbl(island_scenario = 39),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 5),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -938,7 +938,7 @@ test_that("appendix scenario A40", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 40),
+    island_tbl = create_test_island_tbl(island_scenario = 40),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 17),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -961,7 +961,7 @@ test_that("appendix scenario A41", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 41),
+    island_tbl = create_test_island_tbl(island_scenario = 41),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 18),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -984,7 +984,7 @@ test_that("appendix scenario A42", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 42),
+    island_tbl = create_test_island_tbl(island_scenario = 42),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 19),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
@@ -1014,7 +1014,7 @@ test_that("appendix scenario A43", {
     sample.kind = "Rejection")
   island <- create_non_empty_island(
     total_time = 1,
-    island_spec = create_test_island_spec(island_scenario = 43),
+    island_tbl = create_test_island_tbl(island_scenario = 43),
     mainland_clade = create_test_mainland_clade(mainland_scenario = 20),
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"

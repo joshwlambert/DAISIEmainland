@@ -1,20 +1,20 @@
-#' Determine if a `daisie_datalist` is valid.
+#' Determine if a `daisie_data` is valid.
 #'
 #' @inheritParams default_params_doc
 #'
-#' @return \link{TRUE} if the `daisie_datalist` is valid.
+#' @return \link{TRUE} if the `daisie_data` is valid.
 #'
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-is_daisie_datalist <- function(
-  daisie_datalist,
+is_daisie_data <- function(
+  daisie_data,
   verbose = FALSE
 ) {
   result <- FALSE
   tryCatch({
-    DAISIEmainland::check_daisie_datalist(
-      daisie_datalist = daisie_datalist
+    DAISIEmainland::check_daisie_data(
+      daisie_data = daisie_data
     )
     result <- TRUE
   }, error = function(e) {

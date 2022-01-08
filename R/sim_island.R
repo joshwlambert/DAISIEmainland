@@ -61,7 +61,7 @@ sim_island <- function(total_time,
   mainland_event_t <- mainland_event_t[mainland_event_t != 0]
   mainland_event_t <- mainland_event_t[mainland_event_t != total_time]
 
-  island_spec <- data.frame(
+  island_tbl <- data.frame(
     spec_id = numeric(),
     main_anc_id = numeric(),
     col_t = numeric(),
@@ -114,12 +114,12 @@ sim_island <- function(total_time,
     } else {
 
       # Changes island species to endemic when a mainland species goes extinct
-      island_spec <- update_island_endemics(
+      island_tbl <- update_island_endemics(
         timeval = timeval,
         total_time = total_time,
-        island_spec = island_spec,
+        island_tbl = island_tbl,
         mainland_clade = mainland_clade)
-      num_immigrants <- length(which(island_spec[, "spec_type"] == "I"))
+      num_immigrants <- length(which(island_tbl[, "spec_type"] == "I"))
 
       if (timeval <= total_time) {
         rates <- calc_rates(
@@ -148,23 +148,23 @@ sim_island <- function(total_time,
             possible_event = possible_event,
             max_spec_id = max_spec_id,
             mainland_spec = mainland_spec,
-            island_spec = island_spec)
+            island_tbl = island_tbl)
 
-          island_spec <- updated_state$island_spec
+          island_tbl <- updated_state$island_tbl
           max_spec_id <- updated_state$max_spec_id
-          num_spec <- nrow(island_spec)
-          num_immigrants <- length(which(island_spec[, "spec_type"] == "I"))
+          num_spec <- nrow(island_tbl)
+          num_immigrants <- length(which(island_tbl[, "spec_type"] == "I"))
         }
       }
     }
   }
 
-  #island <- create_island(
+  #island <- create_daisie_data(
   #  total_time = total_time,
-  #  island_spec = island_spec,
+  #  island_tbl = island_tbl,
   #  mainland_clade = mainland_clade,
   #  mainland_sample_prob = mainland_sample_prob,
   #  mainland_sample_type = mainland_sample_type)
 
-  return(island_spec)
+  return(island_tbl)
 }

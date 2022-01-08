@@ -2,15 +2,15 @@
 % Please edit documentation in R/clado_event.R
 \name{clado_event}
 \alias{clado_event}
-\title{Updates the island_spec and max_spec_id when a cladogenesis event occurs}
+\title{Updates the island_tbl and max_spec_id when a cladogenesis event occurs}
 \usage{
-clado_event(timeval, island_spec, max_spec_id)
+clado_event(timeval, island_tbl, max_spec_id)
 }
 \arguments{
 \item{timeval}{Numeric defining current time of simulation.}
 
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
 \item{max_spec_id}{Current species IDs.}
 }
@@ -18,7 +18,7 @@ of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}
 A two element list
 }
 \description{
-Updates the island_spec and max_spec_id when a cladogenesis event occurs
+Updates the island_tbl and max_spec_id when a cladogenesis event occurs
 }
 \author{
 Joshua W. Lambert

@@ -5,7 +5,7 @@ test_that("all_endemic_singletons is correct for all endemic singletons", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(0, 0, 10, 0.1, 20),
@@ -14,8 +14,10 @@ test_that("all_endemic_singletons is correct for all endemic singletons", {
     mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-  ideal <- all_endemic_singletons(island = island$ideal_islands[[1]])
-  empirical <- all_endemic_singletons(island = island$empirical_islands[[1]])
+  ideal <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+  empirical <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
   expect_true(ideal)
   expect_true(empirical)
 })
@@ -28,7 +30,7 @@ test_that("all_endemic_singletons is correct for all endemic not all
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(1, 0, 10, 0.1, 20),
@@ -37,8 +39,10 @@ test_that("all_endemic_singletons is correct for all endemic not all
     mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-  ideal <- all_endemic_singletons(island = island$ideal_islands[[1]])
-  empirical <- all_endemic_singletons(island = island$empirical_islands[[1]])
+  ideal <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+  empirical <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
   expect_false(ideal)
   expect_false(empirical)
 })
@@ -51,7 +55,7 @@ test_that("all_endemic_singletons is correct for not all endemic all
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(0, 0, 10, 0.1, 1),
@@ -60,8 +64,10 @@ test_that("all_endemic_singletons is correct for not all endemic all
     mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-  ideal <- all_endemic_singletons(island = island$ideal_islands[[1]])
-  empirical <- all_endemic_singletons(island = island$empirical_islands[[1]])
+  ideal <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+  empirical <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
   expect_false(ideal)
   expect_false(empirical)
 })
@@ -74,7 +80,7 @@ test_that("all_endemic_singletons is correct for not all endemic not all
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(1, 0, 10, 0.1, 1),
@@ -83,8 +89,10 @@ test_that("all_endemic_singletons is correct for not all endemic not all
     mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-  ideal <- all_endemic_singletons(island = island$ideal_islands[[1]])
-  empirical <- all_endemic_singletons(island = island$empirical_islands[[1]])
+  ideal <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+  empirical <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
   expect_false(ideal)
   expect_false(empirical)
 })
@@ -97,7 +105,7 @@ test_that("all_endemic_singletons is correct for all endemic singletons with
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(0, 0, 10, 1, 100),
@@ -106,8 +114,10 @@ test_that("all_endemic_singletons is correct for all endemic singletons with
     mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-  ideal <- all_endemic_singletons(island = island$ideal_islands[[1]])
-  empirical <- all_endemic_singletons(island = island$empirical_islands[[1]])
+  ideal <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+  empirical <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
   expect_true(ideal)
   expect_true(empirical)
 })
@@ -120,7 +130,7 @@ test_that("all_endemic_singletons is correct for not all endemic singletons
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(1, 0, 10, 1, 0),
@@ -129,13 +139,15 @@ test_that("all_endemic_singletons is correct for not all endemic singletons
     mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-  ideal <- all_endemic_singletons(island = island$ideal_islands[[1]])
-  empirical <- all_endemic_singletons(island = island$empirical_islands[[1]])
+  ideal <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+  empirical <- all_endemic_singletons(
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
   expect_false(ideal)
   expect_false(empirical)
 })
 
 test_that("all_endemic_singletons fails with incorrect input", {
-  island <- "nonsense"
-  expect_error(all_endemic_singletons(island = island))
+  daisie_data <- "nonsense"
+  expect_error(all_endemic_singletons(daisie_data = daisie_data))
 })

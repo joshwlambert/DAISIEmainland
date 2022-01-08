@@ -35,30 +35,30 @@
 #' @keywords internal
 #' @author Joshua W. Lambert
 create_ideal_island <- function(total_time,
-                                island_spec) {
+                                island_tbl) {
   ### number of independent colonisations
   uniquecolonisation <- as.numeric(unique(
-    island_spec[, "col_t_bp"]))
+    island_tbl[, "col_t_bp"]))
   number_colonisations <- length(uniquecolonisation)
   ### if there is only one independent colonisation - anagenetic and
   ### cladogenetic species are classed as stac=2; immigrant classed as stac=4:
   if (number_colonisations == 1) {
-    if (island_spec[1, "spec_type"] == "I") {
+    if (island_tbl[1, "spec_type"] == "I") {
       descendants <- list(
-        branching_times = c(total_time, as.numeric(island_spec[1, "col_t_bp"])),
+        branching_times = c(total_time, as.numeric(island_tbl[1, "col_t_bp"])),
         stac = 4,
         missing_species = 0)
     }
-    if (island_spec[1, "spec_type"] == "A") {
+    if (island_tbl[1, "spec_type"] == "A") {
       descendants <- list(
-        branching_times = c(total_time, as.numeric(island_spec[1, "col_t_bp"])),
+        branching_times = c(total_time, as.numeric(island_tbl[1, "col_t_bp"])),
         stac = 2,
         missing_species = 0)
     }
-    if (island_spec[1, "spec_type"] == "C") {
+    if (island_tbl[1, "spec_type"] == "C") {
       descendants <- list(
         branching_times = c(total_time,
-                            sort(as.numeric(island_spec[, "branch_t_bp"]),
+                            sort(as.numeric(island_tbl[, "branch_t_bp"]),
                                  decreasing = TRUE)),
         stac = 2,
         missing_species = 0)
@@ -76,10 +76,10 @@ create_ideal_island <- function(total_time,
 
     # Get branching and colonisation times
     btimes_all_clado_desc <- rev(
-      sort(as.numeric(island_spec[, "branch_t_bp"]))
+      sort(as.numeric(island_tbl[, "branch_t_bp"]))
     )
     col_times <- sort(
-      unique(as.numeric(island_spec[, "col_t_bp"])),
+      unique(as.numeric(island_tbl[, "col_t_bp"])),
       decreasing = TRUE
     )
 
@@ -117,7 +117,7 @@ create_ideal_island <- function(total_time,
 
     # all_colonisations section
     uniquecol <- sort(as.numeric(
-      unique(island_spec[, "col_t_bp"])), decreasing = TRUE
+      unique(island_tbl[, "col_t_bp"])), decreasing = TRUE
     )
     for (i in seq_along(uniquecol)) {
       descendants$all_colonisations[[i]] <- list(
@@ -126,27 +126,27 @@ create_ideal_island <- function(total_time,
       )
 
       samecolonisation <- which(as.numeric(
-        island_spec[, "col_t_bp"]) == uniquecol[i]
+        island_tbl[, "col_t_bp"]) == uniquecol[i]
       )
 
-      if (island_spec[samecolonisation[1], "spec_type"] == "I") {
+      if (island_tbl[samecolonisation[1], "spec_type"] == "I") {
         descendants$all_colonisations[[i]]$event_times <- as.numeric(
-          c(total_time, island_spec[samecolonisation, "col_t_bp"])
+          c(total_time, island_tbl[samecolonisation, "col_t_bp"])
         )
         descendants$all_colonisations[[i]]$species_type <- "I"
       }
 
-      if (island_spec[samecolonisation[1], "spec_type"] == "A") {
+      if (island_tbl[samecolonisation[1], "spec_type"] == "A") {
         descendants$all_colonisations[[i]]$event_times <- as.numeric(
-          c(total_time, island_spec[samecolonisation, "col_t_bp"])
+          c(total_time, island_tbl[samecolonisation, "col_t_bp"])
         )
         descendants$all_colonisations[[i]]$species_type <- "A"
       }
 
-      if (island_spec[samecolonisation[1], "spec_type"] == "C") {
+      if (island_tbl[samecolonisation[1], "spec_type"] == "C") {
         descendants$all_colonisations[[i]]$event_times <-
           sort(c(total_time, as.numeric(
-            island_spec[samecolonisation, "branch_t_bp"]
+            island_tbl[samecolonisation, "branch_t_bp"]
           )), decreasing = TRUE)
         descendants$all_colonisations[[i]]$species_type <- "C"
       }

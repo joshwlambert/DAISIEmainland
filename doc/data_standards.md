@@ -49,3 +49,8 @@ subsequent branching times (all given in time before the present).
 
 * A list of `mainland_clade` objects.
 
+### island_tbl
+
+* A data frame of the island species output from `sim_island` and then converted
+to the `daisie_data` format by `create_island`.
+

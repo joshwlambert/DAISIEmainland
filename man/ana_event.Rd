@@ -2,13 +2,13 @@
 % Please edit documentation in R/ana_event.R
 \name{ana_event}
 \alias{ana_event}
-\title{Updates the island_spec and max_spec_id when an anagenesis event occurs}
+\title{Updates the island_tbl and max_spec_id when an anagenesis event occurs}
 \usage{
-ana_event(island_spec, max_spec_id)
+ana_event(island_tbl, max_spec_id)
 }
 \arguments{
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
 \item{max_spec_id}{Current species IDs.}
 }
@@ -16,7 +16,7 @@ of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}
 A two element list
 }
 \description{
-Updates the island_spec and max_spec_id when an anagenesis event occurs
+Updates the island_tbl and max_spec_id when an anagenesis event occurs
 }
 \author{
 Joshua W. Lambert

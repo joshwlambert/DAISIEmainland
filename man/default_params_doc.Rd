@@ -22,7 +22,7 @@ default_params_doc(
   num_spec,
   num_immigrants,
   mainland_n,
-  island_spec,
+  island_tbl,
   mainland_clade,
   mainland_spec,
   mainland_sample_prob,
@@ -137,8 +137,8 @@ species.}
 \item{mainland_n}{Numeric stating the number of mainland species that
 can colonize the island.}
 
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
 \item{mainland_clade}{Data frame with state of mainland, see
 \code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}

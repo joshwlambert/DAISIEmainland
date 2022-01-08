@@ -4,11 +4,11 @@
 #' @inheritParams default_params_doc
 #'
 #' @return A list of numerics or numeric vector
-calc_empirical_col <- function(island_spec,
+calc_empirical_col <- function(island_tbl,
                                mainland_clade) {
 
   # number of independent colonisations from different mainland species
-  empirical_col_present <- sort(unique(island_spec[, "main_anc_id"]))
+  empirical_col_present <- sort(unique(island_tbl[, "main_anc_id"]))
   # where are the independent colonists in the mainland clade
   mainland_spec <- which(mainland_clade[, "spec_id"] %in% empirical_col_present)
   # is there any extant descendants of the immigrant on the mainland

@@ -5,20 +5,20 @@
 #' @return Numeric vector number of colonisations for each island replicate
 #' @export
 #' @author Joshua W. Lambert
-calc_num_col <- function(daisie_data) {
+calc_num_col <- function(multi_daisie_data) {
   num_col <- c()
-  for (i in seq_along(daisie_data)) {
-    sim_rep <- daisie_data[[i]]
+  for (i in seq_along(multi_daisie_data)) {
+    daisie_data <- multi_daisie_data[[i]]
     temp_num_col <- c()
-    stacs <- lapply(sim_rep, "[[", "stac")
-    for (j in 2:length(sim_rep)) {
+    stacs <- lapply(daisie_data, "[[", "stac")
+    for (j in 2:length(daisie_data)) {
       if (stacs[[j]] != 3) {
         temp_num_col <- c(
           temp_num_col,
           1
         )
       } else {
-        for (k in seq_along(sim_rep[[j]]$all_colonisations)) {
+        for (k in seq_along(daisie_data[[j]]$all_colonisations)) {
           temp_num_col <- c(
             temp_num_col,
             1

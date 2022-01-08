@@ -4,19 +4,22 @@
 #'
 #' @return A list of six numeric vectors
 #' @author Joshua W. Lambert
-calc_endemic_percent <- function(daisie_data) {
-  testit::assert(length(daisie_data$ideal_island) ==
-                   length(daisie_data$empirical_island))
+calc_endemic_percent <- function(daisie_mainland_data) {
+
+  testit::assert(identical(
+    length(daisie_mainland_data$ideal_multi_daisie_data),
+    length(daisie_mainland_data$empirical_multi_daisie_data)
+  ))
 
   ideal_islands_species <- list()
   empirical_islands_species <- list()
 
-  for (i in seq_along(daisie_data$ideal_islands)) {
+  for (i in seq_along(daisie_mainland_data$ideal_multi_daisie_data)) {
 
     ideal_islands_species[[i]] <- calc_island_endemics(
-      island = daisie_data$ideal_islands[[i]])
+      daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[i]])
     empirical_islands_species[[i]] <- calc_island_endemics(
-      island = daisie_data$empirical_islands[[i]])
+      daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[i]])
   }
 
   ideal_endemics <- unlist(lapply(ideal_islands_species,

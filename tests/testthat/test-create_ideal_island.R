@@ -1,8 +1,8 @@
 test_that("create_ideal_island is correct for singleton nonendemic (stac 4)", {
-  island_spec <- create_test_island_spec(island_scenario = 48)
+  island_tbl <- create_test_island_tbl(island_scenario = 48)
   ideal_island <- create_ideal_island(
     total_time = 1,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
   expected_ideal_island <- list(branching_times = c(1.0, 0.5),
                                 stac = 4,
                                 missing_species = 0)
@@ -10,10 +10,10 @@ test_that("create_ideal_island is correct for singleton nonendemic (stac 4)", {
 })
 
 test_that("create_ideal_island is correct for singleton endemic (stac 2)", {
-  island_spec <- create_test_island_spec(island_scenario = 49)
+  island_tbl <- create_test_island_tbl(island_scenario = 49)
   ideal_island <- create_ideal_island(
     total_time = 1,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
   expected_ideal_island <- list(branching_times = c(1.0, 0.5),
                                 stac = 2,
                                 missing_species = 0)
@@ -21,10 +21,10 @@ test_that("create_ideal_island is correct for singleton endemic (stac 2)", {
 })
 
 test_that("create_ideal_island is correct for endemic clade (stac 2)", {
-  island_spec <- create_test_island_spec(island_scenario = 50)
+  island_tbl <- create_test_island_tbl(island_scenario = 50)
   ideal_island <- create_ideal_island(
     total_time = 1,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
   expected_ideal_island <- list(branching_times = c(1.0, 0.5, 0.25),
                                 stac = 2,
                                 missing_species = 0)
@@ -33,10 +33,10 @@ test_that("create_ideal_island is correct for endemic clade (stac 2)", {
 
 test_that("create_ideal_island is correct for anagenetic and non-endemic
           recolonisation (stac 3)", {
-  island_spec <- create_test_island_spec(island_scenario = 51)
+  island_tbl <- create_test_island_tbl(island_scenario = 51)
   ideal_island <- create_ideal_island(
     total_time = 1,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
   expected_ideal_island <- list(branching_times = c(1.0, 0.5),
                                 stac = 3,
                                 missing_species = 0,
@@ -51,10 +51,10 @@ test_that("create_ideal_island is correct for anagenetic and non-endemic
 
 test_that("create_ideal_island is correct for cladogenetic and non-endemic
           recolonisation (stac 3)", {
-  island_spec <- create_test_island_spec(island_scenario = 52)
+  island_tbl <- create_test_island_tbl(island_scenario = 52)
   ideal_island <- create_ideal_island(
     total_time = 1,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
   expected_ideal_island <- list(branching_times = c(1.0, 0.5, 0.4),
                                 stac = 3,
                                 missing_species = 0,
@@ -69,10 +69,10 @@ test_that("create_ideal_island is correct for cladogenetic and non-endemic
 
 test_that("create_ideal_island is correct for anagenetic and anagenetic
           recolonisation (stac 3)", {
-  island_spec <- create_test_island_spec(island_scenario = 53)
+  island_tbl <- create_test_island_tbl(island_scenario = 53)
   ideal_island <- create_ideal_island(
     total_time = 1,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
   expected_ideal_island <- list(
     branching_times = c(1.0, 0.5),
     stac = 3,
@@ -86,10 +86,10 @@ test_that("create_ideal_island is correct for anagenetic and anagenetic
 
 test_that("create_ideal_island is correct for cladogenetic and anagenetic
           recolonisation (stac 3)", {
-  island_spec <- create_test_island_spec(island_scenario = 54)
+  island_tbl <- create_test_island_tbl(island_scenario = 54)
   ideal_island <- create_ideal_island(
     total_time = 1,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
   expected_ideal_island <- list(
     branching_times = c(1.0, 0.5, 0.4),
     stac = 3,

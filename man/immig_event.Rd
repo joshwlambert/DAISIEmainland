@@ -2,15 +2,15 @@
 % Please edit documentation in R/immig_event.R
 \name{immig_event}
 \alias{immig_event}
-\title{Updates the island_spec when an immigration event occurs}
+\title{Updates the island_tbl when an immigration event occurs}
 \usage{
-immig_event(timeval, island_spec, mainland_spec)
+immig_event(timeval, island_tbl, mainland_spec)
 }
 \arguments{
 \item{timeval}{Numeric defining current time of simulation.}
 
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
 \item{mainland_spec}{Numeric focal species on the mainland}
 }
@@ -18,7 +18,7 @@ of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}
 A data frame
 }
 \description{
-Updates the island_spec when an immigration event occurs
+Updates the island_tbl when an immigration event occurs
 }
 \author{
 Joshua W. Lambert

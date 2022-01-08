@@ -6,7 +6,7 @@
 #' @inheritParams default_params_doc
 #'
 #' @return The updated state of the system, which is a list with the
-#' `island_spec` matrix and an integer `max_spec_id` with the most
+#' `island_tbl` matrix and an integer `max_spec_id` with the most
 #' recent ID of species.
 #'
 #' @keywords internal
@@ -16,7 +16,7 @@ update_state <- function(timeval,
                          possible_event,
                          max_spec_id,
                          mainland_spec,
-                         island_spec) {
+                         island_tbl) {
 
   testit::assert(is.numeric(timeval))
   testit::assert(is.numeric(total_time))
@@ -25,29 +25,29 @@ update_state <- function(timeval,
   testit::assert(possible_event <= 4)
   testit::assert(is.numeric(max_spec_id))
   testit::assert(is.numeric(mainland_spec))
-  testit::assert(is.data.frame(island_spec))
-  testit::assert(ncol(island_spec) == 7)
+  testit::assert(is.data.frame(island_tbl))
+  testit::assert(ncol(island_tbl) == 7)
 
   #IMMIGRATION
   if (possible_event == 1) {
-    island_spec <- immig_event(
+    island_tbl <- immig_event(
       timeval = timeval,
-      island_spec = island_spec,
+      island_tbl = island_tbl,
       mainland_spec = mainland_spec)
   }
 
   #EXTINCTION
   if (possible_event == 2) {
-    island_spec <- ext_event(
-      island_spec = island_spec)
+    island_tbl <- ext_event(
+      island_tbl = island_tbl)
   }
 
   #ANAGENESIS
   if (possible_event == 3) {
     updated_state <- ana_event(
-      island_spec = island_spec,
+      island_tbl = island_tbl,
       max_spec_id = max_spec_id)
-    island_spec <- updated_state$island_spec
+    island_tbl <- updated_state$island_tbl
     max_spec_id <- updated_state$max_spec_id
   }
 
@@ -55,11 +55,11 @@ update_state <- function(timeval,
   if (possible_event == 4) {
     updated_state <- clado_event(
       timeval = timeval,
-      island_spec = island_spec,
+      island_tbl = island_tbl,
       max_spec_id = max_spec_id)
-    island_spec <- updated_state$island_spec
+    island_tbl <- updated_state$island_tbl
     max_spec_id <- updated_state$max_spec_id
   }
-  return(list(island_spec = island_spec,
+  return(list(island_tbl = island_tbl,
               max_spec_id = max_spec_id))
 }

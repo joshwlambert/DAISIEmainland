@@ -6,7 +6,7 @@
 \usage{
 create_non_empty_island(
   total_time,
-  island_spec,
+  island_tbl,
   mainland_clade,
   mainland_sample_prob,
   mainland_sample_type
@@ -16,8 +16,8 @@ create_non_empty_island(
 \item{total_time}{Numeric defining the length of the simulation in time
 units.}
 
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
 \item{mainland_clade}{Data frame with state of mainland, see
 \code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}

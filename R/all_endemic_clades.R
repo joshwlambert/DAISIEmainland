@@ -20,23 +20,23 @@
 #'   verbose = FALSE)
 #' bool <- all_endemic_clades(island$ideal_islands[[1]])
 #' }
-all_endemic_clades <- function(island) {
-  testit::assert(is.list(island))
-  island_spec <- calc_island_endemics(island = island)
-  num_spec <- island_spec$endemics + island_spec$non_endemics
+all_endemic_clades <- function(daisie_data) {
+  testit::assert(is.list(daisie_data))
+  num_island_spec <- calc_island_endemics(daisie_data = daisie_data)
+  num_spec <- num_island_spec$endemics + num_island_spec$non_endemics
   if (num_spec == 0) {
     stop("island is empty")
   }
-  if (island_spec$non_endemics >= 1) {
+  if (num_island_spec$non_endemics >= 1) {
     return(FALSE)
   }
-  island <- island[-1]
-  branching_times <- lapply(island, "[[", "branching_times")
+  daisie_data <- daisie_data[-1]
+  branching_times <- lapply(daisie_data, "[[", "branching_times")
   num_spec <- unlist(lapply(branching_times, function(x) {length(x) - 1}))
-  stacs <- unlist(lapply(island, "[[", "stac"))
+  stacs <- unlist(lapply(daisie_data, "[[", "stac"))
   clades <- all(num_spec[which(stacs != 3)] > 1)
   if (any(stacs == 3)) {
-    recol <- island[which(stacs == 3)]
+    recol <- daisie_data[which(stacs == 3)]
     all_cols <- lapply(recol, "[[", "all_colonisations")
     event_times <- lapply(all_cols,
                           function(x) {lapply(x, "[[", "event_times")})

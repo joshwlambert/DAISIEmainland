@@ -1,5 +1,5 @@
 test_that("use", {
-  island <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(1, 1, 50, 0.1, 1),
@@ -9,11 +9,18 @@ test_that("use", {
     replicates = 1,
     verbose = FALSE
   )
-  empirical_daisie_data <- island$empirical_islands
-  expect_silent(check_empirical_daisie_data(empirical_daisie_data))
+  ideal_multi_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data
+  empirical_multi_daisie_data <-
+    daisie_mainland_data$empirical_multi_daisie_data
+  expect_silent(check_multi_daisie_data(ideal_multi_daisie_data))
+  expect_silent(check_multi_daisie_data(empirical_multi_daisie_data))
   expect_error(
-    check_empirical_daisie_data(empirical_daisie_data[[1]]),
-    "'empirical_daisie_data' must be a list of 'DAISIE::datalist'"
+    check_multi_daisie_data(ideal_multi_daisie_data[[1]]),
+    "'multi_daisie_data' must be a list of 'daisie_data'"
+  )
+  expect_error(
+    check_multi_daisie_data(empirical_multi_daisie_data[[1]]),
+    "'multi_daisie_data' must be a list of 'daisie_data'"
   )
 
   # Only run locally, as DAISIE's output cannot be suppressed

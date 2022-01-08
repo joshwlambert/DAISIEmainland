@@ -4,15 +4,16 @@
 #' @inheritParams default_params_doc
 #' @return List of two numerics
 #' @author Joshua W. Lambert
-calc_island_endemics <- function(island) {
-  island <- island[-1]
-  branching_times <- lapply(island, "[[", "branching_times")
+calc_island_endemics <- function(daisie_data) {
+  # remove the meta data from the daisie data
+  daisie_data <- daisie_data[-1]
+  branching_times <- lapply(daisie_data, "[[", "branching_times")
   num_spec <- lapply(branching_times, function(x) {length(x) - 1})
-  stacs <- unlist(lapply(island, "[[", "stac"))
+  stacs <- unlist(lapply(daisie_data, "[[", "stac"))
   num_endemics <- sum(unlist(num_spec[which(stacs %in% c(2, 5, 6))]))
   num_non_endemics <- sum(unlist(num_spec[which(stacs %in% c(1, 4))]))
   if (any(stacs == 3)) {
-    recol <- island[which(stacs == 3)]
+    recol <- daisie_data[which(stacs == 3)]
     all_cols <- lapply(recol, "[[", "all_colonisations")
     event_times <- lapply(all_cols,
                           function(x) {lapply(x, "[[", "event_times")})

@@ -5,7 +5,7 @@ test_that("sim_island_with_mainland produces correct empty island", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- sim_island_with_mainland(
+  daisie_mainland_data <- sim_island_with_mainland(
       total_time = 1,
       m = 10,
       island_pars = c(1, 1, 10, 0.1, 1),
@@ -14,10 +14,18 @@ test_that("sim_island_with_mainland produces correct empty island", {
       mainland_sample_type = "undiscovered",
       replicates = 1,
       verbose = FALSE)
-  expect_equal(island$ideal_islands[[1]][[1]]$island_age, 1)
-  expect_equal(island$ideal_islands[[1]][[1]]$not_present, 10)
-  expect_equal(island$empirical_islands[[1]][[1]]$island_age, 1)
-  expect_equal(island$empirical_islands[[1]][[1]]$not_present, 10)
+  expect_equal(
+    daisie_mainland_data$ideal_multi_daisie_data[[1]][[1]]$island_age, 1
+  )
+  expect_equal(
+    daisie_mainland_data$ideal_multi_daisie_data[[1]][[1]]$not_present, 10
+  )
+  expect_equal(
+    daisie_mainland_data$empirical_multi_daisie_data[[1]][[1]]$island_age, 1
+  )
+  expect_equal(
+    daisie_mainland_data$empirical_multi_daisie_data[[1]][[1]]$not_present, 10
+  )
 })
 
 test_that("sim_island_mainland produces correct non-empty island", {
@@ -27,7 +35,7 @@ test_that("sim_island_mainland produces correct non-empty island", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  island <- sim_island_with_mainland(
+  daisie_mainland_data <- sim_island_with_mainland(
     total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
@@ -36,18 +44,39 @@ test_that("sim_island_mainland produces correct non-empty island", {
     mainland_sample_type = "complete",
     replicates = 1,
     verbose = FALSE)
-  expect_equal(island$ideal_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$ideal_island[[1]][[1]]$not_present, 6)
-  expect_equal(island$ideal_island[[1]][[2]]$branching_times,
-               c(1.000000000000, 0.4393665143))
-  expect_equal(island$ideal_island[[1]][[2]]$stac, 2)
-  expect_equal(island$ideal_island[[1]][[2]]$missing_species, 0)
-  expect_equal(island$empirical_island[[1]][[1]]$island_age, 1)
-  expect_equal(island$empirical_island[[1]][[1]]$not_present, 6)
-  expect_equal(island$empirical_island[[1]][[2]]$branching_times,
-               c(1.000000000000, 0.4393665143))
-  expect_equal(island$empirical_island[[1]][[2]]$stac, 2)
-  expect_equal(island$empirical_island[[1]][[2]]$missing_species, 0)
+  expect_equal(
+    daisie_mainland_data$ideal_multi_daisie_data[[1]][[1]]$island_age, 1
+  )
+  expect_equal(
+    daisie_mainland_data$ideal_multi_daisie_data[[1]][[1]]$not_present, 6
+  )
+  expect_equal(
+    daisie_mainland_data$ideal_multi_daisie_data[[1]][[2]]$branching_times,
+    c(1.000000000000, 0.4393665143)
+  )
+  expect_equal(
+    daisie_mainland_data$ideal_multi_daisie_data[[1]][[2]]$stac, 2
+  )
+  expect_equal(
+    daisie_mainland_data$ideal_multi_daisie_data[[1]][[2]]$missing_species, 0
+  )
+  expect_equal(
+    daisie_mainland_data$empirical_multi_daisie_data[[1]][[1]]$island_age, 1
+  )
+  expect_equal(
+    daisie_mainland_data$empirical_multi_daisie_data[[1]][[1]]$not_present, 6
+  )
+  expect_equal(
+    daisie_mainland_data$empirical_multi_daisie_data[[1]][[2]]$branching_times,
+    c(1.000000000000, 0.4393665143)
+  )
+  expect_equal(
+    daisie_mainland_data$empirical_multi_daisie_data[[1]][[2]]$stac, 2
+  )
+  expect_equal(
+    daisie_mainland_data$empirical_multi_daisie_data[[1]][[2]]$missing_species,
+    0
+  )
 })
 
 test_that("sim_island_with_mainland with 0 mainland_ex produces correct
@@ -57,7 +86,7 @@ test_that("sim_island_with_mainland with 0 mainland_ex produces correct
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection")
-  island <- sim_island_with_mainland(
+  daisie_mainland_data <- sim_island_with_mainland(
     total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 1, 1),
@@ -65,7 +94,8 @@ test_that("sim_island_with_mainland with 0 mainland_ex produces correct
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1)
-  expect_identical(island$ideal_islands, island$empirical_islands)
+  expect_identical(daisie_mainland_data$ideal_multi_daisie_data,
+                   daisie_mainland_data$empirical_multi_daisie_data)
 })
 
 test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
@@ -75,7 +105,7 @@ test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection")
-  island <- sim_island_with_mainland(
+  daisie_mainland_data <- sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(1, 1, 10, 1, 1),
@@ -83,11 +113,12 @@ test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
     mainland_sample_prob = 0.1,
     mainland_sample_type = "undiscovered",
     replicates = 1)
-  expect_false(identical(island$ideal_islands, island$empirical_islands))
+  expect_false(identical(daisie_mainland_data$ideal_multi_daisie_data,
+                         daisie_mainland_data$empirical_multi_daisie_data))
 })
 
 test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
-  expect_silent(island <- sim_island_with_mainland(
+  expect_silent(sim_island_with_mainland(
     total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
@@ -100,7 +131,7 @@ test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
 })
 
 test_that("sim_island_with_mainland produces output with verbose = TRUE", {
-  expect_message(island <- sim_island_with_mainland(
+  expect_message(sim_island_with_mainland(
     total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),

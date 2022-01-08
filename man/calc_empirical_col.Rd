@@ -4,11 +4,11 @@
 \alias{calc_empirical_col}
 \title{Calculates whether colonisations from different mainland species are more}
 \usage{
-calc_empirical_col(island_spec, mainland_clade)
+calc_empirical_col(island_tbl, mainland_clade)
 }
 \arguments{
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
 \item{mainland_clade}{Data frame with state of mainland, see
 \code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}

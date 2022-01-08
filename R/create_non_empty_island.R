@@ -7,29 +7,29 @@
 #' the island and number of missing species.
 #' @author Joshua W. Lambert
 create_non_empty_island <- function(total_time,
-                                    island_spec,
+                                    island_tbl,
                                     mainland_clade,
                                     mainland_sample_prob,
                                     mainland_sample_type) {
 
-  names(island_spec)[3] <- "col_t_bp"
-  names(island_spec)[6] <- "branch_t_bp"
+  names(island_tbl)[3] <- "col_t_bp"
+  names(island_tbl)[6] <- "branch_t_bp"
   # set ages as counting backwards from present
-  island_spec[, "branch_t_bp"] <- total_time - island_spec[, "branch_t_bp"]
-  island_spec[, "col_t_bp"] <- total_time - island_spec[, "col_t_bp"]
+  island_tbl[, "branch_t_bp"] <- total_time - island_tbl[, "branch_t_bp"]
+  island_tbl[, "col_t_bp"] <- total_time - island_tbl[, "col_t_bp"]
 
   # number of independent colonisations from different mainland species
-  ideal_col_present <- sort(unique(island_spec[, "main_anc_id"]))
+  ideal_col_present <- sort(unique(island_tbl[, "main_anc_id"]))
   num_ideal_col_present <- length(ideal_col_present)
 
   ideal_island <- list()
   for (i in seq_len(num_ideal_col_present)) {
-    subset_island <- island_spec[which(island_spec[, "main_anc_id"] %in%
+    subset_island <- island_tbl[which(island_tbl[, "main_anc_id"] %in%
                                          ideal_col_present[i]), ]
 
     ideal_island[[i]] <- create_ideal_island(
       total_time = total_time,
-      island_spec = subset_island)
+      island_tbl = subset_island)
   }
 
   # adjust mainland object for sampling probability
@@ -38,22 +38,22 @@ create_non_empty_island <- function(total_time,
     mainland_clade = mainland_clade,
     mainland_sample_prob = mainland_sample_prob,
     mainland_sample_type = mainland_sample_type,
-    island_spec = island_spec)
+    island_tbl = island_tbl)
 
-  island_spec <- update_island_endemics(
+  island_tbl <- update_island_endemics(
     timeval = total_time,
     total_time = total_time,
-    island_spec = island_spec,
+    island_tbl = island_tbl,
     mainland_clade = mainland_clade)
 
   empirical_col_present <- calc_empirical_col(
-    island_spec = island_spec,
+    island_tbl = island_tbl,
     mainland_clade = mainland_clade)
   num_empirical_col_present <- length(empirical_col_present)
 
   empirical_island <- list()
   for (i in seq_len(num_empirical_col_present)) {
-    subset_island <- island_spec[which(island_spec[, "main_anc_id"] %in%
+    subset_island <- island_tbl[which(island_tbl[, "main_anc_id"] %in%
                                          empirical_col_present[[i]]), ]
 
     mainland_spec <-
@@ -78,11 +78,11 @@ create_non_empty_island <- function(total_time,
     if (isTRUE(extant_mainland)) {
       empirical_island[[i]] <- create_ideal_island(
         total_time = total_time,
-        island_spec = subset_island)
+        island_tbl = subset_island)
     } else if (isFALSE(extant_mainland)) {
       empirical_island[[i]] <- create_empirical_island(
         total_time = total_time,
-        island_spec = subset_island,
+        island_tbl = subset_island,
         mainland_clade = mainland_clade,
         mainland_spec = mainland_spec)
     }

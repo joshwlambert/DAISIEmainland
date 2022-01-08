@@ -5,12 +5,12 @@
 #' @return List with DAISIE simulation output
 #' @keywords internal
 #' @author Joshua W. Lambert
-add_metadata_to_daisie_data <- function(island_replicates,
+add_metadata_to_daisie_data <- function(multi_daisie_data,
                                         total_time,
                                         m) {
   several_islands <- list()
-  for (rep in seq_along(island_replicates)) {
-    full_list <- island_replicates[[rep]]
+  for (rep in seq_along(multi_daisie_data)) {
+    full_list <- multi_daisie_data[[rep]]
     ### separate taxon_list lists from empty island lists
     new_full_list <- list()
     for (i in seq_along(full_list)) {
@@ -32,6 +32,5 @@ add_metadata_to_daisie_data <- function(island_replicates,
     }
     several_islands[[rep]] <- island_list
   }
-  browser()
   return(several_islands)
 }

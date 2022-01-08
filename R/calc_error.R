@@ -8,15 +8,17 @@
 #' @return List of error metrics
 #' @export
 #' @author Joshua W. Lambert
-calc_error <- function(daisie_data,
+calc_error <- function(daisie_mainland_data,
                        ideal_ml,
                        empirical_ml) {
 
-  delta_ctt <- calc_ctt(daisie_data = daisie_data)
+  delta_ctt <- calc_ctt(daisie_mainland_data = daisie_mainland_data)
 
-  max_age_percent <- calc_max_age_percent(daisie_data = daisie_data)
+  max_age_percent <- calc_max_age_percent(
+    daisie_mainland_data = daisie_mainland_data)
 
-  endemic_percent <- calc_endemic_percent(daisie_data = daisie_data)
+  endemic_percent <- calc_endemic_percent(
+    daisie_mainland_data = daisie_mainland_data)
 
   param_diffs <- calc_param_diffs(ideal_ml = ideal_ml,
                                   empirical_ml = empirical_ml)

@@ -4,14 +4,14 @@
 \alias{create_empirical_island}
 \title{Convert intermediate output to final simulation output for empirical data}
 \usage{
-create_empirical_island(total_time, island_spec, mainland_clade, mainland_spec)
+create_empirical_island(total_time, island_tbl, mainland_clade, mainland_spec)
 }
 \arguments{
 \item{total_time}{Numeric defining the length of the simulation in time
 units.}
 
-\item{island_spec}{Matrix with current state of simulation containing number
-of species, see \code{\link[=create_test_island_spec]{create_test_island_spec()}}}
+\item{island_tbl}{Data frame with current state of simulation containing
+number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
 \item{mainland_clade}{Data frame with state of mainland, see
 \code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}

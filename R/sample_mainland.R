@@ -8,7 +8,7 @@ sample_mainland <- function(total_time,
                             mainland_clade,
                             mainland_sample_prob,
                             mainland_sample_type,
-                            island_spec) {
+                            island_tbl) {
 
   if (mainland_sample_prob == 1) {
     return(mainland_clade)

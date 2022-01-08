@@ -4,21 +4,7 @@
 \alias{calc_max_age_percent}
 \title{Calculates the percent of max age species on the island for each replicate}
 \usage{
-calc_max_age_percent(daisie_data)
-}
-\arguments{
-\item{daisie_data}{\link{list} containing data of of a DAISIE simulation
-with mainland dynamics,
-as produced by \link{sim_island_with_mainland}
-and checked by \link{check_daisie_data}
-
-A \code{daisie_data} has two elements:
-\itemize{
-\item \code{ideal_islands}: the ideal data set produced in a simulation,
-see \link{check_ideal_daisie_data} for more details
-\item \code{empirical_islands}: the empirical data sets produced in a simulation
-see \link{check_empirical_daisie_data} for more details
-}}
+calc_max_age_percent(daisie_mainland_data)
 }
 \value{
 A list of two numeric vectors

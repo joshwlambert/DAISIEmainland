@@ -4,21 +4,7 @@
 \alias{calc_endemic_percent}
 \title{Calculates what percentage of island species are endemic.}
 \usage{
-calc_endemic_percent(daisie_data)
-}
-\arguments{
-\item{daisie_data}{\link{list} containing data of of a DAISIE simulation
-with mainland dynamics,
-as produced by \link{sim_island_with_mainland}
-and checked by \link{check_daisie_data}
-
-A \code{daisie_data} has two elements:
-\itemize{
-\item \code{ideal_islands}: the ideal data set produced in a simulation,
-see \link{check_ideal_daisie_data} for more details
-\item \code{empirical_islands}: the empirical data sets produced in a simulation
-see \link{check_empirical_daisie_data} for more details
-}}
+calc_endemic_percent(daisie_mainland_data)
 }
 \value{
 A list of six numeric vectors
