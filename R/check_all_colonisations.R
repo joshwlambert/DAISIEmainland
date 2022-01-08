@@ -38,6 +38,8 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_all_colonisations <- function(all_colonisations) {
+  #TODO I think this functionality should be merged into check_daisie_data
+  #as it is part of the daisie_data object
   testthat::expect_true(is.list(all_colonisations))
   testthat::expect_true(length(all_colonisations) >= 1)
 

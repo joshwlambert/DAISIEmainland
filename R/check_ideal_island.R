@@ -31,6 +31,7 @@
 #'
 #' @export
 check_ideal_island <- function(ideal_island) {
+  #TODO I think this can be deleted due to the change in sim_island output
   testthat::expect_true(is.list(ideal_island))
 
   for (i in seq_along(ideal_island)) {

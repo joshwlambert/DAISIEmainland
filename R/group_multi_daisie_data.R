@@ -1,13 +1,10 @@
-#' Title
+#' Takes mixed multi_daisie_data produced by the looping over `sim_island` in
+#' `sim_island_with_mainland` and groups the ideal and the empirical
+#' `multi_daisie_data` together
 #'
-#' @param multi_daisie_data
-#' @param total_time
-#' @param m
+#' @inheritParams default_params_doc
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @return A list of two `multi_daisie_data` elements
 group_multi_daisie_data <- function(multi_daisie_data,
                                     total_time,
                                     m) {

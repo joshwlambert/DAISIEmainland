@@ -1,4 +1,5 @@
 test_that("sim_island is silent and produces correct empty island", {
+  skip("this can be deleted as it checks the old output of sim_island")
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -17,6 +18,7 @@ test_that("sim_island is silent and produces correct empty island", {
 })
 
 test_that("sim_island is silent and produces correct non-empty island", {
+  skip("this can be deleted as it checks the old output of sim_island")
   set.seed(
     2,
     kind = "Mersenne-Twister",

@@ -318,6 +318,7 @@
 #'     cladogenetic or immigrant origin, respectively.}
 #' }
 #' @param age Numeric defining age of singleton species
+#' @param multi_daisie_data A list of `daisie_data` elements
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -381,6 +382,7 @@ default_params_doc <- function(all_colonisations,
                                transform,
                                mainland,
                                island,
-                               age) {
+                               age,
+                               multi_daisie_data) {
   #Nothing
 }

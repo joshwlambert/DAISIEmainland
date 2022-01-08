@@ -7,6 +7,8 @@
 add_metadata_to_daisie_data(multi_daisie_data, total_time, m)
 }
 \arguments{
+\item{multi_daisie_data}{A list of \code{daisie_data} elements}
+
 \item{total_time}{Numeric defining the length of the simulation in time
 units.}
 

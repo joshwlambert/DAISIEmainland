@@ -8,6 +8,9 @@ Will \link{stop} if not.}
 \usage{
 check_multi_daisie_data(multi_daisie_data)
 }
+\arguments{
+\item{multi_daisie_data}{A list of \code{daisie_data} elements}
+}
 \value{
 nothing
 }
@@ -21,7 +24,7 @@ An \code{multi_daisie_data} ...
 }
 }
 \examples{
-daisie_data <- sim_island_with_mainland(
+daisie_mainland_data <- sim_island_with_mainland(
   total_time = 1,
   m = 100,
   island_pars = c(1, 1, 50, 0.1, 1),

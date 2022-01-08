@@ -6,6 +6,9 @@
 \usage{
 calc_num_spec(multi_daisie_data)
 }
+\arguments{
+\item{multi_daisie_data}{A list of \code{daisie_data} elements}
+}
 \value{
 Numeric vector number of species for each island replicate
 }

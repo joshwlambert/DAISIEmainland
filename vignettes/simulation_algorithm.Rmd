@@ -60,11 +60,13 @@ set.seed(
   normal.kind = "Inversion",
   sample.kind = "Rejection"
 )
-island <- DAISIEmainland:::sim_island(total_time = 1,
-                     island_pars = c(1, 1, 10, 1, 1),
-                     mainland_clade = mainland[[1]],
-                     mainland_sample_prob = 1,
-                     mainland_sample_type = "complete")
+island_tbl <- DAISIEmainland:::sim_island(
+  total_time = 1,
+  island_pars = c(1, 1, 10, 1, 1),
+  mainland_clade = mainland[[1]],
+  mainland_sample_prob = 1,
+  mainland_sample_type = "complete"
+)
 ```
 
 For both the island and mainland Doob-Gillespie algorithms time steps are

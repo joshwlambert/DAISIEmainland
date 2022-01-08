@@ -65,7 +65,8 @@ default_params_doc(
   transform,
   mainland,
   island,
-  age
+  age,
+  multi_daisie_data
 )
 }
 \arguments{
@@ -450,6 +451,8 @@ cladogenetic or immigrant origin, respectively.}
 }}
 
 \item{age}{Numeric defining age of singleton species}
+
+\item{multi_daisie_data}{A list of \code{daisie_data} elements}
 }
 \value{
 Nothing

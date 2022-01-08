@@ -31,6 +31,7 @@
 #'
 #' @export
 check_empirical_island <- function(empirical_island) {
+  #TODO I think this can be deleted due to the change in sim_island output
   # Data types have the same form
   DAISIEmainland::check_ideal_island(empirical_island)
 }

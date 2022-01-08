@@ -12,7 +12,7 @@
 #' @return nothing
 #'
 #' @examples
-#' daisie_data <- sim_island_with_mainland(
+#' daisie_mainland_data <- sim_island_with_mainland(
 #'   total_time = 1,
 #'   m = 100,
 #'   island_pars = c(1, 1, 50, 0.1, 1),

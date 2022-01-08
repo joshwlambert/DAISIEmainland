@@ -1,4 +1,5 @@
 test_that("empty island", {
+  skip("this can be deleted as it checks the old output of sim_island")
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -16,6 +17,7 @@ test_that("empty island", {
 })
 
 test_that("island with two clades", {
+  skip("this can be deleted as it checks the old output of sim_island")
   set.seed(
     2,
     kind = "Mersenne-Twister",
@@ -34,6 +36,7 @@ test_that("island with two clades", {
 })
 
 test_that("detect an invalid clade", {
+  skip("this can be deleted as it checks the old output of sim_island")
   set.seed(
     2,
     kind = "Mersenne-Twister",

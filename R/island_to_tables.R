@@ -10,7 +10,7 @@
 #'
 #' @export
 island_to_tables <- function(island) {
-
+  #TODO I think this can be deleted due to the change in sim_island output
   tables <- list()
   tables$empirical_island <- empirical_island_to_tables(
     empirical_island = island$empirical_island
@@ -42,6 +42,7 @@ island_to_tables <- function(island) {
 #'   * `colonisations`: a table with colonisations
 #' @export
 empirical_island_to_tables <- function(empirical_island) {
+  #TODO I think this can be deleted due to the change in sim_island output
   # It is exactly the same
   DAISIEmainland::ideal_island_to_tables(ideal_island = empirical_island)
 }
@@ -53,6 +54,7 @@ empirical_island_to_tables <- function(empirical_island) {
 #'   * `colonisations`: a table with colonisations
 #' @export
 ideal_island_to_tables <- function(ideal_island) {
+  #TODO I think this can be deleted due to the change in sim_island output
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable

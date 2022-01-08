@@ -1,4 +1,5 @@
 test_that("format_to_daisie_data_core works with empty island", {
+  skip("this is an old function that will be deleted")
   island_clade_1 <- list(list(branching_times = 1,
                               stac = 0,
                               missing_species = 0))
@@ -19,6 +20,7 @@ test_that("format_to_daisie_data_core works with empty island", {
 })
 
 test_that("format_to_daisie_data works with non-empty island", {
+  skip("this is an old function that will be deleted")
   island_clade_1 <- list(list(branching_times = c(1, 0.057),
                               stac = 4,
                               missing_species = 0))

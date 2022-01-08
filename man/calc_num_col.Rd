@@ -6,6 +6,9 @@
 \usage{
 calc_num_col(multi_daisie_data)
 }
+\arguments{
+\item{multi_daisie_data}{A list of \code{daisie_data} elements}
+}
 \value{
 Numeric vector number of colonisations for each island replicate
 }

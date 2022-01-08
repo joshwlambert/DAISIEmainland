@@ -1,6 +1,6 @@
-#' Check if an `island` is valid.
+#' Check if an `island_tbl` is valid.
 #'
-#' Check if an `island` is valid.
+#' Check if an `island_tbl` is valid.
 #' Will \link{stop} if not.
 #'
 #' @inheritParams default_params_doc
@@ -16,25 +16,27 @@
 #' )
 #' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
 #'   mainland_scenario = 2)
-#' island <- DAISIEmainland:::sim_island(
+#' island_tbl <- DAISIEmainland:::sim_island(
 #'   total_time = 1,
 #'   island_pars = c(1, 1, 10, 1, 1),
 #'   mainland = mainland_clade,
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete")
 #'
-#' check_island(island)
-#' @author Richèl J.C. Bilderbeek
+#' check_island(island_tbl)
+#' @author Richèl J.C. Bilderbeek, Joshua W. Lambert
 #'
 #' @export
-check_island <- function(island) {
-  testthat::expect_true(is.list(island))
-  testthat::expect_true("ideal_island" %in% names(island))
-  testthat::expect_true("empirical_island" %in% names(island))
-  DAISIEmainland::check_ideal_island(island$ideal_island)
-  DAISIEmainland::check_empirical_island(island$empirical_island)
+check_island_tbl <- function(island_tbl) {
+  testit::assert(is.data.frame(island_tbl))
+  testit::assert(identical(ncol(island_tbl), 7L))
+  testit::assert(identical(
+    names(island_tbl),
+    c("spec_id", "main_anc_id", "col_t", "spec_type",
+      "branch_code", "branch_t", "ana_origin" )
+  ))
 
   # As function is mainly called for side effect, see
   # See https://style.tidyverse.org/functions.html#return
-  invisible(island)
+  invisible(island_tbl)
 }

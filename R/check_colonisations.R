@@ -39,6 +39,7 @@
 #'
 #' @export
 check_colonisations <- function(colonisations) {
+  #TODO I think this should be merged into check_daisie_data
   testthat::expect_true(is.list(colonisations))
   testthat::expect_true("event_times" %in% names(colonisations))
   testthat::expect_true("species_type" %in% names(colonisations))
