@@ -70,9 +70,13 @@ plot_island_tbl <- function(total_time,
   island_tbl$spec_ex_t[island_tbl$branch_t == island_tbl$col_t] <- total_time
   island_tbl$spec_ex_t[is.nan(island_tbl$spec_ex_t)] <- total_time
 
+  # When they come into existence, x coordiant for vertical lines
+  # island_tbl$spec_origin_t <- island_tbl$col_t
+
+
   # Draw lines, with time going from past/left to present/right
   # x1 = x = col_t                                                              # nolint this is no commented code
-  # x2 = till the end, unless cladgenetic, then until ...?                                                       # nolint this is no commented code
+  # x2 = spec_ex_t                                                              # nolint this is no commented code
   # y1 = spec_id                                                  # nolint this is no commented code
   # y2 = spec_id                                               # nolint this is no commented code
   # color = unique_species_id                                                   # nolint this is no commented code
@@ -84,7 +88,7 @@ plot_island_tbl <- function(total_time,
       ggplot2::aes(
         x = col_t,
         y = spec_id,
-        xend = total_time,
+        xend = spec_ex_t,
         yend = spec_id,
         col = species_type_str)
       ) +
