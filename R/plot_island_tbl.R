@@ -52,7 +52,7 @@
 #' @export
 plot_island_tbl <- function(island_tbl) {
 
-  DAISIEmainland::check_island_tbl(island)
+  DAISIEmainland::check_island_tbl(island_tbl)
 
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
@@ -61,20 +61,20 @@ plot_island_tbl <- function(island_tbl) {
   event_times <- NULL; rm(event_times) # nolint, fixes warning: no visible binding for global variable
   species_type_str <- NULL; rm(species_type_str) # nolint, fixes warning: no visible binding for global variable
 
-  t <- island_tbl
+
 
   # Convert species_type to factor species_type_str
-  t$colonisations$species_type_str <- as.character(Vectorize(
-      DAISIEmainland::species_type_to_str)(t$colonisations$species_type))
-  t$colonisations$species_type_str <- as.factor(t$colonisations$species_type_str)
+  island_tbl$species_type_str <- as.character(Vectorize(
+      DAISIEmainland::species_type_to_str)(island_tbl$spec_type))
+  island_tbl$species_type_str <- as.factor(island_tbl$species_type_str)
 
   # Draw lines, with time going from past/left to present/right
-  # x1 = x = branching_times                                                    # nolint this is no commented code
-  # NO IDEA YET x2 = xend = spec_ex_t                                           # nolint this is no commented code
-  # y1 = y = unique_species_id                                                  # nolint this is no commented code
-  # y2 = yend = unique_species_id                                               # nolint this is no commented code
+  # x1 = x = col_t                                                              # nolint this is no commented code
+  # x2 = till the end, unless cladgenetic, then until ...?                                                       # nolint this is no commented code
+  # y1 = spec_id                                                  # nolint this is no commented code
+  # y2 = spec_id                                               # nolint this is no commented code
   # color = unique_species_id                                                   # nolint this is no commented code
-  ggplot2::ggplot(data = t$speciations) +
+  ggplot2::ggplot(data = island_tbl) +
     ggplot2::geom_vline(
       data = t$colonisations,
       ggplot2::aes(xintercept = event_times, linetype = species_type_str)

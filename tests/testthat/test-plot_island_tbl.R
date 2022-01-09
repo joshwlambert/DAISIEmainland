@@ -19,7 +19,7 @@ test_that("interesting picture, no recolonisations", {
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island(island)
+  plot_island_tbl(island_tbl)
 })
 
 test_that("interesting picture, with recolonisation", {
