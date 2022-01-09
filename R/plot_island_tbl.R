@@ -50,7 +50,8 @@
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-plot_island_tbl <- function(island_tbl) {
+plot_island_tbl <- function(total_time,
+                            island_tbl) {
 
   DAISIEmainland::check_island_tbl(island_tbl)
 
@@ -76,15 +77,19 @@ plot_island_tbl <- function(island_tbl) {
   # color = unique_species_id                                                   # nolint this is no commented code
   ggplot2::ggplot(data = island_tbl) +
     ggplot2::geom_vline(
-      data = t$colonisations,
-      ggplot2::aes(xintercept = event_times, linetype = species_type_str)
+      ggplot2::aes(xintercept = 0), lty = 2
     ) +
+    ggplot2::geom_segment(
+      ggplot2::aes(
+        x = col_t,
+        y = spec_id,
+        xend = total_time,
+        yend = spec_id)
+      ) +
     ggplot2::geom_point(
       ggplot2::aes(
-        x = branching_times,
-        y = unique_species_id,
-        color = unique_species_id,
-        shape = stac_str
+        x = col_t,
+        y = spec_id
       ),
       size = 3
     ) +
