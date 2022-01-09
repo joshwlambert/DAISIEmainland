@@ -1,7 +1,7 @@
 test_that("interesting picture, no recolonisations", {
   skip("temp skip in refactor")
   set.seed(
-    13,
+    3,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"

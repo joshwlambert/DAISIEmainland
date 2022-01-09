@@ -60,13 +60,15 @@ plot_island_tbl <- function(total_time,
   spec_id <- NULL; rm(spec_id) # nolint, fixes warning: no visible binding for global variable
   species_type_str <- NULL; rm(species_type_str) # nolint, fixes warning: no visible binding for global variable
 
-
-
-
   # Convert species_type to factor species_type_str
   island_tbl$species_type_str <- as.character(Vectorize(
       DAISIEmainland::species_type_to_str)(island_tbl$spec_type))
   island_tbl$species_type_str <- as.factor(island_tbl$species_type_str)
+
+  # add extinction times to island_tbl
+  island_tbl$spec_ex_t <- island_tbl$branch_t
+  island_tbl$spec_ex_t[island_tbl$branch_t == island_tbl$col_t] <- total_time
+  island_tbl$spec_ex_t[is.nan(island_tbl$spec_ex_t)] <- total_time
 
   # Draw lines, with time going from past/left to present/right
   # x1 = x = col_t                                                              # nolint this is no commented code
