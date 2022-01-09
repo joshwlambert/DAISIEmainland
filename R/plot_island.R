@@ -39,20 +39,20 @@
 #' )
 #' mainland_clade <- mainland[[1]]
 #' plot_mainland_clade(mainland_clade)
-#' island <- DAISIEmainland:::sim_island(
+#' island_tbl <- DAISIEmainland:::sim_island(
 #'   total_time = 1,
 #'   island_pars = c(1, 1, 10, 12, 1),
 #'   mainland = mainland_clade,
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete")
-#' plot_island(island)
+#' plot_island_tbl(island_tbl)
 #'
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-plot_island <- function(island) {
+plot_island_tbl <- function(island_tbl) {
 
-  DAISIEmainland::check_island(island)
+  DAISIEmainland::check_island_tbl(island)
 
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
@@ -61,7 +61,7 @@ plot_island <- function(island) {
   event_times <- NULL; rm(event_times) # nolint, fixes warning: no visible binding for global variable
   species_type_str <- NULL; rm(species_type_str) # nolint, fixes warning: no visible binding for global variable
 
-  t <- DAISIEmainland::island_to_tables(island)
+  t <- island_tbl
 
   # Convert species_type to factor species_type_str
   t$colonisations$species_type_str <- as.character(Vectorize(
