@@ -33,8 +33,7 @@ Imports:
     testit,
     ggplot2,
     cowplot,
-    scales,
-    ggtree
+    scales
 Suggests: 
     DAISIE (>= 4.0.5),
     lintr,
@@ -47,5 +46,4 @@ RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Remotes: 
     rsetienne/DAISIE@onto_IW,
-    thijsjanzen/nLTT,
-    YuLab-SMU/ggtree
+    thijsjanzen/nLTT
