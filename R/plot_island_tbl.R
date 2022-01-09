@@ -56,11 +56,10 @@ plot_island_tbl <- function(total_time,
   DAISIEmainland::check_island_tbl(island_tbl)
 
   # Fix build warnings
-  branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
-  unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
-  stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
-  event_times <- NULL; rm(event_times) # nolint, fixes warning: no visible binding for global variable
+  col_t <- NULL; rm(col_t) # nolint, fixes warning: no visible binding for global variable
+  spec_id <- NULL; rm(spec_id) # nolint, fixes warning: no visible binding for global variable
   species_type_str <- NULL; rm(species_type_str) # nolint, fixes warning: no visible binding for global variable
+
 
 
 
@@ -84,7 +83,8 @@ plot_island_tbl <- function(total_time,
         x = col_t,
         y = spec_id,
         xend = total_time,
-        yend = spec_id)
+        yend = spec_id,
+        col = species_type_str)
       ) +
     ggplot2::geom_point(
       ggplot2::aes(
@@ -92,10 +92,11 @@ plot_island_tbl <- function(total_time,
         y = spec_id
       ),
       size = 3
-    ) +
-    ggplot2::facet_grid(
-      clade_id ~ data_type,
-      scales = "free",
-      space = "free"
     )
+  # +
+  #   ggplot2::facet_grid(
+  #     clade_id ~ data_type,
+  #     scales = "free",
+  #     space = "free"
+  #   )
 }

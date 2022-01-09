@@ -6,8 +6,9 @@ test_that("interesting picture, no recolonisations", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
+  total_time <- 10.0
   mainland <- sim_mainland(
-    total_time = 10,
+    total_time = total_time,
     m = 10,
     mainland_ex = 1.0
   )
@@ -19,7 +20,7 @@ test_that("interesting picture, no recolonisations", {
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island_tbl(island_tbl)
+  plot_island_tbl(total_time = total_time, island_tbl = island_tbl)
 })
 
 test_that("interesting picture, with recolonisation", {
