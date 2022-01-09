@@ -23,7 +23,7 @@ test_that("interesting island, with recolonisations", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
 
-  plot_island(island)
+  plot_island_tbl(island)
   daisie_data <- format_to_daisie_data(
     island_replicates = island,
     total_time = 1,
@@ -61,7 +61,7 @@ test_that("search for non-dull scenario", {
       mainland_sample_prob = 1,
       mainland_sample_type = "complete")
 
-    plot_island(island)
+    plot_island_tbl(island)
     daisie_data <- format_to_daisie_data(
       island_replicates = island,
       total_time = total_time,

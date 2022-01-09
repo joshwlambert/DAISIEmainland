@@ -4,9 +4,12 @@
 \alias{plot_island_tbl}
 \title{Plot the simulated island, based on ideal and empirical data.}
 \usage{
-plot_island_tbl(island_tbl)
+plot_island_tbl(total_time, island_tbl)
 }
 \arguments{
+\item{total_time}{Numeric defining the length of the simulation in time
+units.}
+
 \item{island_tbl}{Data frame with current state of simulation containing
 number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 }

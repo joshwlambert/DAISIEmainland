@@ -47,7 +47,7 @@ test_that("interesting picture, with recolonisation", {
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island(island)
+  plot_island_tbl(island)
 })
 
 test_that("stac == 6", {
@@ -72,5 +72,5 @@ test_that("stac == 6", {
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island(island)
+  plot_island_tbl(island)
 })

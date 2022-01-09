@@ -48,7 +48,7 @@ island <- DAISIEmainland:::sim_island(
   mainland = mainland_clade,
   mainland_sample_prob = 1,
   mainland_sample_type = "complete")
-plot_island(island)
+plot_island_tbl(island)
 daisie_data <- DAISIEmainland:::format_to_daisie_data(
   island_replicates = island,
   total_time = total_time,

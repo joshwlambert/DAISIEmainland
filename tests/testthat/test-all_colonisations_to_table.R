@@ -16,7 +16,7 @@ test_that("use", {
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island(island = island)
+  plot_island_tbl(island = island)
   t <- all_colonisations_to_table(
     ideal_or_empirical_island = island$ideal_island
   )
