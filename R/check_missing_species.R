@@ -24,7 +24,5 @@ check_missing_species <- function(missing_species) {
   testthat::expect_true(missing_species >= 0)
   testthat::expect_true(is.finite(missing_species))
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(missing_species)
 }

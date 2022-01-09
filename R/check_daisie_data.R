@@ -54,7 +54,5 @@ check_daisie_data <- function(daisie_data) {
     # optional names are 'colonist_name' and 'type1or2'
   }
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(daisie_data)
 }

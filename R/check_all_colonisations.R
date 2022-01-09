@@ -55,8 +55,5 @@ check_all_colonisations <- function(all_colonisations) {
       }
     )
   }
-
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(all_colonisations)
 }

@@ -31,8 +31,5 @@ check_island_replicates <- function(island_replicates) {
       )
     }
   }
-
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(island_replicates)
 }

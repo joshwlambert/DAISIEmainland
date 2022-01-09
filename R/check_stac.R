@@ -28,7 +28,5 @@ check_stac <- function(stac) {
   testthat::expect_true(stac >= 0)
   testthat::expect_true(stac <= 6)
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(stac)
 }

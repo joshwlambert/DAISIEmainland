@@ -32,7 +32,5 @@ check_species_type <- function(species_type) {
   testthat::expect_true(is.character(species_type))
   testthat::expect_true(species_type %in% c("A", "C", "I"))
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(species_type)
 }

@@ -33,7 +33,5 @@
 check_event_times <- function(event_times) {
   DAISIEmainland::check_branching_times(event_times)
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(event_times)
 }

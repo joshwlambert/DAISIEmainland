@@ -46,7 +46,5 @@ check_ideal_island <- function(ideal_island) {
       }
     )
   }
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(ideal_island)
 }

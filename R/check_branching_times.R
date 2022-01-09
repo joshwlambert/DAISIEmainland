@@ -39,7 +39,5 @@ check_branching_times <- function(branching_times) {
   # Must be in descending order
   testthat::expect_true(!is.unsorted(rev(branching_times)))
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(branching_times)
 }

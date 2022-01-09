@@ -33,8 +33,6 @@ check_mainland_clade <- function(mainland_clade) {
       "branch_t", "spec_origin_t", "spec_ex_t")
   ))
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(mainland_clade)
 }
 

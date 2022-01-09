@@ -36,7 +36,5 @@ check_island_tbl <- function(island_tbl) {
       "branch_code", "branch_t", "ana_origin" )
   ))
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(island_tbl)
 }

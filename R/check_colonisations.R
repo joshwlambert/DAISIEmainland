@@ -46,7 +46,5 @@ check_colonisations <- function(colonisations) {
   DAISIEmainland::check_event_times(colonisations$event_times)
   DAISIEmainland::check_species_type(colonisations$species_type)
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(colonisations)
 }

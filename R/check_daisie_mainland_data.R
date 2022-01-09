@@ -32,7 +32,5 @@ check_daisie_mainland_data <- function(daisie_mainland_data) {
     multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data
   )
 
-  # As function is mainly called for side effect, see
-  # See https://style.tidyverse.org/functions.html#return
   invisible(daisie_mainland_data)
 }
