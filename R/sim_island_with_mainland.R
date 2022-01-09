@@ -130,20 +130,10 @@ sim_island_with_mainland <- function(total_time,
     multi_daisie_data[[rep]] <- daisie_data_list
   }
 
-  if (1 == 2) {
-    # Commented out temporarily for speed
-    DAISIEmainland::check_island_replicates(island_replicates) # TODO: remove, #45
-  }
-
   daisie_mainland_data <- group_multi_daisie_data(
     multi_daisie_data = multi_daisie_data,
     total_time = total_time,
     m = m)
-
-  #daisie_data <- format_to_daisie_data(
-  #  island_replicates = island_replicates,
-  #  total_time = total_time,
-  #  m = m)
 
   ideal_multi_daisie_data <- add_metadata_to_daisie_data(
     multi_daisie_data = daisie_mainland_data$ideal_multi_daisie_data,

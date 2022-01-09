@@ -153,12 +153,6 @@ probability of an extant mainland species being sampled.}
 species on the mainland, "undiscovered" for undiscovered species on the
 mainland, or "complete" if the mainland sampling probability is one.}
 
-\item{island_replicates}{a \link{list} of that has as many elements as
-replicates. Each element is a \link{list} of \code{islands} (as checked
-by \link{check_island}).
-Use \link{check_island_replicates} to check a \code{island_replicates}
-being correct}
-
 \item{m}{Numeric defining the size of mainland pool.}
 
 \item{verbose}{Logical, determining if progress output should be printed
