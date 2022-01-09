@@ -10,13 +10,13 @@ test_that("use", {
     mainland_scenario = 20
   )
   plot_mainland_clade(mainland_clade)
-  island <- sim_island(
+  island_tbl <- sim_island(
     total_time = 1,
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island_tbl(island = island)
+  plot_island_tbl(island_tbl = island_tbl)
   t <- all_colonisations_to_table(
     ideal_or_empirical_island = island$ideal_island
   )
@@ -36,7 +36,7 @@ test_that("stress-test", {
     mainland_clade <- create_test_mainland_clade(
       mainland_scenario = mainland_scenario
     )
-    island <- sim_island(
+    island_tbl <- sim_island(
       total_time = 1,
       island_pars = c(1, 1, 10, 12, 1),
       mainland = mainland_clade,
