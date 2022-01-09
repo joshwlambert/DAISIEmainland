@@ -11,17 +11,11 @@ functions allow for checking the types.
 
 ### `daisie_mainland_data`
 
-* A list of 2 elements, `$ideal_daisie_data` and `$empirical_daisie_data`.
+* A list of 2 elements, `$ideal_multi_daisie_data` and
+`$empirical_multi_daisie_data`.
 Each of these elements is in the format `daisie_data` (see below).
 
 Function to check if it is a daisie_mainland_data is `is_daisie_mainland_data`
-
-### `multi_daisie_mainland_data`
-
-* A list of `daisie_mainland_data` objects.
-
-Function to check if it is a multi_daisie_mainland is
-`is_multi_daisie_mainland_data`
 
 ### `daisie_data`
 
@@ -49,7 +43,7 @@ subsequent branching times (all given in time before the present).
 
 * A list of `mainland_clade` objects.
 
-### island_tbl
+### `island_tbl`
 
 * A data frame of the island species output from `sim_island` and then converted
 to the `daisie_data` format by `create_island`.

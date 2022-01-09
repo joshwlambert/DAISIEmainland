@@ -55,16 +55,18 @@ daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
 ```
 
 Now we have the data (stored in the island object), which is a list object.
-At the highest level of the list there are two lists (`island$ideal_islands` and
-`island$empirical_islands`). The first (`island$ideal_islands`) contains 1
-element, if more replicates where run each element of `island$ideal_islands` 
-is one replicate. The `island$ideal_islands` and `island$empirical_islands` 
-have the same structure. The first element of each is the `island_age` and the 
+At the highest level of the list there are two lists
+(`daisie_mainland_data$ideal_multi_daisie_data` and
+`daisie_mainland_data$empirical_multi_daisie_data`). The first
+(`daisie_mainland_data$ideal_multi_daisie_data`) contains 1
+element, if more replicates where run each element of `daisie_mainland_data$ideal_multi_daisie_data` 
+is one replicate. The `daisie_mainland_data$ideal_multi_daisie_data` and `daisie_mainland_data$empirical_multi_daisie_data` have the same structure.
+The first element of each is the meta data, containing: `island_age` and the 
 number of species `not_present` on the island that are on the mainland.
 
 ```{r Inspect data part 1}
-island$ideal_islands[[1]][[1]]
-island$empirical_islands[[1]][[1]]
+daisie_mainland_data$ideal_multi_daisie_data[[1]][[1]]
+daisie_mainland_data$empirical_multi_daisie_data[[1]][[1]]
 ```
 
 Subsequent elements of the list are the island clades which are composed of:
@@ -72,8 +74,8 @@ Subsequent elements of the list are the island clades which are composed of:
 `missing_species`.
 
 ```{r Inspect data part 2}
-island$ideal_islands[[1]][[2]]
-island$empirical_islands[[1]][[2]]
+daisie_mainland_data$ideal_multi_daisie_data[[1]][[2]]
+daisie_mainland_data$empirical_multi_daisie_data[[1]][[2]]
 ```
   
 To run a maximum likelihood DAISIE model on each replicate we create objects to
@@ -86,7 +88,7 @@ empirical_ml <- vector("list", replicates)
 
 for (i in seq_len(replicates)) {
   ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-    datalist = island$ideal_islands[[i]],
+    datalist = daisie_mainland_data$ideal_multi_daisie_data[[i]],
     initparsopt = c(1, 1, 50, 0.1, 1),
     idparsopt = 1:5,
     parsfix = NULL,
@@ -97,7 +99,7 @@ for (i in seq_len(replicates)) {
     jitter = 1e-5)
   
   empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-    datalist = island$empirical_islands[[i]],
+    datalist = daisie_mainland_data$empirical_multi_daisie_data[[i]],
     initparsopt = c(1, 1, 50, 0.1, 1),
     idparsopt = 1:5,
     parsfix = NULL,
@@ -114,7 +116,7 @@ the maximum likelihood estimates.
 
 ```{r Calculate error}
 errors <- DAISIEmainland::calc_error(
-  daisie_data = island,
+  daisie_mainland_data = daisie_mainland_data,
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml)
 ```
