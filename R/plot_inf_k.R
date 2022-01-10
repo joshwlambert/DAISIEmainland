@@ -5,7 +5,8 @@
 #' @return Void (saves plot)
 #' @export
 plot_inf_k <- function(analysis_results,
-                       output_file_path) {
+                       output_file_path,
+                       labels = NULL) {
 
   ideal_ml <- lapply(analysis_results, "[[", "ideal_ml")
   empirical_ml <- lapply(analysis_results, "[[", "empirical_ml")
@@ -108,7 +109,7 @@ plot_inf_k <- function(analysis_results,
   k_inf_plot <- cowplot::plot_grid(k_5_plot,
                                    k_50_plot,
                                    nrow = 1,
-                                   labels = c("A", "B"),
+                                   labels = labels,
                                    label_size = 10)
 
   if (!is.null(output_file_path)) {

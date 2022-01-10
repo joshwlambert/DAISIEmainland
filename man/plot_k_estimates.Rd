@@ -11,7 +11,8 @@ plot_k_estimates(
   parameter,
   num_breaks,
   signif,
-  scientific
+  scientific,
+  labels = NULL
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ labels have when plotting}
 
 \item{scientific}{A boolean determining whether the axis labels will be
 converted to scientific notation}
+
+\item{labels}{A string or vector of strings to label the plotting grid}
 }
 \value{
 Void (saves plot)

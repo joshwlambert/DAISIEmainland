@@ -66,7 +66,8 @@ default_params_doc(
   island,
   age,
   multi_daisie_data,
-  analysis_results
+  analysis_results,
+  labels
 )
 }
 \arguments{
@@ -450,6 +451,8 @@ cladogenetic or immigrant origin, respectively.}
 
 \item{analysis_results}{A list of analysis result elements which can be
 checked with \code{check_analysis_result}}
+
+\item{labels}{A string or vector of strings to label the plotting grid}
 }
 \value{
 Nothing

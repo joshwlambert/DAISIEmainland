@@ -8,7 +8,8 @@
 #' @export
 plot_endemics <- function(analysis_results,
                           output_file_path,
-                          parameter) {
+                          parameter,
+                          labels = NULL) {
 
   testit::assert(
     "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
@@ -135,7 +136,7 @@ plot_endemics <- function(analysis_results,
   }
 
   endemics <- cowplot::plot_grid(ideal_endemics, empirical_endemics,
-                                 labels = c("C", "D"),
+                                 labels = labels,
                                  label_size = 10)
 
   if (!is.null(output_file_path)) {

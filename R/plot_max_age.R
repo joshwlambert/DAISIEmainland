@@ -8,7 +8,8 @@
 #' @export
 plot_max_age <- function(analysis_results,
                          output_file_path,
-                         parameter) {
+                         parameter,
+                         labels) {
 
   testit::assert(
     "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
@@ -135,7 +136,7 @@ plot_max_age <- function(analysis_results,
   }
 
   max_age <- cowplot::plot_grid(ideal_max_age, empirical_max_age,
-                                labels = c("A", "B"),
+                                labels = labels,
                                 label_size = 10)
 
   if (!is.null(output_file_path)) {

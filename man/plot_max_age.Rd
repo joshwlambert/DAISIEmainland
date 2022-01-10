@@ -6,7 +6,7 @@
 island for different values of mainland extinction. The left side facet has
 the ideal data and the right side facet has the empirical data.}
 \usage{
-plot_max_age(analysis_results, output_file_path, parameter)
+plot_max_age(analysis_results, output_file_path, parameter, labels)
 }
 \arguments{
 \item{analysis_results}{A list of analysis result elements which can be
@@ -19,6 +19,8 @@ in, if NULL the file is returned to console and not saved}
 "mainland_ex" plots mainland extinction as the variable,
 "mainland_sample_prob" plots mainland sampling probability as the variable
 and "both" plots all the data}
+
+\item{labels}{A string or vector of strings to label the plotting grid}
 }
 \value{
 Plot

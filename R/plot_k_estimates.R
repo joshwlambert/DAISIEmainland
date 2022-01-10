@@ -10,7 +10,8 @@ plot_k_estimates <- function(analysis_results,
                              parameter,
                              num_breaks,
                              signif,
-                             scientific) {
+                             scientific,
+                             labels = NULL) {
 
   testit::assert(
     "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
@@ -309,7 +310,7 @@ plot_k_estimates <- function(analysis_results,
     ideal_k_50, empirical_k_50,
     nrow = 4,
     rel_heights = c(0.1, 1, 0.1, 1),
-    labels = c("", "", "A", "B", "", "", "C", "D"),
+    labels = labels,
     label_size = 10)
 
   if (!is.null(output_file_path)) {
