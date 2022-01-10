@@ -31,6 +31,5 @@ check_daisie_mainland_data <- function(daisie_mainland_data) {
   DAISIEmainland::check_multi_daisie_data(
     multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data
   )
-
   invisible(daisie_mainland_data)
 }

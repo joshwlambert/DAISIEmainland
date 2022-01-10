@@ -49,4 +49,5 @@ check_multi_daisie_data <- function(multi_daisie_data) {
       }
     )
   }
+  invisible(multi_daisie_data)
 }

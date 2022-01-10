@@ -14,11 +14,11 @@
 check_analysis_result <- function(analysis_result) {
   testit::assert(identical(
     names(analysis_result),
-    c("island", "ideal_ml", "empirical_ml", "ideal_sim_metrics",
+    c("daisie_mainland_data", "ideal_ml", "empirical_ml", "ideal_sim_metrics",
       "empirical_sim_metrics", "error", "sim_params")
     ))
   testit::assert(identical(length(analysis_result), 7L))
-  testit::assert(check_daisie_mainland_data(analysis_result$island))
+  check_daisie_mainland_data(analysis_result$daisie_mainland_data)
   testit::assert(all(sapply(analysis_result$ideal_ml, is.data.frame)))
   testit::assert(all(sapply(analysis_result$ideal_ml, function(x) {
     identical(
