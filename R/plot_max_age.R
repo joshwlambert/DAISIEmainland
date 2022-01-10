@@ -9,7 +9,7 @@
 plot_max_age <- function(analysis_results,
                          output_file_path,
                          parameter,
-                         labels) {
+                         labels = NULL) {
 
   testit::assert(
     "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
