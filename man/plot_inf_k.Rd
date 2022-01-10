@@ -4,11 +4,11 @@
 \alias{plot_inf_k}
 \title{Plots the percentage of carrying capacity (K') estimates that are infinite}
 \usage{
-plot_inf_k(data_folder_path, output_file_path)
+plot_inf_k(analysis_results, output_file_path)
 }
 \arguments{
-\item{data_folder_path}{String specifying the directory the data is read
-from}
+\item{analysis_results}{A list of analysis result elements which can be
+checked with \code{check_analysis_result}}
 
 \item{output_file_path}{String specifying the directory the file is saved
 in, if NULL the file is returned to console and not saved}

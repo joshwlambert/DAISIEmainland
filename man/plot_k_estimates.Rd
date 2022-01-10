@@ -6,7 +6,7 @@
 data for two different values of K'.}
 \usage{
 plot_k_estimates(
-  data_folder_path,
+  analysis_results,
   output_file_path,
   parameter,
   num_breaks,
@@ -15,8 +15,8 @@ plot_k_estimates(
 )
 }
 \arguments{
-\item{data_folder_path}{String specifying the directory the data is read
-from}
+\item{analysis_results}{A list of analysis result elements which can be
+checked with \code{check_analysis_result}}
 
 \item{output_file_path}{String specifying the directory the file is saved
 in, if NULL the file is returned to console and not saved}

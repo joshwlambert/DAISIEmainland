@@ -27,7 +27,6 @@ default_params_doc(
   mainland_spec,
   mainland_sample_prob,
   mainland_sample_type,
-  island_replicates,
   m,
   verbose,
   rates,
@@ -66,7 +65,8 @@ default_params_doc(
   mainland,
   island,
   age,
-  multi_daisie_data
+  multi_daisie_data,
+  analysis_results
 )
 }
 \arguments{
@@ -447,6 +447,9 @@ cladogenetic or immigrant origin, respectively.}
 \item{age}{Numeric defining age of singleton species}
 
 \item{multi_daisie_data}{A list of \code{daisie_data} elements}
+
+\item{analysis_results}{A list of analysis result elements which can be
+checked with \code{check_analysis_result}}
 }
 \value{
 Nothing

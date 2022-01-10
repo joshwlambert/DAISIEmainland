@@ -4,20 +4,11 @@
 #'
 #' @return Void (saves plot)
 #' @export
-plot_inf_k <- function(data_folder_path,
+plot_inf_k <- function(analysis_results,
                        output_file_path) {
 
-  files <- list.files(data_folder_path)
-
-  if (length(files) == 0) {
-    stop("No results are in the results directory")
-  } else {
-    file_paths <- as.list(paste0(data_folder_path, "/", files))
-    results_list <- lapply(file_paths, readRDS)
-  }
-
-  ideal_ml <- lapply(results_list, "[[", "ideal_ml")
-  empirical_ml <- lapply(results_list, "[[", "empirical_ml")
+  ideal_ml <- lapply(analysis_results, "[[", "ideal_ml")
+  empirical_ml <- lapply(analysis_results, "[[", "empirical_ml")
   ideal_k <- lapply(ideal_ml, function(x) {
     unlist(lapply(x, "[[", "K"))
   })
@@ -36,7 +27,7 @@ plot_inf_k <- function(data_folder_path,
   percent_ideal_k_inf <- (num_ideal_inf_k / num_ideal_k) * 100
   percent_empirical_k_inf <- (num_empirical_inf_k / num_empirical_k) * 100
 
-  sim_params_list <- lapply(results_list, "[[", "sim_params")
+  sim_params_list <- lapply(analysis_results, "[[", "sim_params")
   mainland_ex <- unlist(lapply(sim_params_list, "[[", "mainland_ex"))
   mainland_sample_prob <- unlist(lapply(sim_params_list, "[[",
                                         "mainland_sample_prob"))

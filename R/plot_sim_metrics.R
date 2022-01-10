@@ -7,20 +7,11 @@
 #' and histogram of the rank of the largest clade
 #' @author Joshua W. Lambert
 #' @export plot_sim_metrics
-plot_sim_metrics <- function(data_folder_path,
+plot_sim_metrics <- function(analysis_results,
                              output_file_path) {
 
-  files <- list.files(data_folder_path)
-
-  if (length(files) == 0) {
-    stop("No results are in the results directory")
-  } else {
-    file_paths <- as.list(paste0(data_folder_path, "/", files))
-    results_list <- lapply(file_paths, readRDS)
-  }
-
-  ideal_sim_metrics_list <- lapply(results_list, "[[", "ideal_sim_metrics")
-  empirical_sim_metrics_list <- lapply(results_list,
+  ideal_sim_metrics_list <- lapply(analysis_results, "[[", "ideal_sim_metrics")
+  empirical_sim_metrics_list <- lapply(analysis_results,
                                        "[[",
                                        "empirical_sim_metrics")
 

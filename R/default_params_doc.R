@@ -314,6 +314,8 @@
 #' }
 #' @param age Numeric defining age of singleton species
 #' @param multi_daisie_data A list of `daisie_data` elements
+#' @param analysis_results A list of analysis result elements which can be
+#' checked with `check_analysis_result`
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -377,6 +379,7 @@ default_params_doc <- function(all_colonisations,
                                mainland,
                                island,
                                age,
-                               multi_daisie_data) {
+                               multi_daisie_data,
+                               analysis_results) {
   #Nothing
 }

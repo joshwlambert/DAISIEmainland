@@ -6,7 +6,7 @@
 #'
 #' @return Void (saves plot)
 #' @export
-plot_ctt_boxplot <- function(data_folder_path,
+plot_ctt_boxplot <- function(analysis_results,
                              output_file_path,
                              parameter) {
 
@@ -15,17 +15,8 @@ plot_ctt_boxplot <- function(data_folder_path,
     parameter == "mainland_ex" || parameter == "unsampled" ||
       parameter == "undiscovered")
 
-  files <- list.files(data_folder_path)
-
-  if (length(files) == 0) {
-    stop("No results are in the results directory")
-  } else {
-    file_paths <- as.list(paste0(data_folder_path, "/", files))
-    results_list <- lapply(file_paths, readRDS)
-  }
-
-  error_list <- lapply(results_list, "[[", "error")
-  sim_params_list <- lapply(results_list, "[[", "sim_params")
+  error_list <- lapply(analysis_results, "[[", "error")
+  sim_params_list <- lapply(analysis_results, "[[", "sim_params")
 
   ctt_list <- lapply(error_list, "[[", "delta_ctt")
   upper_ylim <- max(unlist(ctt_list)) + 0.05

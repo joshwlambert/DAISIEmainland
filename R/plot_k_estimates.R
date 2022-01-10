@@ -5,7 +5,7 @@
 #'
 #' @return Void (saves plot)
 #' @export
-plot_k_estimates <- function(data_folder_path,
+plot_k_estimates <- function(analysis_results,
                              output_file_path,
                              parameter,
                              num_breaks,
@@ -17,17 +17,8 @@ plot_k_estimates <- function(data_folder_path,
     parameter == "mainland_ex" || parameter == "unsampled" ||
       parameter == "undiscovered")
 
-  files <- list.files(data_folder_path)
-
-  if (length(files) == 0) {
-    stop("No results are in the results directory")
-  } else {
-    file_paths <- as.list(paste0(data_folder_path, "/", files))
-    results_list <- lapply(file_paths, readRDS)
-  }
-
-  ideal_ml <- lapply(results_list, "[[", "ideal_ml")
-  empirical_ml <- lapply(results_list, "[[", "empirical_ml")
+  ideal_ml <- lapply(analysis_results, "[[", "ideal_ml")
+  empirical_ml <- lapply(analysis_results, "[[", "empirical_ml")
   ideal_k <- lapply(ideal_ml, function(x) {
     unlist(lapply(x, "[[", "K"))
   })
@@ -47,7 +38,7 @@ plot_k_estimates <- function(data_folder_path,
     return(temp_x)
   })
 
-  sim_params_list <- lapply(results_list, "[[", "sim_params")
+  sim_params_list <- lapply(analysis_results, "[[", "sim_params")
   mainland_ex <- lapply(sim_params_list, "[[", "mainland_ex")
   mainland_sample_prob <- lapply(sim_params_list, "[[", "mainland_sample_prob")
   mainland_sample_type <- lapply(sim_params_list, "[[", "mainland_sample_type")

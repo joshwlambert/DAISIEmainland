@@ -5,20 +5,11 @@
 #'
 #' @return Void (saves plot)
 #' @export
-plot_ctt_heatmap <- function(data_folder_path,
+plot_ctt_heatmap <- function(analysis_results,
                              output_file_path) {
 
-  files <- list.files(data_folder_path)
-
-  if (length(files) == 0) {
-    stop("No results are in the results directory")
-  } else {
-    file_paths <- as.list(paste0(data_folder_path, "/", files))
-    results_list <- lapply(file_paths, readRDS)
-  }
-
-  error_list <- lapply(results_list, "[[", "error")
-  sim_params_list <- lapply(results_list, "[[", "sim_params")
+  error_list <- lapply(analysis_results, "[[", "error")
+  sim_params_list <- lapply(analysis_results, "[[", "sim_params")
 
   ctt_list <- lapply(error_list, "[[", "delta_ctt")
   ctt_means <- unlist(lapply(ctt_list, mean))
