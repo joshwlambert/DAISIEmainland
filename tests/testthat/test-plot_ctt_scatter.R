@@ -1,22 +1,37 @@
 test_that("plot_ctt_scatter mainland_ex (no save) runs silent without error", {
-  expect_silent(ctt <- plot_ctt_scatter(
-    data_folder_path = file.path("testdata"),
+  analysis_results <- read_analysis_results(
+    data_folder_path = file.path("testdata")
+  )
+
+  expect_silent(plot_ctt_scatter(
+    analysis_results = analysis_results,
     output_file_path = NULL,
-    parameter = "mainland_ex"))
+    parameter = "mainland_ex"
+  ))
 })
 
 test_that("plot_ctt_scatter unsampled (no save) runs silent without error", {
-  expect_silent(ctt <- plot_ctt_scatter(
-    data_folder_path = file.path("testdata"),
+  analysis_results <- read_analysis_results(
+    data_folder_path = file.path("testdata")
+  )
+
+  expect_silent(plot_ctt_scatter(
+    analysis_results = analysis_results,
     output_file_path = NULL,
-    parameter = "unsampled"))
+    parameter = "unsampled"
+  ))
 })
 
 test_that("plot_ctt_scatter undiscovered (no save) runs silent without error", {
-  expect_silent(ctt <- plot_ctt_scatter(
-    data_folder_path = file.path("testdata"),
+  analysis_results <- read_analysis_results(
+    data_folder_path = file.path("testdata")
+  )
+
+  expect_silent(plot_ctt_scatter(
+    analysis_results = analysis_results,
     output_file_path = NULL,
-    parameter = "undiscovered"))
+    parameter = "undiscovered"
+  ))
 })
 
 test_that("plot_ctt_scatter mainland_ex (save) runs silent without error", {
@@ -27,9 +42,15 @@ test_that("plot_ctt_scatter mainland_ex (save) runs silent without error", {
   )
   expect_false(file.exists(output_filename))
 
-  expect_silent(plot_ctt_scatter(data_folder_path = file.path("testdata"),
-                                 output_file_path = output_filename,
-                                 parameter = "mainland_ex"))
+  analysis_results <- read_analysis_results(
+    data_folder_path = file.path("testdata")
+  )
+
+  expect_silent(plot_ctt_scatter(
+    analysis_results = analysis_results,
+    output_file_path = output_filename,
+    parameter = "mainland_ex"
+  ))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))
@@ -43,9 +64,15 @@ test_that("plot_ctt_scatter unsampled (save) runs silent without error", {
   )
   expect_false(file.exists(output_filename))
 
-  expect_silent(plot_ctt_scatter(data_folder_path = file.path("testdata"),
-                                 output_file_path = output_filename,
-                                 parameter = "unsampled"))
+  analysis_results <- read_analysis_results(
+    data_folder_path = file.path("testdata")
+  )
+
+  expect_silent(plot_ctt_scatter(
+    analysis_results = analysis_results,
+    output_file_path = output_filename,
+    parameter = "unsampled"
+  ))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))
@@ -59,9 +86,15 @@ test_that("plot_ctt_scatter undiscovered (save) runs silent without error", {
   )
   expect_false(file.exists(output_filename))
 
-  expect_silent(plot_ctt_scatter(data_folder_path = file.path("testdata"),
-                                 output_file_path = output_filename,
-                                 parameter = "undiscovered"))
+  analysis_results <- read_analysis_results(
+    data_folder_path = file.path("testdata")
+  )
+
+  expect_silent(plot_ctt_scatter(
+    analysis_results = analysis_results,
+    output_file_path = output_filename,
+    parameter = "undiscovered"
+  ))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))
