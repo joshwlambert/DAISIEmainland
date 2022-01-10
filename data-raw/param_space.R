@@ -1,7 +1,7 @@
 ## code to prepare `param_space` dataset goes here
 mainland_ex_param_space <- expand.grid(
   total_time = c(5),
-  m = c(500),
+  m = c(1000),
   island_clado = c(0.5),
   island_ex = c(0.25),
   island_k = c(5, 50),
@@ -17,7 +17,7 @@ mainland_ex_param_space <- cbind(mainland_ex_param_space, seed)
 
 unsampled_param_space <- expand.grid(
   total_time = c(5),
-  m = c(500),
+  m = c(1000),
   island_clado = c(0.5),
   island_ex = c(0.25),
   island_k = c(5, 50),
@@ -33,7 +33,7 @@ unsampled_param_space <- cbind(unsampled_param_space, seed)
 
 undiscovered_param_space <- expand.grid(
   total_time = c(5),
-  m = c(500),
+  m = c(1000),
   island_clado = c(0.5),
   island_ex = c(0.25),
   island_k = c(5, 50),
