@@ -2,16 +2,23 @@
 % Please edit documentation in R/check_analysis_result.R
 \name{check_analysis_result}
 \alias{check_analysis_result}
-\title{Checks whet}
+\title{Checks whether the analysis results read by \code{read_analysis_results} is valid.}
 \usage{
-check_analysis_result(analysis_results)
-}
-\arguments{
-\item{analysis_results}{}
+check_analysis_result(analysis_result)
 }
 \value{
-
+nothing
 }
 \description{
-Checks whet
+Checks whether the analysis results read by \code{read_analysis_results} is valid.
+}
+\examples{
+analysis_results <- DAISIEmainland::read_analysis_results(
+  file.path("tests", "testthat", "testdata")
+)
+analysis_result <- analysis_results[[1]]
+check_analysis_result(analysis_result)
+}
+\author{
+Joshua W. Lambert
 }

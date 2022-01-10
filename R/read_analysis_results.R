@@ -6,10 +6,12 @@
 #' @return A list of results
 #' @export
 #'
-#' @examples results <- DAISIEmainland::read_results(
+#' @examples
+#' results <- DAISIEmainland::read_analysis_results(
 #'   file.path("tests", "testthat", "testdata")
 #' )
 read_analysis_results <- function(data_folder_path) {
+  # load all the files from the path
   files <- list.files(data_folder_path)
   if (length(files) == 0) {
     stop("No results are in the results directory")
@@ -17,6 +19,7 @@ read_analysis_results <- function(data_folder_path) {
     file_paths <- as.list(paste0(data_folder_path, "/", files))
     analysis_results_list <- lapply(file_paths, readRDS)
   }
-  #lapply(analysis_results_list, check_analysis_result)
-  results_list
+  # check whether the files loaded are the correct format
+  lapply(analysis_results_list, check_analysis_result)
+  analysis_results_list
 }
