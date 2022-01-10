@@ -7,15 +7,27 @@ this package and are not used elsewhere, others derive from other R packages.
 This document provides a standard of how the data types are formatted and which
 functions allow for checking the types.
 
+To make sure the data types are correctly formatted there is a corresponding
+`check_*` function for each. 
+
 ## Data structure types
 
 ### `daisie_mainland_data`
 
-* A list of 2 elements, `$ideal_multi_daisie_data` and
+A list of 2 elements, `$ideal_multi_daisie_data` and
 `$empirical_multi_daisie_data`.
-Each of these elements is in the format `daisie_data` (see below).
+Each of these elements is in the format `multi_daisie_data` (see below). This
+is the output of `DAISIEmainland::sim_island_with_mainland()`.
 
-Function to check if it is a daisie_mainland_data is `is_daisie_mainland_data`
+Function to check if it is a `daisie_mainland_data` is `DAISIEmainland::check_daisie_mainland_data()`
+
+### `multi_daisie_data`
+
+A list of `daisie_data` elements (see below). This is the data structure when the
+simulation is run for several replicates.
+
+Function to check if it is a `multi_daisie_data` is 
+`DAISIEmainland::check_multi_daisie_data()`.
 
 ### `daisie_data`
 
@@ -27,24 +39,36 @@ of rows. Every subsequent element in the `daisie_data` list is data on an island
 clade, containing: `branching_times`, `stac`, `missing_species`, and optionally
 information on recolonisations `all_colonisations`. `branching_times` is a
 numeric vector containing the island age, time of island colonisation, and an
-subsequent branching times (all given in time before the present).
+subsequent branching times (all given in time before the present). 
 
-### `multi_daisie_data`
+`daisie_data` is a single element of a `multi_daisie_data` list.
 
-* A list of `daisie_data` elements
-
-### `mainland_clade`
-
-* A data frame of seven columns and one or more rows. The column names are:
-  `spec_id`, `main_anc_id`, `spec_type`, `branch_code`, `branch_t`,
-`spec_origin_t`, `spec_ex_t`.
+Function to check if it is a `daisie_data` is 
+`DAISIEmainland::check_daisie_data()`.
 
 ### `multi_mainland_clade`
 
-* A list of `mainland_clade` objects.
+A list of `mainland_clade` objects. This data type is output from `DAISIEmainland::sim_mainland()`.
+
+Function to check if it is a `multi_mainland_clade` is 
+`DAISIEmainland::check_multi_mainland_clade()`.
+
+### `mainland_clade`
+
+A data frame of seven columns and one or more rows. The column names are:
+`spec_id`, `main_anc_id`, `spec_type`, `branch_code`, `branch_t`,
+`spec_origin_t`, `spec_ex_t`. A example of an `mainland_clade` can be created 
+using `DAISIEmainland::create_test_mainland_clade()`.
+
+Function to check if it is a mainland_clade is 
+`DAISIEmainland::check_mainland_clade()`
 
 ### `island_tbl`
 
 * A data frame of the island species output from `sim_island` and then converted
-to the `daisie_data` format by `create_island`.
+to the `daisie_data` format by `create_island`. This data type is output from
+`DAISIEmainland::sim_island()`. A example of an `island_tbl` can be created 
+using `DAISIEmainland::create_test_island_tbl()`.
 
+Function to check if it is a `island_tbl` is 
+`DAISIEmainland::check_island_tbl()`.

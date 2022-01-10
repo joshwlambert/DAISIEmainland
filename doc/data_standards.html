@@ -172,39 +172,41 @@ pre code {
 <div id="reasoning" class="section level2">
 <h2>Reasoning</h2>
 <p>There are several data types used in this package. Some of them are novel to this package and are not used elsewhere, others derive from other R packages. This document provides a standard of how the data types are formatted and which functions allow for checking the types.</p>
+<p>To make sure the data types are correctly formatted there is a corresponding <code>check_*</code> function for each.</p>
 </div>
 <div id="data-structure-types" class="section level2">
 <h2>Data structure types</h2>
 <div id="daisie_mainland_data" class="section level3">
 <h3><code>daisie_mainland_data</code></h3>
-<ul>
-<li>A list of 2 elements, <code>$ideal_daisie_data</code> and <code>$empirical_daisie_data</code>. Each of these elements is in the format <code>daisie_data</code> (see below).</li>
-</ul>
-<p>Function to check if it is a daisie_mainland_data is <code>is_daisie_mainland_data</code></p>
+<p>A list of 2 elements, <code>$ideal_multi_daisie_data</code> and <code>$empirical_multi_daisie_data</code>. Each of these elements is in the format <code>multi_daisie_data</code> (see below).</p>
+<p>Function to check if it is a <code>daisie_mainland_data</code> is <code>DAISIEmainland::check_daisie_mainland_data()</code></p>
 </div>
-<div id="multi_daisie_mainland_data" class="section level3">
-<h3><code>multi_daisie_mainland_data</code></h3>
-<ul>
-<li>A list of <code>daisie_mainland_data</code> objects.</li>
-</ul>
-<p>Function to check if it is a multi_daisie_mainland is <code>is_multi_daisie_mainland_data</code></p>
+<div id="multi_daisie_data" class="section level3">
+<h3><code>multi_daisie_data</code></h3>
+<p>A list of <code>daisie_data</code> elements. This is the data structure when the simulation is run for several replicates.</p>
+<p>Function to check if it is a <code>multi_daisie_data</code> is <code>DAISIEmainland::check_multi_daisie_data()</code>.</p>
 </div>
 <div id="daisie_data" class="section level3">
 <h3><code>daisie_data</code></h3>
 <ul>
 <li>A list of n elements. The first element is a list containing the <code>island_age</code> with a single numeric, and the number of species <code>not_present</code> on the island. This first element in the <code>daisie_data</code> list can optionally include an <code>stt_table</code>. The <code>stt_table</code> is a matrix with five columns and a variable number of rows. Every subsequent element in the <code>daisie_data</code> list is data on an island clade, containing: <code>branching_times</code>, <code>stac</code>, <code>missing_species</code>, and optionally information on recolonisations <code>all_colonisations</code>. <code>branching_times</code> is a numeric vector containing the island age, time of island colonisation, and an subsequent branching times (all given in time before the present).</li>
 </ul>
+<p>Function to check if it is a <code>daisie_data</code> is <code>DAISIEmainland::check_daisie_data()</code>.</p>
 </div>
 <div id="mainland_clade" class="section level3">
 <h3><code>mainland_clade</code></h3>
-<ul>
-<li>A data frame of seven columns and one or more rows. The column names are: <code>spec_id</code>, <code>main_anc_id</code>, <code>spec_type</code>, <code>branch_code</code>, <code>branch_t</code>, <code>spec_origin_t</code>, <code>spec_ex_t</code>.</li>
-</ul>
+<p>A data frame of seven columns and one or more rows. The column names are: <code>spec_id</code>, <code>main_anc_id</code>, <code>spec_type</code>, <code>branch_code</code>, <code>branch_t</code>, <code>spec_origin_t</code>, <code>spec_ex_t</code>.</p>
+<p>Function to check if it is a mainland_clade is <code>DAISIEmainland::check_mainland_clade</code></p>
 </div>
 <div id="multi_mainland_clade" class="section level3">
 <h3><code>multi_mainland_clade</code></h3>
+<p>A list of <code>mainland_clade</code> objects. This data type is output from <code>DAISIEmainland::sim_mainland()</code>.</p>
+<p>Function to check if it is a <code>multi_mainland_clade</code> is <code>DAISIEmainland::check_multi_mainland_clade()</code></p>
+</div>
+<div id="island_tbl" class="section level3">
+<h3><code>island_tbl</code></h3>
 <ul>
-<li>A list of <code>mainland_clade</code> objects.</li>
+<li>A data frame of the island species output from <code>sim_island</code> and then converted to the <code>daisie_data</code> format by <code>create_island</code>. This data type is output from <code>DAISIEmainland::sim_island()</code>.</li>
 </ul>
 </div>
 </div>
