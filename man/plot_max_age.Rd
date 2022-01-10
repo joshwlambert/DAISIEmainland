@@ -6,7 +6,7 @@
 island for different values of mainland extinction. The left side facet has
 the ideal data and the right side facet has the empirical data.}
 \usage{
-plot_max_age(analysis_results, output_file_path, parameter, labels)
+plot_max_age(analysis_results, output_file_path, parameter, labels = NULL)
 }
 \arguments{
 \item{analysis_results}{A list of analysis result elements which can be
