@@ -20,7 +20,7 @@ mainland_ex <- param_space$mainland_ex[args]
 mainland_sample_prob <- param_space$mainland_sample_prob[args]
 mainland_sample_type <- param_space$mainland_sample_type[args]
 
-island <- DAISIEmainland::sim_island_with_mainland(
+daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
   total_time = param_space$total_time[args],
   m = param_space$m[args],
   island_pars = c(island_clado,
@@ -40,34 +40,42 @@ ideal_ml <- vector("list", param_space$replicates[args])
 empirical_ml <- vector("list", param_space$replicates[args])
 
 ideal_sim_num_spec <- DAISIEmainland::calc_num_spec(
-  daisie_data = island$ideal_islands)
+  multi_daisie_data = daisie_mainland_data$ideal_multi_daisie_data
+)
 ideal_sim_num_col <- DAISIEmainland::calc_num_col(
-  daisie_data = island$ideal_islands)
+  multi_daisie_data = daisie_mainland_data$ideal_multi_daisie_data
+)
 ideal_sim_metrics <- list(
   ideal_sim_num_spec = ideal_sim_num_spec,
-  ideal_sim_num_col = ideal_sim_num_col)
+  ideal_sim_num_col = ideal_sim_num_col
+)
 empirical_sim_num_spec <- DAISIEmainland::calc_num_spec(
-  daisie_data = island$empirical_islands)
+  multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data
+)
 empirical_sim_num_col <- DAISIEmainland::calc_num_col(
-  daisie_data = island$empirical_islands)
+  multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data
+)
 empirical_sim_metrics <- list(
   empirical_sim_num_spec = empirical_sim_num_spec,
-  empirical_sim_num_col = empirical_sim_num_col)
+  empirical_sim_num_col = empirical_sim_num_col
+)
 
 message("Number of likelihood integration steps permitted:")
 DAISIE::DAISIE_CS_max_steps(1e8)
 
-endemics <- DAISIEmainland:::calc_endemic_percent(daisie_data = island)
+endemics <- DAISIEmainland:::calc_endemic_percent(
+  daisie_mainland_data = daisie_mainland_data
+)
 
 for (i in seq_len(param_space$replicates[args])) {
   ml_failure <- TRUE
   while (ml_failure) {
     recols <- DAISIEmainland::any_recols(
-      island = island$ideal_islands[[i]])
+      daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[i]])
     optim_ana <- endemics$ideal_endemic_percent[i] != 100 || recols
     if (optim_ana) {
       ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-        datalist = island$ideal_islands[[i]],
+        datalist = daisie_mainland_data$ideal_multi_daisie_data[[i]],
         initparsopt = c(island_clado,
                         island_ex,
                         island_k,
@@ -82,10 +90,10 @@ for (i in seq_len(param_space$replicates[args])) {
         jitter = 1e-5)
     } else {
       fix_ana_zero <- DAISIEmainland::all_endemic_clades(
-        island = island$ideal_islands[[i]])
+        daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[i]])
       if (fix_ana_zero) {
         ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-          datalist = island$ideal_islands[[i]],
+          datalist = daisie_mainland_data$ideal_multi_daisie_data[[i]],
           initparsopt = c(island_clado,
                           island_ex,
                           island_k,
@@ -99,7 +107,7 @@ for (i in seq_len(param_space$replicates[args])) {
           jitter = 1e-5)
       } else {
         ideal_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-          datalist = island$ideal_islands[[i]],
+          datalist = daisie_mainland_data$ideal_multi_daisie_data[[i]],
           initparsopt = c(island_clado,
                           island_ex,
                           island_k,
@@ -141,11 +149,11 @@ for (i in seq_len(param_space$replicates[args])) {
   ml_failure <- TRUE
   while (ml_failure) {
     recols <- DAISIEmainland::any_recols(
-      island = island$empirical_islands[[i]])
+      daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[i]])
     optim_ana <- endemics$empirical_endemic_percent[i] != 100 || recols
     if (optim_ana) {
       empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-        datalist = island$empirical_islands[[i]],
+        datalist = daisie_mainland_data$empirical_multi_daisie_data[[i]],
         initparsopt = c(island_clado,
                         island_ex,
                         island_k,
@@ -160,10 +168,10 @@ for (i in seq_len(param_space$replicates[args])) {
         jitter = 1e-5)
     } else {
       fix_ana_zero <- DAISIEmainland::all_endemic_clades(
-        island = island$empirical_islands[[i]])
+        island = daisie_mainland_data$empirical_multi_daisie_data[[i]])
       if (fix_ana_zero) {
         empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-          datalist = island$empirical_islands[[i]],
+          datalist = daisie_mainland_data$empirical_multi_daisie_data[[i]],
           initparsopt = c(island_clado,
                           island_ex,
                           island_k,
@@ -177,7 +185,7 @@ for (i in seq_len(param_space$replicates[args])) {
           jitter = 1e-5)
       } else {
         empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
-          datalist = island$empirical_islands[[i]],
+          datalist = daisie_mainland_data$empirical_multi_daisie_data[[i]],
           initparsopt = c(island_clado,
                           island_ex,
                           island_k,
@@ -218,12 +226,12 @@ for (i in seq_len(param_space$replicates[args])) {
 }
 
 error <- DAISIEmainland::calc_error(
-  daisie_data = island,
+  daisie_mainland_data = daisie_mainland_data,
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml)
 
 output <- list(
-  island = island,
+  daisie_mainland_data = daisie_mainland_data,
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml,
   ideal_sim_metrics = ideal_sim_metrics,
