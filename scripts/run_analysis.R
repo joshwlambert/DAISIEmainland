@@ -168,7 +168,7 @@ for (i in seq_len(param_space$replicates[args])) {
         jitter = 1e-5)
     } else {
       fix_ana_zero <- DAISIEmainland::all_endemic_clades(
-        island = daisie_mainland_data$empirical_multi_daisie_data[[i]])
+        daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[i]])
       if (fix_ana_zero) {
         empirical_ml[[i]] <- DAISIE::DAISIE_ML_CS(
           datalist = daisie_mainland_data$empirical_multi_daisie_data[[i]],
