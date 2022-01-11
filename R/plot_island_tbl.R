@@ -18,14 +18,11 @@
 #' These are the functions to plot an evolutionary history:
 #'
 #'  * Use \link{plot_mainland} to plot the mainland history
-#'  * Use \link{plot_island} to plot the island history.
+#'  * Use \link{plot_island_tbl} to plot the island history.
 #'    based on both empirical data and ideal data.
-#'  * Use \link{plot_empirical_island} to plot the island history.
-#'    based on empirical data.
-#'  * Use \link{plot_ideal_island} to plot the island history
-#'    based on ideal data.
 #'
 #' @examples
+#' \dontrun{
 #' set.seed(
 #'   9,
 #'   kind = "Mersenne-Twister",
@@ -46,7 +43,7 @@
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete")
 #' plot_island_tbl(island_tbl)
-#'
+#'}
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
@@ -59,6 +56,7 @@ plot_island_tbl <- function(total_time,
   col_t <- NULL; rm(col_t) # nolint, fixes warning: no visible binding for global variable
   spec_id <- NULL; rm(spec_id) # nolint, fixes warning: no visible binding for global variable
   species_type_str <- NULL; rm(species_type_str) # nolint, fixes warning: no visible binding for global variable
+  spec_ex_t <- NULL; rm(spec_ex_t) # nolint, fixes warning: no visible binding for global variable
 
   # Convert species_type to factor species_type_str
   island_tbl$species_type_str <- as.character(Vectorize(

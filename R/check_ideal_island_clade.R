@@ -18,16 +18,25 @@
 #'   sample.kind = "Rejection"
 #' )
 #' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
-#'   mainland_scenario = 2)
-#' island <- DAISIEmainland:::sim_island(
+#'   mainland_scenario = 2
+#' )
+#' island_tbl <- DAISIEmainland:::sim_island(
 #'   total_time = 1,
 #'   island_pars = c(1, 1, 10, 1, 1),
 #'   mainland = mainland_clade,
 #'   mainland_sample_prob = 1,
-#'   mainland_sample_type = "complete")
+#'   mainland_sample_type = "complete"
+#' )
+#' daisie_data <- DAISIEmainland:::create_daisie_data(
+#'   total_time = 1,
+#'   island_tbl = island_tbl,
+#'   mainland_clade = mainland_clade,
+#'   mainland_sample_prob = 1,
+#'   mainland_sample_type = "complete"
+#' )
 #'
-#' ideal_island <- island$ideal_island
-#' # First clade
+#' ideal_island <- daisie_data$ideal_island
+#' #  First clade
 #' ideal_island_clade <- ideal_island[[1]]
 #' check_ideal_island_clade(ideal_island_clade)
 #' @author Richèl J.C. Bilderbeek

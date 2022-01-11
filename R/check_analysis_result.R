@@ -4,11 +4,13 @@
 #'
 #' @return nothing
 #' @examples
+#' \dontrun{
 #' analysis_results <- DAISIEmainland::read_analysis_results(
 #'   file.path("tests", "testthat", "testdata")
 #' )
 #' analysis_result <- analysis_results[[1]]
 #' check_analysis_result(analysis_result)
+#' }
 #' @author Joshua W. Lambert
 #' @export
 check_analysis_result <- function(analysis_result) {

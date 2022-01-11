@@ -7,9 +7,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' results <- DAISIEmainland::read_analysis_results(
 #'   file.path("tests", "testthat", "testdata")
 #' )
+#' }
 read_analysis_results <- function(data_folder_path) {
   # load all the files from the path
   files <- list.files(data_folder_path)

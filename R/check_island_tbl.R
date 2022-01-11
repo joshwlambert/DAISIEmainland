@@ -23,7 +23,7 @@
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete")
 #'
-#' check_island(island_tbl)
+#' check_island_tbl(island_tbl)
 #' @author Richèl J.C. Bilderbeek, Joshua W. Lambert
 #'
 #' @export
