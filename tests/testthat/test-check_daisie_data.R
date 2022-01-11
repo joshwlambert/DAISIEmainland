@@ -22,7 +22,7 @@ test_that("use", {
   daisie_data <- ideal_multi_daisie_data[[1]]
   expect_silent(check_daisie_data(daisie_data))
 
-  expect_error(check_daisie_datalist(daisie_data[[1]]))
+  expect_error(check_daisie_data(daisie_data[[1]]))
 
   # Only run locally, as DAISIE's output cannot be suppressed
   if (1 == 2) {
