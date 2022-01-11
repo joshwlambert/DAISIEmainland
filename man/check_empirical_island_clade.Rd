@@ -48,16 +48,25 @@ set.seed(
   sample.kind = "Rejection"
 )
 mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
-  mainland_scenario = 2)
-island <- DAISIEmainland:::sim_island(
+  mainland_scenario = 2
+)
+island_tbl <- DAISIEmainland:::sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 1, 1),
   mainland = mainland_clade,
   mainland_sample_prob = 1,
-  mainland_sample_type = "complete")
+  mainland_sample_type = "complete"
+)
+daisie_data <- DAISIEmainland:::create_daisie_data(
+  total_time = 1,
+  island_tbl = island_tbl,
+  mainland_clade = mainland_clade,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "complete"
+)
 
-empirical_island <- island$empirical_island
-# First clade
+empirical_island <- daisie_data$empirical_island
+#  First clade
 empirical_island_clade <- empirical_island[[1]]
 check_empirical_island_clade(empirical_island_clade)
 }

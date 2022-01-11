@@ -6,6 +6,10 @@
 \usage{
 check_analysis_result(analysis_result)
 }
+\arguments{
+\item{analysis_result}{A list containing ouput from the run_analysis script.
+The list can be checked with \code{check_analysis_result}}
+}
 \value{
 nothing
 }
@@ -13,11 +17,13 @@ nothing
 Checks whether the analysis results read by \code{read_analysis_results} is valid.
 }
 \examples{
+\dontrun{
 analysis_results <- DAISIEmainland::read_analysis_results(
   file.path("tests", "testthat", "testdata")
 )
 analysis_result <- analysis_results[[1]]
 check_analysis_result(analysis_result)
+}
 }
 \author{
 Joshua W. Lambert

@@ -7,7 +7,7 @@
 plot_inf_k(analysis_results, output_file_path, labels = NULL)
 }
 \arguments{
-\item{analysis_results}{A list of analysis result elements which can be
+\item{analysis_results}{A list of \code{analysis_result} elements which can be
 checked with \code{check_analysis_result}}
 
 \item{output_file_path}{String specifying the directory the file is saved

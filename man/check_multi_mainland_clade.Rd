@@ -7,6 +7,10 @@ Will \link{stop} if not.}
 \usage{
 check_multi_mainland_clade(multi_mainland_clade)
 }
+\arguments{
+\item{multi_mainland_clade}{A list of data frames each data frame is an
+\code{mainland_clade}}
+}
 \value{
 nothing
 }

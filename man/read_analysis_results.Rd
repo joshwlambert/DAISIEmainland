@@ -19,7 +19,9 @@ Reads all the the results from a directory, with path is specified in
 \code{data_folder_path}.
 }
 \examples{
+\dontrun{
 results <- DAISIEmainland::read_analysis_results(
   file.path("tests", "testthat", "testdata")
 )
+}
 }

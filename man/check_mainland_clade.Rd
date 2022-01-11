@@ -28,8 +28,10 @@ set.seed(
 multi_mainland_clade <- DAISIEmainland::sim_mainland(
   total_time = 1,
   m = 2,
-  mainland_ex = 1)
+  mainland_ex = 1
+)
 
+mainland_clade <- multi_mainland_clade[[1]]
 check_mainland_clade(mainland_clade)
 }
 \author{

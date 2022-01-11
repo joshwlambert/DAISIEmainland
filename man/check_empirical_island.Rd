@@ -29,15 +29,24 @@ set.seed(
   sample.kind = "Rejection"
 )
 mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
-  mainland_scenario = 2)
-island <- DAISIEmainland:::sim_island(
+  mainland_scenario = 2
+)
+island_tbl <- DAISIEmainland:::sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 1, 1),
   mainland = mainland_clade,
   mainland_sample_prob = 1,
-  mainland_sample_type = "complete")
+  mainland_sample_type = "complete"
+)
+daisie_data <- DAISIEmainland:::create_daisie_data(
+  total_time = 1,
+  island_tbl = island_tbl,
+  mainland_clade = mainland_clade,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "complete"
+)
 
-check_empirical_island(island$empirical_island)
+check_empirical_island(daisie_data$empirical_island)
 }
 \seealso{
 Use \link{check_ideal_island} to check if an \code{ideal_island}

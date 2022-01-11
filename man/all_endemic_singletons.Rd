@@ -8,17 +8,55 @@ lineages that have not formed an island clade of two or more species.}
 all_endemic_singletons(daisie_data)
 }
 \arguments{
-\item{daisie_data}{\link{list} containing data of of a DAISIE simulation
-with mainland dynamics,
-as produced by \link{sim_island_with_mainland}
-and checked by \link{check_daisie_data}
+\item{daisie_data}{a \link[DAISIE]{DAISIE} \code{datalist}, as can be
+checked by \link{check_daisie_data}. To quote the DAISE doc:
 
-A \code{daisie_data} has two elements:
+A \code{datalist} is an object containing information on colonisation and
+branching times. This object can be generated using
+\link[DAISIE]{DAISIE_dataprep},
+which converts a user-specified data table into a \code{datalist},
+but the object can of course also be entered directly.
+
+A \code{datalist} is a \link{list} with the following elements:
+
+The first element of the list has two or three components:
 \itemize{
-\item \code{ideal_islands}: the ideal data set produced in a simulation,
-see \link{check_ideal_daisie_data} for more details
-\item \code{empirical_islands}: the empirical data sets produced in a simulation
-see \link{check_empirical_daisie_data} for more details
+\item \code{$island_age} - the island age
+}
+
+Then, depending on whether a distinction between types is
+made, we have:
+\itemize{
+\item \code{$not_present} - the number of mainland lineages
+that are not present on the island \cr
+}
+
+or:
+\itemize{
+\item \code{$not_present_type1} - the number of mainland lineages
+of type 1 that are not present on the island
+\item \code{$not_present_type2} - the number of mainland lineages of
+type 2 that are not present on the island
+}
+
+The remaining elements of
+the \code{datalist} each contains information on a single colonist lineage on the
+island and has 5 components:
+\itemize{
+\item \code{$colonist_name} - the name of the species or clade that
+colonized the island
+\item \code{$branching_times} - island age followed by stem age of the
+population/species in the case of Non-endemic, Non-endemic_MaxAge
+species and Endemic species with no close relatives
+on the island. For endemic clades with more than one species on the island
+(cladogenetic clades/ radiations) these should be island age followed by the
+branching times of the island clade
+including the stem age of the clade
+\item \code{$stac} - the status of the colonist, see \link{stac_to_str}
+for values and descriptions
+\item \code{$missing_species} - number of island species that were not
+sampled for particular clade (only applicable for endemic clades)
+\item \code{$type1or2} - whether the colonist belongs to type 1 or type 2
 }}
 }
 \value{

@@ -23,6 +23,7 @@ default_params_doc(
   num_immigrants,
   mainland_n,
   island_tbl,
+  multi_mainland_clade,
   mainland_clade,
   mainland_spec,
   mainland_sample_prob,
@@ -38,7 +39,7 @@ default_params_doc(
   mainland_scenario,
   anc_branch_t_bp,
   subset_island,
-  daisie_datalist,
+  daisie_mainland_data,
   daisie_data,
   ideal_daisie_data,
   empirical_daisie_data,
@@ -66,6 +67,7 @@ default_params_doc(
   island,
   age,
   multi_daisie_data,
+  analysis_result,
   analysis_results,
   labels
 )
@@ -142,6 +144,9 @@ can colonize the island.}
 \item{island_tbl}{Data frame with current state of simulation containing
 number of species, see \code{\link[=create_test_island_tbl]{create_test_island_tbl()}}}
 
+\item{multi_mainland_clade}{A list of data frames each data frame is an
+\code{mainland_clade}}
+
 \item{mainland_clade}{Data frame with state of mainland, see
 \code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}
 
@@ -189,8 +194,21 @@ of the immigrant species ancestor and its extant relative on the mainland}
 \item{subset_island}{Data frame of island species that originated from a
 single colonisation event}
 
-\item{daisie_datalist}{a \link[DAISIE]{DAISIE} \code{datalist}, as can be
-checked by \link{check_daisie_datalist}. To quote the DAISE doc:
+\item{daisie_mainland_data}{\link{list} containing data of a DAISIE
+simulation with mainland dynamics,
+as produced by \link{sim_island_with_mainland}
+and checked by \link{check_daisie_mainland_data}
+
+A \code{daisie_mainland_data} has two elements:
+\itemize{
+\item \code{ideal_multi_daisie_data}: the ideal data set produced in a simulation,
+see \link{check_multi_daisie_data} for more details
+\item \code{empirical_multi_daisie_data}: the empirical data sets produced in a
+simulation see \link{check_multi_daisie_data} for more details
+}}
+
+\item{daisie_data}{a \link[DAISIE]{DAISIE} \code{datalist}, as can be
+checked by \link{check_daisie_data}. To quote the DAISE doc:
 
 A \code{datalist} is an object containing information on colonisation and
 branching times. This object can be generated using
@@ -240,39 +258,24 @@ sampled for particular clade (only applicable for endemic clades)
 \item \code{$type1or2} - whether the colonist belongs to type 1 or type 2
 }}
 
-\item{daisie_data}{\link{list} containing data of of a DAISIE simulation
-with mainland dynamics,
-as produced by \link{sim_island_with_mainland}
-and checked by \link{check_daisie_data}
-
-A \code{daisie_data} has two elements:
-\itemize{
-\item \code{ideal_islands}: the ideal data set produced in a simulation,
-see \link{check_ideal_daisie_data} for more details
-\item \code{empirical_islands}: the empirical data sets produced in a simulation
-see \link{check_empirical_daisie_data} for more details
-}}
-
 \item{ideal_daisie_data}{a \link{list},
 of which each element contains the history
 of a DAISIE simulation with mainland dynamics, with a length that
-equals the number of replicates,
-as can be checked by \link{check_ideal_daisie_data}
+equals the number of replicates.
 
 The simulated history is recorded perfectly, resulting in ideal data.
 The list elements are of type \code{DAISIE::datalist},
-as checked by \link{check_daisie_datalist}
+as checked by \link{check_daisie_data}
 and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})}
 
 \item{empirical_daisie_data}{a list, of which each element contains the
 history of a DAISIE simulation with mainland dynamics, with a length that
-equals the number of replicates,
-as can be checked by \link{check_empirical_daisie_data}
+equals the number of replicates
 
 The simulated history is recorded as an empiricist would,
 resulting in imperfect data.
 The list elements are of type \code{DAISIE::datalist},
-as checked by \link{check_daisie_datalist}
+as checked by \link{check_daisie_data}
 and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})}
 
 \item{ideal_island}{a simulated island with perfect information,
@@ -423,7 +426,7 @@ as created by \link{sim_mainland}.
 Use \link{plot_mainland} to visualise the that evolutionary history.}
 
 \item{island}{The history of a a single island,
-as can be checked by \link{check_island}.
+as can be checked by \link{check_island_tbl}.
 
 An \code{island} is \link{list} with two elements:
 \itemize{
@@ -449,7 +452,10 @@ cladogenetic or immigrant origin, respectively.}
 
 \item{multi_daisie_data}{A list of \code{daisie_data} elements}
 
-\item{analysis_results}{A list of analysis result elements which can be
+\item{analysis_result}{A list containing ouput from the run_analysis script.
+The list can be checked with \code{check_analysis_result}}
+
+\item{analysis_results}{A list of \code{analysis_result} elements which can be
 checked with \code{check_analysis_result}}
 
 \item{labels}{A string or vector of strings to label the plotting grid}

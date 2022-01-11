@@ -10,6 +10,19 @@ simulated from sim_island_with_mainland}
 calc_error(daisie_mainland_data, ideal_ml, empirical_ml)
 }
 \arguments{
+\item{daisie_mainland_data}{\link{list} containing data of a DAISIE
+simulation with mainland dynamics,
+as produced by \link{sim_island_with_mainland}
+and checked by \link{check_daisie_mainland_data}
+
+A \code{daisie_mainland_data} has two elements:
+\itemize{
+\item \code{ideal_multi_daisie_data}: the ideal data set produced in a simulation,
+see \link{check_multi_daisie_data} for more details
+\item \code{empirical_multi_daisie_data}: the empirical data sets produced in a
+simulation see \link{check_multi_daisie_data} for more details
+}}
+
 \item{ideal_ml}{List containing maximum likelihood estimates from DAISIE
 fitted to ideal data produced from \code{sim_island_with_mainland}. Output
 from \code{DAISIE::DAISIE_ML_CS}}
