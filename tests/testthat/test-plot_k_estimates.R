@@ -29,6 +29,10 @@ test_that("plot_k_estimates unsampled (no save) runs silent without error", {
 })
 
 test_that("plot_k_estimates undiscovered (no save) runs silent without error", {
+  analysis_results <- read_analysis_results(
+    data_folder_path = file.path("testdata")
+  )
+
   expect_silent(plot_k_estimates(
     analysis_results = analysis_results,
     output_file_path = NULL,
