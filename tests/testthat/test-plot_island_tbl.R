@@ -1,19 +1,17 @@
-test_that("interesting picture, no recolonisations", {
-  skip("temp skip in refactor")
+test_that("anagenetic species", {
   set.seed(
-    3,
+    4,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  total_time <- 10.0
+  total_time <- 1.0
   mainland <- sim_mainland(
     total_time = total_time,
     m = 10,
     mainland_ex = 1.0
   )
   mainland_clade <- mainland[[1]]
-  plot_mainland_clade(mainland_clade)
   island_tbl <- sim_island(
     total_time = 1,
     island_pars = c(1, 1, 10, 12, 1),
@@ -23,32 +21,53 @@ test_that("interesting picture, no recolonisations", {
   plot_island_tbl(total_time = total_time, island_tbl = island_tbl)
 })
 
-test_that("interesting picture, with recolonisation", {
-  skip("temp skip in refactor")
+test_that("anagenetic, cladogenetic, immigrant", {
   set.seed(
-    9,
+    1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
+  total_time <- 1.0
   mainland <- sim_mainland(
-    total_time = 10,
+    total_time = total_time,
     m = 10,
     mainland_ex = 1.0
   )
-
-  # Clade goes extinct, but after island age
   mainland_clade <- mainland[[1]]
-
-  plot_mainland_clade(mainland_clade)
   island_tbl <- sim_island(
     total_time = 1,
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island_tbl(island)
+  plot_island_tbl(total_time = total_time, island_tbl = island_tbl)
 })
+
+
+test_that("one lonely immigrant", {
+  set.seed(
+    3,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  total_time <- 1.0
+  mainland <- sim_mainland(
+    total_time = total_time,
+    m = 10,
+    mainland_ex = 1.0
+  )
+  mainland_clade <- mainland[[1]]
+  island_tbl <- sim_island(
+    total_time = 1,
+    island_pars = c(1, 1, 10, 12, 1),
+    mainland = mainland_clade,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete")
+  plot_island_tbl(total_time = total_time, island_tbl = island_tbl)
+})
+
 
 test_that("stac == 6", {
   skip("temp skip in refactor")
