@@ -1,5 +1,4 @@
 test_that("use", {
-  skip("temp skip for refactor")
   set.seed(
     2,
     kind = "Mersenne-Twister",
@@ -15,6 +14,14 @@ test_that("use", {
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  all_colonisations <- island_tbl$ideal_island[[2]]$all_colonisations
+
+  daisie_data <- create_daisie_data(
+    total_time = 1,
+    island_tbl = island_tbl,
+    mainland_clade = mainland_clade,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete"
+  )
+  all_colonisations <- daisie_data$ideal_island[[2]]$all_colonisations
   check_all_colonisations(all_colonisations)
 })
