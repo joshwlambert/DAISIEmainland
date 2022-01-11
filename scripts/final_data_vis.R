@@ -191,6 +191,15 @@ DAISIEmainland::plot_k_estimates(
   signif = 2,
   scientific = TRUE)
 
+DAISIEmainland::plot_k_estimates(
+  data_folder_path = file.path("results"),
+  output_file_path = file.path("plots", "k_estimates_undiscovered.png"),
+  parameter = "undiscovered",
+  num_breaks = 4,
+  signif = 2,
+  scientific = TRUE,
+  labels = c("", "", "A", "B", "", "", "C", "D"))
+
 DAISIEmainland::plot_inf_k(
   data_folder_path = file.path("results"),
   output_file_path = file.path("plots", "inf_k.png"))
