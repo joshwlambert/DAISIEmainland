@@ -1,5 +1,4 @@
 test_that("use", {
-  skip("temp skip in refactor")
   set.seed(
     2,
     kind = "Mersenne-Twister",
@@ -16,15 +15,21 @@ test_that("use", {
     mainland = mainland_clade,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
-  plot_island_tbl(island_tbl = island_tbl)
+  #plot_island_tbl(island_tbl = island_tbl)
+  daisie_data <- create_daisie_data(
+    total_time = 1,
+    island_tbl = island_tbl,
+    mainland_clade = mainland_clade,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete"
+  )
   t <- all_colonisations_to_table(
-    ideal_or_empirical_island = island$ideal_island
+    ideal_or_empirical_island = daisie_data$ideal_island
   )
 
 })
 
 test_that("stress-test", {
-  skip("temp skip in refactor")
   for (seed in seq_len(1)) {
     set.seed(
       seed,
@@ -41,7 +46,17 @@ test_that("stress-test", {
       island_pars = c(1, 1, 10, 12, 1),
       mainland = mainland_clade,
       mainland_sample_prob = 1,
-      mainland_sample_type = "complete")
-    all_colonisations_to_table(ideal_or_empirical_island = island$ideal_island)
+      mainland_sample_type = "complete"
+    )
+    daisie_data <- create_daisie_data(
+      total_time = 1,
+      island_tbl = island_tbl,
+      mainland_clade = mainland_clade,
+      mainland_sample_prob = 1,
+      mainland_sample_type = "complete"
+    )
+    all_colonisations_to_table(
+      ideal_or_empirical_island = daisie_data$ideal_island
+    )
   }
 })
