@@ -10,8 +10,7 @@
 is_daisie_data <- function(daisie_data,
                            verbose = FALSE) {
   result <- FALSE
-  tryCatch(
-    {
+  tryCatch({
       DAISIEmainland::check_daisie_data(
         daisie_data = daisie_data
       )
