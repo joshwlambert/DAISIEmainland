@@ -1,25 +1,33 @@
 # Final data visualisation to produce the plots for the paper
 
+analysis_results <- read_analysis_results(
+  data_folder_path = file.path("results")
+)
+
 DAISIEmainland::plot_sim_metrics(
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "sim_metrics.png"))
+  analysis_results = analysis_results,
+  output_file_path = file.path("plots", "sim_metrics.png")
+)
 
 ctt_mainland_ex <- DAISIEmainland::plot_ctt_boxplot(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "mainland_ex")
+  parameter = "mainland_ex"
+)
 
 ctt_unsampled <- DAISIEmainland::plot_ctt_boxplot(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "unsampled")
+  parameter = "unsampled"
+)
 
 ctt <- cowplot::plot_grid(
   ctt_mainland_ex,
   ctt_unsampled,
   nrow = 1,
   labels = c("A", "B"),
-  label_size = 10)
+  label_size = 10
+)
 
 ggplot2::ggsave(
   plot = ctt,
@@ -32,14 +40,18 @@ ggplot2::ggsave(
 )
 
 max_age <- DAISIEmainland::plot_max_age(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "mainland_ex")
+  parameter = "mainland_ex",
+  labels = c("A", "B")
+)
 
 endemics <- DAISIEmainland::plot_endemics(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "mainland_ex")
+  parameter = "mainland_ex",
+  labels = c("C", "D")
+)
 
 max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
 
@@ -54,14 +66,18 @@ ggplot2::ggsave(
 )
 
 max_age <- DAISIEmainland::plot_max_age(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "unsampled")
+  parameter = "unsampled",
+  labels = c("A", "B")
+)
 
 endemics <- DAISIEmainland::plot_endemics(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "unsampled")
+  parameter = "unsampled",
+  labels = c("C", "D")
+)
 
 max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
 
@@ -76,14 +92,18 @@ ggplot2::ggsave(
 )
 
 max_age <- DAISIEmainland::plot_max_age(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "undiscovered")
+  parameter = "undiscovered",
+  labels = c("A", "B")
+)
 
 endemics <- DAISIEmainland::plot_endemics(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = NULL,
-  parameter = "undiscovered")
+  parameter = "undiscovered",
+  labels = c("C", "D")
+)
 
 max_age_and_endemics <- cowplot::plot_grid(max_age, endemics, ncol = 1)
 
@@ -168,38 +188,37 @@ DAISIEmainland::plot_param_diffs(
 )
 
 DAISIEmainland::plot_k_estimates(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = file.path("plots", "k_estimates_mainland_ex.png"),
   parameter = "mainland_ex",
   num_breaks = 4,
   signif = 2,
-  scientific = TRUE)
+  scientific = TRUE,
+  labels = c("", "", "A", "B", "", "", "C", "D")
+)
 
 DAISIEmainland::plot_k_estimates(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = file.path("plots", "k_estimates_unsampled.png"),
   parameter = "unsampled",
   num_breaks = 4,
   signif = 2,
-  scientific = TRUE)
+  scientific = TRUE,
+  labels = c("", "", "A", "B", "", "", "C", "D")
+)
 
 DAISIEmainland::plot_k_estimates(
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "k_estimates_undiscovered.png"),
-  parameter = "undiscovered",
-  num_breaks = 4,
-  signif = 2,
-  scientific = TRUE)
-
-DAISIEmainland::plot_k_estimates(
-  data_folder_path = file.path("results"),
+  analysis_results = analysis_results,
   output_file_path = file.path("plots", "k_estimates_undiscovered.png"),
   parameter = "undiscovered",
   num_breaks = 4,
   signif = 2,
   scientific = TRUE,
-  labels = c("", "", "A", "B", "", "", "C", "D"))
+  labels = c("", "", "A", "B", "", "", "C", "D")
+)
 
 DAISIEmainland::plot_inf_k(
-  data_folder_path = file.path("results"),
-  output_file_path = file.path("plots", "inf_k.png"))
+  analysis_results = analysis_results,
+  output_file_path = file.path("plots", "inf_k.png"),
+  labels = c("A", "B")
+)
