@@ -54,6 +54,7 @@ check_ideal_island_clade <- function(ideal_island_clade) {
   DAISIEmainland::check_missing_species(ideal_island_clade$missing_species)
   if ("all_colonisations" %in% names(ideal_island_clade)) {
     DAISIEmainland::check_all_colonisations(
-      ideal_island_clade$all_colonisations)
+      ideal_island_clade$all_colonisations
+    )
   }
 }

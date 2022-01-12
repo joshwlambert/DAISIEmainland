@@ -7,24 +7,33 @@
 #' @author Joshua W. Lambert
 calc_sim_metrics <- function(analysis_results,
                              output_file_path) {
-
   ideal_sim_metrics_list <- lapply(analysis_results, "[[", "ideal_sim_metrics")
-  empirical_sim_metrics_list <- lapply(analysis_results,
-                                       "[[",
-                                       "empirical_sim_metrics")
+  empirical_sim_metrics_list <- lapply(
+    analysis_results,
+    "[[",
+    "empirical_sim_metrics"
+  )
 
-  ideal_num_col_list <- lapply(ideal_sim_metrics_list,
-                               "[[",
-                               "ideal_sim_num_col")
-  ideal_num_spec_list <- lapply(ideal_sim_metrics_list,
-                                "[[",
-                                "ideal_sim_num_spec")
-  empirical_num_col_list <- lapply(empirical_sim_metrics_list,
-                                   "[[",
-                                   "empirical_sim_num_col")
-  empirical_num_spec_list <- lapply(empirical_sim_metrics_list,
-                                    "[[",
-                                    "empirical_sim_num_spec")
+  ideal_num_col_list <- lapply(
+    ideal_sim_metrics_list,
+    "[[",
+    "ideal_sim_num_col"
+  )
+  ideal_num_spec_list <- lapply(
+    ideal_sim_metrics_list,
+    "[[",
+    "ideal_sim_num_spec"
+  )
+  empirical_num_col_list <- lapply(
+    empirical_sim_metrics_list,
+    "[[",
+    "empirical_sim_num_col"
+  )
+  empirical_num_spec_list <- lapply(
+    empirical_sim_metrics_list,
+    "[[",
+    "empirical_sim_num_spec"
+  )
 
   ideal_mean_num_col <- unlist(lapply(ideal_num_col_list, mean))
   ideal_max_num_col <- unlist(lapply(ideal_num_col_list, max))
@@ -70,9 +79,10 @@ calc_sim_metrics <- function(analysis_results,
     empirical_min_num_col = empirical_min_num_col,
     empirical_mean_num_spec = empirical_mean_num_spec,
     empirical_max_num_spec = empirical_max_num_spec,
-    empirical_min_num_spec = empirical_min_num_spec)
+    empirical_min_num_spec = empirical_min_num_spec
+  )
 
-if (!is.null(output_file_path)) {
+  if (!is.null(output_file_path)) {
     saveRDS(object = output, file = output_file_path)
   } else {
     return(output)

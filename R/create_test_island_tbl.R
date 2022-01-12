@@ -18,7 +18,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = character(),
       branch_code = character(),
       branch_t = numeric(),
-      ana_origin = character())
+      ana_origin = character()
+    )
   }
 
   if (island_scenario == 1) {
@@ -30,7 +31,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "I",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = as.character(NA))
+      ana_origin = as.character(NA)
+    )
   }
 
   if (island_scenario == 2) {
@@ -42,7 +44,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 3) {
@@ -54,7 +57,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "I",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = as.character(NA))
+      ana_origin = as.character(NA)
+    )
   }
 
   if (island_scenario == 4) {
@@ -66,7 +70,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 5) {
@@ -78,7 +83,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 6) {
@@ -90,7 +96,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 7) {
@@ -102,7 +109,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "I",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = as.character(NA))
+      ana_origin = as.character(NA)
+    )
   }
 
   if (island_scenario == 8) {
@@ -114,7 +122,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 9) {
@@ -126,7 +135,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 10) {
@@ -138,7 +148,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 11) {
@@ -150,7 +161,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 12) {
@@ -162,7 +174,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 13) {
@@ -174,7 +187,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 14) {
@@ -186,7 +200,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 15) {
@@ -198,7 +213,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 16) {
@@ -210,7 +226,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 17) {
@@ -222,7 +239,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 18) {
@@ -234,8 +252,9 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = "immig_parent")
-    #should this be "immig_parent" or "mainland_extinction"?
+      ana_origin = "immig_parent"
+    )
+    # should this be "immig_parent" or "mainland_extinction"?
   }
 
   if (island_scenario == 19) {
@@ -247,8 +266,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.16, 0.5),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 20) {
@@ -260,8 +282,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.16, 0.58),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 21) {
@@ -273,8 +298,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.16, 0.5),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 22) {
@@ -286,8 +314,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.67, 0.83),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 23) {
@@ -299,8 +330,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.16, 0.58),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 24) {
@@ -312,8 +346,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.16, 0.58),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 25) {
@@ -325,8 +362,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.67, 0.83),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 26) {
@@ -338,8 +378,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.67, 0.83),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 27) {
@@ -351,8 +394,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t = c(0.67, 0.91),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 28) {
@@ -364,9 +410,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "I"),
       branch_code = c("A", "B", NA),
       branch_t = c(0.16, 0.33, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 29) {
@@ -378,9 +427,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "A"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.16, 0.33, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     "mainland_extinction"))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 30) {
@@ -392,9 +444,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "A"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.16, 0.33, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     "mainland_extinction"))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 31) {
@@ -406,9 +461,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "A"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.16, 0.33, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     "mainland_extinction"))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 32) {
@@ -420,9 +478,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "A"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.16, 0.33, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     "mainland_extinction"))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 33) {
@@ -434,9 +495,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "I"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.33, 0.5, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 34) {
@@ -448,9 +512,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "A"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.33, 0.5, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     "mainland_extinction"))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 35) {
@@ -462,9 +529,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "A"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t = c(0.33, 0.5, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     "mainland_extinction"))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 36) {
@@ -474,11 +544,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 3),
       col_t = c(0.16, 0.67),
       spec_type = c("A", "I"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     as.character(NA)))
+      ana_origin = c(
+        "mainland_extinction",
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 37) {
@@ -488,11 +563,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 3),
       col_t = c(0.16, 0.67),
       spec_type = c("A", "I"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     as.character(NA)))
+      ana_origin = c(
+        "mainland_extinction",
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 38) {
@@ -502,11 +582,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 3),
       col_t = c(0.16, 0.67),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     "mainland_extinction"))
+      ana_origin = c(
+        "mainland_extinction",
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 39) {
@@ -516,11 +601,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 3),
       col_t = c(0.16, 0.67),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     "mainland_extinction"))
+      ana_origin = c(
+        "mainland_extinction",
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 40) {
@@ -530,11 +620,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(2, 4),
       col_t = c(0.42, 0.67),
       spec_type = c("A", "I"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     as.character(NA)))
+      ana_origin = c(
+        "mainland_extinction",
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 41) {
@@ -544,11 +639,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(2, 4),
       col_t = c(0.42, 0.67),
       spec_type = c("A", "I"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     as.character(NA)))
+      ana_origin = c(
+        "mainland_extinction",
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 42) {
@@ -558,11 +658,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(2, 4),
       col_t = c(0.42, 0.67),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     "mainland_extinction"))
+      ana_origin = c(
+        "mainland_extinction",
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 43) {
@@ -572,11 +677,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(2, 4),
       col_t = c(0.42, 0.67),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     "mainland_extinction"))
+      ana_origin = c(
+        "mainland_extinction",
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 44) {
@@ -585,11 +695,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 3),
       col_t = c(0.16, 0.67),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     "immig_parent"))
+      ana_origin = c(
+        "mainland_extinction",
+        "immig_parent"
+      )
+    )
   }
 
   if (island_scenario == 45) {
@@ -600,9 +715,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "C"),
       branch_code = c("AA", "B", "AB"),
       branch_t = c(0.16, 0.5, 0.9),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 46) {
@@ -613,7 +731,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "I",
       branch_code = as.character(NA),
       branch_t = NaN,
-      ana_origin = as.character(NA))
+      ana_origin = as.character(NA)
+    )
   }
 
   if (island_scenario == 47) {
@@ -622,11 +741,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 2),
       col_t = c(0.16, 0.5),
       spec_type = c("I", "I"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t = c(NaN, NaN),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 48) {
@@ -637,7 +761,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "I",
       branch_code = as.character(NA),
       branch_t_bp = NaN,
-      ana_origin = as.character(NA))
+      ana_origin = as.character(NA)
+    )
   }
 
   if (island_scenario == 49) {
@@ -648,7 +773,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t_bp = NaN,
-      ana_origin = "immig_parent")
+      ana_origin = "immig_parent"
+    )
   }
 
   if (island_scenario == 50) {
@@ -659,8 +785,11 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C"),
       branch_code = c("A", "B"),
       branch_t_bp = c(0.5, 0.25),
-      ana_origin = c(as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 51) {
@@ -669,11 +798,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 1),
       col_t_bp = c(0.5, 0.3),
       spec_type = c("A", "I"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t_bp = c(NaN, NaN),
-      ana_origin = c("immig_parent",
-                     as.character(NA)))
+      ana_origin = c(
+        "immig_parent",
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 52) {
@@ -684,9 +818,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "I"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t_bp = c(0.5, 0.4, 0.25),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     as.character(NA)))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        as.character(NA)
+      )
+    )
   }
 
   if (island_scenario == 53) {
@@ -695,11 +832,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 1),
       col_t_bp = c(0.5, 0.25),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t_bp = c(NaN, NaN),
-      ana_origin = c("immig_parent",
-                     "immig_parent"))
+      ana_origin = c(
+        "immig_parent",
+        "immig_parent"
+      )
+    )
   }
 
   if (island_scenario == 54) {
@@ -710,9 +852,12 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = c("C", "C", "A"),
       branch_code = c("A", "B", as.character(NA)),
       branch_t_bp = c(0.5, 0.4, 0.25),
-      ana_origin = c(as.character(NA),
-                     as.character(NA),
-                     "immig_parent"))
+      ana_origin = c(
+        as.character(NA),
+        as.character(NA),
+        "immig_parent"
+      )
+    )
   }
 
   if (island_scenario == 55) {
@@ -723,7 +868,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t_bp = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 56) {
@@ -734,7 +880,8 @@ create_test_island_tbl <- function(island_scenario) {                           
       spec_type = "A",
       branch_code = as.character(NA),
       branch_t_bp = NaN,
-      ana_origin = "mainland_extinction")
+      ana_origin = "mainland_extinction"
+    )
   }
 
   if (island_scenario == 57) {
@@ -743,11 +890,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(3, 4),
       col_t_bp = c(0.6, 0.33),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t_bp = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     "mainland_extinction"))
+      ana_origin = c(
+        "mainland_extinction",
+        "mainland_extinction"
+      )
+    )
   }
 
   if (island_scenario == 58) {
@@ -756,11 +908,16 @@ create_test_island_tbl <- function(island_scenario) {                           
       main_anc_id = c(1, 2),
       col_t_bp = c(0.67, 0.33),
       spec_type = c("A", "A"),
-      branch_code = c(as.character(NA),
-                      as.character(NA)),
+      branch_code = c(
+        as.character(NA),
+        as.character(NA)
+      ),
       branch_t_bp = c(NaN, NaN),
-      ana_origin = c("mainland_extinction",
-                     "mainland_extinction"))
+      ana_origin = c(
+        "mainland_extinction",
+        "mainland_extinction"
+      )
+    )
   }
 
   return(island_tbl)

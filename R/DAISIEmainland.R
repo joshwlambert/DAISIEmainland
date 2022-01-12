@@ -10,28 +10,27 @@
 #' @examples
 #' # simulate data for 1 island (replicate) with mainland extinction
 #' island <- sim_island_with_mainland(
-#' total_time = 1,
-#' m = 100,
-#' island_pars = c(1, 1, 10, 0.1, 1),
-#' mainland_ex = 0.1,
-#' mainland_sample_prob = 1,
-#' mainland_sample_type = "complete",
-#' replicates = 1,
-#' verbose = FALSE
+#'   total_time = 1,
+#'   m = 100,
+#'   island_pars = c(1, 1, 10, 0.1, 1),
+#'   mainland_ex = 0.1,
+#'   mainland_sample_prob = 1,
+#'   mainland_sample_type = "complete",
+#'   replicates = 1,
+#'   verbose = FALSE
 #' )
 #' # simulate data for 1 island (replicate) with incomplete sampling of known
 #' # mainland species
 #' island <- sim_island_with_mainland(
-#' total_time = 1,
-#' m = 100,
-#' island_pars = c(1, 1, 10, 0.1, 1),
-#' mainland_ex = 0,
-#' mainland_sample_prob = 0.8,
-#' mainland_sample_type = "unsampled",
-#' replicates = 1,
-#' verbose = FALSE
+#'   total_time = 1,
+#'   m = 100,
+#'   island_pars = c(1, 1, 10, 0.1, 1),
+#'   mainland_ex = 0,
+#'   mainland_sample_prob = 0.8,
+#'   mainland_sample_type = "unsampled",
+#'   replicates = 1,
+#'   verbose = FALSE
 #' )
-#'
 #' @seealso
 #' `DAISIEmainland` works in association with the
 #' package `DAISIE`(github.com/rsetienne/DAISIE)

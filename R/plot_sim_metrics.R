@@ -9,24 +9,33 @@
 #' @export plot_sim_metrics
 plot_sim_metrics <- function(analysis_results,
                              output_file_path) {
-
   ideal_sim_metrics_list <- lapply(analysis_results, "[[", "ideal_sim_metrics")
-  empirical_sim_metrics_list <- lapply(analysis_results,
-                                       "[[",
-                                       "empirical_sim_metrics")
+  empirical_sim_metrics_list <- lapply(
+    analysis_results,
+    "[[",
+    "empirical_sim_metrics"
+  )
 
-  ideal_num_col_list <- lapply(ideal_sim_metrics_list,
-                               "[[",
-                               "ideal_sim_num_col")
-  ideal_num_spec_list <- lapply(ideal_sim_metrics_list,
-                                "[[",
-                                "ideal_sim_num_spec")
-  empirical_num_col_list <- lapply(empirical_sim_metrics_list,
-                                   "[[",
-                                   "empirical_sim_num_col")
-  empirical_num_spec_list <- lapply(empirical_sim_metrics_list,
-                                    "[[",
-                                    "empirical_sim_num_spec")
+  ideal_num_col_list <- lapply(
+    ideal_sim_metrics_list,
+    "[[",
+    "ideal_sim_num_col"
+  )
+  ideal_num_spec_list <- lapply(
+    ideal_sim_metrics_list,
+    "[[",
+    "ideal_sim_num_spec"
+  )
+  empirical_num_col_list <- lapply(
+    empirical_sim_metrics_list,
+    "[[",
+    "empirical_sim_num_col"
+  )
+  empirical_num_spec_list <- lapply(
+    empirical_sim_metrics_list,
+    "[[",
+    "empirical_sim_num_spec"
+  )
 
   ideal_mean_num_col <- unlist(lapply(ideal_num_col_list, mean))
   ideal_var_num_col <- unlist(lapply(ideal_num_col_list, stats::var))
@@ -65,12 +74,14 @@ plot_sim_metrics <- function(analysis_results,
     ideal_mean_num_spec = ideal_mean_num_spec,
     ideal_var_num_spec = ideal_var_num_spec,
     ideal_max_num_spec = ideal_max_num_spec,
-    ideal_min_num_spec = ideal_min_num_spec)
+    ideal_min_num_spec = ideal_min_num_spec
+  )
 
   ideal_mean_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_mean_num_col),
-                            fill = "#009E73",
-                            bins = 8) +
+      fill = "#009E73",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -78,8 +89,9 @@ plot_sim_metrics <- function(analysis_results,
 
   ideal_var_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_var_num_col),
-                            fill = "#009E73",
-                            bins = 8) +
+      fill = "#009E73",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -87,8 +99,9 @@ plot_sim_metrics <- function(analysis_results,
 
   ideal_max_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_max_num_col),
-                            fill = "#009E73",
-                            bins = 8) +
+      fill = "#009E73",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -96,8 +109,9 @@ plot_sim_metrics <- function(analysis_results,
 
   ideal_min_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_min_num_col),
-                            fill = "#009E73",
-                            bins = 8) +
+      fill = "#009E73",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -105,8 +119,9 @@ plot_sim_metrics <- function(analysis_results,
 
   empirical_mean_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_mean_num_col),
-                            fill = "#E69F00",
-                            bins = 8) +
+      fill = "#E69F00",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -114,8 +129,9 @@ plot_sim_metrics <- function(analysis_results,
 
   empirical_var_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_var_num_col),
-                            fill = "#E69F00",
-                            bins = 8) +
+      fill = "#E69F00",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -123,8 +139,9 @@ plot_sim_metrics <- function(analysis_results,
 
   empirical_max_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_max_num_col),
-                            fill = "#E69F00",
-                            bins = 8) +
+      fill = "#E69F00",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -132,8 +149,9 @@ plot_sim_metrics <- function(analysis_results,
 
   empirical_min_num_col <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = empirical_min_num_col),
-                            fill = "#E69F00",
-                            bins = 8) +
+      fill = "#E69F00",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Colonisations") +
     ggplot2::ylab("Frequency") +
@@ -141,8 +159,9 @@ plot_sim_metrics <- function(analysis_results,
 
   mean_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_mean_num_spec),
-                            fill = "#E34234",
-                            bins = 8) +
+      fill = "#E34234",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Mean Number of Species") +
     ggplot2::ylab("Frequency") +
@@ -150,8 +169,9 @@ plot_sim_metrics <- function(analysis_results,
 
   var_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_var_num_spec),
-                            fill = "#E34234",
-                            bins = 8) +
+      fill = "#E34234",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Variance of Number of Species") +
     ggplot2::ylab("Frequency") +
@@ -159,8 +179,9 @@ plot_sim_metrics <- function(analysis_results,
 
   max_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_max_num_spec),
-                            fill = "#E34234",
-                            bins = 8) +
+      fill = "#E34234",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Maximum Number of Species") +
     ggplot2::ylab("Frequency") +
@@ -168,8 +189,9 @@ plot_sim_metrics <- function(analysis_results,
 
   min_num_spec <- ggplot2::ggplot(data = plotting_data) +
     ggplot2::geom_histogram(ggplot2::aes(x = ideal_min_num_spec),
-                            fill = "#E34234",
-                            bins = 8) +
+      fill = "#E34234",
+      bins = 8
+    ) +
     ggplot2::theme_classic() +
     ggplot2::xlab("Minimum Number of Species") +
     ggplot2::ylab("Frequency") +
@@ -182,7 +204,8 @@ plot_sim_metrics <- function(analysis_results,
     empirical_max_num_col, empirical_min_num_col,
     mean_num_spec, var_num_spec,
     max_num_spec, min_num_spec,
-    nrow = 3)
+    nrow = 3
+  )
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(

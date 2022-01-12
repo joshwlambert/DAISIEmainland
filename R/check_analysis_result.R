@@ -16,22 +16,26 @@
 check_analysis_result <- function(analysis_result) {
   testit::assert(identical(
     names(analysis_result),
-    c("daisie_mainland_data", "ideal_ml", "empirical_ml", "ideal_sim_metrics",
-      "empirical_sim_metrics", "error", "sim_params")
-    ))
+    c(
+      "daisie_mainland_data", "ideal_ml", "empirical_ml", "ideal_sim_metrics",
+      "empirical_sim_metrics", "error", "sim_params"
+    )
+  ))
   testit::assert(identical(length(analysis_result), 7L))
   check_daisie_mainland_data(analysis_result$daisie_mainland_data)
   testit::assert(all(sapply(analysis_result$ideal_ml, is.data.frame)))
   testit::assert(all(sapply(analysis_result$ideal_ml, function(x) {
     identical(
       names(x),
-      c("lambda_c", "mu", "K", "gamma", "lambda_a", "loglik", "df", "conv"))
+      c("lambda_c", "mu", "K", "gamma", "lambda_a", "loglik", "df", "conv")
+    )
   })))
   testit::assert(all(sapply(analysis_result$empirical_ml, is.data.frame)))
   testit::assert(all(sapply(analysis_result$empirical_ml, function(x) {
     identical(
       names(x),
-      c("lambda_c", "mu", "K", "gamma", "lambda_a", "loglik", "df", "conv"))
+      c("lambda_c", "mu", "K", "gamma", "lambda_a", "loglik", "df", "conv")
+    )
   })))
   testit::assert(identical(
     names(analysis_result$ideal_sim_metrics),
@@ -45,8 +49,10 @@ check_analysis_result <- function(analysis_result) {
   testit::assert(all(sapply(analysis_result$empirical_sim_metrics, is.numeric)))
   testit::assert(identical(
     names(analysis_result$error),
-    c("delta_ctt", "max_age_percent", "endemic_percent",
-      "param_diffs", "param_ratios")
+    c(
+      "delta_ctt", "max_age_percent", "endemic_percent",
+      "param_diffs", "param_ratios"
+    )
   ))
   testit::assert(all(unlist(sapply(analysis_result$error, function(x) {
     if (is.list(x)) {
@@ -57,8 +63,10 @@ check_analysis_result <- function(analysis_result) {
   }))))
   testit::assert(identical(
     names(analysis_result$sim_params),
-    c("island_clado", "island_ex", "island_k", "island_immig", "island_ana",
-      "mainland_ex", "mainland_sample_prob", "mainland_sample_type")
+    c(
+      "island_clado", "island_ex", "island_k", "island_immig", "island_ana",
+      "mainland_ex", "mainland_sample_prob", "mainland_sample_type"
+    )
   ))
   testit::assert(all(sapply(analysis_result$sim_params, function(x) {
     is.character(x) || is.numeric(x)

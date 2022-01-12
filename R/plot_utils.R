@@ -5,7 +5,8 @@
 #' @return Named vector of 5 named elements
 calc_quantiles <- function(plotting_data) {
   quantiles <- stats::quantile(plotting_data,
-                               probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
+    probs = c(0.05, 0.25, 0.5, 0.75, 0.95)
+  )
   names(quantiles) <- c("ymin", "lower", "middle", "upper", "ymax")
   return(quantiles)
 }
@@ -17,11 +18,11 @@ calc_quantiles <- function(plotting_data) {
 #'
 #' @return Numeric vector
 calc_outliers <- function(plotting_data) {
-  outliers <- subset(plotting_data,
-                     plotting_data < stats::quantile(plotting_data,
-                                                     prob = 0.05) |
-                       plotting_data > stats::quantile(plotting_data,
-                                                       prob = 0.95))
+  outliers <- subset(
+    plotting_data,
+    plotting_data < stats::quantile(plotting_data, prob = 0.05) |
+      plotting_data > stats::quantile(plotting_data, prob = 0.95)
+  )
   if (length(outliers) == 0) {
     outliers <- stats::median(plotting_data)
   }
@@ -42,11 +43,13 @@ create_ihs_breaks <- function() {
 #'
 #' @return A function that takes a numeric vector
 create_labels <- function(signif, scientific) {
-  function(breaks) scientific(
-    breaks,
-    scientific = scientific,
-    signif = signif
-  )
+  function(breaks) {
+    scientific(
+      breaks,
+      scientific = scientific,
+      signif = signif
+    )
+  }
 }
 
 #' Creates the axis numbers (labels) for plotting with scientific form in
@@ -57,17 +60,23 @@ create_labels <- function(signif, scientific) {
 #' @return Character vector
 scientific <- function(breaks, scientific, signif) {
   if (scientific) {
-    breaks <- gsub(pattern = "e\\+",
-                   replacement = "%*%10^",
-                   x = choose_scientific(breaks, signif))
+    breaks <- gsub(
+      pattern = "e\\+",
+      replacement = "%*%10^",
+      x = choose_scientific(breaks, signif)
+    )
   } else {
-    breaks <- gsub(pattern = "e\\+",
-                   replacement = "%*%10^",
-                   x = signif(breaks, digits = signif))
+    breaks <- gsub(
+      pattern = "e\\+",
+      replacement = "%*%10^",
+      x = signif(breaks, digits = signif)
+    )
   }
-  parse(text = gsub(pattern = "e",
-                    replacement = "%*%10^",
-                    x = breaks))
+  parse(text = gsub(
+    pattern = "e",
+    replacement = "%*%10^",
+    x = breaks
+  ))
 }
 
 #' Decides whether number should be in normal or scientific form depending on
@@ -78,8 +87,9 @@ scientific <- function(breaks, scientific, signif) {
 #' @return Character vector
 choose_scientific <- function(breaks, signif) {
   ifelse(breaks > 1e3 | breaks < 1e-3,
-         scales::scientific(breaks, digits = 1),
-         scales::number(signif(breaks, digits = signif), big.mark = ""))
+    scales::scientific(breaks, digits = 1),
+    scales::number(signif(breaks, digits = signif), big.mark = "")
+  )
 }
 
 #' Convert an `species_type` to a string,
@@ -93,14 +103,17 @@ choose_scientific <- function(breaks, signif) {
 #' species_type_to_str("A") # Anagenetic
 #' species_type_to_str("C") # Cladogentic
 #' species_type_to_str("I") # Immigrant
-#'
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
 species_type_to_str <- function(species_type) {
   testthat::expect_equal(length(species_type), 1)
-  if (species_type == "A") return("anagenetic")
-  if (species_type == "C") return("cladogenetic")
+  if (species_type == "A") {
+    return("anagenetic")
+  }
+  if (species_type == "C") {
+    return("cladogenetic")
+  }
   testthat::expect_equal(species_type, "I")
   return("immigrant")
 }

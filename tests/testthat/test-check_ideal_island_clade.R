@@ -12,7 +12,8 @@ test_that("empty island", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_clade = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   ideal_island_clade <- island_tbl$ideal_island[[1]]
   expect_silent(check_ideal_island_clade(ideal_island_clade))
 })
@@ -31,7 +32,8 @@ test_that("island with two clades", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   ideal_island_clade <- island$ideal_island[[1]]
   expect_silent(check_ideal_island_clade(ideal_island_clade))
 })
@@ -52,7 +54,8 @@ test_that("island with two clades, detailed", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   ideal_island_clade <- island_tbl$ideal_island[[1]]
   expect_silent(check_ideal_island_clade(ideal_island_clade))
 
@@ -89,7 +92,8 @@ test_that("island with two clades and colonisations", {
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   ideal_island_clade <- island_tbl$ideal_island[[2]]
   check_ideal_island_clade(ideal_island_clade)
 })

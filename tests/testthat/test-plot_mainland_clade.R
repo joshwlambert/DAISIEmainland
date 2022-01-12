@@ -37,9 +37,10 @@ test_that("Speciation, both offspring species live", {
     sample.kind = "Rejection"
   )
   mainland <- sim_mainland(
-  total_time = 1,
-  m = 2,
-  mainland_ex = 1)
+    total_time = 1,
+    m = 2,
+    mainland_ex = 1
+  )
 
   plot_mainland_clade(mainland_clade = mainland[[1]])
   plot_mainland_clade(mainland[[2]])

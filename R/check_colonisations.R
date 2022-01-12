@@ -32,8 +32,9 @@
 #'   island_pars = c(1, 1, 10, 12, 1),
 #'   mainland = mainland_clade,
 #'   mainland_sample_prob = 1,
-#'   mainland_sample_type = "complete")
-#'daisie_data <- DAISIEmainland:::create_daisie_data(
+#'   mainland_sample_type = "complete"
+#' )
+#' daisie_data <- DAISIEmainland:::create_daisie_data(
 #'   total_time = 1,
 #'   island_tbl = island_tbl,
 #'   mainland_clade = mainland_clade,

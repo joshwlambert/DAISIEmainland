@@ -8,7 +8,8 @@ test_that("minimal example use", {
   mainland <- sim_mainland(
     total_time = 1,
     m = 2,
-    mainland_ex = 1)
+    mainland_ex = 1
+  )
 
   plot_mainland(mainland)
 })
@@ -23,7 +24,8 @@ test_that("interesting example", {
   mainland <- sim_mainland(
     total_time = 1,
     m = 4,
-    mainland_ex = 1)
+    mainland_ex = 1
+  )
 
   plot_mainland(mainland)
 })

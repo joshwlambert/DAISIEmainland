@@ -3,7 +3,8 @@ test_that("calc_quantiles runs silent without error", {
   expect_length(quantiles, 5)
   expect_equal(
     quantiles,
-    c(ymin = 1.45, lower = 3.25, middle = 5.50, upper = 7.75, ymax = 9.55))
+    c(ymin = 1.45, lower = 3.25, middle = 5.50, upper = 7.75, ymax = 9.55)
+  )
 })
 
 test_that("calc_outliers runs silent without error", {

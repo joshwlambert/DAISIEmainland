@@ -13,7 +13,6 @@
 #' @keywords internal
 #' @author Joshua W. Lambert
 sample_event <- function(rates) {
-
   testit::assert(is.list(rates))
   testit::assert(is.numeric(rates$immig_rate))
   testit::assert(is.numeric(rates$ext_rate))
@@ -28,10 +27,12 @@ sample_event <- function(rates) {
     x = 1:4,
     size = 1,
     replace = FALSE,
-    prob = c(rates$immig_rate,
-             rates$ext_rate,
-             rates$ana_rate,
-             rates$clado_rate)
+    prob = c(
+      rates$immig_rate,
+      rates$ext_rate,
+      rates$ana_rate,
+      rates$clado_rate
+    )
   )
 
   testit::assert(is.numeric(possible_event))

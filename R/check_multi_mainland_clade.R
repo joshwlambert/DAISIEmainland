@@ -17,12 +17,10 @@
 #'   mainland_ex = 0.5
 #' )
 #' check_multi_mainland_clade(multi_mainland_clade)
-#'
 #' @author Richèl J.C. Bilderbeek, Joshua W. Lambert
 #'
 #' @export
 check_multi_mainland_clade <- function(multi_mainland_clade) {
-
   testit::assert(is.list(multi_mainland_clade))
 
   for (i in seq_along(multi_mainland_clade)) {

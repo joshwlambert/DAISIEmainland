@@ -12,11 +12,11 @@ plot_k_estimates <- function(analysis_results,
                              signif,
                              scientific,
                              labels = NULL) {
-
   testit::assert(
     "Parameter must be either 'mainland_ex', 'unsampled' or 'undiscovered'",
     parameter == "mainland_ex" || parameter == "unsampled" ||
-      parameter == "undiscovered")
+      parameter == "undiscovered"
+  )
 
   ideal_ml <- lapply(analysis_results, "[[", "ideal_ml")
   empirical_ml <- lapply(analysis_results, "[[", "empirical_ml")
@@ -50,12 +50,18 @@ plot_k_estimates <- function(analysis_results,
   ideal_mainland_sample_type <- list()
   ideal_sim_k <- list()
   for (i in seq_along(ideal_k_no_inf)) {
-    ideal_mainland_ex[[i]] <- rep(mainland_ex[[i]],
-                                  length(ideal_k_no_inf[[i]]))
-    ideal_mainland_sample_prob[[i]] <- rep(mainland_sample_prob[[i]],
-                                          length(ideal_k_no_inf[[i]]))
-    ideal_mainland_sample_type[[i]] <- rep(mainland_sample_type[[i]],
-                                           length(ideal_k_no_inf[[i]]))
+    ideal_mainland_ex[[i]] <- rep(
+      mainland_ex[[i]],
+      length(ideal_k_no_inf[[i]])
+    )
+    ideal_mainland_sample_prob[[i]] <- rep(
+      mainland_sample_prob[[i]],
+      length(ideal_k_no_inf[[i]])
+    )
+    ideal_mainland_sample_type[[i]] <- rep(
+      mainland_sample_type[[i]],
+      length(ideal_k_no_inf[[i]])
+    )
     ideal_sim_k[[i]] <- rep(sim_k[[i]], length(ideal_k_no_inf[[i]]))
   }
 
@@ -64,12 +70,18 @@ plot_k_estimates <- function(analysis_results,
   empirical_mainland_sample_type <- list()
   empirical_sim_k <- list()
   for (i in seq_along(empirical_k_no_inf)) {
-    empirical_mainland_ex[[i]] <- rep(mainland_ex[[i]],
-                                      length(empirical_k_no_inf[[i]]))
-    empirical_mainland_sample_prob[[i]] <- rep(mainland_sample_prob[[i]],
-                                               length(empirical_k_no_inf[[i]]))
-    empirical_mainland_sample_type[[i]] <- rep(mainland_sample_type[[i]],
-                                               length(empirical_k_no_inf[[i]]))
+    empirical_mainland_ex[[i]] <- rep(
+      mainland_ex[[i]],
+      length(empirical_k_no_inf[[i]])
+    )
+    empirical_mainland_sample_prob[[i]] <- rep(
+      mainland_sample_prob[[i]],
+      length(empirical_k_no_inf[[i]])
+    )
+    empirical_mainland_sample_type[[i]] <- rep(
+      mainland_sample_type[[i]],
+      length(empirical_k_no_inf[[i]])
+    )
     empirical_sim_k[[i]] <- rep(sim_k[[i]], length(empirical_k_no_inf[[i]]))
   }
 
@@ -78,14 +90,16 @@ plot_k_estimates <- function(analysis_results,
     mainland_ex = unlist(ideal_mainland_ex),
     mainland_sample_prob = unlist(ideal_mainland_sample_prob),
     mainland_sample_type = unlist(ideal_mainland_sample_type),
-    sim_k = unlist(ideal_sim_k))
+    sim_k = unlist(ideal_sim_k)
+  )
 
   empirical_plotting_data <- data.frame(
     empirical_k = unlist(empirical_k_no_inf),
     mainland_ex = unlist(empirical_mainland_ex),
     mainland_sample_prob = unlist(empirical_mainland_sample_prob),
     mainland_sample_type = unlist(empirical_mainland_sample_type),
-    sim_k = unlist(empirical_sim_k))
+    sim_k = unlist(empirical_sim_k)
+  )
 
   if (parameter == "mainland_ex") {
     which_ideal <- ideal_plotting_data$mainland_sample_type %in% "complete"
@@ -106,204 +120,300 @@ plot_k_estimates <- function(analysis_results,
   empirical_plotting_data_k_5 <-
     empirical_plotting_data[empirical_plotting_data$sim_k %in% 5, ]
 
-  upper_k_5_ylim <- max(ideal_plotting_data_k_5$ideal_k,
-                        empirical_plotting_data_k_5$empirical_k)
+  upper_k_5_ylim <- max(
+    ideal_plotting_data_k_5$ideal_k,
+    empirical_plotting_data_k_5$empirical_k
+  )
 
   ideal_plotting_data_k_50 <-
     ideal_plotting_data[ideal_plotting_data$sim_k %in% 50, ]
   empirical_plotting_data_k_50 <-
     empirical_plotting_data[empirical_plotting_data$sim_k %in% 50, ]
 
-  upper_k_50_ylim <- max(ideal_plotting_data_k_50$ideal_k,
-                         empirical_plotting_data_k_50$empirical_k)
+  upper_k_50_ylim <- max(
+    ideal_plotting_data_k_50$ideal_k,
+    empirical_plotting_data_k_50$empirical_k
+  )
 
   if (parameter == "mainland_ex") {
-    ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5,
-                                 ggplot2::aes(
-                                   x = as.factor(mainland_ex),
-                                   y = ideal_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#009E73",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    ideal_k_5 <- ggplot2::ggplot(
+      data = ideal_plotting_data_k_5,
+      ggplot2::aes(
+        x = as.factor(mainland_ex),
+        y = ideal_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#009E73",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
 
-    empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
-                                 ggplot2::aes(
-                                   x = as.factor(mainland_ex),
-                                   y = empirical_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#E69F00",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    empirical_k_5 <- ggplot2::ggplot(
+      data = empirical_plotting_data_k_5,
+      ggplot2::aes(
+        x = as.factor(mainland_ex),
+        y = empirical_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#E69F00",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
 
-    ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
-                                 ggplot2::aes(
-                                   x = as.factor(mainland_ex),
-                                   y = ideal_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#009E73",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    ideal_k_50 <- ggplot2::ggplot(
+      data = ideal_plotting_data_k_50,
+      ggplot2::aes(
+        x = as.factor(mainland_ex),
+        y = ideal_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#009E73",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[I])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
 
-    empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
-                                     ggplot2::aes(
-                                       x = as.factor(mainland_ex),
-                                       y = empirical_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#E69F00",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    empirical_k_50 <- ggplot2::ggplot(
+      data = empirical_plotting_data_k_50,
+      ggplot2::aes(
+        x = as.factor(mainland_ex),
+        y = empirical_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#E69F00",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[E])) +
       ggplot2::xlab(expression(paste("Mainland extinction ", (mu[M])))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
   } else {
-    ideal_k_5 <- ggplot2::ggplot(data = ideal_plotting_data_k_5,
-                                 ggplot2::aes(
-                                   x = as.factor(mainland_sample_prob),
-                                   y = ideal_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#009E73",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    ideal_k_5 <- ggplot2::ggplot(
+      data = ideal_plotting_data_k_5,
+      ggplot2::aes(
+        x = as.factor(mainland_sample_prob),
+        y = ideal_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#009E73",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[I])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ",
-                                     (rho)))) +
+      ggplot2::xlab(expression(paste(
+        "Mainland sampling probability ",
+        (rho)
+      ))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
 
-    empirical_k_5 <- ggplot2::ggplot(data = empirical_plotting_data_k_5,
-                                     ggplot2::aes(
-                                       x = as.factor(mainland_sample_prob),
-                                       y = empirical_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#E69F00",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    empirical_k_5 <- ggplot2::ggplot(
+      data = empirical_plotting_data_k_5,
+      ggplot2::aes(
+        x = as.factor(mainland_sample_prob),
+        y = empirical_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#E69F00",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[E])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ",
-                                     (rho)))) +
+      ggplot2::xlab(expression(paste(
+        "Mainland sampling probability ",
+        (rho)
+      ))) +
       ggplot2::geom_hline(yintercept = 5, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
 
-    ideal_k_50 <- ggplot2::ggplot(data = ideal_plotting_data_k_50,
-                                  ggplot2::aes(
-                                    x = as.factor(mainland_sample_prob),
-                                    y = ideal_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#009E73",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    ideal_k_50 <- ggplot2::ggplot(
+      data = ideal_plotting_data_k_50,
+      ggplot2::aes(
+        x = as.factor(mainland_sample_prob),
+        y = ideal_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#009E73",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[I])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ",
-                                     (rho)))) +
+      ggplot2::xlab(expression(paste(
+        "Mainland sampling probability ",
+        (rho)
+      ))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
 
-    empirical_k_50 <- ggplot2::ggplot(data = empirical_plotting_data_k_50,
-                                      ggplot2::aes(
-                                        x = as.factor(mainland_sample_prob),
-                                        y = empirical_k)) +
-      ggplot2::stat_summary(fun.data = calc_quantiles,
-                            geom = "boxplot",
-                            fill = "#E69F00",
-                            lwd = 0.5) +
-      ggplot2::stat_summary(fun = calc_outliers,
-                            geom = "point",
-                            size = 0.5) +
+    empirical_k_50 <- ggplot2::ggplot(
+      data = empirical_plotting_data_k_50,
+      ggplot2::aes(
+        x = as.factor(mainland_sample_prob),
+        y = empirical_k
+      )
+    ) +
+      ggplot2::stat_summary(
+        fun.data = calc_quantiles,
+        geom = "boxplot",
+        fill = "#E69F00",
+        lwd = 0.5
+      ) +
+      ggplot2::stat_summary(
+        fun = calc_outliers,
+        geom = "point",
+        size = 0.5
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ylab(expression("K'"[E])) +
-      ggplot2::xlab(expression(paste("Mainland sampling probability ",
-                                     (rho)))) +
+      ggplot2::xlab(expression(paste(
+        "Mainland sampling probability ",
+        (rho)
+      ))) +
       ggplot2::geom_hline(yintercept = 50, colour = "grey50") +
       ggplot2::scale_y_continuous(
         breaks = scales::breaks_log(num_breaks, base = exp(1)),
-        labels = create_labels(signif = signif,
-                               scientific = scientific),
-        trans = "log")
+        labels = create_labels(
+          signif = signif,
+          scientific = scientific
+        ),
+        trans = "log"
+      )
   }
 
   k_5_title <- cowplot::ggdraw() +
     cowplot::draw_label(
       "True K' = 5",
-      size = 12) +
+      size = 12
+    ) +
     ggplot2::theme(
-      plot.margin = ggplot2::margin(0, 0, 0, 250))
+      plot.margin = ggplot2::margin(0, 0, 0, 250)
+    )
 
   k_50_title <- cowplot::ggdraw() +
     cowplot::draw_label(
       "True K' = 50",
-      size = 12) +
+      size = 12
+    ) +
     ggplot2::theme(
-      plot.margin = ggplot2::margin(0, 0, 0, 250))
+      plot.margin = ggplot2::margin(0, 0, 0, 250)
+    )
 
   k_plot <- cowplot::plot_grid(
     k_5_title, NULL,
@@ -313,7 +423,8 @@ plot_k_estimates <- function(analysis_results,
     nrow = 4,
     rel_heights = c(0.1, 1, 0.1, 1),
     labels = labels,
-    label_size = 10)
+    label_size = 10
+  )
 
   if (!is.null(output_file_path)) {
     ggplot2::ggsave(

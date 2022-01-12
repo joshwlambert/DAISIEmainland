@@ -5,7 +5,8 @@ test_that("calc_sim_metrics runs silent without error", {
 
   expect_silent(sim_metrics <- calc_sim_metrics(
     analysis_results = analysis_results,
-    output_file_path = NULL))
+    output_file_path = NULL
+  ))
 
   expect_length(sim_metrics, 12)
   expect_equal(sim_metrics$ideal_mean_num_col, 34.2652173913)

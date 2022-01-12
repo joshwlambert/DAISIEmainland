@@ -13,11 +13,14 @@ test_that("calc_island_endemics produces is correct for all endemics", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_equal(ideal, list(endemics = 6, non_endemics = 0))
   expect_equal(empirical, list(endemics = 6, non_endemics = 0))
 })
@@ -37,11 +40,14 @@ test_that("calc_island_endemics produces is correct for all non-endemics", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_equal(ideal, list(endemics = 0, non_endemics = 5))
   expect_equal(empirical, list(endemics = 0, non_endemics = 5))
 })
@@ -62,11 +68,14 @@ test_that("calc_island_endemics produces is correct for endemics and
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_equal(ideal, list(endemics = 4, non_endemics = 2))
   expect_equal(empirical, list(endemics = 4, non_endemics = 2))
 })
@@ -86,11 +95,14 @@ test_that("calc_island_endemics produces is correct for empty island", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_equal(ideal, list(endemics = 0, non_endemics = 0))
   expect_equal(empirical, list(endemics = 0, non_endemics = 0))
 })
@@ -111,11 +123,14 @@ test_that("calc_island_endemics produces is correct for all endemics with
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_equal(ideal, list(endemics = 81, non_endemics = 0))
   expect_equal(empirical, list(endemics = 81, non_endemics = 0))
 })
@@ -136,11 +151,14 @@ test_that("calc_island_endemics produces is correct for endemics and
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- calc_island_endemics(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_equal(ideal, list(endemics = 38, non_endemics = 30))
   expect_equal(empirical, list(endemics = 38, non_endemics = 30))
 })

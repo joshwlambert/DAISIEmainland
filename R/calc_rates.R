@@ -14,7 +14,6 @@ calc_rates <- function(gam,
                        num_spec,
                        num_immigrants,
                        mainland_n) {
-
   testit::assert(is.numeric(gam))
   testit::assert(is.numeric(laa))
   testit::assert(is.numeric(lac))
@@ -38,5 +37,6 @@ calc_rates <- function(gam,
     immig_rate = immig_rate,
     ext_rate = ext_rate,
     ana_rate = ana_rate,
-    clado_rate = clado_rate))
+    clado_rate = clado_rate
+  ))
 }

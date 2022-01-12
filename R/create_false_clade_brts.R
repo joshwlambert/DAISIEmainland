@@ -16,7 +16,8 @@ create_false_clade_brts <- function(total_time,
     false_brts <- unique(sort(subset_island[, "col_t_bp"], decreasing = TRUE))
     second_col <- false_brts[length(false_brts)]
     false_brts <- unique(sort(c(false_brts, subset_island[, "branch_t_bp"]),
-                       decreasing = TRUE))
+      decreasing = TRUE
+    ))
     false_brts <- false_brts[-which(false_brts == second_col)]
   }
   false_clade_brts <- c(total_time, anc_branch_t_bp, false_brts)

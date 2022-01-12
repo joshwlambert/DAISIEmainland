@@ -6,7 +6,6 @@
 #' @return A vector of numerics
 #' @author Joshua W. Lambert
 calc_ctt <- function(daisie_mainland_data) {
-
   testit::assert(identical(
     length(daisie_mainland_data$ideal_multi_daisie_data),
     length(daisie_mainland_data$empirical_multi_daisie_data)
@@ -24,7 +23,8 @@ calc_ctt <- function(daisie_mainland_data) {
     empirical_multi_daisie_data,
     function(x) {
       x[-1]
-    })
+    }
+  )
 
   # extract ideal colonisation times
   ideal_col_times <- lapply(ideal_multi_daisie_data, function(x) {
@@ -76,9 +76,9 @@ calc_ctt <- function(daisie_mainland_data) {
     empirical_lineages <- seq_along(empirical_norm_col_times)
     empirical_lineages_norm <- empirical_lineages / max(empirical_lineages)
     testit::assert(all(empirical_norm_col_times >= 0 &
-                         empirical_norm_col_times <= 1))
+      empirical_norm_col_times <= 1))
     testit::assert(all(empirical_lineages_norm >= 0 &
-                         empirical_lineages_norm <= 1))
+      empirical_lineages_norm <= 1))
     empirical_norm_col_times <- c(empirical_norm_col_times, 1) # nolint check with Richel why this is needed
     empirical_lineages_norm <- c(empirical_lineages_norm, 1) # nolint check with Richel why this is needed
 
@@ -88,7 +88,8 @@ calc_ctt <- function(daisie_mainland_data) {
       lineages_n = ideal_lineages_norm,
       b_times2_n = empirical_norm_col_times,
       lineages2_n = empirical_lineages_norm,
-      distance_method = "abs")
+      distance_method = "abs"
+    )
 
     delta_ctt_vec <- c(delta_ctt_vec, delta_ctt)
   }

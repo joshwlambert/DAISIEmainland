@@ -71,7 +71,8 @@ test_that("plot_max_age unsampled (save) runs silent without error", {
   expect_silent(plot_max_age(
     analysis_results = analysis_results,
     output_file_path = output_filename,
-    parameter = "unsampled"))
+    parameter = "unsampled"
+  ))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))

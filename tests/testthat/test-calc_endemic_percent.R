@@ -13,10 +13,12 @@ test_that("calc_endemic_percent runs without error", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
 
   expect_silent(endemic_percent <- calc_endemic_percent(
-    daisie_mainland_data = daisie_mainland_data))
+    daisie_mainland_data = daisie_mainland_data
+  ))
   expect_length(endemic_percent, 6)
   expect_equal(endemic_percent$ideal_endemic_percent, 40)
   expect_equal(endemic_percent$empirical_endemic_percent, 100)
@@ -27,10 +29,8 @@ test_that("calc_endemic_percent runs without error", {
 })
 
 test_that("calc_endemic_percent fails with incorrect daisie data", {
-
   daisie_mainland_data <- "nonsense"
   expect_error(calc_endemic_percent(
     daisie_mainland_data = daisie_mainland_data
   ))
-
 })

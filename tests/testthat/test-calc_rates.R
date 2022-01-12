@@ -7,7 +7,8 @@ test_that("calc_rates produces correct output", {
     k = 10.0,
     num_spec = 1,
     num_immigrants = 1,
-    mainland_n = 10)
+    mainland_n = 10
+  )
   expect_equal(rates$immig_rate, 9.0)
   expect_equal(rates$ext_rate, 1.0)
   expect_equal(rates$ana_rate, 1.0)
@@ -23,7 +24,8 @@ test_that("calc_rates fails with incorrect input", {
     k = 10.0,
     num_spec = 1,
     num_immigrants = 1,
-    mainland_n = 10))
+    mainland_n = 10
+  ))
 
   expect_error(calc_rates(
     gam = 1.0,
@@ -33,7 +35,8 @@ test_that("calc_rates fails with incorrect input", {
     k = 10.0,
     num_spec = 1,
     num_immigrants = 1,
-    mainland_n = 10))
+    mainland_n = 10
+  ))
 
   expect_error(calc_rates(
     gam = 1.0,
@@ -43,7 +46,8 @@ test_that("calc_rates fails with incorrect input", {
     k = 10.0,
     num_spec = 1,
     num_immigrants = 1,
-    mainland_n = 10))
+    mainland_n = 10
+  ))
 
   expect_error(calc_rates(
     gam = 1.0,
@@ -53,7 +57,8 @@ test_that("calc_rates fails with incorrect input", {
     k = 10.0,
     num_spec = 1,
     num_immigrants = 1,
-    mainland_n = 10))
+    mainland_n = 10
+  ))
 
   expect_error(calc_rates(
     gam = 1.0,
@@ -63,7 +68,8 @@ test_that("calc_rates fails with incorrect input", {
     k = "nonsense",
     num_spec = 1,
     num_immigrants = 1,
-    mainland_n = 10))
+    mainland_n = 10
+  ))
 
   expect_error(calc_rates(
     gam = 1.0,
@@ -73,7 +79,8 @@ test_that("calc_rates fails with incorrect input", {
     k = 10.0,
     num_spec = "nonsense",
     num_immigrants = 1,
-    mainland_n = 10))
+    mainland_n = 10
+  ))
 
   expect_error(calc_rates(
     gam = 1.0,
@@ -83,7 +90,8 @@ test_that("calc_rates fails with incorrect input", {
     k = 10.0,
     num_spec = 1,
     num_immigrants = "nonsense",
-    mainland_n = 10))
+    mainland_n = 10
+  ))
 
   expect_error(calc_rates(
     gam = 1.0,
@@ -93,5 +101,6 @@ test_that("calc_rates fails with incorrect input", {
     k = 10.0,
     num_spec = 1,
     num_immigrants = 1,
-    mainland_n = "nonsense"))
+    mainland_n = "nonsense"
+  ))
 })

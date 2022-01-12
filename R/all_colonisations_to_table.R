@@ -14,18 +14,20 @@
 #'
 #' @examples
 #' mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
-#'   mainland_scenario = 20)
+#'   mainland_scenario = 20
+#' )
 #' island <- DAISIEmainland:::sim_island(
 #'   total_time = 1,
 #'   island_pars = c(1, 1, 10, 12, 1),
 #'   mainland = mainland_clade,
 #'   mainland_sample_prob = 1,
-#'   mainland_sample_type = "complete")
+#'   mainland_sample_type = "complete"
+#' )
 #' all_colonisations_to_table(ideal_or_empirical_island = island$ideal_island)
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-all_colonisations_to_table <- function(ideal_or_empirical_island) { # nolint indeed a too complex function
+all_colonisations_to_table <- function(ideal_or_empirical_island) {             # nolint indeed a too complex function
 
   # Collect the 'ideal_or_empirical_island[[i]]$all_colonisations's
   # in one list without adding a dependency on purrr

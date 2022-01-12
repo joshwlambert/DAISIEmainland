@@ -13,11 +13,14 @@ test_that("all_endemic_singletons is correct for all endemic singletons", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_true(ideal)
   expect_true(empirical)
 })
@@ -38,11 +41,14 @@ test_that("all_endemic_singletons is correct for all endemic not all
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_false(ideal)
   expect_false(empirical)
 })
@@ -63,11 +69,14 @@ test_that("all_endemic_singletons is correct for not all endemic all
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_false(ideal)
   expect_false(empirical)
 })
@@ -88,11 +97,14 @@ test_that("all_endemic_singletons is correct for not all endemic not all
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_false(ideal)
   expect_false(empirical)
 })
@@ -113,11 +125,14 @@ test_that("all_endemic_singletons is correct for all endemic singletons with
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_true(ideal)
   expect_true(empirical)
 })
@@ -138,11 +153,14 @@ test_that("all_endemic_singletons is correct for not all endemic singletons
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- all_endemic_singletons(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_false(ideal)
   expect_false(empirical)
 })

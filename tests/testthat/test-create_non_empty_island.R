@@ -6,7 +6,8 @@ test_that("appendix scenario A1", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 1),
@@ -26,7 +27,8 @@ test_that("appendix scenario A2", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 2),
@@ -46,7 +48,8 @@ test_that("appendix scenario A3", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 3),
@@ -66,7 +69,8 @@ test_that("appendix scenario A4", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 4),
@@ -94,7 +98,8 @@ test_that("appendix scnario A5", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 5),
@@ -114,7 +119,8 @@ test_that("appendix scenario A6", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 6),
@@ -142,7 +148,8 @@ test_that("appendix scenario A7", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 7),
@@ -162,7 +169,8 @@ test_that("appendix scenario A8", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 8),
@@ -186,7 +194,8 @@ test_that("appendix scenario A9", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 9),
@@ -214,7 +223,8 @@ test_that("appendix scenario A10", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 10),
@@ -234,7 +244,8 @@ test_that("appendix scenario A11", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 11),
@@ -254,7 +265,8 @@ test_that("appendix scenario A12", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 12),
@@ -274,7 +286,8 @@ test_that("appendix scenario A13", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 13),
@@ -302,7 +315,8 @@ test_that("appendix scenario A14", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 14),
@@ -322,7 +336,8 @@ test_that("appendix scenario A15", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 15),
@@ -350,7 +365,8 @@ test_that("appendix scenario A16", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 16),
@@ -370,7 +386,8 @@ test_that("appendix scenario A17", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 17),
@@ -394,7 +411,8 @@ test_that("appendix scenario A18", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 18),
@@ -422,7 +440,8 @@ test_that("appendix scenario A19", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 19),
@@ -442,7 +461,8 @@ test_that("appendix scenario A20", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 20),
@@ -462,7 +482,8 @@ test_that("appendix scenario A21", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 21),
@@ -476,8 +497,10 @@ test_that("appendix scenario A21", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.99999, 0.5))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.99999, 0.5)
+  )
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -492,7 +515,8 @@ test_that("appendix scenario A22", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 22),
@@ -512,7 +536,8 @@ test_that("appendix scenario A23", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 23),
@@ -532,7 +557,8 @@ test_that("appendix scenario A24", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 24),
@@ -546,8 +572,10 @@ test_that("appendix scenario A24", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.99999, 0.42))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.99999, 0.42)
+  )
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -561,7 +589,8 @@ test_that("appendix scenario A25", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 25),
@@ -581,7 +610,8 @@ test_that("appendix scenario A26", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 26),
@@ -595,8 +625,10 @@ test_that("appendix scenario A26", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.50, 0.17))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.50, 0.17)
+  )
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
 })
@@ -606,7 +638,8 @@ test_that("appendix scenario A27", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 27),
@@ -620,8 +653,10 @@ test_that("appendix scenario A27", {
   expect_identical(island$ideal_island[[1]]$stac, 2)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.99999, 0.09))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.99999, 0.09)
+  )
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -635,7 +670,8 @@ test_that("appendix scenario A28", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 28),
@@ -655,7 +691,8 @@ test_that("appendix scenario A29", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 29),
@@ -669,8 +706,10 @@ test_that("appendix scenario A29", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.99999, 0.84, 0.67))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.99999, 0.84, 0.67)
+  )
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -684,7 +723,8 @@ test_that("appendix scenario A30", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 30),
@@ -704,7 +744,8 @@ test_that("appendix scenario A31", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 31),
@@ -724,7 +765,8 @@ test_that("appendix scenario A32", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 32),
@@ -738,8 +780,10 @@ test_that("appendix scenario A32", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.99999, 0.84, 0.67))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.99999, 0.84, 0.67)
+  )
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -753,7 +797,8 @@ test_that("appendix scenario A33", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 33),
@@ -773,7 +818,8 @@ test_that("appendix scenario A34", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 34),
@@ -787,8 +833,10 @@ test_that("appendix scenario A34", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.84, 0.67, 0.5))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.84, 0.67, 0.5)
+  )
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
 })
@@ -798,7 +846,8 @@ test_that("appendix scenario A35", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 35),
@@ -812,8 +861,10 @@ test_that("appendix scenario A35", {
   expect_identical(island$ideal_island[[1]]$stac, 3)
   expect_identical(island$ideal_island[[1]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.99999, 0.67, 0.5))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.99999, 0.67, 0.5)
+  )
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -827,7 +878,8 @@ test_that("appendix scenario A36", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 36),
@@ -850,7 +902,8 @@ test_that("appendix scenario A37", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 37),
@@ -873,7 +926,8 @@ test_that("appendix scenario A38", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 38),
@@ -903,7 +957,8 @@ test_that("appendix scenario A39", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 39),
@@ -920,8 +975,10 @@ test_that("appendix scenario A39", {
   expect_identical(island$ideal_island[[2]]$stac, 2)
   expect_identical(island$ideal_island[[2]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.99999, 0.84))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.99999, 0.84)
+  )
   expect_identical(
     island$empirical_island[[1]]$branching_times[1],
     island$empirical_island[[1]]$branching_times[2] + 1e-5
@@ -935,7 +992,8 @@ test_that("appendix scenario A40", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 40),
@@ -958,7 +1016,8 @@ test_that("appendix scenario A41", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 41),
@@ -981,7 +1040,8 @@ test_that("appendix scenario A42", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 42),
@@ -1011,7 +1071,8 @@ test_that("appendix scenario A43", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   island <- create_non_empty_island(
     total_time = 1,
     island_tbl = create_test_island_tbl(island_scenario = 43),
@@ -1028,8 +1089,10 @@ test_that("appendix scenario A43", {
   expect_identical(island$ideal_island[[2]]$stac, 2)
   expect_identical(island$ideal_island[[2]]$missing_species, 0)
   expect_length(island$empirical_island, 1)
-  expect_equal(island$empirical_island[[1]]$branching_times,
-               c(1.00, 0.67, 0.58))
+  expect_equal(
+    island$empirical_island[[1]]$branching_times,
+    c(1.00, 0.67, 0.58)
+  )
   expect_identical(island$empirical_island[[1]]$stac, 2)
   expect_identical(island$empirical_island[[1]]$missing_species, 0)
 })

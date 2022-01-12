@@ -11,7 +11,6 @@ create_non_empty_island <- function(total_time,
                                     mainland_clade,
                                     mainland_sample_prob,
                                     mainland_sample_type) {
-
   names(island_tbl)[3] <- "col_t_bp"
   names(island_tbl)[6] <- "branch_t_bp"
   # set ages as counting backwards from present
@@ -25,11 +24,12 @@ create_non_empty_island <- function(total_time,
   ideal_island <- list()
   for (i in seq_len(num_ideal_col_present)) {
     subset_island <- island_tbl[which(island_tbl[, "main_anc_id"] %in%
-                                         ideal_col_present[i]), ]
+      ideal_col_present[i]), ]
 
     ideal_island[[i]] <- create_ideal_island(
       total_time = total_time,
-      island_tbl = subset_island)
+      island_tbl = subset_island
+    )
   }
 
   # adjust mainland object for sampling probability
@@ -38,23 +38,26 @@ create_non_empty_island <- function(total_time,
     mainland_clade = mainland_clade,
     mainland_sample_prob = mainland_sample_prob,
     mainland_sample_type = mainland_sample_type,
-    island_tbl = island_tbl)
+    island_tbl = island_tbl
+  )
 
   island_tbl <- update_island_endemics(
     timeval = total_time,
     total_time = total_time,
     island_tbl = island_tbl,
-    mainland_clade = mainland_clade)
+    mainland_clade = mainland_clade
+  )
 
   empirical_col_present <- calc_empirical_col(
     island_tbl = island_tbl,
-    mainland_clade = mainland_clade)
+    mainland_clade = mainland_clade
+  )
   num_empirical_col_present <- length(empirical_col_present)
 
   empirical_island <- list()
   for (i in seq_len(num_empirical_col_present)) {
     subset_island <- island_tbl[which(island_tbl[, "main_anc_id"] %in%
-                                         empirical_col_present[[i]]), ]
+      empirical_col_present[[i]]), ]
 
     mainland_spec <-
       which(mainland_clade[, "spec_id"] %in% empirical_col_present[[i]])
@@ -70,23 +73,27 @@ create_non_empty_island <- function(total_time,
 
     extant_mainland <-
       any(mainland_clade[descending_branches, "spec_type"] != "E" &
-            mainland_clade[descending_branches, "spec_type"] != "US" &
-            mainland_clade[descending_branches, "spec_type"] != "UD")
+        mainland_clade[descending_branches, "spec_type"] != "US" &
+        mainland_clade[descending_branches, "spec_type"] != "UD")
 
     # if there is an extant descendants of the immigrant on the mainland ideal
     # is the same as empirical, else empirical is different
     if (isTRUE(extant_mainland)) {
       empirical_island[[i]] <- create_ideal_island(
         total_time = total_time,
-        island_tbl = subset_island)
+        island_tbl = subset_island
+      )
     } else if (isFALSE(extant_mainland)) {
       empirical_island[[i]] <- create_empirical_island(
         total_time = total_time,
         island_tbl = subset_island,
         mainland_clade = mainland_clade,
-        mainland_spec = mainland_spec)
+        mainland_spec = mainland_spec
+      )
     }
   }
-  return(list(ideal_island = ideal_island,
-              empirical_island = empirical_island))
+  return(list(
+    ideal_island = ideal_island,
+    empirical_island = empirical_island
+  ))
 }

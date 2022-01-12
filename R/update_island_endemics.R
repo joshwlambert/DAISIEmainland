@@ -9,7 +9,6 @@ update_island_endemics <- function(timeval,
                                    total_time,
                                    island_tbl,
                                    mainland_clade) {
-
   testit::assert(is.numeric(timeval))
   testit::assert(is.numeric(total_time))
   testit::assert(is.data.frame(island_tbl))
@@ -21,11 +20,15 @@ update_island_endemics <- function(timeval,
     immig_spec <-
       island_tbl[which(island_tbl[, "spec_type"] == "I"), "spec_id"]
     mainland_ex_time <-
-      mainland_clade[which(mainland_clade[, "spec_id"] %in% immig_spec),
-                     "spec_ex_t"]
+      mainland_clade[
+        which(mainland_clade[, "spec_id"] %in% immig_spec),
+        "spec_ex_t"
+      ]
     mainland_spec_type <-
-      mainland_clade[which(mainland_clade[, "spec_id"] %in% immig_spec),
-                     "spec_type"]
+      mainland_clade[
+        which(mainland_clade[, "spec_id"] %in% immig_spec),
+        "spec_type"
+      ]
     for (i in seq_along(mainland_ex_time)) {
       if (timeval > mainland_ex_time[i] && total_time > mainland_ex_time[i]) {
         if (mainland_spec_type[i] != "US") {

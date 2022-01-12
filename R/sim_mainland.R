@@ -24,7 +24,8 @@
 #'   1,
 #'   kind = "Mersenne-Twister",
 #'   normal.kind = "Inversion",
-#'   sample.kind = "Rejection")
+#'   sample.kind = "Rejection"
+#' )
 #' mainland <- sim_mainland(
 #'   total_time = 1,
 #'   m = 100,
@@ -34,7 +35,6 @@
 sim_mainland <- function(total_time,
                          m,
                          mainland_ex) {
-
   testit::assert(is.numeric(total_time))
   testit::assert(total_time >= 0)
   testit::assert(is.numeric(m))
@@ -63,7 +63,7 @@ sim_mainland <- function(total_time,
     timeval <- stats::rexp(n = 1, rate = m * mainland_ex)
   }
   while (timeval < total_time) {
-    #EXTINCTION
+    # EXTINCTION
     extinct_spec <- DDD::sample2(spec_id_sample, 1)
     for (i in seq_along(mainland)) {
       if (any(mainland[[i]][, "spec_id"] == extinct_spec)) {
@@ -88,30 +88,36 @@ sim_mainland <- function(total_time,
       }
     }
     spec_to_split <- which(mainland[[clade]][, "spec_id"] == branch_spec)
-    #CLADOGENESIS - this splits species into two new species
-    #for daughter A
+    # CLADOGENESIS - this splits species into two new species
+    # for daughter A
     oldstatus <- mainland[[clade]][spec_to_split, "branch_code"]
     mainland[[clade]][spec_to_split, "spec_type"] <- "E"
     mainland[[clade]][spec_to_split, "spec_ex_t"] <- timeval
     mainland[[clade]] <- rbind(
       mainland[[clade]],
-      data.frame(spec_id = max_spec_id + 1,
-                 main_anc_id = mainland[[clade]][spec_to_split, "main_anc_id"],
-                 spec_type = "C",
-                 branch_code = paste0(oldstatus, "A"),
-                 branch_t = timeval,
-                 spec_origin_t = timeval,
-                 spec_ex_t = NaN))
-    #for daughter B
+      data.frame(
+        spec_id = max_spec_id + 1,
+        main_anc_id = mainland[[clade]][spec_to_split, "main_anc_id"],
+        spec_type = "C",
+        branch_code = paste0(oldstatus, "A"),
+        branch_t = timeval,
+        spec_origin_t = timeval,
+        spec_ex_t = NaN
+      )
+    )
+    # for daughter B
     mainland[[clade]] <- rbind(
       mainland[[clade]],
-      data.frame(spec_id = max_spec_id + 2,
-                 main_anc_id = mainland[[clade]][spec_to_split, "main_anc_id"],
-                 spec_type = "C",
-                 branch_code = paste0(oldstatus, "B"),
-                 branch_t = timeval,
-                 spec_origin_t = timeval,
-                 spec_ex_t = NaN))
+      data.frame(
+        spec_id = max_spec_id + 2,
+        main_anc_id = mainland[[clade]][spec_to_split, "main_anc_id"],
+        spec_type = "C",
+        branch_code = paste0(oldstatus, "B"),
+        branch_t = timeval,
+        spec_origin_t = timeval,
+        spec_ex_t = NaN
+      )
+    )
 
     index_to_remove <- which(spec_id_sample == branch_spec)
     testit::assert(length(index_to_remove) == 1)

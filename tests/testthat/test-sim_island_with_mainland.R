@@ -6,14 +6,15 @@ test_that("sim_island_with_mainland produces correct empty island", {
     sample.kind = "Rejection"
   )
   daisie_mainland_data <- sim_island_with_mainland(
-      total_time = 1,
-      m = 10,
-      island_pars = c(1, 1, 10, 0.1, 1),
-      mainland_ex = 1,
-      mainland_sample_prob = 1,
-      mainland_sample_type = "undiscovered",
-      replicates = 1,
-      verbose = FALSE)
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
+    replicates = 1,
+    verbose = FALSE
+  )
   expect_equal(
     daisie_mainland_data$ideal_multi_daisie_data[[1]][[1]]$island_age, 1
   )
@@ -43,7 +44,8 @@ test_that("sim_island_mainland produces correct non-empty island", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   expect_equal(
     daisie_mainland_data$ideal_multi_daisie_data[[1]][[1]]$island_age, 1
   )
@@ -85,7 +87,8 @@ test_that("sim_island_with_mainland with 0 mainland_ex produces correct
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   daisie_mainland_data <- sim_island_with_mainland(
     total_time = 1,
     m = 10,
@@ -93,9 +96,12 @@ test_that("sim_island_with_mainland with 0 mainland_ex produces correct
     mainland_ex = 0,
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
-    replicates = 1)
-  expect_identical(daisie_mainland_data$ideal_multi_daisie_data,
-                   daisie_mainland_data$empirical_multi_daisie_data)
+    replicates = 1
+  )
+  expect_identical(
+    daisie_mainland_data$ideal_multi_daisie_data,
+    daisie_mainland_data$empirical_multi_daisie_data
+  )
 })
 
 test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
@@ -104,7 +110,8 @@ test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
   daisie_mainland_data <- sim_island_with_mainland(
     total_time = 1,
     m = 100,
@@ -112,9 +119,12 @@ test_that("sim_island_with_mainland with 0 mainland_ex and incomplete sampling
     mainland_ex = 0,
     mainland_sample_prob = 0.1,
     mainland_sample_type = "undiscovered",
-    replicates = 1)
-  expect_false(identical(daisie_mainland_data$ideal_multi_daisie_data,
-                         daisie_mainland_data$empirical_multi_daisie_data))
+    replicates = 1
+  )
+  expect_false(identical(
+    daisie_mainland_data$ideal_multi_daisie_data,
+    daisie_mainland_data$empirical_multi_daisie_data
+  ))
 })
 
 test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
@@ -126,8 +136,8 @@ test_that("sim_island_with_mainland runs silent with verbose = FALSE", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = FALSE)
-  )
+    verbose = FALSE
+  ))
 })
 
 test_that("sim_island_with_mainland produces output with verbose = TRUE", {
@@ -139,8 +149,10 @@ test_that("sim_island_with_mainland produces output with verbose = TRUE", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE),
-    regexp = "Island replicate 1")
+    verbose = TRUE
+  ),
+  regexp = "Island replicate 1"
+  )
 })
 
 test_that("sim_island_mainland fails with incorrect input", {
@@ -152,8 +164,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -163,8 +175,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -174,8 +186,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -185,8 +197,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -196,8 +208,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-    )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -207,8 +219,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -218,8 +230,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -229,8 +241,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -240,8 +252,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -251,8 +263,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = "nonsense",
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -262,8 +274,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "nonsense",
     replicates = 1,
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -273,8 +285,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = "nonsense",
-    verbose = TRUE)
-  )
+    verbose = TRUE
+  ))
 
   expect_error(sim_island_with_mainland(
     total_time = 1,
@@ -284,8 +296,8 @@ test_that("sim_island_mainland fails with incorrect input", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = "nonsense")
-  )
+    verbose = "nonsense"
+  ))
 })
 
 test_that("sim_island_with_mainland runs with 1 mainland clade without mainland
@@ -298,7 +310,9 @@ test_that("sim_island_with_mainland runs with 1 mainland clade without mainland
       mainland_ex = 0,
       mainland_sample_prob = 1,
       mainland_sample_type = "complete",
-      replicates = 1))
+      replicates = 1
+    )
+  )
 })
 
 test_that("sim_island_with_mainland fails with 1 mainland clade with mainland
@@ -311,8 +325,10 @@ test_that("sim_island_with_mainland fails with 1 mainland clade with mainland
       mainland_ex = 1,
       mainland_sample_prob = 1,
       mainland_sample_type = "complete",
-      replicates = 1),
-    regexp = "Simulating with mainland extinction requires more than one clade")
+      replicates = 1
+    ),
+    regexp = "Simulating with mainland extinction requires more than one clade"
+  )
 })
 
 test_that("sim_island_with_mainland with 0.0 time", {
@@ -324,6 +340,7 @@ test_that("sim_island_with_mainland with 0.0 time", {
       mainland_ex = 1,
       mainland_sample_prob = 1,
       mainland_sample_type = "complete",
-      replicates = 1)
+      replicates = 1
+    )
   )
 })

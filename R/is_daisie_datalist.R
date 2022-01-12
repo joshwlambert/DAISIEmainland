@@ -7,19 +7,19 @@
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-is_daisie_data <- function(
-  daisie_data,
-  verbose = FALSE
-) {
+is_daisie_data <- function(daisie_data,
+                           verbose = FALSE) {
   result <- FALSE
-  tryCatch({
-    DAISIEmainland::check_daisie_data(
-      daisie_data = daisie_data
-    )
-    result <- TRUE
-  }, error = function(e) {
-    if (verbose) message(e$message)
-  }
+  tryCatch(
+    {
+      DAISIEmainland::check_daisie_data(
+        daisie_data = daisie_data
+      )
+      result <- TRUE
+    },
+    error = function(e) {
+      if (verbose) message(e$message)
+    }
   )
   result
 }

@@ -31,8 +31,10 @@ check_mainland_clade <- function(mainland_clade) {
   testit::assert(identical(ncol(mainland_clade), 7L))
   testit::assert(identical(
     names(mainland_clade),
-    c("spec_id", "main_anc_id", "spec_type", "branch_code",
-      "branch_t", "spec_origin_t", "spec_ex_t")
+    c(
+      "spec_id", "main_anc_id", "spec_type", "branch_code",
+      "branch_t", "spec_origin_t", "spec_ex_t"
+    )
   ))
 
   invisible(mainland_clade)

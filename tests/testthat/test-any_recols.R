@@ -13,11 +13,14 @@ test_that("any_recols is correct for recolonists", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- any_recols(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- any_recols(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_true(ideal)
   expect_true(empirical)
 })
@@ -37,11 +40,14 @@ test_that("any_recols is correct for no recolonists", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
   ideal <- any_recols(
-    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  )
   empirical <- any_recols(
-    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+    daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  )
   expect_false(ideal)
   expect_false(empirical)
 })

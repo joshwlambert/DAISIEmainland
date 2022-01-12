@@ -20,8 +20,8 @@ calc_empirical_col <- function(island_tbl,
 
   extant_mainland <-
     any(mainland_clade[descending_branches, "spec_type"] != "E" &
-          mainland_clade[descending_branches, "spec_type"] != "US" &
-          mainland_clade[descending_branches, "spec_type"] != "UD")
+      mainland_clade[descending_branches, "spec_type"] != "US" &
+      mainland_clade[descending_branches, "spec_type"] != "UD")
 
   if (isTRUE(extant_mainland)) {
     empirical_col_present_list <- as.list(empirical_col_present)
@@ -29,5 +29,4 @@ calc_empirical_col <- function(island_tbl,
     empirical_col_present_list <- list(empirical_col_present)
   }
   return(empirical_col_present_list)
-
 }

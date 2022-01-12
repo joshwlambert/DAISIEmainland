@@ -12,7 +12,8 @@ test_that("empty island", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_clade = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   expect_silent(check_ideal_island(island$ideal_island))
 })
 
@@ -30,7 +31,8 @@ test_that("island with two clades", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   ideal_island <- island$ideal_island
   expect_silent(check_ideal_island(ideal_island))
 })
@@ -49,7 +51,8 @@ test_that("detect an invalid clade", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   ideal_island <- island$ideal_island
 
   # We need two clades, as we invalidate the second one

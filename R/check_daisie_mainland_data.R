@@ -17,7 +17,6 @@
 #'   verbose = FALSE
 #' )
 #' check_daisie_mainland_data(daisie_mainland_data)
-#'
 #' @author Richèl J.C. Bilderbeek, Joshua W. Lambert
 #'
 #' @export

@@ -13,18 +13,18 @@ test_that("calc_max_age_percent runs without error", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
 
   expect_silent(max_age_percent <- calc_max_age_percent(
-    daisie_mainland_data = daisie_mainland_data))
+    daisie_mainland_data = daisie_mainland_data
+  ))
   expect_equal(length(max_age_percent), 2)
   expect_equal(max_age_percent$ideal_max_age, 0)
   expect_equal(max_age_percent$empirical_max_age, 0)
 })
 
 test_that("calc_max_age_percent fails with incorrect daisie data", {
-
   daisie_data <- "nonsense"
   expect_error(calc_max_age_percent(daisie_data = daisie_data))
-
 })

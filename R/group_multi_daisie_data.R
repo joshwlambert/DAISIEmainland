@@ -21,6 +21,8 @@ group_multi_daisie_data <- function(multi_daisie_data,
     }
   }
 
-  return(list(ideal_multi_daisie_data = ideal_multi_daisie_data,
-              empirical_multi_daisie_data = empirical_multi_daisie_data))
+  return(list(
+    ideal_multi_daisie_data = ideal_multi_daisie_data,
+    empirical_multi_daisie_data = empirical_multi_daisie_data
+  ))
 }

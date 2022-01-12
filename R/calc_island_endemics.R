@@ -35,6 +35,8 @@ calc_island_endemics <- function(daisie_data) {
   }
   testit::assert(num_endemics >= 0)
   testit::assert(num_non_endemics >= 0)
-  return(list(endemics = num_endemics,
-              non_endemics = num_non_endemics))
+  return(list(
+    endemics = num_endemics,
+    non_endemics = num_non_endemics
+  ))
 }

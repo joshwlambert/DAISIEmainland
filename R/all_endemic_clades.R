@@ -12,12 +12,13 @@
 #' island <- DAISIEmainland::sim_island_with_mainland(
 #'   total_time = 1,
 #'   m = 100,
-#'   island_pars = c(1,1,10,0.1,1),
+#'   island_pars = c(1, 1, 10, 0.1, 1),
 #'   mainland_ex = 0.1,
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete",
 #'   replicates = 2,
-#'   verbose = FALSE)
+#'   verbose = FALSE
+#' )
 #' bool <- all_endemic_clades(island$ideal_islands[[1]])
 #' }
 all_endemic_clades <- function(daisie_data) {
@@ -44,7 +45,7 @@ all_endemic_clades <- function(daisie_data) {
       lapply(x, "[[", "event_times")
     })
     num_recol_spec <- unlist(lapply(event_times, function(x) {
-        lapply(x, function(y) length(y) - 1)
+      lapply(x, function(y) length(y) - 1)
     }))
     recol_clades <- all(num_recol_spec > 1)
     clades <- clades && recol_clades

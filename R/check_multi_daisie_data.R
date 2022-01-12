@@ -24,12 +24,10 @@
 #' )
 #' check_multi_daisie_data(daisie_mainland_data$ideal_multi_daisie_data)
 #' check_multi_daisie_data(daisie_mainland_data$empirical_multi_daisie_data)
-#'
 #' @author Richèl J.C. Bilderbeek, Joshua W. Lambert
 #'
 #' @export
 check_multi_daisie_data <- function(multi_daisie_data) {
-
   testit::assert(is.list(multi_daisie_data))
 
   if (DAISIEmainland::is_daisie_data(multi_daisie_data)) {

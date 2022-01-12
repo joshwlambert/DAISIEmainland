@@ -18,10 +18,10 @@
 #' mainland <- DAISIEmainland::sim_mainland(
 #'   total_time = 1,
 #'   m = 2,
-#'   mainland_ex = 2)
+#'   mainland_ex = 2
+#' )
 #'
 #' plot_mainland(mainland)
-#'
 #' @author Richèl J.C. Bilderbeek
 #' @export
 plot_mainland <- function(mainland) {
@@ -56,7 +56,8 @@ plot_mainland <- function(mainland) {
   # Keep the clade ID first; it is assumed the branch code is at the end:
   # by removing the last character, the ancestor is found
   t_mainland$unique_species_id <- paste0(
-    t_mainland$clade_id, "-", t_mainland$branch_code)
+    t_mainland$clade_id, "-", t_mainland$branch_code
+  )
 
   # Do not make a factor, as we need to work on the string
   # t_mainland$unique_species_id <- as.factor(t_mainland$unique_species_id)     # nolint yup, this is code
@@ -79,7 +80,8 @@ plot_mainland <- function(mainland) {
     offspring_unique_species_id = t_mainland$unique_species_id,
     ancestor_unique_species_id = strtrim(
       t_mainland$unique_species_id,
-      nchar(t_mainland$unique_species_id) - 1),
+      nchar(t_mainland$unique_species_id) - 1
+    ),
     offspring_spec_origin_t = t_mainland$spec_origin_t
   )
   t_vertical <- merge(t_ancestors, t_offspring)
@@ -114,7 +116,8 @@ plot_mainland <- function(mainland) {
       clade_id ~ .,
       scales = "free",
       space = "free"
-    ) + ggplot2::theme(
+    ) +
+    ggplot2::theme(
       axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank()

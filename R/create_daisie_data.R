@@ -12,7 +12,6 @@ create_daisie_data <- function(total_time,
                                mainland_clade,
                                mainland_sample_prob,
                                mainland_sample_type) {
-
   testit::assert(is.numeric(total_time))
   testit::assert(is.data.frame(island_tbl))
   testit::assert(ncol(island_tbl) == 7)
@@ -26,17 +25,21 @@ create_daisie_data <- function(total_time,
       list(list(
         branching_times = total_time,
         stac = 0,
-        missing_species = 0))
+        missing_species = 0
+      ))
   } else {
     islands <- create_non_empty_island(
       total_time = total_time,
       island_tbl = island_tbl,
       mainland_clade = mainland_clade,
       mainland_sample_prob = mainland_sample_prob,
-      mainland_sample_type = mainland_sample_type)
+      mainland_sample_type = mainland_sample_type
+    )
     ideal_island <- islands$ideal_island
     empirical_island <- islands$empirical_island
   }
-  return(list(ideal_island = ideal_island,
-              empirical_island = empirical_island))
+  return(list(
+    ideal_island = ideal_island,
+    empirical_island = empirical_island
+  ))
 }

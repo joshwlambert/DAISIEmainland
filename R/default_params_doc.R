@@ -387,5 +387,5 @@ default_params_doc <- function(all_colonisations,
                                analysis_result,
                                analysis_results,
                                labels) {
-  #Nothing
+  # Nothing
 }

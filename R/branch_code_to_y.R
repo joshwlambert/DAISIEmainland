@@ -29,6 +29,6 @@ branch_code_to_y <- function(branch_code) {
   binary_branch_code <- paste0(split_branch_code, collapse = "")
   branch_code_value <- strtoi(binary_branch_code, base = 2)
   numerator <- 1 + (2 * branch_code_value)
-  denominator <- 2 ^ nchar(branch_code)
+  denominator <- 2^nchar(branch_code)
   numerator / denominator
 }

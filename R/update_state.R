@@ -17,7 +17,6 @@ update_state <- function(timeval,
                          max_spec_id,
                          mainland_spec,
                          island_tbl) {
-
   testit::assert(is.numeric(timeval))
   testit::assert(is.numeric(total_time))
   testit::assert(is.numeric(possible_event))
@@ -28,38 +27,44 @@ update_state <- function(timeval,
   testit::assert(is.data.frame(island_tbl))
   testit::assert(ncol(island_tbl) == 7)
 
-  #IMMIGRATION
+  # IMMIGRATION
   if (possible_event == 1) {
     island_tbl <- immig_event(
       timeval = timeval,
       island_tbl = island_tbl,
-      mainland_spec = mainland_spec)
+      mainland_spec = mainland_spec
+    )
   }
 
-  #EXTINCTION
+  # EXTINCTION
   if (possible_event == 2) {
     island_tbl <- ext_event(
-      island_tbl = island_tbl)
+      island_tbl = island_tbl
+    )
   }
 
-  #ANAGENESIS
+  # ANAGENESIS
   if (possible_event == 3) {
     updated_state <- ana_event(
       island_tbl = island_tbl,
-      max_spec_id = max_spec_id)
+      max_spec_id = max_spec_id
+    )
     island_tbl <- updated_state$island_tbl
     max_spec_id <- updated_state$max_spec_id
   }
 
-  #CLADOGENESIS
+  # CLADOGENESIS
   if (possible_event == 4) {
     updated_state <- clado_event(
       timeval = timeval,
       island_tbl = island_tbl,
-      max_spec_id = max_spec_id)
+      max_spec_id = max_spec_id
+    )
     island_tbl <- updated_state$island_tbl
     max_spec_id <- updated_state$max_spec_id
   }
-  return(list(island_tbl = island_tbl,
-              max_spec_id = max_spec_id))
+  return(list(
+    island_tbl = island_tbl,
+    max_spec_id = max_spec_id
+  ))
 }

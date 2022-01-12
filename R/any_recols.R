@@ -10,12 +10,13 @@
 #' island <- DAISIEmainland::sim_island_with_mainland(
 #'   total_time = 1,
 #'   m = 100,
-#'   island_pars = c(1,1,10,0.1,1),
+#'   island_pars = c(1, 1, 10, 0.1, 1),
 #'   mainland_ex = 0.1,
 #'   mainland_sample_prob = 1,
 #'   mainland_sample_type = "complete",
 #'   replicates = 2,
-#'   verbose = FALSE)
+#'   verbose = FALSE
+#' )
 #' bool <- any_recols(island$ideal_islands[[1]])
 #' }
 any_recols <- function(daisie_data) {

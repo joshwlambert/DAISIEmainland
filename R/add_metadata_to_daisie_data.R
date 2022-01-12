@@ -23,8 +23,10 @@ add_metadata_to_daisie_data <- function(multi_daisie_data,
     number_present <- length(present)
 
     island_list <- list()
-    island_list[[1]] <- list(island_age = total_time,
-                             not_present = number_not_present)
+    island_list[[1]] <- list(
+      island_age = total_time,
+      not_present = number_not_present
+    )
     if (number_present > 0) {
       for (i in seq_len(number_present)) {
         island_list[[1 + i]] <- new_full_list[[present[i]]]

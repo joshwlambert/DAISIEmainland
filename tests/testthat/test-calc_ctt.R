@@ -13,7 +13,8 @@ test_that("calc_ctt runs without error", {
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
     replicates = 1,
-    verbose = FALSE)
+    verbose = FALSE
+  )
 
   expect_silent(ctt <- calc_ctt(daisie_mainland_data = daisie_mainland_data))
 
@@ -21,8 +22,6 @@ test_that("calc_ctt runs without error", {
 })
 
 test_that("calc_ctt fails with incorrect daisie data", {
-
   daisie_mainland_data <- "nonsense"
   expect_error(calc_ctt(daisie_mainland_data = daisie_mainland_data))
-
 })

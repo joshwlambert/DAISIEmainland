@@ -46,11 +46,12 @@
 #' ## Simulate 2 islands (replicates) for 1 million years, with a mainland
 #' ## extinction rate of 1 (SpMy^-1). Pool size 100.
 #'
-#'   set.seed(
+#' set.seed(
 #'   1,
 #'   kind = "Mersenne-Twister",
 #'   normal.kind = "Inversion",
-#'   sample.kind = "Rejection")
+#'   sample.kind = "Rejection"
+#' )
 #' island <- sim_island_with_mainland(
 #'   total_time = 1,
 #'   m = 100,
@@ -82,8 +83,8 @@ sim_island_with_mainland <- function(total_time,                                
   testit::assert(is.numeric(mainland_sample_prob))
   testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
   testit::assert(mainland_sample_type == "unsampled" ||
-                   mainland_sample_type == "undiscovered" ||
-                   mainland_sample_type == "complete")
+    mainland_sample_type == "undiscovered" ||
+    mainland_sample_type == "complete")
   testit::assert(is.numeric(replicates))
   testit::assert(replicates >= 1)
   testit::assert(is.logical(verbose))
@@ -109,7 +110,8 @@ sim_island_with_mainland <- function(total_time,                                
     multi_mainland_clade[[rep]] <- sim_mainland(
       total_time = total_time,
       m = m,
-      mainland_ex = mainland_ex)
+      mainland_ex = mainland_ex
+    )
     for (mainland_clade in seq_along(multi_mainland_clade[[rep]])) {
       island_tbl_list[[mainland_clade]] <- sim_island(
         total_time = total_time,
@@ -124,7 +126,8 @@ sim_island_with_mainland <- function(total_time,                                
         island_tbl = island_tbl_list[[mainland_clade]],
         mainland_clade = multi_mainland_clade[[rep]][[mainland_clade]],
         mainland_sample_prob = mainland_sample_prob,
-        mainland_sample_type = mainland_sample_type)
+        mainland_sample_type = mainland_sample_type
+      )
     }
 
     multi_daisie_data[[rep]] <- daisie_data_list
@@ -133,21 +136,25 @@ sim_island_with_mainland <- function(total_time,                                
   daisie_mainland_data <- group_multi_daisie_data(
     multi_daisie_data = multi_daisie_data,
     total_time = total_time,
-    m = m)
+    m = m
+  )
 
   ideal_multi_daisie_data <- add_metadata_to_daisie_data(
     multi_daisie_data = daisie_mainland_data$ideal_multi_daisie_data,
     total_time = total_time,
-    m = m)
+    m = m
+  )
 
   empirical_multi_daisie_data <- add_metadata_to_daisie_data(
     multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data,
     total_time = total_time,
-    m = m)
+    m = m
+  )
 
   daisie_mainland_data <- list(
     ideal_multi_daisie_data = ideal_multi_daisie_data,
-    empirical_multi_daisie_data = empirical_multi_daisie_data)
+    empirical_multi_daisie_data = empirical_multi_daisie_data
+  )
 
   return(daisie_mainland_data)
 }

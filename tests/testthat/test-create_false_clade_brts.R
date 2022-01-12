@@ -12,8 +12,11 @@ test_that("create_false_clade_brts produces correct output", {
   false_clade_brts <- create_false_clade_brts(
     total_time = 1,
     anc_branch_t_bp = 0.950145003459,
-    subset_island = subset_island)
+    subset_island = subset_island
+  )
 
-  expect_equal(false_clade_brts,
-               c(1.00000000000, 0.950145003459, 0.884864028849, 0.623865697499))
+  expect_equal(
+    false_clade_brts,
+    c(1.00000000000, 0.950145003459, 0.884864028849, 0.623865697499)
+  )
 })

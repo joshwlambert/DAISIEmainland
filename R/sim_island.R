@@ -29,7 +29,6 @@ sim_island <- function(total_time,
                        mainland_clade,
                        mainland_sample_prob,
                        mainland_sample_type) {
-
   testit::assert(is.numeric(total_time))
   testit::assert(total_time >= 0)
   testit::assert(is.numeric(island_pars))
@@ -39,8 +38,8 @@ sim_island <- function(total_time,
   testit::assert(is.numeric(mainland_sample_prob))
   testit::assert(mainland_sample_prob >= 0 && mainland_sample_prob <= 1)
   testit::assert(mainland_sample_type == "unsampled" ||
-                   mainland_sample_type == "undiscovered" ||
-                   mainland_sample_type == "complete")
+    mainland_sample_type == "undiscovered" ||
+    mainland_sample_type == "complete")
 
   # Initialization
   timeval <- 0
@@ -48,11 +47,12 @@ sim_island <- function(total_time,
   # get mainland species at timeval
   mainland_spec <- mainland_clade[which(
     mainland_clade[, "spec_origin_t"] <= timeval &
-      mainland_clade[, "spec_ex_t"] > timeval), "spec_id"]
+      mainland_clade[, "spec_ex_t"] > timeval
+  ), "spec_id"]
   mainland_n <- length(mainland_spec)
   max_spec_id <- max(mainland_clade[, "spec_id"])
 
-  #get mainland event times
+  # get mainland event times
   mainland_exts <- mainland_clade[, "spec_ex_t"]
   mainland_brts <- mainland_clade[, "spec_origin_t"]
   mainland_event_t <- c(mainland_exts, mainland_brts, total_time + 1)
@@ -90,7 +90,8 @@ sim_island <- function(total_time,
       k = k,
       num_spec = num_spec,
       num_immigrants = num_immigrants,
-      mainland_n = mainland_n)
+      mainland_n = mainland_n
+    )
 
     totalrate <- rates$immig_rate + rates$ext_rate +
       rates$ana_rate + rates$clado_rate
@@ -108,9 +109,9 @@ sim_island <- function(total_time,
       mainland_event_t <- mainland_event_t[-1]
       mainland_spec <- mainland_clade[which(
         (mainland_clade[, "spec_origin_t"]) <= timeval &
-          mainland_clade[, "spec_ex_t"] > timeval), "spec_id"]
+          mainland_clade[, "spec_ex_t"] > timeval
+      ), "spec_id"]
       mainland_n <- length(mainland_spec)
-
     } else {
 
       # Changes island species to endemic when a mainland species goes extinct
@@ -118,7 +119,8 @@ sim_island <- function(total_time,
         timeval = timeval,
         total_time = total_time,
         island_tbl = island_tbl,
-        mainland_clade = mainland_clade)
+        mainland_clade = mainland_clade
+      )
       num_immigrants <- length(which(island_tbl[, "spec_type"] == "I"))
 
       if (timeval <= total_time) {
@@ -130,17 +132,17 @@ sim_island <- function(total_time,
           k = k,
           num_spec = num_spec,
           num_immigrants = num_immigrants,
-          mainland_n = mainland_n)
+          mainland_n = mainland_n
+        )
 
         totalrate <- rates$immig_rate + rates$ext_rate +
           rates$ana_rate + rates$clado_rate
         if (totalrate == 0) {
           timeval <- total_time + 1
-
         } else {
-
           possible_event <- sample_event(
-            rates = rates)
+            rates = rates
+          )
 
           updated_state <- update_state(
             timeval = timeval,
@@ -148,7 +150,8 @@ sim_island <- function(total_time,
             possible_event = possible_event,
             max_spec_id = max_spec_id,
             mainland_spec = mainland_spec,
-            island_tbl = island_tbl)
+            island_tbl = island_tbl
+          )
 
           island_tbl <- updated_state$island_tbl
           max_spec_id <- updated_state$max_spec_id
@@ -159,7 +162,7 @@ sim_island <- function(total_time,
     }
   }
 
-  #island <- create_daisie_data(
+  # island <- create_daisie_data(
   #  total_time = total_time,
   #  island_tbl = island_tbl,
   #  mainland_clade = mainland_clade,

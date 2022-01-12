@@ -11,7 +11,8 @@ test_that("sim_island is silent and produces correct empty island", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland_clade = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   expect_silent(check_island_tbl(island_tbl))
   expect_equal(nrow(island_tbl), 0)
 })
@@ -29,7 +30,8 @@ test_that("sim_island is silent and produces correct non-empty island", {
     island_pars = c(1, 1, 10, 1, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   expect_silent(check_island_tbl(island_tbl))
   expect_equal(nrow(island_tbl), 4)
 })
@@ -50,7 +52,8 @@ test_that("colonisations", {
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   check_island_tbl(island_tbl)
   expect_equal(nrow(island_tbl), 5)
 })

@@ -28,7 +28,6 @@
 #' DAISIEmainland:::event_to_str(2)
 #' DAISIEmainland:::event_to_str(3)
 #' DAISIEmainland:::event_to_str(4)
-#'
 #' @keywords internal
 #' @author Richèl J.C. Bilderbeek
 event_to_str <- function(possible_event) {
@@ -110,7 +109,6 @@ stac_to_str <- function(stac) {
 #' DAISIEmainland:::str_to_event("extinction")
 #' DAISIEmainland:::str_to_event("anagenesis")
 #' DAISIEmainland:::str_to_event("cladogenesis")
-#'
 #' @keywords internal
 #' @author Richèl J.C. Bilderbeek
 str_to_event <- function(event_str) {
@@ -147,7 +145,6 @@ str_to_event <- function(event_str) {
 #' DAISIEmainland:::str_to_stac("Non_endemic_MaxAge")
 #' DAISIEmainland:::str_to_stac("Endemic_singleton_MaxAge")
 #' DAISIEmainland:::str_to_stac("Endemic_clade_MaxAge")
-#'
 #' @keywords internal
 #' @author Richèl J.C. Bilderbeek
 str_to_stac <- function(stac_str) {

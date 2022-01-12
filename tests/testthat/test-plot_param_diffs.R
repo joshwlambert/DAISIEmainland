@@ -6,7 +6,8 @@ test_that("plot_param_diffs (no save) runs silent without error", {
     parameter = "mainland_ex",
     signif = 2,
     scientific = FALSE,
-    transform = NULL))
+    transform = NULL
+  ))
 })
 
 test_that("plot_param_diffs scientific (no save) runs silent without error", {
@@ -17,7 +18,8 @@ test_that("plot_param_diffs scientific (no save) runs silent without error", {
     parameter = "mainland_ex",
     signif = 2,
     scientific = TRUE,
-    transform = NULL))
+    transform = NULL
+  ))
 })
 
 test_that("plot_param_diffs (save) runs silent without error", {
@@ -35,7 +37,8 @@ test_that("plot_param_diffs (save) runs silent without error", {
     parameter = "mainland_ex",
     signif = 2,
     scientific = FALSE,
-    transform = NULL))
+    transform = NULL
+  ))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))
@@ -49,7 +52,8 @@ test_that("plot_param_diffs ihs (no save) runs silent without error", {
     parameter = "mainland_ex",
     signif = 2,
     scientific = FALSE,
-    transform = "ihs"))
+    transform = "ihs"
+  ))
 })
 
 test_that("plot_param_estimates (save) runs silent without error", {
@@ -67,7 +71,8 @@ test_that("plot_param_estimates (save) runs silent without error", {
     parameter = "mainland_ex",
     signif = 2,
     scientific = FALSE,
-    transform = "ihs"))
+    transform = "ihs"
+  ))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))

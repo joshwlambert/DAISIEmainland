@@ -6,7 +6,8 @@ test_that("plot_log_param_ratios (no save) runs silent without error", {
     parameter = "mainland_ex",
     num_breaks = 4,
     signif = 2,
-    scientific = FALSE))
+    scientific = FALSE
+  ))
 })
 
 test_that("plot_log_param_estimates (save) runs silent without error", {
@@ -24,7 +25,8 @@ test_that("plot_log_param_estimates (save) runs silent without error", {
     parameter = "mainland_ex",
     num_breaks = 4,
     signif = 2,
-    scientific = FALSE))
+    scientific = FALSE
+  ))
 
   file.remove(output_filename)
   expect_false(file.exists(output_filename))

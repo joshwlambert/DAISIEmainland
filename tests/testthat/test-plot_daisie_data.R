@@ -13,7 +13,8 @@ test_that("Arguments 4 must have names", {
     mainland_ex = 1,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
-    replicates = 1)
+    replicates = 1
+  )
   plot_daisie_data(daisie_data)
 })
 
@@ -37,7 +38,8 @@ test_that("Arguments 2 must have names", {
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland[[1]],
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
   daisie_data <- format_to_daisie_data(
     island_replicates = island,
     total_time = total_time,
@@ -70,7 +72,8 @@ test_that("use", {
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
+    mainland_sample_type = "complete"
+  )
 
   daisie_data <- format_to_daisie_data(
     island_replicates = island,
@@ -86,7 +89,8 @@ test_that("example from vignette, ideal is nor empirical", {
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
-    sample.kind = "Rejection")
+    sample.kind = "Rejection"
+  )
 
   replicates <- 1
 
@@ -128,7 +132,8 @@ test_that("search for trouble", {
       island_pars = c(1, 1, 10, 12, 1),
       mainland = mainland_clade,
       mainland_sample_prob = 1,
-      mainland_sample_type = "complete")
+      mainland_sample_type = "complete"
+    )
 
     daisie_data <- format_to_daisie_data(
       island_replicates = island,

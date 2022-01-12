@@ -21,10 +21,13 @@ test_that("use", {
     mainland_ex = 1,
     mainland_sample_prob = 1,
     mainland_sample_type = "complete",
-    replicates = 1)
+    replicates = 1
+  )
   expect_silent(check_daisie_mainland_data(daisie_mainland_data))
   expect_error(check_daisie_mainland_data(
-    daisie_mainland_data$ideal_multi_daisie_data))
+    daisie_mainland_data$ideal_multi_daisie_data
+  ))
   expect_error(check_daisie_mainland_data(
-    daisie_mainland_data$empirical_multi_daisie_data))
+    daisie_mainland_data$empirical_multi_daisie_data
+  ))
 })

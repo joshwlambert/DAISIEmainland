@@ -26,7 +26,6 @@ test_that("use", {
   t <- all_colonisations_to_table(
     ideal_or_empirical_island = daisie_data$ideal_island
   )
-
 })
 
 test_that("stress-test", {

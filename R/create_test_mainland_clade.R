@@ -40,7 +40,8 @@ create_test_mainland_clade <- function(mainland_scenario) {                     
       branch_code = "A",
       branch_t = NaN,
       spec_origin_t = 0,
-      spec_ex_t = 0.67)
+      spec_ex_t = 0.67
+    )
   }
 
   if (mainland_scenario == 4) {
