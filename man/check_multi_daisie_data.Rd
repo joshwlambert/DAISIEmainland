@@ -36,7 +36,6 @@ daisie_mainland_data <- sim_island_with_mainland(
 )
 check_multi_daisie_data(daisie_mainland_data$ideal_multi_daisie_data)
 check_multi_daisie_data(daisie_mainland_data$empirical_multi_daisie_data)
-
 }
 \author{
 Richèl J.C. Bilderbeek, Joshua W. Lambert

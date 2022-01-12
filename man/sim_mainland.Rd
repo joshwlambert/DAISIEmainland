@@ -43,7 +43,8 @@ set.seed(
   1,
   kind = "Mersenne-Twister",
   normal.kind = "Inversion",
-  sample.kind = "Rejection")
+  sample.kind = "Rejection"
+)
 mainland <- sim_mainland(
   total_time = 1,
   m = 100,

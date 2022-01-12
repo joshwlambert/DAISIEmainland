@@ -26,10 +26,10 @@ Plot the simulated mainland.
 mainland <- DAISIEmainland::sim_mainland(
   total_time = 1,
   m = 2,
-  mainland_ex = 2)
+  mainland_ex = 2
+)
 
 plot_mainland(mainland)
-
 }
 \seealso{
 These are the functions to plot an evolutionary history:

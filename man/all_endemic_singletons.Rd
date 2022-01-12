@@ -71,12 +71,13 @@ lineages that have not formed an island clade of two or more species.
 island <- DAISIEmainland::sim_island_with_mainland(
   total_time = 1,
   m = 100,
-  island_pars = c(1,1,10,0.1,1),
+  island_pars = c(1, 1, 10, 0.1, 1),
   mainland_ex = 0.1,
   mainland_sample_prob = 1,
   mainland_sample_type = "complete",
   replicates = 2,
-  verbose = FALSE)
+  verbose = FALSE
+)
 bool <- all_endemic_singletons(island$ideal_islands[[1]])
 }
 }

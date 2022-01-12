@@ -72,21 +72,20 @@ this function would better fit in the \link[DAISIE]{DAISIE} package
 \examples{
 
 daisie_mainland_data <- sim_island_with_mainland(
- total_time = 1,
- m = 100,
- island_pars = c(1, 1, 50, 0.1, 1),
- mainland_ex = 0.5,
- mainland_sample_prob = 1,
- mainland_sample_type = "complete",
- replicates = 1,
- verbose = FALSE
+  total_time = 1,
+  m = 100,
+  island_pars = c(1, 1, 50, 0.1, 1),
+  mainland_ex = 0.5,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "complete",
+  replicates = 1,
+  verbose = FALSE
 )
 
 ideal_multi_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data
 
 daisie_data <- ideal_multi_daisie_data[[1]]
 check_daisie_data(daisie_data)
-
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -20,7 +20,6 @@ DAISIEmainland:::str_to_event("immigration")
 DAISIEmainland:::str_to_event("extinction")
 DAISIEmainland:::str_to_event("anagenesis")
 DAISIEmainland:::str_to_event("cladogenesis")
-
 }
 \seealso{
 use \link{event_to_str} to convent an \code{event} to a string

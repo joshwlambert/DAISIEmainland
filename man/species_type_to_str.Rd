@@ -23,7 +23,6 @@ where the \code{species_type} denotes the origin of a species.
 species_type_to_str("A") # Anagenetic
 species_type_to_str("C") # Cladogentic
 species_type_to_str("I") # Immigrant
-
 }
 \author{
 Richèl J.C. Bilderbeek

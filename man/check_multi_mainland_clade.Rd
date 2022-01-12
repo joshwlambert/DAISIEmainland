@@ -30,7 +30,6 @@ multi_mainland_clade <- sim_mainland(
   mainland_ex = 0.5
 )
 check_multi_mainland_clade(multi_mainland_clade)
-
 }
 \author{
 Richèl J.C. Bilderbeek, Joshua W. Lambert

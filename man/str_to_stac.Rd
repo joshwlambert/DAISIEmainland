@@ -23,7 +23,6 @@ DAISIEmainland:::str_to_stac("Endemic&Non_Endemic")
 DAISIEmainland:::str_to_stac("Non_endemic_MaxAge")
 DAISIEmainland:::str_to_stac("Endemic_singleton_MaxAge")
 DAISIEmainland:::str_to_stac("Endemic_clade_MaxAge")
-
 }
 \seealso{
 use \link{stac_to_str} to convent an \code{stac} to a string

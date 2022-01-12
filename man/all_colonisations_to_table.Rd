@@ -54,13 +54,15 @@ and put these in a table
 }
 \examples{
 mainland_clade <- DAISIEmainland:::create_test_mainland_clade(
-  mainland_scenario = 20)
+  mainland_scenario = 20
+)
 island <- DAISIEmainland:::sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 12, 1),
   mainland = mainland_clade,
   mainland_sample_prob = 1,
-  mainland_sample_type = "complete")
+  mainland_sample_type = "complete"
+)
 all_colonisations_to_table(ideal_or_empirical_island = island$ideal_island)
 }
 \author{

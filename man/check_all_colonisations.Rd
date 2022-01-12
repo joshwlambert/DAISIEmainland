@@ -61,7 +61,6 @@ daisie_data <- DAISIEmainland:::create_daisie_data(
 )
 all_colonisations <- daisie_data$ideal_island[[2]]$all_colonisations
 check_all_colonisations(all_colonisations)
-
 }
 \author{
 Richèl J.C. Bilderbeek

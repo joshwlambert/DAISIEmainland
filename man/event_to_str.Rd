@@ -29,7 +29,6 @@ DAISIEmainland:::event_to_str(1)
 DAISIEmainland:::event_to_str(2)
 DAISIEmainland:::event_to_str(3)
 DAISIEmainland:::event_to_str(4)
-
 }
 \seealso{
 use \link{str_to_event} to convent a string to an \code{event}
