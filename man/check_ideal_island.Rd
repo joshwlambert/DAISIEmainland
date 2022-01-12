@@ -10,8 +10,8 @@ check_ideal_island(ideal_island)
 \item{ideal_island}{a simulated island with perfect information,
 which is a \link{list} of one or more \code{ideal_island_clade}s.
 
-An \code{ideal_island} is created by \link{sim_island} (together with \code{empirical_island},
-which has imperfect information),
+An \code{ideal_island} is created by \link{sim_island} (together with
+\code{empirical_island}, which has imperfect information),
 as can be checked by \link{check_ideal_island}}
 }
 \value{

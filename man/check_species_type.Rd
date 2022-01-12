@@ -39,7 +39,8 @@ check_species_type("C")
 check_species_type("I")
 }
 \seealso{
-Use \link{species_type_to_str} to convert a \code{species_type} to a string.
+Use \link{species_type_to_str} to convert a \code{species_type} to a
+string.
 }
 \author{
 Richèl J.C. Bilderbeek

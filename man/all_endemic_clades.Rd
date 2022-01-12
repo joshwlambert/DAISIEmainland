@@ -48,10 +48,10 @@ colonized the island
 \item \code{$branching_times} - island age followed by stem age of the
 population/species in the case of Non-endemic, Non-endemic_MaxAge
 species and Endemic species with no close relatives
-on the island. For endemic clades with more than one species on the island
-(cladogenetic clades/ radiations) these should be island age followed by the
-branching times of the island clade
-including the stem age of the clade
+on the island. For endemic clades with more than one species on the
+island (cladogenetic clades/ radiations) these should be island age
+followed by the branching times of the island clade including the stem
+age of the clade
 \item \code{$stac} - the status of the colonist, see \link{stac_to_str}
 for values and descriptions
 \item \code{$missing_species} - number of island species that were not
