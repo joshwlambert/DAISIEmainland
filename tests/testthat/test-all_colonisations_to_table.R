@@ -14,8 +14,8 @@ test_that("use", {
     island_pars = c(1, 1, 10, 12, 1),
     mainland = mainland_clade,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete")
-  #plot_island_tbl(island_tbl = island_tbl)
+    mainland_sample_type = "complete"
+  )
   daisie_data <- create_daisie_data(
     total_time = 1,
     island_tbl = island_tbl,
