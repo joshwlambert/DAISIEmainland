@@ -13,8 +13,6 @@
 #' These are the functions to plot an evolutionary history:
 #'
 #'  * Use \link{plot_mainland} to plot the mainland history
-#'  * Use \link{plot_daisie_data} to plot the island history.
-#'    based on both empirical data and ideal data.
 #'
 #' @examples
 #' mainland <- DAISIEmainland::sim_mainland(
