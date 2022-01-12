@@ -32,17 +32,20 @@ all_endemic_clades <- function(daisie_data) {
   }
   daisie_data <- daisie_data[-1]
   branching_times <- lapply(daisie_data, "[[", "branching_times")
-  num_spec <- unlist(lapply(branching_times, function(x) {length(x) - 1}))
+  num_spec <- unlist(lapply(branching_times, function(x) {
+    length(x) - 1
+  }))
   stacs <- unlist(lapply(daisie_data, "[[", "stac"))
   clades <- all(num_spec[which(stacs != 3)] > 1)
   if (any(stacs == 3)) {
     recol <- daisie_data[which(stacs == 3)]
     all_cols <- lapply(recol, "[[", "all_colonisations")
-    event_times <- lapply(all_cols,
-                          function(x) {lapply(x, "[[", "event_times")})
-    num_recol_spec <- unlist(
-      lapply(event_times, function(x) {lapply(x, function(y) length(y) - 1)})
-    )
+    event_times <- lapply(all_cols, function(x) {
+      lapply(x, "[[", "event_times")
+    })
+    num_recol_spec <- unlist(lapply(event_times, function(x) {
+        lapply(x, function(y) length(y) - 1)
+    }))
     recol_clades <- all(num_recol_spec > 1)
     clades <- clades && recol_clades
   }

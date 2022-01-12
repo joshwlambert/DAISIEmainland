@@ -13,7 +13,7 @@
 #' These are the functions to plot an evolutionary history:
 #'
 #'  * Use \link{plot_mainland} to plot the mainland history
-#'  * Use \link{plot_island_tbl} to plot the island history.
+#'  * Use \link{plot_daisie_data} to plot the island history.
 #'    based on both empirical data and ideal data.
 #'
 #' @examples
@@ -79,7 +79,9 @@ plot_mainland <- function(mainland) {
   t_offspring <- data.frame(
     offspring_branch_code = t_mainland$branch_code,
     offspring_unique_species_id = t_mainland$unique_species_id,
-    ancestor_unique_species_id = strtrim(t_mainland$unique_species_id, nchar(t_mainland$unique_species_id) - 1),
+    ancestor_unique_species_id = strtrim(
+      t_mainland$unique_species_id,
+      nchar(t_mainland$unique_species_id) - 1),
     offspring_spec_origin_t = t_mainland$spec_origin_t
   )
   t_vertical <- merge(t_ancestors, t_offspring)

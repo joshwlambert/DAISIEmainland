@@ -1,5 +1,5 @@
-# For reference on the appendix scenarios see:
-# inst/extdata/DAISIEmainland_appendix_a.pdf
+# For reference on the appendix scenarios see:                                  # nolint documentation
+# inst/extdata/DAISIEmainland_appendix_a.pdf                                    # nolint documentation
 
 test_that("appendix scenario 0 (empty island)", {
    set.seed(

@@ -37,4 +37,3 @@ check_mainland_clade <- function(mainland_clade) {
 
   invisible(mainland_clade)
 }
-

@@ -139,10 +139,10 @@
 #'    * \code{$branching_times} - island age followed by stem age of the
 #'      population/species in the case of Non-endemic, Non-endemic_MaxAge
 #'      species and Endemic species with no close relatives
-#'      on the island. For endemic clades with more than one species on the island
-#'      (cladogenetic clades/ radiations) these should be island age followed by the
-#'      branching times of the island clade
-#'      including the stem age of the clade
+#'      on the island. For endemic clades with more than one species on the
+#'      island (cladogenetic clades/ radiations) these should be island age
+#'      followed by the branching times of the island clade including the stem
+#'      age of the clade
 #'    * \code{$stac} - the status of the colonist, see \link{stac_to_str}
 #'      for values and descriptions
 #'    * \code{$missing_species} - number of island species that were not
@@ -169,8 +169,8 @@
 #' @param ideal_island a simulated island with perfect information,
 #' which is a \link{list} of one or more `ideal_island_clade`s.
 #'
-#' An `ideal_island` is created by \link{sim_island} (together with `empirical_island`,
-#' which has imperfect information),
+#' An `ideal_island` is created by \link{sim_island} (together with
+#' `empirical_island`, which has imperfect information),
 #' as can be checked by \link{check_ideal_island}
 #'
 #' @param ideal_island_clade A simulated island clade with perfect information,

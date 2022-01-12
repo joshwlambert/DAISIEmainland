@@ -19,7 +19,7 @@ test_that("sim_island is silent and produces correct empty island", {
   expect_equal(ncol(island_tbl), 7)
   expect_identical(names(island_tbl),
                    c("spec_id", "main_anc_id", "col_t", "spec_type",
-                     "branch_code", "branch_t", "ana_origin" ))
+                     "branch_code", "branch_t", "ana_origin"))
 })
 
 test_that("sim_island is silent and produces correct non-empty island", {

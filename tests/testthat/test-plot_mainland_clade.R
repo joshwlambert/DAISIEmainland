@@ -19,11 +19,11 @@ test_that("Speciation, both offspring species live", {
 })
 
 test_that("Speciation, one offspring went extict", {
-  #
-  #     +---|  2
-  # ----+      1
-  #     +----- 3
-  #
+  #                                                                             # nolint this is no commented code
+  #     +---|  2                                                                # nolint this is no commented code
+  # ----+      1                                                                # nolint this is no commented code
+  #     +----- 3                                                                # nolint this is no commented code
+  #                                                                             # nolint this is no commented code
   mainland_clade <- create_test_mainland_clade(mainland_scenario = 4)
   plot_mainland_clade(mainland_clade)
   expect_equal(1 + 1, 2) # To prevent testthat 'empty test' warning

@@ -25,7 +25,7 @@ check_branch_code <- function(branch_code) {
   testthat::expect_true(nchar(branch_code) > 0)
   chars <- strsplit(branch_code, split = "")[[1]]
   testthat::expect_equal(chars[1], "A")
-  testthat::expect_true(all(chars %in% c("A","B")))
+  testthat::expect_true(all(chars %in% c("A", "B")))
 
   invisible(branch_code)
 }

@@ -62,7 +62,7 @@
 #'   verbose = FALSE
 #' )
 #' @export
-sim_island_with_mainland <- function(total_time,
+sim_island_with_mainland <- function(total_time,                                # nolint, unavoidable cyclomatic complexity
                                      m,
                                      island_pars,
                                      mainland_ex,

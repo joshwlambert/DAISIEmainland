@@ -25,13 +25,13 @@ check_analysis_result <- function(analysis_result) {
   testit::assert(all(sapply(analysis_result$ideal_ml, function(x) {
     identical(
       names(x),
-      c("lambda_c", "mu", "K","gamma", "lambda_a", "loglik", "df", "conv"))
+      c("lambda_c", "mu", "K", "gamma", "lambda_a", "loglik", "df", "conv"))
   })))
   testit::assert(all(sapply(analysis_result$empirical_ml, is.data.frame)))
   testit::assert(all(sapply(analysis_result$empirical_ml, function(x) {
     identical(
       names(x),
-      c("lambda_c", "mu", "K","gamma", "lambda_a", "loglik", "df", "conv"))
+      c("lambda_c", "mu", "K", "gamma", "lambda_a", "loglik", "df", "conv"))
   })))
   testit::assert(identical(
     names(analysis_result$ideal_sim_metrics),
@@ -46,7 +46,7 @@ check_analysis_result <- function(analysis_result) {
   testit::assert(identical(
     names(analysis_result$error),
     c("delta_ctt", "max_age_percent", "endemic_percent",
-      "param_diffs","param_ratios")
+      "param_diffs", "param_ratios")
   ))
   testit::assert(all(unlist(sapply(analysis_result$error, function(x) {
     if (is.list(x)) {

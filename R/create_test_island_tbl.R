@@ -5,7 +5,7 @@
 #' @return data frame with island community information
 #' @keywords internal
 #' @author Joshua W. Lambert
-create_test_island_tbl <- function(island_scenario) {
+create_test_island_tbl <- function(island_scenario) {                           # nolint, unavoidable cyclomatic complexity
 
   testit::assert(island_scenario >= 0 && island_scenario <= 58)
 

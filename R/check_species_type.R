@@ -19,7 +19,8 @@
 #'
 #' @return nothing
 #'
-#' @seealso Use \link{species_type_to_str} to convert a `species_type` to a string.
+#' @seealso Use \link{species_type_to_str} to convert a `species_type` to a
+#' string.
 #'
 #' @examples
 #' check_species_type("A")

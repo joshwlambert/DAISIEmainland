@@ -43,7 +43,7 @@ test_that("Arguments 2 must have names", {
     total_time = total_time,
     m = m
   )
-  expect_error(plot_island_tbl(daisie_data), "Argument 2 must have names")
+  expect_error(plot_daisie_data(daisie_data), "Argument 2 must have names")
   plot_daisie_data(daisie_data)
 })
 
@@ -72,7 +72,6 @@ test_that("use", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete")
 
-  plot_island_tbl(island)
   daisie_data <- format_to_daisie_data(
     island_replicates = island,
     total_time = total_time,
@@ -121,7 +120,7 @@ test_that("search for trouble", {
       m = m,
       mainland_ex = 2.0
     )
-    # plot_mainland(mainland)
+    plot_mainland(mainland)
     mainland_clade <- mainland[[1]]
     plot_mainland_clade(mainland_clade)
     island <- sim_island(
@@ -131,7 +130,6 @@ test_that("search for trouble", {
       mainland_sample_prob = 1,
       mainland_sample_type = "complete")
 
-    plot_island_tbl(island)
     daisie_data <- format_to_daisie_data(
       island_replicates = island,
       total_time = total_time,

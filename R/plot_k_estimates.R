@@ -88,15 +88,17 @@ plot_k_estimates <- function(analysis_results,
     sim_k = unlist(empirical_sim_k))
 
   if (parameter == "mainland_ex") {
-    ideal_plotting_data <-
-      ideal_plotting_data[ideal_plotting_data$mainland_sample_type %in% "complete", ]
-    empirical_plotting_data <-
-      empirical_plotting_data[empirical_plotting_data$mainland_sample_type %in% "complete", ]
+    which_ideal <- ideal_plotting_data$mainland_sample_type %in% "complete"
+    ideal_plotting_data <- ideal_plotting_data[which_ideal, ]
+    which_empirical <-
+      empirical_plotting_data$mainland_sample_type %in% "complete"
+    empirical_plotting_data <- empirical_plotting_data[which_empirical, ]
   } else {
-    ideal_plotting_data <-
-      ideal_plotting_data[ideal_plotting_data$mainland_sample_type %in% parameter, ]
-    empirical_plotting_data <-
-      empirical_plotting_data[empirical_plotting_data$mainland_sample_type %in% parameter, ]
+    which_ideal <- ideal_plotting_data$mainland_sample_type %in% parameter
+    ideal_plotting_data <- ideal_plotting_data[which_ideal, ]
+    which_empirical <-
+      empirical_plotting_data$mainland_sample_type %in% parameter
+    empirical_plotting_data <- empirical_plotting_data[which_empirical, ]
   }
 
   ideal_plotting_data_k_5 <-

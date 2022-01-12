@@ -72,4 +72,3 @@ test_that("plot_param_estimates (save) runs silent without error", {
   file.remove(output_filename)
   expect_false(file.exists(output_filename))
 })
-

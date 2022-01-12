@@ -33,7 +33,7 @@ check_island_tbl <- function(island_tbl) {
   testit::assert(identical(
     names(island_tbl),
     c("spec_id", "main_anc_id", "col_t", "spec_type",
-      "branch_code", "branch_t", "ana_origin" )
+      "branch_code", "branch_t", "ana_origin")
   ))
 
   invisible(island_tbl)

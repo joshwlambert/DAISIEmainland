@@ -37,7 +37,8 @@ check_daisie_data <- function(daisie_data) {
   testit::assert("island_age" %in% names(daisie_data_meta_data))
   testit::assert(
     "not_present" %in% names(daisie_data_meta_data) ||
-    all(c("not_present_type1", "not_present_type2") %in% names(daisie_data_meta_data))
+    all(c("not_present_type1", "not_present_type2") %in%
+          names(daisie_data_meta_data))
   )
 
   if (length(daisie_data) == 1) {

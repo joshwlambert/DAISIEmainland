@@ -32,7 +32,8 @@ all_colonisations_to_table <- function(ideal_or_empirical_island) { # nolint ind
   all_colonisations_list <- list()
   for (i in seq_along(ideal_or_empirical_island)) {
     if (is.null(ideal_or_empirical_island[[i]]$all_colonisations)) next
-    all_colonisations_list[[i]] <- ideal_or_empirical_island[[i]]$all_colonisations
+    all_colonisations_list[[i]] <-
+      ideal_or_empirical_island[[i]]$all_colonisations
   }
 
   # Check doc:
