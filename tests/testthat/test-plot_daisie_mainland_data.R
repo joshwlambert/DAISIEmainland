@@ -18,19 +18,19 @@ test_that("Code copied from email", {
   )
 
   plot_daisie_mainland_data(daisie_mainland_data, replicate_index = 1) # Probably calls the next two functions :-)
-  plot_empirical_multi_daisie_data(daisie_mainland_data$empirical_multi_daisie_data, replicate_index = 1)
-  plot_ideal_multi_daisie_data(daisie_mainland_data$ideal_multi_daisie_data, replicate_index = 1)
+  # plot_empirical_multi_daisie_data(daisie_mainland_data$empirical_multi_daisie_data, replicate_index = 1)
+  # plot_ideal_multi_daisie_data(daisie_mainland_data$ideal_multi_daisie_data, replicate_index = 1)
 })
 
 test_that("Arguments 4 must have names", {
-  skip("WIP, #42")
+  skip("WIP, #59")
   set.seed(
     4,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  daisie_data <- sim_island_with_mainland(
+  daisie_mainland_data <- sim_island_with_mainland(
     total_time = 1.0,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
@@ -39,11 +39,11 @@ test_that("Arguments 4 must have names", {
     mainland_sample_type = "complete",
     replicates = 1
   )
-  plot_daisie_data(daisie_data)
+  plot_daisie_mainland_data(daisie_mainland_data)
 })
 
 test_that("Arguments 2 must have names", {
-  skip("WIP, #42")
+  skip("WIP, #59")
   set.seed(
     3,
     kind = "Mersenne-Twister",
@@ -64,17 +64,17 @@ test_that("Arguments 2 must have names", {
     mainland_sample_prob = 1,
     mainland_sample_type = "complete"
   )
-  daisie_data <- format_to_daisie_data(
+  daisie_mainland_data <- format_to_daisie_data(
     island_replicates = island,
     total_time = total_time,
     m = m
   )
-  expect_error(plot_daisie_data(daisie_data), "Argument 2 must have names")
-  plot_daisie_data(daisie_data)
+  expect_error(plot_daisie_mainland_data(daisie_mainland_data), "Argument 2 must have names")
+  plot_daisie_mainland_data(daisie_mainland_data)
 })
 
 test_that("use", {
-  skip("WIP, #42")
+  skip("WIP, #59")
   set.seed(
     13,
     kind = "Mersenne-Twister",
@@ -99,16 +99,16 @@ test_that("use", {
     mainland_sample_type = "complete"
   )
 
-  daisie_data <- format_to_daisie_data(
+  daisie_mainland_data <- format_to_daisie_data(
     island_replicates = island,
     total_time = total_time,
     m = m
   )
-  plot_daisie_data(daisie_data)
+  plot_daisie_mainland_data(daisie_mainland_data)
 })
 
 test_that("example from vignette, ideal is nor empirical", {
-  skip("WIP, #42")
+  skip("WIP, #59")
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -118,7 +118,7 @@ test_that("example from vignette, ideal is nor empirical", {
 
   replicates <- 1
 
-  daisie_data <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
     total_time = 1,
     m = 100,
     island_pars = c(1, 1, 50, 0.1, 1),
@@ -128,11 +128,11 @@ test_that("example from vignette, ideal is nor empirical", {
     replicates = replicates,
     verbose = FALSE
   )
-  plot_daisie_data(daisie_data)
+  plot_daisie_mainland_data(daisie_mainland_data)
 })
 
 test_that("search for trouble", {
-  skip("WIP, #42")
+  skip("WIP, #59")
   for (seed in seq_len(10)) {
     message(seed)
     set.seed(
@@ -159,11 +159,11 @@ test_that("search for trouble", {
       mainland_sample_type = "complete"
     )
 
-    daisie_data <- format_to_daisie_data(
+    daisie_mainland_data <- format_to_daisie_data(
       island_replicates = island,
       total_time = total_time,
       m = m
     )
-    plot_daisie_data(daisie_data)
+    plot_daisie_mainland_data(daisie_mainland_data)
   }
 })
