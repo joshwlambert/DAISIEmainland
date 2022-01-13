@@ -1,5 +1,5 @@
 test_that("Code copied from email", {
-  skip("Not yet")
+  skip("WIP, #59")
   set.seed(
     2,
     kind = "Mersenne-Twister",
