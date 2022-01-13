@@ -1,5 +1,4 @@
 test_that("No extant colonists", {
-  skip("WIP, #59")
   set.seed(
     2,
     kind = "Mersenne-Twister",
@@ -23,7 +22,6 @@ test_that("No extant colonists", {
 })
 
 test_that("One colonist clade", {
-  skip("WIP, #59")
   set.seed(
     1,
     kind = "Mersenne-Twister",

@@ -3,8 +3,12 @@
 #'
 #' @return a list with two elements:
 #'
-#'  * `header`: see \link{daisie_header_to_table{}
-#'
+#'  * `header`: general parameters of the results
+#'     see \link{daisie_header_to_table}
+#'  * `colonists_general`: general info of each clade
+#'     see \link{daisie_data_colonist_info_to_general_table}
+#'  * `colonists_branching_times`: branching times per clade
+#'     see \link{daisie_data_colonist_info_to_braching_times_table}
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export

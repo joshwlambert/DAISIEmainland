@@ -61,7 +61,12 @@ sampled for particular clade (only applicable for endemic clades)
 \value{
 a list with two elements:
 \itemize{
-\item \code{header}: see \link{daisie_header_to_table{}
+\item \code{header}: general parameters of the results
+see \link{daisie_header_to_table}
+\item \code{colonists_general}: general info of each clade
+see \link{daisie_data_colonist_info_to_general_table}
+\item \code{colonists_branching_times}: branching times per clade
+see \link{daisie_data_colonist_info_to_braching_times_table}
 }
 }
 \description{
