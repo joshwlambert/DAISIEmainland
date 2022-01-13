@@ -37,7 +37,7 @@ test_that("One colonist clade", {
     mainland_ex = 1,
     mainland_sample_prob = 1,
     mainland_sample_type = "undiscovered",
-    replicates = 10,
+    replicates = 1,
     verbose = FALSE
   )
 

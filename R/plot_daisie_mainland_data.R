@@ -32,11 +32,13 @@ plot_daisie_mainland_data <- function(
     length(daisie_mainland_data$ideal_multi_daisie_data),
     length(daisie_mainland_data$empirical_multi_daisie_data))
 
-  ideal_multi_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[
     replicate_index]]
-  empirical_multi_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[
     replicate_index]]
 
+  # ideal_tables <- daisie_data_to_tables(ideal_daisie_data) # nolint mark #42
+  # empirical_tables <- daisie_data_to_tables(empirical_daisie_data) # nolint mark #42
 
   ggplot2::ggplot()
 }
