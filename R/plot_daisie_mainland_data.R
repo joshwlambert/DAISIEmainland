@@ -1,5 +1,8 @@
 #' Plot the `daisie_mainland_data` for a certain replicate
+#'
 #' @inheritParams default_params_doc
+#'
+#' @param replicate_index index of the replicate
 #'
 #' @return a `ggplot2`
 #'

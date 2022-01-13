@@ -19,6 +19,8 @@ see \link{check_multi_daisie_data} for more details
 \item \code{empirical_multi_daisie_data}: the empirical data sets produced in a
 simulation see \link{check_multi_daisie_data} for more details
 }}
+
+\item{replicate_index}{index of the replicate}
 }
 \value{
 a \code{ggplot2}
