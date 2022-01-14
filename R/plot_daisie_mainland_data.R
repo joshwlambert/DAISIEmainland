@@ -45,4 +45,3 @@ plot_daisie_mainland_data <- function(
 
   ggplot2::ggplot()
 }
-

@@ -16,9 +16,7 @@ test_that("No extant colonists", {
     verbose = FALSE
   )
 
-  plot_daisie_mainland_data(daisie_mainland_data, replicate_index = 1) # Probably calls the next two functions :-)
-  # plot_empirical_multi_daisie_data(daisie_mainland_data$empirical_multi_daisie_data, replicate_index = 1)
-  # plot_ideal_multi_daisie_data(daisie_mainland_data$ideal_multi_daisie_data, replicate_index = 1)
+  plot_daisie_mainland_data(daisie_mainland_data, replicate_index = 1)
 })
 
 test_that("One colonist clade", {
@@ -39,7 +37,5 @@ test_that("One colonist clade", {
     verbose = FALSE
   )
 
-  plot_daisie_mainland_data(daisie_mainland_data, replicate_index = 1) # Probably calls the next two functions :-)
-  # plot_empirical_multi_daisie_data(daisie_mainland_data$empirical_multi_daisie_data, replicate_index = 1)
-  # plot_ideal_multi_daisie_data(daisie_mainland_data$ideal_multi_daisie_data, replicate_index = 1)
+  plot_daisie_mainland_data(daisie_mainland_data, replicate_index = 1)
 })

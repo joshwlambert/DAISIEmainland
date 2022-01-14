@@ -31,7 +31,8 @@ plot_daisie_data <- function(daisie_data) {
 
   # Remove the redundant first branching time, which equals the island
   # age, as it is already the header
-  are_redundant <- t$colonists_branching_times$branching_times == t$header$island_age
+  are_redundant <- t$colonists_branching_times$branching_times ==
+    t$header$island_age
   t$colonists_branching_times <- t$colonists_branching_times[!are_redundant, ]
 
   # Draw the branches. Note we only have extant species
@@ -47,7 +48,8 @@ plot_daisie_data <- function(daisie_data) {
   for (row_index in seq_along(branches_horizontal)) {
     if (branches_horizontal$clade_index[row_index] != cur_clade_index) {
       cur_clade_index <- branches_horizontal$clade_index[row_index]
-      delta_y <- 1.0 / n_branches_per_clade_index[n_branches_per_clade_index$clade_index == cur_clade_index]$n
+      delta_y <- 1.0 / n_branches_per_clade_index[
+        n_branches_per_clade_index$clade_index == cur_clade_index]$n
       y <- delta_y / 2.0
     } else {
       y <- y + delta_y

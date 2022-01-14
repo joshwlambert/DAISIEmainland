@@ -50,7 +50,8 @@ daisie_data_to_tables <- function(daisie_data) {
   colonists_branching_times <- dplyr::bind_rows(colonists_branching_times_list)
 
   list(
-    header = DAISIEmainland::daisie_header_to_table(daisie_data_header = daisie_data[[1]]),
+    header = DAISIEmainland::daisie_header_to_table(
+      daisie_data_header = daisie_data[[1]]),
     colonists_general = colonists_general,
     colonists_branching_times = colonists_branching_times
   )
@@ -78,8 +79,9 @@ daisie_header_to_table <- function(daisie_data_header) {
   )
 }
 
-#' Convert the header of a `daisie_data` into a tabular format
+#' Internal function
 #'
+#' Convert the header of a `daisie_data` into a tabular format
 #' @param daisie_data_colonist_info an element of a `daisie_data`,
 #' that is not the first element (the first element is of type
 #' `daisie_data_header`).
@@ -89,7 +91,7 @@ daisie_header_to_table <- function(daisie_data_header) {
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-daisie_data_colonist_info_to_braching_times_table <- function(
+daisie_data_colonist_info_to_braching_times_table <- function( # nolint indeed a long function name
   daisie_data_colonist_info
 ) {
   data.frame(
@@ -98,8 +100,9 @@ daisie_data_colonist_info_to_braching_times_table <- function(
   )
 }
 
-#' Convert the header of a `daisie_data` into a tabular format
+#' Internal function
 #'
+#' Convert the header of a `daisie_data` into a tabular format
 #' @param daisie_data_colonist_info an element of a `daisie_data`,
 #' that is not the first element (the first element is of type
 #' `daisie_data_header`).
@@ -111,7 +114,7 @@ daisie_data_colonist_info_to_braching_times_table <- function(
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
-daisie_data_colonist_info_to_general_table <- function(
+daisie_data_colonist_info_to_general_table <- function( # nolint indeed a long internal function name
   daisie_data_colonist_info
 ) {
   data.frame(

@@ -189,11 +189,13 @@ test_that("Search for interesting scenarions", {
       verbose = FALSE
     )
     ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
-    empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+    empirical_daisie_data <-
+      daisie_mainland_data$empirical_multi_daisie_data[[1]]
     if (length(ideal_daisie_data) == 1) next
     if ("look for interesting stac" == "what I want") {
       uninteresting_set <- c(2, 4, 3, 5, 6)
-      if (!ideal_daisie_data[[2]]$stac %in% uninteresting_set || !empirical_daisie_data[[2]]$stac %in% uninteresting_set) {
+      if (!ideal_daisie_data[[2]]$stac %in% uninteresting_set ||
+          !empirical_daisie_data[[2]]$stac %in% uninteresting_set) {
         message(seed)
         stop(seed)
       }
