@@ -188,7 +188,7 @@ test_that("many clades", {
   plot_daisie_data(empirical_daisie_data)
 })
 
-test_that("Search for interesting scenarions", {
+test_that("Search for interesting scenarions", { # nolint indeed, this is complex :-)
   skip("Only run locally")
   seed <- 0
   while (1) {
