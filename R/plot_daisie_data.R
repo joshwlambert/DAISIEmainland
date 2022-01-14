@@ -12,6 +12,7 @@ plot_daisie_data <- function(daisie_data) {
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   clade_index <- NULL; rm(clade_index) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
+  yend <- NULL; rm(yend) # nolint, fixes warning: no visible binding for global variable
 
   t <- DAISIEmainland::daisie_data_to_tables(daisie_data)
 
