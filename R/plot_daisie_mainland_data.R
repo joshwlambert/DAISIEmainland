@@ -40,12 +40,10 @@ plot_daisie_mainland_data <- function(
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[
     replicate_index]]
 
-  plot_daisie_data(daisie_data = ideal_daisie_data)
-  plot_daisie_data(empirical_daisie_data)
   patchwork::wrap_plots(
-    plot_daisie_data(daisie_data = ideal_daisie_data) +
+    DAISIEmainland::plot_daisie_data(daisie_data = ideal_daisie_data) +
       ggplot2::ggtitle("Ideal"),
-    plot_daisie_data(empirical_daisie_data) + ggplot2::ggtitle("Empirical"),
+    DAISIEmainland::plot_daisie_data(empirical_daisie_data) + ggplot2::ggtitle("Empirical"),
     ncol = 1,
     nrow = 2
   )
