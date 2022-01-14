@@ -45,11 +45,13 @@ plot_daisie_data <- function(daisie_data) {
   cur_clade_index <- 0
   delta_y <- 0
   y <- 0
-  for (row_index in seq_along(branches_horizontal)) {
-    if (branches_horizontal$clade_index[row_index] != cur_clade_index) {
-      cur_clade_index <- branches_horizontal$clade_index[row_index]
+  for (row_index in seq_along(branches_horizontal$branching_times)) {
+    this_clade_index <- branches_horizontal$clade_index[row_index]
+    if (this_clade_index != cur_clade_index) {
+      # New clade_index
+      cur_clade_index <- this_clade_index
       delta_y <- 1.0 / n_branches_per_clade_index[
-        n_branches_per_clade_index$clade_index == cur_clade_index]$n
+        n_branches_per_clade_index$clade_index == cur_clade_index, ]$n
       y <- delta_y / 2.0
     } else {
       y <- y + delta_y
