@@ -33,6 +33,7 @@ Imports:
     testit,
     ggplot2,
     cowplot,
+    patchwork,
     scales
 Suggests: 
     DAISIE (>= 4.0.5),

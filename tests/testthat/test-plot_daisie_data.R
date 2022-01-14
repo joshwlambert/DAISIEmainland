@@ -1,115 +1,198 @@
-test_that("Arguments 4 must have names", {
-  skip("WIP, #42")
+test_that("No extant colonists", {
   set.seed(
-    4,
+    2,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-  daisie_data <- sim_island_with_mainland(
-    total_time = 1.0,
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = 1,
     m = 10,
     island_pars = c(1, 1, 10, 0.1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete",
-    replicates = 1
+    mainland_sample_type = "undiscovered",
+    replicates = 10,
+    verbose = FALSE
   )
-  plot_daisie_data(daisie_data)
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  daisie_data <- ideal_daisie_data
+  expect_silent(plot_daisie_data(ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
-test_that("Arguments 2 must have names", {
-  skip("WIP, #42")
-  set.seed(
-    3,
-    kind = "Mersenne-Twister",
-    normal.kind = "Inversion",
-    sample.kind = "Rejection"
-  )
-  total_time <- 1.0
-  m <- 10
-  mainland <- sim_mainland(
-    total_time = total_time,
-    m = m,
-    mainland_ex = 2.0
-  )
-  island <- sim_island(
-    total_time = total_time,
-    island_pars = c(1, 1, 10, 12, 1),
-    mainland = mainland[[1]],
-    mainland_sample_prob = 1,
-    mainland_sample_type = "complete"
-  )
-  daisie_data <- format_to_daisie_data(
-    island_replicates = island,
-    total_time = total_time,
-    m = m
-  )
-  expect_error(plot_daisie_data(daisie_data), "Argument 2 must have names")
-  plot_daisie_data(daisie_data)
-})
-
-test_that("use", {
-  skip("WIP, #42")
-  set.seed(
-    13,
-    kind = "Mersenne-Twister",
-    normal.kind = "Inversion",
-    sample.kind = "Rejection"
-  )
-  total_time <- 1.0
-  m <- 10
-  mainland <- sim_mainland(
-    total_time = total_time,
-    m = m,
-    mainland_ex = 2.0
-  )
-  plot_mainland(mainland)
-  mainland_clade <- mainland[[5]]
-  plot_mainland_clade(mainland_clade)
-  island <- sim_island(
-    total_time = total_time,
-    island_pars = c(1, 1, 10, 12, 1),
-    mainland = mainland_clade,
-    mainland_sample_prob = 1,
-    mainland_sample_type = "complete"
-  )
-
-  daisie_data <- format_to_daisie_data(
-    island_replicates = island,
-    total_time = total_time,
-    m = m
-  )
-  plot_daisie_data(daisie_data)
-})
-
-test_that("example from vignette, ideal is nor empirical", {
-  skip("WIP, #42")
+test_that("One colonist clade, stac = 4: Non_endemic", {
   set.seed(
     1,
     kind = "Mersenne-Twister",
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
-
-  replicates <- 1
-
-  daisie_data <- DAISIEmainland::sim_island_with_mainland(
+  daisie_mainland_data <- sim_island_with_mainland(
     total_time = 1,
-    m = 100,
-    island_pars = c(1, 1, 50, 0.1, 1),
-    mainland_ex = 0.5,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
     mainland_sample_prob = 1,
-    mainland_sample_type = "complete",
-    replicates = replicates,
+    mainland_sample_type = "undiscovered",
+    replicates = 1,
     verbose = FALSE
   )
-  plot_daisie_data(daisie_data)
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  daisie_data <- ideal_daisie_data
+  plot_daisie_data(ideal_daisie_data)
+  plot_daisie_data(empirical_daisie_data)
 })
 
-test_that("search for trouble", {
-  skip("WIP, #42")
-  for (seed in seq_len(10)) {
+test_that("stac == 2: Endemic (and Non_endemic)", {
+  set.seed(
+    4,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  testthat::expect_true(
+    ideal_daisie_data[[2]]$stac != 4 || empirical_daisie_data[[2]]$stac != 4
+  )
+  plot_daisie_data(daisie_data = ideal_daisie_data)
+  plot_daisie_data(empirical_daisie_data)
+})
+
+test_that("stac == 5: Endemic_singleton_MaxAge in empirical_daisie_data", {
+  set.seed(
+    7,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data = ideal_daisie_data)
+  plot_daisie_data(empirical_daisie_data)
+})
+
+test_that("stace == 6: Endemic_clade_MaxAge, in empirical_daisie_data", {
+  set.seed(
+    40,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data = ideal_daisie_data)
+  plot_daisie_data(empirical_daisie_data)
+})
+
+test_that("stac == 3: Endemic&Non_Endemic", {
+  set.seed(
+    179,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data = ideal_daisie_data)
+  plot_daisie_data(empirical_daisie_data)
+})
+
+
+test_that("much branching", {
+  set.seed(
+    1018,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data = ideal_daisie_data)
+  plot_daisie_data(empirical_daisie_data)
+})
+
+test_that("many clades", {
+  set.seed(
+    274,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data = ideal_daisie_data)
+  plot_daisie_data(empirical_daisie_data)
+})
+
+test_that("Search for interesting scenarions", { # nolint indeed, this is complex :-)
+  skip("Only run locally")
+  seed <- 0
+  while (1) {
+    seed <- seed + 1
     message(seed)
     set.seed(
       seed,
@@ -117,29 +200,43 @@ test_that("search for trouble", {
       normal.kind = "Inversion",
       sample.kind = "Rejection"
     )
-    total_time <- 1.0
-    m <- 10
-    mainland <- sim_mainland(
-      total_time = total_time,
-      m = m,
-      mainland_ex = 2.0
-    )
-    plot_mainland(mainland)
-    mainland_clade <- mainland[[1]]
-    plot_mainland_clade(mainland_clade)
-    island <- sim_island(
-      total_time = total_time,
-      island_pars = c(1, 1, 10, 12, 1),
-      mainland = mainland_clade,
+    daisie_mainland_data <- sim_island_with_mainland(
+      total_time = 1,
+      m = 10,
+      island_pars = c(1, 1, 10, 0.1, 1),
+      mainland_ex = 1,
       mainland_sample_prob = 1,
-      mainland_sample_type = "complete"
+      mainland_sample_type = "complete",
+      replicates = 1,
+      verbose = FALSE
     )
-
-    daisie_data <- format_to_daisie_data(
-      island_replicates = island,
-      total_time = total_time,
-      m = m
-    )
-    plot_daisie_data(daisie_data)
+    ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+    empirical_daisie_data <-
+      daisie_mainland_data$empirical_multi_daisie_data[[1]]
+    if ("stress-test" == "stress-test") {
+      plot_daisie_data(daisie_data = ideal_daisie_data)
+      plot_daisie_data(empirical_daisie_data)
+    }
+    if (length(ideal_daisie_data) == 1) next
+    if ("look for interesting stac" == "what I want") {
+      uninteresting_set <- c(2, 4, 3, 5, 6)
+      if (!ideal_daisie_data[[2]]$stac %in% uninteresting_set ||
+          !empirical_daisie_data[[2]]$stac %in% uninteresting_set) {
+        message(seed)
+        stop(seed)
+      }
+    }
+    if ("look for many branches" == "what I want") {
+        if (length(ideal_daisie_data[[2]]$branching_times) > 3) {
+        message(seed)
+        stop(seed)
+        }
+    }
+    if ("look for many clades" == "look for many clades") {
+      if (length(ideal_daisie_data) > 3) {
+        message(seed)
+        stop(seed)
+      }
+    }
   }
 })

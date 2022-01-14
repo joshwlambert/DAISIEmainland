@@ -5,10 +5,8 @@
 \title{Documentation for function arguments in the DAISIEmainland package}
 \usage{
 default_params_doc(
-  all_colonisations,
   branch_code,
   branching_times,
-  colonisations,
   event_times,
   missing_species,
   stac,
@@ -43,10 +41,6 @@ default_params_doc(
   daisie_data,
   ideal_daisie_data,
   empirical_daisie_data,
-  ideal_island,
-  ideal_island_clade,
-  empirical_island,
-  empirical_island_clade,
   ideal_or_empirical_island,
   species_type,
   ideal_ml,
@@ -64,7 +58,6 @@ default_params_doc(
   scientific,
   transform,
   mainland,
-  island,
   age,
   multi_daisie_data,
   analysis_result,
@@ -73,16 +66,6 @@ default_params_doc(
 )
 }
 \arguments{
-\item{all_colonisations}{a list of one or more \code{colonisations},
-see \link{check_colonisations} for details.
-\code{all_colonisations} can be checked by \link{check_all_colonisations}.
-
-\code{all_colonisations} is an element of
-\itemize{
-\item \code{ideal_island_clade} (see \link{check_ideal_island_clade})
-\item \code{emprical_island_clade} (see \link{check_empirical_island_clade})
-}}
-
 \item{branch_code}{a species' branching pattern,
 as checked by \link{check_branch_code}, e.g. \code{A}, \code{AB}, \code{AABA}.}
 
@@ -95,17 +78,6 @@ be island age and branching times of the radiation including the
 stem age of the radiation.
 
 See \link{check_branching_times} for a more detailed description.}
-
-\item{colonisations}{a \code{colonisations}, which is a \link{list} with elements:
-\itemize{
-\item \code{event_times}: the times that events (i.e. island age, immigration,
-speciation) occurred (see \link{check_event_times})
-\item \code{species_type}:  the origin of a clade (i.e. anagenetic, cladogenetic
-or immigrant) (see \link{check_species_type})
-}
-
-An \code{all_colonisations} (see \link{check_all_colonisations}) is a \link{list}
-of \code{colonisations}.}
 
 \item{event_times}{the island age, stem age of species,
 and -for cladogenetic species- speciation times,
@@ -278,73 +250,6 @@ The list elements are of type \code{DAISIE::datalist},
 as checked by \link{check_daisie_data}
 and can be used by \link[DAISIE]{DAISIE} (e.g. \link[DAISIE]{DAISIE_ML_CS})}
 
-\item{ideal_island}{a simulated island with perfect information,
-which is a \link{list} of one or more \code{ideal_island_clade}s.
-
-An \code{ideal_island} is created by \link{sim_island} (together with
-\code{empirical_island}, which has imperfect information),
-as can be checked by \link{check_ideal_island}}
-
-\item{ideal_island_clade}{A simulated island clade with perfect information,
-which is a \link{list} of one or more \code{ideal_island_clade}s,
-as can be checked by \link{check_ideal_island_clade}
-
-\code{ideal_island_clade} is a list  containing 3 components:
-\itemize{
-\item \verb{$branching_times}: island age, species stem age and speciation times.
-See \link{check_branching_times} for more details
-\item \verb{$stac}: the status of the colonist,
-see \link{stac_to_str} for values and meanings
-\item \verb{$missing_species}: number of island species that were
-not sampled for particular clade (only applicable for endemic clades)
-}
-
-For recolonising lineages, there is an extra element,
-\code{all_colonisations} per list element.
-It is comprised of \verb{$event_times} and \verb{$species_type}:
-\describe{
-\item{\verb{$event_times}}{ordered numeric vectors containing all
-events for each extant recolonising lineage. This includes all
-colonisation and branching times. Each vector pertains to one
-colonising lineage.}
-\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
-\code{"I"} depending on whether the extant clade is of anagenetic,
-cladogenetic or immigrant origin, respectively.}
-}}
-
-\item{empirical_island}{a simulated island with imperfect information,
-with one \code{empirical_island_clade} per simulated island clade.
-
-An \code{empirical_island} is created by \link{sim_island}
-(together with \code{ideal_island}, which has perfect information),
-as can be checked by \link{check_empirical_island}.}
-
-\item{empirical_island_clade}{A simulated island clade with imperfect information,
-as can be checked by \link{check_empirical_island_clade}.
-
-An \code{empirical_island_clade} contains 3 components:
-\itemize{
-\item \verb{$branching_times}: island age, species stem age and speciation times.
-See \link{check_branching_times} for more details
-\item \verb{$stac}: the status of the colonist,
-see \link{stac_to_str} for values and meanings
-\item \verb{$missing_species}: number of island species that were
-not sampled for particular clade (only applicable for endemic clades)
-}
-
-For recolonising lineages, there is an extra element,
-\code{all_colonisations} per list element.
-It is comprised of \verb{$event_times} and \verb{$species_type}:
-\describe{
-\item{\verb{$event_times}}{ordered numeric vectors containing all
-events for each extant recolonising lineage. This includes all
-colonisation and branching times. Each vector pertains to one
-colonising lineage.}
-\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
-\code{"I"} depending on whether the extant clade is of anagenetic,
-cladogenetic or immigrant origin, respectively.}
-}}
-
 \item{ideal_or_empirical_island}{the evolutionary history of
 an island from ideal or empirical data,
 as created by \link{sim_island}
@@ -424,29 +329,6 @@ the data or an inverse hyperbolic sine (ihs) transformation}
 \item{mainland}{the evolutionary history of the mainland species,
 as created by \link{sim_mainland}.
 Use \link{plot_mainland} to visualise the that evolutionary history.}
-
-\item{island}{The history of a a single island,
-as can be checked by \link{check_island_tbl}.
-
-An \code{island} is \link{list} with two elements:
-\itemize{
-\item \code{ideal_island}: the island history based on ideal data,
-as can be checked by \link{check_ideal_island}
-\item \code{empirical_island}: the island history based on empirical data
-as can be checked by \link{check_empirical_island}
-For recolonising lineages, there is an extra element,
-\code{all_colonisations} per list element.
-It is comprised of \verb{$event_times} and \verb{$species_type}:
-\describe{
-\item{\verb{$event_times}}{ordered numeric vectors containing all
-events for each extant recolonising lineage. This includes all
-colonisation and branching times. Each vector pertains to one
-colonising lineage.}
-\item{\verb{$species_type}}{a string. Can be \code{"A"}, \code{"C"} or
-\code{"I"} depending on whether the extant clade is of anagenetic,
-cladogenetic or immigrant origin, respectively.}
-}
-}}
 
 \item{age}{Numeric defining age of singleton species}
 
