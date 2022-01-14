@@ -2,7 +2,7 @@
 % Please edit documentation in R/daisie_data_to_tables.R
 \name{daisie_data_colonist_info_to_general_table}
 \alias{daisie_data_colonist_info_to_general_table}
-\title{Convert the header of a \code{daisie_data} into a tabular format}
+\title{Internal function}
 \usage{
 daisie_data_colonist_info_to_general_table(daisie_data_colonist_info)
 }

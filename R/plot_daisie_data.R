@@ -35,12 +35,16 @@ plot_daisie_data <- function(daisie_data) {
     t$header$island_age
   t$colonists_branching_times <- t$colonists_branching_times[!are_redundant, ]
 
-  # Draw the branches. Note we only have extant species
+  #####################################################
+  # Creata a table for drawing the horizontal branches
+  #####################################################
+  # Note we only have extant species
   n_branches_per_clade_index <- dplyr::summarise(
     dplyr::group_by(t$colonists_branching_times, clade_index),
     n = dplyr::n()
   )
   branches_horizontal <- t$colonists_branching_times
+  # Determine the y coordinats per clade_index, space out the y's nicely
   branches_horizontal$y <- NA
   cur_clade_index <- 0
   delta_y <- 0
@@ -58,14 +62,39 @@ plot_daisie_data <- function(daisie_data) {
     }
     branches_horizontal$y[row_index] <- y
   }
-  branches_horizontal
+  testthat::expect_true("branching_times" %in% names(branches_horizontal))
+  #####################################################
+  # Creata a table for drawing the vertical branches
+  #####################################################
+  # As the parent of a branch is unknown, use a comb graph
+  branches_vertical <- branches_horizontal
+  # Make vertical branches go to their parents
+  # Parents have the y index above it
+  # The parent branches will have nonsense values
+  last_row_index <- length(branches_vertical$y)
+  branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
+  # Use the branching times of the parents
+  branches_vertical$branching_times <- c(
+    0.0, branches_vertical$branching_times[-last_row_index]
+  )
+
+  # Get rid of the parents, i.e. those with the lowest y per clade_index
+  branches_vertical <- dplyr::slice(
+    dplyr::group_by(
+      branches_vertical,
+      clade_index
+    ),
+    -which.min(y)
+  )
+
+
 
 
   # Only obtain the colonisations, i.e. the first branching time,
   # plot these as points with a shape depending on stac_str
   first_branching_times <- dplyr::slice(
     dplyr::group_by(
-      t$colonists_branching_times,
+      branches_horizontal,
       clade_index
     ),
     which.min(branching_times)
@@ -74,6 +103,22 @@ plot_daisie_data <- function(daisie_data) {
 
   p + ggplot2::geom_point(
     data = colonisations,
-    ggplot2::aes(x = branching_times, y = 0.5, shape = stac_str)
+    ggplot2::aes(x = branching_times, y = y, shape = stac_str)
+  ) + ggplot2::geom_segment(
+    data = branches_horizontal,
+    ggplot2::aes(
+      x = branching_times,
+      y = y,
+      xend = t$header$island_age,
+      yend = y
+    )
+  ) + ggplot2::geom_segment(
+    data = branches_vertical,
+    ggplot2::aes(
+      x = branching_times,
+      y = y,
+      xend = branching_times,
+      yend = yend
+    )
   ) + ggplot2::facet_grid(clade_index ~ .)
 }
