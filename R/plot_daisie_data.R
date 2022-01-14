@@ -63,7 +63,12 @@ plot_daisie_data <- function(daisie_data) {
     }
     branches_horizontal$y[row_index] <- y
   }
+  # Add the stac_str
+  branches_horizontal <- merge(branches_horizontal, t$colonists_general)
   testthat::expect_true("branching_times" %in% names(branches_horizontal))
+  testthat::expect_true("clade_index" %in% names(branches_horizontal))
+  testthat::expect_true("y" %in% names(branches_horizontal))
+  testthat::expect_true("stac_str" %in% names(branches_horizontal))
   #####################################################
   # Creata a table for drawing the vertical branches
   #####################################################
@@ -87,6 +92,13 @@ plot_daisie_data <- function(daisie_data) {
     ),
     -which.min(y)
   )
+  # Add the stac_str
+  branches_vertical <- merge(branches_vertical, t$colonists_general)
+  testthat::expect_true("branching_times" %in% names(branches_vertical))
+  testthat::expect_true("clade_index" %in% names(branches_vertical))
+  testthat::expect_true("y" %in% names(branches_vertical))
+  testthat::expect_true("yend" %in% names(branches_vertical))
+  testthat::expect_true("stac_str" %in% names(branches_vertical))
 
 
 
@@ -104,14 +116,19 @@ plot_daisie_data <- function(daisie_data) {
 
   p + ggplot2::geom_point(
     data = colonisations,
-    ggplot2::aes(x = branching_times, y = y, shape = stac_str)
+    ggplot2::aes(
+      x = branching_times, y = y,
+      shape = stac_str,
+      color = stac_str
+    )
   ) + ggplot2::geom_segment(
     data = branches_horizontal,
     ggplot2::aes(
       x = branching_times,
       y = y,
       xend = t$header$island_age,
-      yend = y
+      yend = y,
+      color = stac_str
     )
   ) + ggplot2::geom_segment(
     data = branches_vertical,
@@ -119,7 +136,8 @@ plot_daisie_data <- function(daisie_data) {
       x = branching_times,
       y = y,
       xend = branching_times,
-      yend = yend
+      yend = yend,
+      color = stac_str
     )
   ) + ggplot2::facet_grid(clade_index ~ .)
 }
