@@ -69,7 +69,8 @@ create_empirical_island <- function(total_time,
       )
     } else {
       if (nrow(island_tbl) == 1) {
-        if (mainland_clade[mainland_spec, "spec_type"] == "US") {
+        if (mainland_clade[mainland_spec, "spec_type"] == "US" &&
+            island_tbl[1, "spec_type"] == "I") {
           empirical_island <- list(
             branching_times = c(total_time, total_time - 1e-5),
             stac = 1,
