@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=9-23:00:00
+#SBATCH --time=4-23:00:00
 #SBATCH --partition=gelifes
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
