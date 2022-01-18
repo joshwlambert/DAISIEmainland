@@ -24,7 +24,8 @@
 #' plot_mainland(mainland)
 #' @author Richèl J.C. Bilderbeek
 #' @export
-plot_mainland <- function(mainland) {
+plot_mainland <- function(mainland,
+                          branch_colour = "unique_species_id") {
 
   # Fix build warnings
   spec_origin_t <- NULL; rm(spec_origin_t) # nolint, fixes warning: no visible binding for global variable
@@ -92,34 +93,80 @@ plot_mainland <- function(mainland) {
     t_vertical$offspring_branch_code
   )
 
-  ggplot2::ggplot() +
-    ggplot2::geom_segment(
-      data = t_mainland,
-      ggplot2::aes(
-        x = spec_origin_t,
-        xend = spec_ex_t,
-        y = y,
-        yend = y,
-        color = unique_species_id
+  if (branch_colour == "unique_species_id") {
+    ggplot2::ggplot() +
+      ggplot2::geom_segment(
+        data = t_mainland,
+        ggplot2::aes(
+          x = spec_origin_t,
+          xend = spec_ex_t,
+          y = y,
+          yend = y,
+          color = unique_species_id
+        )
+      ) +
+      ggplot2::geom_segment(
+        data = t_vertical,
+        ggplot2::aes(
+          x = ancestor_spec_ex_t,
+          xend = offspring_spec_origin_t,
+          y = ancestor_y,
+          yend = offspring_y
+        )
+      ) +
+      ggplot2::facet_grid(
+        clade_id ~ .,
+        scales = "free",
+        space = "free"
+      ) +
+      ggplot2::xlab("Species Origin Time") +
+      ggplot2::theme_classic() +
+      ggplot2::theme(
+        axis.title.y = ggplot2::element_blank(),
+        axis.text.y = ggplot2::element_blank(),
+        axis.ticks.y = ggplot2::element_blank(),
+        axis.line.y = ggplot2::element_blank(),
+        strip.background = ggplot2::element_blank(),
+        strip.text = ggplot2::element_blank()
       )
-    ) +
-    ggplot2::geom_segment(
-      data = t_vertical,
-      ggplot2::aes(
-        x = ancestor_spec_ex_t,
-        xend = offspring_spec_origin_t,
-        y = ancestor_y,
-        yend = offspring_y
+  } else if (branch_colour == "clade_id") {
+    ggplot2::ggplot() +
+      ggplot2::geom_segment(
+        data = t_mainland,
+        ggplot2::aes(
+          x = spec_origin_t,
+          xend = spec_ex_t,
+          y = y,
+          yend = y,
+          color = as.factor(clade_id)
+        )
+      ) +
+      ggplot2::geom_segment(
+        data = t_vertical,
+        ggplot2::aes(
+          x = ancestor_spec_ex_t,
+          xend = offspring_spec_origin_t,
+          y = ancestor_y,
+          yend = offspring_y,
+          color = as.factor(clade_id)
+        )
+      ) +
+      ggplot2::facet_grid(
+        clade_id ~ .,
+        scales = "free",
+        space = "free"
+      ) +
+      ggplot2::xlab("Species Origin Time") +
+      ggplot2::theme_classic() +
+      ggplot2::theme(
+        axis.title.y = ggplot2::element_blank(),
+        axis.text.y = ggplot2::element_blank(),
+        axis.ticks.y = ggplot2::element_blank(),
+        axis.line.y = ggplot2::element_blank(),
+        strip.background = ggplot2::element_blank(),
+        strip.text = ggplot2::element_blank(),
+        legend.position = "none"
       )
-    ) +
-    ggplot2::facet_grid(
-      clade_id ~ .,
-      scales = "free",
-      space = "free"
-    ) +
-    ggplot2::theme(
-      axis.title.y = ggplot2::element_blank(),
-      axis.text.y = ggplot2::element_blank(),
-      axis.ticks.y = ggplot2::element_blank()
-    )
+  }
+
 }

@@ -10,8 +10,12 @@
 #' plot_mainland_clade(mainland_clade)
 #' @author Richèl J.C. Bilderbeek
 #' @export
-plot_mainland_clade <- function(mainland_clade) {
+plot_mainland_clade <- function(mainland_clade,
+                                branch_colour = "unique_species_id") {
   mainland <- list()
   mainland[[1]] <- mainland_clade
-  DAISIEmainland::plot_mainland(mainland = mainland)
+  DAISIEmainland::plot_mainland(
+    mainland = mainland,
+    branch_colour = branch_colour
+  )
 }
