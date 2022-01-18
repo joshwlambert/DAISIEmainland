@@ -1,6 +1,6 @@
 # Final data visualisation to produce the plots for the paper
 
-analysis_results <- read_analysis_results(
+analysis_results <- DAISIEmainland::read_analysis_results(
   data_folder_path = file.path("results")
 )
 
