@@ -117,7 +117,8 @@ plot_daisie_data <- function(daisie_data) {
   p + ggplot2::geom_point(
     data = colonisations,
     ggplot2::aes(
-      x = branching_times, y = y,
+      x = branching_times,
+      y = y,
       shape = stac_str,
       color = stac_str
     )
@@ -139,5 +140,14 @@ plot_daisie_data <- function(daisie_data) {
       yend = yend,
       color = stac_str
     )
-  ) + ggplot2::facet_grid(clade_index ~ .)
+  ) + ggplot2::theme_classic() +
+    ggplot2::theme(
+      axis.text.y = ggplot2::element_blank(),
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.title.y = ggplot2::element_blank(),
+      axis.line.y = ggplot2::element_blank(),
+      strip.background = ggplot2::element_blank(),
+      strip.text = ggplot2::element_blank()
+    ) +
+    ggplot2::facet_grid(clade_index ~ .)
 }
