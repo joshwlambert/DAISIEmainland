@@ -4,11 +4,14 @@
 \alias{plot_mainland_clade}
 \title{Plot the simulated mainland.}
 \usage{
-plot_mainland_clade(mainland_clade)
+plot_mainland_clade(mainland_clade, branch_colour)
 }
 \arguments{
 \item{mainland_clade}{Data frame with state of mainland, see
 \code{\link[=create_test_mainland_clade]{create_test_mainland_clade()}}}
+
+\item{branch_colour}{A string, either "unique_species_id" or "clade_id" to
+colour the branches of the mainland tree(s) with one of the attributes.}
 }
 \value{
 a \code{ggplot2}

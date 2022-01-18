@@ -62,7 +62,8 @@ default_params_doc(
   multi_daisie_data,
   analysis_result,
   analysis_results,
-  labels
+  labels,
+  branch_colour
 )
 }
 \arguments{
@@ -341,6 +342,9 @@ The list can be checked with \code{check_analysis_result}}
 checked with \code{check_analysis_result}}
 
 \item{labels}{A string or vector of strings to label the plotting grid}
+
+\item{branch_colour}{A string, either "unique_species_id" or "clade_id" to
+colour the branches of the mainland tree(s) with one of the attributes.}
 }
 \value{
 Nothing
