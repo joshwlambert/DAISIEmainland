@@ -31,6 +31,7 @@ plot_mainland <- function(mainland,
   spec_origin_t <- NULL; rm(spec_origin_t) # nolint, fixes warning: no visible binding for global variable
   spec_ex_t <- NULL; rm(spec_ex_t) # nolint, fixes warning: no visible binding for global variable
   unique_species_id <- NULL; rm(unique_species_id) # nolint, fixes warning: no visible binding for global variable
+  clade_id <- NULL; rm(clade_id) # notlint, fixes warning: no visible binding for global variable
   y <- NULL; rm(y) # nolint, fixes warning: no visible binding for global variable
   ancestor_spec_ex_t <- NULL; rm(ancestor_spec_ex_t) # nolint, fixes warning: no visible binding for global variable
   ancestor_y <- NULL; rm(ancestor_y) # nolint, fixes warning: no visible binding for global variable

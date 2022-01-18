@@ -4,7 +4,7 @@
 \alias{plot_mainland_clade}
 \title{Plot the simulated mainland.}
 \usage{
-plot_mainland_clade(mainland_clade, branch_colour)
+plot_mainland_clade(mainland_clade, branch_colour = "unique_species_id")
 }
 \arguments{
 \item{mainland_clade}{Data frame with state of mainland, see
