@@ -60,7 +60,7 @@ ggplot2::ggsave(
   filename = file.path("plots", "max_age_and_endemics_mainland_ex.png"),
   device = "png",
   width = 180,
-  height = 80,
+  height = 120,
   units = "mm",
   dpi = 600
 )
@@ -86,7 +86,7 @@ ggplot2::ggsave(
   filename = file.path("plots", "max_age_and_endemics_unsampled.png"),
   device = "png",
   width = 180,
-  height = 80,
+  height = 120,
   units = "mm",
   dpi = 600
 )
@@ -112,7 +112,7 @@ ggplot2::ggsave(
   filename = file.path("plots", "max_age_and_endemics_undiscovered.png"),
   device = "png",
   width = 180,
-  height = 80,
+  height = 120,
   units = "mm",
   dpi = 600
 )

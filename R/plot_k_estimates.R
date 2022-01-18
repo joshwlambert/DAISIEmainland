@@ -432,7 +432,7 @@ plot_k_estimates <- function(analysis_results,
       filename = output_file_path,
       device = "png",
       width = 180,
-      height = 80,
+      height = 120,
       units = "mm",
       dpi = 600
     )
