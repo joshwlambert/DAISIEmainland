@@ -127,7 +127,7 @@ plot_daisie_data <- function(daisie_data) {
     ggplot2::aes(
       x = branching_times,
       y = y,
-      xend = t$header$island_age,
+      xend = 0,
       yend = y,
       color = stac_str
     )
