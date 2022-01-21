@@ -17,10 +17,11 @@ plot_daisie_data <- function(daisie_data) {
   t <- DAISIEmainland::daisie_data_to_tables(daisie_data)
 
   p <- ggplot2::ggplot(t$colonists_general) +
-    ggplot2::scale_x_continuous(
-      name = "Time",
-      limits = c(0, t$header$island_age)
-    ) + ggplot2::theme(
+    ggplot2::scale_x_reverse(
+      name = "Time before present",
+      limits = c(t$header$island_age, 0)
+    ) +
+    ggplot2::theme(
       axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank()

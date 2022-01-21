@@ -78,3 +78,33 @@ test_that("many clades", {
   )
   plot_daisie_mainland_data(daisie_mainland_data, replicate_index = 1)
 })
+
+test_that("Issue 62: reverse axes", {
+
+  # The Endemic_singleton_MaxAge island species are plotted near
+  # the edge of the plot but they should have the longest line.
+  # This makes me think that the plot_daisie_mainland_data function
+  # should plot "Time before present" on the x-axis.
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
+    total_time = 1,
+    m = 100,
+    island_pars = c(1.0, 0.5, 10, 0.1, 0.5),
+    mainland_ex = 2,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+
+  DAISIEmainland::plot_daisie_mainland_data(
+    daisie_mainland_data = daisie_mainland_data,
+    replicate_index = 1
+  )
+})
