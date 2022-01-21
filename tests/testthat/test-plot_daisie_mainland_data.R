@@ -79,7 +79,7 @@ test_that("many clades", {
   plot_daisie_mainland_data(daisie_mainland_data, replicate_index = 1)
 })
 
-test_that("Issue 62: reverse axes", {
+test_that("Issue 64: use time before present", {
 
   # The Endemic_singleton_MaxAge island species are plotted near
   # the edge of the plot but they should have the longest line.
