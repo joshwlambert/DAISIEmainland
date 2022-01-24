@@ -95,12 +95,13 @@ plot_mainland <- function(mainland) {
   # Here, we reverse the time axis,
   # from time after the island came into existance,
   # to time before present
-  # The island age
+
+  # aka the island age. There is always a species at the present
   total_time <- max(t_mainland$spec_ex_t)
   t_mainland$spec_origin_t <- total_time - t_mainland$spec_origin_t
   t_mainland$spec_ex_t <- total_time - t_mainland$spec_ex_t
   t_vertical$ancestor_spec_ex_t <- total_time - t_vertical$ancestor_spec_ex_t
-  t_vertical$offspring_spec_origin_t <- total_time - t_vertical$offspring_spec_origin_t
+  t_vertical$offspring_spec_origin_t <- total_time - t_vertical$offspring_spec_origin_t # nolint indeed a long line
 
   ggplot2::ggplot() +
     ggplot2::geom_segment(
