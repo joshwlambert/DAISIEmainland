@@ -108,3 +108,27 @@ test_that("Issue 64: use time before present", {
     replicate_index = 1
   )
 })
+
+test_that("Issue 68: plot all recolonisations", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
+    total_time = 1,
+    m = 50,
+    island_pars = c(1.0, 0.5, 10, 0.1, 0.5),
+    mainland_ex = 2,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  DAISIEmainland::plot_daisie_mainland_data(
+    daisie_mainland_data = daisie_mainland_data,
+    replicate_index = 1
+  )
+})
