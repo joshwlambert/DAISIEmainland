@@ -92,6 +92,16 @@ plot_mainland <- function(mainland) {
     t_vertical$offspring_branch_code
   )
 
+  # Here, we reverse the time axis,
+  # from time after the island came into existance,
+  # to time before present
+  # The island age
+  total_time <- max(t_mainland$spec_ex_t)
+  t_mainland$spec_origin_t <- total_time - t_mainland$spec_origin_t
+  t_mainland$spec_ex_t <- total_time - t_mainland$spec_ex_t
+  t_vertical$ancestor_spec_ex_t <- total_time - t_vertical$ancestor_spec_ex_t
+  t_vertical$offspring_spec_origin_t <- total_time - t_vertical$offspring_spec_origin_t
+
   ggplot2::ggplot() +
     ggplot2::geom_segment(
       data = t_mainland,
@@ -111,6 +121,9 @@ plot_mainland <- function(mainland) {
         y = ancestor_y,
         yend = offspring_y
       )
+    ) + ggplot2::scale_x_reverse(
+      name = "Time before present",
+      limits = c(total_time, 0)
     ) +
     ggplot2::facet_grid(
       clade_id ~ .,
