@@ -69,7 +69,7 @@ test_that("Issue 68: recolonisation", {
     replicate_index = 1
   )
   daisie_data <- ideal_daisie_data
-  t <- daisie_data_to_tables(empirical_daisie_data)
+  t <- daisie_data_to_tables(ideal_daisie_data)
   time_1 <- ideal_daisie_data[[3]]$all_colonisations[[1]]$event_times[2]
   time_2 <- ideal_daisie_data[[3]]$all_colonisations[[2]]$event_times[2]
   # Both colonisation times must be present in the table
