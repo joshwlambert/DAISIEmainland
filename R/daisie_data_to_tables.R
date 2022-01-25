@@ -30,6 +30,7 @@ daisie_data_to_tables <- function(daisie_data) {
 
   colonists_general_list <- list()
   colonists_branching_times_list <- list()
+  colonisation_times_list <- list()
 
   # Due to the header, the first useful index is 2
   for (index in seq(2, length(daisie_data))) {
@@ -44,16 +45,26 @@ daisie_data_to_tables <- function(daisie_data) {
     )
     t_bt$clade_index <- index - 1 # Make indices start at 1, as users expect
     colonists_branching_times_list[[index]] <- t_bt
+
+    t_ct <- daisie_data_colonist_info_to_colonisation_times_table(
+      daisie_data_colonist_info = daisie_data[[index]]
+    )
+    t_ct$clade_index <- index - 1 # Make indices start at 1, as users expect
+    colonisation_times_list[[index]] <- t_ct
   }
 
   colonists_general <- dplyr::bind_rows(colonists_general_list)
   colonists_branching_times <- dplyr::bind_rows(colonists_branching_times_list)
+  colonisation_times <- dplyr::bind_rows(
+    colonisation_times_list
+  )
 
   list(
     header = DAISIEmainland::daisie_header_to_table(
       daisie_data_header = daisie_data[[1]]),
     colonists_general = colonists_general,
-    colonists_branching_times = colonists_branching_times
+    colonists_branching_times = colonists_branching_times,
+    colonisation_times = colonisation_times
   )
 }
 
@@ -99,6 +110,32 @@ daisie_data_colonist_info_to_braching_times_table <- function( # nolint indeed a
     stringsAsFactors = FALSE
   )
 }
+
+#' Internal function
+#'
+#' @param daisie_data_colonist_info an element of a `daisie_data`,
+#' that is not the first element (the first element is of type
+#' `daisie_data_header`).
+#'
+#' @return a table with as much rows as colonisation times
+#'
+#' @author Richèl J.C. Bilderbeek
+#'
+#' @export
+daisie_data_colonist_info_to_colonisation_times_table <- function( # nolint indeed a long function name
+  daisie_data_colonist_info
+) {
+  colonisation_times_list <- list()
+  for (i in seq_along(daisie_data_colonist_info$all_colonisations)) {
+    event_times <- daisie_data_colonist_info$all_colonisations[[i]]$event_times
+    colonisation_times_list[[i]] <- data.frame(
+      colonisation_time = event_times[-1],
+      stringsAsFactors = FALSE
+    )
+  }
+  dplyr::bind_rows(colonisation_times_list)
+}
+
 
 #' Internal function
 #'

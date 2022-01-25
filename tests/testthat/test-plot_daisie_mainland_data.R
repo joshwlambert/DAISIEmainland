@@ -109,7 +109,7 @@ test_that("Issue 64: use time before present", {
   )
 })
 
-test_that("Issue 68: plot all recolonisations", {
+test_that("Issue #68: plot all recolonisations", {
   set.seed(
     1,
     kind = "Mersenne-Twister",

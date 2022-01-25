@@ -46,7 +46,7 @@ test_that("One colonist clade", {
   expect_silent(daisie_data_to_tables(empirical_daisie_data))
 })
 
-test_that("Issue 68: recolonisation", {
+test_that("Issue #68: recolonisation", {
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -73,7 +73,6 @@ test_that("Issue 68: recolonisation", {
   time_1 <- daisie_data[[3]]$all_colonisations[[1]]$event_times[2]
   time_2 <- daisie_data[[3]]$all_colonisations[[2]]$event_times[2]
   # Both colonisation times must be present in the table
-  expect_true(time_1 %in% t$colonists_branching_times$branching_times)
-  skip("Issue #68")
-  expect_true(time_2 %in% t$colonists_branching_times$branching_times)
+  expect_true(time_1 %in% t$colonisation_times$colonisation_time)
+  expect_true(time_2 %in% t$colonisation_times$colonisation_time)
 })
