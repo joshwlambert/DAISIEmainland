@@ -68,13 +68,12 @@ test_that("Issue 68: recolonisation", {
     daisie_mainland_data = daisie_mainland_data,
     replicate_index = 1
   )
-  daisie_data <- ideal_daisie_data
-  t <- daisie_data_to_tables(ideal_daisie_data)
-  time_1 <- ideal_daisie_data[[3]]$all_colonisations[[1]]$event_times[2]
-  time_2 <- ideal_daisie_data[[3]]$all_colonisations[[2]]$event_times[2]
+  daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  t <- daisie_data_to_tables(daisie_data)
+  time_1 <- daisie_data[[3]]$all_colonisations[[1]]$event_times[2]
+  time_2 <- daisie_data[[3]]$all_colonisations[[2]]$event_times[2]
   # Both colonisation times must be present in the table
   expect_true(time_1 %in% t$colonists_branching_times$branching_times)
   skip("Issue #68")
   expect_true(time_2 %in% t$colonists_branching_times$branching_times)
-
 })
