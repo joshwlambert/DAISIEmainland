@@ -115,7 +115,7 @@ plot_daisie_data <- function(daisie_data) {
   )
   colonisations <- merge(first_branching_times, t$colonists_general)
 
-  p + ggplot2::geom_point(
+  p <- p + ggplot2::geom_point(
     data = colonisations,
     ggplot2::aes(
       x = branching_times, y = y,
@@ -140,5 +140,13 @@ plot_daisie_data <- function(daisie_data) {
       yend = yend,
       color = stac_str
     )
-  ) + ggplot2::facet_grid(clade_index ~ .)
+  )
+  if (nrow(t$colonisation_times) > 0) {
+    p <- p + ggplot2::geom_vline(
+      data = t$colonisation_times,
+      ggplot2::aes(xintercept = colonisation_time),
+      lty = "dashed"
+    )
+  }
+  p + ggplot2::facet_grid(clade_index ~ .)
 }

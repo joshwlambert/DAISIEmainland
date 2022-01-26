@@ -188,6 +188,37 @@ test_that("many clades", {
   plot_daisie_data(empirical_daisie_data)
 })
 
+test_that("Issue #68: plot all recolonisations", {
+  set.seed(
+    1,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
+    total_time = 1,
+    m = 50,
+    island_pars = c(1.0, 0.5, 10, 0.1, 0.5),
+    mainland_ex = 2,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  DAISIEmainland::plot_daisie_mainland_data(
+    daisie_mainland_data = daisie_mainland_data,
+    replicate_index = 1
+  )
+  # Plots nicely
+  daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data)
+
+  # Plots nicely when there are no colonisations
+  daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data)
+})
+
 test_that("Search for interesting scenarions", { # nolint indeed, this is complex :-)
   skip("Only run locally")
   seed <- 0
