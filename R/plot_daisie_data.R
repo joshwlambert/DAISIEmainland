@@ -13,14 +13,16 @@ plot_daisie_data <- function(daisie_data) {
   clade_index <- NULL; rm(clade_index) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
   yend <- NULL; rm(yend) # nolint, fixes warning: no visible binding for global variable
+  colonisation_time <- NULL; rm(colonisation_time) # nolint, fixes warning: no visible binding for global variable
 
   t <- DAISIEmainland::daisie_data_to_tables(daisie_data)
 
   p <- ggplot2::ggplot(t$colonists_general) +
-    ggplot2::scale_x_continuous(
-      name = "Time",
-      limits = c(0, t$header$island_age)
-    ) + ggplot2::theme(
+    ggplot2::scale_x_reverse(
+      name = "Time before present",
+      limits = c(t$header$island_age, 0)
+    ) +
+    ggplot2::theme(
       axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank()
@@ -114,7 +116,7 @@ plot_daisie_data <- function(daisie_data) {
   )
   colonisations <- merge(first_branching_times, t$colonists_general)
 
-  p + ggplot2::geom_point(
+  p <- p + ggplot2::geom_point(
     data = colonisations,
     ggplot2::aes(
       x = branching_times,
@@ -127,7 +129,7 @@ plot_daisie_data <- function(daisie_data) {
     ggplot2::aes(
       x = branching_times,
       y = y,
-      xend = t$header$island_age,
+      xend = 0,
       yend = y,
       color = stac_str
     )
@@ -150,4 +152,13 @@ plot_daisie_data <- function(daisie_data) {
       strip.text = ggplot2::element_blank()
     ) +
     ggplot2::facet_grid(clade_index ~ .)
+
+  if (nrow(t$colonisation_times) > 0) {
+    p <- p + ggplot2::geom_vline(
+      data = t$colonisation_times,
+      ggplot2::aes(xintercept = colonisation_time),
+      lty = "dashed"
+    )
+  }
+  p + ggplot2::facet_grid(clade_index ~ .)
 }

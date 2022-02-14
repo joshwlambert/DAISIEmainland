@@ -94,8 +94,20 @@ plot_mainland <- function(mainland,
     t_vertical$offspring_branch_code
   )
 
+  # Here, we reverse the time axis,
+  # from time after the island came into existance,
+  # to time before present
+
+  # aka the island age. There is always a species at the present
+  total_time <- max(t_mainland$spec_ex_t)
+  t_mainland$spec_origin_t <- total_time - t_mainland$spec_origin_t
+  t_mainland$spec_ex_t <- total_time - t_mainland$spec_ex_t
+  t_vertical$ancestor_spec_ex_t <- total_time - t_vertical$ancestor_spec_ex_t
+  t_vertical$offspring_spec_origin_t <- total_time - t_vertical$offspring_spec_origin_t # nolint indeed a long line
+
+
   if (branch_colour == "unique_species_id") {
-    ggplot2::ggplot() +
+    p <- ggplot2::ggplot() +
       ggplot2::geom_segment(
         data = t_mainland,
         ggplot2::aes(
@@ -105,8 +117,7 @@ plot_mainland <- function(mainland,
           yend = y,
           color = unique_species_id
         )
-      ) +
-      ggplot2::geom_segment(
+      ) + ggplot2::geom_segment(
         data = t_vertical,
         ggplot2::aes(
           x = ancestor_spec_ex_t,
@@ -114,24 +125,9 @@ plot_mainland <- function(mainland,
           y = ancestor_y,
           yend = offspring_y
         )
-      ) +
-      ggplot2::facet_grid(
-        clade_id ~ .,
-        scales = "free",
-        space = "free"
-      ) +
-      ggplot2::xlab("Species Origin Time") +
-      ggplot2::theme_classic() +
-      ggplot2::theme(
-        axis.title.y = ggplot2::element_blank(),
-        axis.text.y = ggplot2::element_blank(),
-        axis.ticks.y = ggplot2::element_blank(),
-        axis.line.y = ggplot2::element_blank(),
-        strip.background = ggplot2::element_blank(),
-        strip.text = ggplot2::element_blank()
       )
   } else if (branch_colour == "clade_id") {
-    ggplot2::ggplot() +
+    p <- ggplot2::ggplot() +
       ggplot2::geom_segment(
         data = t_mainland,
         ggplot2::aes(
@@ -141,8 +137,7 @@ plot_mainland <- function(mainland,
           yend = y,
           color = as.factor(clade_id)
         )
-      ) +
-      ggplot2::geom_segment(
+      ) + ggplot2::geom_segment(
         data = t_vertical,
         ggplot2::aes(
           x = ancestor_spec_ex_t,
@@ -151,23 +146,26 @@ plot_mainland <- function(mainland,
           yend = offspring_y,
           color = as.factor(clade_id)
         )
-      ) +
-      ggplot2::facet_grid(
-        clade_id ~ .,
-        scales = "free",
-        space = "free"
-      ) +
-      ggplot2::xlab("Species Origin Time") +
-      ggplot2::theme_classic() +
-      ggplot2::theme(
-        axis.title.y = ggplot2::element_blank(),
-        axis.text.y = ggplot2::element_blank(),
-        axis.ticks.y = ggplot2::element_blank(),
-        axis.line.y = ggplot2::element_blank(),
-        strip.background = ggplot2::element_blank(),
-        strip.text = ggplot2::element_blank(),
-        legend.position = "none"
       )
   }
 
+  p  + ggplot2::scale_x_reverse(
+    name = "Time before present",
+    limits = c(total_time, 0)
+  ) +
+    ggplot2::facet_grid(
+      clade_id ~ .,
+      scales = "free",
+      space = "free"
+    ) +
+    ggplot2::theme_classic() +
+    ggplot2::theme(
+      axis.title.y = ggplot2::element_blank(),
+      axis.text.y = ggplot2::element_blank(),
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.line.y = ggplot2::element_blank(),
+      strip.background = ggplot2::element_blank(),
+      strip.text = ggplot2::element_blank(),
+      legend.position = "none"
+    )
 }
