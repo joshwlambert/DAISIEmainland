@@ -13,6 +13,7 @@ plot_daisie_data <- function(daisie_data) {
   clade_index <- NULL; rm(clade_index) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
   yend <- NULL; rm(yend) # nolint, fixes warning: no visible binding for global variable
+  colonisation_time <- NULL; rm(colonisation_time) # nolint, fixes warning: no visible binding for global variable
 
   t <- DAISIEmainland::daisie_data_to_tables(daisie_data)
 
@@ -118,7 +119,8 @@ plot_daisie_data <- function(daisie_data) {
   p <- p + ggplot2::geom_point(
     data = colonisations,
     ggplot2::aes(
-      x = branching_times, y = y,
+      x = branching_times,
+      y = y,
       shape = stac_str,
       color = stac_str
     )
@@ -140,7 +142,17 @@ plot_daisie_data <- function(daisie_data) {
       yend = yend,
       color = stac_str
     )
-  )
+  ) + ggplot2::theme_classic() +
+    ggplot2::theme(
+      axis.text.y = ggplot2::element_blank(),
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.title.y = ggplot2::element_blank(),
+      axis.line.y = ggplot2::element_blank(),
+      strip.background = ggplot2::element_blank(),
+      strip.text = ggplot2::element_blank()
+    ) +
+    ggplot2::facet_grid(clade_index ~ .)
+
   if (nrow(t$colonisation_times) > 0) {
     p <- p + ggplot2::geom_vline(
       data = t$colonisation_times,
