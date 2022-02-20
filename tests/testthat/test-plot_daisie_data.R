@@ -212,6 +212,39 @@ test_that("Issue #68: plot all recolonisations", {
   )
   # Plots nicely
   daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  ideal_daisie_data <- daisie_data
+  plot_daisie_data(daisie_data)
+
+  # Plots nicely when there are no colonisations
+  daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  plot_daisie_data(daisie_data)
+})
+
+
+test_that("Issue #68: plot all recolonisations with many branches", {
+  set.seed(
+    631,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+
+  daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
+    total_time = 1,
+    m = 10,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "complete",
+    replicates = 1,
+    verbose = FALSE
+  )
+  DAISIEmainland::plot_daisie_mainland_data(
+    daisie_mainland_data = daisie_mainland_data,
+    replicate_index = 1
+  )
+  # Plots nicely
+  daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   plot_daisie_data(daisie_data)
 
   # Plots nicely when there are no colonisations
@@ -244,11 +277,21 @@ test_that("Search for interesting scenarions", { # nolint indeed, this is comple
     ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
     empirical_daisie_data <-
       daisie_mainland_data$empirical_multi_daisie_data[[1]]
-    if ("stress-test" == "stress-test") {
+    if ("stress-test" == "not now") {
       plot_daisie_data(daisie_data = ideal_daisie_data)
       plot_daisie_data(empirical_daisie_data)
     }
     if (length(ideal_daisie_data) == 1) next
+    if ("look for recolonisations and branching" == "look for recolonisations and branching") {
+      for (clade_index in seq(2, length(ideal_daisie_data))) {
+        n_colonisations <- length(ideal_daisie_data[[clade_index]]$all_colonisations)
+        n_branches <- length(ideal_daisie_data[[clade_index]]$branching_times) - 1
+        if (n_colonisations > 1 && n_branches > n_colonisations) {
+          message(seed)
+          stop(seed)
+        }
+      }
+    }
     if ("look for interesting stac" == "what I want") {
       uninteresting_set <- c(2, 4, 3, 5, 6)
       if (!ideal_daisie_data[[2]]$stac %in% uninteresting_set ||
@@ -263,7 +306,7 @@ test_that("Search for interesting scenarions", { # nolint indeed, this is comple
         stop(seed)
         }
     }
-    if ("look for many clades" == "look for many clades") {
+    if ("look for many clades" == "what I want") {
       if (length(ideal_daisie_data) > 3) {
         message(seed)
         stop(seed)
