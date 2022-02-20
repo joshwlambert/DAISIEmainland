@@ -144,10 +144,10 @@ plot_daisie_data <- function(daisie_data) {
     )
   ) + ggplot2::theme_classic() +
     ggplot2::theme(
-      # axis.text.y = ggplot2::element_blank(),
-      # axis.ticks.y = ggplot2::element_blank(),
-      # axis.title.y = ggplot2::element_blank(),
-      # axis.line.y = ggplot2::element_blank(),
+      axis.text.y = ggplot2::element_blank(),
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.title.y = ggplot2::element_blank(),
+      axis.line.y = ggplot2::element_blank(),
       strip.background = ggplot2::element_blank(),
       strip.text = ggplot2::element_blank()
     ) +
