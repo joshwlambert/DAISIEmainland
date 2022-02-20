@@ -112,7 +112,7 @@ plot_daisie_data <- function(daisie_data) {
       branches_horizontal,
       clade_index
     ),
-    which.min(branching_times)
+    which.max(branching_times)
   )
   colonisations <- merge(first_branching_times, t$colonists_general)
 
