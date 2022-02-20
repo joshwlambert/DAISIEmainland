@@ -83,7 +83,7 @@ plot_daisie_data <- function(daisie_data) {
   branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
   # Use the branching times of the parents
   branches_vertical$branching_times <- c(
-    0.0, branches_vertical$branching_times[-last_row_index]
+    0.0, branches_vertical$branching_times[-1]
   )
 
   # Get rid of the parents, i.e. those with the lowest y per clade_index
@@ -144,10 +144,10 @@ plot_daisie_data <- function(daisie_data) {
     )
   ) + ggplot2::theme_classic() +
     ggplot2::theme(
-      axis.text.y = ggplot2::element_blank(),
-      axis.ticks.y = ggplot2::element_blank(),
-      axis.title.y = ggplot2::element_blank(),
-      axis.line.y = ggplot2::element_blank(),
+      # axis.text.y = ggplot2::element_blank(),
+      # axis.ticks.y = ggplot2::element_blank(),
+      # axis.title.y = ggplot2::element_blank(),
+      # axis.line.y = ggplot2::element_blank(),
       strip.background = ggplot2::element_blank(),
       strip.text = ggplot2::element_blank()
     ) +
