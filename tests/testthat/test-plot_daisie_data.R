@@ -282,10 +282,10 @@ test_that("Search for interesting scenarions", { # nolint indeed, this is comple
       plot_daisie_data(empirical_daisie_data)
     }
     if (length(ideal_daisie_data) == 1) next
-    if ("look for recolonisations and branching" == "look for recolonisations and branching") {
+    if ("look for recolonisations and branching" == "it") {
       for (clade_index in seq(2, length(ideal_daisie_data))) {
-        n_colonisations <- length(ideal_daisie_data[[clade_index]]$all_colonisations)
-        n_branches <- length(ideal_daisie_data[[clade_index]]$branching_times) - 1
+        n_colonisations <- length(ideal_daisie_data[[clade_index]]$all_colonisations) # nolint indeed a long line
+        n_branches <- length(ideal_daisie_data[[clade_index]]$branching_times) - 1 # nolint indeed a long line
         if (n_colonisations > 1 && n_branches > n_colonisations) {
           message(seed)
           stop(seed)
