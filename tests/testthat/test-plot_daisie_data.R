@@ -253,6 +253,7 @@ test_that("Issue #68: plot all recolonisations with many branches", {
 })
 
 test_that("No branching for colonist that underwent anagenesis?", { # nolint indeed, this is complex :-)
+  # Issue 72, Issue #72
   skip("Only run locally")
   seed <- 0
   while (1) {
