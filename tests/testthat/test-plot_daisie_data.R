@@ -280,9 +280,9 @@ test_that("No branching for colonist that underwent anagenesis?", { # nolint ind
     for (clade_index in seq(2, length(ideal_daisie_data))) {
       n_colonisations <- length(ideal_daisie_data[[clade_index]]$all_colonisations) # nolint indeed a long line
       if (n_colonisations == 0) next
-      for (colonist_index in seq(1, n_colonisations))
-      {
-        colonisation <- ideal_daisie_data[[clade_index]]$all_colonisations[[colonist_index]]
+      for (colonist_index in seq(1, n_colonisations)) {
+        colonisation <-
+          ideal_daisie_data[[clade_index]]$all_colonisations[[colonist_index]]
         if (colonisation$species_type == "A") {
           message(
             "{",
@@ -290,7 +290,8 @@ test_that("No branching for colonist that underwent anagenesis?", { # nolint ind
             colonisation$species_type
           )
         }
-        if (colonisation$species_type == "A" && length(colonisation$event_times) > 2) {
+        if (colonisation$species_type == "A" &&
+            length(colonisation$event_times) > 2) {
           stop("IT HAPPENS")
         }
       }
