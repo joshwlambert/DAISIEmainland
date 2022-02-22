@@ -83,7 +83,7 @@ plot_daisie_data <- function(daisie_data) {
   branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
   # Use the branching times of the parents
   branches_vertical$branching_times <- c(
-    0.0, branches_vertical$branching_times[-last_row_index]
+    0.0, branches_vertical$branching_times[-1]
   )
 
   # Get rid of the parents, i.e. those with the lowest y per clade_index
@@ -112,7 +112,7 @@ plot_daisie_data <- function(daisie_data) {
       branches_horizontal,
       clade_index
     ),
-    which.min(branching_times)
+    which.max(branching_times)
   )
   colonisations <- merge(first_branching_times, t$colonists_general)
 
