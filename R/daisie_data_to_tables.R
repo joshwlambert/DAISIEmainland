@@ -33,6 +33,7 @@ daisie_data_to_tables <- function(daisie_data) {
   colonisation_times_list <- list()
 
   # Due to the header, the first useful index is 2
+  # 'index' is a clade index that starts counting at 2 :-/
   for (index in seq(2, length(daisie_data))) {
     t_g <- daisie_data_colonist_info_to_general_table(
       daisie_data_colonist_info = daisie_data[[index]]
@@ -92,12 +93,18 @@ daisie_header_to_table <- function(daisie_data_header) {
 
 #' Internal function
 #'
-#' Convert the header of a `daisie_data` into a tabular format
+#' Convert the non-header part of a `daisie_data` into a tabular format,
+#' contain per colonist the branching times. This excludes the time
+#' of colonisation.
+#'
 #' @param daisie_data_colonist_info an element of a `daisie_data`,
 #' that is not the first element (the first element is of type
 #' `daisie_data_header`).
 #'
 #' @return a table with as much rows as branching times
+#'
+#' @seealso use \link{daisie_data_colonist_info_to_colonisation_times_table}
+#' to obtain the colonisation times of the colonists
 #'
 #' @author Richèl J.C. Bilderbeek
 #'
@@ -105,10 +112,27 @@ daisie_header_to_table <- function(daisie_data_header) {
 daisie_data_colonist_info_to_braching_times_table <- function( # nolint indeed a long function name
   daisie_data_colonist_info
 ) {
-  data.frame(
-    branching_times = daisie_data_colonist_info$branching_times,
-    stringsAsFactors = FALSE
-  )
+  # Must not be a DAISIE header
+  testthat::expect_false("island_age" %in% names(daisie_data_colonist_info))
+  testthat::expect_false("not_present" %in% names(daisie_data_colonist_info))
+  # Must be a non-header DAISIE element
+  testthat::expect_true("branching_times" %in% names(daisie_data_colonist_info))
+  testthat::expect_true("stac" %in% names(daisie_data_colonist_info))
+  testthat::expect_true("missing_species" %in% names(daisie_data_colonist_info))
+
+  colonisation_branching_times_list <- list()
+  for (i in seq_along(daisie_data_colonist_info$all_colonisations)) {
+    colonist <- daisie_data_colonist_info$all_colonisations[[i]]
+    branching_times <- colonist$event_times[c(-1, -2)]
+
+    colonisation_branching_times_list[[i]] <- data.frame(
+      colonist_index = i,
+      branching_times = branching_times,
+      stringsAsFactors = FALSE
+    )
+  }
+  dplyr::bind_rows(colonisation_branching_times_list)
+
 }
 
 #' Internal function
@@ -119,17 +143,33 @@ daisie_data_colonist_info_to_braching_times_table <- function( # nolint indeed a
 #'
 #' @return a table with as much rows as colonisation times
 #'
+#' @seealso use \link{daisie_data_colonist_info_to_braching_times_table}
+#' to obtain the branching times of the colonists
+#'
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
 daisie_data_colonist_info_to_colonisation_times_table <- function( # nolint indeed a long function name
   daisie_data_colonist_info
 ) {
+  # Must not be a DAISIE header
+  testthat::expect_false("island_age" %in% names(daisie_data_colonist_info))
+  testthat::expect_false("not_present" %in% names(daisie_data_colonist_info))
+  # Must be a non-header DAISIE element
+  testthat::expect_true("branching_times" %in% names(daisie_data_colonist_info))
+  testthat::expect_true("stac" %in% names(daisie_data_colonist_info))
+  testthat::expect_true("missing_species" %in% names(daisie_data_colonist_info))
+
   colonisation_times_list <- list()
   for (i in seq_along(daisie_data_colonist_info$all_colonisations)) {
-    event_times <- daisie_data_colonist_info$all_colonisations[[i]]$event_times
+    colonist <- daisie_data_colonist_info$all_colonisations[[i]]
+    event_times <- colonist$event_times
+    colonisation_time <- event_times[2]
+
     colonisation_times_list[[i]] <- data.frame(
-      colonisation_time = event_times[-1],
+      colonist_index = i,
+      colonist_species_type = colonist$species_type,
+      colonisation_time = colonisation_time,
       stringsAsFactors = FALSE
     )
   }

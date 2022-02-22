@@ -300,7 +300,6 @@ test_that("No branching for colonist that underwent anagenesis?", { # nolint ind
 })
 
 test_that("Multiple recolonisations", { # nolint indeed, this is complex :-)
-  skip("Only run locally")
   seed <- 1912
   set.seed(
     seed,
@@ -329,7 +328,9 @@ test_that("Multiple recolonisations", { # nolint indeed, this is complex :-)
   simplified_ideal_daisie_data <- list()
   simplified_ideal_daisie_data[[1]] <- ideal_daisie_data[[1]]
   simplified_ideal_daisie_data[[2]] <- ideal_daisie_data[[9]]
+  daisie_data <- simplified_ideal_daisie_data
   plot_daisie_data(daisie_data = simplified_ideal_daisie_data)
+
 })
 
 test_that("Search for interesting scenarions", { # nolint indeed, this is complex :-)

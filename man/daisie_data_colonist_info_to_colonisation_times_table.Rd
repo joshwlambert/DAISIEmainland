@@ -19,6 +19,10 @@ a table with as much rows as colonisation times
 \description{
 Internal function
 }
+\seealso{
+use \link{daisie_data_colonist_info_to_braching_times_table}
+to obtain the branching times of the colonists
+}
 \author{
 Richèl J.C. Bilderbeek
 }

@@ -15,7 +15,13 @@ that is not the first element (the first element is of type
 a table with as much rows as branching times
 }
 \description{
-Convert the header of a \code{daisie_data} into a tabular format
+Convert the non-header part of a \code{daisie_data} into a tabular format,
+contain per colonist the branching times. This excludes the time
+of colonisation.
+}
+\seealso{
+use \link{daisie_data_colonist_info_to_colonisation_times_table}
+to obtain the colonisation times of the colonists
 }
 \author{
 Richèl J.C. Bilderbeek

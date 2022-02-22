@@ -22,11 +22,11 @@ test_that("Detects a header", { # nolint indeed, this is complex :-)
   daisie_header <- ideal_daisie_data[[1]]
   daisie_non_header <- ideal_daisie_data[[2]]
   expect_error(
-    daisie_data_colonist_info_to_braching_times_table(
+    daisie_data_colonist_info_to_colonisation_times_table(
       daisie_data_colonist_info = daisie_header)
   )
   expect_silent(
-    daisie_data_colonist_info_to_braching_times_table(
+    daisie_data_colonist_info_to_colonisation_times_table(
       daisie_data_colonist_info = daisie_non_header)
   )
 })
@@ -56,9 +56,9 @@ test_that("Multiple recolonisations", { # nolint indeed, this is complex :-)
   simplified_ideal_daisie_data[[2]] <- ideal_daisie_data[[9]]
   daisie_data <- simplified_ideal_daisie_data
   daisie_data_colonist_info <- daisie_data[[2]]
-  t <- daisie_data_colonist_info_to_braching_times_table(
+  t <- daisie_data_colonist_info_to_colonisation_times_table(
     daisie_data_colonist_info = daisie_data_colonist_info)
   expect_true("colonist_index" %in% names(t))
-  expect_true("branching_times" %in% names(t))
+  expect_true("colonist_species_type" %in% names(t))
+  expect_true("colonisation_time" %in% names(t))
 })
-
