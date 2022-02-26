@@ -1,14 +1,16 @@
 #' Convert `daisie_data` into a tabular format
 #' @inheritParams default_params_doc
 #'
-#' @return a list with two elements:
+#' @return a list with these elements:
 #'
 #'  * `header`: general parameters of the results
 #'     see \link{daisie_header_to_table}
+#'  * `branching_times`: the branching times
 #'  * `colonists_general`: general info of each clade
 #'     see \link{daisie_data_colonist_info_to_general_table}
 #'  * `colonists_branching_times`: branching times per clade
 #'     see \link{daisie_data_colonist_info_to_braching_times_table}
+#'  * `colonisation_times`: times that the colonisations took place
 #' @author Richèl J.C. Bilderbeek
 #'
 #' @export
@@ -120,18 +122,30 @@ daisie_data_colonist_info_to_braching_times_table <- function( # nolint indeed a
   testthat::expect_true("stac" %in% names(daisie_data_colonist_info))
   testthat::expect_true("missing_species" %in% names(daisie_data_colonist_info))
 
-  colonisation_branching_times_list <- list()
-  for (i in seq_along(daisie_data_colonist_info$all_colonisations)) {
-    colonist <- daisie_data_colonist_info$all_colonisations[[i]]
-    branching_times <- colonist$event_times[c(-1, -2)]
-
-    colonisation_branching_times_list[[i]] <- data.frame(
-      colonist_index = i,
-      branching_times = branching_times,
+  t <- NA
+  if (length(daisie_data_colonist_info$all_colonisations) == 0) {
+    t <- data.frame(
+      colonist_index = 1,
+      branching_times = daisie_data_colonist_info$branching_times[-1],
       stringsAsFactors = FALSE
     )
+  } else {
+    colonisation_branching_times_list <- list()
+    for (i in seq_along(daisie_data_colonist_info$all_colonisations)) {
+      colonist <- daisie_data_colonist_info$all_colonisations[[i]]
+      branching_times <- colonist$event_times[c(-1, -2)]
+
+      colonisation_branching_times_list[[i]] <- data.frame(
+        colonist_index = i,
+        branching_times = branching_times,
+        stringsAsFactors = FALSE
+      )
+    }
+    t <- dplyr::bind_rows(colonisation_branching_times_list)
   }
-  dplyr::bind_rows(colonisation_branching_times_list)
+  testthat::expect_true("colonist_index" %in% names(t))
+  testthat::expect_true("branching_times" %in% names(t))
+  t
 
 }
 

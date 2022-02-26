@@ -5,9 +5,11 @@ test_that("No extant colonists", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
+  total_time <- 1
+  n_species_mainland <- 10
   daisie_mainland_data <- sim_island_with_mainland(
-    total_time = 1,
-    m = 10,
+    total_time = total_time,
+    m = n_species_mainland,
     island_pars = c(1, 1, 10, 0.1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
@@ -17,10 +19,24 @@ test_that("No extant colonists", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  daisie_data <- ideal_daisie_data
-  expect_silent(daisie_data_to_tables(ideal_daisie_data))
-  expect_silent(daisie_data_to_tables(empirical_daisie_data))
+
+  # No colonists, no glory
+  ideal_tables <- daisie_data_to_tables(ideal_daisie_data)
+  expect_true("header" %in% names(ideal_tables))
+  expect_equal(total_time, ideal_tables$header$island_age)
+  expect_equal(n_species_mainland, ideal_tables$header$not_present)
+  expect_equal(0, nrow(ideal_tables$colonists_general))
+  expect_equal(0, nrow(ideal_tables$colonists_branching_times))
+
+  # No colonists, no glory
+  empirical_tables <- daisie_data_to_tables(empirical_daisie_data)
+  expect_true("header" %in% names(empirical_tables))
+  expect_equal(total_time, empirical_tables$header$island_age)
+  expect_equal(n_species_mainland, empirical_tables$header$not_present)
+  expect_equal(0, nrow(empirical_tables$colonists_general))
+  expect_equal(0, nrow(empirical_tables$colonists_branching_times))
 })
+
 
 test_that("One colonist clade", {
   set.seed(
@@ -29,9 +45,11 @@ test_that("One colonist clade", {
     normal.kind = "Inversion",
     sample.kind = "Rejection"
   )
+  total_time <- 1
+  n_species_mainland <- 10
   daisie_mainland_data <- sim_island_with_mainland(
-    total_time = 1,
-    m = 10,
+    total_time = total_time,
+    m = n_species_mainland,
     island_pars = c(1, 1, 10, 0.1, 1),
     mainland_ex = 1,
     mainland_sample_prob = 1,
@@ -42,6 +60,22 @@ test_that("One colonist clade", {
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
   daisie_data <- ideal_daisie_data
+  ideal_tables <- daisie_data_to_tables(ideal_daisie_data)
+
+  # One colonist, thus glory
+  hiero
+  ideal_tables <- daisie_data_to_tables(ideal_daisie_data)
+  expect_true("header" %in% names(ideal_tables))
+  expect_equal(total_time, ideal_tables$header$island_age)
+  ideal_tables
+  expect_equal(
+    n_species_mainland,
+    ideal_tables$header$not_present + nrow(ideal_tables$colonists_general)
+  )
+  expect_equal(1, nrow(ideal_tables$colonists_general))
+  expect_equal(1, nrow(ideal_tables$colonists_branching_times))
+
+
   expect_silent(daisie_data_to_tables(ideal_daisie_data))
   expect_silent(daisie_data_to_tables(empirical_daisie_data))
 })

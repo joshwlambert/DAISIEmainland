@@ -44,6 +44,7 @@ test_that("One colonist clade, stac = 4: Non_endemic", {
   daisie_data <- ideal_daisie_data
   plot_daisie_data(ideal_daisie_data)
   plot_daisie_data(empirical_daisie_data)
+  HIERO
 })
 
 test_that("stac == 2: Endemic (and Non_endemic)", {
@@ -283,7 +284,6 @@ test_that("Multiple recolonisations", { # nolint indeed, this is complex :-)
   simplified_ideal_daisie_data[[2]] <- ideal_daisie_data[[9]]
   daisie_data <- simplified_ideal_daisie_data
   plot_daisie_data(daisie_data = simplified_ideal_daisie_data)
-
 })
 
 test_that("Search for interesting scenarions", { # nolint indeed, this is complex :-)
