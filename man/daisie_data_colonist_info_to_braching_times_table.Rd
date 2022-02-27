@@ -16,8 +16,50 @@ a table with as much rows as branching times
 }
 \description{
 Convert the non-header part of a \code{daisie_data} into a tabular format,
-contain per colonist the branching times. This excludes the time
-of colonisation.
+containing, for each colonist, the branching times.
+This excludes the time of colonisation.
+}
+\details{
+Due to the coding of DAISIE, this is not straightforward:
+\itemize{
+\item If there are no colonisations, an empty table is produced
+\item If there is one colonisation, the \code{event_times} are used
+\item If there are two or more colonisations, the \code{event_times}
+in the \code{all_colonisations} list is used
+}
+}
+\examples{
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+total_time <- 1
+daisie_mainland_data <- sim_island_with_mainland(
+  total_time = total_time,
+  m = 10,
+  island_pars = c(1, 1, 10, 0.1, 1),
+  mainland_ex = 1,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "undiscovered",
+  replicates = 1,
+  verbose = FALSE
+)
+ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+
+# We need a non-header daisie_data
+testthat::expect_true(length(ideal_daisie_data) > 1)
+# Take the first non-header daisie_data
+daisie_data_colonist_info <- ideal_daisie_data[[2]]
+t <- daisie_data_colonist_info_to_braching_times_table(
+  daisie_data_colonist_info = daisie_data_colonist_info
+)
+testthat::expect_true("colonist_index" \%in\% names(t))
+testthat::expect_true("branching_times" \%in\% names(t))
+# Do not include the colonisation
+testthat::expect_false(total_time \%in\% t$branching_times)
+
 }
 \seealso{
 use \link{daisie_data_colonist_info_to_colonisation_times_table}
