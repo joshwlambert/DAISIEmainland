@@ -58,7 +58,7 @@ test_that("One colonist clade, only a colonisation time", {
   # We expect to have at least 1 colonist,
   # hence if ideal_daisie_data has length 2 we have 1 colonist,
   # as the first element is the header
-  expect_true(length(ideal_daisie_data) > 1)
+  expect_equal(length(ideal_daisie_data), 2)
   # First branching time is the island age, second is colonisataion time
   island_age <- ideal_daisie_data[[2]]$branching_times[1]
   colonisation_time <- ideal_daisie_data[[2]]$branching_times[2]

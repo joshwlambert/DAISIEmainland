@@ -42,7 +42,7 @@ test_that("One colonist clade, stac = 4: Non_endemic", {
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
   daisie_data <- ideal_daisie_data
-  plot_daisie_data(ideal_daisie_data)
+  plot_daisie_data(daisie_data = ideal_daisie_data)
   plot_daisie_data(empirical_daisie_data)
 })
 

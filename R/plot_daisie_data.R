@@ -42,13 +42,26 @@ plot_daisie_data <- function(daisie_data) {
   #####################################################
   # Create a table for drawing the horizontal branches
   #####################################################
+  n_branches_per_clade_index <- dplyr::summarise(
+    dplyr::group_by(t$colonisation_times, clade_index),
+    n = dplyr::n()
+  )
   if (1 == 2) {
     # Note we only have extant species
-    n_branches_per_clade_index <- dplyr::summarise(
-      dplyr::group_by(t$colonists_branching_times, clade_index),
-      n = dplyr::n()
+    branches_horizontal <- tibble::tibble(
+      clade_index = t$colonisation_times$clade_index,
+      colonist_index = t$colonisation_times$colonist_index,
+      x = t$colonisation_times$colonisation_time,
+      xmax = t$header$island_age
     )
-    branches_horizontal <- t$colonists_branching_times
+    branches_horizontal <- tibble::tibble(
+      HIERO
+      clade_index = t$colonists_branching_times$CLADE_INDEX???,
+      colonist_index = t$colonisation_times$colonist_index,
+      x = t$colonisation_times$colonisation_time,
+      xmax = t$header$island_age
+    )
+
     # Determine the y coordinats per clade_index, space out the y's nicely
     branches_horizontal$y <- NA
     cur_clade_index <- 0

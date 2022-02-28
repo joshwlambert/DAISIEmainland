@@ -1,4 +1,13 @@
 #' Convert `daisie_data` into a tabular format
+#'
+#' Convert `daisie_data` into a tabular format.
+#'
+#' `DAISIE` and `DAISIEmailand` data is messy and
+#' contains multiple instances of data duplication,
+#' due to, among others, historical reasons.
+#'
+#' This function reduces the island history to tidy data
+#' without duplicates.
 #' @inheritParams default_params_doc
 #'
 #' @return a list with these elements:
@@ -49,6 +58,8 @@ daisie_data_to_tables <- function(daisie_data) {
     # There can be no branching times if there are only anagenetic colonists
     if (nrow(t_bt) > 0) {
       t_bt$clade_index <- index - 1 # Make indices start at 1, as users expect
+    } else {
+      t_bt$clade_index <- numeric(0)
     }
     colonists_branching_times_list[[index]] <- t_bt
 
