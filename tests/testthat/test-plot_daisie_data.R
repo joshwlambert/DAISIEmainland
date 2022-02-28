@@ -44,7 +44,6 @@ test_that("One colonist clade, stac = 4: Non_endemic", {
   daisie_data <- ideal_daisie_data
   plot_daisie_data(ideal_daisie_data)
   plot_daisie_data(empirical_daisie_data)
-  HIERO
 })
 
 test_that("stac == 2: Endemic (and Non_endemic)", {
@@ -115,7 +114,10 @@ test_that("stace == 6: Endemic_clade_MaxAge, in empirical_daisie_data", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data = ideal_daisie_data)
+  daisie_data <- ideal_daisie_data
+  daisie_data[[3]] <- NULL
+  daisie_data
+  plot_daisie_data(daisie_data = daisie_data)
   plot_daisie_data(empirical_daisie_data)
 })
 
@@ -277,7 +279,8 @@ test_that("Multiple recolonisations", { # nolint indeed, this is complex :-)
   n_branches <- length(ideal_daisie_data[[clade_index]]$branching_times) - 1 # nolint indeed a long line
   expect_true(n_colonisations >= 3 && n_branches >= n_colonisations * 2)
   interesting_clade <- ideal_daisie_data[clade_index]
-  plot_daisie_data(ideal_daisie_data)
+
+  plot_daisie_data(daisie_data = ideal_daisie_data)
 
   simplified_ideal_daisie_data <- list()
   simplified_ideal_daisie_data[[1]] <- ideal_daisie_data[[1]]

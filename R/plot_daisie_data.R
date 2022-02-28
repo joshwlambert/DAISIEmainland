@@ -39,90 +39,94 @@ plot_daisie_data <- function(daisie_data) {
   if (nrow(t$colonists_general) == 0) {
     return(p)
   }
-
-  # Remove the redundant first branching time, which equals the island
-  # age, as it is already the header
-  are_redundant <- t$colonists_branching_times$branching_times ==
-    t$header$island_age
-  t$colonists_branching_times <- t$colonists_branching_times[!are_redundant, ]
-
   #####################################################
-  # Creata a table for drawing the horizontal branches
+  # Create a table for drawing the horizontal branches
   #####################################################
-  # Note we only have extant species
-  n_branches_per_clade_index <- dplyr::summarise(
-    dplyr::group_by(t$colonists_branching_times, clade_index),
-    n = dplyr::n()
-  )
-  branches_horizontal <- t$colonists_branching_times
-  # Determine the y coordinats per clade_index, space out the y's nicely
-  branches_horizontal$y <- NA
-  cur_clade_index <- 0
-  delta_y <- 0
-  y <- 0
-  for (row_index in seq_along(branches_horizontal$branching_times)) {
-    this_clade_index <- branches_horizontal$clade_index[row_index]
-    if (this_clade_index != cur_clade_index) {
-      # New clade_index
-      cur_clade_index <- this_clade_index
-      delta_y <- 1.0 / n_branches_per_clade_index[
-        n_branches_per_clade_index$clade_index == cur_clade_index, ]$n
-      y <- delta_y / 2.0
-    } else {
-      y <- y + delta_y
+  if (1 == 2) {
+    # Note we only have extant species
+    n_branches_per_clade_index <- dplyr::summarise(
+      dplyr::group_by(t$colonists_branching_times, clade_index),
+      n = dplyr::n()
+    )
+    branches_horizontal <- t$colonists_branching_times
+    # Determine the y coordinats per clade_index, space out the y's nicely
+    branches_horizontal$y <- NA
+    cur_clade_index <- 0
+    delta_y <- 0
+    y <- 0
+    for (row_index in seq_along(branches_horizontal$branching_times)) {
+      this_clade_index <- branches_horizontal$clade_index[row_index]
+      if (this_clade_index != cur_clade_index) {
+        # New clade_index
+        cur_clade_index <- this_clade_index
+        delta_y <- 1.0 / n_branches_per_clade_index[
+          n_branches_per_clade_index$clade_index == cur_clade_index, ]$n
+        y <- delta_y / 2.0
+      } else {
+        y <- y + delta_y
+      }
+      branches_horizontal$y[row_index] <- y
     }
-    branches_horizontal$y[row_index] <- y
+    # Add the stac_str
+    branches_horizontal <- merge(branches_horizontal, t$colonists_general)
+    testthat::expect_true("branching_times" %in% names(branches_horizontal))
+    testthat::expect_true("clade_index" %in% names(branches_horizontal))
+    testthat::expect_true("y" %in% names(branches_horizontal))
+    testthat::expect_true("stac_str" %in% names(branches_horizontal))
   }
-  # Add the stac_str
-  branches_horizontal <- merge(branches_horizontal, t$colonists_general)
-  testthat::expect_true("branching_times" %in% names(branches_horizontal))
-  testthat::expect_true("clade_index" %in% names(branches_horizontal))
-  testthat::expect_true("y" %in% names(branches_horizontal))
-  testthat::expect_true("stac_str" %in% names(branches_horizontal))
   #####################################################
   # Creata a table for drawing the vertical branches
   #####################################################
-  # As the parent of a branch is unknown, use a comb graph
-  branches_vertical <- branches_horizontal
-  # Make vertical branches go to their parents
-  # Parents have the y index above it
-  # The parent branches will have nonsense values
-  last_row_index <- length(branches_vertical$y)
-  branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
-  # Use the branching times of the parents
-  branches_vertical$branching_times <- c(
-    0.0, branches_vertical$branching_times[-1]
-  )
+  if (1 == 2) {
+    # As the parent of a branch is unknown, use a comb graph
+    branches_vertical <- branches_horizontal
+    # Make vertical branches go to their parents
+    # Parents have the y index above it
+    # The parent branches will have nonsense values
+    last_row_index <- length(branches_vertical$y)
+    branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
+    # Use the branching times of the parents
+    branches_vertical$branching_times <- c(
+      0.0, branches_vertical$branching_times[-1]
+    )
 
-  # Get rid of the parents, i.e. those with the lowest y per clade_index
-  branches_vertical <- dplyr::slice(
-    dplyr::group_by(
-      branches_vertical,
-      clade_index
-    ),
-    -which.min(y)
-  )
-  # Add the stac_str
-  branches_vertical <- merge(branches_vertical, t$colonists_general)
-  testthat::expect_true("branching_times" %in% names(branches_vertical))
-  testthat::expect_true("clade_index" %in% names(branches_vertical))
-  testthat::expect_true("y" %in% names(branches_vertical))
-  testthat::expect_true("yend" %in% names(branches_vertical))
-  testthat::expect_true("stac_str" %in% names(branches_vertical))
-
-
+    # Get rid of the parents, i.e. those with the lowest y per clade_index
+    branches_vertical <- dplyr::slice(
+      dplyr::group_by(
+        branches_vertical,
+        clade_index
+      ),
+      -which.min(y)
+    )
+    # Add the stac_str
+    branches_vertical <- merge(branches_vertical, t$colonists_general)
+    testthat::expect_true("branching_times" %in% names(branches_vertical))
+    testthat::expect_true("clade_index" %in% names(branches_vertical))
+    testthat::expect_true("y" %in% names(branches_vertical))
+    testthat::expect_true("yend" %in% names(branches_vertical))
+    testthat::expect_true("stac_str" %in% names(branches_vertical))
+  }
 
 
   # Only obtain the colonisations, i.e. the first branching time,
   # plot these as points with a shape depending on stac_str
-  first_branching_times <- dplyr::slice(
-    dplyr::group_by(
-      branches_horizontal,
-      clade_index
-    ),
-    which.max(branching_times)
+  if (1 == 2) {
+    first_branching_times <- dplyr::slice(
+      dplyr::group_by(
+        branches_horizontal,
+        clade_index
+      ),
+      which.max(branching_times)
+    )
+    colonisations <- merge(first_branching_times, t$colonists_general)
+  }
+
+  n_colonists_per_clade_index <- dplyr::summarise(
+    dplyr::group_by(t$colonisation_times, clade_index),
+    n_colonists = dplyr::n()
   )
-  colonisations <- merge(first_branching_times, t$colonists_general)
+
+  colonisations <- t$colonisation_times
 
   p <- p + ggplot2::geom_point(
     data = colonisations,

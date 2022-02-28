@@ -46,7 +46,10 @@ daisie_data_to_tables <- function(daisie_data) {
     t_bt <- daisie_data_colonist_info_to_braching_times_table(
       daisie_data_colonist_info = daisie_data[[index]]
     )
-    t_bt$clade_index <- index - 1 # Make indices start at 1, as users expect
+    # There can be no branching times if there are only anagenetic colonists
+    if (nrow(t_bt) > 0) {
+      t_bt$clade_index <- index - 1 # Make indices start at 1, as users expect
+    }
     colonists_branching_times_list[[index]] <- t_bt
 
     t_ct <- daisie_data_colonist_info_to_colonisation_times_table(
@@ -163,24 +166,50 @@ daisie_data_colonist_info_to_braching_times_table <- function( # nolint indeed a
 
   t <- NA
   if (length(daisie_data_colonist_info$all_colonisations) == 0) {
-    t <- data.frame(
-      colonist_index = 1,
-      branching_times = daisie_data_colonist_info$branching_times[-1],
-      stringsAsFactors = FALSE
-    )
-  } else {
-    colonisation_branching_times_list <- list()
-    for (i in seq_along(daisie_data_colonist_info$all_colonisations)) {
-      colonist <- daisie_data_colonist_info$all_colonisations[[i]]
-      branching_times <- colonist$event_times[c(-1, -2)]
-
-      colonisation_branching_times_list[[i]] <- data.frame(
-        colonist_index = i,
-        branching_times = branching_times,
+    # First index is island age, second is colonisation time
+    branching_times <- daisie_data_colonist_info$branching_times[c(-1, -2)]
+    if (length(branching_times) == 0) {
+      t <- data.frame(
+        colonist_index = numeric(0),
+        branching_times = numeric(0),
+        stringsAsFactors = FALSE
+      )
+    } else {
+      t <- data.frame(
+        colonist_index = 1,
+        branching_times = daisie_data_colonist_info$branching_times[c(-1, -2)],
         stringsAsFactors = FALSE
       )
     }
-    t <- dplyr::bind_rows(colonisation_branching_times_list)
+  } else {
+    colonisation_branching_times_list <- list() # nolint indeed a long variable name
+
+    for (i in seq_along(daisie_data_colonist_info$all_colonisations)) {
+      colonist <- daisie_data_colonist_info$all_colonisations[[i]]
+      branching_times <- colonist$event_times[c(-1, -2)]
+      if (length(branching_times) == 0) {
+        testthat::expect_equal("A", colonist$species_type)
+        # Anagenetic species have no branches by definition
+        # Done!
+      } else {
+        testthat::expect_equal("C", colonist$species_type)
+        colonisation_branching_times_list[[i]] <- data.frame(
+          colonist_index = i,
+          branching_times = branching_times,
+          stringsAsFactors = FALSE
+        )
+      }
+    }
+    t <- NA
+    if (length(colonisation_branching_times_list) > 0) {
+      t <- dplyr::bind_rows(colonisation_branching_times_list)
+    } else {
+      t <- data.frame(
+        colonist_index = numeric(0),
+        branching_times = numeric(0),
+        stringsAsFactors = FALSE
+      )
+    }
   }
   testthat::expect_true("colonist_index" %in% names(t))
   testthat::expect_true("branching_times" %in% names(t))
@@ -255,7 +284,9 @@ daisie_data_colonist_info_to_colonisation_times_table <- function( # nolint inde
     t_colonisation_times <- dplyr::bind_rows(colonisation_times_list)
   }
   testthat::expect_true("colonist_index" %in% names(t_colonisation_times))
-  testthat::expect_true("colonist_species_type" %in% names(t_colonisation_times))
+  testthat::expect_true(
+    "colonist_species_type" %in% names(t_colonisation_times)
+  )
   testthat::expect_true("colonisation_time" %in% names(t_colonisation_times))
   t_colonisation_times
 }

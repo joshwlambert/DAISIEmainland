@@ -33,7 +33,7 @@ test_that("Detects a header", {
   )
 })
 
-test_that("One colonist clade, i.e. only braching times", {
+test_that("One colonist clade, only a colonisation time", {
   set.seed(
     1,
     kind = "Mersenne-Twister",
@@ -59,8 +59,10 @@ test_that("One colonist clade, i.e. only braching times", {
   # hence if ideal_daisie_data has length 2 we have 1 colonist,
   # as the first element is the header
   expect_true(length(ideal_daisie_data) > 1)
-  # First branching time is the colonisation time
-  n_branches <- length(ideal_daisie_data[[2]]$branching_times) - 1
+  # First branching time is the island age, second is colonisataion time
+  island_age <- ideal_daisie_data[[2]]$branching_times[1]
+  colonisation_time <- ideal_daisie_data[[2]]$branching_times[2]
+  n_branches <- length(ideal_daisie_data[[2]]$branching_times) - 2
 
   # Only use braching times
   t <- daisie_data_colonist_info_to_braching_times_table(
@@ -69,8 +71,52 @@ test_that("One colonist clade, i.e. only braching times", {
   expect_true("colonist_index" %in% names(t))
   expect_true("branching_times" %in% names(t))
   expect_equal(n_branches, nrow(t))
-  # Do not include the colonisation
   expect_false(total_time %in% t$branching_times)
+  expect_false(island_age %in% t$branching_times)
+  expect_false(colonisation_time %in% t$branching_times)
+})
+
+test_that("One colonist clade, with one branch", {
+  set.seed(
+    5,
+    kind = "Mersenne-Twister",
+    normal.kind = "Inversion",
+    sample.kind = "Rejection"
+  )
+  total_time <- 1
+  n_species_mainland <- 10
+  daisie_mainland_data <- sim_island_with_mainland(
+    total_time = total_time,
+    m = n_species_mainland,
+    island_pars = c(1, 1, 10, 0.1, 1),
+    mainland_ex = 1,
+    mainland_sample_prob = 1,
+    mainland_sample_type = "undiscovered",
+    replicates = 1,
+    verbose = FALSE
+  )
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  expect_equal(length(ideal_daisie_data), 2)
+  expect_equal(length(ideal_daisie_data[[2]]$branching_times), 3)
+
+  # First branching time is the island age, second is colonisataion time
+  island_age <- ideal_daisie_data[[2]]$branching_times[1]
+  colonisation_time <- ideal_daisie_data[[2]]$branching_times[2]
+  branching_time <- ideal_daisie_data[[2]]$branching_times[3]
+  n_branches <- length(ideal_daisie_data[[2]]$branching_times) - 2
+  expect_equal(1, n_branches)
+
+  # Only use braching times
+  t <- daisie_data_colonist_info_to_braching_times_table(
+    daisie_data_colonist_info = ideal_daisie_data[[2]]
+  )
+  expect_true("colonist_index" %in% names(t))
+  expect_true("branching_times" %in% names(t))
+  expect_equal(n_branches, nrow(t))
+  expect_false(total_time %in% t$branching_times)
+  expect_false(island_age %in% t$branching_times)
+  expect_false(colonisation_time %in% t$branching_times)
+  expect_true(branching_time %in% t$branching_times)
 })
 
 
@@ -107,4 +153,3 @@ test_that("Multiple recolonisations", {
   # Do not include the colonisation
   expect_false(total_time %in% t$branching_times)
 })
-
