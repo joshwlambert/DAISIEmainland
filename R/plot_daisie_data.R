@@ -70,20 +70,20 @@ plot_daisie_data <- function(daisie_data) {
     colonist_species_type = "Irrelevant"
   )
   # Add the colonist_species_type to branches_horizontal_from_branches
-  # branches_horizontal_from_branches$colonist_species_type <- dplyr::inner_join(
-  #   dplyr::select(
-  #     branches_horizontal_from_colonists,
-  #     clade_index,
-  #     colonist_index,
-  #     colonist_species_type
-  #   ),
-  #   dplyr::select(
-  #     branches_horizontal_from_branches,
-  #     clade_index,
-  #     colonist_index
-  #   ),
-  #   by = c("clade_index", "colonist_index")
-  # )$colonist_species_type
+  branches_horizontal_from_branches$colonist_species_type <- dplyr::inner_join(
+    dplyr::select(
+      branches_horizontal_from_colonists,
+      clade_index,
+      colonist_index,
+      colonist_species_type
+    ),
+    dplyr::select(
+      branches_horizontal_from_branches,
+      clade_index,
+      colonist_index
+    ),
+    by = c("clade_index", "colonist_index")
+  )$colonist_species_type
   unsorted_branches_horizontal <- dplyr::bind_rows(
     branches_horizontal_from_colonists,
     branches_horizontal_from_branches
@@ -119,55 +119,36 @@ plot_daisie_data <- function(daisie_data) {
     }
     branches_horizontal$y[row_index] <- y
   }
-  branches_horizontal
-  if (1 == 2) {
-    # Note we only have extant species
-    branches_horizontal <- tibble::tibble(
-      clade_index = t$colonists_branching_times$CLADE_INDEX,
-      colonist_index = t$colonisation_times$colonist_index,
-      x = t$colonisation_times$colonisation_time,
-      xmax = t$header$island_age
-    )
-
-    # Add the stac_str
-    branches_horizontal <- merge(branches_horizontal, t$colonists_general)
-    testthat::expect_true("branching_times" %in% names(branches_horizontal))
-    testthat::expect_true("clade_index" %in% names(branches_horizontal))
-    testthat::expect_true("y" %in% names(branches_horizontal))
-    testthat::expect_true("stac_str" %in% names(branches_horizontal))
-  }
+  branches_horizontal$y <- branches_horizontal$y - 1 +
+    branches_horizontal$colonist_index
   #####################################################
   # Creata a table for drawing the vertical branches
   #####################################################
-  if (1 == 2) {
-    # As the parent of a branch is unknown, use a comb graph
-    branches_vertical <- branches_horizontal
-    # Make vertical branches go to their parents
-    # Parents have the y index above it
-    # The parent branches will have nonsense values
-    last_row_index <- length(branches_vertical$y)
-    branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
-    # Use the branching times of the parents
-    branches_vertical$branching_times <- c(
-      0.0, branches_vertical$branching_times[-1]
-    )
+  # As the parent of a branch is unknown, use a comb graph
+  branches_vertical <- branches_horizontal
+  # Make vertical branches go to their parents
+  # Parents have the y index above it
+  # The parent branches will have nonsense values
+  last_row_index <- nrow(branches_vertical)
+  # Use the branching times of the parents
+  branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
 
-    # Get rid of the parents, i.e. those with the lowest y per clade_index
-    branches_vertical <- dplyr::slice(
-      dplyr::group_by(
-        branches_vertical,
-        clade_index
-      ),
-      -which.min(y)
-    )
-    # Add the stac_str
-    branches_vertical <- merge(branches_vertical, t$colonists_general)
-    testthat::expect_true("branching_times" %in% names(branches_vertical))
-    testthat::expect_true("clade_index" %in% names(branches_vertical))
-    testthat::expect_true("y" %in% names(branches_vertical))
-    testthat::expect_true("yend" %in% names(branches_vertical))
-    testthat::expect_true("stac_str" %in% names(branches_vertical))
-  }
+  # Get rid of the parents, i.e. those with the lowest y per clade_index
+  branches_vertical <- dplyr::slice(
+    dplyr::group_by(
+      branches_vertical,
+      clade_index,
+      colonist_index
+    ),
+    -which.min(y)
+  )
+  # Add the stac_str
+  branches_vertical <- merge(branches_vertical, t$colonists_general)
+  #testthat::expect_true("branching_times" %in% names(branches_vertical))
+  testthat::expect_true("clade_index" %in% names(branches_vertical))
+  testthat::expect_true("y" %in% names(branches_vertical))
+  testthat::expect_true("yend" %in% names(branches_vertical))
+  testthat::expect_true("stac_str" %in% names(branches_vertical))
 
 
   colonisations <- dplyr::slice(
@@ -193,20 +174,19 @@ plot_daisie_data <- function(daisie_data) {
       x = x,
       y = y,
       xend = xend,
-      yend = y
+      yend = y,
+      color = colonist_species_type
     )
-  )
-  # + ggplot2::geom_segment(
-  #   data = branches_vertical,
-  #   ggplot2::aes(
-  #     x = branching_times,
-  #     y = y,
-  #     xend = branching_times,
-  #     yend = yend,
-  #     color = stac_str
-  #   )
-  # )
-  p + ggplot2::theme_classic() +
+  ) + ggplot2::geom_segment(
+    data = branches_vertical,
+    ggplot2::aes(
+      x = x,
+      y = y,
+      xend = x,
+      yend = yend,
+      color = colonist_species_type
+    )
+  ) + ggplot2::theme_classic() +
     ggplot2::theme(
       axis.text.y = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank(),
