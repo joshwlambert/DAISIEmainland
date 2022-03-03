@@ -57,21 +57,23 @@ plot_daisie_data <- function(daisie_data) {
   )
   t$colonisation_times$y <- t$colonisation_times$colonist_index - 0.5
 
-  branches_horizontal_from_colonists <- tibble::tibble( # nolint indeed a long variable name
+  branches_horizontal_from_colonists <- data.frame( # nolint indeed a long variable name
     clade_index = t$colonisation_times$clade_index,
     colonist_index = t$colonisation_times$colonist_index,
     x = t$colonisation_times$colonisation_time,
     xend = 0, # the present
     y = NA, # unknown now
-    colonist_species_type = t$colonisation_times$colonist_species_type
+    colonist_species_type = t$colonisation_times$colonist_species_type,
+    stringsAsFactors = FALSE
   )
-  branches_horizontal_from_branches <- tibble::tibble( # nolint indeed a long variable name
+  branches_horizontal_from_branches <- data.frame( # nolint indeed a long variable name
     clade_index = t$colonists_branching_times$clade_index,
     colonist_index = t$colonists_branching_times$colonist_index,
     x = t$colonists_branching_times$branching_times,
     xend = 0, # the present
     y = NA, # unknown now
-    colonist_species_type = "Irrelevant"
+    colonist_species_type = "Irrelevant",
+    stringsAsFactors = FALSE
   )
   # Add the colonist_species_type to branches_horizontal_from_branches
   branches_horizontal_from_branches$colonist_species_type <- dplyr::inner_join(
