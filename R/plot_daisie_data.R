@@ -57,7 +57,7 @@ plot_daisie_data <- function(daisie_data) {
   )
   t$colonisation_times$y <- t$colonisation_times$colonist_index - 0.5
 
-  branches_horizontal_from_colonists <- tibble::tibble(
+  branches_horizontal_from_colonists <- tibble::tibble( # nolint indeed a long variable name
     clade_index = t$colonisation_times$clade_index,
     colonist_index = t$colonisation_times$colonist_index,
     x = t$colonisation_times$colonisation_time,
@@ -65,7 +65,7 @@ plot_daisie_data <- function(daisie_data) {
     y = NA, # unknown now
     colonist_species_type = t$colonisation_times$colonist_species_type
   )
-  branches_horizontal_from_branches <- tibble::tibble(
+  branches_horizontal_from_branches <- tibble::tibble( # nolint indeed a long variable name
     clade_index = t$colonists_branching_times$clade_index,
     colonist_index = t$colonists_branching_times$colonist_index,
     x = t$colonists_branching_times$branching_times,
@@ -107,7 +107,9 @@ plot_daisie_data <- function(daisie_data) {
   for (row_index in seq_len(nrow(branches_horizontal))) {
     this_clade_index <- branches_horizontal$clade_index[row_index]
     this_colonist_index <- branches_horizontal$colonist_index[row_index]
-    if (this_clade_index != cur_clade_index || this_colonist_index != cur_colonist_index) {
+    if (this_clade_index != cur_clade_index ||
+      this_colonist_index != cur_colonist_index
+    ) {
       # New clade_index
       cur_clade_index <- this_clade_index
       cur_colonist_index <- this_colonist_index
@@ -148,7 +150,6 @@ plot_daisie_data <- function(daisie_data) {
   )
   # Add the stac_str
   branches_vertical <- merge(branches_vertical, t$colonists_general)
-  #testthat::expect_true("branching_times" %in% names(branches_vertical))
   testthat::expect_true("clade_index" %in% names(branches_vertical))
   testthat::expect_true("y" %in% names(branches_vertical))
   testthat::expect_true("yend" %in% names(branches_vertical))
@@ -157,7 +158,14 @@ plot_daisie_data <- function(daisie_data) {
 
   colonisations <- dplyr::slice(
     dplyr::group_by(
-      dplyr::select(branches_horizontal, clade_index, colonist_index, x, y, colonist_species_type),
+      dplyr::select(
+        branches_horizontal,
+        clade_index,
+        colonist_index,
+        x,
+        y,
+        colonist_species_type
+      ),
       clade_index,
       colonist_index
     ),

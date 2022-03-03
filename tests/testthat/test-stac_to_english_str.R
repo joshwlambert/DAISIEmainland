@@ -16,4 +16,3 @@ test_that("use", {
   expect_error(stac_to_english_str(list()))
   expect_error(stac_to_english_str("nonsense"))
 })
-

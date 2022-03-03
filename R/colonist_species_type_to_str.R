@@ -16,7 +16,7 @@
 #' DAISIEmainland:::colonist_species_type_to_str("C")
 #' @keywords internal
 #' @author Richèl J.C. Bilderbeek
-colonist_species_type_to_str <- function(colonist_species_type) { # Indeed a long internal function name
+colonist_species_type_to_str <- function(colonist_species_type) { # nolint Indeed a long internal function name
   testthat::expect_equal(length(colonist_species_type), 1)
   if (colonist_species_type == "A") {
     return("Colonist after anagenesis")
