@@ -272,7 +272,7 @@ daisie_data_colonist_info_to_colonisation_times_table <- function( # nolint inde
     )
     t_colonisation_times <- data.frame(
       colonist_index = 1,
-      colonist_species_type = DAISIEmainland::stac_to_str(
+      colonist_species_type = DAISIEmainland:::stac_to_english_str(
         daisie_data_colonist_info$stac
       ),
       colonisation_time = daisie_data_colonist_info$branching_times[2],
@@ -287,7 +287,9 @@ daisie_data_colonist_info_to_colonisation_times_table <- function( # nolint inde
 
       colonisation_times_list[[i]] <- data.frame(
         colonist_index = i,
-        colonist_species_type = colonist$species_type,
+        colonist_species_type = DAISIEmainland::colonist_species_type_to_str(
+          colonist$species_type
+        ),
         colonisation_time = colonisation_time,
         stringsAsFactors = FALSE
       )

@@ -17,10 +17,8 @@ test_that("No extant colonists", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  daisie_data <- ideal_daisie_data
   expect_silent(plot_daisie_data(ideal_daisie_data))
   expect_silent(plot_daisie_data(empirical_daisie_data))
-  plot_daisie_data(ideal_daisie_data)
 })
 
 test_that("One colonist clade, stac = 4: Non_endemic", {
@@ -42,9 +40,12 @@ test_that("One colonist clade, stac = 4: Non_endemic", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  daisie_data <- ideal_daisie_data
-  plot_daisie_data(daisie_data = ideal_daisie_data)
-  plot_daisie_data(empirical_daisie_data)
+  expect_true(
+    ideal_daisie_data[[2]]$stac == 4 || empirical_daisie_data[[2]]$stac == 4
+  )
+  plot_daisie_data(ideal_daisie_data)
+  expect_silent(plot_daisie_data(ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 test_that("stac == 2: Endemic (and Non_endemic)", {
@@ -66,11 +67,11 @@ test_that("stac == 2: Endemic (and Non_endemic)", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  testthat::expect_true(
-    ideal_daisie_data[[2]]$stac != 4 || empirical_daisie_data[[2]]$stac != 4
+  expect_true(
+    ideal_daisie_data[[2]]$stac == 2 || empirical_daisie_data[[2]]$stac == 2
   )
-  plot_daisie_data(daisie_data = ideal_daisie_data)
-  plot_daisie_data(empirical_daisie_data)
+  expect_silent(plot_daisie_data(daisie_data = ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 test_that("stac == 5: Endemic_singleton_MaxAge in empirical_daisie_data", {
@@ -92,8 +93,11 @@ test_that("stac == 5: Endemic_singleton_MaxAge in empirical_daisie_data", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data = ideal_daisie_data)
-  plot_daisie_data(empirical_daisie_data)
+  expect_true(
+    ideal_daisie_data[[2]]$stac == 5 || empirical_daisie_data[[2]]$stac == 5
+  )
+  expect_silent(plot_daisie_data(ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 test_that("stace == 6: Endemic_clade_MaxAge, in empirical_daisie_data", {
@@ -115,11 +119,18 @@ test_that("stace == 6: Endemic_clade_MaxAge, in empirical_daisie_data", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
+  expect_true(
+    ideal_daisie_data[[2]]$stac == 6 || empirical_daisie_data[[2]]$stac == 6
+  )
+  plot_daisie_data(empirical_daisie_data)
+  plot_daisie_data(ideal_daisie_data)
+
+  # Simplify
   daisie_data <- ideal_daisie_data
   daisie_data[[3]] <- NULL
   daisie_data
   plot_daisie_data(daisie_data = daisie_data)
-  plot_daisie_data(empirical_daisie_data)
+
 })
 
 test_that("stac == 3: Endemic&Non_Endemic", {
@@ -141,8 +152,11 @@ test_that("stac == 3: Endemic&Non_Endemic", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data = ideal_daisie_data)
-  plot_daisie_data(empirical_daisie_data)
+  expect_true(
+    ideal_daisie_data[[2]]$stac == 3 || empirical_daisie_data[[2]]$stac == 3
+  )
+  expect_silent(plot_daisie_data(daisie_data = ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 test_that("One colonist clade, with one branch", {
@@ -167,7 +181,7 @@ test_that("One colonist clade, with one branch", {
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   expect_equal(length(ideal_daisie_data), 2)
   expect_equal(length(ideal_daisie_data[[2]]$branching_times), 3)
-  plot_daisie_data(daisie_data = ideal_daisie_data)
+  expect_silent(plot_daisie_data(daisie_data = ideal_daisie_data))
 })
 
 
@@ -190,8 +204,8 @@ test_that("much branching", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data = ideal_daisie_data)
-  plot_daisie_data(empirical_daisie_data)
+  expect_silent(plot_daisie_data(daisie_data = ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 test_that("many clades", {
@@ -213,8 +227,8 @@ test_that("many clades", {
   )
   ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
   empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data = ideal_daisie_data)
-  plot_daisie_data(empirical_daisie_data)
+  expect_silent(plot_daisie_data(daisie_data = ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 test_that("Issue #68: plot all recolonisations", {
@@ -235,18 +249,11 @@ test_that("Issue #68: plot all recolonisations", {
     replicates = 1,
     verbose = FALSE
   )
-  DAISIEmainland::plot_daisie_mainland_data(
-    daisie_mainland_data = daisie_mainland_data,
-    replicate_index = 1
-  )
-  # Plots nicely
-  daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
-  ideal_daisie_data <- daisie_data
-  plot_daisie_data(daisie_data)
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
 
-  # Plots nicely when there are no colonisations
-  daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data)
+  expect_silent(plot_daisie_data(daisie_data = ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 
@@ -272,13 +279,11 @@ test_that("Issue #68: plot all recolonisations with many branches", {
     daisie_mainland_data = daisie_mainland_data,
     replicate_index = 1
   )
-  # Plots nicely
-  daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data)
+  ideal_daisie_data <- daisie_mainland_data$ideal_multi_daisie_data[[1]]
+  empirical_daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
 
-  # Plots nicely when there are no colonisations
-  daisie_data <- daisie_mainland_data$empirical_multi_daisie_data[[1]]
-  plot_daisie_data(daisie_data)
+  expect_silent(plot_daisie_data(ideal_daisie_data))
+  expect_silent(plot_daisie_data(empirical_daisie_data))
 })
 
 test_that("Multiple recolonisations", { # nolint indeed, this is complex :-)
@@ -306,13 +311,13 @@ test_that("Multiple recolonisations", { # nolint indeed, this is complex :-)
   expect_true(n_colonisations >= 3 && n_branches >= n_colonisations * 2)
   interesting_clade <- ideal_daisie_data[clade_index]
 
-  plot_daisie_data(daisie_data = ideal_daisie_data)
+  expect_silent(plot_daisie_data(daisie_data = ideal_daisie_data))
 
   simplified_ideal_daisie_data <- list()
   simplified_ideal_daisie_data[[1]] <- ideal_daisie_data[[1]]
   simplified_ideal_daisie_data[[2]] <- ideal_daisie_data[[9]]
   daisie_data <- simplified_ideal_daisie_data
-  plot_daisie_data(daisie_data = simplified_ideal_daisie_data)
+  expect_silent(plot_daisie_data(daisie_data = simplified_ideal_daisie_data))
 })
 
 test_that("Search for interesting scenarions", { # nolint indeed, this is complex :-)

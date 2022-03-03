@@ -72,7 +72,15 @@ see \link{daisie_data_colonist_info_to_braching_times_table}
 }
 }
 \description{
-Convert \code{daisie_data} into a tabular format
+Convert \code{daisie_data} into a tabular format.
+}
+\details{
+\code{DAISIE} and \code{DAISIEmailand} data is messy and
+contains multiple instances of data duplication,
+due to, among others, historical reasons.
+
+This function reduces the island history to tidy data
+without duplicates.
 }
 \author{
 Richèl J.C. Bilderbeek

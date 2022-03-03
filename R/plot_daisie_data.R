@@ -19,6 +19,7 @@ plot_daisie_data <- function(daisie_data) {
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   clade_index <- NULL; rm(clade_index) # nolint, fixes warning: no visible binding for global variable
+  colonist_index <- NULL; rm(colonist_index) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
   yend <- NULL; rm(yend) # nolint, fixes warning: no visible binding for global variable
   colonisation_time <- NULL; rm(colonisation_time) # nolint, fixes warning: no visible binding for global variable
@@ -34,6 +35,9 @@ plot_daisie_data <- function(daisie_data) {
       axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank()
+    ) + ggplot2::labs(
+      color = "Colonist species type",
+      shape = "Colonist species type"
     )
   # Sometimes, no colonisations take place, making an island history dull ...
   if (nrow(t$colonists_general) == 0) {
