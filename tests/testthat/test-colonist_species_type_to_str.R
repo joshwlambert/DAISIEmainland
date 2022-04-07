@@ -1,0 +1,12 @@
+test_that("use", {
+  expect_equal(colonist_species_type_to_str("A"), "Colonist after anagenesis")
+  expect_equal(colonist_species_type_to_str("C"), "Colonist after cladogenesis")
+  expect_error(colonist_species_type_to_str(""))
+  expect_error(colonist_species_type_to_str("B"))
+  expect_error(colonist_species_type_to_str(c("A", "V")))
+  expect_error(colonist_species_type_to_str(NA))
+  expect_error(colonist_species_type_to_str(NULL))
+  expect_error(colonist_species_type_to_str(Inf))
+  expect_error(colonist_species_type_to_str(c()))
+  expect_error(colonist_species_type_to_str(list()))
+})

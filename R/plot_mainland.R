@@ -43,7 +43,7 @@ plot_mainland <- function(mainland,
     mainland[[i]]$clade_id <- i
   }
 
-  # Combine the list into one big tibble
+  # Combine the list into one big table
   # x1 = x = = spec_origin_t
   # x2 = xend = spec_ex_t (always conveniently stopped at time 'total_time')
   # y1 = y = unique_species_id                                                  # nolint this is no commented code
