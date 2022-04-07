@@ -1,0 +1,17 @@
+# Simulation data visualisation
+
+```{r}
+# Let the RNG sequences be identical for R versions 3 and 4
+set.seed(
+  4,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+mainland <- DAISIEmainland::sim_mainland(
+  total_time = 1, # total simulation time
+  m = 4, # Number of mainland clades
+  mainland_ex = 1) # mainland extinction rate
+
+DAISIEmainland::plot_mainland(mainland)
+```

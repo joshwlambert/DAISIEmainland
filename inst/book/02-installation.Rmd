@@ -1,0 +1,27 @@
+# Installation
+
+## Installation
+
+You can install the released version of DAISIEmainland from github with:
+
+``` r
+remotes::install_github("joshwlambert/DAISIEmainland")
+```
+
+The `DAISIEmainland` package has several dependencies (the entire list can be
+found in the DESCRIPTION file). Most of these are on CRAN and can be installed with
+`install.packages()`. However, the DAISIE and nLTT packages require more
+up-to-date version than available on CRAN and need to be installed from github:
+
+``` r
+remotes::install_github("rsetienne/DAISIE")
+remotes::install_github("thijsjanzen/nLTT")
+```
+
+Load the DAISIEmainland package with the `library()` function. This will also
+load the package dependencies, specifically the DAISIE package which will be
+used later on for parameter estimation by fitting maximum likelihood models.
+
+```{r load package}
+library(DAISIEmainland)
+```

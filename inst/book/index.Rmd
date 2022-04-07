@@ -1,0 +1,20 @@
+---
+title: "DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland"
+author: "Joshua W. Lambert"
+date: '`r Sys.Date()`'
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+description: "This is an introduction to the DAISIEmainland package."
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# DAISIEmainland tutorial
+
+This document is the long-form documentation of the DAISIEmainland R package.

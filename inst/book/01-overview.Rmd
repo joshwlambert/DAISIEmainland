@@ -1,0 +1,3 @@
+# Overview
+
+The `DAISIEmainland` package is used for simulating an island-mainland system.
