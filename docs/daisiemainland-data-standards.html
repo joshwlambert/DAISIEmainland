@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Overview | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
+  <title>9 DAISIEmainland data standards | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Overview | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
+  <meta property="og:title" content="9 DAISIEmainland data standards | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Overview | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
+  <meta name="twitter:title" content="9 DAISIEmainland data standards | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   
   <meta name="twitter:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="installation.html"/>
+<link rel="prev" href="references.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -173,18 +173,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="overview" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Overview<a href="overview.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The <code>DAISIEmainland</code> package is used for simulating an island-mainland system.</p>
+<div id="daisiemainland-data-standards" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> DAISIEmainland data standards<a href="daisiemainland-data-standards.html#daisiemainland-data-standards" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="reasoning" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Reasoning<a href="daisiemainland-data-standards.html#reasoning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are several data types used in this package. Some of them are novel to
+this package and are not used elsewhere, others derive from other R packages.
+This document provides a standard of how the data types are formatted and which
+functions allow for checking the types.</p>
+<p>To make sure the data types are correctly formatted there is a corresponding
+<code>check_*</code> function for each.</p>
+</div>
+<div id="data-structure-types" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Data structure types<a href="daisiemainland-data-standards.html#data-structure-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="daisie_mainland_data" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> <code>daisie_mainland_data</code><a href="daisiemainland-data-standards.html#daisie_mainland_data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A list of 2 elements, <code>$ideal_multi_daisie_data</code> and
+<code>$empirical_multi_daisie_data</code>.
+Each of these elements is in the format <code>multi_daisie_data</code> (see below). This
+is the output of <code>DAISIEmainland::sim_island_with_mainland()</code>.</p>
+<p>Function to check if it is a <code>daisie_mainland_data</code> is <code>DAISIEmainland::check_daisie_mainland_data()</code></p>
+</div>
+<div id="multi_daisie_data" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> <code>multi_daisie_data</code><a href="daisiemainland-data-standards.html#multi_daisie_data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A list of <code>daisie_data</code> elements (see below). This is the data structure when the
+simulation is run for several replicates.</p>
+<p>Function to check if it is a <code>multi_daisie_data</code> is
+<code>DAISIEmainland::check_multi_daisie_data()</code>.</p>
+</div>
+<div id="daisie_data" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> <code>daisie_data</code><a href="daisiemainland-data-standards.html#daisie_data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A list of n elements. The first element is a list containing the <code>island_age</code>
+with a single numeric, and the number of species <code>not_present</code> on the island.
+This first element in the <code>daisie_data</code> list can optionally include an
+<code>stt_table</code>. The <code>stt_table</code> is a matrix with five columns and a variable number
+of rows. Every subsequent element in the <code>daisie_data</code> list is data on an island
+clade, containing: <code>branching_times</code>, <code>stac</code>, <code>missing_species</code>, and optionally
+information on recolonisations <code>all_colonisations</code>. <code>branching_times</code> is a
+numeric vector containing the island age, time of island colonisation, and an
+subsequent branching times (all given in time before the present).</li>
+</ul>
+<p><code>daisie_data</code> is a single element of a <code>multi_daisie_data</code> list.</p>
+<p>Function to check if it is a <code>daisie_data</code> is
+<code>DAISIEmainland::check_daisie_data()</code>.</p>
+</div>
+<div id="multi_mainland_clade" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> <code>multi_mainland_clade</code><a href="daisiemainland-data-standards.html#multi_mainland_clade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A list of <code>mainland_clade</code> objects. This data type is output from <code>DAISIEmainland::sim_mainland()</code>.</p>
+<p>Function to check if it is a <code>multi_mainland_clade</code> is
+<code>DAISIEmainland::check_multi_mainland_clade()</code>.</p>
+</div>
+<div id="mainland_clade" class="section level3 hasAnchor" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> <code>mainland_clade</code><a href="daisiemainland-data-standards.html#mainland_clade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A data frame of seven columns and one or more rows. The column names are:
+<code>spec_id</code>, <code>main_anc_id</code>, <code>spec_type</code>, <code>branch_code</code>, <code>branch_t</code>,
+<code>spec_origin_t</code>, <code>spec_ex_t</code>. A example of an <code>mainland_clade</code> can be created
+using <code>DAISIEmainland::create_test_mainland_clade()</code>.</p>
+<p>Function to check if it is a mainland_clade is
+<code>DAISIEmainland::check_mainland_clade()</code></p>
+</div>
+<div id="island_tbl" class="section level3 hasAnchor" number="9.2.6">
+<h3><span class="header-section-number">9.2.6</span> <code>island_tbl</code><a href="daisiemainland-data-standards.html#island_tbl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A data frame of the island species output from <code>sim_island</code> and then converted
+to the <code>daisie_data</code> format by <code>create_island</code>. This data type is output from
+<code>DAISIEmainland::sim_island()</code>. A example of an <code>island_tbl</code> can be created
+using <code>DAISIEmainland::create_test_island_tbl()</code>.</li>
+</ul>
+<p>Function to check if it is a <code>island_tbl</code> is
+<code>DAISIEmainland::check_island_tbl()</code>.</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="installation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

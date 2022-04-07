@@ -11,13 +11,16 @@ xfun::in_dir(dir = "inst/book/", expr = bookdown::render_book(
   output_dir = "docs"))
 
 # create docs folder to host book
-dir.create("docs")
+if (isFALSE(dir.exists("docs"))) {
+  dir.create("docs")
+}
 
 # move rendered book from vignettes docs
 file.copy(
   from = list.files("inst/book/docs", full.names = TRUE),
   to = "docs",
-  recursive = TRUE
+  recursive = TRUE,
+  overwrite = TRUE
 )
 
 # delete the docs and _bookdown_files from vignettes directory

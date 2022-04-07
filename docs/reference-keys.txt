@@ -7,3 +7,12 @@ simulation-data-visualisation
 inference-performance
 summary-metrics-visualisation
 references
+daisiemainland-data-standards
+reasoning
+data-structure-types
+daisie_mainland_data
+multi_daisie_data
+daisie_data
+multi_mainland_clade
+mainland_clade
+island_tbl

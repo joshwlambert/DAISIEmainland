@@ -22,7 +22,10 @@ plot_daisie_data <- function(daisie_data) {
   colonist_index <- NULL; rm(colonist_index) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
   yend <- NULL; rm(yend) # nolint, fixes warning: no visible binding for global variable
+  x <- NULL; rm(x) # nolint, fixes warning: no visible binding for global variable
+  xend <- NULL; rm(xend) # nolint, fixes warning: no visible binding for global variable
   colonisation_time <- NULL; rm(colonisation_time) # nolint, fixes warning: no visible binding for global variable
+  colonist_species_type <- NULL; rm(colonist_species_type) # nolint, fixes warning: no visible binding for global variable
 
   t <- DAISIEmainland::daisie_data_to_tables(daisie_data)
 
