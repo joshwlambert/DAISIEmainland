@@ -218,6 +218,8 @@
 #' @param analysis_results A list of `analysis_result` elements which can be
 #' checked with `check_analysis_result`
 #' @param labels A string or vector of strings to label the plotting grid
+#' @param branch_colour A string, either "unique_species_id" or "clade_id" to
+#' colour the branches of the mainland tree(s) with one of the attributes.
 #'
 #' @return Nothing
 #' @author Joshua W. Lambert
@@ -278,6 +280,7 @@ default_params_doc <- function(branch_code,
                                multi_daisie_data,
                                analysis_result,
                                analysis_results,
-                               labels) {
+                               labels,
+                               branch_colour) {
   # Nothing
 }

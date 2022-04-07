@@ -64,6 +64,13 @@ a \code{ggplot2}
 \description{
 Plot the \code{daisie_data}.
 }
+\details{
+Each colonisation and re-colonisation event has its own branching
+dynamics. For clades that start from anagenesis, these are marked as such,
+until their first cladogenesis event. Due to this, it may seem that
+anagenetic clades do not speciate, but this is false: they are plotted
+as such until a (cladegenetic) speciation event.
+}
 \author{
 Richèl J.C. Bilderbeek
 }

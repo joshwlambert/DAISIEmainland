@@ -1,5 +1,13 @@
 #' Plot the `daisie_data`.
 #'
+#' Plot the `daisie_data`.
+#'
+#' Each colonisation and re-colonisation event has its own branching
+#' dynamics. For clades that start from anagenesis, these are marked as such,
+#' until their first cladogenesis event. Due to this, it may seem that
+#' anagenetic clades do not speciate, but this is false: they are plotted
+#' as such until a (cladegenetic) speciation event.
+#'
 #' @inheritParams default_params_doc
 #'
 #' @return a `ggplot2`
@@ -11,8 +19,10 @@ plot_daisie_data <- function(daisie_data) {
   # Fix build warnings
   branching_times <- NULL; rm(branching_times) # nolint, fixes warning: no visible binding for global variable
   clade_index <- NULL; rm(clade_index) # nolint, fixes warning: no visible binding for global variable
+  colonist_index <- NULL; rm(colonist_index) # nolint, fixes warning: no visible binding for global variable
   stac_str <- NULL; rm(stac_str) # nolint, fixes warning: no visible binding for global variable
   yend <- NULL; rm(yend) # nolint, fixes warning: no visible binding for global variable
+  colonisation_time <- NULL; rm(colonisation_time) # nolint, fixes warning: no visible binding for global variable
 
   t <- DAISIEmainland::daisie_data_to_tables(daisie_data)
 
@@ -25,51 +35,112 @@ plot_daisie_data <- function(daisie_data) {
       axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank()
+    ) + ggplot2::labs(
+      color = "Colonist species type",
+      shape = "Colonist species type"
     )
   # Sometimes, no colonisations take place, making an island history dull ...
   if (nrow(t$colonists_general) == 0) {
     return(p)
   }
-
-  # Remove the redundant first branching time, which equals the island
-  # age, as it is already the header
-  are_redundant <- t$colonists_branching_times$branching_times ==
-    t$header$island_age
-  t$colonists_branching_times <- t$colonists_branching_times[!are_redundant, ]
-
   #####################################################
-  # Creata a table for drawing the horizontal branches
+  # Create a table for drawing the horizontal branches
   #####################################################
-  # Note we only have extant species
-  n_branches_per_clade_index <- dplyr::summarise(
-    dplyr::group_by(t$colonists_branching_times, clade_index),
-    n = dplyr::n()
+  n_colonists_per_clade_index <- dplyr::summarise(
+    dplyr::group_by(t$colonisation_times, clade_index),
+    n_colonists = dplyr::n()
   )
-  branches_horizontal <- t$colonists_branching_times
+  n_branches_per_clade_index <- dplyr::summarise(
+    dplyr::group_by(t$colonists_branching_times, clade_index, colonist_index),
+    n = dplyr::n(),
+    .groups = "drop"
+  )
+  t$colonisation_times$y <- t$colonisation_times$colonist_index - 0.5
+
+  branches_horizontal_from_colonists <- data.frame( # nolint indeed a long variable name
+    clade_index = t$colonisation_times$clade_index,
+    colonist_index = t$colonisation_times$colonist_index,
+    x = t$colonisation_times$colonisation_time,
+    xend = 0, # the present
+    y = NA, # unknown now
+    colonist_species_type = t$colonisation_times$colonist_species_type,
+    stringsAsFactors = FALSE
+  )
+  if (nrow(t$colonists_branching_times) == 0) {
+    branches_horizontal_from_branches <- data.frame( # nolint indeed a long variable name
+      clade_index = numeric(0),
+      colonist_index = numeric(0),
+      x = numeric(0),
+      xend = numeric(0),
+      y = numeric(0),
+      colonist_species_type = character(0),
+      stringsAsFactors = FALSE
+    )
+  } else {
+    branches_horizontal_from_branches <- data.frame( # nolint indeed a long variable name
+      clade_index = t$colonists_branching_times$clade_index,
+      colonist_index = t$colonists_branching_times$colonist_index,
+      x = t$colonists_branching_times$branching_times,
+      xend = 0, # the present
+      y = NA, # unknown now
+      colonist_species_type = "Irrelevant",
+      stringsAsFactors = FALSE
+    )
+  }
+  # Add the colonist_species_type to branches_horizontal_from_branches
+  branches_horizontal_from_branches$colonist_species_type <- dplyr::inner_join(
+    dplyr::select(
+      branches_horizontal_from_colonists,
+      clade_index,
+      colonist_index,
+      colonist_species_type
+    ),
+    dplyr::select(
+      branches_horizontal_from_branches,
+      clade_index,
+      colonist_index
+    ),
+    by = c("clade_index", "colonist_index")
+  )$colonist_species_type
+  unsorted_branches_horizontal <- dplyr::bind_rows(
+    branches_horizontal_from_colonists,
+    branches_horizontal_from_branches
+  )
+  branches_horizontal <- dplyr::arrange(
+    unsorted_branches_horizontal,
+    clade_index,
+    colonist_index
+  )
+
   # Determine the y coordinats per clade_index, space out the y's nicely
   branches_horizontal$y <- NA
   cur_clade_index <- 0
+  cur_colonist_index <- 0
   delta_y <- 0
   y <- 0
-  for (row_index in seq_along(branches_horizontal$branching_times)) {
+  for (row_index in seq_len(nrow(branches_horizontal))) {
     this_clade_index <- branches_horizontal$clade_index[row_index]
-    if (this_clade_index != cur_clade_index) {
+    this_colonist_index <- branches_horizontal$colonist_index[row_index]
+    if (this_clade_index != cur_clade_index ||
+      this_colonist_index != cur_colonist_index
+    ) {
       # New clade_index
       cur_clade_index <- this_clade_index
-      delta_y <- 1.0 / n_branches_per_clade_index[
-        n_branches_per_clade_index$clade_index == cur_clade_index, ]$n
+      cur_colonist_index <- this_colonist_index
+      n_branches <- n_branches_per_clade_index[
+        n_branches_per_clade_index$clade_index == cur_clade_index &
+          n_branches_per_clade_index$colonist_index == cur_colonist_index
+        , ]$n
+      if (length(n_branches) == 0) n_branches <- 0
+      delta_y <- 1.0 / (1.0 + n_branches)
       y <- delta_y / 2.0
     } else {
       y <- y + delta_y
     }
     branches_horizontal$y[row_index] <- y
   }
-  # Add the stac_str
-  branches_horizontal <- merge(branches_horizontal, t$colonists_general)
-  testthat::expect_true("branching_times" %in% names(branches_horizontal))
-  testthat::expect_true("clade_index" %in% names(branches_horizontal))
-  testthat::expect_true("y" %in% names(branches_horizontal))
-  testthat::expect_true("stac_str" %in% names(branches_horizontal))
+  branches_horizontal$y <- branches_horizontal$y - 1 +
+    branches_horizontal$colonist_index
   #####################################################
   # Creata a table for drawing the vertical branches
   #####################################################
@@ -78,75 +149,79 @@ plot_daisie_data <- function(daisie_data) {
   # Make vertical branches go to their parents
   # Parents have the y index above it
   # The parent branches will have nonsense values
-  last_row_index <- length(branches_vertical$y)
-  branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
+  last_row_index <- nrow(branches_vertical)
   # Use the branching times of the parents
-  branches_vertical$branching_times <- c(
-    0.0, branches_vertical$branching_times[-last_row_index]
-  )
+  branches_vertical$yend <- c(0.0, branches_vertical$y[-last_row_index])
 
   # Get rid of the parents, i.e. those with the lowest y per clade_index
   branches_vertical <- dplyr::slice(
     dplyr::group_by(
       branches_vertical,
-      clade_index
+      clade_index,
+      colonist_index
     ),
     -which.min(y)
   )
   # Add the stac_str
   branches_vertical <- merge(branches_vertical, t$colonists_general)
-  testthat::expect_true("branching_times" %in% names(branches_vertical))
   testthat::expect_true("clade_index" %in% names(branches_vertical))
   testthat::expect_true("y" %in% names(branches_vertical))
   testthat::expect_true("yend" %in% names(branches_vertical))
   testthat::expect_true("stac_str" %in% names(branches_vertical))
 
 
-
-
-  # Only obtain the colonisations, i.e. the first branching time,
-  # plot these as points with a shape depending on stac_str
-  first_branching_times <- dplyr::slice(
+  colonisations <- dplyr::slice(
     dplyr::group_by(
-      branches_horizontal,
-      clade_index
+      dplyr::select(
+        branches_horizontal,
+        clade_index,
+        colonist_index,
+        x,
+        y,
+        colonist_species_type
+      ),
+      clade_index,
+      colonist_index
     ),
-    which.min(branching_times)
+    which.min(y)
   )
-  colonisations <- merge(first_branching_times, t$colonists_general)
 
   p <- p + ggplot2::geom_point(
     data = colonisations,
     ggplot2::aes(
-      x = branching_times, y = y,
-      shape = stac_str,
-      color = stac_str
+      x = x,
+      y = y,
+      shape = colonist_species_type,
+      color = colonist_species_type
     )
   ) + ggplot2::geom_segment(
     data = branches_horizontal,
     ggplot2::aes(
-      x = branching_times,
+      x = x,
       y = y,
-      xend = 0,
+      xend = xend,
       yend = y,
-      color = stac_str
+      color = colonist_species_type
     )
   ) + ggplot2::geom_segment(
     data = branches_vertical,
     ggplot2::aes(
-      x = branching_times,
+      x = x,
       y = y,
-      xend = branching_times,
+      xend = x,
       yend = yend,
-      color = stac_str
+      color = colonist_species_type
     )
-  )
-  if (nrow(t$colonisation_times) > 0) {
-    p <- p + ggplot2::geom_vline(
-      data = t$colonisation_times,
-      ggplot2::aes(xintercept = colonisation_time),
-      lty = "dashed"
-    )
-  }
+  ) + ggplot2::theme_classic() +
+    ggplot2::theme(
+      axis.text.y = ggplot2::element_blank(),
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.title.y = ggplot2::element_blank(),
+      axis.line.y = ggplot2::element_blank(),
+      strip.background = ggplot2::element_blank(),
+      strip.text = ggplot2::element_blank()
+    ) +
+    ggplot2::facet_grid(clade_index ~ .)
+
   p + ggplot2::facet_grid(clade_index ~ .)
 }

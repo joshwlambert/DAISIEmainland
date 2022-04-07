@@ -4,12 +4,15 @@
 \alias{plot_mainland}
 \title{Plot the simulated mainland.}
 \usage{
-plot_mainland(mainland)
+plot_mainland(mainland, branch_colour = "unique_species_id")
 }
 \arguments{
 \item{mainland}{the evolutionary history of the mainland species,
 as created by \link{sim_mainland}.
 Use \link{plot_mainland} to visualise the that evolutionary history.}
+
+\item{branch_colour}{A string, either "unique_species_id" or "clade_id" to
+colour the branches of the mainland tree(s) with one of the attributes.}
 }
 \value{
 a \code{ggplot2} facet plot, where each facet/row contains

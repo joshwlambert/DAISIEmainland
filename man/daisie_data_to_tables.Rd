@@ -59,18 +59,28 @@ sampled for particular clade (only applicable for endemic clades)
 }}
 }
 \value{
-a list with two elements:
+a list with these elements:
 \itemize{
 \item \code{header}: general parameters of the results
 see \link{daisie_header_to_table}
+\item \code{branching_times}: the branching times
 \item \code{colonists_general}: general info of each clade
 see \link{daisie_data_colonist_info_to_general_table}
 \item \code{colonists_branching_times}: branching times per clade
 see \link{daisie_data_colonist_info_to_braching_times_table}
+\item \code{colonisation_times}: times that the colonisations took place
 }
 }
 \description{
-Convert \code{daisie_data} into a tabular format
+Convert \code{daisie_data} into a tabular format.
+}
+\details{
+\code{DAISIE} and \code{DAISIEmailand} data is messy and
+contains multiple instances of data duplication,
+due to, among others, historical reasons.
+
+This function reduces the island history to tidy data
+without duplicates.
 }
 \author{
 Richèl J.C. Bilderbeek
