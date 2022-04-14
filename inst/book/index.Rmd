@@ -15,6 +15,31 @@ knitr::opts_chunk$set(
 )
 ```
 
-# DAISIEmainland tutorial
+# DAISIEmainland guide {-}
 
-This document is the long-form documentation of the DAISIEmainland R package.
+This guide is the long-form documentation of the DAISIEmainland R package.
+It covers the basics from installation (Section \@ref(Installation)), to the
+algorithm used to simulate the data (Section \@ref(Simulation-algorithm)), and
+the visualisation of the island (Section \@ref(visualise-island)) and of the 
+mainland (Section \@ref(visualise-mainland)). Then there is a demonstration of
+the application of the `DAISIEmainland` package to the inference models in the 
+`DAISIE` package (Section \@ref(Inference-performance)). Lastly, there is the
+visualisation of the summary metrics that can be calculated from simulated data
+(Section \@ref(Summary-metric-visualisation)). 
+
+## Overview {-}
+
+The `DAISIEmainland` package is used for simulating an island-mainland system.
+It primary purpose is the simulation of phylogenetic data sets of island species
+under a realistic model that incorporates evolutionary dynamics on the island and 
+the mainland, from which the island species immigrate. This is in contrast to the
+inference and simulation models included in the `DAISIE` package which do not
+incorporate any changes in the mainland species through time. 
+
+This novel model of mainland dynamics opens up the possibility of testing the 
+robustness of the `DAISIE` likelihood models under various scenarios of mainland
+dynamics. We also include the incomplete sampling of mainland species, either by
+not sampling a known species or an undiscovered species which is present on the 
+mainland but not known. These different sampling regimes are both possible in 
+empirical studies and thus the sensitivity of model performance to these are 
+important for future studies employing the `DAISIE` inference framework.

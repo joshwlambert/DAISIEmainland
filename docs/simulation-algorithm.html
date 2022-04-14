@@ -4,18 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
+  <title>2 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
+  <meta property="og:title" content="2 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
+  <meta name="twitter:title" content="2 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   
   <meta name="twitter:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -23,15 +24,16 @@
 <meta name="author" content="Joshua W. Lambert" />
 
 
-<meta name="date" content="2022-04-07" />
+<meta name="date" content="2022-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="installation.html"/>
-<link rel="next" href="simulation-data-visualisation.html"/>
+<link rel="prev" href="Installation.html"/>
+<link rel="next" href="simulation_data_visualisation.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,9 +51,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,28 +133,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> DAISIEmainland tutorial<span></span></a></li>
-<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview<span></span></a></li>
-<li class="chapter" data-level="3" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>3</b> Installation<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>DAISIEmainland guide</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="installation.html"><a href="installation.html#installation-1"><i class="fa fa-check"></i><b>3.1</b> Installation<span></span></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="simulation-algorithm.html"><a href="simulation-algorithm.html"><i class="fa fa-check"></i><b>4</b> Simulation algorithm<span></span></a></li>
-<li class="chapter" data-level="5" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html"><i class="fa fa-check"></i><b>5</b> Simulation data visualisation<span></span></a></li>
-<li class="chapter" data-level="6" data-path="inference-performance.html"><a href="inference-performance.html"><i class="fa fa-check"></i><b>6</b> Inference performance<span></span></a></li>
-<li class="chapter" data-level="7" data-path="summary-metrics-visualisation.html"><a href="summary-metrics-visualisation.html"><i class="fa fa-check"></i><b>7</b> Summary metrics visualisation<span></span></a></li>
-<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References<span></span></a></li>
-<li class="chapter" data-level="9" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html"><i class="fa fa-check"></i><b>9</b> DAISIEmainland data standards<span></span></a>
+<li class="chapter" data-level="1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a></li>
+<li class="chapter" data-level="2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html"><i class="fa fa-check"></i><b>2</b> Simulation algorithm</a></li>
+<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#reasoning"><i class="fa fa-check"></i><b>9.1</b> Reasoning<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#data-structure-types"><i class="fa fa-check"></i><b>9.2</b> Data structure types<span></span></a>
+<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
+<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a></li>
+<li class="chapter" data-level="5" data-path="Summary-metric-visualisation.html"><a href="Summary-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary metrics visualisation</a></li>
+<li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References</a></li>
+<li class="chapter" data-level="7" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html"><i class="fa fa-check"></i><b>7</b> DAISIEmainland data standards {DAISIEmainland-data-standards}</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#daisie_mainland_data"><i class="fa fa-check"></i><b>9.2.1</b> <code>daisie_mainland_data</code><span></span></a></li>
-<li class="chapter" data-level="9.2.2" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#multi_daisie_data"><i class="fa fa-check"></i><b>9.2.2</b> <code>multi_daisie_data</code><span></span></a></li>
-<li class="chapter" data-level="9.2.3" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#daisie_data"><i class="fa fa-check"></i><b>9.2.3</b> <code>daisie_data</code><span></span></a></li>
-<li class="chapter" data-level="9.2.4" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#multi_mainland_clade"><i class="fa fa-check"></i><b>9.2.4</b> <code>multi_mainland_clade</code><span></span></a></li>
-<li class="chapter" data-level="9.2.5" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#mainland_clade"><i class="fa fa-check"></i><b>9.2.5</b> <code>mainland_clade</code><span></span></a></li>
-<li class="chapter" data-level="9.2.6" data-path="daisiemainland-data-standards.html"><a href="daisiemainland-data-standards.html#island_tbl"><i class="fa fa-check"></i><b>9.2.6</b> <code>island_tbl</code><span></span></a></li>
+<li class="chapter" data-level="7.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#reasoning"><i class="fa fa-check"></i><b>7.1</b> Reasoning</a></li>
+<li class="chapter" data-level="7.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#data-structure-types"><i class="fa fa-check"></i><b>7.2</b> Data structure types</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_mainland_data"><i class="fa fa-check"></i><b>7.2.1</b> <code>daisie_mainland_data</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_daisie_data"><i class="fa fa-check"></i><b>7.2.2</b> <code>multi_daisie_data</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_data"><i class="fa fa-check"></i><b>7.2.3</b> <code>daisie_data</code></a></li>
+<li class="chapter" data-level="7.2.4" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_mainland_clade"><i class="fa fa-check"></i><b>7.2.4</b> <code>multi_mainland_clade</code></a></li>
+<li class="chapter" data-level="7.2.5" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#mainland_clade"><i class="fa fa-check"></i><b>7.2.5</b> <code>mainland_clade</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#island_tbl"><i class="fa fa-check"></i><b>7.2.6</b> <code>island_tbl</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -173,8 +177,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="simulation-algorithm" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Simulation algorithm<a href="simulation-algorithm.html#simulation-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="Simulation-algorithm" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Simulation algorithm</h1>
 <p>The Doob-Gillespie algorithm is a stochastic exact solution that is used to
 simulate continuous-time processes, with several applications
 in biological modelling. The Doob-Gillespie algorithm
@@ -186,44 +190,44 @@ package uses a two-part Doob-Gillespie simulation, one for the mainland
 <p>Firstly the mainland, which is simulated under
 a Moran process, whereby every species extinction is immediately
 followed by a random species giving rise to two new species (speciation).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="simulation-algorithm.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
-<span id="cb4-2"><a href="simulation-algorithm.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
-<span id="cb4-3"><a href="simulation-algorithm.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
-<span id="cb4-4"><a href="simulation-algorithm.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
-<span id="cb4-5"><a href="simulation-algorithm.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
-<span id="cb4-6"><a href="simulation-algorithm.html#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-7"><a href="simulation-algorithm.html#cb4-7" aria-hidden="true" tabindex="-1"></a>mainland <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">sim_mainland</span>(<span class="at">total_time =</span> <span class="dv">1</span>,</span>
-<span id="cb4-8"><a href="simulation-algorithm.html#cb4-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">m =</span> <span class="dv">5</span>,</span>
-<span id="cb4-9"><a href="simulation-algorithm.html#cb4-9" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">mainland_ex =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Simulation-algorithm.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
+<span id="cb4-2"><a href="Simulation-algorithm.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
+<span id="cb4-3"><a href="Simulation-algorithm.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
+<span id="cb4-4"><a href="Simulation-algorithm.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
+<span id="cb4-5"><a href="Simulation-algorithm.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
+<span id="cb4-6"><a href="Simulation-algorithm.html#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="Simulation-algorithm.html#cb4-7" aria-hidden="true" tabindex="-1"></a>mainland <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">sim_mainland</span>(<span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb4-8"><a href="Simulation-algorithm.html#cb4-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">m =</span> <span class="dv">5</span>,</span>
+<span id="cb4-9"><a href="Simulation-algorithm.html#cb4-9" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">mainland_ex =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>The output is a list of five mainland clades.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="simulation-algorithm.html#cb5-1" aria-hidden="true" tabindex="-1"></a>mainland</span>
-<span id="cb5-2"><a href="simulation-algorithm.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb5-3"><a href="simulation-algorithm.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-4"><a href="simulation-algorithm.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1         E           A       NaN     0.0000000 0.7579891</span></span>
-<span id="cb5-5"><a href="simulation-algorithm.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10           1         E          AA 0.7579891     0.7579891 0.9493026</span></span>
-<span id="cb5-6"><a href="simulation-algorithm.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      11           1         C          AB 0.7579891     0.7579891 1.0000000</span></span>
-<span id="cb5-7"><a href="simulation-algorithm.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      12           1         C         AAA 0.9493026     0.9493026 1.0000000</span></span>
-<span id="cb5-8"><a href="simulation-algorithm.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      13           1         C         AAB 0.9493026     0.9493026 1.0000000</span></span>
-<span id="cb5-9"><a href="simulation-algorithm.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-10"><a href="simulation-algorithm.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb5-11"><a href="simulation-algorithm.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-12"><a href="simulation-algorithm.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       2           2         E           A       NaN     0.0000000 0.1789954</span></span>
-<span id="cb5-13"><a href="simulation-algorithm.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       8           2         C          AA 0.1789954     0.1789954 1.0000000</span></span>
-<span id="cb5-14"><a href="simulation-algorithm.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       9           2         E          AB 0.1789954     0.1789954 0.7579891</span></span>
-<span id="cb5-15"><a href="simulation-algorithm.html#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-16"><a href="simulation-algorithm.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb5-17"><a href="simulation-algorithm.html#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-18"><a href="simulation-algorithm.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3           3         E           A       NaN     0.0000000 0.1510364</span></span>
-<span id="cb5-19"><a href="simulation-algorithm.html#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6           3         E          AA 0.1510364     0.1510364 0.9493026</span></span>
-<span id="cb5-20"><a href="simulation-algorithm.html#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       7           3         C          AB 0.1510364     0.1510364 1.0000000</span></span>
-<span id="cb5-21"><a href="simulation-algorithm.html#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-22"><a href="simulation-algorithm.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb5-23"><a href="simulation-algorithm.html#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-24"><a href="simulation-algorithm.html#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       4           4         E           A      NaN             0 0.1510364</span></span>
-<span id="cb5-25"><a href="simulation-algorithm.html#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-26"><a href="simulation-algorithm.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[5]]</span></span>
-<span id="cb5-27"><a href="simulation-algorithm.html#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-28"><a href="simulation-algorithm.html#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5           5         E           A      NaN             0 0.1789954</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Simulation-algorithm.html#cb5-1" aria-hidden="true" tabindex="-1"></a>mainland</span>
+<span id="cb5-2"><a href="Simulation-algorithm.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb5-3"><a href="Simulation-algorithm.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
+<span id="cb5-4"><a href="Simulation-algorithm.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1         E           A       NaN     0.0000000 0.7579891</span></span>
+<span id="cb5-5"><a href="Simulation-algorithm.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10           1         E          AA 0.7579891     0.7579891 0.9493026</span></span>
+<span id="cb5-6"><a href="Simulation-algorithm.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      11           1         C          AB 0.7579891     0.7579891 1.0000000</span></span>
+<span id="cb5-7"><a href="Simulation-algorithm.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      12           1         C         AAA 0.9493026     0.9493026 1.0000000</span></span>
+<span id="cb5-8"><a href="Simulation-algorithm.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      13           1         C         AAB 0.9493026     0.9493026 1.0000000</span></span>
+<span id="cb5-9"><a href="Simulation-algorithm.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-10"><a href="Simulation-algorithm.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb5-11"><a href="Simulation-algorithm.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
+<span id="cb5-12"><a href="Simulation-algorithm.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       2           2         E           A       NaN     0.0000000 0.1789954</span></span>
+<span id="cb5-13"><a href="Simulation-algorithm.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       8           2         C          AA 0.1789954     0.1789954 1.0000000</span></span>
+<span id="cb5-14"><a href="Simulation-algorithm.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       9           2         E          AB 0.1789954     0.1789954 0.7579891</span></span>
+<span id="cb5-15"><a href="Simulation-algorithm.html#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-16"><a href="Simulation-algorithm.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb5-17"><a href="Simulation-algorithm.html#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
+<span id="cb5-18"><a href="Simulation-algorithm.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3           3         E           A       NaN     0.0000000 0.1510364</span></span>
+<span id="cb5-19"><a href="Simulation-algorithm.html#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6           3         E          AA 0.1510364     0.1510364 0.9493026</span></span>
+<span id="cb5-20"><a href="Simulation-algorithm.html#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       7           3         C          AB 0.1510364     0.1510364 1.0000000</span></span>
+<span id="cb5-21"><a href="Simulation-algorithm.html#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-22"><a href="Simulation-algorithm.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb5-23"><a href="Simulation-algorithm.html#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
+<span id="cb5-24"><a href="Simulation-algorithm.html#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       4           4         E           A      NaN             0 0.1510364</span></span>
+<span id="cb5-25"><a href="Simulation-algorithm.html#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-26"><a href="Simulation-algorithm.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[5]]</span></span>
+<span id="cb5-27"><a href="Simulation-algorithm.html#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
+<span id="cb5-28"><a href="Simulation-algorithm.html#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5           5         E           A      NaN             0 0.1789954</span></span></code></pre></div>
 <p>The island Doob-Gillespie algorithm is altered to accommodate the dynamic
 mainland pool. The time-steps are bounded to not jump over changes on the
 mainland to ensure the present state of the system (i.e. species on mainland)
@@ -231,19 +235,19 @@ is always up-to-date. The algorithm checks whether any changes have occurs on
 the mainland since the last time step and if so the system is updated and the
 returned to the time at which the mainland last changed. This is valid owing to
 the Markov (memoryless) property of the Doob-Gillespie algorithm.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="simulation-algorithm.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
-<span id="cb6-2"><a href="simulation-algorithm.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
-<span id="cb6-3"><a href="simulation-algorithm.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
-<span id="cb6-4"><a href="simulation-algorithm.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
-<span id="cb6-5"><a href="simulation-algorithm.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
-<span id="cb6-6"><a href="simulation-algorithm.html#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="simulation-algorithm.html#cb6-7" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">sim_island</span>(</span>
-<span id="cb6-8"><a href="simulation-algorithm.html#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
-<span id="cb6-9"><a href="simulation-algorithm.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb6-10"><a href="simulation-algorithm.html#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]],</span>
-<span id="cb6-11"><a href="simulation-algorithm.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
-<span id="cb6-12"><a href="simulation-algorithm.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span></span>
-<span id="cb6-13"><a href="simulation-algorithm.html#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Simulation-algorithm.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
+<span id="cb6-2"><a href="Simulation-algorithm.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
+<span id="cb6-3"><a href="Simulation-algorithm.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
+<span id="cb6-4"><a href="Simulation-algorithm.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
+<span id="cb6-5"><a href="Simulation-algorithm.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
+<span id="cb6-6"><a href="Simulation-algorithm.html#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="Simulation-algorithm.html#cb6-7" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">sim_island</span>(</span>
+<span id="cb6-8"><a href="Simulation-algorithm.html#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb6-9"><a href="Simulation-algorithm.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb6-10"><a href="Simulation-algorithm.html#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]],</span>
+<span id="cb6-11"><a href="Simulation-algorithm.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
+<span id="cb6-12"><a href="Simulation-algorithm.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span></span>
+<span id="cb6-13"><a href="Simulation-algorithm.html#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>For both the island and mainland Doob-Gillespie algorithms time steps are
 sampled from an exponential distribution with rate:</p>
 <p><span class="math display">\[X = \lambda e ^{-\lambda x}, \text{ where } \lambda = \sum_j r_j\]</span></p>
@@ -270,8 +274,8 @@ estimation when the empirists does not have access to all the data.</p>
           </div>
         </div>
       </div>
-<a href="installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simulation-data-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="Installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulation_data_visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,4 +1,4 @@
-# Summary metrics visualisation
+# Summary metrics visualisation {#Summary-metric-visualisation}
 
 ```{r}
 island <- DAISIEmainland::sim_island_with_mainland(

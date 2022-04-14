@@ -1,6 +1,4 @@
-# Installation
-
-## Installation
+# Installation {#Installation}
 
 You can install the released version of DAISIEmainland from github with:
 
@@ -25,3 +23,6 @@ used later on for parameter estimation by fitting maximum likelihood models.
 ```{r load package}
 library(DAISIEmainland)
 ```
+
+`DAISIEmainland` is currently not hosted on CRAN and thus cannot be installed
+using `install.packages()`.

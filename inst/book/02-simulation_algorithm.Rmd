@@ -1,4 +1,4 @@
-# Simulation algorithm
+# Simulation algorithm {#Simulation-algorithm}
 
 The Doob-Gillespie algorithm is a stochastic exact solution that is used to
 simulate continuous-time processes, with several applications 

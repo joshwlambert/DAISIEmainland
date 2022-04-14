@@ -1,4 +1,4 @@
-# Inference performance
+# Inference performance {#Inference-performance}
 
 First, we simulate an island. This will produce phylogenetic data for a single
 island. In an analysis many more replicates (e.g. 1,000) would be required to 

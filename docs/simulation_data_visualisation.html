@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
+  <title>3 Simulation data visualisation | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
+  <meta property="og:title" content="3 Simulation data visualisation | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
+  <meta name="twitter:title" content="3 Simulation data visualisation | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   
   <meta name="twitter:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="Installation.html"/>
+<link rel="prev" href="Simulation-algorithm.html"/>
+<link rel="next" href="Inference-performance.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -177,37 +177,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</h1>
-<p class="author"><em>Joshua W. Lambert</em></p>
-<p class="date"><em>2022-04-14</em></p>
+<div id="simulation_data_visualisation" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Simulation data visualisation</h1>
+<div id="visualise-mainland" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Visualise mainland</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simulation_data_visualisation.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
+<span id="cb7-2"><a href="simulation_data_visualisation.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>,</span>
+<span id="cb7-3"><a href="simulation_data_visualisation.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
+<span id="cb7-4"><a href="simulation_data_visualisation.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
+<span id="cb7-5"><a href="simulation_data_visualisation.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
+<span id="cb7-6"><a href="simulation_data_visualisation.html#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="simulation_data_visualisation.html#cb7-7" aria-hidden="true" tabindex="-1"></a>mainland <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">sim_mainland</span>(</span>
+<span id="cb7-8"><a href="simulation_data_visualisation.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>, <span class="co"># total simulation time</span></span>
+<span id="cb7-9"><a href="simulation_data_visualisation.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">4</span>, <span class="co"># Number of mainland clades</span></span>
+<span id="cb7-10"><a href="simulation_data_visualisation.html#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>) <span class="co"># mainland extinction rate</span></span>
+<span id="cb7-11"><a href="simulation_data_visualisation.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="simulation_data_visualisation.html#cb7-12" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
-<div id="daisiemainland-guide" class="section level1 unnumbered">
-<h1>DAISIEmainland guide</h1>
-<p>This guide is the long-form documentation of the DAISIEmainland R package.
-It covers the basics from installation (Section <a href="Installation.html#Installation">1</a>), to the
-algorithm used to simulate the data (Section <a href="Simulation-algorithm.html#Simulation-algorithm">2</a>), and
-the visualisation of the island (Section <a href="simulation_data_visualisation.html#visualise-island">3.2</a>) and of the
-mainland (Section <a href="simulation_data_visualisation.html#visualise-mainland">3.1</a>). Then there is a demonstration of
-the application of the <code>DAISIEmainland</code> package to the inference models in the
-<code>DAISIE</code> package (Section <a href="Inference-performance.html#Inference-performance">4</a>). Lastly, there is the
-visualisation of the summary metrics that can be calculated from simulated data
-(Section <a href="Summary-metric-visualisation.html#Summary-metric-visualisation">5</a>).</p>
-<div id="overview" class="section level2 unnumbered">
-<h2>Overview</h2>
-<p>The <code>DAISIEmainland</code> package is used for simulating an island-mainland system.
-It primary purpose is the simulation of phylogenetic data sets of island species
-under a realistic model that incorporates evolutionary dynamics on the island and
-the mainland, from which the island species immigrate. This is in contrast to the
-inference and simulation models included in the <code>DAISIE</code> package which do not
-incorporate any changes in the mainland species through time.</p>
-<p>This novel model of mainland dynamics opens up the possibility of testing the
-robustness of the <code>DAISIE</code> likelihood models under various scenarios of mainland
-dynamics. We also include the incomplete sampling of mainland species, either by
-not sampling a known species or an undiscovered species which is present on the
-mainland but not known. These different sampling regimes are both possible in
-empirical studies and thus the sensitivity of model performance to these are
-important for future studies employing the <code>DAISIE</code> inference framework.</p>
+<div id="visualise-island" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Visualise island</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="simulation_data_visualisation.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
+<span id="cb8-2"><a href="simulation_data_visualisation.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
+<span id="cb8-3"><a href="simulation_data_visualisation.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
+<span id="cb8-4"><a href="simulation_data_visualisation.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
+<span id="cb8-5"><a href="simulation_data_visualisation.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
+<span id="cb8-6"><a href="simulation_data_visualisation.html#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="simulation_data_visualisation.html#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="simulation_data_visualisation.html#cb8-8" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data <span class="ot">&lt;-</span> <span class="fu">sim_island_with_mainland</span>(</span>
+<span id="cb8-9"><a href="simulation_data_visualisation.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb8-10"><a href="simulation_data_visualisation.html#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">10</span>,</span>
+<span id="cb8-11"><a href="simulation_data_visualisation.html#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="dv">1</span>),</span>
+<span id="cb8-12"><a href="simulation_data_visualisation.html#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>,</span>
+<span id="cb8-13"><a href="simulation_data_visualisation.html#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
+<span id="cb8-14"><a href="simulation_data_visualisation.html#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;undiscovered&quot;</span>,</span>
+<span id="cb8-15"><a href="simulation_data_visualisation.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> <span class="dv">10</span>,</span>
+<span id="cb8-16"><a href="simulation_data_visualisation.html#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-17"><a href="simulation_data_visualisation.html#cb8-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-18"><a href="simulation_data_visualisation.html#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="simulation_data_visualisation.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_daisie_mainland_data</span>(</span>
+<span id="cb8-20"><a href="simulation_data_visualisation.html#cb8-20" aria-hidden="true" tabindex="-1"></a>  daisie_mainland_data,</span>
+<span id="cb8-21"><a href="simulation_data_visualisation.html#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicate_index =</span> <span class="dv">1</span></span>
+<span id="cb8-22"><a href="simulation_data_visualisation.html#cb8-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -216,8 +228,8 @@ important for future studies employing the <code>DAISIE</code> inference framewo
           </div>
         </div>
       </div>
-
-<a href="Installation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="Simulation-algorithm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Inference-performance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
