@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Simulation data visualisation | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Simulation data visualisation | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Joshua W. Lambert" />
 
 
-<meta name="date" content="2022-04-14" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="Simulation-algorithm.html"/>
 <link rel="next" href="Inference-performance.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -133,31 +132,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>DAISIEmainland guide</a>
+<li><a href="index.html#daisiemainland-guide">DAISIEmainland guide<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li><a href="index.html#overview">Overview<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a></li>
-<li class="chapter" data-level="2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html"><i class="fa fa-check"></i><b>2</b> Simulation algorithm</a></li>
-<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1</b> Installation<span></span></a></li>
+<li class="chapter" data-level="2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html"><i class="fa fa-check"></i><b>2</b> Simulation algorithm<span></span></a></li>
+<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a></li>
-<li class="chapter" data-level="5" data-path="Summary-metric-visualisation.html"><a href="Summary-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary metrics visualisation</a></li>
-<li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References</a></li>
-<li class="chapter" data-level="7" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html"><i class="fa fa-check"></i><b>7</b> DAISIEmainland data standards {DAISIEmainland-data-standards}</a>
+<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance<span></span></a></li>
+<li class="chapter" data-level="5" data-path="Summary-metric-visualisation.html"><a href="Summary-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary metrics visualisation<span></span></a></li>
+<li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References<span></span></a></li>
+<li class="chapter" data-level="7" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html"><i class="fa fa-check"></i><b>7</b> DAISIEmainland data standards {DAISIEmainland-data-standards}<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#reasoning"><i class="fa fa-check"></i><b>7.1</b> Reasoning</a></li>
-<li class="chapter" data-level="7.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#data-structure-types"><i class="fa fa-check"></i><b>7.2</b> Data structure types</a>
+<li class="chapter" data-level="7.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#reasoning"><i class="fa fa-check"></i><b>7.1</b> Reasoning<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#data-structure-types"><i class="fa fa-check"></i><b>7.2</b> Data structure types<span></span></a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_mainland_data"><i class="fa fa-check"></i><b>7.2.1</b> <code>daisie_mainland_data</code></a></li>
-<li class="chapter" data-level="7.2.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_daisie_data"><i class="fa fa-check"></i><b>7.2.2</b> <code>multi_daisie_data</code></a></li>
-<li class="chapter" data-level="7.2.3" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_data"><i class="fa fa-check"></i><b>7.2.3</b> <code>daisie_data</code></a></li>
-<li class="chapter" data-level="7.2.4" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_mainland_clade"><i class="fa fa-check"></i><b>7.2.4</b> <code>multi_mainland_clade</code></a></li>
-<li class="chapter" data-level="7.2.5" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#mainland_clade"><i class="fa fa-check"></i><b>7.2.5</b> <code>mainland_clade</code></a></li>
-<li class="chapter" data-level="7.2.6" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#island_tbl"><i class="fa fa-check"></i><b>7.2.6</b> <code>island_tbl</code></a></li>
+<li class="chapter" data-level="7.2.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_mainland_data"><i class="fa fa-check"></i><b>7.2.1</b> <code>daisie_mainland_data</code><span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_daisie_data"><i class="fa fa-check"></i><b>7.2.2</b> <code>multi_daisie_data</code><span></span></a></li>
+<li class="chapter" data-level="7.2.3" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_data"><i class="fa fa-check"></i><b>7.2.3</b> <code>daisie_data</code><span></span></a></li>
+<li class="chapter" data-level="7.2.4" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_mainland_clade"><i class="fa fa-check"></i><b>7.2.4</b> <code>multi_mainland_clade</code><span></span></a></li>
+<li class="chapter" data-level="7.2.5" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#mainland_clade"><i class="fa fa-check"></i><b>7.2.5</b> <code>mainland_clade</code><span></span></a></li>
+<li class="chapter" data-level="7.2.6" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#island_tbl"><i class="fa fa-check"></i><b>7.2.6</b> <code>island_tbl</code><span></span></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -177,10 +176,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="simulation_data_visualisation" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Simulation data visualisation</h1>
-<div id="visualise-mainland" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Visualise mainland</h2>
+<div id="simulation_data_visualisation" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Simulation data visualisation<a href="simulation_data_visualisation.html#simulation_data_visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="visualise-mainland" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Visualise mainland<a href="simulation_data_visualisation.html#visualise-mainland" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simulation_data_visualisation.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
 <span id="cb7-2"><a href="simulation_data_visualisation.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>,</span>
 <span id="cb7-3"><a href="simulation_data_visualisation.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
@@ -193,10 +192,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-10"><a href="simulation_data_visualisation.html#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>) <span class="co"># mainland extinction rate</span></span>
 <span id="cb7-11"><a href="simulation_data_visualisation.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="simulation_data_visualisation.html#cb7-12" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
-<div id="visualise-island" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Visualise island</h2>
+<div id="visualise-island" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Visualise island<a href="simulation_data_visualisation.html#visualise-island" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="simulation_data_visualisation.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
 <span id="cb8-2"><a href="simulation_data_visualisation.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
 <span id="cb8-3"><a href="simulation_data_visualisation.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
@@ -219,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-20"><a href="simulation_data_visualisation.html#cb8-20" aria-hidden="true" tabindex="-1"></a>  daisie_mainland_data,</span>
 <span id="cb8-21"><a href="simulation_data_visualisation.html#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicate_index =</span> <span class="dv">1</span></span>
 <span id="cb8-22"><a href="simulation_data_visualisation.html#cb8-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 </div>
 </div>

@@ -1,0 +1,16 @@
+book_filename: "DAISIEmainland_guide"
+delete_merged_file: true
+rmd_subdir: "inst/book/"
+output_dir: "../../docs/"
+rmd_files:
+  [
+    "index.Rmd",
+    "installation.Rmd",
+    "simulation_algorithm.Rmd",
+    "simulation_data_visualisation.Rmd",
+    "inference_performance.Rmd",
+    "summary_metrics_visualisation.Rmd",
+    "references.Rmd",
+    "data_standards.Rmd"
+  ]
+

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Inference performance | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Inference performance | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Joshua W. Lambert" />
 
 
-<meta name="date" content="2022-04-14" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="simulation_data_visualisation.html"/>
 <link rel="next" href="Summary-metric-visualisation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -133,31 +132,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>DAISIEmainland guide</a>
+<li><a href="index.html#daisiemainland-guide">DAISIEmainland guide<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li><a href="index.html#overview">Overview<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a></li>
-<li class="chapter" data-level="2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html"><i class="fa fa-check"></i><b>2</b> Simulation algorithm</a></li>
-<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1</b> Installation<span></span></a></li>
+<li class="chapter" data-level="2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html"><i class="fa fa-check"></i><b>2</b> Simulation algorithm<span></span></a></li>
+<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a></li>
-<li class="chapter" data-level="5" data-path="Summary-metric-visualisation.html"><a href="Summary-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary metrics visualisation</a></li>
-<li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References</a></li>
-<li class="chapter" data-level="7" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html"><i class="fa fa-check"></i><b>7</b> DAISIEmainland data standards {DAISIEmainland-data-standards}</a>
+<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance<span></span></a></li>
+<li class="chapter" data-level="5" data-path="Summary-metric-visualisation.html"><a href="Summary-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary metrics visualisation<span></span></a></li>
+<li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References<span></span></a></li>
+<li class="chapter" data-level="7" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html"><i class="fa fa-check"></i><b>7</b> DAISIEmainland data standards {DAISIEmainland-data-standards}<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#reasoning"><i class="fa fa-check"></i><b>7.1</b> Reasoning</a></li>
-<li class="chapter" data-level="7.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#data-structure-types"><i class="fa fa-check"></i><b>7.2</b> Data structure types</a>
+<li class="chapter" data-level="7.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#reasoning"><i class="fa fa-check"></i><b>7.1</b> Reasoning<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#data-structure-types"><i class="fa fa-check"></i><b>7.2</b> Data structure types<span></span></a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_mainland_data"><i class="fa fa-check"></i><b>7.2.1</b> <code>daisie_mainland_data</code></a></li>
-<li class="chapter" data-level="7.2.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_daisie_data"><i class="fa fa-check"></i><b>7.2.2</b> <code>multi_daisie_data</code></a></li>
-<li class="chapter" data-level="7.2.3" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_data"><i class="fa fa-check"></i><b>7.2.3</b> <code>daisie_data</code></a></li>
-<li class="chapter" data-level="7.2.4" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_mainland_clade"><i class="fa fa-check"></i><b>7.2.4</b> <code>multi_mainland_clade</code></a></li>
-<li class="chapter" data-level="7.2.5" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#mainland_clade"><i class="fa fa-check"></i><b>7.2.5</b> <code>mainland_clade</code></a></li>
-<li class="chapter" data-level="7.2.6" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#island_tbl"><i class="fa fa-check"></i><b>7.2.6</b> <code>island_tbl</code></a></li>
+<li class="chapter" data-level="7.2.1" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_mainland_data"><i class="fa fa-check"></i><b>7.2.1</b> <code>daisie_mainland_data</code><span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_daisie_data"><i class="fa fa-check"></i><b>7.2.2</b> <code>multi_daisie_data</code><span></span></a></li>
+<li class="chapter" data-level="7.2.3" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#daisie_data"><i class="fa fa-check"></i><b>7.2.3</b> <code>daisie_data</code><span></span></a></li>
+<li class="chapter" data-level="7.2.4" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#multi_mainland_clade"><i class="fa fa-check"></i><b>7.2.4</b> <code>multi_mainland_clade</code><span></span></a></li>
+<li class="chapter" data-level="7.2.5" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#mainland_clade"><i class="fa fa-check"></i><b>7.2.5</b> <code>mainland_clade</code><span></span></a></li>
+<li class="chapter" data-level="7.2.6" data-path="daisiemainland-data-standards-daisiemainland-data-standards.html"><a href="daisiemainland-data-standards-daisiemainland-data-standards.html#island_tbl"><i class="fa fa-check"></i><b>7.2.6</b> <code>island_tbl</code><span></span></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -177,8 +176,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Inference-performance" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Inference performance</h1>
+<div id="Inference-performance" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Inference performance<a href="Inference-performance.html#Inference-performance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>First, we simulate an island. This will produce phylogenetic data for a single
 island. In an analysis many more replicates (e.g. 1,000) would be required to
 account for the stochastic differences between replicates given the simulation
@@ -406,7 +405,7 @@ estimation to a sensible tolerance.</p>
 <span id="cb12-155"><a href="Inference-performance.html#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122 2.46889382770414 2.90138833062897 57.044207171522 0.156728895999088 0.174097345185236 -30.211222019738 reflect </span></span>
 <span id="cb12-156"><a href="Inference-performance.html#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123 2.46889382770414 2.90138833062897 57.044207171522 0.156728895999088 0.174097345185236 -30.211222019738 reflect </span></span>
 <span id="cb12-157"><a href="Inference-performance.html#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 124 2.46889382770414 2.90138833062897 57.044207171522 0.156728895999088 0.174097345185236 -30.211222019738 reflect </span></span>
-<span id="cb12-158"><a href="Inference-performance.html#cb12-158" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 125 2.46941718399189 3.04810908659241 63.9998789359778 0.158802701992272 0.0951882483524411 -30.2099844516208 reflect </span></span>
+<span id="cb12-158"><a href="Inference-performance.html#cb12-158" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 125 2.46941718399189 3.04810908659241 63.9998789359778 0.158802701992272 0.0951882483524411 -30.2099844516207 reflect </span></span>
 <span id="cb12-159"><a href="Inference-performance.html#cb12-159" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 126 2.53962753315221 3.09829530224066 60.4541863654949 0.165444986677251 0.110358326595175 -30.2070350865621 reflect </span></span>
 <span id="cb12-160"><a href="Inference-performance.html#cb12-160" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 127 2.53962753315221 3.09829530224066 60.4541863654949 0.165444986677251 0.110358326595175 -30.2070350865621 reflect </span></span>
 <span id="cb12-161"><a href="Inference-performance.html#cb12-161" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 128 2.39558343189443 2.89439393409896 61.7234334280671 0.158092942051363 0.110495651348691 -30.2027652180491 expand </span></span>
@@ -940,7 +939,7 @@ estimation to a sensible tolerance.</p>
 <span id="cb12-689"><a href="Inference-performance.html#cb12-689" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 181 2.62549902439776 3.556330971568 73.9729951393774 0.189745915249854 0.0002901576143168 -29.5090570563899 contract inside </span></span>
 <span id="cb12-690"><a href="Inference-performance.html#cb12-690" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 182 2.62045573249387 3.56089278752773 74.195369006746 0.190281592230086 0.000128234322772826 -29.5090518429816 reflect </span></span>
 <span id="cb12-691"><a href="Inference-performance.html#cb12-691" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 183 2.62045573249387 3.56089278752773 74.195369006746 0.190281592230086 0.000128234322772826 -29.5090518429816 contract inside </span></span>
-<span id="cb12-692"><a href="Inference-performance.html#cb12-692" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 184 2.62686773005951 3.56567878937476 74.2104068641923 0.190056547657829 0.000371202068035351 -29.5090493903393 reflect </span></span>
+<span id="cb12-692"><a href="Inference-performance.html#cb12-692" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 184 2.62686773005951 3.56567878937476 74.2104068641923 0.190056547657829 0.000371202068035351 -29.5090493903394 reflect </span></span>
 <span id="cb12-693"><a href="Inference-performance.html#cb12-693" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 185 2.62402571247419 3.5612412806281 73.9925582456949 0.189896999959623 6.88772959907565e-05 -29.5090224293828 reflect </span></span>
 <span id="cb12-694"><a href="Inference-performance.html#cb12-694" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 186 2.6322161384086 3.56058123436833 74.2927676930834 0.189866163748024 8.93874080671358e-05 -29.5090024847197 expand </span></span>
 <span id="cb12-695"><a href="Inference-performance.html#cb12-695" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 187 2.6322161384086 3.56058123436833 74.2927676930834 0.189866163748024 8.93874080671358e-05 -29.5090024847197 contract inside </span></span>
@@ -1003,12 +1002,12 @@ estimation to a sensible tolerance.</p>
 <span id="cb12-752"><a href="Inference-performance.html#cb12-752" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 244 2.63121673421658 3.56647345742824 74.5634904841346 0.190280592742163 5.58562451200038e-07 -29.5089675594201 reflect </span></span>
 <span id="cb12-753"><a href="Inference-performance.html#cb12-753" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 245 2.63223705899672 3.56811355846427 74.6765807701705 0.190379313604332 6.25079311435483e-06 -29.508967253917 expand </span></span>
 <span id="cb12-754"><a href="Inference-performance.html#cb12-754" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 246 2.63223705899672 3.56811355846427 74.6765807701705 0.190379313604332 6.25079311435483e-06 -29.508967253917 reflect </span></span>
-<span id="cb12-755"><a href="Inference-performance.html#cb12-755" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 247 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908051 expand </span></span>
-<span id="cb12-756"><a href="Inference-performance.html#cb12-756" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 248 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908051 contract inside </span></span>
-<span id="cb12-757"><a href="Inference-performance.html#cb12-757" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 249 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908051 reflect </span></span>
-<span id="cb12-758"><a href="Inference-performance.html#cb12-758" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 250 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908051 contract inside </span></span>
-<span id="cb12-759"><a href="Inference-performance.html#cb12-759" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 251 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908051 reflect </span></span>
-<span id="cb12-760"><a href="Inference-performance.html#cb12-760" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 252 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908051 reflect </span></span>
+<span id="cb12-755"><a href="Inference-performance.html#cb12-755" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 247 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908052 expand </span></span>
+<span id="cb12-756"><a href="Inference-performance.html#cb12-756" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 248 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908052 contract inside </span></span>
+<span id="cb12-757"><a href="Inference-performance.html#cb12-757" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 249 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908052 reflect </span></span>
+<span id="cb12-758"><a href="Inference-performance.html#cb12-758" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 250 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908052 contract inside </span></span>
+<span id="cb12-759"><a href="Inference-performance.html#cb12-759" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 251 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908052 reflect </span></span>
+<span id="cb12-760"><a href="Inference-performance.html#cb12-760" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 252 2.6327301957247 3.5683071238147 74.7035048638532 0.190389245528273 1.25249570486106e-06 -29.5089669908052 reflect </span></span>
 <span id="cb12-761"><a href="Inference-performance.html#cb12-761" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 253 2.63252269652119 3.5688864315852 74.7039672212626 0.190405296882619 3.22266822930597e-06 -29.5089664184469 expand </span></span>
 <span id="cb12-762"><a href="Inference-performance.html#cb12-762" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 254 2.63252269652119 3.5688864315852 74.7039672212626 0.190405296882619 3.22266822930597e-06 -29.5089664184469 contract inside </span></span>
 <span id="cb12-763"><a href="Inference-performance.html#cb12-763" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 255 2.63252269652119 3.5688864315852 74.7039672212626 0.190405296882619 3.22266822930597e-06 -29.5089664184469 contract inside </span></span>

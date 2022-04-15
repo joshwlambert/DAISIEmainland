@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 # DAISIEmainland guide {-}
 
-This guide is the long-form documentation of the DAISIEmainland R package.
+This guide is the long-form documentation of the `DAISIEmainland` R package.
 It covers the basics from installation (Section \@ref(Installation)), to the
 algorithm used to simulate the data (Section \@ref(Simulation-algorithm)), and
 the visualisation of the island (Section \@ref(visualise-island)) and of the 
@@ -43,3 +43,11 @@ not sampling a known species or an undiscovered species which is present on the
 mainland but not known. These different sampling regimes are both possible in 
 empirical studies and thus the sensitivity of model performance to these are 
 important for future studies employing the `DAISIE` inference framework.
+
+There is an appendix (Section \@ref(DAISIEmainland-data-standards)) which
+contains details of the data structures used throughout the package, some of 
+which are novel to this package and others are inherited from other packages 
+(e.g. `DAISIE`). This appendix is meant for those looking to contribute and 
+extend the `DAISIEmainland` package by explaining when certain data structures 
+are used. If you are reading this guide to understand the general functionality
+of the package this section can be ignored.
