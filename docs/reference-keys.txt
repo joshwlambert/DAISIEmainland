@@ -1,5 +1,7 @@
 Installation
 Simulation-algorithm
+Mainland-simulation
+Island-simulation
 simulation_data_visualisation
 visualise-mainland
 visualise-island
@@ -9,9 +11,9 @@ References
 DAISIEmainland-data-standards
 reasoning
 data-structure-types
-daisie_mainland_data
-multi_daisie_data
-daisie_data
-multi_mainland_clade
-mainland_clade
-island_tbl
+daisie-mainland-data
+multi-daisie-data
+daisie-data
+multi-mainland-clade
+mainland-clade
+island-tbl

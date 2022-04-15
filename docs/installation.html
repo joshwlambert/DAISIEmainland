@@ -159,7 +159,11 @@ div.csl-indent {
 <li><a href="index.html#overview">Overview<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1</b> Installation<span></span></a></li>
-<li class="chapter" data-level="2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html"><i class="fa fa-check"></i><b>2</b> Simulation algorithm<span></span></a></li>
+<li class="chapter" data-level="2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html"><i class="fa fa-check"></i><b>2</b> Simulation algorithm<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Mainland-simulation"><i class="fa fa-check"></i><b>2.1</b> Mainland simulation<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Island-simulation"><i class="fa fa-check"></i><b>2.2</b> Island simulation<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation<span></span></a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland<span></span></a></li>
@@ -174,12 +178,12 @@ div.csl-indent {
 <li class="chapter" data-level="A.1" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#reasoning"><i class="fa fa-check"></i><b>A.1</b> Reasoning<span></span></a></li>
 <li class="chapter" data-level="A.2" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#data-structure-types"><i class="fa fa-check"></i><b>A.2</b> Data structure types<span></span></a>
 <ul>
-<li class="chapter" data-level="A.2.1" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#daisie_mainland_data"><i class="fa fa-check"></i><b>A.2.1</b> <code>daisie_mainland_data</code><span></span></a></li>
-<li class="chapter" data-level="A.2.2" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#multi_daisie_data"><i class="fa fa-check"></i><b>A.2.2</b> <code>multi_daisie_data</code><span></span></a></li>
-<li class="chapter" data-level="A.2.3" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#daisie_data"><i class="fa fa-check"></i><b>A.2.3</b> <code>daisie_data</code><span></span></a></li>
-<li class="chapter" data-level="A.2.4" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#multi_mainland_clade"><i class="fa fa-check"></i><b>A.2.4</b> <code>multi_mainland_clade</code><span></span></a></li>
-<li class="chapter" data-level="A.2.5" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#mainland_clade"><i class="fa fa-check"></i><b>A.2.5</b> <code>mainland_clade</code><span></span></a></li>
-<li class="chapter" data-level="A.2.6" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#island_tbl"><i class="fa fa-check"></i><b>A.2.6</b> <code>island_tbl</code><span></span></a></li>
+<li class="chapter" data-level="A.2.1" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#daisie-mainland-data"><i class="fa fa-check"></i><b>A.2.1</b> <code>daisie_mainland_data</code><span></span></a></li>
+<li class="chapter" data-level="A.2.2" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#multi-daisie-data"><i class="fa fa-check"></i><b>A.2.2</b> <code>multi_daisie_data</code><span></span></a></li>
+<li class="chapter" data-level="A.2.3" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#daisie-data"><i class="fa fa-check"></i><b>A.2.3</b> <code>daisie_data</code><span></span></a></li>
+<li class="chapter" data-level="A.2.4" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#multi-mainland-clade"><i class="fa fa-check"></i><b>A.2.4</b> <code>multi_mainland_clade</code><span></span></a></li>
+<li class="chapter" data-level="A.2.5" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#mainland-clade"><i class="fa fa-check"></i><b>A.2.5</b> <code>mainland_clade</code><span></span></a></li>
+<li class="chapter" data-level="A.2.6" data-path="DAISIEmainland-data-standards.html"><a href="DAISIEmainland-data-standards.html#island-tbl"><i class="fa fa-check"></i><b>A.2.6</b> <code>island_tbl</code><span></span></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -202,19 +206,25 @@ div.csl-indent {
 <div id="Installation" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Installation<a href="Installation.html#Installation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>You can install the released version of DAISIEmainland from github with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Installation.html#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;joshwlambert/DAISIEmainland&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Installation.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;remotes&quot;) # install remotes package if not installed</span></span>
+<span id="cb1-2"><a href="Installation.html#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;joshwlambert/DAISIEmainland&quot;</span>)</span></code></pre></div>
 <p>The <code>DAISIEmainland</code> package has several dependencies (the entire list can be
 found in the DESCRIPTION file). Most of these are on CRAN and can be installed with
-<code>install.packages()</code>. However, the DAISIE and nLTT packages require more
-up-to-date version than available on CRAN and need to be installed from github:</p>
+<code>install.packages()</code>. However, the <code>DAISIE</code> <span class="citation">(Etienne et al. 2022)</span> and <code>nLTT</code> packages <span class="citation">(Janzen and Bilderbeek 2021)</span> require more up-to-date version than available on
+CRAN and need to be installed from github:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Installation.html#cb2-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;rsetienne/DAISIE&quot;</span>)</span>
 <span id="cb2-2"><a href="Installation.html#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;thijsjanzen/nLTT&quot;</span>)</span></code></pre></div>
-<p>Load the DAISIEmainland package with the <code>library()</code> function. This will also
-load the package dependencies, specifically the DAISIE package which will be
+<p>Load the <code>DAISIEmainland</code> package with the <code>library()</code> function. This will also
+load the package dependencies, specifically the <code>DAISIE</code> package which will be
 used later on for parameter estimation by fitting maximum likelihood models.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Installation.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DAISIEmainland)</span></code></pre></div>
 <p><code>DAISIEmainland</code> is currently not hosted on CRAN and thus cannot be installed
 using <code>install.packages()</code>.</p>
+<p>The package was developed using R version &gt;= 4. Therefore, it is recommended to
+use an R version at least as recent as R 4.0.0. The package is tested using
+continuous integration on the release version of R and the development version
+of R. Therefore, any issues with running <code>DAISIEmainland</code> functions on older
+versions of R will not be patched.</p>
 
 </div>
             </section>

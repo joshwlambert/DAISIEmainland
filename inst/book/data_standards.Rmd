@@ -14,7 +14,7 @@ To make sure the data types are correctly formatted there is a corresponding
 
 ## Data structure types
 
-### `daisie_mainland_data`
+### `daisie_mainland_data` {#daisie-mainland-data}
 
 A list of 2 elements, `$ideal_multi_daisie_data` and
 `$empirical_multi_daisie_data`.
@@ -23,7 +23,7 @@ is the output of `DAISIEmainland::sim_island_with_mainland()`.
 
 Function to check if it is a `daisie_mainland_data` is `DAISIEmainland::check_daisie_mainland_data()`
 
-### `multi_daisie_data`
+### `multi_daisie_data` {#multi-daisie-data}
 
 A list of `daisie_data` elements (see below). This is the data structure when the
 simulation is run for several replicates.
@@ -31,7 +31,7 @@ simulation is run for several replicates.
 Function to check if it is a `multi_daisie_data` is
 `DAISIEmainland::check_multi_daisie_data()`.
 
-### `daisie_data`
+### `daisie_data` {#daisie-data}
 
 * A list of n elements. The first element is a list containing the `island_age`
 with a single numeric, and the number of species `not_present` on the island.
@@ -48,14 +48,14 @@ subsequent branching times (all given in time before the present).
 Function to check if it is a `daisie_data` is
 `DAISIEmainland::check_daisie_data()`.
 
-### `multi_mainland_clade`
+### `multi_mainland_clade` {#multi-mainland-clade}
 
 A list of `mainland_clade` objects. This data type is output from `DAISIEmainland::sim_mainland()`.
 
 Function to check if it is a `multi_mainland_clade` is
 `DAISIEmainland::check_multi_mainland_clade()`.
 
-### `mainland_clade`
+### `mainland_clade` {#mainland-clade}
 
 A data frame of seven columns and one or more rows. The column names are:
   `spec_id`, `main_anc_id`, `spec_type`, `branch_code`, `branch_t`,
@@ -65,7 +65,7 @@ using `DAISIEmainland::create_test_mainland_clade()`.
 Function to check if it is a mainland_clade is
 `DAISIEmainland::check_mainland_clade()`
 
-### `island_tbl`
+### `island_tbl` {#island-tbl}
 
 * A data frame of the island species output from `sim_island` and then converted
 to the `daisie_data` format by `create_island`. This data type is output from

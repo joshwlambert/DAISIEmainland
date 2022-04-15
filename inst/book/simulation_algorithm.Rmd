@@ -9,9 +9,16 @@ package uses a two-part Doob-Gillespie simulation, one for the mainland
 (`DAISIEmainland::sim_mainland`) and one for the island
 (`DAISIEmainland::sim_island`).
 
-Firstly the mainland, which is simulated under
-a Moran process, whereby every species extinction is immediately 
-followed by a random species giving rise to two new species (speciation).
+## Mainland simulation {#Mainland-simulation}
+
+The simulation of the island phylogenetic data takes two simulations. Firstly
+the mainland, which is simulated under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). Then the mainland phylogenetic data is fed into the 
+island simulation (Section \@ref(Island-simulation)).
+
+The mainland simulation uses a Doob-Gillespie algorithm to simulate the 
+speciation and extinction of species under a Moran process to maintain a
+constant number of species. Here the example shows mainland data being 
+simulated with for a time duration of one (million years), five initial mainland species, and a mainland extinction rate of one (per species per million years). 
 
 ```{r}
 set.seed(
@@ -20,18 +27,54 @@ set.seed(
   normal.kind = "Inversion",
   sample.kind = "Rejection"
 )
-mainland <- DAISIEmainland:::sim_mainland(total_time = 1,
-                                          m = 5,
-                                          mainland_ex = 1)
+mainland <- DAISIEmainland:::sim_mainland(
+  total_time = 1,
+  m = 5,
+  mainland_ex = 1
+)
 ```
 
-The output is a list of five mainland clades.
+The output is a list of five mainland clades called `multi_mainland_clade` (
+see Section \@ref(multi-mainland-clade)).
 
 ```{r}
 mainland
 ```
 
-The island Doob-Gillespie algorithm is altered to accommodate the dynamic 
+Specifically focusing on one of these mainland clades (see Section \@ref(mainland-clade)):
+
+```{r}
+mainland[[1]]
+```
+
+We can see that the information on this mainland clade include the ID of each
+species (`spec_id`). The ID of the mainland ancestor from which that species
+derived (`main_anc_id`). The type of species (`spec_type`) these can be `I`, 
+`C`, or `E` for single lineage clade, cladogenetic species in a clade, or 
+extinct species, respectively. All mainland species are initialised as 
+`spec_id = I` but as the simulation progresses species become either 
+part of a clade (`C`) or extinct (`E`). By keeping the extinct species we have
+a full history of the mainland and not the so-called reconstructed history which
+would only contain the living (extant) species. The `branch_code` provides the
+evolutionary relationships of the species in the clade and allows the topology
+of the clade to be constructed. The `branch_t` is the time when the species 
+speciated from their common ancestor (in time after the start of the simulation
+and not time before present). The `spec_origin_t` is the time the species 
+originated and is often equal to the `branch_t`. The `spec_ex_t` is the time the species went extinct (again in time after the start of the simulation). Species
+that do not go extinct are give a `spec_ex_t` equal to the total time of the 
+simulation. 
+
+Another example of what can happen on the mainland is the extinction of a 
+singleton lineage before it underwent speciation. 
+
+```{r}
+mainland[[4]]
+```
+
+## Island simulation {#Island-simulation}
+
+The island simulation runs after the mainland simulation and uses the mainland
+data to determine which species can immigrate to the island through time. Doob-Gillespie algorithm is altered to accommodate the dynamic 
 mainland pool. The time-steps are bounded to not jump over changes on the 
 mainland to ensure the present state of the system (i.e. species on mainland)
 is always up-to-date. The algorithm checks whether any changes have occurs on
@@ -53,7 +96,24 @@ island_tbl <- DAISIEmainland:::sim_island(
   mainland_sample_prob = 1,
   mainland_sample_type = "complete"
 )
+island_tbl
 ```
+
+The island simulation outputs a `island_tbl` (see Section \@ref(island-tbl)). 
+The `island_tbl` includes again the species ID (`spec_id`), mainland ancestor
+ID (`main_anc_id`), species type (`spec_type`), branching code (`branch_code`), and branching time (`branch_t`). It also includes the time at which the species
+colonised the island (`col_t`) and the reason a species is anagenetic (i.e.
+endemic to the island without being in an island clade). The reasons for a 
+species to be anagenetic are: the mainland population of the species goes 
+extinct (`mainland_extinction`), the species undergoes anagenesis on the island
+(`immig_parent`), or the species formed a clade but all other members of the 
+clade went extinct before the present (`clade_extinct`). 
+
+One major difference between the island and mainland data that are produced by
+`sim_island_with_mainland()` and `sim_island()` is that the latter only has 
+information from the reconstructed point of view. This means extinct species 
+are removed from the data set and only species extant at the end of the 
+simulation are included.
 
 For both the island and mainland Doob-Gillespie algorithms time steps are
 sampled from an exponential distribution with rate:
@@ -71,10 +131,27 @@ from a dynamic discrete probability distribution, weighted by its rate
   $$r_i / \sum_j r_j$$
 
 The system is then updated for the algorithm repeats until the time step exceeds
-the total time of the simulation. Lastly, the data is formatted and the
-endemicity of each island colonist is assigned which is used in the `DAISIE`
-inference model. The `DAISIEmainland` simulation outputs two data sets: (1) 
-contains full information of all species colonisation times, and (2) an 
-incomplete information data set which resembles what an empirist would have
-access to. These two data sets allow for the quantification of error in
+the total time of the simulation. 
+
+The function that encapsulates and runs both of these simulations is `sim_island_with_mainland()`. This function also includes the formatting of the data and the assignment of an endemicity status to each island colonist, which 
+needed by the `DAISIE` inference model. The `DAISIEmainland` simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empirist would have access to (see Section \@ref(daisie-mainland-data)). These two data sets allow for the quantification of error in
 estimation when the empirists does not have access to all the data.
+
+```{r}
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+daisie_mainland_data <- sim_island_with_mainland(
+  total_time = 1,
+  m = 5,
+  island_pars = c(1, 1, 10, 1, 1), 
+  mainland_ex = 1,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "unsampled",
+  replicates = 1 
+)
+daisie_mainland_data
+```
