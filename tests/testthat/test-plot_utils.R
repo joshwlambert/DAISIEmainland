@@ -40,5 +40,5 @@ test_that("choose_scientific runs silent without error", {
   labels <- choose_scientific(c(1e-5, 1, 1e5), signif = 2)
   expect_length(labels, 3)
   expect_true(is.character(labels))
-  expect_equal(labels, c("1e-05", "1.00", "1e+05"))
+  expect_equal(labels, c("1e-05", "1.0", "1e+05"))
 })
