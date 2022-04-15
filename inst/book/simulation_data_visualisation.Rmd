@@ -28,7 +28,7 @@ as an entire community. Instead individual mainland clades can be selected from
 the data and plotted with `plot_mainland_clade`. Again the option of plotting 
 the unique species ID or clade ID are available.
 
-```{r, fig.show="hold", out.width="50%"}
+```{r, fig.align="right", fig.show="hold", out.width="50%"}
 DAISIEmainland::plot_mainland_clade(
   mainland_clade = mainland[[1]], 
   branch_colour = "unique_species_id"
@@ -47,7 +47,7 @@ looks using the function `plot_daisie_data`.
 
 1. An empty island
 
-```{r, echo=FALSE, out.width="50%", out.height="50%"}
+```{r, echo=FALSE, out.width="75%", out.height="50%"}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -68,7 +68,7 @@ plot_daisie_data(daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
 
 2. An island with a single non-endemic species
 
-```{r, echo=FALSE, out.width="50%", out.height="50%"}
+```{r, echo=FALSE, out.width="75%", out.height="50%"}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -78,7 +78,7 @@ set.seed(
 daisie_mainland_data <- sim_island_with_mainland(
   total_time = 1,
   m = 5,
-  island_pars = c(1, 1, 10, 0.2, 1), 
+  island_pars = c(1, 1, 10, 0.5, 1), 
   mainland_ex = 1,
   mainland_sample_prob = 1,
   mainland_sample_type = "unsampled",
@@ -89,7 +89,7 @@ plot_daisie_data(daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
 
 3. An island with a single endemic species
 
-```{r, echo=FALSE, out.width="50%", out.height="50%"}
+```{r, echo=FALSE, out.width="75%", out.height="50%"}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -114,7 +114,7 @@ is older than the island age so it is considered an island-age colonisation
 before). This uncertainty in the timing of colonisation is then taken into
 account when the data is input into the `DAISIE` likelihood model. 
 
-```{r, echo=FALSE, out.width="50%", out.height="50%"}
+```{r, echo=FALSE, out.width="75%", out.height="50%"}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -140,7 +140,7 @@ is older than the island age so it is considered an island-age colonisation.
 The uncertainty in colonisation time is handled in an equivalent way to the 
 non-endemic island-age colonisation.
 
-```{r, echo=FALSE, out.width="50%", out.height="50%"}
+```{r, echo=FALSE, out.width="75%", out.height="50%"}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -156,10 +156,71 @@ daisie_mainland_data <- sim_island_with_mainland(
   mainland_sample_type = "unsampled",
   replicates = 1 
 )
-plot_daisie_data(daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]])
+plot_daisie_data(
+  daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+)
 ```
 
-```{r}
+6. An island with an endemic clade whose colonisation time
+is older than the island age so it is considered an island-age colonisation.
+In `DAISIE` the colonisation time is assumed to have occurred between the
+island age and the first branching time in the clade.
+
+```{r, echo=FALSE, out.width="75%", out.height="50%"}
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+daisie_mainland_data <- sim_island_with_mainland(
+  total_time = 1,
+  m = 5,
+  island_pars = c(5, 1, 10, 0.2, 1), 
+  mainland_ex = 2,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "unsampled",
+  replicates = 1 
+)
+plot_daisie_data(
+  daisie_data = daisie_mainland_data$empirical_multi_daisie_data[[1]]
+)
+```
+
+7. An island with an recolonisation of the same mainland species after it has 
+colonised and speciated (either via cladogenesis or anagenesis on the island).
+The colonists that are from the same ancestral mainland species but the island
+species is now endemic are show by 'Colonist after anagenesis' and 'Colonist
+after cladogenesis'.
+
+```{r, echo=FALSE, out.width="75%", out.height="50%"}
+
+set.seed(
+  1,
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rejection"
+)
+daisie_mainland_data <- sim_island_with_mainland(
+  total_time = 1,
+  m = 5,
+  island_pars = c(2, 1, 10, 5, 2), 
+  mainland_ex = 2,
+  mainland_sample_prob = 1,
+  mainland_sample_type = "unsampled",
+  replicates = 1 
+)
+plot_daisie_data(
+  daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]]
+)
+```
+
+All the above scenarios are of one of the `daisie_data` sets that are produced
+from the `sim_island_with_mainland()` function which produces the `ideal_data`
+and `empirical_data`. `plot_daisie_mainland_data` plots these two island data 
+sets together.
+
+```{r, echo=FALSE}
 <<simulate-island-mainland>>
 
 plot_daisie_mainland_data(
@@ -167,3 +228,9 @@ plot_daisie_mainland_data(
   replicate_index = 1
 )
 ```
+
+In the plot juxtaposing the `ideal_data` (top) and the `empirical_data` (bottom)
+it is clear that the colonisation times differ for one of the island colonists.
+In the `empirical_data` this colonist is an island-age colonist which is likely
+due to the effects of mainland dynamics shifting the empiricist's perception of
+the colonisation time.
