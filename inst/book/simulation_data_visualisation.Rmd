@@ -28,7 +28,7 @@ as an entire community. Instead individual mainland clades can be selected from
 the data and plotted with `plot_mainland_clade`. Again the option of plotting 
 the unique species ID or clade ID are available.
 
-```{r, fig.align="right", fig.show="hold", out.width="50%"}
+```{r, fig.align="left", fig.show="hold", out.width="50%"}
 DAISIEmainland::plot_mainland_clade(
   mainland_clade = mainland[[1]], 
   branch_colour = "unique_species_id"

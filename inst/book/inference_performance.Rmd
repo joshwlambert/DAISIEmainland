@@ -1,11 +1,35 @@
 # Inference performance {#Inference-performance}
 
+One of the primary purposes of the `DAISIEmainland` package and specifically
+why the data is formatted in the `DAISIE` format is to test the maximum 
+likelihood inference models implemented in the `DAISIE` R package [@etienne_daisie_2022]. Therefore, in this section we explore how to conduct a
+simple performance analysis of one of the `DAISIE` models. In this case we are
+going to use the model with a single macroevolutionary regime on the island (
+i.e. all island species are assumed to have the same rate of colonisation, 
+speciation and extinction, as well as the same carrying capacity). This model
+also assumes that the carrying capacity only operates between species within the
+same island clade (termed clade-specific diversity-dependence), thus different
+island colonists are supposed independent and not inhibiting the diversification
+of each other.
+
+As a small technical aside, this section uses `DAISIE` version 4.1.1. Re-running
+this code on another system may produce different results, especially if a
+different version of `DAISIE` is installed.
+
 First, we simulate an island. This will produce phylogenetic data for a single
 island. In an analysis many more replicates (e.g. 1,000) would be required to 
 account for the stochastic differences between replicates given the simulation
 is stochastic. 
 
-```{r Run simulation}
+```{r, load simulated data, echo=FALSE}
+daisie_mainland_data <- readRDS(
+  file = system.file(
+    "inst/book/data/daisie_mainland_data_1000_rep.rds", 
+    package = "DAISIEmainland")
+)
+```
+
+```{r, Run simulation, eval=FALSE}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -26,7 +50,7 @@ daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
 )
 ```
 
-Now we have the data (stored in the island object), which is a list object.
+Now we have the simulated data, stored in `daisie_mainland_data` (see section \@ref(daisie-mainland-data)), which is a list object.
 At the highest level of the list there are two lists
 (`daisie_mainland_data$ideal_multi_daisie_data` and
   `daisie_mainland_data$empirical_multi_daisie_data`). The first
@@ -57,7 +81,23 @@ likelihood optimisation to increase the speed of optimisation. However, when
 using the `DAISIE_ML_CS()` function the default values will provide accurate
 estimation to a sensible tolerance.
 
-```{r Calculate parameter estimates}
+```{r, load ml data, echo=FALSE, eval=FALSE}
+ideal_ml <- readRDS(
+  file = system.file(
+    "inst/book/data/daisie_mainland_data_1000_rep.rds", 
+    package = "DAISIEmainland"
+  )
+)
+
+empirical_ml <- readRDS(
+  file = system.file(
+    "inst/book/data/daisie_mainland_data_1000_rep.rds",
+    package = "DAISIEmainland"
+  )
+)
+```
+
+```{r Calculate parameter estimates, eval=FALSE}
 ideal_ml <- vector("list", replicates)
 empirical_ml <- vector("list", replicates)
 
@@ -91,7 +131,7 @@ for (i in seq_len(replicates)) {
 To calculate the errors we can run `calc_error()` with the simulated data and 
 the maximum likelihood estimates.
 
-```{r Calculate error}
+```{r Calculate error, eval=FALSE}
 errors <- DAISIEmainland::calc_error(
   daisie_mainland_data = daisie_mainland_data,
   ideal_ml = ideal_ml,
@@ -103,7 +143,7 @@ The errors are:
 (1) Delta CTT (difference in colonisations through time) between
 the ideal and empirical data.
 
-```{r Display Delta CTT}
+```{r Display Delta CTT, eval=FALSE}
 errors$delta_ctt
 ```
 
@@ -115,7 +155,7 @@ is always known exactly when the species colonised the island, but is still
 calculated to check it is zero. The empirical max age percent can be any
 percent [0, 100].
 
-```{r Display Max age percentages}
+```{r Display Max age percentages, eval=FALSE}
 errors$max_age_percent
 ```
 
@@ -123,7 +163,7 @@ errors$max_age_percent
 number of endemic and non-endemic species in the ideal and empirical data, as 
 well as the calculation of the percentage of endemic species in each data set.
 
-```{r Display Endemic percentages}
+```{r Display Endemic percentages, eval=FALSE}
 errors$endemic_percent
 ```
 
@@ -134,7 +174,7 @@ extinction (\$ext_ratio), carrying capacity (\$k_ratio), colonisation
 using the DAISIE maximum likelihood model (`DAISIE::DAISIE_ML_CS()`). These
 metrics show the difference in estimation of each parameter between [0, Inf].
 
-```{r Display Parameter estimate ratios}
+```{r Display Parameter estimate ratios, eval=FALSE}
 errors$endemic_percent
 ```
 
