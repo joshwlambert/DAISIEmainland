@@ -20,7 +20,7 @@ speciation and extinction of species under a Moran process to maintain a
 constant number of species. Here the example shows mainland data being 
 simulated with for a time duration of one (million years), five initial mainland species, and a mainland extinction rate of one (per species per million years). 
 
-```{r}
+```{r, simulate-mainland}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -137,7 +137,7 @@ The function that encapsulates and runs both of these simulations is `sim_island
 needed by the `DAISIE` inference model. The `DAISIEmainland` simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empirist would have access to (see Section \@ref(daisie-mainland-data)). These two data sets allow for the quantification of error in
 estimation when the empirists does not have access to all the data.
 
-```{r}
+```{r, simulate-island-mainland}
 set.seed(
   1,
   kind = "Mersenne-Twister",

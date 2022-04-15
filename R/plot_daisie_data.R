@@ -33,12 +33,16 @@ plot_daisie_data <- function(daisie_data) {
     ggplot2::scale_x_reverse(
       name = "Time before present",
       limits = c(t$header$island_age, 0)
-    ) +
+    ) + ggplot2::theme_classic() +
     ggplot2::theme(
-      axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
-      axis.ticks.y = ggplot2::element_blank()
-    ) + ggplot2::labs(
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.title.y = ggplot2::element_blank(),
+      axis.line.y = ggplot2::element_blank(),
+      strip.background = ggplot2::element_blank(),
+      strip.text = ggplot2::element_blank()
+    ) +
+    ggplot2::labs(
       color = "Colonist species type",
       shape = "Colonist species type"
     )

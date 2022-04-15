@@ -205,47 +205,164 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="simulation_data_visualisation" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> Simulation data visualisation<a href="simulation_data_visualisation.html#simulation_data_visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the previous section (Section <a href="Simulation-algorithm.html#Simulation-algorithm">2</a>) it showed how the data is simulated. An important aspect is to see the data and <code>DAISIEmainland</code>
+has a selection of plotting functions to plot the phylogenetic data of the
+mainland and the island.</p>
 <div id="visualise-mainland" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Visualise mainland<a href="simulation_data_visualisation.html#visualise-mainland" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We simulate the same mainland system as (Section <a href="Simulation-algorithm.html#Mainland-simulation">2.1</a>) and then plot the all the mainland clades using <code>plot_mainland</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="simulation_data_visualisation.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
-<span id="cb10-2"><a href="simulation_data_visualisation.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>,</span>
+<span id="cb10-2"><a href="simulation_data_visualisation.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
 <span id="cb10-3"><a href="simulation_data_visualisation.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
 <span id="cb10-4"><a href="simulation_data_visualisation.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
 <span id="cb10-5"><a href="simulation_data_visualisation.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
 <span id="cb10-6"><a href="simulation_data_visualisation.html#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-7"><a href="simulation_data_visualisation.html#cb10-7" aria-hidden="true" tabindex="-1"></a>mainland <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">sim_mainland</span>(</span>
-<span id="cb10-8"><a href="simulation_data_visualisation.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>, <span class="co"># total simulation time</span></span>
-<span id="cb10-9"><a href="simulation_data_visualisation.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">4</span>, <span class="co"># Number of mainland clades</span></span>
-<span id="cb10-10"><a href="simulation_data_visualisation.html#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>) <span class="co"># mainland extinction rate</span></span>
-<span id="cb10-11"><a href="simulation_data_visualisation.html#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="simulation_data_visualisation.html#cb10-7" aria-hidden="true" tabindex="-1"></a>mainland <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">sim_mainland</span>(</span>
+<span id="cb10-8"><a href="simulation_data_visualisation.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb10-9"><a href="simulation_data_visualisation.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">5</span>,</span>
+<span id="cb10-10"><a href="simulation_data_visualisation.html#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span></span>
+<span id="cb10-11"><a href="simulation_data_visualisation.html#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb10-12"><a href="simulation_data_visualisation.html#cb10-12" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland)</span></code></pre></div>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The above plot shows the evolutionary history of each mainland species from the
+start of the simulation, as five independent (i.e. no phylogenetic relatedness)
+mainland species, to five extant species at the present. Each species is given
+as unique species ID which are shown here as different coloured branches. The
+colours can also be changed to represent the clade a species belongs to.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="simulation_data_visualisation.html#cb11-1" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland, <span class="at">branch_colour =</span> <span class="st">&quot;clade_id&quot;</span>)</span></code></pre></div>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>If there are many clades on the mainland it can be difficult to see when plotted
+as an entire community. Instead individual mainland clades can be selected from
+the data and plotted with <code>plot_mainland_clade</code>. Again the option of plotting
+the unique species ID or clade ID are available.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="simulation_data_visualisation.html#cb12-1" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland_clade</span>(</span>
+<span id="cb12-2"><a href="simulation_data_visualisation.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]], </span>
+<span id="cb12-3"><a href="simulation_data_visualisation.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">branch_colour =</span> <span class="st">&quot;unique_species_id&quot;</span></span>
+<span id="cb12-4"><a href="simulation_data_visualisation.html#cb12-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-5"><a href="simulation_data_visualisation.html#cb12-5" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland_clade</span>(</span>
+<span id="cb12-6"><a href="simulation_data_visualisation.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]], </span>
+<span id="cb12-7"><a href="simulation_data_visualisation.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">branch_colour =</span> <span class="st">&quot;clade_id&quot;</span></span>
+<span id="cb12-8"><a href="simulation_data_visualisation.html#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-8-2.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="visualise-island" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Visualise island<a href="simulation_data_visualisation.html#visualise-island" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="simulation_data_visualisation.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
-<span id="cb11-2"><a href="simulation_data_visualisation.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
-<span id="cb11-3"><a href="simulation_data_visualisation.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
-<span id="cb11-4"><a href="simulation_data_visualisation.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
-<span id="cb11-5"><a href="simulation_data_visualisation.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
-<span id="cb11-6"><a href="simulation_data_visualisation.html#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-7"><a href="simulation_data_visualisation.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="simulation_data_visualisation.html#cb11-8" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data <span class="ot">&lt;-</span> <span class="fu">sim_island_with_mainland</span>(</span>
-<span id="cb11-9"><a href="simulation_data_visualisation.html#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
-<span id="cb11-10"><a href="simulation_data_visualisation.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">10</span>,</span>
-<span id="cb11-11"><a href="simulation_data_visualisation.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="dv">1</span>),</span>
-<span id="cb11-12"><a href="simulation_data_visualisation.html#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>,</span>
-<span id="cb11-13"><a href="simulation_data_visualisation.html#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
-<span id="cb11-14"><a href="simulation_data_visualisation.html#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;undiscovered&quot;</span>,</span>
-<span id="cb11-15"><a href="simulation_data_visualisation.html#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> <span class="dv">10</span>,</span>
-<span id="cb11-16"><a href="simulation_data_visualisation.html#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb11-17"><a href="simulation_data_visualisation.html#cb11-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-18"><a href="simulation_data_visualisation.html#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="simulation_data_visualisation.html#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_daisie_mainland_data</span>(</span>
-<span id="cb11-20"><a href="simulation_data_visualisation.html#cb11-20" aria-hidden="true" tabindex="-1"></a>  daisie_mainland_data,</span>
-<span id="cb11-21"><a href="simulation_data_visualisation.html#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicate_index =</span> <span class="dv">1</span></span>
-<span id="cb11-22"><a href="simulation_data_visualisation.html#cb11-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The same set of plotting functionality exists for the island data. Here we
+simulate a range of possible outcomes for the island data and show how each
+looks using the function <code>plot_daisie_data</code>.</p>
+<ol style="list-style-type: decimal">
+<li>An empty island</li>
+</ol>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-9-1.png" width="50%" height="50%" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>An island with a single non-endemic species</li>
+</ol>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-10-1.png" width="50%" height="50%" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>An island with a single endemic species</li>
+</ol>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-11-1.png" width="50%" height="50%" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>An island with a single non-endemic species which whose colonisation time
+is older than the island age so it is considered an island-age colonisation
+(i.e. it colonised at the island age because it could not have colonised
+before). This uncertainty in the timing of colonisation is then taken into
+account when the data is input into the <code>DAISIE</code> likelihood model.</li>
+</ol>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-12-1.png" width="50%" height="50%" style="display: block; margin: auto;" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>An island with a single endemic species which whose colonisation time
+is older than the island age so it is considered an island-age colonisation.
+The uncertainty in colonisation time is handled in an equivalent way to the
+non-endemic island-age colonisation.</li>
+</ol>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-13-1.png" width="50%" height="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="simulation_data_visualisation.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
+<span id="cb13-2"><a href="simulation_data_visualisation.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
+<span id="cb13-3"><a href="simulation_data_visualisation.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
+<span id="cb13-4"><a href="simulation_data_visualisation.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
+<span id="cb13-5"><a href="simulation_data_visualisation.html#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
+<span id="cb13-6"><a href="simulation_data_visualisation.html#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-7"><a href="simulation_data_visualisation.html#cb13-7" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data <span class="ot">&lt;-</span> <span class="fu">sim_island_with_mainland</span>(</span>
+<span id="cb13-8"><a href="simulation_data_visualisation.html#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb13-9"><a href="simulation_data_visualisation.html#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">5</span>,</span>
+<span id="cb13-10"><a href="simulation_data_visualisation.html#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">1</span>), </span>
+<span id="cb13-11"><a href="simulation_data_visualisation.html#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>,</span>
+<span id="cb13-12"><a href="simulation_data_visualisation.html#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
+<span id="cb13-13"><a href="simulation_data_visualisation.html#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;unsampled&quot;</span>,</span>
+<span id="cb13-14"><a href="simulation_data_visualisation.html#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> <span class="dv">1</span> </span>
+<span id="cb13-15"><a href="simulation_data_visualisation.html#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-16"><a href="simulation_data_visualisation.html#cb13-16" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data</span>
+<span id="cb13-17"><a href="simulation_data_visualisation.html#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data</span></span>
+<span id="cb13-18"><a href="simulation_data_visualisation.html#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]]</span></span>
+<span id="cb13-19"><a href="simulation_data_visualisation.html#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[1]]</span></span>
+<span id="cb13-20"><a href="simulation_data_visualisation.html#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[1]]$island_age</span></span>
+<span id="cb13-21"><a href="simulation_data_visualisation.html#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb13-22"><a href="simulation_data_visualisation.html#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-23"><a href="simulation_data_visualisation.html#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[1]]$not_present</span></span>
+<span id="cb13-24"><a href="simulation_data_visualisation.html#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb13-25"><a href="simulation_data_visualisation.html#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-26"><a href="simulation_data_visualisation.html#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-27"><a href="simulation_data_visualisation.html#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[2]]</span></span>
+<span id="cb13-28"><a href="simulation_data_visualisation.html#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[2]]$branching_times</span></span>
+<span id="cb13-29"><a href="simulation_data_visualisation.html#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.0000000 0.1026008</span></span>
+<span id="cb13-30"><a href="simulation_data_visualisation.html#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-31"><a href="simulation_data_visualisation.html#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[2]]$stac</span></span>
+<span id="cb13-32"><a href="simulation_data_visualisation.html#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb13-33"><a href="simulation_data_visualisation.html#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-34"><a href="simulation_data_visualisation.html#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[2]]$missing_species</span></span>
+<span id="cb13-35"><a href="simulation_data_visualisation.html#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb13-36"><a href="simulation_data_visualisation.html#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-37"><a href="simulation_data_visualisation.html#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-38"><a href="simulation_data_visualisation.html#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[3]]</span></span>
+<span id="cb13-39"><a href="simulation_data_visualisation.html#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[3]]$branching_times</span></span>
+<span id="cb13-40"><a href="simulation_data_visualisation.html#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.0000000 0.9627315</span></span>
+<span id="cb13-41"><a href="simulation_data_visualisation.html#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-42"><a href="simulation_data_visualisation.html#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[3]]$stac</span></span>
+<span id="cb13-43"><a href="simulation_data_visualisation.html#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb13-44"><a href="simulation_data_visualisation.html#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-45"><a href="simulation_data_visualisation.html#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_multi_daisie_data[[1]][[3]]$missing_species</span></span>
+<span id="cb13-46"><a href="simulation_data_visualisation.html#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb13-47"><a href="simulation_data_visualisation.html#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-48"><a href="simulation_data_visualisation.html#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-49"><a href="simulation_data_visualisation.html#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-50"><a href="simulation_data_visualisation.html#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-51"><a href="simulation_data_visualisation.html#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data</span></span>
+<span id="cb13-52"><a href="simulation_data_visualisation.html#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]]</span></span>
+<span id="cb13-53"><a href="simulation_data_visualisation.html#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[1]]</span></span>
+<span id="cb13-54"><a href="simulation_data_visualisation.html#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[1]]$island_age</span></span>
+<span id="cb13-55"><a href="simulation_data_visualisation.html#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb13-56"><a href="simulation_data_visualisation.html#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-57"><a href="simulation_data_visualisation.html#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[1]]$not_present</span></span>
+<span id="cb13-58"><a href="simulation_data_visualisation.html#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb13-59"><a href="simulation_data_visualisation.html#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-60"><a href="simulation_data_visualisation.html#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-61"><a href="simulation_data_visualisation.html#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[2]]</span></span>
+<span id="cb13-62"><a href="simulation_data_visualisation.html#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[2]]$branching_times</span></span>
+<span id="cb13-63"><a href="simulation_data_visualisation.html#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.0000000 0.8489636</span></span>
+<span id="cb13-64"><a href="simulation_data_visualisation.html#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-65"><a href="simulation_data_visualisation.html#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[2]]$stac</span></span>
+<span id="cb13-66"><a href="simulation_data_visualisation.html#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb13-67"><a href="simulation_data_visualisation.html#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-68"><a href="simulation_data_visualisation.html#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[2]]$missing_species</span></span>
+<span id="cb13-69"><a href="simulation_data_visualisation.html#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb13-70"><a href="simulation_data_visualisation.html#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-71"><a href="simulation_data_visualisation.html#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-72"><a href="simulation_data_visualisation.html#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[3]]</span></span>
+<span id="cb13-73"><a href="simulation_data_visualisation.html#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[3]]$branching_times</span></span>
+<span id="cb13-74"><a href="simulation_data_visualisation.html#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.00000 0.99999</span></span>
+<span id="cb13-75"><a href="simulation_data_visualisation.html#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-76"><a href="simulation_data_visualisation.html#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[3]]$stac</span></span>
+<span id="cb13-77"><a href="simulation_data_visualisation.html#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb13-78"><a href="simulation_data_visualisation.html#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-79"><a href="simulation_data_visualisation.html#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_multi_daisie_data[[1]][[3]]$missing_species</span></span>
+<span id="cb13-80"><a href="simulation_data_visualisation.html#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb13-81"><a href="simulation_data_visualisation.html#cb13-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-82"><a href="simulation_data_visualisation.html#cb13-82" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_daisie_mainland_data</span>(</span>
+<span id="cb13-83"><a href="simulation_data_visualisation.html#cb13-83" aria-hidden="true" tabindex="-1"></a>  daisie_mainland_data,</span>
+<span id="cb13-84"><a href="simulation_data_visualisation.html#cb13-84" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicate_index =</span> <span class="dv">1</span></span>
+<span id="cb13-85"><a href="simulation_data_visualisation.html#cb13-85" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
