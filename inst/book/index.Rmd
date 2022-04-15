@@ -6,6 +6,7 @@ site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 description: "This is an introduction to the DAISIEmainland package."
+bibliography: references.bib
 ---
 
 ```{r, include = FALSE}
@@ -33,8 +34,8 @@ The `DAISIEmainland` package is used for simulating an island-mainland system.
 It primary purpose is the simulation of phylogenetic data sets of island species
 under a realistic model that incorporates evolutionary dynamics on the island and 
 the mainland, from which the island species immigrate. This is in contrast to the
-inference and simulation models included in the `DAISIE` package which do not
-incorporate any changes in the mainland species through time. 
+inference and simulation models included in the `DAISIE` package [@etienne_daisie_2022] which do not incorporate any changes in the mainland 
+species through time. 
 
 This novel model of mainland dynamics opens up the possibility of testing the 
 robustness of the `DAISIE` likelihood models under various scenarios of mainland

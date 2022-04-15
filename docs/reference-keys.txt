@@ -6,7 +6,7 @@ visualise-island
 Inference-performance
 Summary-metric-visualisation
 References
-daisiemainland-data-standards-daisiemainland-data-standards
+DAISIEmainland-data-standards
 reasoning
 data-structure-types
 daisie_mainland_data
