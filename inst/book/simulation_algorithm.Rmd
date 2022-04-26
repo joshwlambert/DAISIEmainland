@@ -18,7 +18,7 @@ island simulation (Section \@ref(Island-simulation)).
 The mainland simulation uses a Doob-Gillespie algorithm to simulate the 
 speciation and extinction of species under a Moran process to maintain a
 constant number of species. Here the example shows mainland data being 
-simulated with for a time duration of one (million years), five initial mainland species, and a mainland extinction rate of one (per species per million years). 
+simulated for a time duration of one (million years), five initial mainland species, and a mainland extinction rate of one (per species per million years). 
 
 ```{r, simulate-mainland}
 set.seed(
@@ -110,7 +110,7 @@ extinct (`mainland_extinction`), the species undergoes anagenesis on the island
 clade went extinct before the present (`clade_extinct`). 
 
 One major difference between the island and mainland data that are produced by
-`sim_island_with_mainland()` and `sim_island()` is that the latter only has 
+`sim_mainland()` and `sim_island()` is that the latter only has 
 information from the reconstructed point of view. This means extinct species 
 are removed from the data set and only species extant at the end of the 
 simulation are included.
