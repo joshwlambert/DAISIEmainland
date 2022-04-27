@@ -6,6 +6,9 @@ simulation_data_visualisation
 visualise-mainland
 visualise-island
 Inference-performance
+Simulating-data
+Maximum-likelihood-inference
+Inference-performance-error-metrics
 Summary-metric-visualisation
 References
 DAISIEmainland-data-standards

@@ -23,7 +23,7 @@
 <meta name="author" content="Joshua W. Lambert" />
 
 
-<meta name="date" content="2022-04-15" />
+<meta name="date" content="2022-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,7 +169,12 @@ div.csl-indent {
 <li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland<span></span></a></li>
 <li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance<span></span></a></li>
+<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="Inference-performance.html"><a href="Inference-performance.html#Simulating-data"><i class="fa fa-check"></i><b>4.1</b> Simulating data<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="Inference-performance.html"><a href="Inference-performance.html#Maximum-likelihood-inference"><i class="fa fa-check"></i><b>4.2</b> Maximum likelihood inference<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="Inference-performance.html"><a href="Inference-performance.html#Inference-performance-error-metrics"><i class="fa fa-check"></i><b>4.3</b> Inference performance error metrics<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="Summary-metric-visualisation.html"><a href="Summary-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary metrics visualisation<span></span></a></li>
 <li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References<span></span></a></li>
 <li class="appendix"><span><b>Appendix<span></span></b></span></li>
@@ -205,6 +210,23 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="Inference-performance" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">4</span> Inference performance<a href="Inference-performance.html#Inference-performance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<style type="text/css">
+pre {
+  max-height: 1000px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 500px;
+}
+</style>
+<style type="text/css">
+.scroll-100 {
+  max-height: 100px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+</style>
 <p>One of the primary purposes of the <code>DAISIEmainland</code> package and specifically
 why the data is formatted in the <code>DAISIE</code> format is to test the maximum
 likelihood inference models implemented in the <code>DAISIE</code> R package <span class="citation">(Etienne et al. 2022)</span>. Therefore, in this section we explore how to conduct a
@@ -219,35 +241,35 @@ of each other.</p>
 <p>As a small technical aside, this section uses <code>DAISIE</code> version 4.1.1. Re-running
 this code on another system may produce different results, especially if a
 different version of <code>DAISIE</code> is installed.</p>
-<p>First, we simulate an island. This will produce phylogenetic data for a single
-island. In an analysis many more replicates (e.g. 1,000) would be required to
-account for the stochastic differences between replicates given the simulation
-is stochastic.</p>
+<div id="Simulating-data" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Simulating data<a href="Inference-performance.html#Simulating-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First, we simulate 100 replicates of island data. This will produce phylogenetic data for a 100 islands with the same parameter values. The reason multiple island
+data sets are simulated is because the simualation algorithm is stochastic (Section <a href="Simulation-algorithm.html#Simulation-algorithm">2</a>) and by iterating the simulation many times
+it accounts for differences between data sets due to stochasticity. In an analysis more replicates (e.g. 1,000) can be run to account for the stochastic differences between replicates to more thoroughly sample the distribution of possible simulation outcomes.</p>
+<p>Note: all the code below takes a substantial amount of time to run (on the order
+of hours for 100 replicates).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Inference-performance.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
 <span id="cb14-2"><a href="Inference-performance.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
 <span id="cb14-3"><a href="Inference-performance.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
 <span id="cb14-4"><a href="Inference-performance.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
 <span id="cb14-5"><a href="Inference-performance.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span>)</span>
 <span id="cb14-6"><a href="Inference-performance.html#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="Inference-performance.html#cb14-7" aria-hidden="true" tabindex="-1"></a>replicates <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb14-7"><a href="Inference-performance.html#cb14-7" aria-hidden="true" tabindex="-1"></a>replicates <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb14-8"><a href="Inference-performance.html#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-9"><a href="Inference-performance.html#cb14-9" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">sim_island_with_mainland</span>(</span>
 <span id="cb14-10"><a href="Inference-performance.html#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
 <span id="cb14-11"><a href="Inference-performance.html#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">100</span>,</span>
-<span id="cb14-12"><a href="Inference-performance.html#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">50</span>, <span class="fl">0.1</span>, <span class="dv">1</span>),</span>
-<span id="cb14-13"><a href="Inference-performance.html#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="fl">0.5</span>,</span>
+<span id="cb14-12"><a href="Inference-performance.html#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">02.5</span>, <span class="dv">50</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span>),</span>
+<span id="cb14-13"><a href="Inference-performance.html#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="fl">1.0</span>,</span>
 <span id="cb14-14"><a href="Inference-performance.html#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
 <span id="cb14-15"><a href="Inference-performance.html#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span>,</span>
 <span id="cb14-16"><a href="Inference-performance.html#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> replicates,</span>
 <span id="cb14-17"><a href="Inference-performance.html#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
 <span id="cb14-18"><a href="Inference-performance.html#cb14-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Now we have the simulated data, stored in <code>daisie_mainland_data</code> (see section <a href="DAISIEmainland-data-standards.html#daisie-mainland-data">A.2.1</a>), which is a list object.
-At the highest level of the list there are two lists
-(<code>daisie_mainland_data$ideal_multi_daisie_data</code> and
-<code>daisie_mainland_data$empirical_multi_daisie_data</code>). The first
-(<code>daisie_mainland_data$ideal_multi_daisie_data</code>) contains 1
-element, if more replicates where run each element of <code>daisie_mainland_data$ideal_multi_daisie_data</code>
-is one replicate. The <code>daisie_mainland_data$ideal_multi_daisie_data</code> and <code>daisie_mainland_data$empirical_multi_daisie_data</code> have the same structure.
+At the highest level of the list there are two lists:
+<code>daisie_mainland_data$ideal_multi_daisie_data</code> and
+<code>daisie_mainland_data$empirical_multi_daisie_data</code>. Each of these <code>multi_daisie_data</code> lists contains 100 elements, one for each simulation replicate. The <code>daisie_mainland_data$ideal_multi_daisie_data</code> and <code>daisie_mainland_data$empirical_multi_daisie_data</code> have the same structure.
 The first element of each is the meta data, containing: <code>island_age</code> and the
 number of species <code>not_present</code> on the island that are on the mainland.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Inference-performance.html#cb15-1" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
@@ -255,108 +277,385 @@ number of species <code>not_present</code> on the island that are on the mainlan
 <span id="cb15-3"><a href="Inference-performance.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
 <span id="cb15-4"><a href="Inference-performance.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb15-5"><a href="Inference-performance.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $not_present</span></span>
-<span id="cb15-6"><a href="Inference-performance.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 91</span></span>
+<span id="cb15-6"><a href="Inference-performance.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 959</span></span>
 <span id="cb15-7"><a href="Inference-performance.html#cb15-7" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
 <span id="cb15-8"><a href="Inference-performance.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $island_age</span></span>
 <span id="cb15-9"><a href="Inference-performance.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
 <span id="cb15-10"><a href="Inference-performance.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb15-11"><a href="Inference-performance.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $not_present</span></span>
-<span id="cb15-12"><a href="Inference-performance.html#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 91</span></span></code></pre></div>
+<span id="cb15-12"><a href="Inference-performance.html#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 959</span></span></code></pre></div>
 <p>Subsequent elements of the list are the island clades which are composed of:
 <code>branching_times</code>, status of colonisation or <code>stac</code>, and number of
-<code>missing_species</code>.</p>
+<code>missing_species</code>. The <code>branching_times</code> contains the age of the island, the
+time of colonisation and any subsequent cladogenetic speciation times. The <code>stac</code>
+is a numeric identifier of the endemicicity status and cladogenetic status (i.e. is the island colonist a singleton lineage or a clade). Lastly, the <code>missing_species</code> is the number of species known from an island clade but not
+included in the <code>branching_times</code> vector as there is no phylogenetic information
+on the timing of speciation for that species. In the <code>DAISIEmainland</code> simulation
+we assume that we have phylogenetic information on all species on the island and thus <code>missing_species</code> is always set to zero.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Inference-performance.html#cb16-1" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
 <span id="cb16-2"><a href="Inference-performance.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $branching_times</span></span>
-<span id="cb16-3"><a href="Inference-performance.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.0000000 0.1470333</span></span>
+<span id="cb16-3"><a href="Inference-performance.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.0000000 4.1284128 0.1607578</span></span>
 <span id="cb16-4"><a href="Inference-performance.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb16-5"><a href="Inference-performance.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stac</span></span>
-<span id="cb16-6"><a href="Inference-performance.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb16-6"><a href="Inference-performance.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
 <span id="cb16-7"><a href="Inference-performance.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb16-8"><a href="Inference-performance.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $missing_species</span></span>
 <span id="cb16-9"><a href="Inference-performance.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
 <span id="cb16-10"><a href="Inference-performance.html#cb16-10" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
 <span id="cb16-11"><a href="Inference-performance.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $branching_times</span></span>
-<span id="cb16-12"><a href="Inference-performance.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.0000000 0.1470333</span></span>
+<span id="cb16-12"><a href="Inference-performance.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.0000000 4.1284128 0.1607578</span></span>
 <span id="cb16-13"><a href="Inference-performance.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb16-14"><a href="Inference-performance.html#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stac</span></span>
-<span id="cb16-15"><a href="Inference-performance.html#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb16-15"><a href="Inference-performance.html#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
 <span id="cb16-16"><a href="Inference-performance.html#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb16-17"><a href="Inference-performance.html#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $missing_species</span></span>
 <span id="cb16-18"><a href="Inference-performance.html#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
-<p>To run a maximum likelihood DAISIE model on each replicate we create objects to
-store the data in (<code>ideal_ml</code> and <code>empirical_ml</code>) and then loop over each
-replicate. Here we lower the tolerance (<code>tol</code> argument) of the maximum
-likelihood optimisation to increase the speed of optimisation. However, when
-using the <code>DAISIE_ML_CS()</code> function the default values will provide accurate
-estimation to a sensible tolerance.</p>
+</div>
+<div id="Maximum-likelihood-inference" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Maximum likelihood inference<a href="Inference-performance.html#Maximum-likelihood-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To run a maximum likelihood DAISIE model, using the <code>DAISIE_ML_CS()</code> function, on each replicate we create objects to store the data in (<code>ideal_ml</code> and <code>empirical_ml</code>) and then loop over each replicate.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Inference-performance.html#cb17-1" aria-hidden="true" tabindex="-1"></a>ideal_ml <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>, replicates)</span>
 <span id="cb17-2"><a href="Inference-performance.html#cb17-2" aria-hidden="true" tabindex="-1"></a>empirical_ml <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>, replicates)</span>
 <span id="cb17-3"><a href="Inference-performance.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="Inference-performance.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(replicates)) {</span>
 <span id="cb17-5"><a href="Inference-performance.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  ideal_ml[[i]] <span class="ot">&lt;-</span> DAISIE<span class="sc">::</span><span class="fu">DAISIE_ML_CS</span>(</span>
 <span id="cb17-6"><a href="Inference-performance.html#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">datalist =</span> daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data[[i]],</span>
-<span id="cb17-7"><a href="Inference-performance.html#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">50</span>, <span class="fl">0.1</span>, <span class="dv">1</span>),</span>
+<span id="cb17-7"><a href="Inference-performance.html#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">02.5</span>, <span class="dv">50</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span>),</span>
 <span id="cb17-8"><a href="Inference-performance.html#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">idparsopt =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
 <span id="cb17-9"><a href="Inference-performance.html#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">parsfix =</span> <span class="cn">NULL</span>,</span>
 <span id="cb17-10"><a href="Inference-performance.html#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">idparsfix =</span> <span class="cn">NULL</span>,</span>
 <span id="cb17-11"><a href="Inference-performance.html#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ddmodel =</span> <span class="dv">11</span>,</span>
 <span id="cb17-12"><a href="Inference-performance.html#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">methode =</span> <span class="st">&quot;odeint::runge_kutta_fehlberg78&quot;</span>,</span>
 <span id="cb17-13"><a href="Inference-performance.html#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimmethod =</span> <span class="st">&quot;simplex&quot;</span>,</span>
-<span id="cb17-14"><a href="Inference-performance.html#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">tol =</span> <span class="fu">c</span>(<span class="fl">1e-01</span>, <span class="fl">1e-02</span>, <span class="fl">1e-04</span>),</span>
-<span id="cb17-15"><a href="Inference-performance.html#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">jitter =</span> <span class="fl">1e-5</span>)</span>
-<span id="cb17-16"><a href="Inference-performance.html#cb17-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-17"><a href="Inference-performance.html#cb17-17" aria-hidden="true" tabindex="-1"></a>  empirical_ml[[i]] <span class="ot">&lt;-</span> DAISIE<span class="sc">::</span><span class="fu">DAISIE_ML_CS</span>(</span>
-<span id="cb17-18"><a href="Inference-performance.html#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">datalist =</span> daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data[[i]],</span>
-<span id="cb17-19"><a href="Inference-performance.html#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">50</span>, <span class="fl">0.1</span>, <span class="dv">1</span>),</span>
-<span id="cb17-20"><a href="Inference-performance.html#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">idparsopt =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb17-21"><a href="Inference-performance.html#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">parsfix =</span> <span class="cn">NULL</span>,</span>
-<span id="cb17-22"><a href="Inference-performance.html#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">idparsfix =</span> <span class="cn">NULL</span>,</span>
-<span id="cb17-23"><a href="Inference-performance.html#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">ddmodel =</span> <span class="dv">11</span>,</span>
-<span id="cb17-24"><a href="Inference-performance.html#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">methode =</span> <span class="st">&quot;odeint::runge_kutta_fehlberg78&quot;</span>,</span>
-<span id="cb17-25"><a href="Inference-performance.html#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimmethod =</span> <span class="st">&quot;simplex&quot;</span>,</span>
-<span id="cb17-26"><a href="Inference-performance.html#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">tol =</span> <span class="fu">c</span>(<span class="fl">1e-01</span>, <span class="fl">1e-02</span>, <span class="fl">1e-04</span>),</span>
-<span id="cb17-27"><a href="Inference-performance.html#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">jitter =</span> <span class="fl">1e-5</span>)</span>
-<span id="cb17-28"><a href="Inference-performance.html#cb17-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>To calculate the errors we can run <code>calc_error()</code> with the simulated data and
-the maximum likelihood estimates.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Inference-performance.html#cb18-1" aria-hidden="true" tabindex="-1"></a>errors <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_error</span>(</span>
-<span id="cb18-2"><a href="Inference-performance.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">daisie_mainland_data =</span> daisie_mainland_data,</span>
-<span id="cb18-3"><a href="Inference-performance.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ideal_ml =</span> ideal_ml,</span>
-<span id="cb18-4"><a href="Inference-performance.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">empirical_ml =</span> empirical_ml)</span></code></pre></div>
-<p>The errors are:</p>
+<span id="cb17-14"><a href="Inference-performance.html#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">jitter =</span> <span class="fl">1e-5</span>)</span>
+<span id="cb17-15"><a href="Inference-performance.html#cb17-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-16"><a href="Inference-performance.html#cb17-16" aria-hidden="true" tabindex="-1"></a>  empirical_ml[[i]] <span class="ot">&lt;-</span> DAISIE<span class="sc">::</span><span class="fu">DAISIE_ML_CS</span>(</span>
+<span id="cb17-17"><a href="Inference-performance.html#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">datalist =</span> daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data[[i]],</span>
+<span id="cb17-18"><a href="Inference-performance.html#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">02.5</span>, <span class="dv">50</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span>),</span>
+<span id="cb17-19"><a href="Inference-performance.html#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">idparsopt =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb17-20"><a href="Inference-performance.html#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">parsfix =</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-21"><a href="Inference-performance.html#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">idparsfix =</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-22"><a href="Inference-performance.html#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">ddmodel =</span> <span class="dv">11</span>,</span>
+<span id="cb17-23"><a href="Inference-performance.html#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">methode =</span> <span class="st">&quot;odeint::runge_kutta_fehlberg78&quot;</span>,</span>
+<span id="cb17-24"><a href="Inference-performance.html#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimmethod =</span> <span class="st">&quot;simplex&quot;</span>,</span>
+<span id="cb17-25"><a href="Inference-performance.html#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">jitter =</span> <span class="fl">1e-5</span>)</span>
+<span id="cb17-26"><a href="Inference-performance.html#cb17-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The details of the maximum likelihood set up are not important, but a brief explainer: all model parameters are optimisied with the starting position in parameter space for optimisation, equal to the values used to simulate the data; the Runge-Kutta Fehlberg method to numerically solve the likelihood equations; and simplex is the optimisation algorithm to maximise the likelihood.</p>
+</div>
+<div id="Inference-performance-error-metrics" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Inference performance error metrics<a href="Inference-performance.html#Inference-performance-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we have simulated 100 data sets, each with an <em>ideal</em> and <em>empirical</em> data
+set, and fitted the DAISIE model to each, we need to quantify the error the DAISIE inference makes because it does not include mainland evolutionary dynamics.</p>
+<p>The error metrics chosen to quantify this are:</p>
 <ol style="list-style-type: decimal">
-<li>Delta CTT (difference in colonisations through time) between
-the ideal and empirical data.</li>
+<li>The difference between the parameter estimates from <em>ideal</em> and <em>empirical</em> data, for cladogenesis ($clado_ratio), extinction ($ext_ratio), carrying capacity ($k_ratio), colonisation ($immig_ratio), and anagenesis ($ana_ratio). This can be calculated as the <em>ideal</em> estimate minus <em>empirical</em> estimate, or <em>ideal</em> estimate divided by the <em>empirical</em> estimate.</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Inference-performance.html#cb19-1" aria-hidden="true" tabindex="-1"></a>errors<span class="sc">$</span>delta_ctt</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Inference-performance.html#cb18-1" aria-hidden="true" tabindex="-1"></a>error_metrics<span class="sc">$</span>param_diffs</span>
+<span id="cb18-2"><a href="Inference-performance.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $clado_diffs</span></span>
+<span id="cb18-3"><a href="Inference-performance.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  0.0485671213  0.1373335180  0.1235759403  0.0953859594  0.1358954310</span></span>
+<span id="cb18-4"><a href="Inference-performance.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [6]  0.0866802387  0.1325293598  0.0040849011  0.1258097861  0.1183624223</span></span>
+<span id="cb18-5"><a href="Inference-performance.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11]  0.0209520854  0.0067349700  0.1405136758  0.0159262995  0.0332742438</span></span>
+<span id="cb18-6"><a href="Inference-performance.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [16]  0.0652122543  0.0757534327  0.0703789053  0.0638534672  0.1123253518</span></span>
+<span id="cb18-7"><a href="Inference-performance.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21]  0.0387860642  0.1389811329  0.0489951561  0.0057499664  0.0982333242</span></span>
+<span id="cb18-8"><a href="Inference-performance.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [26]  0.0222870658  0.0925295642  0.0670060346  0.0241730403  0.0736598720</span></span>
+<span id="cb18-9"><a href="Inference-performance.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31]  0.0939902206  0.0832876704  0.0952014091  0.1183953843  0.0333036319</span></span>
+<span id="cb18-10"><a href="Inference-performance.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [36]  0.0788275212  0.0652345805  0.1196498887  0.0075744193  0.0007002778</span></span>
+<span id="cb18-11"><a href="Inference-performance.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  0.0565057260  0.1559784446  0.1600979463  0.0598963000  0.0778151524</span></span>
+<span id="cb18-12"><a href="Inference-performance.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [46]  0.0027668697  0.0596032902  0.1066499937 -0.0052408873  0.0855404107</span></span>
+<span id="cb18-13"><a href="Inference-performance.html#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51]  0.1873826787  0.1366268656  0.0247300013  0.1278115324  0.1110532752</span></span>
+<span id="cb18-14"><a href="Inference-performance.html#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [56]  0.1702827555  0.0580207482 -0.0269455300  0.1388745854  0.1932200372</span></span>
+<span id="cb18-15"><a href="Inference-performance.html#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] -0.0484186886  0.1117052217  0.1250062565  0.0992634319  0.0287133793</span></span>
+<span id="cb18-16"><a href="Inference-performance.html#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [66]  0.0731280890  0.1348903390  0.0948763814  0.0660694034  0.1196880994</span></span>
+<span id="cb18-17"><a href="Inference-performance.html#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71]  0.2336268190  0.1672059897  0.1535245336  0.0468435173  0.1429627692</span></span>
+<span id="cb18-18"><a href="Inference-performance.html#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [76]  0.2474280851  0.0520964225  0.0617982639  0.1516189004  0.0141226232</span></span>
+<span id="cb18-19"><a href="Inference-performance.html#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81]  0.0010783260  0.0519716199  0.0967431949  0.0659618055  0.0903201873</span></span>
+<span id="cb18-20"><a href="Inference-performance.html#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [86]  0.0977781642  0.0218629018 -0.0450911852  0.0818354966  0.1339237117</span></span>
+<span id="cb18-21"><a href="Inference-performance.html#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  0.2632617046  0.0381733346  0.0814707184  0.0771590033  0.0110410705</span></span>
+<span id="cb18-22"><a href="Inference-performance.html#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [96]  0.1906785193  0.0557903264  0.0962286193 -0.0255369899 -0.0308531267</span></span>
+<span id="cb18-23"><a href="Inference-performance.html#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb18-24"><a href="Inference-performance.html#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ext_diffs</span></span>
+<span id="cb18-25"><a href="Inference-performance.html#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  6.857364e-02  1.097038e-01  1.125931e-01  4.725620e-02  5.632513e-02</span></span>
+<span id="cb18-26"><a href="Inference-performance.html#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [6]  1.481105e-01  2.000310e-01  6.071199e-02  1.096539e-01  1.181260e-01</span></span>
+<span id="cb18-27"><a href="Inference-performance.html#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11]  2.499557e-02  5.500459e-05  7.427308e-02  1.437063e-02  8.446332e-02</span></span>
+<span id="cb18-28"><a href="Inference-performance.html#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [16]  9.517239e-02  1.764619e-01  1.127467e-01  6.058841e-02  8.199032e-02</span></span>
+<span id="cb18-29"><a href="Inference-performance.html#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21]  4.615333e-02  1.056925e-01  1.125869e-01 -1.008727e-02  9.737776e-02</span></span>
+<span id="cb18-30"><a href="Inference-performance.html#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [26] -2.615180e-04  1.743287e-01  5.330404e-02  4.899761e-02  9.500368e-02</span></span>
+<span id="cb18-31"><a href="Inference-performance.html#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31]  8.581763e-02  1.516548e-01  1.404316e-01  1.459737e-01  7.720799e-02</span></span>
+<span id="cb18-32"><a href="Inference-performance.html#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [36]  1.257149e-01  9.721214e-02  7.475331e-02  1.620405e-02  2.231194e-04</span></span>
+<span id="cb18-33"><a href="Inference-performance.html#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  7.279873e-02  2.125234e-01  8.736661e-02 -5.667143e-06  4.749765e-02</span></span>
+<span id="cb18-34"><a href="Inference-performance.html#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [46] -1.409081e-06  5.133049e-02  3.874742e-02 -1.146016e-02  1.087732e-01</span></span>
+<span id="cb18-35"><a href="Inference-performance.html#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51]  1.769580e-01  8.652160e-02  4.636389e-02  1.202245e-01  1.293976e-01</span></span>
+<span id="cb18-36"><a href="Inference-performance.html#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [56]  1.215278e-01  1.481257e-01  7.206466e-02  1.060878e-01  2.002648e-01</span></span>
+<span id="cb18-37"><a href="Inference-performance.html#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] -6.393059e-03  1.226918e-01  1.788540e-01  1.217913e-01  7.357735e-02</span></span>
+<span id="cb18-38"><a href="Inference-performance.html#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [66]  2.976577e-02  9.688404e-02  1.605063e-01  7.182201e-02  1.564635e-01</span></span>
+<span id="cb18-39"><a href="Inference-performance.html#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71]  4.096875e-01  1.796573e-01  1.716357e-01  2.250669e-02  1.071613e-01</span></span>
+<span id="cb18-40"><a href="Inference-performance.html#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [76]  2.330795e-01  9.216332e-02  1.279147e-01  2.238795e-01  6.356713e-02</span></span>
+<span id="cb18-41"><a href="Inference-performance.html#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] -1.060943e-03  8.552440e-02  8.791171e-02  9.672859e-02  6.732924e-02</span></span>
+<span id="cb18-42"><a href="Inference-performance.html#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [86]  1.122435e-01  3.596650e-02 -3.778419e-02  9.899419e-02  1.151449e-01</span></span>
+<span id="cb18-43"><a href="Inference-performance.html#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  2.101046e-01  7.911586e-02  8.636993e-02  8.483219e-02  1.101010e-02</span></span>
+<span id="cb18-44"><a href="Inference-performance.html#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [96]  1.686426e-01  4.570608e-02  8.918716e-02 -2.143301e-14  1.022372e-02</span></span>
+<span id="cb18-45"><a href="Inference-performance.html#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb18-46"><a href="Inference-performance.html#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $k_diffs</span></span>
+<span id="cb18-47"><a href="Inference-performance.html#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] -3.496213e-01 -1.760964e+00 -1.980145e-01 -4.525308e+00 -9.302610e+00</span></span>
+<span id="cb18-48"><a href="Inference-performance.html#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [6]  2.516986e-01          -Inf  1.100309e+00 -1.233321e-01 -1.451193e+00</span></span>
+<span id="cb18-49"><a href="Inference-performance.html#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11] -1.599502e+00 -4.807013e-02 -9.729760e-01 -1.184472e-02  6.068851e-01</span></span>
+<span id="cb18-50"><a href="Inference-performance.html#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [16]  2.209808e-01           NaN  6.177416e-01 -1.283903e+00 -4.505470e-01</span></span>
+<span id="cb18-51"><a href="Inference-performance.html#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21]  4.851449e-01  2.297718e-12           NaN -3.803513e-01 -1.129781e+00</span></span>
+<span id="cb18-52"><a href="Inference-performance.html#cb18-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [26] -8.420514e-01           NaN -1.381843e-01  2.834243e-01 -1.263562e+01</span></span>
+<span id="cb18-53"><a href="Inference-performance.html#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] -1.635090e+00           NaN  2.079064e+00  5.580890e-01           NaN</span></span>
+<span id="cb18-54"><a href="Inference-performance.html#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [36] -1.341703e+00 -4.896262e+00 -1.127207e+00  7.736603e-01 -1.732510e-01</span></span>
+<span id="cb18-55"><a href="Inference-performance.html#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] -3.770729e+00 -8.429657e+01 -2.515503e-01 -4.328450e+00 -2.366657e+00</span></span>
+<span id="cb18-56"><a href="Inference-performance.html#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [46]           NaN -6.352045e+00 -3.229599e-01           NaN  8.838242e-01</span></span>
+<span id="cb18-57"><a href="Inference-performance.html#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51] -7.992154e+01 -1.273254e+00           NaN -4.879011e+00 -7.461650e+00</span></span>
+<span id="cb18-58"><a href="Inference-performance.html#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [56] -1.068268e+01           NaN  1.432933e+00 -1.462462e+00 -2.422899e+01</span></span>
+<span id="cb18-59"><a href="Inference-performance.html#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61]  1.705262e+01          -Inf -4.951696e-01 -1.550811e+01  8.432118e-01</span></span>
+<span id="cb18-60"><a href="Inference-performance.html#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [66] -1.233582e-08 -8.160294e-01  6.544387e-01 -1.057907e+00 -1.546564e+00</span></span>
+<span id="cb18-61"><a href="Inference-performance.html#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71] -5.643018e+00  3.700340e-02 -7.188337e+00 -2.843850e+00 -2.659184e-01</span></span>
+<span id="cb18-62"><a href="Inference-performance.html#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [76] -1.508660e+00  1.412603e+00           NaN          -Inf  4.060781e-01</span></span>
+<span id="cb18-63"><a href="Inference-performance.html#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] -1.932961e-01  7.244419e-02 -1.481494e-01           NaN  7.736034e-11</span></span>
+<span id="cb18-64"><a href="Inference-performance.html#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [86] -2.658060e+00  4.513234e-02  2.207231e+00          -Inf -9.670351e+01</span></span>
+<span id="cb18-65"><a href="Inference-performance.html#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] -6.814340e+00 -2.393552e+00 -7.651993e-01 -7.558605e-01  2.966476e-02</span></span>
+<span id="cb18-66"><a href="Inference-performance.html#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [96] -9.004889e+00 -2.705575e+00 -7.597101e+00  5.761140e+01  1.930309e+00</span></span>
+<span id="cb18-67"><a href="Inference-performance.html#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb18-68"><a href="Inference-performance.html#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $immig_diffs</span></span>
+<span id="cb18-69"><a href="Inference-performance.html#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  1.042022e-03  9.743975e-04  1.516408e-03  3.551594e-04  8.390961e-04</span></span>
+<span id="cb18-70"><a href="Inference-performance.html#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [6]  2.057175e-03  2.227582e-03  1.452176e-03  1.008419e-03  1.327859e-03</span></span>
+<span id="cb18-71"><a href="Inference-performance.html#cb18-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11]  3.412082e-04 -1.278710e-05  8.116564e-04  4.464987e-04  7.378906e-04</span></span>
+<span id="cb18-72"><a href="Inference-performance.html#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [16]  1.358666e-03  3.348057e-03  1.454142e-03  1.077728e-03  6.188365e-04</span></span>
+<span id="cb18-73"><a href="Inference-performance.html#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21]  7.090332e-04  9.048389e-04  1.994647e-03 -7.993683e-05  1.063019e-03</span></span>
+<span id="cb18-74"><a href="Inference-performance.html#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [26]  1.821143e-05  1.938671e-03  4.111066e-04  5.295924e-04  9.949653e-04</span></span>
+<span id="cb18-75"><a href="Inference-performance.html#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31]  6.655333e-04  2.129320e-03  2.071309e-03  1.653417e-03  1.351098e-03</span></span>
+<span id="cb18-76"><a href="Inference-performance.html#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [36]  1.418462e-03  1.804811e-03  5.124829e-04  2.020163e-04  2.116319e-04</span></span>
+<span id="cb18-77"><a href="Inference-performance.html#cb18-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  1.416318e-03  2.782163e-03  7.752967e-04  2.087575e-04  2.787000e-04</span></span>
+<span id="cb18-78"><a href="Inference-performance.html#cb18-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [46]  1.919504e-04  6.559712e-04  1.238442e-04  3.287926e-04  2.182717e-03</span></span>
+<span id="cb18-79"><a href="Inference-performance.html#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51]  1.405726e-03  9.459177e-04  1.059625e-03  1.269979e-03  2.098623e-03</span></span>
+<span id="cb18-80"><a href="Inference-performance.html#cb18-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [56]  1.232630e-03  1.161765e-03  1.645384e-03  1.440077e-03  1.610687e-03</span></span>
+<span id="cb18-81"><a href="Inference-performance.html#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61]  3.843102e-04  1.502280e-03  2.127733e-03  1.308060e-03  8.659956e-04</span></span>
+<span id="cb18-82"><a href="Inference-performance.html#cb18-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [66]  1.140500e-04  6.868319e-04  3.183439e-03  9.367026e-04  3.353336e-03</span></span>
+<span id="cb18-83"><a href="Inference-performance.html#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71]  4.175519e-03  1.126795e-03  2.030753e-03  2.275020e-04  1.187243e-03</span></span>
+<span id="cb18-84"><a href="Inference-performance.html#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [76]  2.105562e-03  1.559709e-03  1.728874e-03  3.312228e-03  5.882417e-04</span></span>
+<span id="cb18-85"><a href="Inference-performance.html#cb18-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81]  2.399429e-04  1.018908e-03  1.061724e-03  1.101474e-03  7.102028e-04</span></span>
+<span id="cb18-86"><a href="Inference-performance.html#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [86]  1.449428e-03  3.926257e-04 -4.089808e-04  1.280796e-03  1.236879e-03</span></span>
+<span id="cb18-87"><a href="Inference-performance.html#cb18-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  2.200531e-03  8.608049e-04  6.789350e-04  9.925445e-04  1.585696e-04</span></span>
+<span id="cb18-88"><a href="Inference-performance.html#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [96]  2.272000e-03  4.468965e-04  7.226488e-04  1.442125e-04  5.610867e-04</span></span>
+<span id="cb18-89"><a href="Inference-performance.html#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb18-90"><a href="Inference-performance.html#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ana_diffs</span></span>
+<span id="cb18-91"><a href="Inference-performance.html#cb18-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  -2.81502418  -0.30755024  -8.83992684  -0.09823236  -6.37998771  -2.00149632</span></span>
+<span id="cb18-92"><a href="Inference-performance.html#cb18-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [7]  -0.52255434  -0.18900595  -1.44201732  -1.36502610  -1.11886027  -0.40458206</span></span>
+<span id="cb18-93"><a href="Inference-performance.html#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13]  -0.35338120  -1.71542320  -1.70200338  -2.03288606  -4.98153156  -0.92630285</span></span>
+<span id="cb18-94"><a href="Inference-performance.html#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19]  -1.49863569  -3.16133662  -0.22306379   1.16501822  -0.45087136 -99.23345781</span></span>
+<span id="cb18-95"><a href="Inference-performance.html#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25]  -0.42568490  -1.47454122  -1.82309850  -0.77802340  -2.74982881 -99.19490151</span></span>
+<span id="cb18-96"><a href="Inference-performance.html#cb18-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31]  -0.43635432  -1.35225428  -0.21317802  -1.95643284  -0.60724162  -3.01877683</span></span>
+<span id="cb18-97"><a href="Inference-performance.html#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37]  -0.47780628  -1.26597480  -5.01345786  -0.86483660  -1.86608664  -3.62904156</span></span>
+<span id="cb18-98"><a href="Inference-performance.html#cb18-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43]  -0.75516449 -96.88273322  -2.68596835  -0.17875030  -1.17023276  -0.55650869</span></span>
+<span id="cb18-99"><a href="Inference-performance.html#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  -2.61311465  -1.19975469   0.51695521  -0.89282807  -7.03008622  -0.69367270</span></span>
+<span id="cb18-100"><a href="Inference-performance.html#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  -0.89192587  -3.80878377  -2.15111646  -1.22599348  -2.70004090  -0.71966370</span></span>
+<span id="cb18-101"><a href="Inference-performance.html#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] -98.06618339  -0.70533170  -3.46826307  -1.27895765  -0.76310280  -3.41426901</span></span>
+<span id="cb18-102"><a href="Inference-performance.html#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [67]  -0.12162699  -1.54694995  -1.27817247  -0.53709200  -2.17232671  -1.29543112</span></span>
+<span id="cb18-103"><a href="Inference-performance.html#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] -98.25615324   0.00000000  -1.19148035  -7.23074816  -0.91334813  -3.80968955</span></span>
+<span id="cb18-104"><a href="Inference-performance.html#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [79]  -0.79059622  -2.96121375  -1.56570253  -0.83990984  -0.21666682  -0.79426705</span></span>
+<span id="cb18-105"><a href="Inference-performance.html#cb18-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  -0.35740054  -1.04115133  -0.42769514  -8.44618955  -2.13413452  -1.56313291</span></span>
+<span id="cb18-106"><a href="Inference-performance.html#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  -3.61881486  -1.55017243  -0.15521925  -0.73067508  -0.86176702  -2.91392867</span></span>
+<span id="cb18-107"><a href="Inference-performance.html#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  -2.24233168  -3.03266562 -98.50940645  -0.69419471</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Inference-performance.html#cb19-1" aria-hidden="true" tabindex="-1"></a>error_metrics<span class="sc">$</span>param_ratios</span>
+<span id="cb19-2"><a href="Inference-performance.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $clado_ratio</span></span>
+<span id="cb19-3"><a href="Inference-performance.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 1.1019247 1.2645962 1.2315766 1.2231733 1.2038794 1.0732537 1.3283457 1.0063321</span></span>
+<span id="cb19-4"><a href="Inference-performance.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] 1.1697543 1.1794265 1.0285701 1.0138593 1.2180917 1.0233796 1.0619812 1.0821268</span></span>
+<span id="cb19-5"><a href="Inference-performance.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17] 1.1856363 1.1443566 1.1089589 1.2182676 1.0394481 1.2455419 1.1203024 1.0098534</span></span>
+<span id="cb19-6"><a href="Inference-performance.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 1.1873124 1.0489651 1.2447870 1.0815000 1.0697073 1.1462584 1.1552739 1.1476469</span></span>
+<span id="cb19-7"><a href="Inference-performance.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 1.1287327 1.2280786 1.1002011 1.1743800 1.1101595 1.1488195 1.0114636 1.0012274</span></span>
+<span id="cb19-8"><a href="Inference-performance.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 1.1347616 1.3979466 1.2114707 1.1029518 1.1204869 1.0084438 1.1184261 1.1015717</span></span>
+<span id="cb19-9"><a href="Inference-performance.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] 0.9840621 1.1006664 1.3545575 1.1875476 1.0504432 1.2547194 1.1935862 1.4246978</span></span>
+<span id="cb19-10"><a href="Inference-performance.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] 1.1300556 0.9609090 1.2241886 1.4629485 0.9149940 1.2652098 1.2217370 1.2170709</span></span>
+<span id="cb19-11"><a href="Inference-performance.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] 1.0486845 1.0753999 1.2160452 1.1810725 1.0999879 1.2034898 1.5353281 1.2518833</span></span>
+<span id="cb19-12"><a href="Inference-performance.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 1.2277219 1.1006048 1.1769789 1.4717583 1.0787394 1.1547868 1.3423970 1.0253501</span></span>
+<span id="cb19-13"><a href="Inference-performance.html#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 1.0020710 1.0908377 1.1745615 1.1009075 1.0931471 1.2598514 1.0391368 0.9447405</span></span>
+<span id="cb19-14"><a href="Inference-performance.html#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89] 1.1730173 1.2679206 1.4787505 1.1022435 1.0988597 1.1309307 1.0173436 1.6469116</span></span>
+<span id="cb19-15"><a href="Inference-performance.html#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 1.1401073 1.2004272 0.9430654 0.9487790</span></span>
+<span id="cb19-16"><a href="Inference-performance.html#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb19-17"><a href="Inference-performance.html#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ext_ratio</span></span>
+<span id="cb19-18"><a href="Inference-performance.html#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 4.368896e+10 2.247107e+00 2.307965e+00 1.559733e+00 1.107176e+00 1.276581e+00</span></span>
+<span id="cb19-19"><a href="Inference-performance.html#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [7] 1.014503e+01 1.190183e+00 1.236633e+00 1.708440e+00 1.049173e+00 9.870138e+09</span></span>
+<span id="cb19-20"><a href="Inference-performance.html#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13] 1.286894e+00 1.056265e+00 2.337184e+00 1.288329e+00 2.402821e+00 2.431660e+11</span></span>
+<span id="cb19-21"><a href="Inference-performance.html#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19] 1.556109e+00 2.922531e+00 1.093333e+00 1.703661e+00 2.258062e+00 9.372024e-01</span></span>
+<span id="cb19-22"><a href="Inference-performance.html#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 2.317361e+00 1.108920e-09 5.176414e+00 1.208487e+00 1.775872e+11 1.333426e+00</span></span>
+<span id="cb19-23"><a href="Inference-performance.html#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 1.929799e+00 1.384392e+00 1.273000e+00 8.429728e+11 3.511354e+01 6.917127e+12</span></span>
+<span id="cb19-24"><a href="Inference-performance.html#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37] 1.362813e+00 1.197913e+00 1.040595e+00 2.780516e+09 2.278822e+00 4.860388e+00</span></span>
+<span id="cb19-25"><a href="Inference-performance.html#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] 1.314793e+00 1.507218e-07 1.123221e+00 1.732810e-04 5.036783e+00 1.086917e+00</span></span>
+<span id="cb19-26"><a href="Inference-performance.html#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] 3.591096e-09 1.240306e+00 2.170009e+00 1.414762e+00 1.172721e+00 1.534977e+00</span></span>
+<span id="cb19-27"><a href="Inference-performance.html#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55] 1.506628e+00 1.702878e+12 2.200715e+06 1.273985e+00 1.397770e+00 3.674563e+11</span></span>
+<span id="cb19-28"><a href="Inference-performance.html#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] 9.818634e-01 2.482082e+00 2.475970e+00 1.476402e+00 1.853170e+00 1.051781e+00</span></span>
+<span id="cb19-29"><a href="Inference-performance.html#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [67] 1.447594e+00 2.914421e+00 1.210774e+00 1.676642e+00 1.115805e+12 2.550256e+00</span></span>
+<span id="cb19-30"><a href="Inference-performance.html#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 2.148906e+00 2.686589e+11 1.223887e+00 8.296050e+00 1.230673e+00 1.546809e+00</span></span>
+<span id="cb19-31"><a href="Inference-performance.html#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [79] 2.641143e+00 6.002974e+00 9.922770e-01 1.407970e+00 1.469073e+00 1.183168e+00</span></span>
+<span id="cb19-32"><a href="Inference-performance.html#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] 1.098108e+00 5.625863e+11 1.495995e+00 9.310646e-01 1.401439e+00 1.627062e+00</span></span>
+<span id="cb19-33"><a href="Inference-performance.html#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] 1.861633e+00 3.318195e+00 1.155149e+00 1.599951e+00 1.029143e+00 5.342523e+02</span></span>
+<span id="cb19-34"><a href="Inference-performance.html#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 1.289240e+00 9.089077e+10 8.081950e-01 1.031266e+00</span></span>
+<span id="cb19-35"><a href="Inference-performance.html#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb19-36"><a href="Inference-performance.html#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $k_ratio</span></span>
+<span id="cb19-37"><a href="Inference-performance.html#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.9759979 0.8851219 0.9728497 0.7712869 0.5355142 1.0226588 0.0000000 1.0990068</span></span>
+<span id="cb19-38"><a href="Inference-performance.html#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] 0.9865571 0.9109885 0.9512656 0.9935885 0.9054963 0.9988169 1.0279555 1.0129938</span></span>
+<span id="cb19-39"><a href="Inference-performance.html#cb19-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17]       NaN 1.0350560 0.9485566 0.9528544 1.0554575 1.0000000       NaN 0.9764286</span></span>
+<span id="cb19-40"><a href="Inference-performance.html#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 0.9188533 0.9353091       NaN 0.9892863 1.0062481 0.7622975 0.9332112       NaN</span></span>
+<span id="cb19-41"><a href="Inference-performance.html#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 1.0863003 1.0569779       NaN 0.9592238 0.7443303 0.9275784 1.0044091 0.9850291</span></span>
+<span id="cb19-42"><a href="Inference-performance.html#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 0.8670505 0.2003501 0.9624100 0.7570835 0.8976065       NaN 0.7193965 0.9673533</span></span>
+<span id="cb19-43"><a href="Inference-performance.html#cb19-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]       NaN 1.0477054 0.2590141 0.9277677       NaN 0.7516033 0.8196856 0.4771808</span></span>
+<span id="cb19-44"><a href="Inference-performance.html#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]       NaN 1.1933501 0.8689615 0.4057954 1.6938724 0.0000000 0.9740698 0.7017777</span></span>
+<span id="cb19-45"><a href="Inference-performance.html#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] 1.0594442 1.0000000 0.9296927 1.0381618 0.9322491 0.8580620 0.8047749 1.0057703</span></span>
+<span id="cb19-46"><a href="Inference-performance.html#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 0.8028354 0.8646753 0.9716147 0.8642064 1.1147170       NaN 0.0000000 1.0423507</span></span>
+<span id="cb19-47"><a href="Inference-performance.html#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 0.9884308 1.0049769 0.9792744       NaN 1.0000000 0.8869874 1.0031085 1.1403730</span></span>
+<span id="cb19-48"><a href="Inference-performance.html#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89] 0.0000000 0.2914180 0.6367512 0.9233759 0.9688190 0.9604435 1.0037081 0.4508025</span></span>
+<span id="cb19-49"><a href="Inference-performance.html#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 0.8505793 0.8283872 2.7275012 1.1199524</span></span>
+<span id="cb19-50"><a href="Inference-performance.html#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb19-51"><a href="Inference-performance.html#cb19-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $immig_ratio</span></span>
+<span id="cb19-52"><a href="Inference-performance.html#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 1.1208684 1.1310031 1.1766406 1.0559947 1.0772917 1.2234355 1.3374036 1.1459946</span></span>
+<span id="cb19-53"><a href="Inference-performance.html#cb19-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] 1.1009760 1.1295151 1.0260638 0.9980173 1.0632580 1.0440015 1.1134424 1.1277152</span></span>
+<span id="cb19-54"><a href="Inference-performance.html#cb19-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17] 1.3252620 1.1856656 1.1237274 1.1039668 1.0770954 1.1308119 1.2249763 0.9904184</span></span>
+<span id="cb19-55"><a href="Inference-performance.html#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 1.1232711 1.0020259 1.2684106 1.0485719 1.0801134 1.1164359 1.0957965 1.1775955</span></span>
+<span id="cb19-56"><a href="Inference-performance.html#cb19-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 1.1756976 1.2752436 1.1865987 1.2149293 1.1875892 1.0541904 1.0216487 1.0263911</span></span>
+<span id="cb19-57"><a href="Inference-performance.html#cb19-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 1.1585339 1.4006457 1.0764068 1.0316560 1.0359661 1.0329992 1.1005446 1.0141781</span></span>
+<span id="cb19-58"><a href="Inference-performance.html#cb19-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] 1.0407157 1.1957650 1.2522359 1.1036875 1.0876331 1.1412202 1.1719301 1.1762298</span></span>
+<span id="cb19-59"><a href="Inference-performance.html#cb19-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] 1.2147905 1.1678468 1.1418940 1.2869597 1.0431875 1.1668380 1.2605257 1.1514541</span></span>
+<span id="cb19-60"><a href="Inference-performance.html#cb19-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] 1.1293670 1.0095504 1.0965260 1.3232910 1.0768819 1.2804492 1.7252252 1.2209662</span></span>
+<span id="cb19-61"><a href="Inference-performance.html#cb19-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 1.2143799 1.0299591 1.0903716 1.4030301 1.1376007 1.2261965 1.3912836 1.0873358</span></span>
+<span id="cb19-62"><a href="Inference-performance.html#cb19-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 1.0255434 1.1489269 1.1073064 1.0960557 1.0466218 1.1948394 1.0457636 0.9706315</span></span>
+<span id="cb19-63"><a href="Inference-performance.html#cb19-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89] 1.1571197 1.1306892 1.2649934 1.1235443 1.0727404 1.0992527 1.0136102 1.3161109</span></span>
+<span id="cb19-64"><a href="Inference-performance.html#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 1.0606378 1.1164211 1.0240545 1.0525936</span></span>
+<span id="cb19-65"><a href="Inference-performance.html#cb19-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb19-66"><a href="Inference-performance.html#cb19-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ana_ratio</span></span>
+<span id="cb19-67"><a href="Inference-performance.html#cb19-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 3.829679e-01 6.522835e-01 1.790843e-01 9.374789e-01 1.190392e-01 1.762753e-12</span></span>
+<span id="cb19-68"><a href="Inference-performance.html#cb19-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [7] 6.893415e-01 9.064945e-01 5.902257e-01 4.327097e-01 4.262540e-01 8.078228e-01</span></span>
+<span id="cb19-69"><a href="Inference-performance.html#cb19-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13] 8.935561e-01 2.963010e-01 3.135234e-01 5.913718e-01 2.275231e-01 5.626318e-01</span></span>
+<span id="cb19-70"><a href="Inference-performance.html#cb19-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19] 4.892840e-01 3.868135e-01 8.233284e-01 1.092117e+00 7.145972e-01 7.665422e-03</span></span>
+<span id="cb19-71"><a href="Inference-performance.html#cb19-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 6.638959e-01 4.290807e-01 3.756175e-01 3.982345e-01 2.519282e-01 8.050985e-03</span></span>
+<span id="cb19-72"><a href="Inference-performance.html#cb19-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 4.186570e-01 6.632527e-01 8.996221e-01 6.134037e-01 6.326801e-01 2.487922e-01</span></span>
+<span id="cb19-73"><a href="Inference-performance.html#cb19-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37] 7.171181e-01 7.698045e-01 1.092587e-01 6.496507e-01 2.398907e-01 2.561441e-01</span></span>
+<span id="cb19-74"><a href="Inference-performance.html#cb19-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] 7.063178e-01 3.117267e-02 2.706573e-01 8.655616e-01 4.837991e-01 8.691849e-01</span></span>
+<span id="cb19-75"><a href="Inference-performance.html#cb19-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] 3.598866e-01 5.850882e-01 1.212092e+00 5.966360e-01 1.227338e-01 5.924129e-01</span></span>
+<span id="cb19-76"><a href="Inference-performance.html#cb19-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55] 3.800267e-01 3.010002e-01 2.570959e-01 4.042118e-01 2.361965e-01 5.289609e-01</span></span>
+<span id="cb19-77"><a href="Inference-performance.html#cb19-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] 1.933817e-02 5.594226e-01 3.991974e-01 2.454061e-01 7.476550e-01 2.341141e-01</span></span>
+<span id="cb19-78"><a href="Inference-performance.html#cb19-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [67] 9.144005e-01 6.326505e-01 6.258742e-01 6.829908e-01 5.093517e-01 6.669009e-01</span></span>
+<span id="cb19-79"><a href="Inference-performance.html#cb19-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 1.743847e-02 1.000000e+00 2.761089e-01 2.276879e-01 5.536222e-01 2.310265e-01</span></span>
+<span id="cb19-80"><a href="Inference-performance.html#cb19-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [79] 5.404810e-01 2.352762e-01 3.998440e-01 7.150560e-01 8.971522e-01 6.044293e-01</span></span>
+<span id="cb19-81"><a href="Inference-performance.html#cb19-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] 7.463653e-01 5.568244e-01 8.181816e-01 9.041582e-02 5.485972e-01 3.040310e-01</span></span>
+<span id="cb19-82"><a href="Inference-performance.html#cb19-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] 1.567141e-01 4.059717e-01 7.918612e-01 5.667673e-01 3.742646e-01 5.592775e-01</span></span>
+<span id="cb19-83"><a href="Inference-performance.html#cb19-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 2.653516e-01 2.743024e-01 1.490594e-02 8.185683e-01</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
+<li>Delta CTT (<span class="math inline">\(\Delta\)</span>CTT) (difference in colonisations through time) between
+the <em>ideal</em> and <em>empirical</em> data.</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Inference-performance.html#cb20-1" aria-hidden="true" tabindex="-1"></a>error_metrics<span class="sc">$</span>delta_ctt</span>
+<span id="cb20-2"><a href="Inference-performance.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.17155232 0.11695078 0.14791992 0.07678659 0.14403409 0.14486446 0.12221146</span></span>
+<span id="cb20-3"><a href="Inference-performance.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [8] 0.11226794 0.04766100 0.12277885 0.07824080 0.12537940 0.17947178 0.09771132</span></span>
+<span id="cb20-4"><a href="Inference-performance.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [15] 0.10608182 0.09426436 0.11128204 0.08052833 0.14026127 0.15026305 0.08950161</span></span>
+<span id="cb20-5"><a href="Inference-performance.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [22] 0.16149038 0.06570476 0.10174456 0.11555421 0.12137929 0.12067028 0.09847416</span></span>
+<span id="cb20-6"><a href="Inference-performance.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29] 0.11214094 0.12464379 0.10306867 0.13009035 0.12464288 0.15585429 0.17651730</span></span>
+<span id="cb20-7"><a href="Inference-performance.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [36] 0.14776988 0.12273101 0.09836984 0.14499881 0.15081492 0.13135130 0.16710886</span></span>
+<span id="cb20-8"><a href="Inference-performance.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] 0.13547439 0.15243449 0.13594079 0.12404993 0.07058998 0.08583650 0.09308716</span></span>
+<span id="cb20-9"><a href="Inference-performance.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [50] 0.14313386 0.05876224 0.16236322 0.11175274 0.09712582 0.12472783 0.13606670</span></span>
+<span id="cb20-10"><a href="Inference-performance.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] 0.15919436 0.11084444 0.10562117 0.08244299 0.12169974 0.14242685 0.18316439</span></span>
+<span id="cb20-11"><a href="Inference-performance.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [64] 0.06892195 0.11628010 0.11634245 0.16297475 0.16968625 0.05038661 0.08744617</span></span>
+<span id="cb20-12"><a href="Inference-performance.html#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71] 0.20206509 0.07073775 0.12597444 0.07686876 0.07693023 0.13157247 0.15216802</span></span>
+<span id="cb20-13"><a href="Inference-performance.html#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [78] 0.14162742 0.12711394 0.07499071 0.09835805 0.11799740 0.10644828 0.13006720</span></span>
+<span id="cb20-14"><a href="Inference-performance.html#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] 0.08739035 0.13488771 0.08041684 0.11975591 0.16024984 0.16527204 0.20883705</span></span>
+<span id="cb20-15"><a href="Inference-performance.html#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [92] 0.11701884 0.08961436 0.10196080 0.12944348 0.17224067 0.16286731 0.10224647</span></span>
+<span id="cb20-16"><a href="Inference-performance.html#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [99] 0.11633248 0.09333321</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
 <li>Percentage of maximum island age colonisations (i.e. colonisations where
 the most recent colonisation time extracted from the phylogenetic data is older
-than the island) for the ideal and empirical data (only included colonisations
-that survive to the present). The ideal max age percentage is always zero as it
-is always known exactly when the species colonised the island, but is still
-calculated to check it is zero. The empirical max age percent can be any
+than the island) for the <em>ideal</em> and <em>empirical</em> data (only including colonisations that survive to the present). The ideal max age percentage is always zero as it is always known exactly when the species colonised the island, but is still calculated to check it is zero. The empirical max age percent can be any
 percent [0, 100].</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Inference-performance.html#cb20-1" aria-hidden="true" tabindex="-1"></a>errors<span class="sc">$</span>max_age_percent</span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Inference-performance.html#cb21-1" aria-hidden="true" tabindex="-1"></a>error_metrics<span class="sc">$</span>max_age_percent</span>
+<span id="cb21-2"><a href="Inference-performance.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_max_age</span></span>
+<span id="cb21-3"><a href="Inference-performance.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
+<span id="cb21-4"><a href="Inference-performance.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
+<span id="cb21-5"><a href="Inference-performance.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
+<span id="cb21-6"><a href="Inference-performance.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-7"><a href="Inference-performance.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_max_age</span></span>
+<span id="cb21-8"><a href="Inference-performance.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 34.883721 24.242424 28.947368 10.714286 21.428571 32.142857 28.125000 24.242424</span></span>
+<span id="cb21-9"><a href="Inference-performance.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] 14.285714 30.952381 19.444444 34.375000 26.086957 24.324324 36.666667 21.621622</span></span>
+<span id="cb21-10"><a href="Inference-performance.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17] 20.930233 28.205128 18.421053 25.000000 18.518519 28.571429 23.076923 23.529412</span></span>
+<span id="cb21-11"><a href="Inference-performance.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 38.461538 33.333333 23.529412 21.875000 30.303030 31.034483 29.032258 27.777778</span></span>
+<span id="cb21-12"><a href="Inference-performance.html#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 18.750000 23.333333 38.888889 33.333333 26.470588 22.580645 34.482759 35.000000</span></span>
+<span id="cb21-13"><a href="Inference-performance.html#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 21.951220 34.375000 30.555556 36.363636 20.833333 34.482759 25.000000 14.285714</span></span>
+<span id="cb21-14"><a href="Inference-performance.html#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] 20.000000 17.647059  8.695652 27.777778 21.428571 18.181818 25.000000 37.142857</span></span>
+<span id="cb21-15"><a href="Inference-performance.html#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] 51.851852 28.571429 25.000000 28.571429 21.428571 27.500000 48.571429 13.333333</span></span>
+<span id="cb21-16"><a href="Inference-performance.html#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] 30.000000 18.750000 29.629630 38.636364 17.500000 20.454545 37.931034 27.272727</span></span>
+<span id="cb21-17"><a href="Inference-performance.html#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 27.500000 21.052632 18.918919 32.000000 23.529412 22.222222 34.285714 39.393939</span></span>
+<span id="cb21-18"><a href="Inference-performance.html#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 20.512821 30.769231 23.684211 20.000000 14.285714 24.324324 23.076923 21.621622</span></span>
+<span id="cb21-19"><a href="Inference-performance.html#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89] 20.689655 27.027027 23.333333 36.363636 28.000000 28.571429 28.571429 25.000000</span></span>
+<span id="cb21-20"><a href="Inference-performance.html#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 31.034483 22.580645 26.666667 28.571429</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
 <li>Percent of endemic species at the present. This includes counts of the
-number of endemic and non-endemic species in the ideal and empirical data, as
+number of endemic and non-endemic species in the <em>ideal</em> and <em>empirical</em> data, as
 well as the calculation of the percentage of endemic species in each data set.</li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Inference-performance.html#cb21-1" aria-hidden="true" tabindex="-1"></a>errors<span class="sc">$</span>endemic_percent</span></code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li>Parameter estimate ratios (i.e. ideal parameter estimates divided by its
-corresponding empirical parameter estimate), for cladogenesis ($clado_ratio),
-extinction ($ext_ratio), carrying capacity ($k_ratio), colonisation
-($immig_ratio), and anagenesis ($ana_ratio). All parameters were estimated
-using the DAISIE maximum likelihood model (<code>DAISIE::DAISIE_ML_CS()</code>). These
-metrics show the difference in estimation of each parameter between [0, Inf].</li>
-</ol>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Inference-performance.html#cb22-1" aria-hidden="true" tabindex="-1"></a>errors<span class="sc">$</span>endemic_percent</span></code></pre></div>
-<p>For the code used to run the analysis for Lambert et al. (2021) see the
-<code>run_analysis.R</code> script and for plotting see <code>run_post_processing.R</code> script.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Inference-performance.html#cb22-1" aria-hidden="true" tabindex="-1"></a>error_metrics<span class="sc">$</span>endemic_percent</span>
+<span id="cb22-2"><a href="Inference-performance.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_endemic_percent</span></span>
+<span id="cb22-3"><a href="Inference-performance.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  96.66667  92.55319  95.50562  94.73684  95.23810  97.80220  93.54839  98.76543</span></span>
+<span id="cb22-4"><a href="Inference-performance.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9]  93.10345  95.55556  88.42105  94.87179  97.45763  92.47312  94.84536  96.52174</span></span>
+<span id="cb22-5"><a href="Inference-performance.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17]  94.49541  97.65625  97.88732  95.89041  94.36620  98.18182  94.49541  97.05882</span></span>
+<span id="cb22-6"><a href="Inference-performance.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25]  95.12195  97.01493  93.54839  92.23301  92.68293  97.26027  96.80000  94.50549</span></span>
+<span id="cb22-7"><a href="Inference-performance.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33]  96.38554  98.82353  94.00000  97.19626  95.45455  98.93617  96.84211  97.10145</span></span>
+<span id="cb22-8"><a href="Inference-performance.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  93.10345  96.62921  96.51163  99.15966  93.33333  95.18072  95.14563  97.70115</span></span>
+<span id="cb22-9"><a href="Inference-performance.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  96.22642  97.36842  97.22222  96.99248  96.46018  95.00000  93.89313  96.73913</span></span>
+<span id="cb22-10"><a href="Inference-performance.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  94.73684  93.82716  94.50549  92.40506  98.48485  96.66667  96.26168  91.30435</span></span>
+<span id="cb22-11"><a href="Inference-performance.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65]  96.70330  96.25000  95.77465  99.27536  98.01980  89.89899  96.15385  96.15385</span></span>
+<span id="cb22-12"><a href="Inference-performance.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  98.84393 100.00000  87.95181  97.36842  94.87179  91.52542  93.61702  97.95918</span></span>
+<span id="cb22-13"><a href="Inference-performance.html#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81]  92.30769  95.58824  93.82716  95.00000  89.18919  92.55319  96.46018  94.79167</span></span>
+<span id="cb22-14"><a href="Inference-performance.html#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  96.05263  94.69027  93.58974  94.11765  88.05970  95.12195  91.42857  95.89041</span></span>
+<span id="cb22-15"><a href="Inference-performance.html#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  93.65079  96.85039  99.04762  96.47059</span></span>
+<span id="cb22-16"><a href="Inference-performance.html#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-17"><a href="Inference-performance.html#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_endemic_percent</span></span>
+<span id="cb22-18"><a href="Inference-performance.html#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  97.50000  92.55319  98.87640  94.73684  96.82540  97.80220  94.62366  98.76543</span></span>
+<span id="cb22-19"><a href="Inference-performance.html#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9]  96.55172  97.03704  90.52632  94.87179  97.45763  95.69892  96.90722  97.39130</span></span>
+<span id="cb22-20"><a href="Inference-performance.html#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17]  98.16514  97.65625  98.59155  97.26027  94.36620  98.18182  95.41284 100.00000</span></span>
+<span id="cb22-21"><a href="Inference-performance.html#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25]  95.12195  97.76119  96.77419  93.20388  96.34146 100.00000  96.80000  95.60440</span></span>
+<span id="cb22-22"><a href="Inference-performance.html#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33]  96.38554  98.82353  95.00000  99.06542  95.45455  98.93617  98.94737  97.10145</span></span>
+<span id="cb22-23"><a href="Inference-performance.html#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  96.55172  97.75281  96.51163 100.00000  96.66667  95.18072  97.08738  97.70115</span></span>
+<span id="cb22-24"><a href="Inference-performance.html#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  98.11321  98.24561  97.22222  97.74436 100.00000  96.25000  96.18321  97.82609</span></span>
+<span id="cb22-25"><a href="Inference-performance.html#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  95.78947  97.53086  96.70330  93.67089 100.00000  98.33333  97.19626  95.65217</span></span>
+<span id="cb22-26"><a href="Inference-performance.html#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65]  96.70330  98.75000  95.77465  99.27536  99.00990  90.90909  97.43590  96.15385</span></span>
+<span id="cb22-27"><a href="Inference-performance.html#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 100.00000 100.00000  92.77108  98.68421  96.15385  96.61017  95.74468  98.97959</span></span>
+<span id="cb22-28"><a href="Inference-performance.html#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81]  94.23077  95.58824  93.82716  96.25000  90.54054  95.74468  96.46018  97.91667</span></span>
+<span id="cb22-29"><a href="Inference-performance.html#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  97.36842  97.34513  97.43590  95.29412  88.05970  95.93496  94.28571  97.26027</span></span>
+<span id="cb22-30"><a href="Inference-performance.html#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  96.82540  97.63780 100.00000  96.47059</span></span>
+<span id="cb22-31"><a href="Inference-performance.html#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-32"><a href="Inference-performance.html#cb22-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_endemics</span></span>
+<span id="cb22-33"><a href="Inference-performance.html#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 116  87  85  72  60  89  87  80  54 129  84  74 115  86  92 111 103 125 139  70</span></span>
+<span id="cb22-34"><a href="Inference-performance.html#cb22-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21]  67  54 103  99 117 130  87  95  76  71 121  86  80  84  94 104  84  93  92 134</span></span>
+<span id="cb22-35"><a href="Inference-performance.html#cb22-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 108  86  83 118  56  79  98  85 102 111  70 129 109  76 123  89  90  76  86  73</span></span>
+<span id="cb22-36"><a href="Inference-performance.html#cb22-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61]  65 116 103  63  88  77  68 137  99  89  75  50 171 125  73  74  74  54  88  96</span></span>
+<span id="cb22-37"><a href="Inference-performance.html#cb22-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81]  96  65  76  76  66  87 109  91  73 107  73  80  59 117  64  70  59 123 104  82</span></span>
+<span id="cb22-38"><a href="Inference-performance.html#cb22-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-39"><a href="Inference-performance.html#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_non_endemics</span></span>
+<span id="cb22-40"><a href="Inference-performance.html#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  4  7  4  4  3  2  6  1  4  6 11  4  3  7  5  4  6  3  3  3  4  1  6  3  6  4  6</span></span>
+<span id="cb22-41"><a href="Inference-performance.html#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [28]  8  6  2  4  5  3  1  6  3  4  1  3  4  8  3  3  1  4  4  5  2  4  3  2  4  4  4</span></span>
+<span id="cb22-42"><a href="Inference-performance.html#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  8  3  5  5  5  6  1  4  4  6  3  3  3  1  2 10  3  2  2  0 10  2  4  5  6  2  8</span></span>
+<span id="cb22-43"><a href="Inference-performance.html#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [82]  3  5  4  8  7  4  5  3  6  5  5  8  6  6  3  4  4  1  3</span></span>
+<span id="cb22-44"><a href="Inference-performance.html#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-45"><a href="Inference-performance.html#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_endemics</span></span>
+<span id="cb22-46"><a href="Inference-performance.html#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 117  87  88  72  61  89  88  80  56 131  86  74 115  89  94 112 107 125 140  71</span></span>
+<span id="cb22-47"><a href="Inference-performance.html#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21]  67  54 104 102 117 131  90  96  79  73 121  87  80  84  95 106  84  93  94 134</span></span>
+<span id="cb22-48"><a href="Inference-performance.html#cb22-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 112  87  83 119  58  79 100  85 104 112  70 130 113  77 126  90  91  79  88  74</span></span>
+<span id="cb22-49"><a href="Inference-performance.html#cb22-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61]  66 118 104  66  88  79  68 137 100  90  76  50 173 125  77  75  75  57  90  97</span></span>
+<span id="cb22-50"><a href="Inference-performance.html#cb22-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81]  98  65  76  77  67  90 109  94  74 110  76  81  59 118  66  71  61 124 105  82</span></span>
+<span id="cb22-51"><a href="Inference-performance.html#cb22-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-52"><a href="Inference-performance.html#cb22-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_non_endemics</span></span>
+<span id="cb22-53"><a href="Inference-performance.html#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 3 7 1 4 2 2 5 1 2 4 9 4 3 4 3 3 2 3 2 2 4 1 5 0 6 3 3 7 3 0 4 4 3 1 5 1 4 1 1 4 4</span></span>
+<span id="cb22-54"><a href="Inference-performance.html#cb22-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 2 3 0 2 4 3 2 2 2 2 3 0 3 5 2 4 2 3 5 0 2 3 3 3 1 3 1 1 9 2 2 0 0 6 1 3 2 4 1 6 3</span></span>
+<span id="cb22-55"><a href="Inference-performance.html#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 5 3 7 4 4 2 2 3 2 4 8 5 4 2 2 3 0 3</span></span></code></pre></div>
+<p>Overall, all of these error metrics can be computed using <code>calc_error()</code> with the simulated data and the maximum likelihood estimates.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Inference-performance.html#cb23-1" aria-hidden="true" tabindex="-1"></a>errors <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_error</span>(</span>
+<span id="cb23-2"><a href="Inference-performance.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">daisie_mainland_data =</span> daisie_mainland_data,</span>
+<span id="cb23-3"><a href="Inference-performance.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ideal_ml =</span> ideal_ml,</span>
+<span id="cb23-4"><a href="Inference-performance.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">empirical_ml =</span> empirical_ml</span>
+<span id="cb23-5"><a href="Inference-performance.html#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>The code displayed in this chapter is a simplified version of the script used
+to carry out the inference performance analysis which can be found at /scripts/run_analysis.R in the <code>DAISIEmainland</code> package.</p>
 
+</div>
 </div>
             </section>
 

@@ -48,3 +48,9 @@ max_age_percent
 endemic_percent <- DAISIEmainland:::calc_endemic_percent(daisie_mainland_data = island)
 endemic_percent
 ```
+
+
+
+
+for plotting see `run_post_processing.R` script.
+

@@ -23,7 +23,7 @@
 <meta name="author" content="Joshua W. Lambert" />
 
 
-<meta name="date" content="2022-04-15" />
+<meta name="date" content="2022-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,7 +169,12 @@ div.csl-indent {
 <li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland<span></span></a></li>
 <li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance<span></span></a></li>
+<li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="Inference-performance.html"><a href="Inference-performance.html#Simulating-data"><i class="fa fa-check"></i><b>4.1</b> Simulating data<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="Inference-performance.html"><a href="Inference-performance.html#Maximum-likelihood-inference"><i class="fa fa-check"></i><b>4.2</b> Maximum likelihood inference<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="Inference-performance.html"><a href="Inference-performance.html#Inference-performance-error-metrics"><i class="fa fa-check"></i><b>4.3</b> Inference performance error metrics<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="Summary-metric-visualisation.html"><a href="Summary-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary metrics visualisation<span></span></a></li>
 <li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References<span></span></a></li>
 <li class="appendix"><span><b>Appendix<span></span></b></span></li>
@@ -205,136 +210,137 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="Summary-metric-visualisation" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">5</span> Summary metrics visualisation<a href="Summary-metric-visualisation.html#Summary-metric-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Summary-metric-visualisation.html#cb23-1" aria-hidden="true" tabindex="-1"></a>island <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">sim_island_with_mainland</span>(</span>
-<span id="cb23-2"><a href="Summary-metric-visualisation.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
-<span id="cb23-3"><a href="Summary-metric-visualisation.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">100</span>,</span>
-<span id="cb23-4"><a href="Summary-metric-visualisation.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="dv">1</span>),</span>
-<span id="cb23-5"><a href="Summary-metric-visualisation.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>,</span>
-<span id="cb23-6"><a href="Summary-metric-visualisation.html#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
-<span id="cb23-7"><a href="Summary-metric-visualisation.html#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span>,</span>
-<span id="cb23-8"><a href="Summary-metric-visualisation.html#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> <span class="dv">100</span>,</span>
-<span id="cb23-9"><a href="Summary-metric-visualisation.html#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Summary-metric-visualisation.html#cb24-1" aria-hidden="true" tabindex="-1"></a>island <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">sim_island_with_mainland</span>(</span>
+<span id="cb24-2"><a href="Summary-metric-visualisation.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb24-3"><a href="Summary-metric-visualisation.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">100</span>,</span>
+<span id="cb24-4"><a href="Summary-metric-visualisation.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="dv">1</span>),</span>
+<span id="cb24-5"><a href="Summary-metric-visualisation.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span>,</span>
+<span id="cb24-6"><a href="Summary-metric-visualisation.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
+<span id="cb24-7"><a href="Summary-metric-visualisation.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span>,</span>
+<span id="cb24-8"><a href="Summary-metric-visualisation.html#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> <span class="dv">100</span>,</span>
+<span id="cb24-9"><a href="Summary-metric-visualisation.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>We can now calculate the simulation metrics for the ideal and empirical islands.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Summary-metric-visualisation.html#cb24-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
-<span id="cb24-2"><a href="Summary-metric-visualisation.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>ideal_islands)</span>
-<span id="cb24-3"><a href="Summary-metric-visualisation.html#cb24-3" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
-<span id="cb24-4"><a href="Summary-metric-visualisation.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>ideal_islands)</span>
-<span id="cb24-5"><a href="Summary-metric-visualisation.html#cb24-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_metrics <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb24-6"><a href="Summary-metric-visualisation.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ideal_sim_num_spec =</span> ideal_sim_num_spec,</span>
-<span id="cb24-7"><a href="Summary-metric-visualisation.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ideal_sim_num_col =</span> ideal_sim_num_col)</span>
-<span id="cb24-8"><a href="Summary-metric-visualisation.html#cb24-8" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
-<span id="cb24-9"><a href="Summary-metric-visualisation.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>empirical_islands)</span>
-<span id="cb24-10"><a href="Summary-metric-visualisation.html#cb24-10" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
-<span id="cb24-11"><a href="Summary-metric-visualisation.html#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>empirical_islands)</span>
-<span id="cb24-12"><a href="Summary-metric-visualisation.html#cb24-12" aria-hidden="true" tabindex="-1"></a>empirical_sim_metrics <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb24-13"><a href="Summary-metric-visualisation.html#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">empirical_sim_num_spec =</span> empirical_sim_num_spec,</span>
-<span id="cb24-14"><a href="Summary-metric-visualisation.html#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">empirical_sim_num_col =</span> empirical_sim_num_col)</span>
-<span id="cb24-15"><a href="Summary-metric-visualisation.html#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-16"><a href="Summary-metric-visualisation.html#cb24-16" aria-hidden="true" tabindex="-1"></a>ideal_sim_metrics</span>
-<span id="cb24-17"><a href="Summary-metric-visualisation.html#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_sim_num_spec</span></span>
-<span id="cb24-18"><a href="Summary-metric-visualisation.html#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
-<span id="cb24-19"><a href="Summary-metric-visualisation.html#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-20"><a href="Summary-metric-visualisation.html#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_sim_num_col</span></span>
-<span id="cb24-21"><a href="Summary-metric-visualisation.html#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
-<span id="cb24-22"><a href="Summary-metric-visualisation.html#cb24-22" aria-hidden="true" tabindex="-1"></a>empirical_sim_metrics</span>
-<span id="cb24-23"><a href="Summary-metric-visualisation.html#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_sim_num_spec</span></span>
-<span id="cb24-24"><a href="Summary-metric-visualisation.html#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
-<span id="cb24-25"><a href="Summary-metric-visualisation.html#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-26"><a href="Summary-metric-visualisation.html#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_sim_num_col</span></span>
-<span id="cb24-27"><a href="Summary-metric-visualisation.html#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="Summary-metric-visualisation.html#cb25-1" aria-hidden="true" tabindex="-1"></a>delta_ctt <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">calc_ctt</span>(<span class="at">daisie_mainland_data =</span> island)</span>
-<span id="cb25-2"><a href="Summary-metric-visualisation.html#cb25-2" aria-hidden="true" tabindex="-1"></a>delta_ctt</span>
-<span id="cb25-3"><a href="Summary-metric-visualisation.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.0198423531 0.0375869616 0.0385190998 0.0498316678 0.0000000000 0.0451457506</span></span>
-<span id="cb25-4"><a href="Summary-metric-visualisation.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [7] 0.1254626724 0.0000000000 0.2010798782 0.0978902994 0.0710438797 0.0633101141</span></span>
-<span id="cb25-5"><a href="Summary-metric-visualisation.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13] 0.0113853530 0.0515501136 0.0679692773 0.0370125785 0.0828112921 0.0167134516</span></span>
-<span id="cb25-6"><a href="Summary-metric-visualisation.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19] 0.0470249456 0.0117385990 0.0672313536 0.1570890785 0.0110243998 0.0973086638</span></span>
-<span id="cb25-7"><a href="Summary-metric-visualisation.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 0.0853679800 0.0667770322 0.0000000000 0.1327119186 0.0201382134 0.1063983257</span></span>
-<span id="cb25-8"><a href="Summary-metric-visualisation.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 0.0238939323 0.0000000000 0.0454443284 0.0901270431 0.0039475818 0.0911970260</span></span>
-<span id="cb25-9"><a href="Summary-metric-visualisation.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37] 0.0001188188 0.0525068261 0.0704606469 0.1401602391 0.1511830918 0.0646981843</span></span>
-<span id="cb25-10"><a href="Summary-metric-visualisation.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] 0.0333283613 0.1030739608 0.0625800553 0.0000000000 0.1328449419 0.0894403881</span></span>
-<span id="cb25-11"><a href="Summary-metric-visualisation.html#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] 0.0393074667 0.0904545768 0.0489380032 0.0817253614 0.0593455080 0.1133989452</span></span>
-<span id="cb25-12"><a href="Summary-metric-visualisation.html#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55] 0.0386645018 0.0548612736 0.0807155739 0.0574742293 0.0100827302 0.0501421830</span></span>
-<span id="cb25-13"><a href="Summary-metric-visualisation.html#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] 0.0782963394 0.0039290389 0.0162945634 0.0295322364 0.0724539766 0.1054097922</span></span>
-<span id="cb25-14"><a href="Summary-metric-visualisation.html#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [67] 0.0270165478 0.1778420848 0.0481276449 0.0873319341 0.1308489726 0.1012175432</span></span>
-<span id="cb25-15"><a href="Summary-metric-visualisation.html#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 0.0531205907 0.0000000000 0.0000000000 0.0798475232 0.0402341110 0.1009089173</span></span>
-<span id="cb25-16"><a href="Summary-metric-visualisation.html#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [79] 0.0522873239 0.0513682109 0.1438697852 0.0404612883 0.0000000000 0.3360946068</span></span>
-<span id="cb25-17"><a href="Summary-metric-visualisation.html#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] 0.0791335882 0.1690103789 0.0685559791 0.0618843536 0.0000000000 0.0972563932</span></span>
-<span id="cb25-18"><a href="Summary-metric-visualisation.html#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] 0.0550768066 0.1694114078 0.1087808985 0.0551484191 0.0000000000 0.0852573603</span></span>
-<span id="cb25-19"><a href="Summary-metric-visualisation.html#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 0.0175991866 0.0000000000 0.0666978572 0.0000000000</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Summary-metric-visualisation.html#cb26-1" aria-hidden="true" tabindex="-1"></a>max_age_percent <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">calc_max_age_percent</span>(<span class="at">daisie_mainland_data =</span> island)</span>
-<span id="cb26-2"><a href="Summary-metric-visualisation.html#cb26-2" aria-hidden="true" tabindex="-1"></a>max_age_percent</span>
-<span id="cb26-3"><a href="Summary-metric-visualisation.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_max_age</span></span>
-<span id="cb26-4"><a href="Summary-metric-visualisation.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
-<span id="cb26-5"><a href="Summary-metric-visualisation.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
-<span id="cb26-6"><a href="Summary-metric-visualisation.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
-<span id="cb26-7"><a href="Summary-metric-visualisation.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb26-8"><a href="Summary-metric-visualisation.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_max_age</span></span>
-<span id="cb26-9"><a href="Summary-metric-visualisation.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 12.500000 50.000000  7.692308  0.000000  0.000000 25.000000 16.666667  0.000000</span></span>
-<span id="cb26-10"><a href="Summary-metric-visualisation.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] 28.571429 16.666667 42.857143 12.500000 20.000000 23.529412 22.222222 14.285714</span></span>
-<span id="cb26-11"><a href="Summary-metric-visualisation.html#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17] 20.000000 14.285714 14.285714 14.285714 33.333333 25.000000  0.000000  0.000000</span></span>
-<span id="cb26-12"><a href="Summary-metric-visualisation.html#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 42.857143 11.111111  0.000000 50.000000  0.000000 14.285714 16.666667  0.000000</span></span>
-<span id="cb26-13"><a href="Summary-metric-visualisation.html#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 22.222222  7.142857  0.000000 30.000000 33.333333 11.111111 33.333333 28.571429</span></span>
-<span id="cb26-14"><a href="Summary-metric-visualisation.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  0.000000 18.181818  0.000000 27.272727 12.500000  0.000000 40.000000  0.000000</span></span>
-<span id="cb26-15"><a href="Summary-metric-visualisation.html#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  0.000000 16.666667 14.285714 28.571429 25.000000 10.000000  0.000000 16.666667</span></span>
-<span id="cb26-16"><a href="Summary-metric-visualisation.html#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] 30.000000 11.111111  0.000000 42.857143 11.111111 20.000000 20.000000 14.285714</span></span>
-<span id="cb26-17"><a href="Summary-metric-visualisation.html#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] 14.285714 16.666667  0.000000 33.333333 16.666667 16.666667 40.000000 11.111111</span></span>
-<span id="cb26-18"><a href="Summary-metric-visualisation.html#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 25.000000  0.000000  0.000000 16.666667 16.666667  0.000000 25.000000 25.000000</span></span>
-<span id="cb26-19"><a href="Summary-metric-visualisation.html#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 20.000000 20.000000  0.000000 25.000000 37.500000 28.571429 16.666667 12.500000</span></span>
-<span id="cb26-20"><a href="Summary-metric-visualisation.html#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  0.000000 36.363636  0.000000 40.000000 21.428571 12.500000  0.000000 16.666667</span></span>
-<span id="cb26-21"><a href="Summary-metric-visualisation.html#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 16.666667  0.000000 20.000000  0.000000</span></span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="Summary-metric-visualisation.html#cb27-1" aria-hidden="true" tabindex="-1"></a>endemic_percent <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">calc_endemic_percent</span>(<span class="at">daisie_mainland_data =</span> island)</span>
-<span id="cb27-2"><a href="Summary-metric-visualisation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>endemic_percent</span>
-<span id="cb27-3"><a href="Summary-metric-visualisation.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_endemic_percent</span></span>
-<span id="cb27-4"><a href="Summary-metric-visualisation.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  70.00000  83.33333  86.66667  62.50000  54.54545 100.00000  62.50000  28.57143</span></span>
-<span id="cb27-5"><a href="Summary-metric-visualisation.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9]  66.66667  75.00000  83.33333  66.66667  66.66667  71.42857  58.33333  37.50000</span></span>
-<span id="cb27-6"><a href="Summary-metric-visualisation.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17]  80.00000  62.50000  90.00000  66.66667  71.42857 100.00000  92.30769  80.00000</span></span>
-<span id="cb27-7"><a href="Summary-metric-visualisation.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 100.00000  83.33333  60.00000  80.00000  75.00000  80.00000 100.00000  80.00000</span></span>
-<span id="cb27-8"><a href="Summary-metric-visualisation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 100.00000  77.77778  42.85714 100.00000  66.66667  84.61538  85.71429  71.42857</span></span>
-<span id="cb27-9"><a href="Summary-metric-visualisation.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  90.90909  93.75000  73.33333  75.00000  70.00000  66.66667  77.77778  72.72727</span></span>
-<span id="cb27-10"><a href="Summary-metric-visualisation.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  60.00000  85.71429  72.72727  80.00000  83.33333  78.57143  87.50000  85.71429</span></span>
-<span id="cb27-11"><a href="Summary-metric-visualisation.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  85.71429 100.00000  87.50000  92.30769  84.61538  83.33333  60.00000  62.50000</span></span>
-<span id="cb27-12"><a href="Summary-metric-visualisation.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65]  75.00000  92.30769  83.33333  57.14286  92.30769  75.00000  75.00000  77.77778</span></span>
-<span id="cb27-13"><a href="Summary-metric-visualisation.html#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  77.77778  62.50000  66.66667  83.33333  62.50000  72.72727  55.55556 100.00000</span></span>
-<span id="cb27-14"><a href="Summary-metric-visualisation.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 100.00000  50.00000  20.00000  75.00000  87.50000 100.00000  88.88889  81.81818</span></span>
-<span id="cb27-15"><a href="Summary-metric-visualisation.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  80.00000  81.25000  66.66667  75.00000  62.50000  80.00000  80.00000  85.71429</span></span>
-<span id="cb27-16"><a href="Summary-metric-visualisation.html#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  80.00000  33.33333  76.92308 100.00000</span></span>
-<span id="cb27-17"><a href="Summary-metric-visualisation.html#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-18"><a href="Summary-metric-visualisation.html#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_endemic_percent</span></span>
-<span id="cb27-19"><a href="Summary-metric-visualisation.html#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  70.00000  83.33333  86.66667  62.50000  54.54545 100.00000  62.50000  28.57143</span></span>
-<span id="cb27-20"><a href="Summary-metric-visualisation.html#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9]  66.66667  75.00000  91.66667  66.66667  66.66667  71.42857  66.66667  37.50000</span></span>
-<span id="cb27-21"><a href="Summary-metric-visualisation.html#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17]  80.00000  62.50000  90.00000  66.66667  71.42857 100.00000  92.30769  80.00000</span></span>
-<span id="cb27-22"><a href="Summary-metric-visualisation.html#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 100.00000  83.33333  60.00000  80.00000  75.00000  80.00000 100.00000  80.00000</span></span>
-<span id="cb27-23"><a href="Summary-metric-visualisation.html#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 100.00000  77.77778  42.85714 100.00000  66.66667  84.61538  85.71429  71.42857</span></span>
-<span id="cb27-24"><a href="Summary-metric-visualisation.html#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  90.90909  93.75000  73.33333  75.00000  80.00000  66.66667  77.77778  72.72727</span></span>
-<span id="cb27-25"><a href="Summary-metric-visualisation.html#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  60.00000  85.71429  72.72727  80.00000  83.33333  78.57143  87.50000  85.71429</span></span>
-<span id="cb27-26"><a href="Summary-metric-visualisation.html#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  85.71429 100.00000  87.50000  92.30769  84.61538  83.33333  80.00000  62.50000</span></span>
-<span id="cb27-27"><a href="Summary-metric-visualisation.html#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65]  75.00000  92.30769  83.33333  57.14286  92.30769  75.00000  75.00000  77.77778</span></span>
-<span id="cb27-28"><a href="Summary-metric-visualisation.html#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  77.77778  62.50000  66.66667  83.33333  62.50000  72.72727  55.55556 100.00000</span></span>
-<span id="cb27-29"><a href="Summary-metric-visualisation.html#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 100.00000  50.00000  20.00000  75.00000  87.50000 100.00000  88.88889  81.81818</span></span>
-<span id="cb27-30"><a href="Summary-metric-visualisation.html#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  80.00000  81.25000  66.66667  87.50000  68.75000  80.00000  80.00000  85.71429</span></span>
-<span id="cb27-31"><a href="Summary-metric-visualisation.html#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  90.00000  33.33333  84.61538 100.00000</span></span>
-<span id="cb27-32"><a href="Summary-metric-visualisation.html#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-33"><a href="Summary-metric-visualisation.html#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_endemics</span></span>
-<span id="cb27-34"><a href="Summary-metric-visualisation.html#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  7  5 13  5  6  6  5  2  6  6 10  8  4 15  7  3 12  5  9  6  5  7 12  4 10 10  3</span></span>
-<span id="cb27-35"><a href="Summary-metric-visualisation.html#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [28]  4  6  8  8  8 19 14  3 14  2 11  6  5 10 15 11 12  7  4  7  8  3  6  8  8  5 11</span></span>
-<span id="cb27-36"><a href="Summary-metric-visualisation.html#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  7  6 12 11  7 12 11  5  3  5  6 12  5  4 12  6  9  7  7  5  4  5  5  8  5  7 10</span></span>
-<span id="cb27-37"><a href="Summary-metric-visualisation.html#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [82]  3  2  3  7 10  8  9  4 13  2  6 10  8  4  6  8  2 10  7</span></span>
-<span id="cb27-38"><a href="Summary-metric-visualisation.html#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-39"><a href="Summary-metric-visualisation.html#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_non_endemics</span></span>
-<span id="cb27-40"><a href="Summary-metric-visualisation.html#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 3 1 2 3 5 0 3 5 3 2 2 4 2 6 5 5 3 3 1 3 2 0 1 1 0 2 2 1 2 2 0 2 0 4 4 0 1 2 1 2 1</span></span>
-<span id="cb27-41"><a href="Summary-metric-visualisation.html#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 1 4 4 3 2 2 3 2 1 3 2 1 3 1 1 2 0 1 1 2 1 2 3 2 1 1 3 1 2 3 2 2 3 2 1 3 3 4 0 0 3</span></span>
-<span id="cb27-42"><a href="Summary-metric-visualisation.html#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 8 1 1 0 1 2 1 3 1 2 6 2 1 1 2 4 3 0</span></span>
-<span id="cb27-43"><a href="Summary-metric-visualisation.html#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-44"><a href="Summary-metric-visualisation.html#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_endemics</span></span>
-<span id="cb27-45"><a href="Summary-metric-visualisation.html#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  7  5 13  5  6  6  5  2  6  6 11  8  4 15  8  3 12  5  9  6  5  7 12  4 10 10  3</span></span>
-<span id="cb27-46"><a href="Summary-metric-visualisation.html#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [28]  4  6  8  8  8 19 14  3 14  2 11  6  5 10 15 11 12  8  4  7  8  3  6  8  8  5 11</span></span>
-<span id="cb27-47"><a href="Summary-metric-visualisation.html#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  7  6 12 11  7 12 11  5  4  5  6 12  5  4 12  6  9  7  7  5  4  5  5  8  5  7 10</span></span>
-<span id="cb27-48"><a href="Summary-metric-visualisation.html#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [82]  3  2  3  7 10  8  9  4 13  2  7 11  8  4  6  9  2 11  7</span></span>
-<span id="cb27-49"><a href="Summary-metric-visualisation.html#cb27-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-50"><a href="Summary-metric-visualisation.html#cb27-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_non_endemics</span></span>
-<span id="cb27-51"><a href="Summary-metric-visualisation.html#cb27-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 3 1 2 3 5 0 3 5 3 2 1 4 2 6 4 5 3 3 1 3 2 0 1 1 0 2 2 1 2 2 0 2 0 4 4 0 1 2 1 2 1</span></span>
-<span id="cb27-52"><a href="Summary-metric-visualisation.html#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 1 4 4 2 2 2 3 2 1 3 2 1 3 1 1 2 0 1 1 2 1 1 3 2 1 1 3 1 2 3 2 2 3 2 1 3 3 4 0 0 3</span></span>
-<span id="cb27-53"><a href="Summary-metric-visualisation.html#cb27-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 8 1 1 0 1 2 1 3 1 1 5 2 1 1 1 4 2 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="Summary-metric-visualisation.html#cb25-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
+<span id="cb25-2"><a href="Summary-metric-visualisation.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>ideal_islands)</span>
+<span id="cb25-3"><a href="Summary-metric-visualisation.html#cb25-3" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
+<span id="cb25-4"><a href="Summary-metric-visualisation.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>ideal_islands)</span>
+<span id="cb25-5"><a href="Summary-metric-visualisation.html#cb25-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_metrics <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb25-6"><a href="Summary-metric-visualisation.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ideal_sim_num_spec =</span> ideal_sim_num_spec,</span>
+<span id="cb25-7"><a href="Summary-metric-visualisation.html#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ideal_sim_num_col =</span> ideal_sim_num_col)</span>
+<span id="cb25-8"><a href="Summary-metric-visualisation.html#cb25-8" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
+<span id="cb25-9"><a href="Summary-metric-visualisation.html#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>empirical_islands)</span>
+<span id="cb25-10"><a href="Summary-metric-visualisation.html#cb25-10" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
+<span id="cb25-11"><a href="Summary-metric-visualisation.html#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> island<span class="sc">$</span>empirical_islands)</span>
+<span id="cb25-12"><a href="Summary-metric-visualisation.html#cb25-12" aria-hidden="true" tabindex="-1"></a>empirical_sim_metrics <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb25-13"><a href="Summary-metric-visualisation.html#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">empirical_sim_num_spec =</span> empirical_sim_num_spec,</span>
+<span id="cb25-14"><a href="Summary-metric-visualisation.html#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">empirical_sim_num_col =</span> empirical_sim_num_col)</span>
+<span id="cb25-15"><a href="Summary-metric-visualisation.html#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="Summary-metric-visualisation.html#cb25-16" aria-hidden="true" tabindex="-1"></a>ideal_sim_metrics</span>
+<span id="cb25-17"><a href="Summary-metric-visualisation.html#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_sim_num_spec</span></span>
+<span id="cb25-18"><a href="Summary-metric-visualisation.html#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb25-19"><a href="Summary-metric-visualisation.html#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-20"><a href="Summary-metric-visualisation.html#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_sim_num_col</span></span>
+<span id="cb25-21"><a href="Summary-metric-visualisation.html#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb25-22"><a href="Summary-metric-visualisation.html#cb25-22" aria-hidden="true" tabindex="-1"></a>empirical_sim_metrics</span>
+<span id="cb25-23"><a href="Summary-metric-visualisation.html#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_sim_num_spec</span></span>
+<span id="cb25-24"><a href="Summary-metric-visualisation.html#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb25-25"><a href="Summary-metric-visualisation.html#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-26"><a href="Summary-metric-visualisation.html#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_sim_num_col</span></span>
+<span id="cb25-27"><a href="Summary-metric-visualisation.html#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Summary-metric-visualisation.html#cb26-1" aria-hidden="true" tabindex="-1"></a>delta_ctt <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">calc_ctt</span>(<span class="at">daisie_mainland_data =</span> island)</span>
+<span id="cb26-2"><a href="Summary-metric-visualisation.html#cb26-2" aria-hidden="true" tabindex="-1"></a>delta_ctt</span>
+<span id="cb26-3"><a href="Summary-metric-visualisation.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.0198423531 0.0375869616 0.0385190998 0.0498316678 0.0000000000 0.0451457506</span></span>
+<span id="cb26-4"><a href="Summary-metric-visualisation.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [7] 0.1254626724 0.0000000000 0.2010798782 0.0978902994 0.0710438797 0.0633101141</span></span>
+<span id="cb26-5"><a href="Summary-metric-visualisation.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13] 0.0113853530 0.0515501136 0.0679692773 0.0370125785 0.0828112921 0.0167134516</span></span>
+<span id="cb26-6"><a href="Summary-metric-visualisation.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19] 0.0470249456 0.0117385990 0.0672313536 0.1570890785 0.0110243998 0.0973086638</span></span>
+<span id="cb26-7"><a href="Summary-metric-visualisation.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 0.0853679800 0.0667770322 0.0000000000 0.1327119186 0.0201382134 0.1063983257</span></span>
+<span id="cb26-8"><a href="Summary-metric-visualisation.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 0.0238939323 0.0000000000 0.0454443284 0.0901270431 0.0039475818 0.0911970260</span></span>
+<span id="cb26-9"><a href="Summary-metric-visualisation.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37] 0.0001188188 0.0525068261 0.0704606469 0.1401602391 0.1511830918 0.0646981843</span></span>
+<span id="cb26-10"><a href="Summary-metric-visualisation.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] 0.0333283613 0.1030739608 0.0625800553 0.0000000000 0.1328449419 0.0894403881</span></span>
+<span id="cb26-11"><a href="Summary-metric-visualisation.html#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] 0.0393074667 0.0904545768 0.0489380032 0.0817253614 0.0593455080 0.1133989452</span></span>
+<span id="cb26-12"><a href="Summary-metric-visualisation.html#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55] 0.0386645018 0.0548612736 0.0807155739 0.0574742293 0.0100827302 0.0501421830</span></span>
+<span id="cb26-13"><a href="Summary-metric-visualisation.html#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] 0.0782963394 0.0039290389 0.0162945634 0.0295322364 0.0724539766 0.1054097922</span></span>
+<span id="cb26-14"><a href="Summary-metric-visualisation.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [67] 0.0270165478 0.1778420848 0.0481276449 0.0873319341 0.1308489726 0.1012175432</span></span>
+<span id="cb26-15"><a href="Summary-metric-visualisation.html#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 0.0531205907 0.0000000000 0.0000000000 0.0798475232 0.0402341110 0.1009089173</span></span>
+<span id="cb26-16"><a href="Summary-metric-visualisation.html#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [79] 0.0522873239 0.0513682109 0.1438697852 0.0404612883 0.0000000000 0.3360946068</span></span>
+<span id="cb26-17"><a href="Summary-metric-visualisation.html#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] 0.0791335882 0.1690103789 0.0685559791 0.0618843536 0.0000000000 0.0972563932</span></span>
+<span id="cb26-18"><a href="Summary-metric-visualisation.html#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] 0.0550768066 0.1694114078 0.1087808985 0.0551484191 0.0000000000 0.0852573603</span></span>
+<span id="cb26-19"><a href="Summary-metric-visualisation.html#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 0.0175991866 0.0000000000 0.0666978572 0.0000000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="Summary-metric-visualisation.html#cb27-1" aria-hidden="true" tabindex="-1"></a>max_age_percent <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">calc_max_age_percent</span>(<span class="at">daisie_mainland_data =</span> island)</span>
+<span id="cb27-2"><a href="Summary-metric-visualisation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>max_age_percent</span>
+<span id="cb27-3"><a href="Summary-metric-visualisation.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_max_age</span></span>
+<span id="cb27-4"><a href="Summary-metric-visualisation.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
+<span id="cb27-5"><a href="Summary-metric-visualisation.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
+<span id="cb27-6"><a href="Summary-metric-visualisation.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></span>
+<span id="cb27-7"><a href="Summary-metric-visualisation.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-8"><a href="Summary-metric-visualisation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_max_age</span></span>
+<span id="cb27-9"><a href="Summary-metric-visualisation.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 12.500000 50.000000  7.692308  0.000000  0.000000 25.000000 16.666667  0.000000</span></span>
+<span id="cb27-10"><a href="Summary-metric-visualisation.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] 28.571429 16.666667 42.857143 12.500000 20.000000 23.529412 22.222222 14.285714</span></span>
+<span id="cb27-11"><a href="Summary-metric-visualisation.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17] 20.000000 14.285714 14.285714 14.285714 33.333333 25.000000  0.000000  0.000000</span></span>
+<span id="cb27-12"><a href="Summary-metric-visualisation.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 42.857143 11.111111  0.000000 50.000000  0.000000 14.285714 16.666667  0.000000</span></span>
+<span id="cb27-13"><a href="Summary-metric-visualisation.html#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 22.222222  7.142857  0.000000 30.000000 33.333333 11.111111 33.333333 28.571429</span></span>
+<span id="cb27-14"><a href="Summary-metric-visualisation.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  0.000000 18.181818  0.000000 27.272727 12.500000  0.000000 40.000000  0.000000</span></span>
+<span id="cb27-15"><a href="Summary-metric-visualisation.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  0.000000 16.666667 14.285714 28.571429 25.000000 10.000000  0.000000 16.666667</span></span>
+<span id="cb27-16"><a href="Summary-metric-visualisation.html#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] 30.000000 11.111111  0.000000 42.857143 11.111111 20.000000 20.000000 14.285714</span></span>
+<span id="cb27-17"><a href="Summary-metric-visualisation.html#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] 14.285714 16.666667  0.000000 33.333333 16.666667 16.666667 40.000000 11.111111</span></span>
+<span id="cb27-18"><a href="Summary-metric-visualisation.html#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] 25.000000  0.000000  0.000000 16.666667 16.666667  0.000000 25.000000 25.000000</span></span>
+<span id="cb27-19"><a href="Summary-metric-visualisation.html#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 20.000000 20.000000  0.000000 25.000000 37.500000 28.571429 16.666667 12.500000</span></span>
+<span id="cb27-20"><a href="Summary-metric-visualisation.html#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  0.000000 36.363636  0.000000 40.000000 21.428571 12.500000  0.000000 16.666667</span></span>
+<span id="cb27-21"><a href="Summary-metric-visualisation.html#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] 16.666667  0.000000 20.000000  0.000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="Summary-metric-visualisation.html#cb28-1" aria-hidden="true" tabindex="-1"></a>endemic_percent <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">calc_endemic_percent</span>(<span class="at">daisie_mainland_data =</span> island)</span>
+<span id="cb28-2"><a href="Summary-metric-visualisation.html#cb28-2" aria-hidden="true" tabindex="-1"></a>endemic_percent</span>
+<span id="cb28-3"><a href="Summary-metric-visualisation.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_endemic_percent</span></span>
+<span id="cb28-4"><a href="Summary-metric-visualisation.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  70.00000  83.33333  86.66667  62.50000  54.54545 100.00000  62.50000  28.57143</span></span>
+<span id="cb28-5"><a href="Summary-metric-visualisation.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9]  66.66667  75.00000  83.33333  66.66667  66.66667  71.42857  58.33333  37.50000</span></span>
+<span id="cb28-6"><a href="Summary-metric-visualisation.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17]  80.00000  62.50000  90.00000  66.66667  71.42857 100.00000  92.30769  80.00000</span></span>
+<span id="cb28-7"><a href="Summary-metric-visualisation.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 100.00000  83.33333  60.00000  80.00000  75.00000  80.00000 100.00000  80.00000</span></span>
+<span id="cb28-8"><a href="Summary-metric-visualisation.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 100.00000  77.77778  42.85714 100.00000  66.66667  84.61538  85.71429  71.42857</span></span>
+<span id="cb28-9"><a href="Summary-metric-visualisation.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  90.90909  93.75000  73.33333  75.00000  70.00000  66.66667  77.77778  72.72727</span></span>
+<span id="cb28-10"><a href="Summary-metric-visualisation.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  60.00000  85.71429  72.72727  80.00000  83.33333  78.57143  87.50000  85.71429</span></span>
+<span id="cb28-11"><a href="Summary-metric-visualisation.html#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  85.71429 100.00000  87.50000  92.30769  84.61538  83.33333  60.00000  62.50000</span></span>
+<span id="cb28-12"><a href="Summary-metric-visualisation.html#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65]  75.00000  92.30769  83.33333  57.14286  92.30769  75.00000  75.00000  77.77778</span></span>
+<span id="cb28-13"><a href="Summary-metric-visualisation.html#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  77.77778  62.50000  66.66667  83.33333  62.50000  72.72727  55.55556 100.00000</span></span>
+<span id="cb28-14"><a href="Summary-metric-visualisation.html#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 100.00000  50.00000  20.00000  75.00000  87.50000 100.00000  88.88889  81.81818</span></span>
+<span id="cb28-15"><a href="Summary-metric-visualisation.html#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  80.00000  81.25000  66.66667  75.00000  62.50000  80.00000  80.00000  85.71429</span></span>
+<span id="cb28-16"><a href="Summary-metric-visualisation.html#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  80.00000  33.33333  76.92308 100.00000</span></span>
+<span id="cb28-17"><a href="Summary-metric-visualisation.html#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-18"><a href="Summary-metric-visualisation.html#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_endemic_percent</span></span>
+<span id="cb28-19"><a href="Summary-metric-visualisation.html#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  70.00000  83.33333  86.66667  62.50000  54.54545 100.00000  62.50000  28.57143</span></span>
+<span id="cb28-20"><a href="Summary-metric-visualisation.html#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9]  66.66667  75.00000  91.66667  66.66667  66.66667  71.42857  66.66667  37.50000</span></span>
+<span id="cb28-21"><a href="Summary-metric-visualisation.html#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17]  80.00000  62.50000  90.00000  66.66667  71.42857 100.00000  92.30769  80.00000</span></span>
+<span id="cb28-22"><a href="Summary-metric-visualisation.html#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] 100.00000  83.33333  60.00000  80.00000  75.00000  80.00000 100.00000  80.00000</span></span>
+<span id="cb28-23"><a href="Summary-metric-visualisation.html#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] 100.00000  77.77778  42.85714 100.00000  66.66667  84.61538  85.71429  71.42857</span></span>
+<span id="cb28-24"><a href="Summary-metric-visualisation.html#cb28-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41]  90.90909  93.75000  73.33333  75.00000  80.00000  66.66667  77.77778  72.72727</span></span>
+<span id="cb28-25"><a href="Summary-metric-visualisation.html#cb28-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  60.00000  85.71429  72.72727  80.00000  83.33333  78.57143  87.50000  85.71429</span></span>
+<span id="cb28-26"><a href="Summary-metric-visualisation.html#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  85.71429 100.00000  87.50000  92.30769  84.61538  83.33333  80.00000  62.50000</span></span>
+<span id="cb28-27"><a href="Summary-metric-visualisation.html#cb28-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65]  75.00000  92.30769  83.33333  57.14286  92.30769  75.00000  75.00000  77.77778</span></span>
+<span id="cb28-28"><a href="Summary-metric-visualisation.html#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  77.77778  62.50000  66.66667  83.33333  62.50000  72.72727  55.55556 100.00000</span></span>
+<span id="cb28-29"><a href="Summary-metric-visualisation.html#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 100.00000  50.00000  20.00000  75.00000  87.50000 100.00000  88.88889  81.81818</span></span>
+<span id="cb28-30"><a href="Summary-metric-visualisation.html#cb28-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89]  80.00000  81.25000  66.66667  87.50000  68.75000  80.00000  80.00000  85.71429</span></span>
+<span id="cb28-31"><a href="Summary-metric-visualisation.html#cb28-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  90.00000  33.33333  84.61538 100.00000</span></span>
+<span id="cb28-32"><a href="Summary-metric-visualisation.html#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-33"><a href="Summary-metric-visualisation.html#cb28-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_endemics</span></span>
+<span id="cb28-34"><a href="Summary-metric-visualisation.html#cb28-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  7  5 13  5  6  6  5  2  6  6 10  8  4 15  7  3 12  5  9  6  5  7 12  4 10 10  3</span></span>
+<span id="cb28-35"><a href="Summary-metric-visualisation.html#cb28-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [28]  4  6  8  8  8 19 14  3 14  2 11  6  5 10 15 11 12  7  4  7  8  3  6  8  8  5 11</span></span>
+<span id="cb28-36"><a href="Summary-metric-visualisation.html#cb28-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  7  6 12 11  7 12 11  5  3  5  6 12  5  4 12  6  9  7  7  5  4  5  5  8  5  7 10</span></span>
+<span id="cb28-37"><a href="Summary-metric-visualisation.html#cb28-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [82]  3  2  3  7 10  8  9  4 13  2  6 10  8  4  6  8  2 10  7</span></span>
+<span id="cb28-38"><a href="Summary-metric-visualisation.html#cb28-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-39"><a href="Summary-metric-visualisation.html#cb28-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ideal_non_endemics</span></span>
+<span id="cb28-40"><a href="Summary-metric-visualisation.html#cb28-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 3 1 2 3 5 0 3 5 3 2 2 4 2 6 5 5 3 3 1 3 2 0 1 1 0 2 2 1 2 2 0 2 0 4 4 0 1 2 1 2 1</span></span>
+<span id="cb28-41"><a href="Summary-metric-visualisation.html#cb28-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 1 4 4 3 2 2 3 2 1 3 2 1 3 1 1 2 0 1 1 2 1 2 3 2 1 1 3 1 2 3 2 2 3 2 1 3 3 4 0 0 3</span></span>
+<span id="cb28-42"><a href="Summary-metric-visualisation.html#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 8 1 1 0 1 2 1 3 1 2 6 2 1 1 2 4 3 0</span></span>
+<span id="cb28-43"><a href="Summary-metric-visualisation.html#cb28-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-44"><a href="Summary-metric-visualisation.html#cb28-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_endemics</span></span>
+<span id="cb28-45"><a href="Summary-metric-visualisation.html#cb28-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]  7  5 13  5  6  6  5  2  6  6 11  8  4 15  8  3 12  5  9  6  5  7 12  4 10 10  3</span></span>
+<span id="cb28-46"><a href="Summary-metric-visualisation.html#cb28-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [28]  4  6  8  8  8 19 14  3 14  2 11  6  5 10 15 11 12  8  4  7  8  3  6  8  8  5 11</span></span>
+<span id="cb28-47"><a href="Summary-metric-visualisation.html#cb28-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  7  6 12 11  7 12 11  5  4  5  6 12  5  4 12  6  9  7  7  5  4  5  5  8  5  7 10</span></span>
+<span id="cb28-48"><a href="Summary-metric-visualisation.html#cb28-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [82]  3  2  3  7 10  8  9  4 13  2  7 11  8  4  6  9  2 11  7</span></span>
+<span id="cb28-49"><a href="Summary-metric-visualisation.html#cb28-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-50"><a href="Summary-metric-visualisation.html#cb28-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $empirical_non_endemics</span></span>
+<span id="cb28-51"><a href="Summary-metric-visualisation.html#cb28-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 3 1 2 3 5 0 3 5 3 2 1 4 2 6 4 5 3 3 1 3 2 0 1 1 0 2 2 1 2 2 0 2 0 4 4 0 1 2 1 2 1</span></span>
+<span id="cb28-52"><a href="Summary-metric-visualisation.html#cb28-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 1 4 4 2 2 2 3 2 1 3 2 1 3 1 1 2 0 1 1 2 1 1 3 2 1 1 3 1 2 3 2 2 3 2 1 3 3 4 0 0 3</span></span>
+<span id="cb28-53"><a href="Summary-metric-visualisation.html#cb28-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 8 1 1 0 1 2 1 3 1 1 5 2 1 1 1 4 2 0</span></span></code></pre></div>
+<p>for plotting see <code>run_post_processing.R</code> script.</p>
 
 </div>
             </section>
