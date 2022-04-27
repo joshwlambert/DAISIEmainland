@@ -1,5 +1,4 @@
-
-# DAISIEmainland
+# DAISIEmainland <img src="man/figures/logo.png" align="right" height="200" />
 
 <!-- badges: start -->
 [![R build status](https://github.com/joshwlambert/DAISIEmainland/workflows/R-CMD-check/badge.svg)](https://github.com/joshwlambert/DAISIEmainland/actions)
