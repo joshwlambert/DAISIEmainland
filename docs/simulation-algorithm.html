@@ -224,12 +224,10 @@ package uses a two-part Doob-Gillespie simulation, one for the mainland
 (<code>DAISIEmainland::sim_island</code>).</p>
 <div id="mainland-simulation" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Mainland simulation<a href="simulation-algorithm.html#mainland-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The simulation of the island phylogenetic data takes two simulations. Firstly
-the mainland, which is simulated under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). Then the mainland phylogenetic data is fed into the
-island simulation (Section <a href="simulation-algorithm.html#island-simulation">2.2</a>).</p>
 <p>The mainland simulation uses a Doob-Gillespie algorithm to simulate the
-speciation and extinction of species under a Moran process to maintain a
-constant number of species. Here the example shows mainland data being
+speciation and extinction of species under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). This ensures a
+constant number of species on the mainland. Then the mainland phylogenetic data is fed into the
+island simulation (Section <a href="simulation-algorithm.html#island-simulation">2.2</a>). Here the example shows mainland data being
 simulated for a time duration of one (million years), five initial mainland species, and a mainland extinction rate of one (per species per million years).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="simulation-algorithm.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
 <span id="cb4-2"><a href="simulation-algorithm.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
@@ -305,11 +303,11 @@ singleton lineage before it underwent speciation.</p>
 <div id="island-simulation" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Island simulation<a href="simulation-algorithm.html#island-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The island simulation runs after the mainland simulation and uses the mainland
-data to determine which species can immigrate to the island through time. Doob-Gillespie algorithm is altered to accommodate the dynamic
+data to determine which species can immigrate to the island through time. The Doob-Gillespie algorithm is altered to accommodate the dynamic
 mainland pool. The time-steps are bounded to not jump over changes on the
 mainland to ensure the present state of the system (i.e. species on mainland)
-is always up-to-date. The algorithm checks whether any changes have occurs on
-the mainland since the last time step and if so the system is updated and the
+is always up-to-date. The algorithm checks whether any changes have occured on
+the mainland since the last time step and if so, the system is updated and the
 returned to the time at which the mainland last changed. This is valid owing to
 the Markov (memoryless) property of the Doob-Gillespie algorithm.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="simulation-algorithm.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
@@ -330,7 +328,7 @@ the Markov (memoryless) property of the Doob-Gillespie algorithm.</p>
 <span id="cb8-16"><a href="simulation-algorithm.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1 0.7551818         A        &lt;NA&gt;      NaN mainland_extinction</span></span>
 <span id="cb8-17"><a href="simulation-algorithm.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10          10 0.8507697         A        &lt;NA&gt;      NaN mainland_extinction</span></span></code></pre></div>
 <p>The island simulation outputs a <code>island_tbl</code> (see Section <a href="data-standards.html#island-tbl">A.2.6</a>).
-The <code>island_tbl</code> includes again the species ID (<code>spec_id</code>), mainland ancestor
+The <code>island_tbl</code> includes the species ID (<code>spec_id</code>), mainland ancestor
 ID (<code>main_anc_id</code>), species type (<code>spec_type</code>), branching code (<code>branch_code</code>), and branching time (<code>branch_t</code>). It also includes the time at which the species
 colonised the island (<code>col_t</code>) and the reason a species is anagenetic (i.e.
 endemic to the island without being in an island clade). The reasons for a
@@ -346,19 +344,18 @@ simulation are included.</p>
 <p>For both the island and mainland Doob-Gillespie algorithms time steps are
 sampled from an exponential distribution with rate:</p>
 <p><span class="math display">\[X = \lambda e ^{-\lambda x}, \text{ where } \lambda = \sum_j r_j\]</span></p>
-<p>where <span class="math inline">\(r_j\)</span> are the rates, for the mainland process this is just the rate of
-mainland extinction (<span class="math inline">\(\mu_M\)</span>), this is the only mainland parameter, whereas,
+<p>where <span class="math inline">\(r_j\)</span> are the rates. For the mainland process this is just the rate of
+mainland extinction (<span class="math inline">\(\mu_M\)</span>), as this is the only mainland parameter, whereas,
 for the island algorithm <span class="math inline">\(r_j\)</span> are the rates of cladogenesis (<span class="math inline">\(\lambda^c\)</span>),
 island extinction (<span class="math inline">\(\mu\)</span>), colonisation (<span class="math inline">\(\gamma\)</span>), and anagenesis
-(<span class="math inline">\(\lambda^a\)</span>). After the time step (<span class="math inline">\(\Delta\)</span> t) is sampled the event is sampled
+(<span class="math inline">\(\lambda^a\)</span>). After the time step (<span class="math inline">\(\Delta\)</span> t) is sampled, the event is sampled
 from a dynamic discrete probability distribution, weighted by its rate
 (propensity) relative to all other rates:</p>
 <p><span class="math display">\[r_i / \sum_j r_j\]</span></p>
-<p>The system is then updated for the algorithm repeats until the time step exceeds
+<p>The system is then updated and the algorithm repeats until the time step exceeds
 the total time of the simulation.</p>
-<p>The function that encapsulates and runs both of these simulations is <code>sim_island_with_mainland()</code>. This function also includes the formatting of the data and the assignment of an endemicity status to each island colonist, which
-needed by the <code>DAISIE</code> inference model. The <code>DAISIEmainland</code> simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empirist would have access to (see Section <a href="data-standards.html#daisie-mainland-data">A.2.1</a>). These two data sets allow for the quantification of error in
-estimation when the empirists does not have access to all the data.</p>
+<p>The function that encapsulates and runs both of these simulations is <code>sim_island_with_mainland()</code>. This function also includes the formatting of the data and the assignment of an endemicity status to each island colonist, which is needed by the <code>DAISIE</code> inference model. The <code>DAISIEmainland</code> simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empiricist would have access to (see Section <a href="data-standards.html#daisie-mainland-data">A.2.1</a>). These two data sets allow for the quantification of error in
+estimation when the empiricist does not have access to all the data.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="simulation-algorithm.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
 <span id="cb9-2"><a href="simulation-algorithm.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
 <span id="cb9-3"><a href="simulation-algorithm.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
