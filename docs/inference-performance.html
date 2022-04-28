@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Inference performance | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Inference performance | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -31,9 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simulation_data_visualisation.html"/>
+<link rel="prev" href="simulation-data-visualisation.html"/>
 <link rel="next" href="Summary-error-metric-visualisation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -165,10 +164,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Mainland-simulation"><i class="fa fa-check"></i><b>2.1</b> Mainland simulation</a></li>
 <li class="chapter" data-level="2.2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Island-simulation"><i class="fa fa-check"></i><b>2.2</b> Island simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="3" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
+<li class="chapter" data-level="3.2" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a>
 <ul>
@@ -213,8 +212,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Inference-performance" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Inference performance</h1>
+<div id="Inference-performance" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Inference performance<a href="Inference-performance.html#Inference-performance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <style type="text/css">
 pre {
   max-height: 1000px;
@@ -246,8 +245,8 @@ of each other.</p>
 <p>As a small technical aside, this section uses <code>DAISIE</code> version 4.1.1. Re-running
 this code on another system may produce different results, especially if a
 different version of <code>DAISIE</code> is installed.</p>
-<div id="Simulating-data" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Simulating data</h2>
+<div id="Simulating-data" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Simulating data<a href="Inference-performance.html#Simulating-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, we simulate 100 replicates of island data. This will produce phylogenetic data for a 100 islands with the same parameter values. The reason multiple island
 data sets are simulated is because the simualation algorithm is stochastic (Section <a href="Simulation-algorithm.html#Simulation-algorithm">2</a>) and by iterating the simulation many times
 it accounts for differences between data sets due to stochasticity. In an analysis more replicates (e.g. 1,000) can be run to account for the stochastic differences between replicates to more thoroughly sample the distribution of possible simulation outcomes.</p>
@@ -316,8 +315,8 @@ we assume that we have phylogenetic information on all species on the island and
 <span id="cb16-17"><a href="Inference-performance.html#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $missing_species</span></span>
 <span id="cb16-18"><a href="Inference-performance.html#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 </div>
-<div id="Maximum-likelihood-inference" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Maximum likelihood inference</h2>
+<div id="Maximum-likelihood-inference" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Maximum likelihood inference<a href="Inference-performance.html#Maximum-likelihood-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To run a maximum likelihood DAISIE model, using the <code>DAISIE_ML_CS()</code> function, on each replicate we create objects to store the data in (<code>ideal_ml</code> and <code>empirical_ml</code>) and then loop over each replicate.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Inference-performance.html#cb17-1" aria-hidden="true" tabindex="-1"></a>ideal_ml <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>, replicates)</span>
 <span id="cb17-2"><a href="Inference-performance.html#cb17-2" aria-hidden="true" tabindex="-1"></a>empirical_ml <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>, replicates)</span>
@@ -347,8 +346,8 @@ we assume that we have phylogenetic information on all species on the island and
 <span id="cb17-26"><a href="Inference-performance.html#cb17-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The details of the maximum likelihood set up are not important, but a brief explainer: all model parameters are optimisied with the starting position in parameter space for optimisation, equal to the values used to simulate the data; the Runge-Kutta Fehlberg method to numerically solve the likelihood equations; and simplex is the optimisation algorithm to maximise the likelihood.</p>
 </div>
-<div id="Inference-performance-error-metrics" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Inference performance error metrics</h2>
+<div id="Inference-performance-error-metrics" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Inference performance error metrics<a href="Inference-performance.html#Inference-performance-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now we have simulated 100 data sets, each with an <em>ideal</em> and <em>empirical</em> data
 set, and fitted the DAISIE model to each, we need to quantify the error the DAISIE inference makes because it does not include mainland evolutionary dynamics.</p>
 <p>The error metrics chosen to quantify this are:</p>
@@ -600,7 +599,7 @@ to carry out the full inference performance analysis can be found at
           </div>
         </div>
       </div>
-<a href="simulation_data_visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulation-data-visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="Summary-error-metric-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

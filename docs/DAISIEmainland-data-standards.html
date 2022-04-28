@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A DAISIEmainland data standards | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A DAISIEmainland data standards | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="References.html"/>
 
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -165,10 +164,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Mainland-simulation"><i class="fa fa-check"></i><b>2.1</b> Mainland simulation</a></li>
 <li class="chapter" data-level="2.2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Island-simulation"><i class="fa fa-check"></i><b>2.2</b> Island simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="3" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
+<li class="chapter" data-level="3.2" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a>
 <ul>
@@ -213,10 +212,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="DAISIEmainland-data-standards" class="section level1" number="7">
-<h1><span class="header-section-number">A</span> DAISIEmainland data standards</h1>
-<div id="reasoning" class="section level2" number="7.1">
-<h2><span class="header-section-number">A.1</span> Reasoning</h2>
+<div id="DAISIEmainland-data-standards" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">A</span> DAISIEmainland data standards<a href="DAISIEmainland-data-standards.html#DAISIEmainland-data-standards" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="reasoning" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">A.1</span> Reasoning<a href="DAISIEmainland-data-standards.html#reasoning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are several data types used in this package. Some of them are novel to
 this package and are not used elsewhere, others derive from other R packages.
 This document provides a standard of how the data types are formatted and which
@@ -224,25 +223,25 @@ functions allow for checking the types.</p>
 <p>To make sure the data types are correctly formatted there is a corresponding
 <code>check_*</code> function for each.</p>
 </div>
-<div id="data-structure-types" class="section level2" number="7.2">
-<h2><span class="header-section-number">A.2</span> Data structure types</h2>
-<div id="daisie-mainland-data" class="section level3" number="7.2.1">
-<h3><span class="header-section-number">A.2.1</span> <code>daisie_mainland_data</code></h3>
+<div id="data-structure-types" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">A.2</span> Data structure types<a href="DAISIEmainland-data-standards.html#data-structure-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="daisie-mainland-data" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">A.2.1</span> <code>daisie_mainland_data</code><a href="DAISIEmainland-data-standards.html#daisie-mainland-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A list of 2 elements, <code>$ideal_multi_daisie_data</code> and
 <code>$empirical_multi_daisie_data</code>.
 Each of these elements is in the format <code>multi_daisie_data</code> (see below). This
 is the output of <code>DAISIEmainland::sim_island_with_mainland()</code>.</p>
 <p>Function to check if it is a <code>daisie_mainland_data</code> is <code>DAISIEmainland::check_daisie_mainland_data()</code></p>
 </div>
-<div id="multi-daisie-data" class="section level3" number="7.2.2">
-<h3><span class="header-section-number">A.2.2</span> <code>multi_daisie_data</code></h3>
+<div id="multi-daisie-data" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">A.2.2</span> <code>multi_daisie_data</code><a href="DAISIEmainland-data-standards.html#multi-daisie-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A list of <code>daisie_data</code> elements (see below). This is the data structure when the
 simulation is run for several replicates.</p>
 <p>Function to check if it is a <code>multi_daisie_data</code> is
 <code>DAISIEmainland::check_multi_daisie_data()</code>.</p>
 </div>
-<div id="daisie-data" class="section level3" number="7.2.3">
-<h3><span class="header-section-number">A.2.3</span> <code>daisie_data</code></h3>
+<div id="daisie-data" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">A.2.3</span> <code>daisie_data</code><a href="DAISIEmainland-data-standards.html#daisie-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>A list of n elements. The first element is a list containing the <code>island_age</code>
 with a single numeric, and the number of species <code>not_present</code> on the island.
@@ -258,14 +257,14 @@ subsequent branching times (all given in time before the present).</li>
 <p>Function to check if it is a <code>daisie_data</code> is
 <code>DAISIEmainland::check_daisie_data()</code>.</p>
 </div>
-<div id="multi-mainland-clade" class="section level3" number="7.2.4">
-<h3><span class="header-section-number">A.2.4</span> <code>multi_mainland_clade</code></h3>
+<div id="multi-mainland-clade" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">A.2.4</span> <code>multi_mainland_clade</code><a href="DAISIEmainland-data-standards.html#multi-mainland-clade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A list of <code>mainland_clade</code> objects. This data type is output from <code>DAISIEmainland::sim_mainland()</code>.</p>
 <p>Function to check if it is a <code>multi_mainland_clade</code> is
 <code>DAISIEmainland::check_multi_mainland_clade()</code>.</p>
 </div>
-<div id="mainland-clade" class="section level3" number="7.2.5">
-<h3><span class="header-section-number">A.2.5</span> <code>mainland_clade</code></h3>
+<div id="mainland-clade" class="section level3 hasAnchor" number="7.2.5">
+<h3><span class="header-section-number">A.2.5</span> <code>mainland_clade</code><a href="DAISIEmainland-data-standards.html#mainland-clade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A data frame of seven columns and one or more rows. The column names are:
 <code>spec_id</code>, <code>main_anc_id</code>, <code>spec_type</code>, <code>branch_code</code>, <code>branch_t</code>,
 <code>spec_origin_t</code>, <code>spec_ex_t</code>. A example of an <code>mainland_clade</code> can be created
@@ -273,8 +272,8 @@ using <code>DAISIEmainland::create_test_mainland_clade()</code>.</p>
 <p>Function to check if it is a mainland_clade is
 <code>DAISIEmainland::check_mainland_clade()</code></p>
 </div>
-<div id="island-tbl" class="section level3" number="7.2.6">
-<h3><span class="header-section-number">A.2.6</span> <code>island_tbl</code></h3>
+<div id="island-tbl" class="section level3 hasAnchor" number="7.2.6">
+<h3><span class="header-section-number">A.2.6</span> <code>island_tbl</code><a href="DAISIEmainland-data-standards.html#island-tbl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>A data frame of the island species output from <code>sim_island</code> and then converted
 to the <code>daisie_data</code> format by <code>create_island</code>. This data type is output from

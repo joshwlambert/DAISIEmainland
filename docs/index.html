@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -33,7 +32,6 @@
   
 
 <link rel="next" href="Installation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -165,10 +164,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Mainland-simulation"><i class="fa fa-check"></i><b>2.1</b> Mainland simulation</a></li>
 <li class="chapter" data-level="2.2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Island-simulation"><i class="fa fa-check"></i><b>2.2</b> Island simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="3" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
+<li class="chapter" data-level="3.2" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a>
 <ul>
@@ -218,19 +217,19 @@ div.csl-indent {
 <p class="author"><em>Joshua W. Lambert</em></p>
 <p class="date"><em>2022-04-28</em></p>
 </div>
-<div id="daisiemainland-guide" class="section level1 unnumbered">
-<h1>DAISIEmainland guide</h1>
+<div id="daisiemainland-guide" class="section level1 unnumbered hasAnchor">
+<h1>DAISIEmainland guide<a href="index.html#daisiemainland-guide" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This guide is the long-form documentation of the <code>DAISIEmainland</code> R package.
 It covers the basics from installation (Section <a href="Installation.html#Installation">1</a>), to the
 algorithm used to simulate the data (Section <a href="Simulation-algorithm.html#Simulation-algorithm">2</a>), and
-the visualisation of the island (Section <a href="simulation_data_visualisation.html#visualise-island">3.2</a>) and of the
-mainland (Section <a href="simulation_data_visualisation.html#visualise-mainland">3.1</a>). Then there is a demonstration of
+the visualisation of the island (Section <a href="simulation-data-visualisation.html#visualise-island">3.2</a>) and of the
+mainland (Section <a href="simulation-data-visualisation.html#visualise-mainland">3.1</a>). Then there is a demonstration of
 the application of the <code>DAISIEmainland</code> package to the inference models in the
 <code>DAISIE</code> package (Section <a href="Inference-performance.html#Inference-performance">4</a>). Lastly, there is the
 visualisation of the summary metrics that can be calculated from simulated data
 (Section <a href="#Summary-metric-visualisation"><strong>??</strong></a>).</p>
-<div id="overview" class="section level2 unnumbered">
-<h2>Overview</h2>
+<div id="overview" class="section level2 unnumbered hasAnchor">
+<h2>Overview<a href="index.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>DAISIEmainland</code> package is used for simulating an island-mainland system.
 It primary purpose is the simulation of phylogenetic data sets of island species
 under a realistic model that incorporates evolutionary dynamics on the island and

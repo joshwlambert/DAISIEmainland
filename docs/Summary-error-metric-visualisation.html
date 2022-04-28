@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Summary and error metrics visualisation | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Summary and error metrics visualisation | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="Inference-performance.html"/>
 <link rel="next" href="References.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -165,10 +164,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Mainland-simulation"><i class="fa fa-check"></i><b>2.1</b> Mainland simulation</a></li>
 <li class="chapter" data-level="2.2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Island-simulation"><i class="fa fa-check"></i><b>2.2</b> Island simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="3" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
+<li class="chapter" data-level="3.2" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a>
 <ul>
@@ -213,93 +212,97 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Summary-error-metric-visualisation" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Summary and error metrics visualisation</h1>
+<div id="Summary-error-metric-visualisation" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Summary and error metrics visualisation<a href="Summary-error-metric-visualisation.html#Summary-error-metric-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>There is a range of plotting functions to visualise the summary metrics and
 error metrics (Section<a href="Inference-performance.html#Inference-performance-error-metrics">4.3</a>).</p>
-<div id="simulation-summary-metrics" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Simulation summary metrics</h2>
+<p>For the plotting of simulation summary and error metrics we need to load the
+results from multiple different mainland extinction scenarios.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Summary-error-metric-visualisation.html#cb24-1" aria-hidden="true" tabindex="-1"></a>analysis_results <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">read_analysis_results</span>(</span>
+<span id="cb24-2"><a href="Summary-error-metric-visualisation.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_folder_path =</span> <span class="fu">system.file</span>(</span>
+<span id="cb24-3"><a href="Summary-error-metric-visualisation.html#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;/inst/book/data/param_sets/&quot;</span>, </span>
+<span id="cb24-4"><a href="Summary-error-metric-visualisation.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;DAISIEmainland&quot;</span></span>
+<span id="cb24-5"><a href="Summary-error-metric-visualisation.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-6"><a href="Summary-error-metric-visualisation.html#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="simulation-summary-metrics" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Simulation summary metrics<a href="Summary-error-metric-visualisation.html#simulation-summary-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First we run the simulation. This is the same simulation as in the inference
 performance section (Section <a href="Inference-performance.html#Simulating-data">4.1</a>).</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Summary-error-metric-visualisation.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
-<span id="cb24-2"><a href="Summary-error-metric-visualisation.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
-<span id="cb24-3"><a href="Summary-error-metric-visualisation.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
-<span id="cb24-4"><a href="Summary-error-metric-visualisation.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
-<span id="cb24-5"><a href="Summary-error-metric-visualisation.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span>)</span>
-<span id="cb24-6"><a href="Summary-error-metric-visualisation.html#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="Summary-error-metric-visualisation.html#cb24-7" aria-hidden="true" tabindex="-1"></a>replicates <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb24-8"><a href="Summary-error-metric-visualisation.html#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="Summary-error-metric-visualisation.html#cb24-9" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">sim_island_with_mainland</span>(</span>
-<span id="cb24-10"><a href="Summary-error-metric-visualisation.html#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
-<span id="cb24-11"><a href="Summary-error-metric-visualisation.html#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">100</span>,</span>
-<span id="cb24-12"><a href="Summary-error-metric-visualisation.html#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">02.5</span>, <span class="dv">50</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span>),</span>
-<span id="cb24-13"><a href="Summary-error-metric-visualisation.html#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="fl">1.0</span>,</span>
-<span id="cb24-14"><a href="Summary-error-metric-visualisation.html#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
-<span id="cb24-15"><a href="Summary-error-metric-visualisation.html#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span>,</span>
-<span id="cb24-16"><a href="Summary-error-metric-visualisation.html#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> replicates,</span>
-<span id="cb24-17"><a href="Summary-error-metric-visualisation.html#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb24-18"><a href="Summary-error-metric-visualisation.html#cb24-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="Summary-error-metric-visualisation.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
+<span id="cb25-2"><a href="Summary-error-metric-visualisation.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
+<span id="cb25-3"><a href="Summary-error-metric-visualisation.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
+<span id="cb25-4"><a href="Summary-error-metric-visualisation.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
+<span id="cb25-5"><a href="Summary-error-metric-visualisation.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span>)</span>
+<span id="cb25-6"><a href="Summary-error-metric-visualisation.html#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="Summary-error-metric-visualisation.html#cb25-7" aria-hidden="true" tabindex="-1"></a>replicates <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb25-8"><a href="Summary-error-metric-visualisation.html#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="Summary-error-metric-visualisation.html#cb25-9" aria-hidden="true" tabindex="-1"></a>daisie_mainland_data <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">sim_island_with_mainland</span>(</span>
+<span id="cb25-10"><a href="Summary-error-metric-visualisation.html#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb25-11"><a href="Summary-error-metric-visualisation.html#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">100</span>,</span>
+<span id="cb25-12"><a href="Summary-error-metric-visualisation.html#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_pars =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">02.5</span>, <span class="dv">50</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span>),</span>
+<span id="cb25-13"><a href="Summary-error-metric-visualisation.html#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="fl">1.0</span>,</span>
+<span id="cb25-14"><a href="Summary-error-metric-visualisation.html#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_prob =</span> <span class="dv">1</span>,</span>
+<span id="cb25-15"><a href="Summary-error-metric-visualisation.html#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span>,</span>
+<span id="cb25-16"><a href="Summary-error-metric-visualisation.html#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> replicates,</span>
+<span id="cb25-17"><a href="Summary-error-metric-visualisation.html#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb25-18"><a href="Summary-error-metric-visualisation.html#cb25-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>The simulation summary metrics we can calculate for the <em>ideal</em> and <em>empirical</em> data are:</p>
 <ol style="list-style-type: decimal">
 <li>number of species on the island at the end of the simulation</li>
 <li>number of colonisation events to the island (that survived to the present) at the end of the simulation</li>
 </ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="Summary-error-metric-visualisation.html#cb25-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
-<span id="cb25-2"><a href="Summary-error-metric-visualisation.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data</span>
-<span id="cb25-3"><a href="Summary-error-metric-visualisation.html#cb25-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-4"><a href="Summary-error-metric-visualisation.html#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="Summary-error-metric-visualisation.html#cb25-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec</span>
-<span id="cb25-6"><a href="Summary-error-metric-visualisation.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93  97 115 109 128 142  73  71  55 109 102 123 134  93 103</span></span>
-<span id="cb25-7"><a href="Summary-error-metric-visualisation.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29]  82  73 125  91  83  85 100 107  88  94  95 138 116  89  86 119  60  83 103  87 106 114  72 133 113  80 131  92</span></span>
-<span id="cb25-8"><a href="Summary-error-metric-visualisation.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  95  81  91  79  66 120 107  69  91  80  71 138 101  99  78  52 173 125  83  76  78  59  94  98 104  68  81  80</span></span>
-<span id="cb25-9"><a href="Summary-error-metric-visualisation.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  74  94 113  96  76 113  78  85  67 123  70  73  63 127 105  85</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Summary-error-metric-visualisation.html#cb26-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Summary-error-metric-visualisation.html#cb26-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
 <span id="cb26-2"><a href="Summary-error-metric-visualisation.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data</span>
 <span id="cb26-3"><a href="Summary-error-metric-visualisation.html#cb26-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb26-4"><a href="Summary-error-metric-visualisation.html#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="Summary-error-metric-visualisation.html#cb26-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col</span>
-<span id="cb26-6"><a href="Summary-error-metric-visualisation.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 44 33 39 28 29 30 33 35 28 42 36 32 46 38 30 38 45 40 40 28 28 28 41 34 39 45 34 32 33 29 31 36 33 32 38 34 36 31</span></span>
-<span id="cb26-7"><a href="Summary-error-metric-visualisation.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] 29 41 43 34 36 34 24 30 33 28 42 37 24 37 43 33 45 35 27 37 37 28 29 40 36 30 31 32 27 48 40 47 30 22 41 38 37 27</span></span>
-<span id="cb26-8"><a href="Summary-error-metric-visualisation.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] 35 28 37 33 40 27 38 30 35 38 39 37 30 37 31 33 25 42 35 37 29 31 31 36</span></span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="Summary-error-metric-visualisation.html#cb27-1" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
-<span id="cb27-2"><a href="Summary-error-metric-visualisation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data</span>
+<span id="cb26-5"><a href="Summary-error-metric-visualisation.html#cb26-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec</span>
+<span id="cb26-6"><a href="Summary-error-metric-visualisation.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93  97 115 109 128 142  73  71  55 109 102 123 134  93 103</span></span>
+<span id="cb26-7"><a href="Summary-error-metric-visualisation.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29]  82  73 125  91  83  85 100 107  88  94  95 138 116  89  86 119  60  83 103  87 106 114  72 133 113  80 131  92</span></span>
+<span id="cb26-8"><a href="Summary-error-metric-visualisation.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  95  81  91  79  66 120 107  69  91  80  71 138 101  99  78  52 173 125  83  76  78  59  94  98 104  68  81  80</span></span>
+<span id="cb26-9"><a href="Summary-error-metric-visualisation.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  74  94 113  96  76 113  78  85  67 123  70  73  63 127 105  85</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="Summary-error-metric-visualisation.html#cb27-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
+<span id="cb27-2"><a href="Summary-error-metric-visualisation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data</span>
 <span id="cb27-3"><a href="Summary-error-metric-visualisation.html#cb27-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb27-4"><a href="Summary-error-metric-visualisation.html#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="Summary-error-metric-visualisation.html#cb27-5" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec</span>
-<span id="cb27-6"><a href="Summary-error-metric-visualisation.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93  97 115 109 128 142  73  71  55 109 102 123 134  93 103</span></span>
-<span id="cb27-7"><a href="Summary-error-metric-visualisation.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29]  82  73 125  91  83  85 100 107  88  94  95 138 116  89  86 119  60  83 103  87 106 114  72 133 113  80 131  92</span></span>
-<span id="cb27-8"><a href="Summary-error-metric-visualisation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  95  81  91  79  66 120 107  69  91  80  71 138 101  99  78  52 173 125  83  76  78  59  94  98 104  68  81  80</span></span>
-<span id="cb27-9"><a href="Summary-error-metric-visualisation.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  74  94 113  96  76 113  78  85  67 123  70  73  63 127 105  85</span></span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="Summary-error-metric-visualisation.html#cb28-1" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
+<span id="cb27-5"><a href="Summary-error-metric-visualisation.html#cb27-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col</span>
+<span id="cb27-6"><a href="Summary-error-metric-visualisation.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 44 33 39 28 29 30 33 35 28 42 36 32 46 38 30 38 45 40 40 28 28 28 41 34 39 45 34 32 33 29 31 36 33 32 38 34 36 31</span></span>
+<span id="cb27-7"><a href="Summary-error-metric-visualisation.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] 29 41 43 34 36 34 24 30 33 28 42 37 24 37 43 33 45 35 27 37 37 28 29 40 36 30 31 32 27 48 40 47 30 22 41 38 37 27</span></span>
+<span id="cb27-8"><a href="Summary-error-metric-visualisation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] 35 28 37 33 40 27 38 30 35 38 39 37 30 37 31 33 25 42 35 37 29 31 31 36</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="Summary-error-metric-visualisation.html#cb28-1" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
 <span id="cb28-2"><a href="Summary-error-metric-visualisation.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data</span>
 <span id="cb28-3"><a href="Summary-error-metric-visualisation.html#cb28-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb28-4"><a href="Summary-error-metric-visualisation.html#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="Summary-error-metric-visualisation.html#cb28-5" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col</span>
-<span id="cb28-6"><a href="Summary-error-metric-visualisation.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 43 33 38 28 28 28 32 33 28 42 36 32 46 37 30 37 43 39 38 28 27 28 39 34 39 45 34 32 33 29 31 36 32 30 36 33 34 31</span></span>
-<span id="cb28-7"><a href="Summary-error-metric-visualisation.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] 29 40 41 32 36 33 24 29 32 28 40 34 23 36 42 33 44 35 27 35 36 28 28 40 35 30 30 32 27 44 40 44 29 22 40 38 37 25</span></span>
-<span id="cb28-8"><a href="Summary-error-metric-visualisation.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] 34 27 35 33 39 26 38 30 35 37 39 37 29 37 30 33 25 42 35 36 29 31 30 35</span></span></code></pre></div>
+<span id="cb28-5"><a href="Summary-error-metric-visualisation.html#cb28-5" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec</span>
+<span id="cb28-6"><a href="Summary-error-metric-visualisation.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93  97 115 109 128 142  73  71  55 109 102 123 134  93 103</span></span>
+<span id="cb28-7"><a href="Summary-error-metric-visualisation.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29]  82  73 125  91  83  85 100 107  88  94  95 138 116  89  86 119  60  83 103  87 106 114  72 133 113  80 131  92</span></span>
+<span id="cb28-8"><a href="Summary-error-metric-visualisation.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  95  81  91  79  66 120 107  69  91  80  71 138 101  99  78  52 173 125  83  76  78  59  94  98 104  68  81  80</span></span>
+<span id="cb28-9"><a href="Summary-error-metric-visualisation.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  74  94 113  96  76 113  78  85  67 123  70  73  63 127 105  85</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="Summary-error-metric-visualisation.html#cb29-1" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
+<span id="cb29-2"><a href="Summary-error-metric-visualisation.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data</span>
+<span id="cb29-3"><a href="Summary-error-metric-visualisation.html#cb29-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-4"><a href="Summary-error-metric-visualisation.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="Summary-error-metric-visualisation.html#cb29-5" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col</span>
+<span id="cb29-6"><a href="Summary-error-metric-visualisation.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 43 33 38 28 28 28 32 33 28 42 36 32 46 37 30 37 43 39 38 28 27 28 39 34 39 45 34 32 33 29 31 36 32 30 36 33 34 31</span></span>
+<span id="cb29-7"><a href="Summary-error-metric-visualisation.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] 29 40 41 32 36 33 24 29 32 28 40 34 23 36 42 33 44 35 27 35 36 28 28 40 35 30 30 32 27 44 40 44 29 22 40 38 37 25</span></span>
+<span id="cb29-8"><a href="Summary-error-metric-visualisation.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] 34 27 35 33 39 26 38 30 35 37 39 37 29 37 30 33 25 42 35 36 29 31 30 35</span></span></code></pre></div>
 <p>We can plot the simulation summary metrics to view the mean, variance, maximum and
 minimum number of colonisations and number of species for the <em>ideal</em> and <em>empirical</em>
 data.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="Summary-error-metric-visualisation.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sim_metrics</span>(</span>
-<span id="cb29-2"><a href="Summary-error-metric-visualisation.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">analysis_results =</span> analysis_results, </span>
-<span id="cb29-3"><a href="Summary-error-metric-visualisation.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_file_path =</span> <span class="cn">NULL</span></span>
-<span id="cb29-4"><a href="Summary-error-metric-visualisation.html#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="Summary-error-metric-visualisation.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sim_metrics</span>(</span>
+<span id="cb30-2"><a href="Summary-error-metric-visualisation.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">analysis_results =</span> analysis_results, </span>
+<span id="cb30-3"><a href="Summary-error-metric-visualisation.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_file_path =</span> <span class="cn">NULL</span></span>
+<span id="cb30-4"><a href="Summary-error-metric-visualisation.html#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="DAISIEmainland_guide_files/figure-html/plot-simulation-summary-metrics-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="inference-error-metrics" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Inference error metrics</h2>
+<div id="inference-error-metrics" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Inference error metrics<a href="Summary-error-metric-visualisation.html#inference-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The error metrics were run for a range of mainland extinction rates. Then the
 error metrics can be plotted across different rates to determine how the error
 varies with faster or slower mainland evolutionary dynamics.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="Summary-error-metric-visualisation.html#cb30-1" aria-hidden="true" tabindex="-1"></a>analysis_results <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">read_analysis_results</span>(</span>
-<span id="cb30-2"><a href="Summary-error-metric-visualisation.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_folder_path =</span> <span class="fu">system.file</span>(</span>
-<span id="cb30-3"><a href="Summary-error-metric-visualisation.html#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;/inst/book/data/param_sets/&quot;</span>, </span>
-<span id="cb30-4"><a href="Summary-error-metric-visualisation.html#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;DAISIEmainland&quot;</span></span>
-<span id="cb30-5"><a href="Summary-error-metric-visualisation.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-6"><a href="Summary-error-metric-visualisation.html#cb30-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Plotting the <span class="math inline">\(\Delta\)</span>CTT across mainland extinction rates between zero and two
-(per species per million years).</p>
+(per species per million years). As explained in Section
+<a href="Inference-performance.html#Inference-performance-error-metrics">4.3</a> this metric is a comparison between
+the <em>ideal</em> and <em>empirical</em> data sets produced by the <code>DAISIEmainland</code> simulation.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="Summary-error-metric-visualisation.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ctt_boxplot</span>(</span>
 <span id="cb31-2"><a href="Summary-error-metric-visualisation.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">analysis_results =</span> analysis_results, </span>
 <span id="cb31-3"><a href="Summary-error-metric-visualisation.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_file_path =</span> <span class="cn">NULL</span>,</span>
@@ -308,7 +311,9 @@ varies with faster or slower mainland evolutionary dynamics.</p>
 <p><img src="DAISIEmainland_guide_files/figure-html/plot-delta-ctt-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The percentage of endemics on the island at the end of the simulation and
 percentage of maximum age colonisation times can be plotted for different values
-of mainland extinction.</p>
+of mainland extinction. Each of the boxplots below contains 100 island replicates.
+The left hand panel is for the data set with complete information (<em>ideal</em>) and
+the right hand panel is for the data set with incomplete information (<em>empirical</em>).</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="Summary-error-metric-visualisation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_endemics</span>(</span>
 <span id="cb32-2"><a href="Summary-error-metric-visualisation.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">analysis_results =</span> analysis_results, </span>
 <span id="cb32-3"><a href="Summary-error-metric-visualisation.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_file_path =</span> <span class="cn">NULL</span>, </span>

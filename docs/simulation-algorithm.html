@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland</title>
   <meta name="description" content="This is an introduction to the DAISIEmainland package." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Simulation algorithm | DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an introduction to the DAISIEmainland package." />
   
@@ -32,8 +31,7 @@
   
   
 <link rel="prev" href="Installation.html"/>
-<link rel="next" href="simulation_data_visualisation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<link rel="next" href="simulation-data-visualisation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -165,10 +164,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Mainland-simulation"><i class="fa fa-check"></i><b>2.1</b> Mainland simulation</a></li>
 <li class="chapter" data-level="2.2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Island-simulation"><i class="fa fa-check"></i><b>2.2</b> Island simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="3" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation_data_visualisation.html"><a href="simulation_data_visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
+<li class="chapter" data-level="3.2" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a>
 <ul>
@@ -213,8 +212,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Simulation-algorithm" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Simulation algorithm</h1>
+<div id="Simulation-algorithm" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Simulation algorithm<a href="Simulation-algorithm.html#Simulation-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The Doob-Gillespie algorithm is a stochastic exact solution that is used to
 simulate continuous-time processes, with several applications
 in biological modelling. The Doob-Gillespie algorithm
@@ -223,8 +222,8 @@ birth-death process. The island-mainland simulation in the DAISIEmainland
 package uses a two-part Doob-Gillespie simulation, one for the mainland
 (<code>DAISIEmainland::sim_mainland</code>) and one for the island
 (<code>DAISIEmainland::sim_island</code>).</p>
-<div id="Mainland-simulation" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Mainland simulation</h2>
+<div id="Mainland-simulation" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Mainland simulation<a href="Simulation-algorithm.html#Mainland-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The simulation of the island phylogenetic data takes two simulations. Firstly
 the mainland, which is simulated under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). Then the mainland phylogenetic data is fed into the
 island simulation (Section <a href="Simulation-algorithm.html#Island-simulation">2.2</a>).</p>
@@ -303,8 +302,8 @@ singleton lineage before it underwent speciation.</p>
 <span id="cb7-2"><a href="Simulation-algorithm.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
 <span id="cb7-3"><a href="Simulation-algorithm.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       4           4         E           A      NaN             0 0.1510364</span></span></code></pre></div>
 </div>
-<div id="Island-simulation" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Island simulation</h2>
+<div id="Island-simulation" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Island simulation<a href="Simulation-algorithm.html#Island-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The island simulation runs after the mainland simulation and uses the mainland
 data to determine which species can immigrate to the island through time. Doob-Gillespie algorithm is altered to accommodate the dynamic
 mainland pool. The time-steps are bounded to not jump over changes on the
@@ -449,7 +448,7 @@ estimation when the empirists does not have access to all the data.</p>
         </div>
       </div>
 <a href="Installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simulation_data_visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="simulation-data-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
