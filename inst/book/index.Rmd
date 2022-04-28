@@ -22,8 +22,8 @@ knitr::opts_chunk$set(
 This guide is the long-form documentation of the `DAISIEmainland` R package.
 It covers the basics from installation (Section \@ref(installation)), to the
 algorithm used to simulate the data (Section \@ref(simulation-algorithm)), and
-the visualisation of the island (Section \@ref(visualise-island)) and of the 
-mainland (Section \@ref(visualise-mainland)). Then there is a demonstration of
+the visualisation of the mainland (Section \@ref(visualise-mainland)) and of the
+island (Section \@ref(visualise-island)). Then there is a demonstration of
 the application of the `DAISIEmainland` package to the inference models in the 
 `DAISIE` package (Section \@ref(inference-performance)). Lastly, there is the
 visualisation of the summary metrics that can be calculated from simulated data
