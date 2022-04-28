@@ -52,7 +52,7 @@ daisie_mainland_data <- readRDS(
 )
 ```
 
-```{r, Run simulation, eval=FALSE}
+```{r, run-simulation, eval=FALSE}
 set.seed(
   1,
   kind = "Mersenne-Twister",
@@ -173,7 +173,7 @@ error_metrics$param_ratios
 2. Delta CTT ($\Delta$CTT) (difference in colonisations through time) between
 the *ideal* and *empirical* data.
 
-```{r Delta CTT}
+```{r Delta-CTT}
 error_metrics$delta_ctt
 ```
 
@@ -182,7 +182,7 @@ the most recent colonisation time extracted from the phylogenetic data is older
 than the island) for the *ideal* and *empirical* data (only including colonisations that survive to the present). The ideal max age percentage is always zero as it is always known exactly when the species colonised the island, but is still calculated to check it is zero. The empirical max age percent can be any
 percent [0, 100].
 
-```{r Max age percentages}
+```{r Max-age-percentages}
 error_metrics$max_age_percent
 ```
 
@@ -190,7 +190,7 @@ error_metrics$max_age_percent
 number of endemic and non-endemic species in the *ideal* and *empirical* data, as 
 well as the calculation of the percentage of endemic species in each data set.
 
-```{r Endemic percentages}
+```{r Endemic-percentages}
 error_metrics$endemic_percent
 ```
 
@@ -205,4 +205,4 @@ errors <- DAISIEmainland::calc_error(
 ```
 
 The code displayed in this chapter is a simplified version of the script used
-to carry out the inference performance analysis which can be found at /scripts/run_analysis.R in the `DAISIEmainland` package. 
+to carry out the inference performance analysis for CITE BIORXIV which can be found at /scripts/run_analysis.R in the `DAISIEmainland` package. 
