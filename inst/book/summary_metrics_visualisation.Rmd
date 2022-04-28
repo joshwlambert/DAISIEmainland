@@ -8,7 +8,7 @@ error metrics (Section\@ref(Inference-performance-error-metrics)).
 First we run the simulation. This is the same simulation as in the inference
 performance section (Section \@ref(Simulating-data)).
 
-```{r, load-simulated-data, echo=FALSE}
+```{r, echo=FALSE}
 <<load-simulated-data>>
 ```
 
@@ -17,6 +17,7 @@ performance section (Section \@ref(Simulating-data)).
 ```
 
 The simulation summary metrics we can calculate for the *ideal* and *empirical* data are: 
+
 1. number of species on the island at the end of the simulation
 2. number of colonisation events to the island (that survived to the present) at the end of the simulation
 
@@ -52,17 +53,34 @@ empirical_sim_num_col <- DAISIEmainland::calc_num_col(
 empirical_sim_num_col
 ```
 
+We can plot the simulation summary metrics to view the mean, variance, maximum and 
+minimum number of colonisations and number of species for the *ideal* and *empirical* 
+data.
+
+```{r, plot-simulation-summary-metrics}
+plot_sim_metrics(
+  analysis_results = analysis_results, 
+  output_file_path = NULL
+)
+```
+
 ## Inference error metrics
 
-```{r}
-<<Delta-CTT>>
-```
+The error metrics were run for a range of mainland extinction rates. Then the 
+error metrics can be plotted across different rates to determine how the error
+varies with faster or slower mainland evolutionary dynamics.
 
 ```{r, read-analysis-results}
 analysis_results <- DAISIEmainland::read_analysis_results(
-  data_folder_path = file.path("results")
+  data_folder_path = system.file(
+    "/inst/book/data/param_sets/", 
+    package = "DAISIEmainland"
+  )
 )
 ```
+
+Plotting the $\Delta$CTT across mainland extinction rates between zero and two
+(per species per million years). 
 
 ```{r, plot-delta-ctt}
 plot_ctt_boxplot(
@@ -72,15 +90,31 @@ plot_ctt_boxplot(
 )
 ```
 
-```{r}
-<<Max-age-percentages>>
+The percentage of endemics on the island at the end of the simulation and 
+percentage of maximum age colonisation times can be plotted for different values
+of mainland extinction.
+
+```{r, plot-endemics}
+plot_endemics(
+  analysis_results = analysis_results, 
+  output_file_path = NULL, 
+  parameter = "mainland_ex"
+) 
 ```
 
-```{r}
-<<Endemic-percentages>>
+```{r, plot-max-age}
+plot_max_age(
+  analysis_results = analysis_results, 
+  output_file_path = NULL, 
+  parameter = "mainland_ex"
+)
 ```
 
+Error metrics can also be plotted across different values of mainland sampling
+probability by setting the `parameter = "mainland_sample_prob` in the plotting
+functions.
 
 The plots shown in this chapter are not an exhaustive list available from the 
 package. The script used to make the plots for the two manuscripts using this
-package CITE JOSS and CITE BIORXIV can be found at /scripts/joss_data_vis.R and /scripts/evolution_data_vis.R, respectively, in the `DAISIEmainland` package.
+package can be found at /scripts/joss_data_vis.R and /scripts/evolution_data_vis.R, 
+respectively, in the `DAISIEmainland` package.

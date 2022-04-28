@@ -9,7 +9,9 @@ Inference-performance
 Simulating-data
 Maximum-likelihood-inference
 Inference-performance-error-metrics
-Summary-metric-visualisation
+Summary-error-metric-visualisation
+simulation-summary-metrics
+inference-error-metrics
 References
 DAISIEmainland-data-standards
 reasoning

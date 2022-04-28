@@ -44,7 +44,7 @@ it accounts for differences between data sets due to stochasticity. In an analys
 Note: all the code below takes a substantial amount of time to run (on the order
 of hours for 100 replicates). 
 
-```{r, load simulated data, echo=FALSE}
+```{r, load-simulated-data, echo=FALSE}
 daisie_mainland_data <- readRDS(
   file = system.file(
     "inst/book/data/daisie_mainland_data_100_rep.rds", 
@@ -205,4 +205,5 @@ errors <- DAISIEmainland::calc_error(
 ```
 
 The code displayed in this chapter is a simplified version of the script used
-to carry out the inference performance analysis for CITE BIORXIV which can be found at /scripts/run_analysis.R in the `DAISIEmainland` package. 
+to carry out the full inference performance analysis can be found at 
+/scripts/run_analysis.R in the `DAISIEmainland` package. 
