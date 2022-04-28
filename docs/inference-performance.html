@@ -344,7 +344,7 @@ we assume that we have phylogenetic information on all species on the island and
 <span id="cb17-24"><a href="inference-performance.html#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimmethod =</span> <span class="st">&quot;simplex&quot;</span>,</span>
 <span id="cb17-25"><a href="inference-performance.html#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">jitter =</span> <span class="fl">1e-5</span>)</span>
 <span id="cb17-26"><a href="inference-performance.html#cb17-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>The details of the maximum likelihood set up are not important, but a brief explainer: all model parameters are optimisied with the starting position in parameter space for optimisation, equal to the values used to simulate the data; the Runge-Kutta Fehlberg method to numerically solve the likelihood equations; and simplex is the optimisation algorithm to maximise the likelihood.</p>
+<p>The details of the maximum likelihood set up are not important, but a brief explainer: all model parameters are optimisied with the starting position in parameter space for optimisation, equal to the values used to simulate the data; the Runge-Kutta Fehlberg method is used to numerically solve the likelihood equations; and simplex is the optimisation algorithm to maximise the likelihood.</p>
 </div>
 <div id="inference-performance-error-metrics" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Inference performance error metrics<a href="inference-performance.html#inference-performance-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -683,7 +683,7 @@ well as the calculation of the percentage of endemic species in each data set.</
 <span id="cb23-5"><a href="inference-performance.html#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>The code displayed in this chapter is a simplified version of the script used
 to carry out the full inference performance analysis can be found at
-/scripts/run_analysis.R in the <code>DAISIEmainland</code> package.</p>
+<code>DAISIEmainland/scripts/run_analysis.R</code> in the <code>DAISIEmainland</code> package.</p>
 
 </div>
 </div>
