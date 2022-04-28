@@ -80,7 +80,9 @@ analysis_results <- DAISIEmainland::read_analysis_results(
 ```
 
 Plotting the $\Delta$CTT across mainland extinction rates between zero and two
-(per species per million years). 
+(per species per million years). As explained in Section
+\@ref(Inference-performance-error-metrics) this metric is a comparison between
+the *ideal* and *empirical* data sets produced by the `DAISIEmainland` simulation.
 
 ```{r, plot-delta-ctt}
 plot_ctt_boxplot(
@@ -92,7 +94,9 @@ plot_ctt_boxplot(
 
 The percentage of endemics on the island at the end of the simulation and 
 percentage of maximum age colonisation times can be plotted for different values
-of mainland extinction.
+of mainland extinction. Each of the boxplots below contains 100 island replicates.
+The left hand panel is for the data set with complete information (*ideal*) and
+the right hand panel is for the data set with incomplete information (*empirical*).
 
 ```{r, plot-endemics}
 plot_endemics(
