@@ -2,14 +2,14 @@ Installation
 Simulation-algorithm
 Mainland-simulation
 Island-simulation
-simulation-data-visualisation
+Simulation-data-visualisation
 visualise-mainland
 visualise-island
 Inference-performance
 Simulating-data
 Maximum-likelihood-inference
 Inference-performance-error-metrics
-Summary-error-metric-visualisation
+Summary-error-metrics-visualisation
 simulation-summary-metrics
 inference-error-metrics
 References

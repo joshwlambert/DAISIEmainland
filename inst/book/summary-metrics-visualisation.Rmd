@@ -1,4 +1,4 @@
-# Summary and error metrics visualisation {#Summary-error-metric-visualisation}
+# Summary and error metrics visualisation {#Summary-error-metrics-visualisation}
 
 There is a range of plotting functions to visualise the summary metrics and 
 error metrics (Section\@ref(Inference-performance-error-metrics)). 

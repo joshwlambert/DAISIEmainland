@@ -27,7 +27,7 @@ mainland (Section \@ref(visualise-mainland)). Then there is a demonstration of
 the application of the `DAISIEmainland` package to the inference models in the 
 `DAISIE` package (Section \@ref(Inference-performance)). Lastly, there is the
 visualisation of the summary metrics that can be calculated from simulated data
-(Section \@ref(Summary-metric-visualisation)). 
+(Section \@ref(Summary-error-metrics-visualisation)). 
 
 ## Overview {-}
 

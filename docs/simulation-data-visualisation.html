@@ -164,10 +164,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Mainland-simulation"><i class="fa fa-check"></i><b>2.1</b> Mainland simulation</a></li>
 <li class="chapter" data-level="2.2" data-path="Simulation-algorithm.html"><a href="Simulation-algorithm.html#Island-simulation"><i class="fa fa-check"></i><b>2.2</b> Island simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
+<li class="chapter" data-level="3" data-path="Simulation-data-visualisation.html"><a href="Simulation-data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Simulation data visualisation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
-<li class="chapter" data-level="3.2" data-path="simulation-data-visualisation.html"><a href="simulation-data-visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
+<li class="chapter" data-level="3.1" data-path="Simulation-data-visualisation.html"><a href="Simulation-data-visualisation.html#visualise-mainland"><i class="fa fa-check"></i><b>3.1</b> Visualise mainland</a></li>
+<li class="chapter" data-level="3.2" data-path="Simulation-data-visualisation.html"><a href="Simulation-data-visualisation.html#visualise-island"><i class="fa fa-check"></i><b>3.2</b> Visualise island</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="Inference-performance.html"><a href="Inference-performance.html"><i class="fa fa-check"></i><b>4</b> Inference performance</a>
 <ul>
@@ -175,10 +175,10 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="Inference-performance.html"><a href="Inference-performance.html#Maximum-likelihood-inference"><i class="fa fa-check"></i><b>4.2</b> Maximum likelihood inference</a></li>
 <li class="chapter" data-level="4.3" data-path="Inference-performance.html"><a href="Inference-performance.html#Inference-performance-error-metrics"><i class="fa fa-check"></i><b>4.3</b> Inference performance error metrics</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Summary-error-metric-visualisation.html"><a href="Summary-error-metric-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary and error metrics visualisation</a>
+<li class="chapter" data-level="5" data-path="Summary-error-metrics-visualisation.html"><a href="Summary-error-metrics-visualisation.html"><i class="fa fa-check"></i><b>5</b> Summary and error metrics visualisation</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="Summary-error-metric-visualisation.html"><a href="Summary-error-metric-visualisation.html#simulation-summary-metrics"><i class="fa fa-check"></i><b>5.1</b> Simulation summary metrics</a></li>
-<li class="chapter" data-level="5.2" data-path="Summary-error-metric-visualisation.html"><a href="Summary-error-metric-visualisation.html#inference-error-metrics"><i class="fa fa-check"></i><b>5.2</b> Inference error metrics</a></li>
+<li class="chapter" data-level="5.1" data-path="Summary-error-metrics-visualisation.html"><a href="Summary-error-metrics-visualisation.html#simulation-summary-metrics"><i class="fa fa-check"></i><b>5.1</b> Simulation summary metrics</a></li>
+<li class="chapter" data-level="5.2" data-path="Summary-error-metrics-visualisation.html"><a href="Summary-error-metrics-visualisation.html#inference-error-metrics"><i class="fa fa-check"></i><b>5.2</b> Inference error metrics</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>6</b> References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -212,65 +212,65 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="simulation-data-visualisation" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Simulation data visualisation<a href="simulation-data-visualisation.html#simulation-data-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="Simulation-data-visualisation" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Simulation data visualisation<a href="Simulation-data-visualisation.html#Simulation-data-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In the previous section (Section <a href="Simulation-algorithm.html#Simulation-algorithm">2</a>) it showed how the data is simulated. An important aspect is to see the data and <code>DAISIEmainland</code>
 has a selection of plotting functions to plot the phylogenetic data of the
 mainland and the island.</p>
 <div id="visualise-mainland" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Visualise mainland<a href="simulation-data-visualisation.html#visualise-mainland" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">3.1</span> Visualise mainland<a href="Simulation-data-visualisation.html#visualise-mainland" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We simulate the same mainland system as (Section <a href="Simulation-algorithm.html#Mainland-simulation">2.1</a>) and then plot the all the mainland clades using <code>plot_mainland</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="simulation-data-visualisation.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
-<span id="cb10-2"><a href="simulation-data-visualisation.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
-<span id="cb10-3"><a href="simulation-data-visualisation.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
-<span id="cb10-4"><a href="simulation-data-visualisation.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
-<span id="cb10-5"><a href="simulation-data-visualisation.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
-<span id="cb10-6"><a href="simulation-data-visualisation.html#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-7"><a href="simulation-data-visualisation.html#cb10-7" aria-hidden="true" tabindex="-1"></a>mainland <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">sim_mainland</span>(</span>
-<span id="cb10-8"><a href="simulation-data-visualisation.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
-<span id="cb10-9"><a href="simulation-data-visualisation.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">5</span>,</span>
-<span id="cb10-10"><a href="simulation-data-visualisation.html#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span></span>
-<span id="cb10-11"><a href="simulation-data-visualisation.html#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-12"><a href="simulation-data-visualisation.html#cb10-12" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland)</span></code></pre></div>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Simulation-data-visualisation.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
+<span id="cb10-2"><a href="Simulation-data-visualisation.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
+<span id="cb10-3"><a href="Simulation-data-visualisation.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>
+<span id="cb10-4"><a href="Simulation-data-visualisation.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal.kind =</span> <span class="st">&quot;Inversion&quot;</span>,</span>
+<span id="cb10-5"><a href="Simulation-data-visualisation.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.kind =</span> <span class="st">&quot;Rejection&quot;</span></span>
+<span id="cb10-6"><a href="Simulation-data-visualisation.html#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-7"><a href="Simulation-data-visualisation.html#cb10-7" aria-hidden="true" tabindex="-1"></a>mainland <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">:::</span><span class="fu">sim_mainland</span>(</span>
+<span id="cb10-8"><a href="Simulation-data-visualisation.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_time =</span> <span class="dv">1</span>,</span>
+<span id="cb10-9"><a href="Simulation-data-visualisation.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="dv">5</span>,</span>
+<span id="cb10-10"><a href="Simulation-data-visualisation.html#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_ex =</span> <span class="dv">1</span></span>
+<span id="cb10-11"><a href="Simulation-data-visualisation.html#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-12"><a href="Simulation-data-visualisation.html#cb10-12" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland)</span></code></pre></div>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The above plot shows the evolutionary history of each mainland species from the
 start of the simulation, as five independent (i.e. no phylogenetic relatedness)
 mainland species, to five extant species at the present. Each species is given
 as unique species ID which are shown here as different coloured branches. The
 colours can also be changed to represent the clade a species belongs to.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="simulation-data-visualisation.html#cb11-1" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland, <span class="at">branch_colour =</span> <span class="st">&quot;clade_id&quot;</span>)</span></code></pre></div>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Simulation-data-visualisation.html#cb11-1" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland</span>(mainland, <span class="at">branch_colour =</span> <span class="st">&quot;clade_id&quot;</span>)</span></code></pre></div>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>If there are many clades on the mainland it can be difficult to see when plotted
 as an entire community. Instead individual mainland clades can be selected from
 the data and plotted with <code>plot_mainland_clade</code>. Again the option of plotting
 the unique species ID or clade ID are available.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="simulation-data-visualisation.html#cb12-1" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland_clade</span>(</span>
-<span id="cb12-2"><a href="simulation-data-visualisation.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]], </span>
-<span id="cb12-3"><a href="simulation-data-visualisation.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">branch_colour =</span> <span class="st">&quot;unique_species_id&quot;</span></span>
-<span id="cb12-4"><a href="simulation-data-visualisation.html#cb12-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-5"><a href="simulation-data-visualisation.html#cb12-5" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland_clade</span>(</span>
-<span id="cb12-6"><a href="simulation-data-visualisation.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]], </span>
-<span id="cb12-7"><a href="simulation-data-visualisation.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">branch_colour =</span> <span class="st">&quot;clade_id&quot;</span></span>
-<span id="cb12-8"><a href="simulation-data-visualisation.html#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-8-1.png" width="45%" style="display: block; margin: auto auto auto 0;" /><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-8-2.png" width="45%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Simulation-data-visualisation.html#cb12-1" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland_clade</span>(</span>
+<span id="cb12-2"><a href="Simulation-data-visualisation.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]], </span>
+<span id="cb12-3"><a href="Simulation-data-visualisation.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">branch_colour =</span> <span class="st">&quot;unique_species_id&quot;</span></span>
+<span id="cb12-4"><a href="Simulation-data-visualisation.html#cb12-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-5"><a href="Simulation-data-visualisation.html#cb12-5" aria-hidden="true" tabindex="-1"></a>DAISIEmainland<span class="sc">::</span><span class="fu">plot_mainland_clade</span>(</span>
+<span id="cb12-6"><a href="Simulation-data-visualisation.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_clade =</span> mainland[[<span class="dv">1</span>]], </span>
+<span id="cb12-7"><a href="Simulation-data-visualisation.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">branch_colour =</span> <span class="st">&quot;clade_id&quot;</span></span>
+<span id="cb12-8"><a href="Simulation-data-visualisation.html#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-10-1.png" width="45%" style="display: block; margin: auto auto auto 0;" /><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-10-2.png" width="45%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 <div id="visualise-island" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Visualise island<a href="simulation-data-visualisation.html#visualise-island" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">3.2</span> Visualise island<a href="Simulation-data-visualisation.html#visualise-island" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The same set of plotting functionality exists for the island data. Here we
 simulate a range of possible outcomes for the island data and show how each
 looks using the function <code>plot_daisie_data</code>.</p>
 <ol style="list-style-type: decimal">
 <li>An empty island</li>
 </ol>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-9-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-11-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>An island with a single non-endemic species</li>
 </ol>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-10-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-12-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>An island with a single endemic species</li>
 </ol>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-11-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-13-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>An island with a single non-endemic species which whose colonisation time
 is older than the island age so it is considered an island-age colonisation
@@ -278,21 +278,21 @@ is older than the island age so it is considered an island-age colonisation
 before). This uncertainty in the timing of colonisation is then taken into
 account when the data is input into the <code>DAISIE</code> likelihood model.</li>
 </ol>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-12-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-14-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li>An island with a single endemic species which whose colonisation time
 is older than the island age so it is considered an island-age colonisation.
 The uncertainty in colonisation time is handled in an equivalent way to the
 non-endemic island-age colonisation.</li>
 </ol>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-13-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-15-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>An island with an endemic clade whose colonisation time
 is older than the island age so it is considered an island-age colonisation.
 In <code>DAISIE</code> the colonisation time is assumed to have occurred between the
 island age and the first branching time in the clade.</li>
 </ol>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-14-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-16-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>An island with an recolonisation of the same mainland species after it has
 colonised and speciated (either via cladogenesis or anagenesis on the island).
@@ -300,7 +300,7 @@ The colonists that are from the same ancestral mainland species but the island
 species is now endemic are show by ‘Colonist after anagenesis’ and ‘Colonist
 after cladogenesis.’</li>
 </ol>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-15-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-17-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <p>All the above scenarios are of one of the <code>daisie_data</code> sets that are produced
 from the <code>sim_island_with_mainland()</code> function which produces the <code>ideal_data</code>
 and <code>empirical_data</code>. <code>plot_daisie_mainland_data</code> plots these two island data
@@ -369,7 +369,7 @@ sets together.</p>
 #&gt; 
 #&gt; $empirical_multi_daisie_data[[1]][[3]]$missing_species
 #&gt; [1] 0</code></pre>
-<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the plot juxtaposing the <code>ideal_data</code> (top) and the <code>empirical_data</code> (bottom)
 it is clear that the colonisation times differ for one of the island colonists.
 In the <code>empirical_data</code> this colonist is an island-age colonist which is likely

@@ -2,7 +2,7 @@
 
 You can install the released version of DAISIEmainland from github with:
 
-``` r
+```{r, eval=FALSE}
 # install.packages("remotes") # install remotes package if not installed
 remotes::install_github("joshwlambert/DAISIEmainland")
 ```
@@ -12,7 +12,7 @@ found in the DESCRIPTION file). Most of these are on CRAN and can be installed w
 `install.packages()`. However, the `DAISIE` [@etienne_daisie_2022] and `nLTT` packages [@janzen_nltt_2021] require more up-to-date version than available on
 CRAN and need to be installed from github:
 
-``` r
+```{r, eval=FALSE}
 remotes::install_github("rsetienne/DAISIE")
 remotes::install_github("thijsjanzen/nLTT")
 ```
