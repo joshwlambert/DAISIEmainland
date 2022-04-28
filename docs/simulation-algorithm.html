@@ -324,9 +324,12 @@ the Markov (memoryless) property of the Doob-Gillespie algorithm.</p>
 <span id="cb8-12"><a href="simulation-algorithm.html#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span></span>
 <span id="cb8-13"><a href="simulation-algorithm.html#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb8-14"><a href="simulation-algorithm.html#cb8-14" aria-hidden="true" tabindex="-1"></a>island_tbl</span>
-<span id="cb8-15"><a href="simulation-algorithm.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id     col_t spec_type branch_code branch_t          ana_origin</span></span>
-<span id="cb8-16"><a href="simulation-algorithm.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1 0.7551818         A        &lt;NA&gt;      NaN mainland_extinction</span></span>
-<span id="cb8-17"><a href="simulation-algorithm.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10          10 0.8507697         A        &lt;NA&gt;      NaN mainland_extinction</span></span></code></pre></div>
+<span id="cb8-15"><a href="simulation-algorithm.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id     col_t spec_type branch_code branch_t</span></span>
+<span id="cb8-16"><a href="simulation-algorithm.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1 0.7551818         A        &lt;NA&gt;      NaN</span></span>
+<span id="cb8-17"><a href="simulation-algorithm.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10          10 0.8507697         A        &lt;NA&gt;      NaN</span></span>
+<span id="cb8-18"><a href="simulation-algorithm.html#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            ana_origin</span></span>
+<span id="cb8-19"><a href="simulation-algorithm.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 mainland_extinction</span></span>
+<span id="cb8-20"><a href="simulation-algorithm.html#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 mainland_extinction</span></span></code></pre></div>
 <p>The island simulation outputs a <code>island_tbl</code> (see Section <a href="data-standards.html#island-tbl">A.2.6</a>).
 The <code>island_tbl</code> includes the species ID (<code>spec_id</code>), mainland ancestor
 ID (<code>main_anc_id</code>), species type (<code>spec_type</code>), branching code (<code>branch_code</code>), and branching time (<code>branch_t</code>). It also includes the time at which the species
