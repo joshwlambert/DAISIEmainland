@@ -17,19 +17,12 @@ species is violated, as is the case in nature.
 
 ## Installation
 
-You can install the released version of DAISIEmainland from github with:
+See [installation instructions](https://joshwlambert.github.io/DAISIEmainland/installation.html)
 
-``` r
-remotes::install_github("joshwlambert/DAISIEmainland")
-```
+## Usage
 
-The two non-CRAN dependecies required for DAISIEmainland are DAISIE and nLTT,
-these can be install from github with:
-
-``` r
-remotes::install_github("rsetienne/DAISIE")
-remotes::install_github("thijsjanzen/nLTT")
-```
+See [long-form documentation](https://joshwlambert.github.io/DAISIEmainland/) for details of package
+functionality.
 
 ## Help
 
@@ -44,20 +37,15 @@ would like to contribute to this package please follow the [contributing guideli
 
 Please note that the DAISIEmainland project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
-## Examples
-
-See [examples](vignettes/examples.Rmd).
-
 ## Cite this package
 
 ``` r
 citation("DAISIEmainland")
 ```
 
-
 ## Cite the DAISIE package
 
-Etienne R. S., Valente, L., Phillimore, A. B., Haegeman, B., Lambert, J. W., Neves, P., Xie, S., & Bilderbeek, R. J. C. (2020). DAISIE: Dynamical Assembly of Islands by Speciation, Immigration and Extinction. R package version 3.0.1. https://cran.r-project.org/package=DAISIE
+Etienne R. S., Valente, L., Phillimore, A. B., Haegeman, B., Lambert, J. W., Neves, P., Xie, S., Bilderbeek, R. J. C. & Hildenbrant H. (2022). DAISIE: Dynamical Assembly of Islands by Speciation, Immigration and Extinction. R package version 4.1.1. https://github.com/rsetienne/DAISIE
 
 ## References of previous DAISIE papers
 
