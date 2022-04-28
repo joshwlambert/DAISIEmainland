@@ -5,6 +5,7 @@
 [![codecov.io](https://codecov.io/github/joshwlambert/DAISIEmainland/coverage.svg?branch=main)](https://codecov.io/github/joshwlambert/DAISIEmainland/branch/main)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6502548.svg)](https://doi.org/10.5281/zenodo.6502548)
 <!-- badges: end -->
 
 The goal of DAISIEmainland is to simulate data to test whether the DAISIE model
