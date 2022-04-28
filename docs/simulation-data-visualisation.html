@@ -120,7 +120,7 @@ pre[class] {
   mainland_ex <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span>
 <span class="fu">DAISIEmainland</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DAISIEmainland/man/plot_mainland.html">plot_mainland</a></span><span class="op">(</span><span class="va">mainland</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;"></div>
 <p>The above plot shows the evolutionary history of each mainland species from the
 start of the simulation, as five independent (i.e. no phylogenetic relatedness)
 mainland species, to five extant species at the present. Each species is given
@@ -128,7 +128,7 @@ as unique species ID which are shown here as different coloured branches. The
 colours can also be changed to represent the clade a species belongs to.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">DAISIEmainland</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DAISIEmainland/man/plot_mainland.html">plot_mainland</a></span><span class="op">(</span><span class="va">mainland</span>, branch_colour <span class="op">=</span> <span class="st">"clade_id"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;"></div>
 <p>If there are many clades on the mainland it can be difficult to see when plotted
 as an entire community. Instead individual mainland clades can be selected from
 the data and plotted with <code>plot_mainland_clade</code>. Again the option of plotting
@@ -138,13 +138,13 @@ the unique species ID or clade ID are available.</p>
   mainland_clade <span class="op">=</span> <span class="va">mainland</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, 
   branch_colour <span class="op">=</span> <span class="st">"unique_species_id"</span>
 <span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-12-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-14-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">DAISIEmainland</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DAISIEmainland/man/plot_mainland_clade.html">plot_mainland_clade</a></span><span class="op">(</span>
   mainland_clade <span class="op">=</span> <span class="va">mainland</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, 
   branch_colour <span class="op">=</span> <span class="st">"clade_id"</span>
 <span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-12-2.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-14-2.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 </div>
 <div id="visualise-island" class="section level2" number="3.2">
 <h2>
@@ -156,15 +156,15 @@ looks using the function <code>plot_daisie_data</code>.</p>
 <ol style="list-style-type: decimal">
 <li>An empty island</li>
 </ol>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-13-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-15-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <ol start="2" style="list-style-type: decimal">
 <li>An island with a single non-endemic species</li>
 </ol>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-14-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-16-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <ol start="3" style="list-style-type: decimal">
 <li>An island with a single endemic species</li>
 </ol>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-15-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-17-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <ol start="4" style="list-style-type: decimal">
 <li>An island with a single non-endemic species whose colonisation time
 is older than the island age so it is considered an island-age or maximum-age
@@ -172,21 +172,21 @@ colonisation (i.e. it colonised at the island age because it could not have
 colonised before). This uncertainty in the timing of colonisation is then taken
 into account when the data is input into the <code>DAISIE</code> likelihood model.</li>
 </ol>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-16-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-18-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <ol start="5" style="list-style-type: decimal">
 <li>An island with a single endemic species which whose colonisation time
 is older than the island age so it is considered an island-age colonisation.
 The uncertainty in colonisation time is handled in an equivalent
 way to the non-endemic island-age colonisation.</li>
 </ol>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-17-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-19-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <ol start="6" style="list-style-type: decimal">
 <li>An island with an endemic clade whose colonisation time
 is older than the island age so it is considered an island-age colonisation.
 In <code>DAISIE</code> the colonisation time is assumed to have occurred between the
 island age and the first branching time in the clade.</li>
 </ol>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-18-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-20-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <ol start="7" style="list-style-type: decimal">
 <li>An island with an recolonisation of the same mainland species after it has
 colonised and speciated (either via cladogenesis or anagenesis on the island).
@@ -194,7 +194,7 @@ The colonists that are from the same ancestral mainland species but the island
 species is now endemic are show by ‘Colonist after anagenesis’ and ‘Colonist
 after cladogenesis.’</li>
 </ol>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-19-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-21-1.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
 <p>All the above scenarios are of one of the <code>daisie_data</code> sets that are produced
 from the <code><a href="https://rdrr.io/pkg/DAISIEmainland/man/sim_island_with_mainland.html">sim_island_with_mainland()</a></code> function which produces the <code>ideal_data</code>
 and <code>empirical_data</code>. <code>plot_daisie_mainland_data</code> plots these two island data
@@ -263,7 +263,7 @@ sets together.</p>
 #&gt; 
 #&gt; $empirical_multi_daisie_data[[1]][[3]]$missing_species
 #&gt; [1] 0</code></pre>
-<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="DAISIEmainland_guide_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;"></div>
 <p>In the plot juxtaposing the <code>ideal_data</code> (top) and the <code>empirical_data</code> (bottom)
 it is clear that the colonisation times differ for one of the island colonists.
 In the <code>empirical_data</code> this colonist is an island-age colonist which is likely

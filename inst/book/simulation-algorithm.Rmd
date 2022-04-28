@@ -1,5 +1,24 @@
 # Simulation algorithm {#simulation-algorithm}
 
+```{css, echo=FALSE}
+pre {
+  max-height: 1000px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 500px;
+}
+```
+
+```{css, echo=FALSE}
+.scroll-100 {
+  max-height: 100px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+```
+
 The Doob-Gillespie algorithm is a stochastic exact solution that is used to
 simulate continuous-time processes, with several applications 
 in biological modelling. The Doob-Gillespie algorithm

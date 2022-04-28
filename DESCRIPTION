@@ -3,7 +3,7 @@ Type: Package
 Title: Simulates Data for Phylogenetic Data on Islands for DAISIE with the 
     Addition of Mainland Dynamics
 Version: 0.1.0
-Date: 2021-12-30
+Date: 2022-04-28
 Authors@R: c(
     person(given = "Joshua W.",
            family = "Lambert",
