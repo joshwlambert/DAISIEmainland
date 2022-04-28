@@ -46,5 +46,4 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Remotes: 
-    rsetienne/DAISIE@v4.1.1,
-    thijsjanzen/nLTT
+    rsetienne/DAISIE@v4.1.1
