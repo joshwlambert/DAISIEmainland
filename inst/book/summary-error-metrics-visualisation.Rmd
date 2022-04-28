@@ -97,7 +97,7 @@ plot_ctt_boxplot(
 
 The percentage of endemics on the island at the end of the simulation and 
 percentage of maximum age colonisation times can be plotted for different values
-of mainland extinction. Each of the boxplots below is obtained from 100 island replicates.
+of mainland extinction. Each of the boxplots below shows 100 island replicates.
 The left hand panel is for the data set with complete information (*ideal*) and
 the right hand panel is for the data set with incomplete information (*empirical*).
 
@@ -123,5 +123,5 @@ The plots shown in this chapter are not an exhaustive list available from the
 package. For example, error metrics can also be plotted across different values of mainland sampling
 probability by setting the `parameter = "mainland_sample_prob"` in the plotting
 functions. The script used to make the plots for the two manuscripts using this
-package can be found at `DAISIEmainland/scripts/joss_data_vis.R` and `DAISIEmainland/scripts/evolution_data_vis.R`, 
-respectively, in the `DAISIEmainland` package.
+package can be found [here](https://github.com/joshwlambert/DAISIEmainland/blob/main/scripts/joss_data_vis.R) 
+and [here](https://raw.githubusercontent.com/joshwlambert/DAISIEmainland/main/scripts/evolution_data_vis.R).

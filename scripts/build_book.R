@@ -7,7 +7,7 @@
 # index.Rmd to render the book from vignettes folder
 xfun::in_dir(dir = "inst/book/", expr = bookdown::render_book(
   input = "index.Rmd",
-  output_format = "bookdown::gitbook"))
+  output_format = "bookdown::bs4_book"))
 
 # delete the _bookdown_files from vignettes directory
 #unlink(x = "inst/book/_bookdown_files", recursive = TRUE)

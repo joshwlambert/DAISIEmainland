@@ -1,9 +1,9 @@
 ---
-title: "DAISIEmainland: Simulating and analysing macroevolution on island with a dynamic mainland"
+title: "DAISIEmainland: Simulating and analysing macroevolution on islands with a dynamic mainland"
 author: "Joshua W. Lambert"
 date: '`r Sys.Date()`'
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: bookdown::bs4_book
 documentclass: book
 description: "This is an introduction to the DAISIEmainland package."
 bibliography: references.bib
@@ -17,7 +17,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-# DAISIEmainland guide {-}
+# DAISIEmainland guide {-} 
+
+[![R build status](https://github.com/joshwlambert/DAISIEmainland/workflows/R-CMD-check/badge.svg)](https://github.com/joshwlambert/DAISIEmainland/actions)
+[![codecov.io](https://codecov.io/github/joshwlambert/DAISIEmainland/coverage.svg?branch=main)](https://codecov.io/github/joshwlambert/DAISIEmainland/branch/main)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+<img src="https://github.com/joshwlambert/DAISIEmainland/blob/main/man/figures/logo.png?raw=true" align="right" height="150" />
 
 This guide is the long-form documentation of the `DAISIEmainland` R package.
 It covers the basics from installation (Section \@ref(installation)), to the
@@ -26,7 +33,7 @@ the visualisation of the mainland (Section \@ref(visualise-mainland)) and of the
 island (Section \@ref(visualise-island)). Then there is a demonstration of
 the application of the `DAISIEmainland` package to the inference models in the 
 `DAISIE` package (Section \@ref(inference-performance)). Lastly, there is the
-visualisation of the summary metrics that can be calculated from simulated data
+visualisation of the summary and error metrics that can be calculated from simulated data
 (Section \@ref(summary-error-metrics-visualisation)). 
 
 ## Overview {-}
@@ -53,3 +60,6 @@ which are novel to this package and others are inherited from other packages
 extend the `DAISIEmainland` package by explaining when certain data structures 
 are used. If you are reading this guide to understand the general functionality
 of the package this section can be ignored.
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+

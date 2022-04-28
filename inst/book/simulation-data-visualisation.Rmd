@@ -1,12 +1,29 @@
 # Simulation data visualisation {#simulation-data-visualisation}
 
-The previous section (Section \@ref(simulation-algorithm)) showed how the data is simulated. Another important aspect visualising the data and `DAISIEmainland`
-has a selection of plotting functions to plot the phylogenetic data of the 
-mainland and the island. 
+```{css, echo=FALSE}
+pre {
+  max-height: 1000px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 500px;
+}
+```
+
+```{css, echo=FALSE}
+.scroll-100 {
+  max-height: 100px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+```
+
+The previous section (Section \@ref(simulation-algorithm)) showed how the data is simulated. Another important aspect is visualising the data, and `DAISIEmainland` has a selection of plotting functions to plot the phylogenetic data of the mainland and the island. 
 
 ## Visualise mainland {#visualise-mainland}
 
-We simulate the same mainland system as (Section \@ref(mainland-simulation)) and then plot the all the mainland clades using `plot_mainland`.
+We simulate the same mainland system as Section \@ref(mainland-simulation) and then plot the all the mainland clades using `plot_mainland`.
 
 ```{r}
 <<simulate-mainland>>
@@ -28,7 +45,7 @@ as an entire community. Instead individual mainland clades can be selected from
 the data and plotted with `plot_mainland_clade`. Again the option of plotting 
 the unique species ID or clade ID are available.
 
-```{r, fig.align="left", fig.show="hold", out.width="45%"}
+```{r, out.width="75%", out.height="50%"}
 DAISIEmainland::plot_mainland_clade(
   mainland_clade = mainland[[1]], 
   branch_colour = "unique_species_id"
@@ -108,11 +125,11 @@ daisie_mainland_data <- sim_island_with_mainland(
 plot_daisie_data(daisie_data = daisie_mainland_data$ideal_multi_daisie_data[[1]])
 ```
 
-4. An island with a single non-endemic species which whose colonisation time
-is older than the island age so it is considered an island-age colonisation
-(i.e. it colonised at the island age because it could not have colonised 
-before). This uncertainty in the timing of colonisation is then taken into
-account when the data is input into the `DAISIE` likelihood model. 
+4. An island with a single non-endemic species whose colonisation time
+is older than the island age so it is considered an island-age or maximum-age 
+colonisation (i.e. it colonised at the island age because it could not have 
+colonised before). This uncertainty in the timing of colonisation is then taken 
+into account when the data is input into the `DAISIE` likelihood model. 
 
 ```{r, echo=FALSE, out.width="75%", out.height="50%"}
 set.seed(
@@ -136,9 +153,9 @@ plot_daisie_data(
 ```
 
 5. An island with a single endemic species which whose colonisation time
-is older than the island age so it is considered an island-age colonisation.
-The uncertainty in colonisation time is handled in an equivalent way to the 
-non-endemic island-age colonisation.
+is older than the island age so it is considered an island-age colonisation. 
+The uncertainty in colonisation time is handled in an equivalent 
+way to the non-endemic island-age colonisation.
 
 ```{r, echo=FALSE, out.width="75%", out.height="50%"}
 set.seed(

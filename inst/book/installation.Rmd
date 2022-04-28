@@ -9,12 +9,11 @@ remotes::install_github("joshwlambert/DAISIEmainland")
 
 The `DAISIEmainland` package has several dependencies (the entire list can be
 found in the DESCRIPTION file). Most of these are on CRAN and can be installed with
-`install.packages()`. However, the `DAISIE` [@etienne_daisie_2022] and `nLTT` packages [@janzen_nltt_2021] require more up-to-date version than available on
-CRAN and need to be installed from github:
+`install.packages()`. However, the `DAISIE` package [@etienne_daisie_2022] requires 
+a more up-to-date version than available on CRAN and need to be installed from github:
 
 ```{r, eval=FALSE}
 remotes::install_github("rsetienne/DAISIE")
-remotes::install_github("thijsjanzen/nLTT")
 ```
 
 Load the `DAISIEmainland` package with the `library()` function. This will also

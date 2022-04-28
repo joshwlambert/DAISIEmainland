@@ -21,7 +21,7 @@ A list of 2 elements, `$ideal_multi_daisie_data` and
 Each of these elements is in the format `multi_daisie_data` (see below). This
 is the output of `DAISIEmainland::sim_island_with_mainland()`.
 
-Function to check if it the object is `daisie_mainland_data` is `DAISIEmainland::check_daisie_mainland_data()`
+Function to check if the object is `daisie_mainland_data` is `DAISIEmainland::check_daisie_mainland_data()`
 
 ### `multi_daisie_data` {#multi-daisie-data}
 

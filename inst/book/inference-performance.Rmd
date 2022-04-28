@@ -37,7 +37,7 @@ different version of `DAISIE` is installed.
 
 ## Simulating data {#simulating-data}
 
-First, we simulate 100 replicates of island data. This will produce phylogenetic data for a 100 islands with the same parameter values. The reason multiple island
+First, we simulate 100 replicates of island data. This will produce phylogenetic data for 100 islands with the same parameter values. The reason multiple island
 data sets are simulated is because the simualation algorithm is stochastic (Section \@ref(simulation-algorithm)) and by iterating the simulation many times
 it accounts for differences between data sets due to stochasticity. In an analysis more replicates (e.g. 1,000) can be run to account for the stochastic differences between replicates to more thoroughly sample the distribution of possible simulation outcomes.
 
@@ -57,7 +57,8 @@ set.seed(
   1,
   kind = "Mersenne-Twister",
   normal.kind = "Inversion",
-  sample.kind = "Rejection")
+  sample.kind = "Rejection"
+)
 
 replicates <- 100
 
@@ -160,7 +161,10 @@ error_metrics <- readRDS(
 
 The error metrics chosen to quantify this are:
 
-1. The difference between the parameter estimates from *ideal* and *empirical* data, for cladogenesis (\$clado_ratio), extinction (\$ext_ratio), carrying capacity (\$k_ratio), colonisation (\$immig_ratio), and anagenesis (\$ana_ratio). This can be calculated as the *ideal* estimate minus *empirical* estimate,  or *ideal* estimate divided by the *empirical* estimate.
+1. The difference between the parameter estimates from *ideal* and *empirical* 
+data, for cladogenesis, extinction, carrying capacity, colonisation, and 
+anagenesis. This can be calculated as the *ideal* estimate minus *empirical* 
+estimate,  or *ideal* estimate divided by the *empirical* estimate.
 
 ```{r Parameter differences, class.output="scroll-100"}
 error_metrics$param_diffs
@@ -171,7 +175,9 @@ error_metrics$param_ratios
 ```
   
 2. Delta CTT ($\Delta$CTT) (difference in colonisations through time) between
-the *ideal* and *empirical* data.
+the *ideal* and *empirical* data. Calculated as:
+
+  $$ \Delta nCTT = \int_{0}^{1} | nCTT_{ideal}(t) - nCTT_{empirical}(t) | dt $$
 
 ```{r Delta-CTT}
 error_metrics$delta_ctt
@@ -205,5 +211,4 @@ errors <- DAISIEmainland::calc_error(
 ```
 
 The code displayed in this chapter is a simplified version of the script used
-to carry out the full inference performance analysis can be found at 
-`DAISIEmainland/scripts/run_analysis.R` in the `DAISIEmainland` package. 
+to carry out the full inference performance analysis can be found [here](https://raw.githubusercontent.com/joshwlambert/DAISIEmainland/main/scripts/run_analysis.R).
