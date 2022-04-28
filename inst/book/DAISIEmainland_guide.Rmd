@@ -252,9 +252,9 @@ daisie_mainland_data <- sim_island_with_mainland(
 daisie_mainland_data
 ```
 
-<!--chapter:end:simulation_algorithm.Rmd-->
+<!--chapter:end:simulation-algorithm.Rmd-->
 
-# Simulation data visualisation {#simulation_data_visualisation}
+# Simulation data visualisation {#simulation-data-visualisation}
 
 In the previous section (Section \@ref(Simulation-algorithm)) it showed how the data is simulated. An important aspect is to see the data and `DAISIEmainland`
 has a selection of plotting functions to plot the phylogenetic data of the 
@@ -491,7 +491,7 @@ In the `empirical_data` this colonist is an island-age colonist which is likely
 due to the effects of mainland dynamics shifting the empiricist's perception of
 the colonisation time.
 
-<!--chapter:end:simulation_data_visualisation.Rmd-->
+<!--chapter:end:simulation-data-visualisation.Rmd-->
 
 # Inference performance {#Inference-performance}
 
@@ -703,7 +703,7 @@ The code displayed in this chapter is a simplified version of the script used
 to carry out the full inference performance analysis can be found at 
 /scripts/run_analysis.R in the `DAISIEmainland` package. 
 
-<!--chapter:end:inference_performance.Rmd-->
+<!--chapter:end:inference-performance.Rmd-->
 
 # Summary and error metrics visualisation {#Summary-error-metric-visualisation}
 
@@ -830,7 +830,7 @@ package. The script used to make the plots for the two manuscripts using this
 package can be found at /scripts/joss_data_vis.R and /scripts/evolution_data_vis.R, 
 respectively, in the `DAISIEmainland` package.
 
-<!--chapter:end:summary_metrics_visualisation.Rmd-->
+<!--chapter:end:summary-metrics-visualisation.Rmd-->
 
 # References {#References}
 
@@ -915,5 +915,5 @@ using `DAISIEmainland::create_test_island_tbl()`.
 Function to check if it is a `island_tbl` is
 `DAISIEmainland::check_island_tbl()`.
 
-<!--chapter:end:data_standards.Rmd-->
+<!--chapter:end:data-standards.Rmd-->
 

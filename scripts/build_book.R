@@ -9,5 +9,5 @@ xfun::in_dir(dir = "inst/book/", expr = bookdown::render_book(
   input = "index.Rmd",
   output_format = "bookdown::gitbook"))
 
-# delete the docs and _bookdown_files from vignettes directory
-unlink(x = "inst/book/_bookdown_files", recursive = TRUE)
+# delete the _bookdown_files from vignettes directory
+#unlink(x = "inst/book/_bookdown_files", recursive = TRUE)

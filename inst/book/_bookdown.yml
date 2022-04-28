@@ -6,11 +6,11 @@ rmd_files:
   [
     "index.Rmd",
     "installation.Rmd",
-    "simulation_algorithm.Rmd",
-    "simulation_data_visualisation.Rmd",
-    "inference_performance.Rmd",
-    "summary_metrics_visualisation.Rmd",
+    "simulation-algorithm.Rmd",
+    "simulation-data-visualisation.Rmd",
+    "inference-performance.Rmd",
+    "summary-metrics-visualisation.Rmd",
     "references.Rmd",
-    "data_standards.Rmd"
+    "data-standards.Rmd"
   ]
 

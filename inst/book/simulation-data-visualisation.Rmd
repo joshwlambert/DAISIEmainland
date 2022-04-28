@@ -1,4 +1,4 @@
-# Simulation data visualisation {#simulation_data_visualisation}
+# Simulation data visualisation {#simulation-data-visualisation}
 
 In the previous section (Section \@ref(Simulation-algorithm)) it showed how the data is simulated. An important aspect is to see the data and `DAISIEmainland`
 has a selection of plotting functions to plot the phylogenetic data of the 
