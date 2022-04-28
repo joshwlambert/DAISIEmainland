@@ -215,7 +215,7 @@ div.csl-indent {
 <div id="summary-error-metrics-visualisation" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">5</span> Summary and error metrics visualisation<a href="summary-error-metrics-visualisation.html#summary-error-metrics-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>There is a range of plotting functions to visualise the summary metrics and
-error metrics (Section<a href="inference-performance.html#inference-performance-error-metrics">4.3</a>).</p>
+error metrics (Section <a href="inference-performance.html#inference-performance-error-metrics">4.3</a>).</p>
 <p>For the plotting of simulation summary and error metrics we need to load the
 results from multiple different mainland extinction scenarios.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="summary-error-metrics-visualisation.html#cb24-1" aria-hidden="true" tabindex="-1"></a>analysis_results <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">read_analysis_results</span>(</span>
@@ -248,8 +248,8 @@ performance section (Section <a href="inference-performance.html#simulating-data
 <span id="cb25-18"><a href="summary-error-metrics-visualisation.html#cb25-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>The simulation summary metrics we can calculate for the <em>ideal</em> and <em>empirical</em> data are:</p>
 <ol style="list-style-type: decimal">
-<li>number of species on the island at the end of the simulation</li>
-<li>number of colonisation events to the island (that survived to the present) at the end of the simulation</li>
+<li>number of species on the island at the end of the simulation.</li>
+<li>number of colonisation events to the island (that survived to the present) at the end of the simulation.</li>
 </ol>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="summary-error-metrics-visualisation.html#cb26-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
 <span id="cb26-2"><a href="summary-error-metrics-visualisation.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data</span>
@@ -302,11 +302,11 @@ data.</p>
 </div>
 <div id="inference-error-metrics" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Inference error metrics<a href="summary-error-metrics-visualisation.html#inference-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The error metrics were run for a range of mainland extinction rates. Then the
+<p>The error metrics were run for a range of mainland extinction rates. Then, the
 error metrics can be plotted across different rates to determine how the error
 varies with faster or slower mainland evolutionary dynamics.</p>
-<p>Plotting the <span class="math inline">\(\Delta\)</span>CTT across mainland extinction rates between zero and two
-(per species per million years). As explained in Section
+<p>Thus, plotting the <span class="math inline">\(\Delta\)</span>CTT across mainland extinction rates between zero and two
+(per species per million years) is informative. As explained in Section
 <a href="inference-performance.html#inference-performance-error-metrics">4.3</a> this metric is a comparison between
 the <em>ideal</em> and <em>empirical</em> data sets produced by the <code>DAISIEmainland</code> simulation.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="summary-error-metrics-visualisation.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ctt_boxplot</span>(</span>
@@ -317,7 +317,7 @@ the <em>ideal</em> and <em>empirical</em> data sets produced by the <code>DAISIE
 <p><img src="DAISIEmainland_guide_files/figure-html/plot-delta-ctt-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The percentage of endemics on the island at the end of the simulation and
 percentage of maximum age colonisation times can be plotted for different values
-of mainland extinction. Each of the boxplots below contains 100 island replicates.
+of mainland extinction. Each of the boxplots below is obtained from 100 island replicates.
 The left hand panel is for the data set with complete information (<em>ideal</em>) and
 the right hand panel is for the data set with incomplete information (<em>empirical</em>).</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="summary-error-metrics-visualisation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_endemics</span>(</span>
@@ -332,12 +332,11 @@ the right hand panel is for the data set with incomplete information (<em>empiri
 <span id="cb33-4"><a href="summary-error-metrics-visualisation.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameter =</span> <span class="st">&quot;mainland_ex&quot;</span></span>
 <span id="cb33-5"><a href="summary-error-metrics-visualisation.html#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="DAISIEmainland_guide_files/figure-html/plot-max-age-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Error metrics can also be plotted across different values of mainland sampling
-probability by setting the <code>parameter = "mainland_sample_prob</code> in the plotting
-functions.</p>
 <p>The plots shown in this chapter are not an exhaustive list available from the
-package. The script used to make the plots for the two manuscripts using this
-package can be found at /scripts/joss_data_vis.R and /scripts/evolution_data_vis.R,
+package. For example, error metrics can also be plotted across different values of mainland sampling
+probability by setting the <code>parameter = "mainland_sample_prob"</code> in the plotting
+functions. The script used to make the plots for the two manuscripts using this
+package can be found at <code>DAISIEmainland/scripts/joss_data_vis.R</code> and <code>DAISIEmainland/scripts/evolution_data_vis.R</code>,
 respectively, in the <code>DAISIEmainland</code> package.</p>
 
 </div>

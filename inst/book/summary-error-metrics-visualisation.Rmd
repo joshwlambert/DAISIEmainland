@@ -1,7 +1,7 @@
 # Summary and error metrics visualisation {#summary-error-metrics-visualisation}
 
 There is a range of plotting functions to visualise the summary metrics and 
-error metrics (Section\@ref(inference-performance-error-metrics)). 
+error metrics (Section \@ref(inference-performance-error-metrics)). 
 
 For the plotting of simulation summary and error metrics we need to load the 
 results from multiple different mainland extinction scenarios.
@@ -30,8 +30,8 @@ performance section (Section \@ref(simulating-data)).
 
 The simulation summary metrics we can calculate for the *ideal* and *empirical* data are: 
 
-1. number of species on the island at the end of the simulation
-2. number of colonisation events to the island (that survived to the present) at the end of the simulation
+1. number of species on the island at the end of the simulation.
+2. number of colonisation events to the island (that survived to the present) at the end of the simulation.
 
 ```{r ideal-sim-num-spec}
 ideal_sim_num_spec <- DAISIEmainland::calc_num_spec(
@@ -78,12 +78,12 @@ plot_sim_metrics(
 
 ## Inference error metrics
 
-The error metrics were run for a range of mainland extinction rates. Then the 
+The error metrics were run for a range of mainland extinction rates. Then, the 
 error metrics can be plotted across different rates to determine how the error
 varies with faster or slower mainland evolutionary dynamics.
 
-Plotting the $\Delta$CTT across mainland extinction rates between zero and two
-(per species per million years). As explained in Section
+Thus, plotting the $\Delta$CTT across mainland extinction rates between zero and two
+(per species per million years) is informative. As explained in Section
 \@ref(inference-performance-error-metrics) this metric is a comparison between
 the *ideal* and *empirical* data sets produced by the `DAISIEmainland` simulation.
 
@@ -97,7 +97,7 @@ plot_ctt_boxplot(
 
 The percentage of endemics on the island at the end of the simulation and 
 percentage of maximum age colonisation times can be plotted for different values
-of mainland extinction. Each of the boxplots below contains 100 island replicates.
+of mainland extinction. Each of the boxplots below is obtained from 100 island replicates.
 The left hand panel is for the data set with complete information (*ideal*) and
 the right hand panel is for the data set with incomplete information (*empirical*).
 
@@ -117,11 +117,11 @@ plot_max_age(
 )
 ```
 
-Error metrics can also be plotted across different values of mainland sampling
-probability by setting the `parameter = "mainland_sample_prob` in the plotting
-functions.
+
 
 The plots shown in this chapter are not an exhaustive list available from the 
-package. The script used to make the plots for the two manuscripts using this
-package can be found at /scripts/joss_data_vis.R and /scripts/evolution_data_vis.R, 
+package. For example, error metrics can also be plotted across different values of mainland sampling
+probability by setting the `parameter = "mainland_sample_prob"` in the plotting
+functions. The script used to make the plots for the two manuscripts using this
+package can be found at `DAISIEmainland/scripts/joss_data_vis.R` and `DAISIEmainland/scripts/evolution_data_vis.R`, 
 respectively, in the `DAISIEmainland` package.
