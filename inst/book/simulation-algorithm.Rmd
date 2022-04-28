@@ -1,4 +1,4 @@
-# Simulation algorithm {#Simulation-algorithm}
+# Simulation algorithm {#simulation-algorithm}
 
 The Doob-Gillespie algorithm is a stochastic exact solution that is used to
 simulate continuous-time processes, with several applications 
@@ -9,11 +9,11 @@ package uses a two-part Doob-Gillespie simulation, one for the mainland
 (`DAISIEmainland::sim_mainland`) and one for the island
 (`DAISIEmainland::sim_island`).
 
-## Mainland simulation {#Mainland-simulation}
+## Mainland simulation {#mainland-simulation}
 
 The simulation of the island phylogenetic data takes two simulations. Firstly
 the mainland, which is simulated under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). Then the mainland phylogenetic data is fed into the 
-island simulation (Section \@ref(Island-simulation)).
+island simulation (Section \@ref(island-simulation)).
 
 The mainland simulation uses a Doob-Gillespie algorithm to simulate the 
 speciation and extinction of species under a Moran process to maintain a
@@ -71,7 +71,7 @@ singleton lineage before it underwent speciation.
 mainland[[4]]
 ```
 
-## Island simulation {#Island-simulation}
+## Island simulation {#island-simulation}
 
 The island simulation runs after the mainland simulation and uses the mainland
 data to determine which species can immigrate to the island through time. Doob-Gillespie algorithm is altered to accommodate the dynamic 

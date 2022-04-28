@@ -20,14 +20,14 @@ knitr::opts_chunk$set(
 # DAISIEmainland guide {-}
 
 This guide is the long-form documentation of the `DAISIEmainland` R package.
-It covers the basics from installation (Section \@ref(Installation)), to the
-algorithm used to simulate the data (Section \@ref(Simulation-algorithm)), and
+It covers the basics from installation (Section \@ref(installation)), to the
+algorithm used to simulate the data (Section \@ref(simulation-algorithm)), and
 the visualisation of the island (Section \@ref(visualise-island)) and of the 
 mainland (Section \@ref(visualise-mainland)). Then there is a demonstration of
 the application of the `DAISIEmainland` package to the inference models in the 
-`DAISIE` package (Section \@ref(Inference-performance)). Lastly, there is the
+`DAISIE` package (Section \@ref(inference-performance)). Lastly, there is the
 visualisation of the summary metrics that can be calculated from simulated data
-(Section \@ref(Summary-error-metrics-visualisation)). 
+(Section \@ref(summary-error-metrics-visualisation)). 
 
 ## Overview {-}
 
@@ -46,7 +46,7 @@ mainland but not known. These different sampling regimes are both possible in
 empirical studies and thus the sensitivity of model performance to these are 
 important for future studies employing the `DAISIE` inference framework.
 
-There is an appendix (Section \@ref(DAISIEmainland-data-standards)) which
+There is an appendix (Section \@ref(daisiemainland-data-standards)) which
 contains details of the data structures used throughout the package, some of 
 which are novel to this package and others are inherited from other packages 
 (e.g. `DAISIE`). This appendix is meant for those looking to contribute and 

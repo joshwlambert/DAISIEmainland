@@ -1,4 +1,4 @@
-# Inference performance {#Inference-performance}
+# Inference performance {#inference-performance}
 
 ```{css, echo=FALSE}
 pre {
@@ -35,10 +35,10 @@ As a small technical aside, this section uses `DAISIE` version 4.1.1. Re-running
 this code on another system may produce different results, especially if a
 different version of `DAISIE` is installed.
 
-## Simulating data {#Simulating-data}
+## Simulating data {#simulating-data}
 
 First, we simulate 100 replicates of island data. This will produce phylogenetic data for a 100 islands with the same parameter values. The reason multiple island
-data sets are simulated is because the simualation algorithm is stochastic (Section \@ref(Simulation-algorithm)) and by iterating the simulation many times
+data sets are simulated is because the simualation algorithm is stochastic (Section \@ref(simulation-algorithm)) and by iterating the simulation many times
 it accounts for differences between data sets due to stochasticity. In an analysis more replicates (e.g. 1,000) can be run to account for the stochastic differences between replicates to more thoroughly sample the distribution of possible simulation outcomes.
 
 Note: all the code below takes a substantial amount of time to run (on the order
@@ -99,7 +99,7 @@ daisie_mainland_data$ideal_multi_daisie_data[[1]][[2]]
 daisie_mainland_data$empirical_multi_daisie_data[[1]][[2]]
 ```
 
-## Maximum likelihood inference {#Maximum-likelihood-inference}
+## Maximum likelihood inference {#maximum-likelihood-inference}
 
 To run a maximum likelihood DAISIE model, using the `DAISIE_ML_CS()` function, on each replicate we create objects to store the data in (`ideal_ml` and `empirical_ml`) and then loop over each replicate.
 
@@ -145,7 +145,7 @@ for (i in seq_len(replicates)) {
 
 The details of the maximum likelihood set up are not important, but a brief explainer: all model parameters are optimisied with the starting position in parameter space for optimisation, equal to the values used to simulate the data; the Runge-Kutta Fehlberg method to numerically solve the likelihood equations; and simplex is the optimisation algorithm to maximise the likelihood.
 
-## Inference performance error metrics {#Inference-performance-error-metrics}
+## Inference performance error metrics {#inference-performance-error-metrics}
 
 Now we have simulated 100 data sets, each with an *ideal* and *empirical* data
 set, and fitted the DAISIE model to each, we need to quantify the error the DAISIE inference makes because it does not include mainland evolutionary dynamics. 

@@ -1,7 +1,7 @@
-# Summary and error metrics visualisation {#Summary-error-metrics-visualisation}
+# Summary and error metrics visualisation {#summary-error-metrics-visualisation}
 
 There is a range of plotting functions to visualise the summary metrics and 
-error metrics (Section\@ref(Inference-performance-error-metrics)). 
+error metrics (Section\@ref(inference-performance-error-metrics)). 
 
 For the plotting of simulation summary and error metrics we need to load the 
 results from multiple different mainland extinction scenarios.
@@ -18,7 +18,7 @@ analysis_results <- DAISIEmainland::read_analysis_results(
 ## Simulation summary metrics
 
 First we run the simulation. This is the same simulation as in the inference
-performance section (Section \@ref(Simulating-data)).
+performance section (Section \@ref(simulating-data)).
 
 ```{r, echo=FALSE}
 <<load-simulated-data>>
@@ -84,7 +84,7 @@ varies with faster or slower mainland evolutionary dynamics.
 
 Plotting the $\Delta$CTT across mainland extinction rates between zero and two
 (per species per million years). As explained in Section
-\@ref(Inference-performance-error-metrics) this metric is a comparison between
+\@ref(inference-performance-error-metrics) this metric is a comparison between
 the *ideal* and *empirical* data sets produced by the `DAISIEmainland` simulation.
 
 ```{r, plot-delta-ctt}

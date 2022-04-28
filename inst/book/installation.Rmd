@@ -1,4 +1,4 @@
-# Installation {#Installation}
+# Installation {#installation}
 
 You can install the released version of DAISIEmainland from github with:
 
