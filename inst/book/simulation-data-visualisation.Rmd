@@ -1,6 +1,6 @@
 # Simulation data visualisation {#simulation-data-visualisation}
 
-In the previous section (Section \@ref(simulation-algorithm)) it showed how the data is simulated. An important aspect is to see the data and `DAISIEmainland`
+The previous section (Section \@ref(simulation-algorithm)) showed how the data is simulated. Another important aspect visualising the data and `DAISIEmainland`
 has a selection of plotting functions to plot the phylogenetic data of the 
 mainland and the island. 
 

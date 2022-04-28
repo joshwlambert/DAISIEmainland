@@ -21,14 +21,14 @@ A list of 2 elements, `$ideal_multi_daisie_data` and
 Each of these elements is in the format `multi_daisie_data` (see below). This
 is the output of `DAISIEmainland::sim_island_with_mainland()`.
 
-Function to check if it is a `daisie_mainland_data` is `DAISIEmainland::check_daisie_mainland_data()`
+Function to check if it the object is `daisie_mainland_data` is `DAISIEmainland::check_daisie_mainland_data()`
 
 ### `multi_daisie_data` {#multi-daisie-data}
 
 A list of `daisie_data` elements (see below). This is the data structure when the
 simulation is run for several replicates.
 
-Function to check if it is a `multi_daisie_data` is
+The function to check if the object is `multi_daisie_data` is
 `DAISIEmainland::check_multi_daisie_data()`.
 
 ### `daisie_data` {#daisie-data}
@@ -45,14 +45,14 @@ subsequent branching times (all given in time before the present).
 
 `daisie_data` is a single element of a `multi_daisie_data` list.
 
-Function to check if it is a `daisie_data` is
+The function to check if the object is `daisie_data` is
 `DAISIEmainland::check_daisie_data()`.
 
 ### `multi_mainland_clade` {#multi-mainland-clade}
 
 A list of `mainland_clade` objects. This data type is output from `DAISIEmainland::sim_mainland()`.
 
-Function to check if it is a `multi_mainland_clade` is
+The function to check if the object is a `multi_mainland_clade` is
 `DAISIEmainland::check_multi_mainland_clade()`.
 
 ### `mainland_clade` {#mainland-clade}
@@ -62,7 +62,7 @@ A data frame of seven columns and one or more rows. The column names are:
 `spec_origin_t`, `spec_ex_t`. A example of an `mainland_clade` can be created
 using `DAISIEmainland::create_test_mainland_clade()`.
 
-Function to check if it is a mainland_clade is
+The function to check if the object is a `mainland_clade` is
 `DAISIEmainland::check_mainland_clade()`
 
 ### `island_tbl` {#island-tbl}
@@ -72,5 +72,5 @@ to the `daisie_data` format by `create_island`. This data type is output from
 `DAISIEmainland::sim_island()`. A example of an `island_tbl` can be created
 using `DAISIEmainland::create_test_island_tbl()`.
 
-Function to check if it is a `island_tbl` is
+The function to check if the object is an `island_tbl` is
 `DAISIEmainland::check_island_tbl()`.

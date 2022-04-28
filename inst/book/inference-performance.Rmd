@@ -143,7 +143,7 @@ for (i in seq_len(replicates)) {
 }
 ```
 
-The details of the maximum likelihood set up are not important, but a brief explainer: all model parameters are optimisied with the starting position in parameter space for optimisation, equal to the values used to simulate the data; the Runge-Kutta Fehlberg method to numerically solve the likelihood equations; and simplex is the optimisation algorithm to maximise the likelihood.
+The details of the maximum likelihood set up are not important, but a brief explainer: all model parameters are optimisied with the starting position in parameter space for optimisation, equal to the values used to simulate the data; the Runge-Kutta Fehlberg method is used to numerically solve the likelihood equations; and simplex is the optimisation algorithm to maximise the likelihood.
 
 ## Inference performance error metrics {#inference-performance-error-metrics}
 
@@ -206,4 +206,4 @@ errors <- DAISIEmainland::calc_error(
 
 The code displayed in this chapter is a simplified version of the script used
 to carry out the full inference performance analysis can be found at 
-/scripts/run_analysis.R in the `DAISIEmainland` package. 
+`DAISIEmainland/scripts/run_analysis.R` in the `DAISIEmainland` package. 

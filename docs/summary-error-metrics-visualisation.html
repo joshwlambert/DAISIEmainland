@@ -215,7 +215,7 @@ div.csl-indent {
 <div id="summary-error-metrics-visualisation" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">5</span> Summary and error metrics visualisation<a href="summary-error-metrics-visualisation.html#summary-error-metrics-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>There is a range of plotting functions to visualise the summary metrics and
-error metrics (Section<a href="inference-performance.html#inference-performance-error-metrics">4.3</a>).</p>
+error metrics (Section <a href="inference-performance.html#inference-performance-error-metrics">4.3</a>).</p>
 <p>For the plotting of simulation summary and error metrics we need to load the
 results from multiple different mainland extinction scenarios.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="summary-error-metrics-visualisation.html#cb24-1" aria-hidden="true" tabindex="-1"></a>analysis_results <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">read_analysis_results</span>(</span>
@@ -248,43 +248,57 @@ performance section (Section <a href="inference-performance.html#simulating-data
 <span id="cb25-18"><a href="summary-error-metrics-visualisation.html#cb25-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>The simulation summary metrics we can calculate for the <em>ideal</em> and <em>empirical</em> data are:</p>
 <ol style="list-style-type: decimal">
-<li>number of species on the island at the end of the simulation</li>
-<li>number of colonisation events to the island (that survived to the present) at the end of the simulation</li>
+<li>number of species on the island at the end of the simulation.</li>
+<li>number of colonisation events to the island (that survived to the present) at the end of the simulation.</li>
 </ol>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="summary-error-metrics-visualisation.html#cb26-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
 <span id="cb26-2"><a href="summary-error-metrics-visualisation.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data</span>
 <span id="cb26-3"><a href="summary-error-metrics-visualisation.html#cb26-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb26-4"><a href="summary-error-metrics-visualisation.html#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-5"><a href="summary-error-metrics-visualisation.html#cb26-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_spec</span>
-<span id="cb26-6"><a href="summary-error-metrics-visualisation.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93  97 115 109 128 142  73  71  55 109 102 123 134  93 103  82  73</span></span>
-<span id="cb26-7"><a href="summary-error-metrics-visualisation.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 125  91  83  85 100 107  88  94  95 138 116  89  86 119  60  83 103  87 106 114  72 133 113  80 131  92  95  81  91  79</span></span>
-<span id="cb26-8"><a href="summary-error-metrics-visualisation.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61]  66 120 107  69  91  80  71 138 101  99  78  52 173 125  83  76  78  59  94  98 104  68  81  80  74  94 113  96  76 113</span></span>
-<span id="cb26-9"><a href="summary-error-metrics-visualisation.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  78  85  67 123  70  73  63 127 105  85</span></span></code></pre></div>
+<span id="cb26-6"><a href="summary-error-metrics-visualisation.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93</span></span>
+<span id="cb26-7"><a href="summary-error-metrics-visualisation.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [15]  97 115 109 128 142  73  71  55 109 102 123 134  93 103</span></span>
+<span id="cb26-8"><a href="summary-error-metrics-visualisation.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29]  82  73 125  91  83  85 100 107  88  94  95 138 116  89</span></span>
+<span id="cb26-9"><a href="summary-error-metrics-visualisation.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43]  86 119  60  83 103  87 106 114  72 133 113  80 131  92</span></span>
+<span id="cb26-10"><a href="summary-error-metrics-visualisation.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  95  81  91  79  66 120 107  69  91  80  71 138 101  99</span></span>
+<span id="cb26-11"><a href="summary-error-metrics-visualisation.html#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71]  78  52 173 125  83  76  78  59  94  98 104  68  81  80</span></span>
+<span id="cb26-12"><a href="summary-error-metrics-visualisation.html#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  74  94 113  96  76 113  78  85  67 123  70  73  63 127</span></span>
+<span id="cb26-13"><a href="summary-error-metrics-visualisation.html#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [99] 105  85</span></span></code></pre></div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="summary-error-metrics-visualisation.html#cb27-1" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
 <span id="cb27-2"><a href="summary-error-metrics-visualisation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>ideal_multi_daisie_data</span>
 <span id="cb27-3"><a href="summary-error-metrics-visualisation.html#cb27-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb27-4"><a href="summary-error-metrics-visualisation.html#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-5"><a href="summary-error-metrics-visualisation.html#cb27-5" aria-hidden="true" tabindex="-1"></a>ideal_sim_num_col</span>
-<span id="cb27-6"><a href="summary-error-metrics-visualisation.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 44 33 39 28 29 30 33 35 28 42 36 32 46 38 30 38 45 40 40 28 28 28 41 34 39 45 34 32 33 29 31 36 33 32 38 34 36 31 29 41 43</span></span>
-<span id="cb27-7"><a href="summary-error-metrics-visualisation.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 34 36 34 24 30 33 28 42 37 24 37 43 33 45 35 27 37 37 28 29 40 36 30 31 32 27 48 40 47 30 22 41 38 37 27 35 28 37 33 40 27</span></span>
-<span id="cb27-8"><a href="summary-error-metrics-visualisation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 38 30 35 38 39 37 30 37 31 33 25 42 35 37 29 31 31 36</span></span></code></pre></div>
+<span id="cb27-6"><a href="summary-error-metrics-visualisation.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 44 33 39 28 29 30 33 35 28 42 36 32 46 38 30 38 45 40 40</span></span>
+<span id="cb27-7"><a href="summary-error-metrics-visualisation.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [20] 28 28 28 41 34 39 45 34 32 33 29 31 36 33 32 38 34 36 31</span></span>
+<span id="cb27-8"><a href="summary-error-metrics-visualisation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] 29 41 43 34 36 34 24 30 33 28 42 37 24 37 43 33 45 35 27</span></span>
+<span id="cb27-9"><a href="summary-error-metrics-visualisation.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [58] 37 37 28 29 40 36 30 31 32 27 48 40 47 30 22 41 38 37 27</span></span>
+<span id="cb27-10"><a href="summary-error-metrics-visualisation.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] 35 28 37 33 40 27 38 30 35 38 39 37 30 37 31 33 25 42 35</span></span>
+<span id="cb27-11"><a href="summary-error-metrics-visualisation.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [96] 37 29 31 31 36</span></span></code></pre></div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="summary-error-metrics-visualisation.html#cb28-1" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_spec</span>(</span>
 <span id="cb28-2"><a href="summary-error-metrics-visualisation.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data</span>
 <span id="cb28-3"><a href="summary-error-metrics-visualisation.html#cb28-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb28-4"><a href="summary-error-metrics-visualisation.html#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-5"><a href="summary-error-metrics-visualisation.html#cb28-5" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_spec</span>
-<span id="cb28-6"><a href="summary-error-metrics-visualisation.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93  97 115 109 128 142  73  71  55 109 102 123 134  93 103  82  73</span></span>
-<span id="cb28-7"><a href="summary-error-metrics-visualisation.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 125  91  83  85 100 107  88  94  95 138 116  89  86 119  60  83 103  87 106 114  72 133 113  80 131  92  95  81  91  79</span></span>
-<span id="cb28-8"><a href="summary-error-metrics-visualisation.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61]  66 120 107  69  91  80  71 138 101  99  78  52 173 125  83  76  78  59  94  98 104  68  81  80  74  94 113  96  76 113</span></span>
-<span id="cb28-9"><a href="summary-error-metrics-visualisation.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  78  85  67 123  70  73  63 127 105  85</span></span></code></pre></div>
+<span id="cb28-6"><a href="summary-error-metrics-visualisation.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 120  94  89  76  63  91  93  81  58 135  95  78 118  93</span></span>
+<span id="cb28-7"><a href="summary-error-metrics-visualisation.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [15]  97 115 109 128 142  73  71  55 109 102 123 134  93 103</span></span>
+<span id="cb28-8"><a href="summary-error-metrics-visualisation.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29]  82  73 125  91  83  85 100 107  88  94  95 138 116  89</span></span>
+<span id="cb28-9"><a href="summary-error-metrics-visualisation.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43]  86 119  60  83 103  87 106 114  72 133 113  80 131  92</span></span>
+<span id="cb28-10"><a href="summary-error-metrics-visualisation.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57]  95  81  91  79  66 120 107  69  91  80  71 138 101  99</span></span>
+<span id="cb28-11"><a href="summary-error-metrics-visualisation.html#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71]  78  52 173 125  83  76  78  59  94  98 104  68  81  80</span></span>
+<span id="cb28-12"><a href="summary-error-metrics-visualisation.html#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  74  94 113  96  76 113  78  85  67 123  70  73  63 127</span></span>
+<span id="cb28-13"><a href="summary-error-metrics-visualisation.html#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [99] 105  85</span></span></code></pre></div>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="summary-error-metrics-visualisation.html#cb29-1" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col <span class="ot">&lt;-</span> DAISIEmainland<span class="sc">::</span><span class="fu">calc_num_col</span>(</span>
 <span id="cb29-2"><a href="summary-error-metrics-visualisation.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi_daisie_data =</span> daisie_mainland_data<span class="sc">$</span>empirical_multi_daisie_data</span>
 <span id="cb29-3"><a href="summary-error-metrics-visualisation.html#cb29-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb29-4"><a href="summary-error-metrics-visualisation.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-5"><a href="summary-error-metrics-visualisation.html#cb29-5" aria-hidden="true" tabindex="-1"></a>empirical_sim_num_col</span>
-<span id="cb29-6"><a href="summary-error-metrics-visualisation.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 43 33 38 28 28 28 32 33 28 42 36 32 46 37 30 37 43 39 38 28 27 28 39 34 39 45 34 32 33 29 31 36 32 30 36 33 34 31 29 40 41</span></span>
-<span id="cb29-7"><a href="summary-error-metrics-visualisation.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [42] 32 36 33 24 29 32 28 40 34 23 36 42 33 44 35 27 35 36 28 28 40 35 30 30 32 27 44 40 44 29 22 40 38 37 25 34 27 35 33 39 26</span></span>
-<span id="cb29-8"><a href="summary-error-metrics-visualisation.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] 38 30 35 37 39 37 29 37 30 33 25 42 35 36 29 31 30 35</span></span></code></pre></div>
+<span id="cb29-6"><a href="summary-error-metrics-visualisation.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 43 33 38 28 28 28 32 33 28 42 36 32 46 37 30 37 43 39 38</span></span>
+<span id="cb29-7"><a href="summary-error-metrics-visualisation.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [20] 28 27 28 39 34 39 45 34 32 33 29 31 36 32 30 36 33 34 31</span></span>
+<span id="cb29-8"><a href="summary-error-metrics-visualisation.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] 29 40 41 32 36 33 24 29 32 28 40 34 23 36 42 33 44 35 27</span></span>
+<span id="cb29-9"><a href="summary-error-metrics-visualisation.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [58] 35 36 28 28 40 35 30 30 32 27 44 40 44 29 22 40 38 37 25</span></span>
+<span id="cb29-10"><a href="summary-error-metrics-visualisation.html#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] 34 27 35 33 39 26 38 30 35 37 39 37 29 37 30 33 25 42 35</span></span>
+<span id="cb29-11"><a href="summary-error-metrics-visualisation.html#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [96] 36 29 31 30 35</span></span></code></pre></div>
 <p>We can plot the simulation summary metrics to view the mean, variance, maximum and
 minimum number of colonisations and number of species for the <em>ideal</em> and <em>empirical</em>
 data.</p>
@@ -296,11 +310,11 @@ data.</p>
 </div>
 <div id="inference-error-metrics" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Inference error metrics<a href="summary-error-metrics-visualisation.html#inference-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The error metrics were run for a range of mainland extinction rates. Then the
+<p>The error metrics were run for a range of mainland extinction rates. Then, the
 error metrics can be plotted across different rates to determine how the error
 varies with faster or slower mainland evolutionary dynamics.</p>
-<p>Plotting the <span class="math inline">\(\Delta\)</span>CTT across mainland extinction rates between zero and two
-(per species per million years). As explained in Section
+<p>Thus, plotting the <span class="math inline">\(\Delta\)</span>CTT across mainland extinction rates between zero and two
+(per species per million years) is informative. As explained in Section
 <a href="inference-performance.html#inference-performance-error-metrics">4.3</a> this metric is a comparison between
 the <em>ideal</em> and <em>empirical</em> data sets produced by the <code>DAISIEmainland</code> simulation.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="summary-error-metrics-visualisation.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ctt_boxplot</span>(</span>
@@ -311,7 +325,7 @@ the <em>ideal</em> and <em>empirical</em> data sets produced by the <code>DAISIE
 <p><img src="DAISIEmainland_guide_files/figure-html/plot-delta-ctt-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The percentage of endemics on the island at the end of the simulation and
 percentage of maximum age colonisation times can be plotted for different values
-of mainland extinction. Each of the boxplots below contains 100 island replicates.
+of mainland extinction. Each of the boxplots below is obtained from 100 island replicates.
 The left hand panel is for the data set with complete information (<em>ideal</em>) and
 the right hand panel is for the data set with incomplete information (<em>empirical</em>).</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="summary-error-metrics-visualisation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_endemics</span>(</span>
@@ -326,12 +340,11 @@ the right hand panel is for the data set with incomplete information (<em>empiri
 <span id="cb33-4"><a href="summary-error-metrics-visualisation.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameter =</span> <span class="st">&quot;mainland_ex&quot;</span></span>
 <span id="cb33-5"><a href="summary-error-metrics-visualisation.html#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="DAISIEmainland_guide_files/figure-html/plot-max-age-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Error metrics can also be plotted across different values of mainland sampling
-probability by setting the <code>parameter = "mainland_sample_prob</code> in the plotting
-functions.</p>
 <p>The plots shown in this chapter are not an exhaustive list available from the
-package. The script used to make the plots for the two manuscripts using this
-package can be found at /scripts/joss_data_vis.R and /scripts/evolution_data_vis.R,
+package. For example, error metrics can also be plotted across different values of mainland sampling
+probability by setting the <code>parameter = "mainland_sample_prob"</code> in the plotting
+functions. The script used to make the plots for the two manuscripts using this
+package can be found at <code>DAISIEmainland/scripts/joss_data_vis.R</code> and <code>DAISIEmainland/scripts/evolution_data_vis.R</code>,
 respectively, in the <code>DAISIEmainland</code> package.</p>
 
 </div>

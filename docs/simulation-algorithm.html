@@ -224,12 +224,10 @@ package uses a two-part Doob-Gillespie simulation, one for the mainland
 (<code>DAISIEmainland::sim_island</code>).</p>
 <div id="mainland-simulation" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Mainland simulation<a href="simulation-algorithm.html#mainland-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The simulation of the island phylogenetic data takes two simulations. Firstly
-the mainland, which is simulated under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). Then the mainland phylogenetic data is fed into the
-island simulation (Section <a href="simulation-algorithm.html#island-simulation">2.2</a>).</p>
 <p>The mainland simulation uses a Doob-Gillespie algorithm to simulate the
-speciation and extinction of species under a Moran process to maintain a
-constant number of species. Here the example shows mainland data being
+speciation and extinction of species under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). This ensures a
+constant number of species on the mainland. Then the mainland phylogenetic data is fed into the
+island simulation (Section <a href="simulation-algorithm.html#island-simulation">2.2</a>). Here the example shows mainland data being
 simulated for a time duration of one (million years), five initial mainland species, and a mainland extinction rate of one (per species per million years).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="simulation-algorithm.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
 <span id="cb4-2"><a href="simulation-algorithm.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
@@ -246,40 +244,64 @@ simulated for a time duration of one (million years), five initial mainland spec
 see Section <a href="data-standards.html#multi-mainland-clade">A.2.4</a>).</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="simulation-algorithm.html#cb5-1" aria-hidden="true" tabindex="-1"></a>mainland</span>
 <span id="cb5-2"><a href="simulation-algorithm.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb5-3"><a href="simulation-algorithm.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-4"><a href="simulation-algorithm.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1         E           A       NaN     0.0000000 0.7579891</span></span>
-<span id="cb5-5"><a href="simulation-algorithm.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10           1         E          AA 0.7579891     0.7579891 0.9493026</span></span>
-<span id="cb5-6"><a href="simulation-algorithm.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      11           1         C          AB 0.7579891     0.7579891 1.0000000</span></span>
-<span id="cb5-7"><a href="simulation-algorithm.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      12           1         C         AAA 0.9493026     0.9493026 1.0000000</span></span>
-<span id="cb5-8"><a href="simulation-algorithm.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      13           1         C         AAB 0.9493026     0.9493026 1.0000000</span></span>
-<span id="cb5-9"><a href="simulation-algorithm.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-10"><a href="simulation-algorithm.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb5-11"><a href="simulation-algorithm.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-12"><a href="simulation-algorithm.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       2           2         E           A       NaN     0.0000000 0.1789954</span></span>
-<span id="cb5-13"><a href="simulation-algorithm.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       8           2         C          AA 0.1789954     0.1789954 1.0000000</span></span>
-<span id="cb5-14"><a href="simulation-algorithm.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       9           2         E          AB 0.1789954     0.1789954 0.7579891</span></span>
+<span id="cb5-3"><a href="simulation-algorithm.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t</span></span>
+<span id="cb5-4"><a href="simulation-algorithm.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1         E           A       NaN</span></span>
+<span id="cb5-5"><a href="simulation-algorithm.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10           1         E          AA 0.7579891</span></span>
+<span id="cb5-6"><a href="simulation-algorithm.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      11           1         C          AB 0.7579891</span></span>
+<span id="cb5-7"><a href="simulation-algorithm.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      12           1         C         AAA 0.9493026</span></span>
+<span id="cb5-8"><a href="simulation-algorithm.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      13           1         C         AAB 0.9493026</span></span>
+<span id="cb5-9"><a href="simulation-algorithm.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_origin_t spec_ex_t</span></span>
+<span id="cb5-10"><a href="simulation-algorithm.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.0000000 0.7579891</span></span>
+<span id="cb5-11"><a href="simulation-algorithm.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     0.7579891 0.9493026</span></span>
+<span id="cb5-12"><a href="simulation-algorithm.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     0.7579891 1.0000000</span></span>
+<span id="cb5-13"><a href="simulation-algorithm.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     0.9493026 1.0000000</span></span>
+<span id="cb5-14"><a href="simulation-algorithm.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     0.9493026 1.0000000</span></span>
 <span id="cb5-15"><a href="simulation-algorithm.html#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-16"><a href="simulation-algorithm.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb5-17"><a href="simulation-algorithm.html#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-18"><a href="simulation-algorithm.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3           3         E           A       NaN     0.0000000 0.1510364</span></span>
-<span id="cb5-19"><a href="simulation-algorithm.html#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6           3         E          AA 0.1510364     0.1510364 0.9493026</span></span>
-<span id="cb5-20"><a href="simulation-algorithm.html#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       7           3         C          AB 0.1510364     0.1510364 1.0000000</span></span>
-<span id="cb5-21"><a href="simulation-algorithm.html#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-22"><a href="simulation-algorithm.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb5-23"><a href="simulation-algorithm.html#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-24"><a href="simulation-algorithm.html#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       4           4         E           A      NaN             0 0.1510364</span></span>
+<span id="cb5-16"><a href="simulation-algorithm.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb5-17"><a href="simulation-algorithm.html#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t</span></span>
+<span id="cb5-18"><a href="simulation-algorithm.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       2           2         E           A       NaN</span></span>
+<span id="cb5-19"><a href="simulation-algorithm.html#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       8           2         C          AA 0.1789954</span></span>
+<span id="cb5-20"><a href="simulation-algorithm.html#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       9           2         E          AB 0.1789954</span></span>
+<span id="cb5-21"><a href="simulation-algorithm.html#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_origin_t spec_ex_t</span></span>
+<span id="cb5-22"><a href="simulation-algorithm.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.0000000 0.1789954</span></span>
+<span id="cb5-23"><a href="simulation-algorithm.html#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     0.1789954 1.0000000</span></span>
+<span id="cb5-24"><a href="simulation-algorithm.html#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     0.1789954 0.7579891</span></span>
 <span id="cb5-25"><a href="simulation-algorithm.html#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-26"><a href="simulation-algorithm.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[5]]</span></span>
-<span id="cb5-27"><a href="simulation-algorithm.html#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb5-28"><a href="simulation-algorithm.html#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5           5         E           A      NaN             0 0.1789954</span></span></code></pre></div>
+<span id="cb5-26"><a href="simulation-algorithm.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb5-27"><a href="simulation-algorithm.html#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t</span></span>
+<span id="cb5-28"><a href="simulation-algorithm.html#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3           3         E           A       NaN</span></span>
+<span id="cb5-29"><a href="simulation-algorithm.html#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6           3         E          AA 0.1510364</span></span>
+<span id="cb5-30"><a href="simulation-algorithm.html#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       7           3         C          AB 0.1510364</span></span>
+<span id="cb5-31"><a href="simulation-algorithm.html#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_origin_t spec_ex_t</span></span>
+<span id="cb5-32"><a href="simulation-algorithm.html#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.0000000 0.1510364</span></span>
+<span id="cb5-33"><a href="simulation-algorithm.html#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     0.1510364 0.9493026</span></span>
+<span id="cb5-34"><a href="simulation-algorithm.html#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     0.1510364 1.0000000</span></span>
+<span id="cb5-35"><a href="simulation-algorithm.html#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-36"><a href="simulation-algorithm.html#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb5-37"><a href="simulation-algorithm.html#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t</span></span>
+<span id="cb5-38"><a href="simulation-algorithm.html#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       4           4         E           A      NaN</span></span>
+<span id="cb5-39"><a href="simulation-algorithm.html#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_origin_t spec_ex_t</span></span>
+<span id="cb5-40"><a href="simulation-algorithm.html#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1             0 0.1510364</span></span>
+<span id="cb5-41"><a href="simulation-algorithm.html#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-42"><a href="simulation-algorithm.html#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[5]]</span></span>
+<span id="cb5-43"><a href="simulation-algorithm.html#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t</span></span>
+<span id="cb5-44"><a href="simulation-algorithm.html#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5           5         E           A      NaN</span></span>
+<span id="cb5-45"><a href="simulation-algorithm.html#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_origin_t spec_ex_t</span></span>
+<span id="cb5-46"><a href="simulation-algorithm.html#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1             0 0.1789954</span></span></code></pre></div>
 <p>Specifically focusing on one of these mainland clades (see Section <a href="data-standards.html#mainland-clade">A.2.5</a>):</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="simulation-algorithm.html#cb6-1" aria-hidden="true" tabindex="-1"></a>mainland[[<span class="dv">1</span>]]</span>
-<span id="cb6-2"><a href="simulation-algorithm.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb6-3"><a href="simulation-algorithm.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1         E           A       NaN     0.0000000 0.7579891</span></span>
-<span id="cb6-4"><a href="simulation-algorithm.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10           1         E          AA 0.7579891     0.7579891 0.9493026</span></span>
-<span id="cb6-5"><a href="simulation-algorithm.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      11           1         C          AB 0.7579891     0.7579891 1.0000000</span></span>
-<span id="cb6-6"><a href="simulation-algorithm.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      12           1         C         AAA 0.9493026     0.9493026 1.0000000</span></span>
-<span id="cb6-7"><a href="simulation-algorithm.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      13           1         C         AAB 0.9493026     0.9493026 1.0000000</span></span></code></pre></div>
+<span id="cb6-2"><a href="simulation-algorithm.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code  branch_t</span></span>
+<span id="cb6-3"><a href="simulation-algorithm.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1         E           A       NaN</span></span>
+<span id="cb6-4"><a href="simulation-algorithm.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10           1         E          AA 0.7579891</span></span>
+<span id="cb6-5"><a href="simulation-algorithm.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      11           1         C          AB 0.7579891</span></span>
+<span id="cb6-6"><a href="simulation-algorithm.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      12           1         C         AAA 0.9493026</span></span>
+<span id="cb6-7"><a href="simulation-algorithm.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      13           1         C         AAB 0.9493026</span></span>
+<span id="cb6-8"><a href="simulation-algorithm.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_origin_t spec_ex_t</span></span>
+<span id="cb6-9"><a href="simulation-algorithm.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.0000000 0.7579891</span></span>
+<span id="cb6-10"><a href="simulation-algorithm.html#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     0.7579891 0.9493026</span></span>
+<span id="cb6-11"><a href="simulation-algorithm.html#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     0.7579891 1.0000000</span></span>
+<span id="cb6-12"><a href="simulation-algorithm.html#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     0.9493026 1.0000000</span></span>
+<span id="cb6-13"><a href="simulation-algorithm.html#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     0.9493026 1.0000000</span></span></code></pre></div>
 <p>We can see that the information on this mainland clade include the ID of each
 species (<code>spec_id</code>). The ID of the mainland ancestor from which that species
 derived (<code>main_anc_id</code>). The type of species (<code>spec_type</code>) these can be <code>I</code>,
@@ -299,17 +321,19 @@ simulation.</p>
 <p>Another example of what can happen on the mainland is the extinction of a
 singleton lineage before it underwent speciation.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simulation-algorithm.html#cb7-1" aria-hidden="true" tabindex="-1"></a>mainland[[<span class="dv">4</span>]]</span>
-<span id="cb7-2"><a href="simulation-algorithm.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t spec_origin_t spec_ex_t</span></span>
-<span id="cb7-3"><a href="simulation-algorithm.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       4           4         E           A      NaN             0 0.1510364</span></span></code></pre></div>
+<span id="cb7-2"><a href="simulation-algorithm.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id spec_type branch_code branch_t</span></span>
+<span id="cb7-3"><a href="simulation-algorithm.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       4           4         E           A      NaN</span></span>
+<span id="cb7-4"><a href="simulation-algorithm.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_origin_t spec_ex_t</span></span>
+<span id="cb7-5"><a href="simulation-algorithm.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1             0 0.1510364</span></span></code></pre></div>
 </div>
 <div id="island-simulation" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Island simulation<a href="simulation-algorithm.html#island-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The island simulation runs after the mainland simulation and uses the mainland
-data to determine which species can immigrate to the island through time. Doob-Gillespie algorithm is altered to accommodate the dynamic
+data to determine which species can immigrate to the island through time. The Doob-Gillespie algorithm is altered to accommodate the dynamic
 mainland pool. The time-steps are bounded to not jump over changes on the
 mainland to ensure the present state of the system (i.e. species on mainland)
-is always up-to-date. The algorithm checks whether any changes have occurs on
-the mainland since the last time step and if so the system is updated and the
+is always up-to-date. The algorithm checks whether any changes have occured on
+the mainland since the last time step and if so, the system is updated and the
 returned to the time at which the mainland last changed. This is valid owing to
 the Markov (memoryless) property of the Doob-Gillespie algorithm.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="simulation-algorithm.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
@@ -326,11 +350,14 @@ the Markov (memoryless) property of the Doob-Gillespie algorithm.</p>
 <span id="cb8-12"><a href="simulation-algorithm.html#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mainland_sample_type =</span> <span class="st">&quot;complete&quot;</span></span>
 <span id="cb8-13"><a href="simulation-algorithm.html#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb8-14"><a href="simulation-algorithm.html#cb8-14" aria-hidden="true" tabindex="-1"></a>island_tbl</span>
-<span id="cb8-15"><a href="simulation-algorithm.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id     col_t spec_type branch_code branch_t          ana_origin</span></span>
-<span id="cb8-16"><a href="simulation-algorithm.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1 0.7551818         A        &lt;NA&gt;      NaN mainland_extinction</span></span>
-<span id="cb8-17"><a href="simulation-algorithm.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10          10 0.8507697         A        &lt;NA&gt;      NaN mainland_extinction</span></span></code></pre></div>
+<span id="cb8-15"><a href="simulation-algorithm.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   spec_id main_anc_id     col_t spec_type branch_code branch_t</span></span>
+<span id="cb8-16"><a href="simulation-algorithm.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1           1 0.7551818         A        &lt;NA&gt;      NaN</span></span>
+<span id="cb8-17"><a href="simulation-algorithm.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      10          10 0.8507697         A        &lt;NA&gt;      NaN</span></span>
+<span id="cb8-18"><a href="simulation-algorithm.html#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            ana_origin</span></span>
+<span id="cb8-19"><a href="simulation-algorithm.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 mainland_extinction</span></span>
+<span id="cb8-20"><a href="simulation-algorithm.html#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 mainland_extinction</span></span></code></pre></div>
 <p>The island simulation outputs a <code>island_tbl</code> (see Section <a href="data-standards.html#island-tbl">A.2.6</a>).
-The <code>island_tbl</code> includes again the species ID (<code>spec_id</code>), mainland ancestor
+The <code>island_tbl</code> includes the species ID (<code>spec_id</code>), mainland ancestor
 ID (<code>main_anc_id</code>), species type (<code>spec_type</code>), branching code (<code>branch_code</code>), and branching time (<code>branch_t</code>). It also includes the time at which the species
 colonised the island (<code>col_t</code>) and the reason a species is anagenetic (i.e.
 endemic to the island without being in an island clade). The reasons for a
@@ -346,19 +373,18 @@ simulation are included.</p>
 <p>For both the island and mainland Doob-Gillespie algorithms time steps are
 sampled from an exponential distribution with rate:</p>
 <p><span class="math display">\[X = \lambda e ^{-\lambda x}, \text{ where } \lambda = \sum_j r_j\]</span></p>
-<p>where <span class="math inline">\(r_j\)</span> are the rates, for the mainland process this is just the rate of
-mainland extinction (<span class="math inline">\(\mu_M\)</span>), this is the only mainland parameter, whereas,
+<p>where <span class="math inline">\(r_j\)</span> are the rates. For the mainland process this is just the rate of
+mainland extinction (<span class="math inline">\(\mu_M\)</span>), as this is the only mainland parameter, whereas,
 for the island algorithm <span class="math inline">\(r_j\)</span> are the rates of cladogenesis (<span class="math inline">\(\lambda^c\)</span>),
 island extinction (<span class="math inline">\(\mu\)</span>), colonisation (<span class="math inline">\(\gamma\)</span>), and anagenesis
-(<span class="math inline">\(\lambda^a\)</span>). After the time step (<span class="math inline">\(\Delta\)</span> t) is sampled the event is sampled
+(<span class="math inline">\(\lambda^a\)</span>). After the time step (<span class="math inline">\(\Delta\)</span> t) is sampled, the event is sampled
 from a dynamic discrete probability distribution, weighted by its rate
 (propensity) relative to all other rates:</p>
 <p><span class="math display">\[r_i / \sum_j r_j\]</span></p>
-<p>The system is then updated for the algorithm repeats until the time step exceeds
+<p>The system is then updated and the algorithm repeats until the time step exceeds
 the total time of the simulation.</p>
-<p>The function that encapsulates and runs both of these simulations is <code>sim_island_with_mainland()</code>. This function also includes the formatting of the data and the assignment of an endemicity status to each island colonist, which
-needed by the <code>DAISIE</code> inference model. The <code>DAISIEmainland</code> simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empirist would have access to (see Section <a href="data-standards.html#daisie-mainland-data">A.2.1</a>). These two data sets allow for the quantification of error in
-estimation when the empirists does not have access to all the data.</p>
+<p>The function that encapsulates and runs both of these simulations is <code>sim_island_with_mainland()</code>. This function also includes the formatting of the data and the assignment of an endemicity status to each island colonist, which is needed by the <code>DAISIE</code> inference model. The <code>DAISIEmainland</code> simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empiricist would have access to (see Section <a href="data-standards.html#daisie-mainland-data">A.2.1</a>). These two data sets allow for the quantification of error in
+estimation when the empiricist does not have access to all the data.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="simulation-algorithm.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(</span>
 <span id="cb9-2"><a href="simulation-algorithm.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,</span>
 <span id="cb9-3"><a href="simulation-algorithm.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">kind =</span> <span class="st">&quot;Mersenne-Twister&quot;</span>,</span>

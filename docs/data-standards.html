@@ -231,13 +231,13 @@ functions allow for checking the types.</p>
 <code>$empirical_multi_daisie_data</code>.
 Each of these elements is in the format <code>multi_daisie_data</code> (see below). This
 is the output of <code>DAISIEmainland::sim_island_with_mainland()</code>.</p>
-<p>Function to check if it is a <code>daisie_mainland_data</code> is <code>DAISIEmainland::check_daisie_mainland_data()</code></p>
+<p>Function to check if it the object is <code>daisie_mainland_data</code> is <code>DAISIEmainland::check_daisie_mainland_data()</code></p>
 </div>
 <div id="multi-daisie-data" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">A.2.2</span> <code>multi_daisie_data</code><a href="data-standards.html#multi-daisie-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A list of <code>daisie_data</code> elements (see below). This is the data structure when the
 simulation is run for several replicates.</p>
-<p>Function to check if it is a <code>multi_daisie_data</code> is
+<p>The function to check if the object is <code>multi_daisie_data</code> is
 <code>DAISIEmainland::check_multi_daisie_data()</code>.</p>
 </div>
 <div id="daisie-data" class="section level3 hasAnchor" number="7.2.3">
@@ -254,13 +254,13 @@ numeric vector containing the island age, time of island colonisation, and an
 subsequent branching times (all given in time before the present).</li>
 </ul>
 <p><code>daisie_data</code> is a single element of a <code>multi_daisie_data</code> list.</p>
-<p>Function to check if it is a <code>daisie_data</code> is
+<p>The function to check if the object is <code>daisie_data</code> is
 <code>DAISIEmainland::check_daisie_data()</code>.</p>
 </div>
 <div id="multi-mainland-clade" class="section level3 hasAnchor" number="7.2.4">
 <h3><span class="header-section-number">A.2.4</span> <code>multi_mainland_clade</code><a href="data-standards.html#multi-mainland-clade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A list of <code>mainland_clade</code> objects. This data type is output from <code>DAISIEmainland::sim_mainland()</code>.</p>
-<p>Function to check if it is a <code>multi_mainland_clade</code> is
+<p>The function to check if the object is a <code>multi_mainland_clade</code> is
 <code>DAISIEmainland::check_multi_mainland_clade()</code>.</p>
 </div>
 <div id="mainland-clade" class="section level3 hasAnchor" number="7.2.5">
@@ -269,7 +269,7 @@ subsequent branching times (all given in time before the present).</li>
 <code>spec_id</code>, <code>main_anc_id</code>, <code>spec_type</code>, <code>branch_code</code>, <code>branch_t</code>,
 <code>spec_origin_t</code>, <code>spec_ex_t</code>. A example of an <code>mainland_clade</code> can be created
 using <code>DAISIEmainland::create_test_mainland_clade()</code>.</p>
-<p>Function to check if it is a mainland_clade is
+<p>The function to check if the object is a <code>mainland_clade</code> is
 <code>DAISIEmainland::check_mainland_clade()</code></p>
 </div>
 <div id="island-tbl" class="section level3 hasAnchor" number="7.2.6">
@@ -280,7 +280,7 @@ to the <code>daisie_data</code> format by <code>create_island</code>. This data 
 <code>DAISIEmainland::sim_island()</code>. A example of an <code>island_tbl</code> can be created
 using <code>DAISIEmainland::create_test_island_tbl()</code>.</li>
 </ul>
-<p>Function to check if it is a <code>island_tbl</code> is
+<p>The function to check if the object is an <code>island_tbl</code> is
 <code>DAISIEmainland::check_island_tbl()</code>.</p>
 
 </div>

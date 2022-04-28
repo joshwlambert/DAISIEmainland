@@ -11,13 +11,10 @@ package uses a two-part Doob-Gillespie simulation, one for the mainland
 
 ## Mainland simulation {#mainland-simulation}
 
-The simulation of the island phylogenetic data takes two simulations. Firstly
-the mainland, which is simulated under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). Then the mainland phylogenetic data is fed into the 
-island simulation (Section \@ref(island-simulation)).
-
 The mainland simulation uses a Doob-Gillespie algorithm to simulate the 
-speciation and extinction of species under a Moran process to maintain a
-constant number of species. Here the example shows mainland data being 
+speciation and extinction of species under a Moran process, whereby every species extinction is immediately followed by a random species giving rise to two new species (speciation). This ensures a
+constant number of species on the mainland. Then the mainland phylogenetic data is fed into the 
+island simulation (Section \@ref(island-simulation)). Here the example shows mainland data being 
 simulated for a time duration of one (million years), five initial mainland species, and a mainland extinction rate of one (per species per million years). 
 
 ```{r, simulate-mainland}
@@ -74,11 +71,11 @@ mainland[[4]]
 ## Island simulation {#island-simulation}
 
 The island simulation runs after the mainland simulation and uses the mainland
-data to determine which species can immigrate to the island through time. Doob-Gillespie algorithm is altered to accommodate the dynamic 
+data to determine which species can immigrate to the island through time. The Doob-Gillespie algorithm is altered to accommodate the dynamic 
 mainland pool. The time-steps are bounded to not jump over changes on the 
 mainland to ensure the present state of the system (i.e. species on mainland)
-is always up-to-date. The algorithm checks whether any changes have occurs on
-the mainland since the last time step and if so the system is updated and the
+is always up-to-date. The algorithm checks whether any changes have occured on
+the mainland since the last time step and if so, the system is updated and the
 returned to the time at which the mainland last changed. This is valid owing to
 the Markov (memoryless) property of the Doob-Gillespie algorithm.
 
@@ -100,7 +97,7 @@ island_tbl
 ```
 
 The island simulation outputs a `island_tbl` (see Section \@ref(island-tbl)). 
-The `island_tbl` includes again the species ID (`spec_id`), mainland ancestor
+The `island_tbl` includes the species ID (`spec_id`), mainland ancestor
 ID (`main_anc_id`), species type (`spec_type`), branching code (`branch_code`), and branching time (`branch_t`). It also includes the time at which the species
 colonised the island (`col_t`) and the reason a species is anagenetic (i.e.
 endemic to the island without being in an island clade). The reasons for a 
@@ -120,22 +117,21 @@ sampled from an exponential distribution with rate:
   
   $$X = \lambda e ^{-\lambda x}, \text{ where } \lambda = \sum_j r_j$$
   
-where $r_j$ are the rates, for the mainland process this is just the rate of
-mainland extinction ($\mu_M$), this is the only mainland parameter, whereas,
+where $r_j$ are the rates. For the mainland process this is just the rate of
+mainland extinction ($\mu_M$), as this is the only mainland parameter, whereas,
 for the island algorithm $r_j$ are the rates of cladogenesis ($\lambda^c$),
 island extinction ($\mu$), colonisation ($\gamma$), and anagenesis
-($\lambda^a$). After the time step ($\Delta$ t) is sampled the event is sampled
+($\lambda^a$). After the time step ($\Delta$ t) is sampled, the event is sampled
 from a dynamic discrete probability distribution, weighted by its rate
 (propensity) relative to all other rates: 
   
   $$r_i / \sum_j r_j$$
 
-The system is then updated for the algorithm repeats until the time step exceeds
+The system is then updated and the algorithm repeats until the time step exceeds
 the total time of the simulation. 
 
-The function that encapsulates and runs both of these simulations is `sim_island_with_mainland()`. This function also includes the formatting of the data and the assignment of an endemicity status to each island colonist, which 
-needed by the `DAISIE` inference model. The `DAISIEmainland` simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empirist would have access to (see Section \@ref(daisie-mainland-data)). These two data sets allow for the quantification of error in
-estimation when the empirists does not have access to all the data.
+The function that encapsulates and runs both of these simulations is `sim_island_with_mainland()`. This function also includes the formatting of the data and the assignment of an endemicity status to each island colonist, which is needed by the `DAISIE` inference model. The `DAISIEmainland` simulation outputs two data sets: (1) contains full information of all species colonisation times, and (2) an incomplete information data set which resembles what an empiricist would have access to (see Section \@ref(daisie-mainland-data)). These two data sets allow for the quantification of error in
+estimation when the empiricist does not have access to all the data.
 
 ```{r, simulate-island-mainland}
 set.seed(
