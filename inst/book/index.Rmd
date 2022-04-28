@@ -46,7 +46,7 @@ mainland but not known. These different sampling regimes are both possible in
 empirical studies and thus the sensitivity of model performance to these are 
 important for future studies employing the `DAISIE` inference framework.
 
-There is an appendix (Section \@ref(daisiemainland-data-standards)) which
+There is an appendix (Section \@ref(data-standards)) which
 contains details of the data structures used throughout the package, some of 
 which are novel to this package and others are inherited from other packages 
 (e.g. `DAISIE`). This appendix is meant for those looking to contribute and 

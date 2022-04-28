@@ -9,7 +9,7 @@ rmd_files:
     "simulation-algorithm.Rmd",
     "simulation-data-visualisation.Rmd",
     "inference-performance.Rmd",
-    "summary-metrics-visualisation.Rmd",
+    "summary-error-metrics-visualisation.Rmd",
     "references.Rmd",
     "data-standards.Rmd"
   ]

@@ -1,6 +1,6 @@
 # (APPENDIX) Appendix {-} 
 
-# DAISIEmainland data standards {#daisiemainland-data-standards}
+# Data standards {#data-standards}
 
 ## Reasoning
 

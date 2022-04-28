@@ -13,7 +13,7 @@ summary-error-metrics-visualisation
 simulation-summary-metrics
 inference-error-metrics
 references
-daisiemainland-data-standards
+data-standards
 reasoning
 data-structure-types
 daisie-mainland-data
