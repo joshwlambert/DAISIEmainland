@@ -45,28 +45,3 @@ DAISIEmainland::plot_daisie_mainland_data(
   daisie_mainland_data = daisie_mainland_data,
   replicate_index = 1
 )
-
-set.seed(
-  1,
-  kind = "Mersenne-Twister",
-  normal.kind = "Inversion",
-  sample.kind = "Rejection"
-)
-
-daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
-  total_time = 1,
-  m = 100,
-  island_pars = c(1, 1, 50, 0.01, 1),
-  mainland_ex = 1,
-  mainland_sample_prob = 1,
-  mainland_sample_type = "complete",
-  replicates = 500,
-  verbose = TRUE
-)
-
-# change plotting figures to read results directly
-DAISIEmainland::plot_endemics(
-  analysis_results = analysis_results,
-  output_file_path = NULL,
-  parameter = "mainland_ex"
-)
