@@ -19,6 +19,12 @@ pre[class] {
 }
 ```
 
+```{r message=FALSE, eval=FALSE}
+# Assume the reader knows to load the library,
+# so we do not need to include the namespace in the visible code examples
+library(DAISIEmainland)
+```
+
 One of the primary purposes of the `DAISIEmainland` package and specifically
 why the data is formatted in the `DAISIE` format is to test the maximum 
 likelihood inference models implemented in the `DAISIE` R package [@etienne_daisie_2022]. Therefore, in this section we explore how to conduct a
@@ -61,7 +67,7 @@ set.seed(
 
 replicates <- 100
 
-daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
+daisie_mainland_data <- sim_island_with_mainland(
   total_time = 1,
   m = 100,
   island_pars = c(0.5, 02.5, 50, 0.01, 0.5),
@@ -197,7 +203,7 @@ error_metrics$endemic_percent
 Overall, all of these error metrics can be computed using `calc_error()` with the simulated data and the maximum likelihood estimates.
 
 ```{r Calculate error, eval=FALSE}
-errors <- DAISIEmainland::calc_error(
+errors <- calc_error(
   daisie_mainland_data = daisie_mainland_data,
   ideal_ml = ideal_ml,
   empirical_ml = empirical_ml

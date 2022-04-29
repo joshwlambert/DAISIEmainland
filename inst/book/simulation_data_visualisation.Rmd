@@ -4,13 +4,19 @@ In the previous section (Section \@ref(Simulation-algorithm)) it showed how the 
 has a selection of plotting functions to plot the phylogenetic data of the 
 mainland and the island. 
 
+```{r message=FALSE, eval=FALSE}
+# Assume the reader knows to load the library,
+# so we do not need to include the namespace in the visible code examples
+library(DAISIEmainland)
+```
+
 ## Visualise mainland {#visualise-mainland}
 
 We simulate the same mainland system as (Section \@ref(Mainland-simulation)) and then plot the all the mainland clades using `plot_mainland`.
 
 ```{r}
 <<simulate-mainland>>
-DAISIEmainland::plot_mainland(mainland)
+plot_mainland(mainland)
 ```
 
 The above plot shows the evolutionary history of each mainland species from the
@@ -20,7 +26,7 @@ as unique species ID which are shown here as different coloured branches. The
 colours can also be changed to represent the clade a species belongs to.
 
 ```{r}
-DAISIEmainland::plot_mainland(mainland, branch_colour = "clade_id")
+plot_mainland(mainland, branch_colour = "clade_id")
 ``` 
 
 If there are many clades on the mainland it can be difficult to see when plotted
@@ -29,11 +35,11 @@ the data and plotted with `plot_mainland_clade`. Again the option of plotting
 the unique species ID or clade ID are available.
 
 ```{r, fig.align="left", fig.show="hold", out.width="45%"}
-DAISIEmainland::plot_mainland_clade(
+plot_mainland_clade(
   mainland_clade = mainland[[1]], 
   branch_colour = "unique_species_id"
 )
-DAISIEmainland::plot_mainland_clade(
+plot_mainland_clade(
   mainland_clade = mainland[[1]], 
   branch_colour = "clade_id"
 )

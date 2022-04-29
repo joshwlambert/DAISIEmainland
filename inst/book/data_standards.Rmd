@@ -2,6 +2,12 @@
 
 # DAISIEmainland data standards {#DAISIEmainland-data-standards}
 
+```{r message=FALSE, eval=FALSE}
+# Assume the reader knows to load the library,
+# so we do not need to include the namespace in the visible code examples
+library(DAISIEmainland)
+```
+
 ## Reasoning
 
 There are several data types used in this package. Some of them are novel to
@@ -19,9 +25,9 @@ To make sure the data types are correctly formatted there is a corresponding
 A list of 2 elements, `$ideal_multi_daisie_data` and
 `$empirical_multi_daisie_data`.
 Each of these elements is in the format `multi_daisie_data` (see below). This
-is the output of `DAISIEmainland::sim_island_with_mainland()`.
+is the output of `sim_island_with_mainland()`.
 
-Function to check if it is a `daisie_mainland_data` is `DAISIEmainland::check_daisie_mainland_data()`
+Function to check if it is a `daisie_mainland_data` is `check_daisie_mainland_data()`
 
 ### `multi_daisie_data` {#multi-daisie-data}
 
@@ -29,7 +35,7 @@ A list of `daisie_data` elements (see below). This is the data structure when th
 simulation is run for several replicates.
 
 Function to check if it is a `multi_daisie_data` is
-`DAISIEmainland::check_multi_daisie_data()`.
+`check_multi_daisie_data()`.
 
 ### `daisie_data` {#daisie-data}
 
@@ -46,31 +52,31 @@ subsequent branching times (all given in time before the present).
 `daisie_data` is a single element of a `multi_daisie_data` list.
 
 Function to check if it is a `daisie_data` is
-`DAISIEmainland::check_daisie_data()`.
+`check_daisie_data()`.
 
 ### `multi_mainland_clade` {#multi-mainland-clade}
 
-A list of `mainland_clade` objects. This data type is output from `DAISIEmainland::sim_mainland()`.
+A list of `mainland_clade` objects. This data type is output from `sim_mainland()`.
 
 Function to check if it is a `multi_mainland_clade` is
-`DAISIEmainland::check_multi_mainland_clade()`.
+`check_multi_mainland_clade()`.
 
 ### `mainland_clade` {#mainland-clade}
 
 A data frame of seven columns and one or more rows. The column names are:
   `spec_id`, `main_anc_id`, `spec_type`, `branch_code`, `branch_t`,
 `spec_origin_t`, `spec_ex_t`. A example of an `mainland_clade` can be created
-using `DAISIEmainland::create_test_mainland_clade()`.
+using `create_test_mainland_clade()`.
 
 Function to check if it is a mainland_clade is
-`DAISIEmainland::check_mainland_clade()`
+`check_mainland_clade()`
 
 ### `island_tbl` {#island-tbl}
 
 * A data frame of the island species output from `sim_island` and then converted
 to the `daisie_data` format by `create_island`. This data type is output from
-`DAISIEmainland::sim_island()`. A example of an `island_tbl` can be created
-using `DAISIEmainland::create_test_island_tbl()`.
+`sim_island()`. A example of an `island_tbl` can be created
+using `create_test_island_tbl()`.
 
 Function to check if it is a `island_tbl` is
-`DAISIEmainland::check_island_tbl()`.
+`check_island_tbl()`.

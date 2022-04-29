@@ -1,13 +1,19 @@
 # Simulation algorithm {#Simulation-algorithm}
 
+```{r message=FALSE, eval=FALSE}
+# Assume the reader knows to load the library,
+# so we do not need to include the namespace in the visible code examples
+library(DAISIEmainland)
+```
+
 The Doob-Gillespie algorithm is a stochastic exact solution that is used to
 simulate continuous-time processes, with several applications 
 in biological modelling. The Doob-Gillespie algorithm
 can be used in evolutionary biology, for example to efficiently simulate a
 birth-death process. The island-mainland simulation in the DAISIEmainland
 package uses a two-part Doob-Gillespie simulation, one for the mainland
-(`DAISIEmainland::sim_mainland`) and one for the island
-(`DAISIEmainland::sim_island`).
+(`sim_mainland`) and one for the island
+(`sim_island`).
 
 ## Mainland simulation {#Mainland-simulation}
 
@@ -27,7 +33,7 @@ set.seed(
   normal.kind = "Inversion",
   sample.kind = "Rejection"
 )
-mainland <- DAISIEmainland:::sim_mainland(
+mainland <- :sim_mainland(
   total_time = 1,
   m = 5,
   mainland_ex = 1
@@ -89,7 +95,7 @@ set.seed(
   normal.kind = "Inversion",
   sample.kind = "Rejection"
 )
-island_tbl <- DAISIEmainland:::sim_island(
+island_tbl <- :sim_island(
   total_time = 1,
   island_pars = c(1, 1, 10, 1, 1),
   mainland_clade = mainland[[1]],

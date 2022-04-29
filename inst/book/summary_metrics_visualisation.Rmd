@@ -1,5 +1,11 @@
 # Summary and error metrics visualisation {#Summary-error-metric-visualisation}
 
+```{r message=FALSE, eval=FALSE}
+# Assume the reader knows to load the library,
+# so we do not need to include the namespace in the visible code examples
+library(DAISIEmainland)
+```
+
 There is a range of plotting functions to visualise the summary metrics and 
 error metrics (Section\@ref(Inference-performance-error-metrics)). 
 
@@ -22,7 +28,7 @@ The simulation summary metrics we can calculate for the *ideal* and *empirical* 
 2. number of colonisation events to the island (that survived to the present) at the end of the simulation
 
 ```{r ideal-sim-num-spec}
-ideal_sim_num_spec <- DAISIEmainland::calc_num_spec(
+ideal_sim_num_spec <- calc_num_spec(
   multi_daisie_data = daisie_mainland_data$ideal_multi_daisie_data
 )
 
@@ -30,7 +36,7 @@ ideal_sim_num_spec
 ```
 
 ```{r ideal-sim-num-col}
-ideal_sim_num_col <- DAISIEmainland::calc_num_col(
+ideal_sim_num_col <- calc_num_col(
   multi_daisie_data = daisie_mainland_data$ideal_multi_daisie_data
 )
 
@@ -38,7 +44,7 @@ ideal_sim_num_col
 ```
 
 ```{r empirical-sim-num-spec}
-empirical_sim_num_spec <- DAISIEmainland::calc_num_spec(
+empirical_sim_num_spec <- calc_num_spec(
   multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data
 )
 
@@ -46,7 +52,7 @@ empirical_sim_num_spec
 ```
 
 ```{r empirical-sim-num-col}
-empirical_sim_num_col <- DAISIEmainland::calc_num_col(
+empirical_sim_num_col <- calc_num_col(
   multi_daisie_data = daisie_mainland_data$empirical_multi_daisie_data
 )
 
@@ -71,7 +77,7 @@ error metrics can be plotted across different rates to determine how the error
 varies with faster or slower mainland evolutionary dynamics.
 
 ```{r, read-analysis-results}
-analysis_results <- DAISIEmainland::read_analysis_results(
+analysis_results <- read_analysis_results(
   data_folder_path = system.file(
     "/inst/book/data/param_sets/", 
     package = "DAISIEmainland"
