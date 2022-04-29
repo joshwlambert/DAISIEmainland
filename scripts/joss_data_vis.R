@@ -13,14 +13,24 @@ mainland <- DAISIEmainland::sim_mainland(
   mainland_ex = 1
 )
 
-DAISIEmainland::plot_mainland(
+mainland_species_id <- DAISIEmainland::plot_mainland(
   mainland = mainland,
   branch_colour = "unique_species_id"
 )
 
-DAISIEmainland::plot_mainland(
+mainland_clade_id <- DAISIEmainland::plot_mainland(
   mainland = mainland,
   branch_colour = "clade_id"
+)
+
+ggplot2::ggsave(
+  plot = mainland_clade_id,
+  filename = file.path("scripts/mainland_clade_id.png"),
+  device = "png",
+  width = 180,
+  height = 100,
+  units = "mm",
+  dpi = 600
 )
 
 set.seed(
@@ -41,7 +51,17 @@ daisie_mainland_data <- DAISIEmainland::sim_island_with_mainland(
   verbose = FALSE
 )
 
-DAISIEmainland::plot_daisie_mainland_data(
+daisie_mainland_data <- DAISIEmainland::plot_daisie_mainland_data(
   daisie_mainland_data = daisie_mainland_data,
   replicate_index = 1
+)
+
+ggplot2::ggsave(
+  plot = daisie_mainland_data,
+  filename = file.path("scripts/daisie_mainland_data.png"),
+  device = "png",
+  width = 180,
+  height = 100,
+  units = "mm",
+  dpi = 600
 )
