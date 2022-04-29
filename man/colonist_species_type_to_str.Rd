@@ -15,8 +15,8 @@ Convert a \code{colonist_species_type} to a string:
 \details{
 \tabular{ll}{
    Value \tab String \cr
-   \code{A} \tab \verb{Colonist after anagenesis} \cr
-   \code{C} \tab \verb{Colonist after cladogenesis} \cr
+   \code{A} \tab \verb{Anagenetic recolonist} \cr
+   \code{C} \tab \verb{Cladogenetic recolonist} \cr
 }
 }
 \examples{

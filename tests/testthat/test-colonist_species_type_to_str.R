@@ -1,6 +1,6 @@
 test_that("use", {
-  expect_equal(colonist_species_type_to_str("A"), "Colonist after anagenesis")
-  expect_equal(colonist_species_type_to_str("C"), "Colonist after cladogenesis")
+  expect_equal(colonist_species_type_to_str("A"), "Anagenetic recolonist")
+  expect_equal(colonist_species_type_to_str("C"), "Cladogenetic recolonist  ")
   expect_error(colonist_species_type_to_str(""))
   expect_error(colonist_species_type_to_str("B"))
   expect_error(colonist_species_type_to_str(c("A", "V")))
