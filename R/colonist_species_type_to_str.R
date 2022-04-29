@@ -4,8 +4,8 @@
 #'
 #' Value|String
 #' -----|-----------------------------
-#' `A`  | `Colonist after anagenesis`
-#' `C`  | `Colonist after cladogenesis`
+#' `A`  | `Anagenetic recolonist`
+#' `C`  | `Cladogenetic recolonist`
 #'
 #' @inheritParams default_params_doc
 #'
@@ -19,9 +19,9 @@
 colonist_species_type_to_str <- function(colonist_species_type) { # nolint Indeed a long internal function name
   testthat::expect_equal(length(colonist_species_type), 1)
   if (colonist_species_type == "A") {
-    return("Colonist after anagenesis")
+    return("Anagenetic recolonist")
   } else if (colonist_species_type == "C") {
-    return("Colonist after cladogenesis")
+    return("Cladogenetic recolonist")
   }
   stop(
     "Invalid 'colonist_species_type' with value ", colonist_species_type, " \n",
