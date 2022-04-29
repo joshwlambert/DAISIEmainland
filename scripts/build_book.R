@@ -11,3 +11,4 @@ xfun::in_dir(dir = "inst/book/", expr = bookdown::render_book(
 
 # delete the _bookdown_files from vignettes directory
 #unlink(x = "inst/book/_bookdown_files", recursive = TRUE)
+
