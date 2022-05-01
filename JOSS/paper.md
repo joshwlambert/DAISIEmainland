@@ -17,7 +17,7 @@ authors:
     affiliation: 1
   - name: Luis Valente
     orcid: 0000-0003-4247-8785
-    affiliation: 1,2
+    affiliation: "1, 2"
   - name: Richèl J.C. Bilderbeek
     orcid: 0000-0003-0872-7098
     affiliation: 1
