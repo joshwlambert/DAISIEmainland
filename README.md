@@ -1,7 +1,7 @@
 # DAISIEmainland <img src="man/figures/logo.png" align="right" height="200" />
 
 <!-- badges: start -->
-[![R build status](https://github.com/joshwlambert/DAISIEmainland/workflows/R-CMD-check/badge.svg)](https://github.com/joshwlambert/DAISIEmainland/actions)
+[![R-CMD-check](https://github.com/joshwlambert/DAISIEmainland/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joshwlambert/DAISIEmainland/actions/workflows/R-CMD-check.yaml)
 [![codecov.io](https://codecov.io/github/joshwlambert/DAISIEmainland/coverage.svg?branch=main)](https://codecov.io/github/joshwlambert/DAISIEmainland/branch/main)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
