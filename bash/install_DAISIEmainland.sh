@@ -4,10 +4,9 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --job-name=install_DAISIEmainland
-#SBATCH --output=/data/p287218/DAISIEmainland/install_DAISIEmainland.log
+#SBATCH --output=/home3/p287218/DAISIEmainland/install_DAISIEmainland.log
 #SBATCH --mem=5GB
 
 mkdir -p logs
-mkdir -p results
 ml R
-Rscript -e "remotes::install_github('joshwlambert/DAISIEmainland@analysis')"
+Rscript -e "remotes::install_github('joshwlambert/DAISIEmainland@habrok')"
