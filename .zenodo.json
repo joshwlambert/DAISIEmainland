@@ -1,0 +1,29 @@
+{
+  "creators": [
+    {
+      "orcid": "0000-0001-5218-3046",
+      "affiliation": "University of Groningen",
+      "name": "Lambert, Joshua W."
+    },
+    {
+      "orcid": "0000-0003-1107-7049",
+      "affiliation": "University of Groningen",
+      "name": "Bilderbeek, Richèl J.C.",
+    },
+    {
+      "orcid": "0000-0003-2561-4677",
+      "affiliation": "University of Groningen",
+      "name": "Santos Neves, Pedro"
+    }
+  ],
+
+  "license": {
+    "id": "GPL-3.0-only"
+  },
+
+  "description": "<p>Simulates data for the DAISIE model. The simulation includes the mainland and island, and produces two data sets: 1) the ideal data set includes all the information, and 2) the empirical data set prunes the ideal data to include what would be seen by an empiricist producing phylogenetic data from extant species.</p>",
+  "language": "eng",
+  "title": "DAISIEmainland: Simulates Data for Phylogenetic Data on Islands for DAISIE with the Addition of Mainland Dynamics",
+
+  "access_right": "open"
+}
