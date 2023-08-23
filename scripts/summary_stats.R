@@ -6,4 +6,5 @@ analysis_results <- DAISIEmainland::read_analysis_results(
 
 DAISIEmainland::calc_sim_metrics(
   analysis_results = analysis_results,
-  output_file_path = NULL)
+  output_file_path = NULL
+)
