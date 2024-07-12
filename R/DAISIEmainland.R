@@ -35,6 +35,9 @@
 #' `DAISIEmainland` works in association with the
 #' package `DAISIE`(github.com/rsetienne/DAISIE)
 #' @author Joshua W. Lambert
-#' @docType package
 #' @name DAISIEmainland
+#' @keywords internal
+"_PACKAGE"
 NULL
+
+

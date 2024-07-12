@@ -2,6 +2,7 @@
 % Please edit documentation in R/DAISIEmainland.R
 \docType{package}
 \name{DAISIEmainland}
+\alias{DAISIEmainland-package}
 \alias{DAISIEmainland}
 \title{\code{DAISIEmainland}: A package to simulate phylogenetic data on an island
 with the presence of mainland speciation and extinction to test the
@@ -44,3 +45,4 @@ package \code{DAISIE}(github.com/rsetienne/DAISIE)
 \author{
 Joshua W. Lambert
 }
+\keyword{internal}
